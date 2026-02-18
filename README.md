@@ -37,7 +37,7 @@ This is **not** a strategy deck. It's a **live, forkable framework** — with or
 | AI agents need governance, not just prompts | 5-layer organizational model with explicit boundaries, RACI via CODEOWNERS, and policy enforcement |
 | Legacy processes (Jira, wikis, standups) don't work for agent fleets | Git-native everything: PRs = decisions, branches = workflow states, CI/CD = quality gates |
 | No standard way to structure human + agent collaboration | Clear separation: humans steer and decide, agents execute and evaluate, Git is the medium |
-| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 13 divisions, 8 quality policy domains, 4 process loops |
+| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 8 quality policy domains, 4 process loops |
 | Agent instructions are scattered and inconsistent | Hierarchical `AGENT.md` files: global → layer → division, all version-controlled |
 
 ---
@@ -60,7 +60,7 @@ Every function in the company — engineering, marketing, sales, customer succes
 │  org/2-orchestration/  Mission Leads, Fleet Managers            │
 ├─────────────────────────────────────────────────────────────────┤
 │  EXECUTION         Agents do the work, humans own hard parts    │
-│  org/3-execution/  13 divisions across eng, GTM, customer       │
+│  org/3-execution/  12 divisions across eng, GTM, customer       │
 ├─────────────────────────────────────────────────────────────────┤
 │  QUALITY           Agents evaluate, humans author policies      │
 │  org/4-quality/    8 policy domains, eval agent fleets          │
@@ -310,7 +310,7 @@ agentic-enterprise/
 │   ├── 2-orchestration/             ← Translate strategy → work
 │   │   └── fleet-configs/           ← Agent fleet configurations
 │   ├── 3-execution/                 ← Do the work
-│   │   └── divisions/               ← 13 specialized divisions
+│   │   └── divisions/               ← 12 specialized divisions
 │   │       ├── ai-intelligence/
 │   │       ├── core-applications/
 │   │       ├── core-services/

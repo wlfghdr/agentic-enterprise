@@ -45,7 +45,7 @@ framework for running an entire organization with AI agents and human oversight.
 
 ## Repository Layout
 
-- org/              → Organizational structure (5 layers, 13 divisions)
+- org/              → Organizational structure (5 layers, 12 divisions)
 - org/0-steering/   → Company evolution (C-Suite + evolution agents)
 - org/1-strategy/   → Venture charters, mission definition (WHY + WHAT)
 - org/2-orchestration/ → Fleet configs, mission decomposition (HOW)

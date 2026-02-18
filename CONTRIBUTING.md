@@ -38,8 +38,8 @@ git checkout -b feat/your-feature-name
 
 # 4. Make your changes (see contribution types below)
 
-# 5. Validate locally
-make validate  # or run the checks manually (see Development Setup)
+# 5. Validate locally (see Development Setup section below for full commands)
+find . -name "*.yaml" | grep -v '.github/' | xargs -I{} python3 -c "import yaml; yaml.safe_load(open('{}'))" 2>&1
 
 # 6. Commit with Conventional Commits
 git commit -m "feat(quality): add OWASP-aligned security checks"
@@ -58,7 +58,7 @@ Changes to the operating model itself — layer definitions, process loops, agen
 - **Files:** `org/`, `process/`, `AGENTS.md`, `OPERATING-MODEL.md`
 - **Requires:** Strong understanding of the 5-layer model and 4-loop process
 - **Review:** Maintainers + community discussion recommended
-- **Start with:** Open a [Discussion](https://github.com/wlfghdr/agentic-enterprise/discussions/categories/ideas-rfcs) first for significant changes
+- **Start with:** Open a [Discussion](https://github.com/wlfghdr/agentic-enterprise/discussions) first for significant changes
 
 ### Templates
 
@@ -120,7 +120,7 @@ README improvements, guides, examples, tutorials.
 
 ### For Large Changes (structural changes, new layers/loops, major integrations)
 
-1. Start a [Discussion](https://github.com/wlfghdr/agentic-enterprise/discussions/categories/ideas-rfcs) with an RFC
+1. Start a [Discussion](https://github.com/wlfghdr/agentic-enterprise/discussions) with an RFC
 2. Gather feedback from the community
 3. Once there's rough consensus, open an Issue
 4. Fork → branch → implement → PR referencing both the discussion and issue
@@ -252,22 +252,13 @@ The best way to test changes to agent instructions is to actually use them:
 
 ## Community
 
-- **[GitHub Issues](https://github.com/wlfghdr/agentic-enterprise/issues)** — Bug reports and concrete feature requests
-- **[GitHub Discussions](https://github.com/wlfghdr/agentic-enterprise/discussions)** — Open-ended conversations, RFCs, roadmap discussions, and show & tell
+- **[GitHub Issues](https://github.com/wlfghdr/agentic-enterprise/issues)** — Bug reports and feature requests
+- **[GitHub Discussions](https://github.com/wlfghdr/agentic-enterprise/discussions)** — Questions, ideas, RFCs, and community conversation
 - **[Pull Requests](https://github.com/wlfghdr/agentic-enterprise/pulls)** — The primary mechanism for all changes
-
-### Discussion Categories
-
-| Category | Use For |
-|----------|---------|
-| **General** | Questions, help, open conversation |
-| **Ideas & RFCs** | Propose new features or structural changes |
-| **Roadmap** | Discuss known limitations and solutions |
-| **Show & Tell** | Share your implementation or customization |
 
 ## Recognition
 
-All contributors are valued. Significant contributions will be acknowledged in the README. If you've built something interesting on top of the framework, share it in [Show & Tell](https://github.com/wlfghdr/agentic-enterprise/discussions/categories/show-and-tell) — we'd love to feature it.
+All contributors are valued. Significant contributions will be acknowledged in the README. If you've built something interesting on top of the framework, share it in [Discussions](https://github.com/wlfghdr/agentic-enterprise/discussions) — we'd love to feature it.
 
 ## Code of Conduct
 

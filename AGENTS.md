@@ -80,7 +80,7 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 ## Repository Structure (Quick Reference)
 
 ```
-native-ai-enterprise/
+agentic-enterprise/
 ├── CONFIG.yaml                   ← Company configuration (fill FIRST)
 ├── CUSTOMIZATION-GUIDE.md        ← How to customize this framework
 ├── COMPANY.md                    ← Vision, mission, strategic beliefs
