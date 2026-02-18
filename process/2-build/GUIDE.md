@@ -15,16 +15,38 @@ Once a mission brief is approved:
 4. Dependencies between streams mapped
 5. Human checkpoints identified
 
-### Step 2: Stream Execution (Execution Layer)
+### Step 2: Technical Design (Execution Layer)
+
+For missions marked `design-required: true` in the Mission Brief, a Technical Design document must be produced and approved **before** stream execution begins.
+
+**When required:**
+- Multi-stream missions (2+ execution streams with dependencies)
+- Novel architecture patterns not covered by existing ADRs
+- Missions involving new external APIs, data model changes, or security-sensitive flows
+- Regulated features requiring specification traceability
+
+**Process:**
+1. Technical Design Agent (or Tech Lead) reads Mission Brief, Outcome Contract, and Fleet Config
+2. Produces Technical Design document (`work/missions/<name>/TECHNICAL-DESIGN.md`)
+3. Design covers: API contracts, data models, interface contracts between streams, behavioral specifications, security threat model, performance budgets, and key architecture decisions
+4. Design submitted as PR for architecture review at the human checkpoint
+5. Execution streams begin only after design is approved (or marked N/A for single-stream missions)
+
+**Template:** `work/missions/_TEMPLATE-technical-design.md`
+
+> **Note:** For simple, single-stream missions without novel patterns, this step can be skipped — the Mission Brief + Fleet Config provide sufficient context. The Orchestration Layer determines whether design is required based on mission complexity.
+
+### Step 3: Stream Execution (Execution Layer)
 
 For each work stream:
 1. Agent reads fleet configuration to understand scope, constraints, and policies
-2. Agent reads ALL applicable quality policies
-3. Agent produces outputs (code, docs, content, etc.)
-4. Agent self-evaluates against quality policies
-5. Agent submits outputs as Pull Request
+2. Agent reads Technical Design document (if one exists for this mission)
+3. Agent reads ALL applicable quality policies
+4. Agent produces outputs (code, docs, content, etc.)
+5. Agent self-evaluates against quality policies
+6. Agent submits outputs as Pull Request
 
-### Step 3: Quality Evaluation (Quality Layer)
+### Step 4: Quality Evaluation (Quality Layer)
 
 For each submitted output:
 1. Quality eval agent reviews against all applicable policies
@@ -32,13 +54,13 @@ For each submitted output:
 3. For FAIL: specific feedback provided, output returned to Execution
 4. For ESCALATE: flagged for human review
 
-### Step 4: Iteration
+### Step 5: Iteration
 
 - FAIL outputs are revised and resubmitted
 - ESCALATE outputs wait for human decision
 - PASS outputs proceed to Ship loop
 
-### Step 5: Decision Recording
+### Step 6: Decision Recording
 
 Novel patterns, architecture choices, and strategy decisions discovered during Build are captured:
 1. Use `work/decisions/_TEMPLATE-decision-record.md`
@@ -62,6 +84,7 @@ Before submitting any output:
 
 | Type | Typical Outputs | Key Policies |
 |------|----------------|--------------|
+| Design/Spec | API contracts, data models, interface specs, threat models, behavioral specs | architecture |
 | Engineering | Code, tests, API specs | security, architecture, performance |
 | Documentation | User docs, API docs, guides | content, experience |
 | Content | Blog posts, release notes | content |
@@ -71,6 +94,7 @@ Before submitting any output:
 
 ## Anti-Patterns
 
+- ❌ Starting execution without reading the Technical Design (when one exists)
 - ❌ Starting execution without reading quality policies
 - ❌ Large PRs (break into smaller, reviewable chunks)
 - ❌ Ignoring evaluation feedback

@@ -37,6 +37,13 @@ Translate mission briefs from the Strategy Layer into executable agent fleet con
 - Define human checkpoint triggers
 - Set success metrics and monitoring thresholds
 
+### Technical Design Gate
+- For missions marked `design-required: true` in the Mission Brief, ensure a **Technical Design document** is produced and PR-reviewed **before** dispatching execution streams
+- Trigger Technical Design Agent (or Tech Lead) assignment after fleet config is created
+- Verify that the Technical Design covers all inter-stream interface contracts identified in the fleet config dependencies
+- Do not advance mission status to `active` until the Technical Design is approved (or confirmed N/A for simple missions)
+- For single-stream missions without novel patterns, mark design as N/A and proceed directly to execution
+
 ### Agent Pool Provisioning
 - **Translate fleet config demand into running instances** — when a fleet config requests an agent pool, ensure sufficient instances are provisioned
 - Monitor agent pool utilization and recommend scaling adjustments

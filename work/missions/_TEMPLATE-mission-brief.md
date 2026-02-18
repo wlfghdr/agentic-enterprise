@@ -4,7 +4,8 @@
 > **Mission ID:** MISSION-YYYY-NNN  
 > **Status:** proposed | approved | active | paused | completed  
 > **Created:** YYYY-MM-DD  
-> **Author:** [Strategy Layer agent or human]
+> **Author:** [Strategy Layer agent or human]  
+> **Design required:** true | false _(Set to `true` for multi-stream missions, novel architecture patterns, new external APIs, data model changes, or regulated features. The Orchestration Layer will gate execution on a reviewed Technical Design document.)_
 
 ---
 

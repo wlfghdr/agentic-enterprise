@@ -22,6 +22,14 @@
 - [ ] Breaking API changes follow deprecation policy (minimum 2 release cycles)
 - [ ] No direct database access across service boundaries
 
+### Technical Design
+- [ ] **Multi-stream missions** (2+ streams with dependencies) must have a Technical Design document (`_TEMPLATE-technical-design.md`) approved before execution begins
+- [ ] Technical Design includes: API contracts, data model changes, interface contracts between streams, behavioral specifications, security threat model, and performance budgets
+- [ ] Technical Design reviewed by Architecture Governor (and Security Lead if security-sensitive)
+- [ ] All inter-stream interface contracts from the fleet config are defined in the Technical Design — no implicit interfaces
+- [ ] Behavioral specifications map to acceptance criteria in the Outcome Contract
+- [ ] For single-stream or low-complexity missions: design step may be skipped if the Orchestration Layer marks `design-required: false`
+
 ### Code Quality
 - [ ] Code coverage ≥ {{MIN_CODE_COVERAGE}} for new code
 - [ ] No code duplication above threshold (DRY)
@@ -67,3 +75,4 @@
 | Design system | Uses standard components | Custom components without approval |
 | Service boundary | Aligned with division | Cross-division data sharing |
 | Observability | Instrumented with traces, metrics, logs, health targets | Missing instrumentation or no health targets |
+| Technical design | Design document exists and approved for multi-stream missions | Multi-stream mission executing without reviewed design |

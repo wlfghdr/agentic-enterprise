@@ -264,7 +264,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
   border-radius:10px;
   background:rgba(9,9,11,.85);
   display:grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(4,1fr);
   gap:4px;
   padding:6px;
   font-size:.61rem;
@@ -339,6 +339,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
         <div class="legend">
           <span><i class="dot" style="background:var(--green)"></i>PR created</span>
           <span><i class="dot" style="background:var(--cyan)"></i>Agent wake-up</span>
+          <span><i class="dot" style="background:var(--amber)"></i>Design gate</span>
           <span><i class="dot" style="background:var(--accent)"></i>Repo state transition</span>
         </div>
       </section>
@@ -362,7 +363,7 @@ const scenarioData = {
   feature: {
     label: 'Generic Feature Lifecycle',
     summary: 'Customer demand to shipped capability across all 5 layers and 4 loops.',
-    chain: 'Signal → Digest → Mission + Contract → Fleet Config → Execution Outputs → Quality Reports → Release → Operate',
+    chain: 'Signal → Digest → Mission + Contract → Fleet Config → Technical Design → Execution Outputs → Quality Reports → Release → Operate',
     steps: [
       {
         phase: 'Phase 1',
@@ -413,25 +414,36 @@ const scenarioData = {
         title: 'Orchestration creates fleet config PR',
         from: 'fleet-orchestrator',
         fromNode: 'orchestrationFleet',
-        wakes: ['executionBuild', 'qualityEval'],
+        wakes: ['executionDesign'],
         branch: 'fleet/bulk-export-streams',
         artifact: 'org/2-orchestration/fleet-configs/bulk-data-export.yaml',
-        tags: ['Parallel streams', 'Build loop', 'Agent coordination'],
-        narrative: 'Orchestration configures parallel execution streams and assigns agent types. This wakes build execution and quality tracking in parallel.'
+        tags: ['4 streams', 'design-required: true', 'Agent coordination'],
+        narrative: 'Orchestration configures parallel execution streams. Mission is flagged design-required — Technical Design must be approved before streams execute.'
       },
       {
         phase: 'Phase 6',
+        title: 'Technical Design Agent produces design PR',
+        from: 'technical-design-agent',
+        fromNode: 'executionDesign',
+        wakes: ['executionBuild', 'qualityEval'],
+        branch: 'exec/bulk-data-export/technical-design',
+        artifact: 'work/missions/bulk-data-export/TECHNICAL-DESIGN.md',
+        tags: ['API contracts', 'Interface specs', 'Behavioral specs'],
+        narrative: 'Design agent reads Mission Brief + Fleet Config and produces Technical Design: API contracts, data models, interface specs, threat model, performance budgets. Reviewed by Architecture Governor before execution begins.'
+      },
+      {
+        phase: 'Phase 7',
         title: 'Execution outputs + assets are committed',
         from: 'coding-agent stream',
         fromNode: 'executionBuild',
         wakes: ['qualityEval'],
         branch: 'build/bulk-export-api-ui-docs',
         artifact: 'work/assets/bulk-data-export-api.md',
-        tags: ['API + UI + docs', 'Asset registry', 'Execution layer'],
-        narrative: 'Execution agents produce deliverables and asset entries via PRs. Quality evaluation is triggered by completed outputs.'
+        tags: ['API + UI + docs', 'Design-driven', 'Execution layer'],
+        narrative: 'Execution agents consume the Technical Design as authoritative spec. All streams share reviewed interface contracts — reducing integration rework.'
       },
       {
-        phase: 'Phase 7',
+        phase: 'Phase 8',
         title: 'Quality evaluator issues release readiness PR',
         from: 'delivery-evaluator',
         fromNode: 'qualityEval',
@@ -442,7 +454,7 @@ const scenarioData = {
         narrative: 'Quality agents publish verdict artifacts through PR. PASS signals wake release operations and human approval flow.'
       },
       {
-        phase: 'Phase 8',
+        phase: 'Phase 9',
         title: 'Release + operate loop feeds new signals',
         from: 'release-manager',
         fromNode: 'releaseOps',
@@ -611,7 +623,8 @@ const nodeLayout = {
   executionSignal: { x: 250, y: 140, role: 'Execution', name: 'Signal Scanner', path: 'work/signals/' },
   releaseOps: { x: 250, y: 275, role: 'Operate', name: 'Release + Operate', path: 'work/releases/' },
   qualityEval: { x: 250, y: 410, role: 'Quality', name: 'Delivery Evaluator', path: 'org/4-quality/policies/' },
-  executionBuild: { x: 500, y: 545, role: 'Execution', name: 'Build Streams', path: 'org/3-execution/divisions/' },
+  executionDesign: { x: 630, y: 500, role: 'Execution', name: 'Design Agent', path: 'work/missions/*/TECHNICAL-DESIGN.md' },
+  executionBuild: { x: 380, y: 545, role: 'Execution', name: 'Build Streams', path: 'org/3-execution/divisions/' },
   repo: { x: 500, y: 325, role: 'Git', name: 'Main Repository', path: 'PRs = decisions' }
 };
 

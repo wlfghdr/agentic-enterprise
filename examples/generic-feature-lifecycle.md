@@ -10,6 +10,7 @@
 
 ```
 Signal → Signal Digest → Mission Brief + Outcome Contract → Fleet Config + STATUS.md
+→ Technical Design (for design-required missions)
 → Execution Outputs + Asset Registry → Quality Evaluation Reports → Decision Records
 → Release Contract → Production → Outcome Report + Venture Health Update
 → New Signals (cycle continues)
@@ -420,15 +421,157 @@ Reporting period: 2026-03-17 → 2026-03-17
 | Release contract submitted | 2026-04-07 | on-track |
 ```
 
-**Handover:** Fleet config submitted via PR on branch `orchestration/bulk-data-export/fleet-config`. CODEOWNERS requires Orchestration Layer approval. The Mission Lead reviews and merges. Execution agents now have their assignments.
+**Handover:** Fleet config submitted via PR on branch `orchestration/bulk-data-export/fleet-config`. CODEOWNERS requires Orchestration Layer approval. The Mission Lead reviews and merges. Because this is a multi-stream mission (4 streams with dependencies), the mission is marked `design-required: true` — so a Technical Design step is triggered before stream execution begins.
 
 ---
 
-## Phase 6: Execution — Parallel Streams
+## Phase 6: Technical Design
+
+**Layer:** Execution · **Loop:** Build · **Agent type:** `technical-design-agent`
+
+The Mission Brief is flagged `design-required: true` (multi-stream mission with inter-stream dependencies). The Orchestration Layer triggers the `technical-design-agent` before dispatching execution streams.
+
+### 6a. Technical Design Document
+
+**Artifact created:** `work/missions/bulk-data-export/TECHNICAL-DESIGN.md`  
+**Template:** `work/missions/_TEMPLATE-technical-design.md`
+
+The `technical-design-agent`:
+1. Reads the Mission Brief, Outcome Contract, and Fleet Config
+2. Identifies 3 inter-stream dependencies that need explicit interface contracts
+3. Produces the Technical Design document:
+
+```markdown
+# Technical Design: Bulk Data Export
+
+## Metadata
+| Field | Value |
+|-------|-------|
+| Mission ID | MISSION-2026-015 |
+| Status | in-review |
+| Author | technical-design-agent |
+| Reviewers | Tech Lead (Core Services), Architecture Governor |
+
+## Context & Goals
+Bulk Data Export allows customers to extract large datasets (up to 10M records)
+in CSV, JSON, and Parquet formats. The design must handle async processing
+(exports can take minutes), rate limiting, and secure file delivery — all within
+the existing async job framework.
+
+## API Contracts
+
+### Export API (REST — OpenAPI 3.x fragment)
+POST /api/v2/export/bulk → 202 Accepted (creates async export job)
+  Request: { datasetId, format: "csv"|"json"|"parquet", filters?, columns? }
+  Response: { jobId, status: "queued", estimatedDuration, _links: { status, cancel } }
+
+GET /api/v2/export/bulk/{jobId} → 200 (job status)
+  Response: { jobId, status: "queued"|"processing"|"completed"|"failed"|"cancelled",
+              progress: 0-100, format, recordCount, fileSize?, downloadUrl?, error? }
+
+GET /api/v2/export/bulk/{jobId}/download → 200 (signed file download)
+  Response: binary stream (Content-Disposition: attachment)
+  Auth: signed URL with 15-minute TTL
+
+DELETE /api/v2/export/bulk/{jobId} → 204 (cancel in-progress export)
+
+## Data Model
+
+| Entity | Change | Fields |
+|--------|--------|--------|
+| ExportJob | new | id, customerId, datasetId, format, status, filters, columns, progress, fileUrl, createdAt, completedAt, errorMessage |
+| ExportQuota | new | customerId, concurrentLimit (default: 5), dailyLimit |
+
+## Interface Contracts Between Streams
+
+| From Stream | To Stream | Interface | Contract |
+|-------------|-----------|-----------|----------|
+| data-processing | api-implementation | Shared types | ExportFormat enum, ExportJobStatus enum, ChunkResult type |
+| api-implementation | ui-integration | API spec | Full OpenAPI spec above — UI polls GET /status, triggers download |
+| api-implementation | documentation | API spec | Same OpenAPI spec — doc agent uses for reference docs |
+
+### Shared Type Definitions
+type ExportFormat = "csv" | "json" | "parquet"
+type ExportJobStatus = "queued" | "processing" | "completed" | "failed" | "cancelled"
+interface ChunkResult { recordCount: number; byteSize: number; chunkIndex: number }
+
+## Behavioral Specifications
+
+Scenario: Customer creates an export job
+  Given a customer with available export quota
+  When they POST /api/v2/export/bulk with valid parameters
+  Then a job is created with status "queued"
+  And the response includes a status polling URL
+
+Scenario: Rate limiting enforced
+  Given a customer already has 5 concurrent exports running
+  When they POST /api/v2/export/bulk
+  Then they receive 429 Too Many Requests
+  And the response includes Retry-After header
+
+Scenario: Export job completes successfully
+  Given an export job in "processing" status
+  When all data chunks are processed
+  Then job status changes to "completed"
+  And a signed download URL is generated with 15-min TTL
+
+Scenario: Export cancellation
+  Given an export job in "queued" or "processing" status
+  When the customer sends DELETE /api/v2/export/bulk/{jobId}
+  Then the job transitions to "cancelled"
+  And any partial files are cleaned up
+
+## Security Threat Model
+
+| Threat | Category | Likelihood | Impact | Mitigation |
+|--------|----------|------------|--------|------------|
+| Unauthorized access to other customer's exports | Elevation of Privilege | med | high | Tenant isolation on all queries; jobId includes customerId hash |
+| Download URL guessing | Information Disclosure | low | high | Signed URLs with 15-min TTL, 256-bit random tokens |
+| Resource exhaustion via large exports | Denial of Service | med | med | Per-customer concurrency limit (5), daily limit, file size cap (5GB) |
+
+## Performance Budgets
+
+| Component | Metric | Budget |
+|-----------|--------|--------|
+| POST /export/bulk | p95 latency | < 200ms (job creation only) |
+| GET /export/bulk/{id} | p95 latency | < 50ms (status lookup) |
+| Data processing | throughput | 1M records in < 5 min |
+| File download | throughput | 100 MB/s minimum |
+
+## Architecture Decisions
+
+Decision 1: Use existing async job framework (not a new queue)
+  Context: Could build custom export queue or reuse existing framework
+  Decision: Reuse existing async job framework
+  Rationale: Proven at scale, already monitored, avoids new infrastructure
+  ADR: inline — standard pattern
+
+## Open Questions
+(none — all resolved during design review)
+```
+
+### 6b. Design Review
+
+**PR submitted:** `exec/bulk-data-export/technical-design → main`
+
+The Architecture Governor and Core Services Tech Lead review the Technical Design:
+- API contracts are consistent with existing API conventions ✅
+- Shared type definitions are clear for cross-stream consumption ✅
+- Security mitigations are proportionate to threats ✅
+- Performance budgets are measurable and testable ✅
+- All fleet config dependencies have explicit interface contracts ✅
+
+**PR approved and merged.** Mission status updated: Technical Design approved. Execution streams can now begin with a shared, reviewed specification.
+
+> **Key benefit:** The UI stream (previously "blocked" waiting for the API spec to emerge from implementation) now has the full API contract from the Technical Design. All 4 streams can reference the same authoritative spec, reducing integration rework.
+
+---
+
+## Phase 7: Execution — Parallel Streams
 
 **Layer:** Execution · **Loop:** Build · **Agent types:** `coding-agent` (×3 streams), `doc-generation-agent`
 
-Each stream operates on its own branch with exclusive folder ownership. Agents follow the concurrency rules: one branch per agent, no overlapping file paths, pessimistic locking on shared resources.
+Each stream operates on its own branch with exclusive folder ownership. Agents follow the concurrency rules: one branch per agent, no overlapping file paths, pessimistic locking on shared resources. **All streams reference the approved Technical Design** as the authoritative specification for API contracts, data models, shared types, and behavioral expectations.
 
 ### Stream 1: API Implementation
 
@@ -436,9 +579,9 @@ Each stream operates on its own branch with exclusive folder ownership. Agents f
 **Branch:** `exec/bulk-data-export/api-implementation`
 
 The agent:
-1. Reads the Mission Brief and Fleet Config to understand its scope
+1. Reads the Mission Brief, Fleet Config, and **Technical Design** to understand its scope
 2. Reads applicable quality policies: `security.md`, `architecture.md`, `performance.md`, `observability.md`
-3. Implements `POST /api/v2/export/bulk` — an async endpoint that creates an export job
+3. Implements `POST /api/v2/export/bulk` — matching the API contract from the Technical Design
 4. Implements `GET /api/v2/export/bulk/{jobId}` — status polling endpoint
 5. Implements `GET /api/v2/export/bulk/{jobId}/download` — file download endpoint
 6. Implements the job queue processor using the existing async job framework
@@ -472,9 +615,10 @@ The agent:
 **Agent type:** `coding-agent`  
 **Branch:** `exec/bulk-data-export/ui-integration`
 
-This stream is **blocked** until the API interface contract is defined (dependency in fleet config). Once stream 1 has the API spec merged:
+This stream was previously **blocked** waiting for the API interface contract \u2014 but with the Technical Design approved, the full API spec is already available. The UI stream can start in parallel:
 
-1. Implements "Export Data" button using the design system
+1. Reads the API contract from the Technical Design (endpoints, request/response shapes, shared types)
+2. Implements "Export Data" button using the design system
 2. Implements progress indicator polling the job status endpoint
 3. Implements download trigger when export completes
 4. Writes end-to-end tests
@@ -500,7 +644,7 @@ Starts in parallel (informed by the API spec, but not blocked):
 
 ---
 
-## Phase 7: Quality Evaluation
+## Phase 8: Quality Evaluation
 
 **Layer:** Quality · **Loop:** Build · **Agent types:** `architecture-review`, `security-policy-enforcer`, `performance-evaluator`, `experience-evaluator`, `brand-content-policy`
 
@@ -585,7 +729,7 @@ During the API evaluation, the `architecture-review` agent encounters a novel pa
 
 ---
 
-## Phase 8: Decision Record
+## Phase 9: Decision Record
 
 **Layer:** Cross-layer · **Agent type:** `coding-agent` (authored), `architecture-review` (validated)
 
@@ -638,13 +782,13 @@ Review when streaming export is considered (currently out of scope).
 
 ---
 
-## Phase 9: Mission Status Update & Fleet Performance
+## Phase 10: Mission Status Update & Fleet Performance
 
 **Layer:** Orchestration · **Loop:** Build · **Agent types:** `fleet-performance-monitor`
 
 Midway through the mission, the `fleet-performance-monitor` agent produces an updated status entry and a fleet performance snapshot.
 
-### 9a. Status Update (appended to STATUS.md)
+### 10a. Status Update (appended to STATUS.md)
 
 ```markdown
 ## Status Update: 2026-03-28
@@ -676,7 +820,7 @@ Reporting period: 2026-03-17 → 2026-03-28
 | Average cycle time (PR open → merge) | 18 hours |
 ```
 
-### 9b. Fleet Performance Report
+### 10b. Fleet Performance Report
 
 **Artifact created:** `work/missions/bulk-data-export/FLEET-REPORT.md`  
 **Template:** `work/missions/_TEMPLATE-fleet-performance-report.md`
@@ -685,7 +829,7 @@ The `fleet-performance-monitor` also notes a **bottleneck**: quality evaluation 
 
 ---
 
-## Phase 10: Release Contract
+## Phase 11: Release Contract
 
 **Layer:** Orchestration → Quality · **Loop:** Ship · **Agent type:** `release-coordinator`
 
@@ -744,7 +888,7 @@ With all streams merged and quality evaluations passed, the `release-coordinator
 
 ---
 
-## Phase 11: Deployment & Validation
+## Phase 12: Deployment & Validation
 
 **Layer:** Execution · **Loop:** Ship · **Agent type:** `deploy-agent`, `feature-flag-agent`
 
@@ -786,7 +930,7 @@ The `deploy-agent` executes the progressive rollout defined in the release contr
 
 ---
 
-## Phase 12: Outcome Measurement & Report
+## Phase 13: Outcome Measurement & Report
 
 **Layer:** Strategy · **Loop:** Ship → Discover · **Agent types:** `product-strategy`, `release-coordinator`
 
@@ -874,7 +1018,7 @@ The NRR metric improves from "at-risk" to "on-track" based on the 8 secured rene
 
 ---
 
-## Phase 13: Operate
+## Phase 14: Operate
 
 **Layer:** Execution · **Loop:** Operate · **Agent types:** `monitoring-agent`, `incident-response-agent`, `feature-flag-agent`
 
@@ -911,7 +1055,7 @@ The `feature-flag-agent` tracks the `bulk_export_enabled` flag:
 
 ---
 
-## Phase 14: Continuous Improvement Signals
+## Phase 15: Continuous Improvement Signals
 
 **Layer:** All layers · **Agent types:** Various
 

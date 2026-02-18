@@ -8,6 +8,7 @@ Agent types that operate at the Execution Layer — producing code, content, doc
 
 | Agent ID | Name | Status |
 |----------|------|--------|
+| technical-design-agent | Technical Design Agent | proposed |
 | coding-agent-fleet | Coding Agent Fleet | proposed |
 | team-specific-coding-agents | Team-Specific Coding Agents | proposed |
 | team-specific-test-agents | Team-Specific Test Agents | proposed |
@@ -121,4 +122,4 @@ Agent types that operate at the Execution Layer — producing code, content, doc
 | training-agent | Training Agent | proposed |
 | user-experience-agent | User Experience Agent | proposed |
 
-**Total: 77 agent types**
+**Total: 78 agent types**

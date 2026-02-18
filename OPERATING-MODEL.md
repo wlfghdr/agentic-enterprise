@@ -83,7 +83,7 @@ Reusable templates that standardize how work is created and tracked. Templates a
 | Category | Templates | Location |
 |----------|-----------|----------|
 | **Discover** | `_TEMPLATE-signal.md`, `_TEMPLATE-signal-digest.md`, `_TEMPLATE-mission-brief.md` | `work/signals/`, `work/signals/digests/`, `work/missions/` |
-| **Build** | `_TEMPLATE-outcome-contract.md`, `_TEMPLATE-decision-record.md`, `_TEMPLATE-mission-status.md`, `_TEMPLATE-quality-evaluation-report.md`, `_TEMPLATE-component-onboarding.md` | `work/missions/`, `work/decisions/`, `org/3-execution/divisions/_TEMPLATE/` |
+| **Build** | `_TEMPLATE-outcome-contract.md`, `_TEMPLATE-technical-design.md`, `_TEMPLATE-decision-record.md`, `_TEMPLATE-mission-status.md`, `_TEMPLATE-quality-evaluation-report.md`, `_TEMPLATE-component-onboarding.md` | `work/missions/`, `work/decisions/`, `org/3-execution/divisions/_TEMPLATE/` |
 | **Ship** | `_TEMPLATE-release-contract.md`, `_TEMPLATE-outcome-report.md`, `_TEMPLATE-asset-registry-entry.md` | `work/releases/`, `work/missions/`, `work/assets/` |
 | **Operate** | `_TEMPLATE-runbook.md`, `_TEMPLATE-postmortem.md` | `org/3-execution/divisions/_TEMPLATE/`, `work/retrospectives/` |
 | **Strategy** | `_TEMPLATE-venture-health-report.md`, `_TEMPLATE-fleet-performance-report.md` | `org/1-strategy/ventures/`, `work/missions/` |
@@ -189,6 +189,10 @@ Mission Brief (work/missions/<name>/BRIEF.md)
   ├─ Orchestration: Fleet Config (org/2-orchestration/fleet-configs/<mission>.md)
   │                  Mission Status (work/missions/<name>/STATUS.md)
   │                  Fleet Performance Report
+  │
+  ├─ Technical Design (work/missions/<name>/TECHNICAL-DESIGN.md)
+  │  (for design-required missions: API contracts, data models,
+  │   interface specs, behavioral specs, threat model, perf budgets)
   │
   ▼
 Execution Outputs (code PRs, docs, content, assets)

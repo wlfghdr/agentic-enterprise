@@ -57,7 +57,8 @@
 | Phase | Input | Output | Owner |
 |-------|-------|--------|-------|
 | Mission decomposition | Mission brief | Fleet configuration, work streams | Orchestration Layer |
-| Execution | Work streams | Code, docs, content, deliverables | Execution Layer |
+| Technical design | Fleet configuration + Outcome contract | Technical design document (API contracts, data models, behavioral specs) | Execution Layer (Design Agent / Tech Lead) |
+| Execution | Work streams + Technical design | Code, docs, content, deliverables | Execution Layer |
 | Quality evaluation | Outputs | Evaluation verdicts | Quality Layer |
 | Iteration | Evaluation feedback | Improved outputs | Execution Layer |
 
@@ -154,6 +155,7 @@ All process artifacts use standardized templates. Templates are co-located with 
 | `_TEMPLATE-signal-digest.md` | `work/signals/digests/` | Weekly aggregated signal summary with patterns and themes | Discover loop (Steering → Strategy) |
 | `_TEMPLATE-mission-brief.md` | `work/missions/` | Define a mission with scope, constraints, outcomes | Discover → Build |
 | `_TEMPLATE-outcome-contract.md` | `work/missions/` | Define measurable success criteria | Build loop |
+| `_TEMPLATE-technical-design.md` | `work/missions/` | Technical design: API contracts, data models, behavioral specs, threat model, performance budgets | Build loop (Execution → architecture review) |
 | `_TEMPLATE-mission-status.md` | `work/missions/` | Append-only mission progress tracking | Build loop (Orchestration) |
 | `_TEMPLATE-decision-record.md` | `work/decisions/` | Document an architecture or strategy decision | Build loop |
 | `_TEMPLATE-quality-evaluation-report.md` | `work/missions/` | Standardized quality evaluation verdict | Build loop (Quality) |

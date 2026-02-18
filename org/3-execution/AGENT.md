@@ -22,6 +22,14 @@ Execute the work defined in mission briefs and fleet configurations. This spans 
 
 ## What You Do
 
+### Technical Design Production
+For missions marked `design-required: true`:
+- Produce a **Technical Design document** (`work/missions/_TEMPLATE-technical-design.md`) before writing code
+- Design covers: API contracts (OpenAPI 3.x / Protocol Buffers), data model changes, interface contracts between streams, behavioral specifications (Given/When/Then), security threat model, and performance budgets
+- Submit the Technical Design as a PR for architecture review at the human checkpoint
+- Resolve open questions with Tech Leads or Architecture Governors before execution begins
+- For all missions: if a Technical Design exists, read it as the authoritative specification alongside the Mission Brief and Fleet Config
+
 ### Engineering Execution
 - Write code following architecture constraints, API conventions, and design system policies
 - Generate comprehensive tests (unit, integration, e2e) per quality policy thresholds
