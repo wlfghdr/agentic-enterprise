@@ -1,0 +1,64 @@
+# CODEOWNERS — Agentic Enterprise Operating Model
+#
+# Maps repository paths to the layer/role responsible for approving changes.
+# In a production deployment, these would map to actual GitHub teams or users.
+# Here they represent the human roles that must approve PRs touching each area.
+#
+# Syntax: <pattern> <owner> [<owner>...]
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# ─── Global / Root ────────────────────────────────────────────────
+# Company-level artifacts require executive (Steering) approval
+COMPANY.md                          @steering-executive
+CONFIG.yaml                         @steering-executive
+AGENTS.md                           @steering-executive
+OPERATING-MODEL.md                  @steering-executive
+CUSTOMIZATION-GUIDE.md              @steering-executive
+
+# ─── Steering Layer ──────────────────────────────────────────────
+org/0-steering/                     @steering-executive
+
+# ─── Agent Type Registry ─────────────────────────────────────────
+# New agent types, deprecations, and scaling policy changes require CTO + Steering
+org/agents/                         @steering-executive @cto
+
+# ─── Strategy Layer ──────────────────────────────────────────────
+org/1-strategy/                     @strategy-venture-lead
+org/1-strategy/ventures/            @strategy-venture-lead
+
+# ─── Orchestration Layer ─────────────────────────────────────────
+org/2-orchestration/                @orchestration-fleet-manager
+org/2-orchestration/fleet-configs/  @orchestration-fleet-manager
+
+# ─── Execution Layer ─────────────────────────────────────────────
+org/3-execution/                    @execution-division-lead
+org/3-execution/divisions/          @execution-division-lead
+
+# ─── Quality Layer ───────────────────────────────────────────────
+# Quality policies are law — Policy Authors approve changes
+org/4-quality/                      @quality-policy-author
+org/4-quality/policies/             @quality-policy-author
+
+# ─── Process Lifecycle ───────────────────────────────────────────
+process/                            @orchestration-fleet-manager @quality-policy-author
+process/templates/                  @orchestration-fleet-manager @quality-policy-author
+
+# ─── Work Artifacts ──────────────────────────────────────────────
+# Signals: anyone can file, Steering triages
+work/signals/                       @steering-executive
+work/signals/digests/               @steering-executive
+
+# Missions: Orchestration creates, Strategy approves scope
+work/missions/                      @orchestration-fleet-manager @strategy-venture-lead
+
+# Decisions: require relevant Tech Lead + Policy Author
+work/decisions/                     @execution-division-lead @quality-policy-author
+
+# Releases: Ship loop agents create, Orchestration approves
+work/releases/                      @orchestration-fleet-manager
+
+# Assets: Execution creates, Quality validates
+work/assets/                        @execution-division-lead @quality-policy-author
+
+# Retrospectives: Operate agents create, Steering reviews patterns
+work/retrospectives/                @steering-executive @quality-policy-author

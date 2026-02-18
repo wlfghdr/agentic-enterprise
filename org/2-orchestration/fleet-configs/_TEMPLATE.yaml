@@ -1,0 +1,51 @@
+# Fleet Configuration Template
+# ─────────────────────────────
+# Configuration for agent fleet deployment on a specific mission.
+# Lives in: org/2-orchestration/fleet-configs/<mission-name>.yaml
+# Created by: Orchestration Layer (Mission Lead + Agent Fleet Manager)
+
+mission:
+  id: ""                            # e.g., MISSION-2026-042
+  brief: "../../work/missions/<name>/BRIEF.md"
+  status: "active"                   # proposed | active | paused | completed
+
+orchestration:
+  mission_lead: ""                   # Human mission lead
+  fleet_manager: ""                  # Human fleet manager
+  
+streams:
+  - name: ""                         # e.g., "api-implementation"
+    agent_pool: ""                   # e.g., "implementation-agents"
+    division: ""                   # Which division handles this stream
+    working_paths:                   # File paths this stream owns
+      - ""
+    exclusive: true                  # If true, no other stream may touch these paths
+    
+    quality_policies:                # Which policies apply
+      - "security"
+      - "architecture"
+    
+    human_checkpoints:
+      - trigger: ""                  # e.g., "architecture_novelty_score > 0.7"
+        who: ""                      # e.g., "Tech Lead"
+        action: ""                   # e.g., "Review and approve pattern"
+    
+    success_metrics:
+      - metric: ""                   # e.g., "PR merge rate"
+        target: ""                   # e.g., "> 90%"
+        measurement: ""              # e.g., "Git analytics"
+
+  # Add more streams as needed:
+  # - name: "documentation"
+  #   agent_pool: "documentation-agents"
+  #   ...
+
+dependencies:
+  - from: ""                         # stream name
+    to: ""                           # stream name
+    type: ""                         # blocks | informs | shared-resource
+
+monitoring:
+  quality_threshold: 0.8             # Minimum quality score before alert
+  throughput_alert: ""               # Alert if throughput drops below this
+  escalation_policy: ""              # Who gets notified on issues

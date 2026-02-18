@@ -1,0 +1,200 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# Agentic Enterprise Operating Model — Configuration
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Fill in this file FIRST. Every placeholder {{VARIABLE}} throughout the
+# framework references a value from this configuration. Once filled in,
+# search-and-replace all {{VARIABLE}} occurrences across the repository.
+#
+# After filling this file, follow CUSTOMIZATION-GUIDE.md for deeper
+# customization of ventures, divisions, policies, and processes.
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ───────────────────────────────────────────────────────────────────────────
+# 1. COMPANY IDENTITY
+# ───────────────────────────────────────────────────────────────────────────
+
+company:
+  name: ""                          # e.g., "Acme Corp"
+  short_name: ""                    # e.g., "Acme" — used in prose
+  repo_slug: ""                     # e.g., "acme-native-ai" — used for folder/repo names
+  domain: ""                        # e.g., "acme.com"
+
+# ───────────────────────────────────────────────────────────────────────────
+# 2. VISION & MISSION
+# ───────────────────────────────────────────────────────────────────────────
+
+vision:
+  north_star: ""
+    # A single sentence that captures the company's ultimate aspiration.
+    # e.g., "Acme is the operating system for the autonomous enterprise."
+
+  mission: ""
+    # A single sentence mission statement.
+    # e.g., "Make the world a better place."
+
+# ───────────────────────────────────────────────────────────────────────────
+# 3. STRATEGIC BELIEFS
+# ───────────────────────────────────────────────────────────────────────────
+# 4-8 enduring convictions that guide every decision. They survive quarterly
+# pivots, product cycles, and market turbulence. The framework ships with
+# 6 generic ones. Replace or extend with your own.
+
+strategic_beliefs:
+  - id: "agent-workforce"
+    title: "Agents are the new workforce"
+    summary: "AI agents are becoming essential collaborators — and they need governance, observability, and trust infrastructure."
+
+  - id: "autonomy-maturity"
+    title: "The autonomy maturity curve is universal"
+    summary: "Every process moves from manual → recommendations → supervised autonomy → full autonomy."
+
+  - id: "zero-touch-adoption"
+    title: "Zero-touch adoption is the only adoption that scales"
+    summary: "In a world of agent fleets, products must be adopted automatically — no human configuration."
+
+  - id: "end-to-end-intelligence"
+    title: "Intelligence must span from execution to boardroom"
+    summary: "Connecting operational data to business impact across every organizational altitude."
+
+  - id: "data-openness"
+    title: "Data gravity is the moat — but only with openness"
+    summary: "Customers won't tolerate vendor lock-in. Be collection-agnostic; be outcome-distinctive."
+
+  - id: "trust-is-product"
+    title: "Trust is the product"
+    summary: "Every AI capability must be explainable, auditable, and reversible."
+
+# ───────────────────────────────────────────────────────────────────────────
+# 4. PRODUCT NAMES
+# ─────────────────────────────────────────────────────────────────────────
+
+products:
+  core_product_name: ""            # e.g., "Acme Suite" — the core product offering
+  ai_intelligence_name: ""        # e.g., "Acme Intelligence" — the AI/reasoning layer
+  assistant_name: ""              # e.g., "Acme Assist" — the conversational AI interface
+  agent_brand: ""                 # e.g., "Acme Agents" — how you refer to purpose-built AI agents
+  data_store_name: ""             # e.g., "Acme DataLake" — the data warehouse/lakehouse
+  query_language: ""              # e.g., "AQL" — your query/analytics language
+  design_system_name: ""          # e.g., "Acme Design System" — UI component library
+
+# ───────────────────────────────────────────────────────────────────────────
+# 5. VENTURES (Strategy Layer)
+# ───────────────────────────────────────────────────────────────────────────
+# Ventures are market-facing offerings that group divisions. Define 3-12.
+# Each venture gets a charter file in org/1-strategy/ventures/.
+# The framework ships with example placeholders — replace them.
+
+ventures:
+  - id: "core-product"
+    name: "{{VENTURE_1_NAME}}"
+    description: "{{VENTURE_1_DESCRIPTION}}"
+
+  - id: "product"
+    name: "{{VENTURE_2_NAME}}"
+    description: "{{VENTURE_2_DESCRIPTION}}"
+
+  - id: "security"
+    name: "{{VENTURE_3_NAME}}"
+    description: "{{VENTURE_3_DESCRIPTION}}"
+
+# Add more ventures as needed:
+#  - id: "venture-slug"
+#    name: "Venture Name"
+#    description: "What this venture addresses"
+
+# ───────────────────────────────────────────────────────────────────────────
+# 6. DIVISIONS (Execution Layer)
+# ───────────────────────────────────────────────────────────────────────────
+# Divisions are execution units — each owns a domain of work.
+# Each division has its own fleet of agents with specialized tools and expertise.
+# The framework ships with generic categories. Customize per your org.
+
+divisions:
+  engineering_core:
+    - id: "data-foundation"
+      name: "Data Foundation"
+      description: "Core data storage, query engine, data governance"
+    - id: "core-services"
+      name: "Core Services"
+      description: "IAM, RBAC, tokens, lifecycle management, APIs"
+    - id: "core-applications"
+      name: "Core Applications"
+      description: "UI layer, dashboards, search, navigation"
+    - id: "ai-intelligence"
+      name: "AI & Intelligence"
+      description: "AI reasoning, NL interfaces, agent orchestration, AI safety"
+
+  engineering_domain:
+    - id: "core-domain-1"
+      name: "{{DOMAIN_CAP_1_NAME}}"
+      description: "{{DOMAIN_CAP_1_DESCRIPTION}}"
+    - id: "core-domain-2"
+      name: "{{DOMAIN_CAP_2_NAME}}"
+      description: "{{DOMAIN_CAP_2_DESCRIPTION}}"
+
+  engineering_ops:
+    - id: "engineering-foundation"
+      name: "Engineering Foundation"
+      description: "Developer portal, build infra, CI/CD, golden paths, release engineering"
+    - id: "infrastructure-operations"
+      name: "Infrastructure Operations"
+      description: "Cloud accounts, IaC, cost management, SRE, incident management"
+    - id: "quality-security-engineering"
+      name: "Quality & Security Engineering"
+      description: "Security testing, privacy, compliance, quality gates, supply chain"
+
+  gtm:
+    - id: "product-marketing"
+      name: "Product Marketing"
+      description: "GTM execution, launches, press, competitive positioning"
+    - id: "knowledge-enablement"
+      name: "Knowledge & Enablement"
+      description: "Docs, tutorials, training, battlecards, demos"
+
+  customer:
+    - id: "customer-experience"
+      name: "Customer Experience"
+      description: "Success, support, onboarding, health, renewals"
+
+# ───────────────────────────────────────────────────────────────────────────
+# 7. TOOLCHAIN & INFRASTRUCTURE
+# ───────────────────────────────────────────────────────────────────────────
+
+toolchain:
+  git_host: "GitHub"                # GitHub | GitLab | Bitbucket
+  ci_cd: "GitHub Actions"           # GitHub Actions | GitLab CI | Jenkins | CircleCI
+  container_registry: ""            # e.g., "ECR", "GCR", "Docker Hub"
+  deployment: ""                    # e.g., "ArgoCD", "Flux", "Spinnaker"
+  k8s_runtime: ""                   # e.g., "EKS", "GKE", "AKS"
+  secrets_manager: ""               # e.g., "Vault", "AWS Secrets Manager"
+  code_quality: ""                  # e.g., "SonarQube", "CodeClimate"
+  vulnerability_scanner: ""         # e.g., "Snyk", "Dependabot", "Trivy"
+  feature_flags: ""                 # e.g., "LaunchDarkly", "OpenFeature", "Unleash"
+  observability: ""                 # e.g., "Datadog", "Grafana", "your own tooling"
+  service_catalog: ""               # e.g., "Backstage", "Port", "custom"
+  documentation_engine: ""          # e.g., "MkDocs", "Docusaurus", "Confluence"
+  chat_tool: ""                     # e.g., "Slack", "Teams", "Discord"
+
+# ───────────────────────────────────────────────────────────────────────────
+# 8. QUALITY THRESHOLDS
+# ───────────────────────────────────────────────────────────────────────────
+
+quality:
+  code_coverage_minimum: 80         # percentage
+  api_response_p95_ms: 500          # milliseconds
+  dashboard_load_p95_ms: 2000       # milliseconds
+  agent_tool_call_p95_ms: 5000      # milliseconds
+  accessibility_standard: "WCAG 2.1 AA"
+  deployment_rollback_target_min: 5 # minutes
+
+# ───────────────────────────────────────────────────────────────────────────
+# 9. ORGANIZATION SIZE ESTIMATES
+# ───────────────────────────────────────────────────────────────────────────
+
+org_size:
+  steering_layer: "8-15"            # C-Suite + Org Architects
+  strategy_layer: "20-60"           # Venture Leads, Outcome Owners, Strategists
+  orchestration_layer: "30-100"     # Mission Leads, Fleet Managers, Coordinators
+  execution_layer: "100-500"        # Tech Leads, Engineers, Content, Sales, CS, Support + agent fleets
+  quality_layer: "20-60"            # Policy Authors + eval agent fleets

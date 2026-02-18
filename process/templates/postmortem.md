@@ -1,0 +1,130 @@
+# Postmortem: [Incident Name]
+
+> **Template version:** 1.0  
+> **Incident ID:** INC-YYYY-NNN  
+> **Severity:** SEV1 (Critical) | SEV2 (Major) | SEV3 (Minor) | SEV4 (Low)  
+> **Status:** draft | reviewed | accepted  
+> **Date of incident:** YYYY-MM-DD HH:MM UTC  
+> **Date of resolution:** YYYY-MM-DD HH:MM UTC  
+> **Author:** [Operate Loop agent + on-call engineer]  
+> **Storage:** `work/retrospectives/YYYY-MM-DD-<incident-name>.md`
+
+---
+
+## Incident Summary
+
+[One paragraph: what happened, who was affected, how it was resolved]
+
+## Timeline
+
+| Time (UTC) | Event |
+|-----------|-------|
+| HH:MM | [First anomaly detected — how and by whom/what] |
+| HH:MM | [Alert fired — which alert, which system] |
+| HH:MM | [Triage began — who was involved] |
+| HH:MM | [Root cause identified] |
+| HH:MM | [Remediation action taken] |
+| HH:MM | [Service restored / incident resolved] |
+| HH:MM | [Post-resolution validation complete] |
+
+## Impact
+
+### Blast Radius
+- **Services affected:** [list of impacted services/components]
+- **Customers affected:** [number or percentage of impacted users]
+- **Duration:** [total time from first impact to full resolution]
+- **SLO impact:** [which SLOs were breached, by how much]
+- **Error budget consumed:** [percentage of error budget consumed by this incident]
+
+### Business Impact
+- **Revenue impact:** [estimated, if applicable]
+- **Customer trust impact:** [churn risk, escalations, complaints]
+- **Data impact:** [any data loss or corruption]
+
+## Detection
+
+- **How was it detected?** [monitoring alert / customer report / agent detection / manual observation]
+- **Time to detect (TTD):** [minutes from first impact to detection]
+- **Was the detection method adequate?** [yes / no — if no, what should change]
+
+## Root Cause Analysis
+
+### Root Cause
+[Clear, specific description of the root cause]
+
+### 5 Whys
+1. **Why** did the incident occur? → [answer]
+2. **Why** did that happen? → [answer]
+3. **Why** did that happen? → [answer]
+4. **Why** did that happen? → [answer]
+5. **Why** did that happen? → [root cause]
+
+### Contributing Factors
+- [Factor 1 — e.g., missing test coverage for edge case]
+- [Factor 2 — e.g., monitoring gap in the affected pathway]
+
+## Remediation
+
+### Immediate Actions Taken
+- [Action 1 — e.g., rolled back deployment v2.3.1 → v2.3.0]
+- [Action 2 — e.g., scaled up replicas to handle backlog]
+
+### Was a Runbook Used?
+- [ ] **Yes** — Runbook: [link] — Was it adequate? [yes / no — if no, what was missing]
+- [ ] **No** — No runbook existed for this scenario
+
+## Policy Gap Analysis
+
+| Policy | Gap Identified? | Description |
+|--------|----------------|-------------|
+| Security | yes / no | [description of gap, if any] |
+| Observability | yes / no | [e.g., "missing alert for this failure mode"] |
+| Delivery | yes / no | [e.g., "rollback procedure was unclear"] |
+| Architecture | yes / no | [e.g., "single point of failure not documented"] |
+
+## Follow-Up Items
+
+### Immediate (This Week)
+
+| Action | Owner | Due Date | Status |
+|--------|-------|----------|--------|
+| [Fix the immediate bug/config] | [name/team] | YYYY-MM-DD | open / done |
+| [Update runbook] | [name/team] | YYYY-MM-DD | open / done |
+
+### Short-Term (This Month)
+
+| Action | Owner | Due Date | Status |
+|--------|-------|----------|--------|
+| [Add missing monitoring] | [name/team] | YYYY-MM-DD | open / done |
+| [Improve test coverage] | [name/team] | YYYY-MM-DD | open / done |
+
+### Long-Term (Requires Mission)
+
+| Action | Signal Filed? | Signal Link |
+|--------|--------------|-------------|
+| [Architectural rework to eliminate SPOF] | yes / no | [link to `work/signals/`] |
+| [Policy update to prevent recurrence] | yes / no | [link to `work/signals/`] |
+
+## Generated Signals
+
+| Signal | Category | Link |
+|--------|----------|------|
+| [Signal description] | technical / process / policy / architecture | [link to `work/signals/<signal>.md`] |
+
+## Lessons Learned
+
+### What went well
+- [e.g., "Detection was fast due to SLO burn rate alert"]
+
+### What could be improved
+- [e.g., "Runbook was outdated, added 10 minutes to resolution"]
+
+### Systemic observations
+- [e.g., "This is the 2nd incident this quarter related to database connection pooling — may need an architecture mission"]
+
+## Approval
+
+- [ ] On-call engineer reviewed and validated timeline
+- [ ] Reliability Policy Author reviewed policy gap analysis
+- [ ] All follow-up items assigned and tracked
+- [ ] Improvement signals filed in `work/signals/`

@@ -1,0 +1,43 @@
+# Asset Registry Entry
+# ───────────────────
+# Tracks non-code deliverables: documentation, content, training materials,
+# customer deliverables, marketing assets, etc.
+# Template: process/templates/asset-registry-entry.yaml
+# Storage: work/assets/<asset-name>.yaml
+
+asset:
+  id: ""                              # e.g., ASSET-2026-042
+  name: ""                            # Human-readable name
+  type: ""                            # documentation | blog-post | whitepaper | training | 
+                                      # presentation | video | customer-deliverable | 
+                                      # marketing-collateral | knowledge-base-article
+  
+  owner:
+    team: ""                          # Owning team/division
+    contact: ""                       # Primary contact
+
+  lifecycle:
+    status: "draft"                   # draft | review | published | archived | deprecated
+    created: ""                       # YYYY-MM-DD
+    last_updated: ""                  # YYYY-MM-DD
+    review_date: ""                   # Next review date YYYY-MM-DD
+    expiry_date: ""                   # When this asset expires (if applicable)
+
+  location:
+    primary_url: ""                   # Where the asset lives
+    source_url: ""                    # Source file (e.g., Git repo path)
+    backup_url: ""                    # Backup/alternative location
+
+  metadata:
+    audience: ""                      # internal | customer | partner | public
+    language: ""                      # e.g., en, de, ja
+    format: ""                        # markdown | pdf | video | slides | html
+    tags: []                          # Searchable tags
+    related_mission: ""               # Mission ID if applicable
+    related_division: ""              # Division if applicable
+
+  quality:
+    last_review_verdict: ""           # PASS | FAIL | not-reviewed
+    reviewed_by: ""                   # Who reviewed
+    review_date: ""                   # YYYY-MM-DD
+    content_policy_compliant: false   # Checked against content.md policy
