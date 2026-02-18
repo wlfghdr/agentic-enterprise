@@ -4,8 +4,15 @@
 # In a production deployment, these would map to actual GitHub teams or users.
 # Here they represent the human roles that must approve PRs touching each area.
 #
+# NOTE: GitHub evaluates rules top-to-bottom; the LAST matching pattern wins.
+# Template overrides therefore appear AFTER their parent directory rules.
+#
 # Syntax: <pattern> <owner> [<owner>...]
 # See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# ─── Catch-All (safety net) ──────────────────────────────────────
+# Ensures every file has at least one owner. Specific rules below override this.
+*                                   @steering-executive
 
 # ─── Global / Root ────────────────────────────────────────────────
 # Company-level artifacts require executive (Steering) approval
@@ -14,6 +21,14 @@ CONFIG.yaml                         @steering-executive
 AGENTS.md                           @steering-executive
 OPERATING-MODEL.md                  @steering-executive
 CUSTOMIZATION-GUIDE.md              @steering-executive
+AGENTIC-ENTERPRISE-BLUEPRINT.md     @steering-executive
+CODEOWNERS                          @steering-executive
+
+# ─── Examples ─────────────────────────────────────────────────────
+examples/                           @steering-executive @orchestration-fleet-manager
+
+# ─── Org Root ─────────────────────────────────────────────────────
+org/README.md                       @steering-executive
 
 # ─── Steering Layer ──────────────────────────────────────────────
 org/0-steering/                     @steering-executive
@@ -41,9 +56,11 @@ org/4-quality/policies/             @quality-policy-author
 
 # ─── Process Lifecycle ───────────────────────────────────────────
 process/                            @orchestration-fleet-manager @quality-policy-author
-process/templates/                  @orchestration-fleet-manager @quality-policy-author
 
 # ─── Work Artifacts ──────────────────────────────────────────────
+# Work root README
+work/README.md                      @orchestration-fleet-manager
+
 # Signals: anyone can file, Steering triages
 work/signals/                       @steering-executive
 work/signals/digests/               @steering-executive
@@ -62,3 +79,16 @@ work/assets/                        @execution-division-lead @quality-policy-aut
 
 # Retrospectives: Operate agents create, Steering reviews patterns
 work/retrospectives/                @steering-executive @quality-policy-author
+
+# ─── Template Ownership Overrides ─────────────────────────────────
+# Templates define process structure and must be governed by the layer
+# responsible for that process — not by whoever creates instance files.
+# These rules MUST appear after directory rules (last match wins).
+#
+# Mission templates — different templates serve different layers:
+work/missions/_TEMPLATE-mission-brief.md              @strategy-venture-lead
+work/missions/_TEMPLATE-outcome-contract.md           @strategy-venture-lead @orchestration-fleet-manager
+work/missions/_TEMPLATE-outcome-report.md             @strategy-venture-lead
+work/missions/_TEMPLATE-mission-status.md             @orchestration-fleet-manager
+work/missions/_TEMPLATE-fleet-performance-report.md   @orchestration-fleet-manager
+work/missions/_TEMPLATE-quality-evaluation-report.md  @quality-policy-author
