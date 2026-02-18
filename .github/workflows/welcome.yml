@@ -1,0 +1,38 @@
+name: Welcome New Contributors
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            Welcome to **Agentic Enterprise**! 👋 Thanks for opening your first issue.
+
+            A few pointers:
+            - Check out [CONTRIBUTING.md](https://github.com/wlfghdr/agentic-enterprise/blob/main/CONTRIBUTING.md) for contribution guidelines
+            - Browse [Discussions](https://github.com/wlfghdr/agentic-enterprise/discussions) for open conversations
+            - The [Known Limitations](https://github.com/wlfghdr/agentic-enterprise#known-limitations--roadmap) section lists areas where help is most needed
+
+            We'll review this soon. In the meantime, feel free to join the discussion!
+          pr-message: |
+            Welcome to **Agentic Enterprise**! 👋 Thanks for your first pull request.
+
+            A maintainer will review this soon. In the meantime, please ensure:
+            - [ ] YAML files parse without errors
+            - [ ] No broken internal links
+            - [ ] Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/)
+            - [ ] The PR template is filled out
+
+            See [CONTRIBUTING.md](https://github.com/wlfghdr/agentic-enterprise/blob/main/CONTRIBUTING.md) for the full checklist.

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 General Discussion"
+    url: https://github.com/wlfghdr/agentic-enterprise/discussions/categories/general
+    about: "Ask questions, share ideas, or start open-ended conversations"
+  - name: "💡 Ideas & RFCs"
+    url: https://github.com/wlfghdr/agentic-enterprise/discussions/categories/ideas-rfcs
+    about: "Propose new features, runtime integrations, or model changes"
+  - name: "🗺️ Roadmap Discussions"
+    url: https://github.com/wlfghdr/agentic-enterprise/discussions/categories/roadmap
+    about: "Discuss known limitations and help shape the project direction"

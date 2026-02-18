@@ -1,0 +1,157 @@
+name: Validate Framework
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-yaml:
+    name: Validate YAML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate CONFIG.yaml
+        run: python3 -c "import yaml; yaml.safe_load(open('CONFIG.yaml')); print('CONFIG.yaml: OK')"
+
+      - name: Validate all YAML files
+        run: |
+          EXIT_CODE=0
+          while IFS= read -r file; do
+            if python3 -c "import yaml; yaml.safe_load(open('$file'))" 2>/dev/null; then
+              echo "OK: $file"
+            else
+              echo "FAIL: $file"
+              EXIT_CODE=1
+            fi
+          done < <(find . -name "*.yaml" -o -name "*.yml" | grep -v '.github/' | grep -v 'node_modules/')
+          exit $EXIT_CODE
+
+  validate-markdown:
+    name: Validate Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for broken internal links
+        run: |
+          echo "Checking internal markdown links..."
+          BROKEN=0
+          while IFS= read -r line; do
+            FILE=$(echo "$line" | cut -d: -f1)
+            LINK=$(echo "$line" | grep -oP '\]\(\K[^)]+' | head -1)
+            # Skip external links, anchors, and template placeholders
+            if [[ "$LINK" == http* ]] || [[ "$LINK" == \#* ]] || [[ "$LINK" == *"{{"* ]]; then
+              continue
+            fi
+            DIR=$(dirname "$FILE")
+            TARGET="$DIR/$LINK"
+            if [[ ! -f "$TARGET" ]] && [[ ! -d "$TARGET" ]]; then
+              echo "BROKEN: $FILE -> $LINK"
+              BROKEN=$((BROKEN + 1))
+            fi
+          done < <(grep -rn ']\(\./' --include="*.md" . || true)
+          if [ $BROKEN -gt 0 ]; then
+            echo "$BROKEN broken link(s) found"
+            exit 1
+          fi
+          echo "All internal links OK"
+
+  validate-placeholders:
+    name: Check Placeholders
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure templates use placeholders correctly
+        run: |
+          echo "Checking placeholder consistency..."
+          # Non-template files should not have unfilled placeholders
+          # (except CONFIG.yaml which defines them)
+          VIOLATIONS=$(grep -rn '{{[A-Z_]*}}' --include="*.md" . \
+            | grep -v '_TEMPLATE' \
+            | grep -v 'CONFIG.yaml' \
+            | grep -v 'CONTRIBUTING.md' \
+            | grep -v 'CUSTOMIZATION-GUIDE.md' \
+            | grep -v 'AGENT-BOOTSTRAP-PROMPT.md' \
+            | grep -v 'OPERATING-MODEL.md' \
+            | grep -v '.github/' \
+            || true)
+          if [ -n "$VIOLATIONS" ]; then
+            echo "Found unfilled placeholders in non-template files:"
+            echo "$VIOLATIONS"
+            echo ""
+            echo "Either fill these from CONFIG.yaml or convert the file to a _TEMPLATE."
+            # Warning only — don't fail the build
+          fi
+          echo "Placeholder check complete"
+
+  validate-structure:
+    name: Validate Structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required files exist
+        run: |
+          REQUIRED_FILES=(
+            "README.md"
+            "AGENTS.md"
+            "CONFIG.yaml"
+            "COMPANY.md"
+            "CONTRIBUTING.md"
+            "OPERATING-MODEL.md"
+            "CODEOWNERS"
+            "LICENSE"
+            "org/README.md"
+            "process/README.md"
+            "work/README.md"
+          )
+          MISSING=0
+          for f in "${REQUIRED_FILES[@]}"; do
+            if [[ -f "$f" ]]; then
+              echo "OK: $f"
+            else
+              echo "MISSING: $f"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+          if [ $MISSING -gt 0 ]; then
+            echo "$MISSING required file(s) missing"
+            exit 1
+          fi
+
+      - name: Check layer structure
+        run: |
+          for layer in 0-steering 1-strategy 2-orchestration 3-execution 4-quality; do
+            if [[ ! -f "org/$layer/AGENT.md" ]]; then
+              echo "MISSING: org/$layer/AGENT.md"
+              exit 1
+            fi
+            echo "OK: org/$layer/AGENT.md"
+          done
+
+      - name: Check process loops
+        run: |
+          for loop in 1-discover 2-build 3-ship 4-operate; do
+            for file in AGENT.md GUIDE.md; do
+              if [[ ! -f "process/$loop/$file" ]]; then
+                echo "MISSING: process/$loop/$file"
+                exit 1
+              fi
+              echo "OK: process/$loop/$file"
+            done
+          done

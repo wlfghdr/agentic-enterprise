@@ -1,0 +1,34 @@
+title: ""
+labels: ["show-and-tell"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Show & Tell
+
+        Share your implementation! Show how you've forked and customized the framework,
+        integrated it with a runtime, or used it to run your organization.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "What did you build?"
+      description: "Describe your implementation — what runtime, how many agents, what industry, etc."
+    validations:
+      required: true
+
+  - type: textarea
+    id: learnings
+    attributes:
+      label: "Key Learnings"
+      description: "What worked well? What was hard? What would you change in the framework?"
+    validations:
+      required: false
+
+  - type: textarea
+    id: links
+    attributes:
+      label: "Links & Resources"
+      description: "Link to your repo, blog post, or demo (if public)."
+    validations:
+      required: false

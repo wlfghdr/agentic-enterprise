@@ -1,0 +1,34 @@
+name: "🔧 Tooling & CI"
+description: "Propose GitHub Actions, validators, linters, dashboards, or developer tools"
+title: "[Tooling] "
+labels: ["tooling", "ci"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: "Tooling Type"
+      options:
+        - "GitHub Actions workflow"
+        - "Validation script / linter"
+        - "Dashboard / visualization"
+        - "CLI tool"
+        - "Pre-commit hook"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "What does this tool do? What problem does it solve?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: "Implementation Details"
+      description: "How would you build it? Include code samples if possible."
+    validations:
+      required: false

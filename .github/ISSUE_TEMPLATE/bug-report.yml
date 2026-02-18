@@ -1,0 +1,36 @@
+name: "🐛 Bug Report"
+description: "Report broken links, YAML parse errors, template issues, or inconsistencies"
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "What's broken?"
+      description: "Describe the issue — broken link, YAML error, contradictory instructions, etc."
+    validations:
+      required: true
+
+  - type: input
+    id: file
+    attributes:
+      label: "Affected file(s)"
+      placeholder: "e.g., org/3-execution/divisions/core-services/DIVISION.md"
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected behavior"
+      description: "What should happen instead?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps to reproduce"
+      description: "How can we see the issue?"
+    validations:
+      required: false

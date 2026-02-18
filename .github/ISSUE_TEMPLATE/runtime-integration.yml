@@ -1,0 +1,63 @@
+name: "🔌 Runtime Integration"
+description: "Add or improve integration with an agent runtime (OpenClaw, CrewAI, LangGraph, etc.)"
+title: "[Runtime] "
+labels: ["runtime", "integration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help connect the Agentic Enterprise framework to real agent runtimes!
+        The framework is runtime-agnostic — your integration helps others adopt it.
+
+  - type: input
+    id: runtime
+    attributes:
+      label: "Runtime / Platform"
+      description: "Which agent runtime or platform is this for?"
+      placeholder: "e.g., OpenClaw, CrewAI, LangGraph, AutoGen, OpenAI Agents SDK, Semantic Kernel"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: integration-type
+    attributes:
+      label: "Integration Type"
+      options:
+        - "Bootstrap prompt / instructions loading"
+        - "Skill / tool definition"
+        - "MCP server integration"
+        - "A2A protocol adapter"
+        - "CI/CD workflow"
+        - "Full reference implementation"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "What does this integration do? How does it connect the framework to the runtime?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: "Code Sample (if applicable)"
+      description: "Include a working code snippet or configuration example."
+      render: yaml
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Pre-submission checklist"
+      options:
+        - label: "I've tested this against the target runtime"
+          required: true
+        - label: "The integration loads the AGENTS.md instruction hierarchy correctly"
+          required: true
+        - label: "No runtime-specific dependencies are added to the core framework"
+          required: true
