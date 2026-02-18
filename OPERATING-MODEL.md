@@ -11,6 +11,7 @@
 > - **AGENT.md files only:** Agents exist here solely as instruction files. In production, agents would be full implementations with **skills** (composable expertise), connected to business systems via **MCP servers, APIs, and tool integrations**.
 > - **PR-centric interaction:** All decisions flow through Git PRs in this POC. In production, most humans would interact via **chat/messaging**, **purpose-built dashboards and web UIs**, or **within their existing tools** — with Git as the system of record underneath.
 > - **Governance is described, not wired:** CODEOWNERS, branch protection, CI/CD checks are documented as the target state but not implemented as live infrastructure.
+> - **Integrations are templated, not connected:** The Integration Registry (`org/integrations/`) defines *how* external tools connect, but does not include live MCP servers, webhooks, or API clients. Production would wire these to your actual observability platform, ITSM, CI/CD, and business systems.
 
 ---
 
@@ -20,22 +21,25 @@ A fully working operating model for running {{COMPANY_SHORT}} as an agentic ente
 
 - **5 layers** — Steering → Strategy → Orchestration → Execution → Quality — covering the entire company (eng, delivery, GTM, sales, CS, support), not just R&D
 - **4 loops** — Discover → Build → Ship → Operate — replacing legacy phase-gate processes. Idea-to-GA in 2–4 weeks. Continuous production operations feed signals back into Discover.
-- **Git is the OS** — No legacy ticket systems, no wikis. PRs = decisions. CODEOWNERS = RACI. CI/CD = quality gates. Agents are native Git citizens
+- **Git is the system of record** — PRs = decisions. CODEOWNERS = RACI. CI/CD = quality gates. Agents are native Git citizens. Enterprise tools connect through governed integrations.
+- **Integration-ready** — Observability platforms, ITSM, CI/CD, business systems, and communication channels plug in through a governed Integration Registry (`org/integrations/`). The model works with your existing tools, not against them.
 - **Self-evolving** — Every agent surfaces improvement signals → Steering Layer aggregates → proposes org/process changes as PRs → execs approve by merging. Continuous organizational metabolism, not annual reorgs
 
 ---
 
 ## The Core Idea
 
-**Everything is in Git. Everyone — human and agent — collaborates through Git. The repository IS the operating system of the company.**
+**The operating model lives in the filesystem — versioned, auditable, executable. Git is the system of record. The enterprise ecosystem of tools, platforms, and observability extends its reach.**
 
-This is not an incremental improvement over legacy processes. It is a structural reinvention based on three observations:
+This is not an incremental improvement over legacy processes. It is a structural reinvention based on four observations:
 
-1. **AI agents are native Git citizens.** They create branches, write files, submit PRs, respond to reviews. Git is their natural medium — unlike ticket systems, wikis, or chat, which require API integrations and context-switching.
+1. **AI agents are native Git citizens.** They create branches, write files, submit PRs, respond to reviews. Git is their natural medium for governance — the canonical source of truth for structure, process, policy, and decisions.
 
-2. **Git provides everything a process engine needs.** Branching = workflow states. PRs = decisions and approvals. CODEOWNERS = RACI. CI/CD = quality gates. History = audit trail. All of this is built-in, version-controlled, and free.
+2. **Git provides the governance backbone.** Branching = workflow states. PRs = decisions and approvals. CODEOWNERS = RACI. CI/CD = quality gates. History = audit trail. All of this is built-in, version-controlled, and free.
 
-3. **The bottleneck in agentic enterprise work is not execution — it's governance.** When agent fleets can write code 100x faster than humans, the question is not "how do we produce more code?" but "how do we ensure quality, alignment, and trust at scale?" Git's PR-based governance is the answer.
+3. **The bottleneck in agentic enterprise work is not execution — it's governance.** When agent fleets can write code 100x faster than humans, the question is not "how do we produce more code?" but "how do we ensure quality, alignment, and trust at scale?" Git's PR-based governance is the foundation — but scaling it requires observability, enterprise tool integration, and real-time telemetry.
+
+4. **Enterprises run on ecosystems, not single tools.** Real organizations use CI/CD pipelines, ITSM platforms, observability tools, CRMs, and communication channels. The operating model connects to all of them through a governed integration registry — keeping Git as the system of record while agents operate across the full enterprise toolscape.
 
 ---
 
@@ -169,7 +173,7 @@ Reusable templates that standardize how work is created and tracked. Templates a
                            └──────────────────────────────────┘
 ```
 
-Every arrow in this diagram is a **Git operation** (commit, branch, PR, merge, review comment). There is no side-channel. The repo is the complete record of the enterprise's work.
+Every arrow in this diagram is a **Git operation** (commit, branch, PR, merge, review comment) — the system of record. In practice, agents also interact with enterprise tools (observability platforms, ITSM, CI/CD, communication channels) through governed integrations. Git remains the canonical record; external tools extend the operating model's reach.
 
 ---
 
@@ -335,6 +339,73 @@ The Orchestration Layer pre-assigns file ownership via fleet configs with `exclu
 3. **Status files are append-only**
 4. **Index files are auto-generated**
 5. **PR serialization on main**
+
+---
+
+## Integration & Observability: Scaling Governance Beyond Git
+
+The operating model's definitions, decisions, and governance live in the filesystem — versioned in Git. But as agent fleets scale, two additional capabilities become essential:
+
+### The Integration Registry → `org/integrations/`
+
+Enterprises operate with rich ecosystems of tools. The **Integration Registry** provides a governed catalog of external connections:
+
+| Category | What Connects | Examples |
+|----------|--------------|----------|
+| **Observability & Telemetry** | Agent fleet monitoring, governance visibility, anomaly detection | Dynatrace, Prometheus + Grafana, OpenTelemetry, Elastic |
+| **Enterprise Toolchain** | CI/CD, ITSM, security scanning, service catalogs | GitHub Actions, ServiceNow, Snyk, Backstage |
+| **Business Systems** | CRM, ERP, support, analytics | Salesforce, Zendesk, Mixpanel |
+| **Communication** | Human-agent interaction surfaces | Slack, Teams, PagerDuty |
+
+Each integration is registered in `CONFIG.yaml` and governed through the same PR-based process as everything else. No shadow integrations, no untracked data flows.
+
+Connection patterns:
+- **MCP Servers** — Agents call external tools via Model Context Protocol
+- **Webhooks** — External events flow into the operating model as signals
+- **API Integration** — Agents take actions in external systems
+- **OpenTelemetry** — Standardized telemetry collection across agent activity
+
+### Observability for Agent Governance at Scale
+
+When agent fleets grow from a handful to hundreds, the file-based governance model needs a complementary layer for **real-time visibility, anomaly detection, and causal analysis**. The operating model defines *what should happen*. Observability reveals *what actually happens* — at a speed and scale that no human reviewing PRs can match.
+
+**What to observe:**
+
+| Telemetry | What It Captures | Governance Value |
+|-----------|-----------------|------------------|
+| **Traces** | End-to-end mission flow through layers and agents | Bottleneck analysis, latency attribution |
+| **Metrics** | Agent throughput, error rates, cost per task | Fleet performance, capacity planning |
+| **Logs** | Agent reasoning, decisions, tool calls | Audit trail, compliance evidence |
+| **Events** | State transitions (PR created, merged, rejected) | Pattern detection, automated signal generation |
+
+**How observability fits:**
+
+```
+Agent Activity → OpenTelemetry SDK → Telemetry Pipeline → Observability Platform
+                                                                    │
+                                              ┌─────────────────────┤
+                                              │                     │
+                                        Dashboards           AI Analysis
+                                        & Alerts           & Anomaly Detection
+                                              │                     │
+                                              └──────────┬──────────┘
+                                                         │
+                                                    Automated Signals
+                                                    → work/signals/
+                                                         │
+                                                    The governance loop
+                                                    continues in Git
+```
+
+Observability platforms — whether open-source (Prometheus, Grafana, OpenTelemetry Collector) or commercial (Dynatrace, Datadog, Elastic) — become the **scaling layer** for governance. They process the telemetry that agents generate, surface patterns invisible to file-based inspection, and feed automated signals back into the operating model.
+
+This is particularly critical for:
+- **Fleet performance monitoring** — Are agents meeting throughput and quality targets?
+- **Compliance auditing** — Continuous policy adherence, not just PR-time checks
+- **Incident response** — Production anomalies detected and correlated in real-time
+- **Cost governance** — Token usage, API costs, and compute spend tracked per mission
+
+See `org/integrations/categories/observability.md` for detailed integration patterns.
 
 ---
 

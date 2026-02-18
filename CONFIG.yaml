@@ -177,7 +177,60 @@ toolchain:
   chat_tool: ""                     # e.g., "Slack", "Teams", "Discord"
 
 # ───────────────────────────────────────────────────────────────────────────
-# 8. QUALITY THRESHOLDS
+# 8. INTEGRATIONS (3rd-Party Tool Registry)
+# ───────────────────────────────────────────────────────────────────────────
+# External tools that connect to the operating model. The filesystem is the
+# system of record; these integrations extend agent capabilities into the
+# enterprise ecosystem. See org/integrations/ for detailed guides.
+#
+# Categories: observability, enterprise_toolchain, business_systems, communication
+# Each integration defines what it connects to, how, and which layers use it.
+
+integrations:
+  observability:
+    # Primary observability platform for agent fleet telemetry,
+    # governance visibility, and operational intelligence.
+    # See org/integrations/categories/observability.md for patterns.
+    - id: "primary-observability"
+      name: ""                        # e.g., "Dynatrace", "Grafana Stack", "Datadog"
+      vendor: ""                      # e.g., "Dynatrace", "Grafana Labs"
+      connection: "opentelemetry"     # opentelemetry | native-agent | api
+      capabilities:                   # What this platform provides:
+        - metrics                     #   Agent throughput, error rates, cost
+        - traces                      #   End-to-end mission flow tracing
+        - logs                        #   Agent activity logs
+        # - ai-analysis               #   AI-powered root cause analysis (uncomment if supported)
+        # - auto-discovery            #   Automatic topology mapping (uncomment if supported)
+      otlp_endpoint: ""               # e.g., "https://your-env.live.dynatrace.com/api/v2/otlp"
+      mcp_server: false               # true if agents can query the platform via MCP
+
+    # Optional: Secondary tools (e.g., Grafana for dashboards alongside a commercial platform)
+    # - id: "dashboards"
+    #   name: "Grafana"
+    #   vendor: "Grafana Labs"
+    #   connection: "api"
+    #   capabilities: [dashboards, alerting]
+
+  enterprise_toolchain:
+    # Tools for CI/CD, ITSM, security scanning, service catalogs.
+    # See org/integrations/categories/enterprise-toolchain.md
+    ci_cd: []                         # e.g., [{id: "pipeline", name: "GitHub Actions"}]
+    itsm: []                          # e.g., [{id: "incidents", name: "ServiceNow", mcp_server: true}]
+    security: []                      # e.g., [{id: "vuln-scan", name: "Snyk", mcp_server: true}]
+    catalog: []                       # e.g., [{id: "service-catalog", name: "Backstage"}]
+
+  business_systems:
+    # CRM, ERP, support, analytics, marketing automation.
+    # See org/integrations/categories/business-systems.md
+    []                                # e.g., [{id: "crm", name: "Salesforce", mcp_server: true}]
+
+  communication:
+    # Chat, messaging, email, notifications.
+    # See org/integrations/categories/communication.md
+    []                                # e.g., [{id: "team-chat", name: "Slack", mcp_server: true}]
+
+# ───────────────────────────────────────────────────────────────────────────
+# 9. QUALITY THRESHOLDS
 # ───────────────────────────────────────────────────────────────────────────
 
 quality:
@@ -189,7 +242,7 @@ quality:
   deployment_rollback_target_min: 5 # minutes
 
 # ───────────────────────────────────────────────────────────────────────────
-# 9. ORGANIZATION SIZE ESTIMATES
+# 10. ORGANIZATION SIZE ESTIMATES
 # ───────────────────────────────────────────────────────────────────────────
 
 org_size:
