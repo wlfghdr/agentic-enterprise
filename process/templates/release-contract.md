@@ -31,7 +31,7 @@
 | Stage | Target | Duration | Health Criteria | Rollback Trigger |
 |-------|--------|----------|-----------------|-----------------|
 | Canary | {{CANARY_PERCENTAGE}} | {{CANARY_DURATION}} | Error rate < baseline + {{MAX_ERROR_RATE_INCREASE}} | Auto-rollback on any critical alert |
-| Early Adopters | {{EARLY_ADOPTER_PERCENTAGE}} | {{EARLY_ADOPTER_DURATION}} | Error rate stable, latency within SLO | Auto-rollback on SLO breach |
+| Early Adopters | {{EARLY_ADOPTER_PERCENTAGE}} | {{EARLY_ADOPTER_DURATION}} | Error rate stable, latency within target | Auto-rollback on health target breach |
 | General | {{GA_PERCENTAGE}} | {{GA_DURATION}} | All metrics stable | Manual rollback available |
 | Full | 100% | Ongoing | Standard monitoring | Standard incident process |
 
@@ -45,12 +45,12 @@
 ## Pre-Deployment Checklist
 
 - [ ] All quality evaluations passed
-- [ ] **Observability verified** — see `org/4-quality/policies/observability.md`:
+- [ ] **Production readiness verified** — see `org/4-quality/policies/observability.md`:
   - [ ] Instrumentation active and telemetry flowing
   - [ ] Distributed traces verified (end-to-end, W3C context)
-  - [ ] RED metrics on all endpoints
+  - [ ] Key metrics on all endpoints
   - [ ] Structured logs with trace ID correlation
-  - [ ] SLOs defined and burn rate alerts active
+  - [ ] Health targets defined and alerting active
   - [ ] Service health dashboard created and linked in catalog
   - [ ] Alerting configured with runbooks
   - [ ] Agent observability verified (if agent component)
@@ -84,7 +84,7 @@
 ## Post-Deployment Validation
 
 - [ ] Error rates within normal bounds
-- [ ] Latency within SLO
+- [ ] Latency within target
 - [ ] No critical alerts triggered
 - [ ] Smoke tests passing
 - [ ] Feature flag behavior verified

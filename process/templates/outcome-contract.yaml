@@ -30,7 +30,7 @@ outcomes:
   #   status: "not-started"
 
 acceptance_criteria:
-  - criterion: ""                     # e.g., "All API endpoints respond within SLO"
+  - criterion: ""                     # e.g., "All API endpoints respond within target"
     verified: false
   - criterion: ""
     verified: false

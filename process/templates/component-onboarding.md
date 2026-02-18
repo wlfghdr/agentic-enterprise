@@ -53,20 +53,19 @@
 - [ ] Log levels used correctly (ERROR = actionable, WARN = degraded, INFO = events, DEBUG = off in prod)
 - [ ] No PII in logs (cross-ref: security policy)
 
-### SLOs & Alerting
-- [ ] Availability SLO defined (≥ 99.5% unless justified)
-- [ ] Latency SLO defined (per performance policy budgets)
-- [ ] SLOs configured with burn rate alerts
+### Health Targets & Alerting
+- [ ] Availability target defined (≥ 99.5% unless justified)
+- [ ] Latency target defined (per performance policy budgets)
+- [ ] Health targets configured with appropriate alerts
 - [ ] Health check endpoint implemented
-- [ ] SLIs and SLOs defined
-- [ ] Custom alerts: SLO burn rate, error rate > 2x baseline, latency > p99 target, resource saturation > 80%
+- [ ] Custom alerts: health metric thresholds aligned with operational policies
 - [ ] Every alert has a documented runbook action
 - [ ] Alert definitions stored as code
 
 ### Dashboards
-- [ ] Service health dashboard created in {{OBSERVABILITY_TOOL}} (RED metrics, SLO burn rate, dependencies, deployments)
+- [ ] Service health dashboard created in {{OBSERVABILITY_TOOL}} (key metrics, health target status, dependencies, deployments)
 - [ ] Dashboard linked in Software Catalog entity metadata
-- [ ] Alerts configured for SLO violations
+- [ ] Alerts configured for health target violations
 
 ## Deployment
 

@@ -67,7 +67,7 @@
 | Source Layer | Observation | Implication |
 |-------------|-------------|-------------|
 | Execution | [e.g., "3 signals about unclear agent instructions in Data Foundation division"] | [e.g., "Agent instruction update may be needed"] |
-| Quality | [e.g., "Repeated policy failures on observability"] | [e.g., "Training or policy clarification needed"] |
+| Quality | [e.g., "Repeated policy failures on production readiness"] | [e.g., "Training or policy clarification needed"] |
 | Operate | [e.g., "Rising incident rate in Service X"] | [e.g., "Architecture mission may be warranted"] |
 
 ---

@@ -84,8 +84,8 @@ Like Loops 1–3, the Operate loop **spans all 5 layers** — it is not confined
 
 | Phase | Input | Output | Owner (Layer) |
 |-------|-------|--------|-------|
-| Policy definition | Incident learnings, SLO data | SLO targets, remediation boundaries, alert standards | Reliability Policy Authors (**Quality**) |
-| Production monitoring | Deployed software, SLOs | Health signals, anomaly alerts | SRE agents (**Execution**) |
+| Policy definition | Issue learnings, health target data | Health targets, remediation boundaries, alerting standards | Operations Policy Authors (**Quality**) |
+| Production monitoring | Deployed software, health targets | Health signals, anomaly alerts | Operations agents (**Execution**) |
 | Automated remediation | Anomaly alerts | Rollbacks, restarts, scaling actions | Remediation agents (**Execution**) |
 | Progressive rollout | Feature flags, health signals | Rollout advancement, hold, or rollback | Feature flag agents (**Execution**) + Outcome Owners (**Strategy**) |
 | Incident coordination | SEV1-2 alerts | War room, responder assembly, timeline | Agent Fleet Managers (**Orchestration**) |
@@ -182,7 +182,7 @@ Every process step has both a human and an agent dimension:
 | Quality eval | Runs automated checks | Resolves ESCALATE verdicts |
 | Deployment | Executes deployment pipeline | Approves production promotion |
 | Measurement | Collects metrics, generates reports | Interprets, decides next actions |
-| Production ops | Monitors SLOs, auto-remediates, manages rollouts | Defines SLO targets, handles escalations |
+| Production ops | Monitors health targets, auto-remediates, manages rollouts | Defines health targets, handles escalations |
 | Incident response | Triages, diagnoses, coordinates remediation | Approves postmortems, updates policies |
 
 **Rule:** Agents propose, humans approve. For anything customer-facing, security-critical, or architecture-changing, a human must be in the loop.

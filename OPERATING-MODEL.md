@@ -61,7 +61,7 @@ Each layer has:
 - Artifacts that layer owns
 - A **continuous improvement responsibility**: every agent in every layer surfaces improvement signals to `work/signals/`
 
-Loops 1–3 are **mission-driven** (time-bounded, goal-oriented). Loop 4 is **continuous** — it runs 24/7, keeping shipped software healthy with SRE agents, remediation agents, feature flag agents, incident response agents, and capacity agents. Loop 4 generates the production signals that feed back into Loop 1 (Discover), making the entire model circular.
+Loops 1–3 are **mission-driven** (time-bounded, goal-oriented). Loop 4 is **continuous** — it runs 24/7, keeping shipped software healthy with operations agents, remediation agents, feature flag agents, incident response agents, and capacity agents. Loop 4 generates the production signals that feed back into Loop 1 (Discover), making the entire model circular.
 
 ### Process Organization → `process/`
 

@@ -1,8 +1,8 @@
 # Loop 4: Operate & Evolve — Human Guide
 
-> **For:** Reliability Policy Authors, SRE Leads, Operations Leads, On-Call Engineers, Outcome Owners, Agent Fleet Managers  
-> **Your role:** You define operational policies, respond to escalations, lead incident resolution, and make judgment calls that go beyond automated remediation. You also interpret operational signals that inform product strategy.  
-> **Key difference from Loops 1–3:** This loop never ends. It runs continuously, 24/7. Your engagement is primarily event-driven (incidents, escalations, policy reviews) rather than mission-driven.
+> **For:** Operations Policy Authors, Operations Leads, On-Call Engineers, Outcome Owners, Agent Fleet Managers  
+> **Your role:** You define operational policies, respond to escalations, lead issue resolution, and make judgment calls that go beyond automated remediation. You also interpret operational signals that inform product strategy.  
+> **Key difference from Loops 1–3:** This loop never ends. It runs continuously, 24/7. Your engagement is primarily event-driven (issues, escalations, policy reviews) rather than mission-driven.
 
 ---
 
@@ -12,11 +12,11 @@ Loop 4 is **not an Execution-only concern**. Like Loops 1–3, it spans all 5 or
 
 | Layer | Role in Operate | Who |
 |-------|-----------------|-----|
-| **Steering** | Receives systemic operational signals (cost trends, auto-remediation maturity, reliability posture) that inform company-level evolution | Executives, Organization Architects |
+| **Steering** | Receives systemic operational signals (cost trends, auto-remediation maturity, production health posture) that inform company-level evolution | Executives, Organization Architects |
 | **Strategy** | Interprets production signals → decides which warrant new missions. Owns the Operate → Discover feedback loop | Outcome Owners, Venture Leads |
 | **Orchestration** | Coordinates operations agent fleets. Creates missions from production signals. Leads incident coordination (SEV1/2 war rooms) | Agent Fleet Managers, Mission Leads |
-| **Execution** | Runs the agents: SRE, remediation, feature flags, incidents, chaos, capacity, performance. Human on-call handles escalations | Tech Leads, On-Call Engineers, Operations Teams |
-| **Quality** | Defines the policies that operations agents enforce: SLOs, incident severity, remediation boundaries, rollback criteria, alert standards | Reliability Policy Authors, Security Policy Authors |
+| **Execution** | Runs the agents: operations, remediation, feature flags, incidents, resilience, capacity, performance. Human on-call handles escalations | Tech Leads, On-Call Engineers, Operations Teams |
+| **Quality** | Defines the policies that operations agents enforce: health targets, issue severity, remediation boundaries, rollback criteria, alerting standards | Operations Policy Authors, Security Policy Authors |
 
 The sections below are organized by **your role**, not by layer. Most humans in Loop 4 belong to one layer but interact with adjacent layers regularly.
 
@@ -32,7 +32,7 @@ Loop 3 (Ship) completes → Feature is GA → Loop 4 begins (and never ends)
   ┌────────────────────────────────────────────────────────────────────┐
   │                    OPERATE & EVOLVE (Continuous)                   │
   │                                                                    │
-  │  SRE Agents ──► Monitor SLOs, error budgets, deployment health    │
+  │  Health Agents ──► Monitor service health, error budgets, deployment health  │
   │       │                                                            │
   │       ▼                                                            │
   │  Anomaly Detected?                                                 │
@@ -71,14 +71,14 @@ Loop 3 (Ship) completes → Feature is GA → Loop 4 begins (and never ends)
 
 ## What You Do
 
-### 1. Define & Evolve Operational Policies (Reliability Policy Authors)
+### 1. Define & Evolve Operational Policies (Operations Policy Authors)
 
 You author the policies that operations agents enforce autonomously:
 
 | Policy Area | What You Define |
 |---|---|
-| **SLO standards** | Which SLIs to measure, target percentages, error budget windows |
-| **Incident severity** | Blast radius thresholds, customer impact tiers, escalation triggers |
+| **Health target standards** | Which indicators to measure, target thresholds, error budget windows |
+| **Issue severity** | Blast radius thresholds, customer impact tiers, escalation triggers |
 | **Remediation boundaries** | What agents can auto-remediate vs. what requires human approval |
 | **Rollback criteria** | Health signal thresholds that trigger automatic rollback |
 | **Alert quality** | Actionability requirements — no alert without clear action |
@@ -92,7 +92,7 @@ When operations agents escalate, you investigate and resolve:
 |---|---|
 | **Novel failure pattern** | Investigate root cause → diagnose → fix → update runbook |
 | **Remediation scope exceeded** | Review proposed action → approve, modify, or reject |
-| **SLO breach with customer impact** | Lead incident response: war room, communication, resolution |
+| **Health target breach with customer impact** | Lead issue response: war room, communication, resolution |
 | **Security vulnerability** | Assess severity → coordinate emergency patch → verify fix |
 | **Cost anomaly** | Investigate cause → approve remediation → file signal if structural |
 
@@ -120,8 +120,8 @@ The most valuable output of Loop 4 is the **feedback loop to Loop 1**:
 
 ## What You DON'T Do Anymore
 
-- **Don't manually check SLOs** — agents monitor continuously
-- **Don't manually write incident postmortems** — agents draft them, you review
+- **Don't manually check health metrics** — agents monitor continuously
+- **Don't manually write postmortems** — agents draft them, you review
 - **Don't manually track feature flag status** — agents manage progression
 - **Don't manually forecast capacity** — agents project trends, you validate
 - **Don't manually investigate every alert** — agents auto-remediate within policy
@@ -132,11 +132,11 @@ The most valuable output of Loop 4 is the **feedback loop to Loop 1**:
 
 | Activity | Frequency | Who |
 |---|---|---|
-| **SLO review** | Weekly (automated) | Reliability Policy Authors |
+| **Health target review** | Weekly (automated) | Operations Policy Authors |
 | **Incident response** | Event-driven (24/7) | On-Call Engineers |
 | **Rollout decisions** | As-needed | Outcome Owners, AFMs |
 | **Operational signal triage** | Weekly | Outcome Owners |
-| **Policy evolution** | Monthly or post-incident | Reliability Policy Authors |
+| **Policy evolution** | Monthly or post-incident | Operations Policy Authors |
 | **Cost review** | Monthly | Operations Leads |
 
 ---

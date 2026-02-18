@@ -52,7 +52,7 @@
 - [ ] All service endpoints expose RED metrics (Rate, Errors, Duration)
 - [ ] Distributed traces propagate context across all service boundaries (W3C Trace Context)
 - [ ] Structured logging (JSON) with trace ID correlation on every log entry
-- [ ] SLO defined for every production service
+- [ ] Health target defined for every production service
 - [ ] Service health dashboard created and linked in Software Catalog
 - [ ] Alerting configured with documented runbooks
 - [ ] **No component progresses to production without verified observability**
@@ -66,4 +66,4 @@
 | Code coverage | ≥ {{MIN_CODE_COVERAGE}} | Below threshold |
 | Design system | Uses standard components | Custom components without approval |
 | Service boundary | Aligned with division | Cross-division data sharing |
-| Observability | Instrumented with traces, metrics, logs, SLOs | Missing instrumentation or no SLOs |
+| Observability | Instrumented with traces, metrics, logs, health targets | Missing instrumentation or no health targets |

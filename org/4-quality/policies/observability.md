@@ -2,7 +2,7 @@
 
 > **Applies to:** All services, apps, components, agents, and pipelines — nothing ships without proper observability  
 > **Enforced by:** Quality Layer eval agents  
-> **Authority:** Reliability leads + Architecture Governors  
+> **Authority:** Operations leads + Architecture Governors  
 > **Principle:** If it runs, it must be observable. If it's not observable, it doesn't ship.
 
 ---
@@ -13,7 +13,7 @@ Observability is not optional. Every service, app, agent, and pipeline must be i
 
 1. **Problems are detected before customers notice** — proactive, not reactive
 2. **Issues are diagnosed in minutes, not hours** — distributed traces, correlated logs, precise metrics
-3. **SLOs are provably met** — data-driven, not anecdotal
+3. **Health targets are provably met** — data-driven, not anecdotal
 4. **Agents can self-monitor and self-correct** — autonomous operations require observability as a prerequisite
 
 ---
@@ -86,25 +86,25 @@ Every deployed component MUST have at least one instrumentation source active. T
 
 ---
 
-## SLO Requirements
+## Service Health Target Requirements
 
-Every production service MUST define and track at least one SLO:
+Every production service MUST define and track at least one health target:
 
-- [ ] **Availability SLO** defined (target ≥ 99.5% unless explicitly justified lower)
-- [ ] **Latency SLO** defined (aligned with [performance.md](performance.md) budgets)
-- [ ] SLOs configured in {{OBSERVABILITY_TOOL}} with:
-  - Burn rate alerts (fast-burn: 14.4x over 1h, slow-burn: 6x over 6h)
+- [ ] **Availability target** defined (target ≥ 99.5% unless explicitly justified lower)
+- [ ] **Latency target** defined (aligned with [performance.md](performance.md) budgets)
+- [ ] Health targets configured in {{OBSERVABILITY_TOOL}} with:
+  - Appropriate burn rate alerts
   - Error budget tracking visible on a dashboard
-  - Error budget depletion alert at 50% and 80% consumed
-- [ ] SLO targets reviewed quarterly with evidence (→ tighten if consistently exceeded, investigate if breached)
+  - Error budget depletion alerts at configurable thresholds
+- [ ] Health targets reviewed quarterly with evidence (→ tighten if consistently exceeded, investigate if breached)
 
 ---
 
 ## Dashboards & Visualization
 
 - [ ] **Service health dashboard** created for every production service:
-  - RED metrics for all endpoints
-  - SLO burn rate and error budget
+  - Key metrics for all endpoints
+  - Health target status and error budget
   - Dependency health (downstream services, databases, external APIs)
   - Recent deployments overlaid on metrics timeline
 - [ ] Dashboard URL registered in Software Catalog entity metadata
@@ -119,15 +119,15 @@ Every production service MUST define and track at least one SLO:
 
 - [ ] **Anomaly detection** enabled for all instrumented services
 - [ ] **Custom alerts** configured for:
-  - SLO burn rate (see SLO section above)
+  - Health target burn rate thresholds
   - Error rate exceeding baseline by > 2x
-  - Latency exceeding p99 target by > 50%
+  - Latency exceeding target by > 50%
   - Resource saturation > 80% (CPU, memory, disk, connections)
   - Data pipeline lag exceeding threshold (for pipeline components)
   - Agent task failure rate exceeding 10%
 - [ ] Alert routing configured:
-  - P1/P2: PagerDuty / OpsGenie → on-call engineer
-  - P3/P4: Slack / Teams channel
+  - P1/P2: Alerting/paging system → on-call engineer
+  - P3/P4: Team chat channel
   - Agent-resolvable issues: routed to remediation agent
 - [ ] **No alert fatigue:** every alert must have a documented runbook action. Alerts that fire > 5x/week without action must be tuned or removed.
 - [ ] Alert definitions stored as code (GitOps)
@@ -182,7 +182,7 @@ Observability is checked at multiple points in the lifecycle:
 - Observability section in release contract is fully populated
 
 ### At Operate Time (Ongoing)
-- SLO compliance reviewed weekly
+- Health target compliance reviewed weekly
 - Alert quality reviewed monthly (tune or remove noisy alerts)
 - Dashboard accuracy verified after every deployment
 - Observability coverage gaps surfaced as signals in `work/signals/`

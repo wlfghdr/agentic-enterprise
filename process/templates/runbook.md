@@ -39,11 +39,11 @@
 
 - [ ] Check which endpoints/services are affected: [dashboard link]
 - [ ] Check customer impact: [metrics dashboard link]
-- [ ] Check SLO burn rate: [SLO dashboard link]
+- [ ] Check service health metrics: [dashboard link]
 - [ ] Determine severity:
-  - **SEV1:** Multiple SLOs breached, significant customer impact → escalate immediately
-  - **SEV2:** Single SLO breached, limited impact → proceed with remediation
-  - **SEV3:** Anomaly, no SLO breach → investigate and remediate
+  - **SEV1:** Significant service degradation, major customer impact → escalate immediately
+  - **SEV2:** Limited service degradation, limited impact → proceed with remediation
+  - **SEV3:** Anomaly, no major impact → investigate and remediate
   - **SEV4:** Informational → log and monitor
 
 ### Step 3: Identify Root Cause
@@ -96,7 +96,7 @@
 | Condition | Escalate To | Contact Method |
 |-----------|------------|---------------|
 | Remediation fails after [N] attempts | [on-call engineer] | [pager / Slack / phone] |
-| Customer-visible impact > [N] minutes | [Reliability Policy Author] | [pager / Slack] |
+| Customer-visible impact > [N] minutes | [Operations Policy Author] | [pager / Slack] |
 | Data integrity concern | [Tech Lead + Security Policy Author] | [pager / Slack / phone] |
 | Unable to determine root cause within [N] minutes | [Tech Lead] | [Slack] |
 
@@ -108,7 +108,7 @@ After remediation, verify full recovery:
 
 - [ ] Error rate returned to baseline: [dashboard link]
 - [ ] Latency returned to baseline: [dashboard link]
-- [ ] SLO burn rate normalized: [dashboard link]
+- [ ] Service health metrics normalized: [dashboard link]
 - [ ] No cascading failures in dependent services: [dashboard link]
 - [ ] Smoke tests passing: [test command or link]
 
@@ -126,7 +126,7 @@ After remediation, verify full recovery:
 ## Related Resources
 
 - **Service dashboard:** [link]
-- **SLO configuration:** [link]
+- **Service health targets:** [link]
 - **Architecture decision:** [link to relevant decision record]
 - **Related runbooks:** [links to related runbooks for dependent services]
 - **On-call rotation:** [link to on-call schedule]

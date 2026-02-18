@@ -76,4 +76,4 @@
 ## Quality Trend Notes
 
 [Optional — note any patterns observed across evaluations:]
-- [e.g., "This is the 3rd evaluation this month that flagged missing observability instrumentation — recommend policy awareness signal"]
+- [e.g., "This is the 3rd evaluation this month that flagged missing production readiness instrumentation — recommend policy awareness signal"]

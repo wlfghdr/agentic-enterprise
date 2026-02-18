@@ -94,45 +94,19 @@ Execution agents are the largest group. They do the actual work across every ent
 | **Workflow Builder Agent** | Creates and maintains automation workflow definitions. Translates natural language intents into executable workflows. | Every organization automates processes. This agent accelerates and maintains that automation. |
 | **Connector Agent** | Builds and maintains integrations with development tools (GitHub, GitLab, CI/CD, project management). Manages webhooks and API connections. | Tool integration is the plumbing of modern engineering. Automated connector management reduces toil. |
 
-### Observability & Analytics
+### Operations
 
 | Agent | Description | Why Universal |
 |-------|-------------|---------------|
-| **Problem Resolver** | Automatically analyzes detected problems, determines root cause, and executes remediation actions. | Reduces MTTR. The most direct way to convert observability data into operational value. |
-| **Proactive Problem Sentinel** | Continuously monitors all environments and auto-remediates known patterns before they impact users. | Shifts from reactive to proactive operations. Prevents incidents before they generate tickets. |
-| **Root Cause Analysis Agent** | AI-powered root cause determination tracing causation chains across the full service topology. | Root cause analysis is the hardest part of incident response. AI acceleration here has massive impact. |
-| **Anomaly Detection Agent** | Detects anomalies across all signal types — metrics, logs, traces, and events — using ML baselines. | Catches problems humans wouldn't notice. Essential for operating complex distributed systems. |
-| **Trace Analysis Agent** | Analyzes distributed traces to identify performance bottlenecks, slow database calls, and cross-service latency patterns. | Distributed tracing data is rich but overwhelming. This agent makes it actionable. |
-| **Service Flow Agent** | Maps service dependencies, detects anomalous flow patterns, and identifies topology changes that impact performance. | Understanding how services interact is foundational to reliability. |
-| **Log Correlation Agent** | Correlates logs with traces and metrics for root cause analysis. Identifies the most relevant log entries for any incident. | Log volume is overwhelming. This agent finds the needle in the haystack. |
-| **KPI Mapping Agent** | Connects business KPIs to underlying technical signals. Maps revenue, conversion, and satisfaction metrics to service health. | Bridges the business-technology gap. Makes technical health meaningful to business stakeholders. |
-| **Executive Dashboard Agent** | Builds C-level views connecting business outcomes to operational health. Auto-generates executive summaries with evidence-backed insights. | Executives need signal, not noise. This agent provides it automatically. |
-| **Cost Analytics Agent** | Tracks cloud costs, carbon footprint, and resource efficiency. Provides unit economics and cost-per-transaction analysis. | FinOps is mandatory for any cloud-native organization. |
-| **Process Analytics Agent** | Analyzes business process flows. Detects bottlenecks, loop-backs, and drop-off points in customer journeys. | Business process optimization grounded in real data, not assumptions. |
-| **Revenue Impact Agent** | Connects technical incidents to revenue impact. Quantifies downtime cost in real-time. | Makes reliability investment decisions evidence-based by connecting outages to dollars. |
-| **Forecaster Agent** | Predictive analytics, capacity forecasting, and trend projection using historical data and ML algorithms. | Planning requires prediction. This agent turns data into forward-looking intelligence. |
-| **User Experience Analysis Agent** | Analyzes real user monitoring data including Core Web Vitals, user actions, and front-end performance. | User experience is the ultimate business metric. Monitoring it automatically is essential. |
-| **Synthetic Monitor Agent** | Manages synthetic monitoring checks, availability testing, and multi-step transaction tests across global locations. | Proactive monitoring from the user's perspective. Catches issues before real users do. |
-| **Session Replay Agent** | Provides session replay evidence for UX anomalies. Identifies rage clicks, navigation dead ends, and frustration patterns. | Seeing what users actually experience is invaluable for UX improvement. |
-| **User Journey Agent** | Conversion funnel analysis, user frustration detection, and journey optimization recommendations. | Optimizes the paths users take through your product for maximum conversion and satisfaction. |
-| **Multi-Agent Trace Agent** | Traces agent-to-agent interactions across orchestrator-worker-evaluator chains. Provides visibility into multi-agent workflows. | As agent fleets grow, understanding agent-to-agent interactions becomes critical. |
-| **Code Hotspot Agent** | Identifies method-level performance hotspots using code-level instrumentation data. | Pinpoints exactly where in the code performance problems originate. |
-| **Release Intelligence Agent** | Tracks deployments across environments, manages quality gates, and performs canary analysis. | Connects release events to operational impact. Essential for safe delivery. |
-| **SDLC Event Agent** | Processes deployment, change, and release events. Correlates SDLC events with production problems and performance. | Links what changed to what broke. The foundation of change intelligence. |
-
-### Operations & SRE
-
-| Agent | Description | Why Universal |
-|-------|-------------|---------------|
-| **SRE Agent** | SLO monitoring, error budget tracking, and reliability dashboards. | SRE practices are standard for any serious production operation. |
-| **Incident Agent** | Incident detection, classification, and response orchestration. Coordinates multi-team response for complex incidents. | Structured incident response is essential. This agent accelerates every step. |
-| **On-Call Agent** | 24/7 alert management and runbook execution. Automates first-response actions and escalation paths. | On-call burden is a top contributor to engineer burnout. Automation reduces it dramatically. |
-| **Chaos Agent** | Failure injection, game day orchestration, and resilience testing under controlled conditions. | You don't know if your system is resilient until you test it. Automated chaos engineering makes this practical. |
-| **Capacity Agent** | Demand forecasting, right-sizing, and cost trending. Ensures infrastructure capacity meets projected demand. | Over-provisioning wastes money; under-provisioning causes outages. This agent finds the balance. |
-| **Performance Agent** | Baseline comparisons, regression detection, and performance hotspot analysis. | Performance regression is silent until users complain. This agent catches it at the source. |
-| **Auto-Remediation Agent** | Automated remediation with evidence trails and rollback capabilities. Executes proven remediation playbooks. | Known problems should never require human intervention. This agent codifies and executes fixes. |
-| **Communication Coordinator** | Coordinates incident response via collaboration tools — creates war rooms, posts updates, invites responders. | Incident communication is a process. Automating it frees humans to solve problems. |
-| **ITSM Integration Agent** | Creates and manages ITSM tickets (e.g., ServiceNow) based on detected problems with full context enrichment. | ITSM is the system of record for operations. Automated ticket management reduces toil. |
+| **Production Health Agent** | Monitors service health, detects anomalies, tracks key operational metrics, and surfaces degradation before users are impacted. | Proactive health monitoring is foundational for any production system. Catches problems before they become incidents. |
+| **Incident Response Agent** | Incident detection, severity classification, response coordination, and communication management across teams. | Structured incident response is essential. This agent accelerates triage, diagnosis, and resolution. |
+| **Auto-Remediation Agent** | Automated remediation with evidence trails and rollback capabilities. Executes proven remediation playbooks within policy boundaries. | Known problems should never require human intervention. This agent codifies and executes fixes. |
+| **Capacity & Cost Agent** | Demand forecasting, right-sizing, cost trending, and FinOps optimization. Ensures resource allocation matches demand efficiently. | Over-provisioning wastes money; under-provisioning causes outages. Balancing both is universally valuable. |
+| **Performance Agent** | Baseline comparisons, regression detection, and performance profiling. Identifies optimization opportunities across the stack. | Performance regression is silent until users complain. This agent catches it at the source. |
+| **Resilience Agent** | Failure injection, game day orchestration, and resilience testing under controlled conditions. | You don't know if your system is resilient until you test it. Automated resilience testing makes this practical. |
+| **Release Health Agent** | Tracks deployment health across environments, performs canary analysis, and correlates releases with production impact. | Connects release events to operational impact. Essential for safe, progressive delivery. |
+| **Analytics & Insights Agent** | Connects business KPIs to technical signals, builds executive dashboards, analyzes process flows, and generates forecasts. | Bridges the business-technology gap. Makes operational data meaningful to every organizational layer. |
+| **User Experience Agent** | Analyzes real user behavior — Core Web Vitals, conversion funnels, user journeys — and identifies friction points. | User experience is the ultimate business metric. Continuous analysis drives product improvement. |
 
 ### Infrastructure & Operations
 
@@ -222,7 +196,7 @@ Quality agents are the verification layer. They evaluate every output — code, 
 | **Security Policy Enforcer** | Enforces security policies across all agent outputs — scans code for vulnerabilities, validates API security, and reviews all changes. | Security is non-negotiable. Every output needs security verification. |
 | **Architecture Review Agent** | Reviews architectural decisions against company architecture policies. Evaluates changes for API consistency, pattern compliance, and design adherence. | Architecture rot is slow and expensive. Automated review prevents it at scale. |
 | **Brand & Content Policy Agent** | Evaluates all customer-facing content against brand guidelines, tone of voice, legal requirements, and competitive claims. | Brand consistency builds trust. Every piece of content should be checked before publishing. |
-| **Observability Evaluator** | Evaluates instrumentation completeness, trace coverage, metric presence, SLO definitions, and dashboard quality. | "You can't fix what you can't see." This agent ensures new services are fully observable. |
+| **Production Readiness Evaluator** | Evaluates operational readiness — instrumentation, health metrics, alerting, dashboards, and documentation completeness. | "You can't fix what you can't see." This agent ensures new services are production-ready. |
 | **Experience Evaluator** | Design system compliance, accessibility (WCAG), responsive layout, and dark mode support validation. | Accessibility and design consistency are both legal requirements and user experience imperatives. |
 | **Performance Evaluator** | Load time targets, query cost budgets, memory and CPU profiling. Ensures performance meets defined budgets. | Performance budgets are meaningless without enforcement. This agent makes them real. |
 | **Delivery Evaluator** | Feature flag readiness, rollback plans, staging verification, and ring promotion readiness evaluation. | Safe delivery requires gatekeeping at every stage. This agent provides it. |
@@ -248,7 +222,7 @@ These missions represent universal enterprise challenges that every agentic ente
 | Mission | Description | Universal Value |
 |---------|-------------|-----------------|
 | **AI-Powered Sales Enablement** | Transform sales with AI-generated battlecards, proposals, POC configurations, and deal intelligence. | Every sales organization can benefit. Demonstrated: 28% sales cycle reduction, 2.3h RFP response time. |
-| **Digital Experience Optimization** | Optimize digital experience across all touchpoints — real user monitoring, synthetic testing, session analysis, and journey optimization. | User experience directly drives revenue. Demonstrated: 18% conversion rate improvement. |
+| **Digital Experience Optimization** | Optimize digital experience across all touchpoints — user behavior analysis, conversion funnel optimization, and journey mapping. | User experience directly drives revenue. Demonstrated: 18% conversion rate improvement. |
 | **Cloud Cost Optimization** | Analyze cloud infrastructure spending, identify waste, and implement automated right-sizing with verified savings. | Cloud cost is a universal enterprise pain point. Demonstrated: $15K/month savings. |
 | **Automated QBR Generation** | Automate Quarterly Business Review generation using agent-driven health analysis, adoption metrics, and ROI evidence. | CSMs spend hours on QBR preparation. Demonstrated: 12 minutes per QBR, 4.6/5 customer satisfaction. |
 | **Regulated Growth Expansion** | End-to-end growth motion targeting regulated enterprise accounts — from market signal through GTM strategy, sales enablement, and customer expansion. | Cross-functional missions that span strategy-to-sales are the highest ROI for agentic enterprise organizations. |
@@ -257,11 +231,11 @@ These missions represent universal enterprise challenges that every agentic ente
 
 | Mission | Description | Universal Value |
 |---------|-------------|-----------------|
-| **Proactive Problem Resolution** | Build an always-on sentinel agent that detects and resolves problems before they generate support tickets. | Demonstrated: 89 tickets prevented, CSAT maintained at 4.3, $62K quarterly savings. |
-| **Automated Security Incident Response** | Agent resolves security incidents end-to-end with AI-assisted patch generation. | Demonstrated: 91% MTTR reduction (4.2h → 24min), 96% patch success rate. |
-| **Intelligent Incident Automation** | Automate L1/L2 incident response with root cause analysis, remediation, and ITSM ticket management. | Demonstrated: 73% MTTR reduction, 89% L1 automation rate. |
+| **Proactive Issue Prevention** | Build an always-on agent that detects and resolves problems before they generate support tickets or customer impact. | Demonstrated: 89 tickets prevented, CSAT maintained at 4.3, $62K quarterly savings. |
+| **Automated Security Response** | Agent resolves security vulnerabilities end-to-end with AI-assisted patch generation. | Demonstrated: 91% time-to-resolution reduction (4.2h → 24min), 96% patch success rate. |
+| **Automated Issue Response** | Automate L1/L2 issue response with diagnosis, remediation, and ticket management. | Demonstrated: 73% resolution time reduction, 89% L1 automation rate. |
 | **Customer Onboarding Automation** | Automate customer onboarding to achieve time-to-first-value under 2 days with minimal human intervention. | Demonstrated: 1.2 days to first value, 94% completion rate, <1 human touch needed. |
-| **DORA Metrics Excellence** | Achieve DORA Elite performance through pipeline optimization and automated remediation. | Demonstrated: 8.2 deploys/day, 2.1h lead time, 1.8% change failure rate, 4min MTTR. |
+| **DORA Metrics Excellence** | Achieve DORA Elite performance through pipeline optimization and automated remediation. | Demonstrated: 8.2 deploys/day, 2.1h lead time, 1.8% change failure rate, 4min recovery time. |
 
 ### Execution Missions
 
@@ -269,9 +243,9 @@ These missions represent universal enterprise challenges that every agentic ente
 |---------|-------------|-----------------|
 | **Zero-Downtime Database Migration** | Migrate databases with zero downtime using dual-write patterns and progressive cutover. | Every growing system faces migrations. Zero downtime is the gold standard. |
 | **Multi-Region Expansion** | Expand to new regions with full data residency compliance and geographic routing. | Global expansion with compliance is a universal challenge for growing enterprises. |
-| **Cloud Native Migration** | Migrate legacy VMs to containerized Kubernetes workloads with full observability. | Modernization is an ongoing journey. Demonstrated: 42% infra cost reduction, 8× deployment speed. |
+| **Cloud Native Migration** | Migrate legacy VMs to containerized Kubernetes workloads with production readiness. | Modernization is an ongoing journey. Demonstrated: 42% infra cost reduction, 8× deployment speed. |
 | **Developer Experience Foundation** | Build an internal developer experience with self-service portal, automated workflows, and integrated tooling. | Developer productivity directly impacts business velocity. Demonstrated: 3min environment setup, 89% adoption. |
-| **API Modernization** | Modernize all APIs with standards, gateway, versioning, and comprehensive observability. | API quality determines ecosystem health. Demonstrated: 89ms p99 latency (from 430ms). |
+| **API Modernization** | Modernize all APIs with standards, gateway, versioning, and operational readiness. | API quality determines ecosystem health. Demonstrated: 89ms p99 latency (from 430ms). |
 | **Infrastructure Cost Optimization** | Reduce costs through rightsizing, spot instances, storage tiering, and FinOps practices. | Demonstrated: $420K/month savings, utilization from 34% to 72%. |
 | **Data Governance** | Comprehensive data governance with classification, policies, and cost optimization. | Regulatory compliance and data management are universal requirements. |
 | **Support Automation at Scale** | Automate 60%+ of support tickets with AI-powered triage, diagnosis, and resolution. | Demonstrated: 62% auto-resolution, 48s first response, 4.6/5 CSAT. |
@@ -280,13 +254,13 @@ These missions represent universal enterprise challenges that every agentic ente
 
 | Mission | Description | Universal Value |
 |---------|-------------|-----------------|
-| **Security Posture Hardening** | Comprehensive security hardening with automated vulnerability management and threat detection. | Demonstrated: 0 critical CVEs, 2.1h security MTTR, 67% attack surface reduction. |
+| **Security Posture Hardening** | Comprehensive security hardening with automated vulnerability management and threat detection. | Demonstrated: 0 critical CVEs, 2.1h security resolution time, 67% attack surface reduction. |
 | **Compliance Automation (SOC2/ISO 27001)** | Automate compliance evidence collection, monitoring, and audit preparation. | Demonstrated: 2 days audit prep (from 8 weeks), $340K annual audit cost savings. |
 
 
 ## Key Takeaways
 
-1. **~100 universal agents** form the core of any agentic enterprise, spanning all 5 layers and 8+ company functions (engineering, delivery, GTM, sales, customer success, support, infrastructure, operations, security).
+1. **~80 universal agents** form the core of any agentic enterprise, spanning all 5 layers and 8+ company functions (engineering, delivery, GTM, sales, customer success, support, infrastructure, operations, security).
 
 2. **~25 universal missions** represent the repeatable plays every enterprise will run: from product launches to security hardening, from sales enablement to database migrations.
 

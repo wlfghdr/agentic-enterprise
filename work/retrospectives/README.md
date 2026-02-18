@@ -22,7 +22,7 @@ Postmortems, incident reports, and blameless retrospectives from production oper
 ## Who Creates
 
 - Operate Loop agents (draft)
-- On-call engineers + Reliability Policy Authors (review and finalize)
+- On-call engineers + Operations Policy Authors (review and finalize)
 
 ## Feedback Loop
 

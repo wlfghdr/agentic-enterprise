@@ -96,7 +96,7 @@ The critical addition — Layer 0: Steering — embeds what was historically inv
 
 **Purpose:** Evaluate all outputs against defined policies. Enforce quality gates automatically. Escalate anomalies. Author and evolve policies.
 
-**Humans:** Security Policy Authors, Reliability Policy Authors, Performance Engineers, UX Standards Authors, Content Quality Authors, SLA Policy Authors
+**Humans:** Security Policy Authors, Operations Policy Authors, Performance Engineers, UX Standards Authors, Content Quality Authors, SLA Policy Authors
 
 **Agent support:** Security eval agents, architecture eval agents, UX eval agents, performance eval agents, delivery readiness eval agents, content quality eval agents, customer interaction quality eval agents.
 
@@ -161,7 +161,7 @@ Divisions are the **execution units** of the organization — each owns a domain
 | Senior Developer | Tech Lead / System Architect | Execution | From coding to architecture + agent direction + critical path |
 | Developer | Agent Operator | Execution | From writing code to steering agents that write code |
 | QA Engineer | Security Policy Author | Quality | From manual testing to policy authoring + anomaly investigation |
-| SRE | Reliability Policy Author | Quality | From manual ops to policy authoring + incident leadership |
+| Operations Engineer | Operations Policy Author | Quality | From manual ops to policy authoring + incident leadership |
 | Technical Writer | Documentation Division Lead | Execution | From writing all docs to directing doc agent fleets |
 | Product Marketing Manager | Product Marketing Lead | Execution | From creating all materials to directing GTM agent fleets |
 | Account Executive | Account Executive (enhanced) | Execution | Relationship owner — every interaction agent-prepared |

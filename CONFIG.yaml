@@ -43,7 +43,7 @@ vision:
 strategic_beliefs:
   - id: "agent-workforce"
     title: "Agents are the new workforce"
-    summary: "AI agents are becoming essential collaborators — and they need governance, observability, and trust infrastructure."
+    summary: "AI agents are becoming essential collaborators — and they need governance, accountability, and trust infrastructure."
 
   - id: "autonomy-maturity"
     title: "The autonomy maturity curve is universal"
@@ -55,7 +55,7 @@ strategic_beliefs:
 
   - id: "end-to-end-intelligence"
     title: "Intelligence must span from execution to boardroom"
-    summary: "Connecting operational data to business impact across every organizational altitude."
+    summary: "Connecting execution data to business decisions across every organizational altitude."
 
   - id: "data-openness"
     title: "Data gravity is the moat — but only with openness"
@@ -139,7 +139,7 @@ divisions:
       description: "Developer portal, build infra, CI/CD, golden paths, release engineering"
     - id: "infrastructure-operations"
       name: "Infrastructure Operations"
-      description: "Cloud accounts, IaC, cost management, SRE, incident management"
+      description: "Cloud accounts, IaC, cost management, production operations, incident management"
     - id: "quality-security-engineering"
       name: "Quality & Security Engineering"
       description: "Security testing, privacy, compliance, quality gates, supply chain"

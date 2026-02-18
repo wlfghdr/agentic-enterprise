@@ -33,8 +33,8 @@
 - **Services affected:** [list of impacted services/components]
 - **Customers affected:** [number or percentage of impacted users]
 - **Duration:** [total time from first impact to full resolution]
-- **SLO impact:** [which SLOs were breached, by how much]
-- **Error budget consumed:** [percentage of error budget consumed by this incident]
+- **Service impact:** [which health targets were breached, by how much]
+- **Impact on service health targets:** [percentage of error budget consumed by this incident]
 
 ### Business Impact
 - **Revenue impact:** [estimated, if applicable]
@@ -61,7 +61,7 @@
 
 ### Contributing Factors
 - [Factor 1 — e.g., missing test coverage for edge case]
-- [Factor 2 — e.g., monitoring gap in the affected pathway]
+- [Factor 2 — e.g., gap in the affected pathway's monitoring coverage]
 
 ## Remediation
 
@@ -78,7 +78,7 @@
 | Policy | Gap Identified? | Description |
 |--------|----------------|-------------|
 | Security | yes / no | [description of gap, if any] |
-| Observability | yes / no | [e.g., "missing alert for this failure mode"] |
+| Observability | yes / no | [e.g., "missing coverage for this failure mode"] |
 | Delivery | yes / no | [e.g., "rollback procedure was unclear"] |
 | Architecture | yes / no | [e.g., "single point of failure not documented"] |
 
@@ -95,7 +95,7 @@
 
 | Action | Owner | Due Date | Status |
 |--------|-------|----------|--------|
-| [Add missing monitoring] | [name/team] | YYYY-MM-DD | open / done |
+| [Add missing test or monitoring coverage] | [name/team] | YYYY-MM-DD | open / done |
 | [Improve test coverage] | [name/team] | YYYY-MM-DD | open / done |
 
 ### Long-Term (Requires Mission)
@@ -114,7 +114,7 @@
 ## Lessons Learned
 
 ### What went well
-- [e.g., "Detection was fast due to SLO burn rate alert"]
+- [e.g., "Detection was fast due to automated health monitoring"]
 
 ### What could be improved
 - [e.g., "Runbook was outdated, added 10 minutes to resolution"]
@@ -125,6 +125,6 @@
 ## Approval
 
 - [ ] On-call engineer reviewed and validated timeline
-- [ ] Reliability Policy Author reviewed policy gap analysis
+- [ ] Operations Policy Author reviewed policy gap analysis
 - [ ] All follow-up items assigned and tracked
 - [ ] Improvement signals filed in `work/signals/`

@@ -26,7 +26,7 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 - Compile release contract from quality-approved outputs
 - **Store release contract** in `work/releases/YYYY-MM-DD-<release-name>.md` (template: `process/templates/release-contract.md`)
 - **Verify asset registry completeness** — every deliverable in the release must have an entry in `work/assets/`; create missing entries using `process/templates/asset-registry-entry.yaml`
-- **Verify observability readiness** — check against `org/4-quality/policies/observability.md`: instrumentation active, traces flowing, RED metrics on all endpoints, SLOs configured with burn rate alerts, health dashboard created, alerting with runbooks. **Block the release if observability is not verified.**
+- **Verify production readiness** — check against `org/4-quality/policies/observability.md`: instrumentation active, telemetry flowing, health dashboard created, alerting configured with runbooks. **Block the release if production readiness is not verified.**
 - Define progressive rollout plan
 - Document rollback procedures
 - Prepare release notes (customer-facing and internal)

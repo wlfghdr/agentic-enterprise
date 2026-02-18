@@ -54,7 +54,7 @@ Stage 4: Full Rollout (100%)
 
 Within the validation window:
 - [ ] Error rates within normal bounds
-- [ ] Latency within SLO
+- [ ] Latency within target
 - [ ] No critical alerts triggered
 - [ ] Smoke tests passing
 - [ ] User-facing functionality verified
@@ -82,7 +82,7 @@ Production observations become new signals:
 
 Automatic rollback triggers:
 - Error rate increases > {{MAX_ERROR_RATE_INCREASE}} above baseline
-- p99 latency exceeds 2x SLO
+- p99 latency exceeds 2x target
 - Health check failures in > {{MAX_HEALTH_CHECK_FAILURE_RATE}} of instances
 - Critical security alert
 - Data integrity issue detected

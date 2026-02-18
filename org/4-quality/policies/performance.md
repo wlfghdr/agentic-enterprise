@@ -16,7 +16,7 @@
 ## Mandatory Requirements
 
 ### Service Performance
-- [ ] API response times within SLO (p50, p95, p99 defined)
+- [ ] API response times within target (p50, p95, p99 defined)
 - [ ] No N+1 query patterns
 - [ ] Database queries use appropriate indexes
 - [ ] Connection pooling for all external dependencies
@@ -38,9 +38,9 @@
 - [ ] Auto-scaling policies defined
 
 ### Monitoring & Alerting
-- [ ] SLIs and SLOs defined for every service
+- [ ] Health targets defined for every service
 - [ ] Dashboards for key metrics (latency, throughput, errors, saturation)
-- [ ] Alerts configured for SLO violations
+- [ ] Alerts configured for health target violations
 - [ ] Distributed tracing enabled
 - [ ] Custom metrics for business-critical operations
 
@@ -54,8 +54,8 @@
 
 | Criterion | PASS | FAIL |
 |-----------|------|------|
-| SLO defined | All endpoints have SLOs | Missing SLO definitions |
+| Health target defined | All endpoints have health targets | Missing health target definitions |
 | Load testing | Tested at target scale | No load test evidence |
 | Resource limits | Defined and right-sized | Missing or unbounded |
-| Monitoring | SLIs, dashboards, alerts | Missing observability |
+| Monitoring | Health targets, dashboards, alerts | Missing observability |
 | Query performance | Indexed, bounded | Unbounded or N+1 queries |

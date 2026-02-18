@@ -30,7 +30,7 @@
 
 *(Fill this in via CONFIG.yaml → vision.mission)*
 
-We deliver the intelligence layer that connects execution to business impact — automatically, continuously, and without human toil. In the agentic enterprise world, {{COMPANY_SHORT}} is not a tool humans configure. It is a product that agents adopt, that observes everything, and that delivers the right insight to the right layer at the right moment.
+We deliver the intelligence layer that connects execution to business impact — automatically, continuously, and without human toil. In the agentic enterprise world, {{COMPANY_SHORT}} is not a tool humans configure. It is a product that agents adopt, that understands context across the entire organization, and that delivers the right insight to the right layer at the right moment.
 
 ---
 
@@ -82,7 +82,7 @@ In a world of autonomous agents acting on production systems, trust is not a fea
 |-------------|------------|
 | Tool that humans configure and query | **Product that agents adopt and intelligence flows from** |
 | Serving individual practitioners | **Essential for every layer: developers, agent fleet managers, business leaders, compliance** |
-| Value = dashboards and alerts | **Value = autonomous insight delivery at every organizational altitude** |
+| Value = reports and manual analysis | **Value = autonomous insight delivery at every organizational altitude** |
 | Selling to technical personas | **Selling to every layer of the enterprise** |
 | Periodic manual review cycles | **Continuous autonomous intelligence delivery** |
 
@@ -105,7 +105,7 @@ In a world of autonomous agents acting on production systems, trust is not a fea
 4. **We sell with agent fleets** — every account executive walks into every meeting agent-prepared: briefings, proposals, demo environments, objection handling
 5. **We succeed customers with agent fleets** — health monitoring, QBR preparation, adoption analysis, renewal risk assessment, all agent-powered
 6. **We support with agent fleets** — triage, diagnostics, knowledge base generation, SLA tracking, all agent-assisted
-7. **We observe with {{PRODUCT_NAME}}** — our agent fleets, our CI/CD, our deployments, our customer health, all flow through {{PRODUCT_NAME}} (dog-fooding)
+7. **We measure ourselves with {{PRODUCT_NAME}}** — our agent fleets, our CI/CD, our deployments, our customer health, all flow through {{PRODUCT_NAME}} (dog-fooding)
 8. **We govern through outcomes** — not process compliance, but measurable customer and business outcomes
 9. **We evolve ourselves with agent fleets** — the company continuously observes its own structure, processes, and operating model through every agent in every layer, aggregates improvement signals in the Steering Layer, and evolves itself through the same PR-governed process as everything else. This is not periodic strategic planning — it is continuous organizational metabolism.
 

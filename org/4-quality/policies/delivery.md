@@ -42,16 +42,16 @@ Promotion between environments requires evidence of health at the current stage.
 ### Post-Deployment
 - [ ] Health metrics validated within {{POST_DEPLOY_VALIDATION_WINDOW}} of deployment
 - [ ] Error rate within acceptable bounds
-- [ ] Performance metrics within SLO
+- [ ] Performance metrics within target
 - [ ] Telemetry verified: traces, metrics, and logs flowing correctly after deployment
-- [ ] SLO burn rate monitored during rollout
+- [ ] Health target burn rate monitored during rollout
 - [ ] Customer-facing functionality verified (smoke tests)
 - [ ] Deployment recorded in change log
 
 ### Rollback Criteria
 Automatic rollback if any of:
 - Error rate increases > {{MAX_ERROR_RATE_INCREASE}} above baseline
-- p99 latency exceeds SLO
+- p99 latency exceeds target
 - Health check failures
 - Critical alert triggered
 
