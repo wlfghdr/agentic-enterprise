@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Enterprise — The Future of How Companies Operate</title>
+<style>
+/* ═══════════════════════════ RESET & BASE ═══════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --bg: #09090b;
+  --bg2: #111114;
+  --bg3: #18181b;
+  --surface: #1c1c22;
+  --border: #27272a;
+  --border2: #3f3f46;
+  --text: #fafafa;
+  --text2: #a1a1aa;
+  --text3: #71717a;
+  --accent: #a78bfa;
+  --accent2: #7c3aed;
+  --accent3: #c4b5fd;
+  --blue: #60a5fa;
+  --cyan: #22d3ee;
+  --green: #4ade80;
+  --amber: #fbbf24;
+  --rose: #fb7185;
+  --pink: #f472b6;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent3)}
+
+/* ═══════════════════════════ TYPOGRAPHY ═══════════════════════════ */
+h1,h2,h3,h4{font-weight:700;letter-spacing:-0.02em;line-height:1.15}
+h1{font-size:clamp(2.5rem,6vw,4.5rem)}
+h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+h3{font-size:clamp(1.15rem,2vw,1.5rem)}
+.gradient-text{background:linear-gradient(135deg,var(--accent3),var(--cyan),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ═══════════════════════════ LAYOUT ═══════════════════════════ */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:100px 0}
+.section-label{text-transform:uppercase;font-size:0.75rem;letter-spacing:0.15em;color:var(--accent);font-weight:600;margin-bottom:12px}
+.section-sub{color:var(--text2);font-size:clamp(1rem,1.5vw,1.2rem);max-width:680px;margin-top:16px;line-height:1.7}
+
+/* ═══════════════════════════ NAV ═══════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;backdrop-filter:blur(20px);background:rgba(9,9,11,0.7);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-weight:700;font-size:1rem;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px}
+nav .logo svg{width:28px;height:28px}
+nav ul{display:flex;gap:28px;list-style:none}
+nav ul a{color:var(--text2);font-size:0.85rem;font-weight:500;transition:color .2s}
+nav ul a:hover{color:var(--text)}
+.nav-cta{background:var(--accent2);color:#fff;padding:8px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;transition:background .2s}
+.nav-cta:hover{background:var(--accent);color:#fff}
+
+/* ═══════════════════════════ HERO ═══════════════════════════ */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;top:-40%;left:-20%;width:80%;height:80%;background:radial-gradient(ellipse at center,rgba(124,58,237,0.1),transparent 70%);pointer-events:none}
+#hero::after{content:'';position:absolute;bottom:-10%;right:-10%;width:60%;height:60%;background:radial-gradient(ellipse at center,rgba(34,211,238,0.06),transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:850px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);border-radius:100px;padding:6px 16px;font-size:0.8rem;color:var(--accent3);margin-bottom:28px;font-weight:500}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-desc{color:var(--text2);font-size:clamp(1.1rem,2vw,1.35rem);max-width:640px;margin-top:24px;line-height:1.7}
+.hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);color:#fff;padding:14px 32px;border-radius:12px;font-weight:600;font-size:1rem;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,58,237,0.3);color:#fff}
+.btn-secondary{background:transparent;color:var(--text);padding:14px 32px;border-radius:12px;font-weight:600;font-size:1rem;border:1px solid var(--border2);transition:border-color .2s,background .2s;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary:hover{border-color:var(--accent);background:rgba(167,139,250,0.05);color:#fff}
+
+/* ═══════════════════════════ MANIFESTO MARQUEE ═══════════════════════════ */
+.marquee-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 0;overflow:hidden}
+.marquee-track{display:flex;gap:48px;animation:scroll 30s linear infinite;width:max-content}
+.marquee-track span{white-space:nowrap;font-size:1rem;color:var(--text3);font-weight:500;display:flex;align-items:center;gap:12px}
+.marquee-track span::before{content:'◆';color:var(--accent2);font-size:0.6rem}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══════════════════════════ PROBLEM ═══════════════════════════ */
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:48px}
+.problem-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;position:relative;overflow:hidden;transition:border-color .3s}
+.problem-card:hover{border-color:var(--border2)}
+.problem-card .icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:16px}
+.problem-card h3{margin-bottom:8px;font-size:1.1rem}
+.problem-card p{color:var(--text2);font-size:0.9rem;line-height:1.6}
+.strike{color:var(--text3);text-decoration:line-through;text-decoration-color:var(--rose)}
+
+/* ═══════════════════════════ 5 LAYERS ═══════════════════════════ */
+.layers-visual{margin-top:56px;display:flex;flex-direction:column;gap:4px}
+.layer-row{display:grid;grid-template-columns:180px 1fr 140px;gap:16px;align-items:center;padding:20px 24px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg2);transition:all .3s;cursor:default}
+.layer-row:hover{border-color:var(--accent2);background:rgba(124,58,237,0.04);transform:translateX(4px)}
+.layer-name{font-weight:700;font-size:1rem;display:flex;align-items:center;gap:10px}
+.layer-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.layer-purpose{color:var(--text2);font-size:0.9rem}
+.layer-badge{text-align:right;font-size:0.75rem;color:var(--text3);font-weight:500;white-space:nowrap}
+.arrow-down{text-align:center;color:var(--text3);font-size:1.2rem;padding:2px 0;user-select:none}
+.flow-indicators{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding:12px 24px;border:1px dashed var(--border);border-radius:var(--radius-sm);color:var(--text3);font-size:0.85rem}
+.flow-indicators span:first-child{color:var(--accent3)}
+.flow-indicators span:last-child{color:var(--cyan)}
+
+/* ═══════════════════════════ 4 LOOPS ═══════════════════════════ */
+.loops-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:48px;position:relative}
+.loops-grid::before{content:'';position:absolute;top:50%;left:5%;right:5%;height:2px;background:linear-gradient(90deg,var(--accent2),var(--blue),var(--green),var(--amber));border-radius:2px;z-index:0}
+.loop-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px 20px;position:relative;z-index:1;text-align:center;transition:all .3s}
+.loop-card:hover{border-color:var(--accent2);transform:translateY(-4px)}
+.loop-num{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;margin:0 auto 16px;border:2px solid}
+.loop-card h3{font-size:1rem;margin-bottom:8px}
+.loop-card p{color:var(--text2);font-size:0.82rem;line-height:1.55}
+.loop-card .loop-time{display:inline-block;margin-top:12px;font-size:0.72rem;color:var(--text3);background:var(--bg);padding:4px 12px;border-radius:100px;border:1px solid var(--border)}
+.loop-feedback{text-align:center;margin-top:20px;color:var(--text3);font-size:0.85rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.loop-feedback svg{width:16px;height:16px;color:var(--cyan)}
+
+/* ═══════════════════════════ GITOPS TABLE ═══════════════════════════ */
+.replace-table{margin-top:48px;width:100%;border-collapse:separate;border-spacing:0;font-size:0.88rem}
+.replace-table thead th{text-align:left;padding:12px 16px;color:var(--text3);font-weight:600;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid var(--border)}
+.replace-table tbody td{padding:14px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+.replace-table tbody tr{transition:background .2s}
+.replace-table tbody tr:hover{background:rgba(167,139,250,0.03)}
+.replace-table .old{color:var(--text3);font-size:0.85rem}
+.replace-table .new{color:var(--text);font-weight:500}
+.replace-table .why{color:var(--text2);font-size:0.82rem}
+.table-wrapper{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg2)}
+
+/* ═══════════════════════════ BELIEFS ═══════════════════════════ */
+.beliefs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-top:48px}
+.belief-card{padding:28px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg2);transition:border-color .3s}
+.belief-card:hover{border-color:var(--accent2)}
+.belief-num{font-size:0.75rem;color:var(--accent);font-weight:700;margin-bottom:8px}
+.belief-card h3{font-size:1.05rem;margin-bottom:8px}
+.belief-card p{color:var(--text2);font-size:0.88rem;line-height:1.6}
+
+/* ═══════════════════════════ REPO STRUCTURE ═══════════════════════════ */
+.repo-visual{margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.repo-folder{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px;transition:border-color .3s}
+.repo-folder:hover{border-color:var(--accent2)}
+.repo-folder .folder-icon{font-size:1.5rem;margin-bottom:10px}
+.repo-folder h4{font-size:0.95rem;margin-bottom:6px;font-weight:600}
+.repo-folder p{color:var(--text3);font-size:0.8rem;line-height:1.5}
+.repo-folder code{color:var(--cyan);font-size:0.82rem;font-family:'SF Mono','Fira Code',monospace}
+
+/* ═══════════════════════════ AUTONOMY CURVE ═══════════════════════════ */
+.curve-visual{margin-top:48px;position:relative}
+.curve-steps{display:flex;gap:0;position:relative}
+.curve-step{flex:1;text-align:center;padding:32px 16px;position:relative;border:1px solid var(--border);background:var(--bg2)}
+.curve-step:first-child{border-radius:var(--radius) 0 0 var(--radius)}
+.curve-step:last-child{border-radius:0 var(--radius) var(--radius) 0}
+.curve-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:1.2rem;z-index:2}
+.curve-step:last-child::after{display:none}
+.curve-step h4{font-size:0.9rem;margin-bottom:6px}
+.curve-step p{color:var(--text3);font-size:0.78rem}
+.curve-step .step-label{display:inline-block;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:3px 10px;border-radius:100px;margin-bottom:12px}
+
+/* ═══════════════════════════ ADOPT ═══════════════════════════ */
+.steps-list{margin-top:48px;display:flex;flex-direction:column;gap:2px}
+.step-item{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:24px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);transition:all .3s}
+.step-item:hover{border-color:var(--accent2);transform:translateX(4px)}
+.step-num{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem;background:rgba(167,139,250,0.1);color:var(--accent3);border:1px solid rgba(167,139,250,0.15)}
+.step-item h3{font-size:1rem;margin-bottom:4px}
+.step-item p{color:var(--text2);font-size:0.88rem}
+
+/* ═══════════════════════════ CTA ═══════════════════════════ */
+.final-cta{text-align:center;padding:120px 24px;position:relative}
+.final-cta::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80%;height:1px;background:linear-gradient(90deg,transparent,var(--accent2),transparent)}
+.final-cta h2{margin-bottom:16px}
+.final-cta p{color:var(--text2);max-width:560px;margin:0 auto 32px;font-size:1.1rem}
+.cta-code{display:inline-block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 28px;font-family:'SF Mono','Fira Code',monospace;font-size:0.95rem;color:var(--green);margin-top:16px;letter-spacing:-0.01em}
+.cta-code span{color:var(--text3)}
+
+/* ═══════════════════════════ FOOTER ═══════════════════════════ */
+footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;color:var(--text3);font-size:0.8rem}
+
+/* ═══════════════════════════ RESPONSIVE ═══════════════════════════ */
+@media(max-width:900px){
+  .loops-grid{grid-template-columns:repeat(2,1fr)}
+  .loops-grid::before{display:none}
+  .layer-row{grid-template-columns:1fr;gap:6px}
+  .layer-badge{text-align:left}
+  .curve-steps{flex-direction:column}
+  .curve-step{border-radius:var(--radius-sm)!important}
+  .curve-step::after{display:none}
+  nav ul{display:none}
+}
+@media(max-width:600px){
+  .loops-grid{grid-template-columns:1fr}
+  section{padding:64px 0}
+  .beliefs-grid{grid-template-columns:1fr}
+}
+
+/* ═══════════════════════════ ANIMATIONS ═══════════════════════════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+<nav>
+  <div class="logo">
+    <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="url(#g1)" stroke-width="2"/><circle cx="16" cy="16" r="6" fill="url(#g1)"/><line x1="16" y1="2" x2="16" y2="10" stroke="url(#g1)" stroke-width="2"/><line x1="16" y1="22" x2="16" y2="30" stroke="url(#g1)" stroke-width="2"/><line x1="2" y1="16" x2="10" y2="16" stroke="url(#g1)" stroke-width="2"/><line x1="22" y1="16" x2="30" y2="16" stroke="url(#g1)" stroke-width="2"/><defs><linearGradient id="g1" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs></svg>
+    Agentic Enterprise
+  </div>
+  <ul>
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#model">The Model</a></li>
+    <li><a href="#loops">Process</a></li>
+    <li><a href="#gitops">GitOps</a></li>
+    <li><a href="#adopt">Adopt</a></li>
+  </ul>
+  <a href="https://github.com/wolfgangheider/agentic-enterprise" target="_blank" class="nav-cta">GitHub ↗</a>
+</nav>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">The post-Jira, post-wiki enterprise</div>
+      <h1>Your company as a<br><span class="gradient-text">living Git repository</span></h1>
+      <p class="hero-desc">An open-source operating model where humans set direction and AI agent fleets execute — with every decision, artifact, and approval versioned, auditable, and governed through Git.</p>
+      <div class="hero-actions">
+        <a href="#model" class="btn-primary">See how it works ↓</a>
+        <a href="#adopt" class="btn-secondary">Start in 5 minutes</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ MARQUEE ═══════════════════════════ -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span>PRs replace approvals</span>
+    <span>CODEOWNERS replace RACI</span>
+    <span>CI/CD replaces phase gates</span>
+    <span>Markdown replaces tickets</span>
+    <span>Git log replaces standups</span>
+    <span>Agent fleets replace toil</span>
+    <span>Signals replace roadmap debates</span>
+    <span>The repo is the company</span>
+    <span>PRs replace approvals</span>
+    <span>CODEOWNERS replace RACI</span>
+    <span>CI/CD replaces phase gates</span>
+    <span>Markdown replaces tickets</span>
+    <span>Git log replaces standups</span>
+    <span>Agent fleets replace toil</span>
+    <span>Signals replace roadmap debates</span>
+    <span>The repo is the company</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PROBLEM ═══════════════════════════ -->
+<section id="problem">
+  <div class="container">
+    <div class="section-label reveal">The Problem</div>
+    <h2 class="reveal">Legacy enterprise tools<br>weren't built for agents</h2>
+    <p class="section-sub reveal">AI agents can write code 100× faster than humans. The bottleneck is no longer execution — it's <strong style="color:var(--text)">governance, coordination, and trust</strong>.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="icon" style="background:rgba(251,113,133,0.1);color:var(--rose)">⚡</div>
+        <h3>Tickets are dead weight</h3>
+        <p><span class="strike">Jira, Linear, Asana</span> — designed for humans typing status updates. Agents need structured files, not ticket boards. Every context switch between systems is wasted compute.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="icon" style="background:rgba(251,191,36,0.1);color:var(--amber)">🔗</div>
+        <h3>Wikis create knowledge silos</h3>
+        <p><span class="strike">Confluence, Notion</span> — separate systems from where work happens. Agent instructions live with the code. Everything in one repo, one source of truth.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="icon" style="background:rgba(96,165,250,0.1);color:var(--blue)">🏛️</div>
+        <h3>Governance can't keep up</h3>
+        <p>When 1,000 agents ship simultaneously, you need <strong style="color:var(--text)">automated quality gates</strong>, not approval meetings. Git's PR model was built for exactly this — at scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ 5-LAYER MODEL ═══════════════════════════ -->
+<section id="model">
+  <div class="container">
+    <div class="section-label reveal">Organizational Structure</div>
+    <h2 class="reveal">Five layers.<br><span class="gradient-text">One system of record.</span></h2>
+    <p class="section-sub reveal">The entire company — engineering, GTM, sales, support — operates in a single 5-layer model. Information flows down, intelligence flows up.</p>
+
+    <div class="layers-visual reveal">
+      <div class="layer-row" style="border-left:3px solid var(--rose)">
+        <div class="layer-name"><span class="layer-dot" style="background:var(--rose)"></span>Steering</div>
+        <div class="layer-purpose">Evolve the company itself — structure, model, portfolio. C-Suite + AI evolution agents.</div>
+        <div class="layer-badge">👤👤 Humans lead</div>
+      </div>
+      <div class="arrow-down">↓</div>
+      <div class="layer-row" style="border-left:3px solid var(--amber)">
+        <div class="layer-name"><span class="layer-dot" style="background:var(--amber)"></span>Strategy</div>
+        <div class="layer-purpose">Define WHY + WHAT + CONSTRAINTS. Venture leads set missions and outcomes.</div>
+        <div class="layer-badge">👤 Humans define</div>
+      </div>
+      <div class="arrow-down">↓</div>
+      <div class="layer-row" style="border-left:3px solid var(--blue)">
+        <div class="layer-name"><span class="layer-dot" style="background:var(--blue)"></span>Orchestration</div>
+        <div class="layer-purpose">Translate strategy → executable fleet configurations. Assemble crews for missions.</div>
+        <div class="layer-badge">👤🤖 Collaborate</div>
+      </div>
+      <div class="arrow-down">↓</div>
+      <div class="layer-row" style="border-left:3px solid var(--green)">
+        <div class="layer-name"><span class="layer-dot" style="background:var(--green)"></span>Execution</div>
+        <div class="layer-purpose">Agent fleets do the work. Humans own architecture decisions & critical path.</div>
+        <div class="layer-badge">🤖🤖 Agents execute</div>
+      </div>
+      <div class="arrow-down">↓</div>
+      <div class="layer-row" style="border-left:3px solid var(--accent)">
+        <div class="layer-name"><span class="layer-dot" style="background:var(--accent)"></span>Quality</div>
+        <div class="layer-purpose">Agents evaluate outputs against policies. Humans author & evolve the policies.</div>
+        <div class="layer-badge">🤖 Agents evaluate</div>
+      </div>
+
+      <div class="flow-indicators">
+        <span>↓ Artifacts &amp; direction flow down</span>
+        <span>↑ Signals &amp; intelligence flow up</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ 4 LOOPS ═══════════════════════════ -->
+<section id="loops" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label reveal">Process Lifecycle</div>
+    <h2 class="reveal">Four loops. <span class="gradient-text">Idea to production in weeks.</span></h2>
+    <p class="section-sub reveal">No sprints. No phase gates. Continuous loops that feed into each other — production signals become tomorrow's missions.</p>
+
+    <div class="loops-grid reveal">
+      <div class="loop-card">
+        <div class="loop-num" style="border-color:var(--accent);color:var(--accent)">1</div>
+        <h3>Discover</h3>
+        <p>Signals flow in from production, customers, and market. Agents triage. Humans decide Go/No-Go. A mission brief is born.</p>
+        <span class="loop-time">Hours – Days</span>
+      </div>
+      <div class="loop-card">
+        <div class="loop-num" style="border-color:var(--blue);color:var(--blue)">2</div>
+        <h3>Build</h3>
+        <p>Orchestration assembles a crew. Agent fleets execute. Quality evaluates continuously. Humans intervene by exception only.</p>
+        <span class="loop-time">Days – Weeks</span>
+      </div>
+      <div class="loop-card">
+        <div class="loop-num" style="border-color:var(--green);color:var(--green)">3</div>
+        <h3>Ship</h3>
+        <p>Release contracts are cut. Progressive rollout begins. Metrics confirm outcomes. One human Go/No-Go for GA.</p>
+        <span class="loop-time">Days</span>
+      </div>
+      <div class="loop-card">
+        <div class="loop-num" style="border-color:var(--amber);color:var(--amber)">4</div>
+        <h3>Operate</h3>
+        <p>24/7 production health. Agents monitor, remediate, manage rollouts. Incidents auto-escalate. New signals loop back to Discover.</p>
+        <span class="loop-time">Continuous</span>
+      </div>
+    </div>
+    <div class="loop-feedback reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      Production signals feed back into Discover — the system never stops learning
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ GITOPS REVOLUTION ═══════════════════════════ -->
+<section id="gitops">
+  <div class="container">
+    <div class="section-label reveal">The GitOps Revolution</div>
+    <h2 class="reveal">Everything you use today —<br><span class="gradient-text">replaced by Git.</span></h2>
+    <p class="section-sub reveal">Not a migration. A structural reinvention. Git provides branching (workflow), PRs (decisions), CODEOWNERS (RACI), CI/CD (quality gates), and history (audit trail) — all built in.</p>
+
+    <div class="table-wrapper reveal">
+      <table class="replace-table">
+        <thead><tr><th>Legacy</th><th>Agentic Enterprise</th><th>Why it's better</th></tr></thead>
+        <tbody>
+          <tr><td class="old">Jira / Linear ticket</td><td class="new">Markdown file in <code style="color:var(--cyan);font-size:0.82rem">work/</code></td><td class="why">Version-controlled, diffable, agent-native</td></tr>
+          <tr><td class="old">Ticket workflow</td><td class="new">Git branch → PR → merge</td><td class="why">States = branches, approvals = merges</td></tr>
+          <tr><td class="old">Sprint planning</td><td class="new">Mission brief creation</td><td class="why">Goal-oriented, not time-boxed</td></tr>
+          <tr><td class="old">Daily standup</td><td class="new">Git log + fleet dashboard</td><td class="why">Always current, zero meetings</td></tr>
+          <tr><td class="old">Confluence wiki</td><td class="new">The repository itself</td><td class="why">Single source of truth, versioned</td></tr>
+          <tr><td class="old">RACI matrix</td><td class="new"><code style="color:var(--cyan);font-size:0.82rem">CODEOWNERS</code></td><td class="why">Executable, enforced by Git host</td></tr>
+          <tr><td class="old">Phase gates</td><td class="new">CI/CD pipeline checks</td><td class="why">Automated, no human bottleneck</td></tr>
+          <tr><td class="old">Status meeting</td><td class="new"><code style="color:var(--cyan);font-size:0.82rem">git diff</code> + mission status</td><td class="why">Self-updating, always accurate</td></tr>
+          <tr><td class="old">Story points</td><td class="new">Fleet throughput metrics</td><td class="why">Measured from reality, not guessed</td></tr>
+          <tr><td class="old">Annual reorg</td><td class="new">Evolution proposals via PR</td><td class="why">Continuous, transparent, reversible</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ BELIEFS ═══════════════════════════ -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label reveal">Strategic Beliefs</div>
+    <h2 class="reveal">The convictions that<br><span class="gradient-text">survive every pivot.</span></h2>
+
+    <div class="beliefs-grid">
+      <div class="belief-card reveal">
+        <div class="belief-num">01</div>
+        <h3>Agents are the new workforce</h3>
+        <p>They need governance, accountability, and trust infrastructure more than humans ever did. The company that governs agent fleets effectively wins.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-num">02</div>
+        <h3>The autonomy curve is universal</h3>
+        <p>Every process moves from manual → recommendations → supervised autonomy → full autonomy. This model helps you move right — safely.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-num">03</div>
+        <h3>Zero-touch adoption is the only adoption that scales</h3>
+        <p>In a world of 10,000-agent fleets, no human configures tools manually. Products must be adopted automatically — via agent protocols.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-num">04</div>
+        <h3>Intelligence must span from execution to boardroom</h3>
+        <p>Connect a metric to a deployment, to a feature, to a customer, to revenue, to a strategic decision. Every organizational altitude.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-num">05</div>
+        <h3>Data openness is the moat</h3>
+        <p>Customers won't tolerate vendor lock-in. Be collection-agnostic; be outcome-distinctive. The moat is what you do with data, not how you capture it.</p>
+      </div>
+      <div class="belief-card reveal">
+        <div class="belief-num">06</div>
+        <h3>Trust is the product</h3>
+        <p>Every AI capability must be explainable, auditable, and reversible. Supervised autonomy earns the right to full autonomy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ AUTONOMY CURVE ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label reveal">The Journey</div>
+    <h2 class="reveal">Move right on the<br><span class="gradient-text">autonomy curve.</span></h2>
+    <p class="section-sub reveal">Every company is somewhere on this curve. The agentic enterprise model gives you the governance structure to advance — safely and measurably.</p>
+
+    <div class="curve-visual reveal">
+      <div class="curve-steps">
+        <div class="curve-step">
+          <span class="step-label" style="background:rgba(251,113,133,0.15);color:var(--rose)">Stage 1</span>
+          <h4>Manual</h4>
+          <p>Humans do everything. Agents assist occasionally. High cost, low velocity.</p>
+        </div>
+        <div class="curve-step">
+          <span class="step-label" style="background:rgba(251,191,36,0.15);color:var(--amber)">Stage 2</span>
+          <h4>Recommendations</h4>
+          <p>Agents suggest. Humans decide and execute. Context-aware copilots.</p>
+        </div>
+        <div class="curve-step">
+          <span class="step-label" style="background:rgba(96,165,250,0.15);color:var(--blue)">Stage 3</span>
+          <h4>Supervised Autonomy</h4>
+          <p>Agent fleets execute. Humans approve critical decisions. This model lives here.</p>
+        </div>
+        <div class="curve-step">
+          <span class="step-label" style="background:rgba(74,222,128,0.15);color:var(--green)">Stage 4</span>
+          <h4>Full Autonomy</h4>
+          <p>Agents operate end-to-end. Humans steer strategy, evolve the system. The destination.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ REPO STRUCTURE ═══════════════════════════ -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label reveal">What's in the Repo</div>
+    <h2 class="reveal">A complete operating model<br><span class="gradient-text">ready to fork.</span></h2>
+    <p class="section-sub reveal">Not a template. A structurally complete framework — org structure, processes, agent instructions, quality policies, and active work artifacts. All Markdown and YAML.</p>
+
+    <div class="repo-visual">
+      <div class="repo-folder reveal">
+        <div class="folder-icon">📁</div>
+        <h4><code>org/</code></h4>
+        <p>5-layer org structure. Agent instructions per layer. Division charters for every team. The entire company topology.</p>
+      </div>
+      <div class="repo-folder reveal">
+        <div class="folder-icon">🔄</div>
+        <h4><code>process/</code></h4>
+        <p>4-loop lifecycle. Step-by-step guides for Discover, Build, Ship, Operate. Agent + human instructions.</p>
+      </div>
+      <div class="repo-folder reveal">
+        <div class="folder-icon">⚡</div>
+        <h4><code>work/</code></h4>
+        <p>Active work artifacts. Signals, missions, decisions, releases, retrospectives. GitOps project management.</p>
+      </div>
+      <div class="repo-folder reveal">
+        <div class="folder-icon">🛡️</div>
+        <h4><code>org/4-quality/policies/</code></h4>
+        <p>Machine-readable quality policies. Security, architecture, performance, delivery, content, customer, experience.</p>
+      </div>
+      <div class="repo-folder reveal">
+        <div class="folder-icon">🤖</div>
+        <h4><code>org/agents/</code></h4>
+        <p>Agent Type Registry. Governed definitions for every agent role — capabilities, boundaries, and lifecycle states.</p>
+      </div>
+      <div class="repo-folder reveal">
+        <div class="folder-icon">⚙️</div>
+        <h4><code>CONFIG.yaml</code></h4>
+        <p>Single config file. Fill in your company name, mission, products. Search-replace across the entire framework. Done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ADOPT ═══════════════════════════ -->
+<section id="adopt">
+  <div class="container">
+    <div class="section-label reveal">Get Started</div>
+    <h2 class="reveal">Adopt in <span class="gradient-text">five steps.</span></h2>
+    <p class="section-sub reveal">Fork the repo. Fill in one config file. Customize your divisions. Start your first mission. No vendor, no license, no lock-in.</p>
+
+    <div class="steps-list">
+      <div class="step-item reveal">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Fork the repository</h3>
+          <p>Clone the open-source agentic-enterprise repo. Everything is Markdown and YAML — no runtime dependencies, no build step.</p>
+        </div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Fill in CONFIG.yaml</h3>
+          <p>Company name, mission, product names, team sizes. One file configures the entire framework. Search-replace propagates everywhere.</p>
+        </div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Customize your divisions</h3>
+          <p>Keep the ones that fit. Rename or remove the rest. Add divisions specific to your domain. Each is a folder with a DIVISION.md template.</p>
+        </div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">4</div>
+        <div>
+          <h3>Define your first mission</h3>
+          <p>Create a signal, write a mission brief, set an outcome contract. Follow the templates — they guide you through every field.</p>
+        </div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">5</div>
+        <div>
+          <h3>Let agents work</h3>
+          <p>Point your AI agents at the AGENTS.md file. They read their instructions, follow the process, submit PRs. You review and merge. That's it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FINAL CTA ═══════════════════════════ -->
+<section class="final-cta">
+  <h2 class="reveal">The future of enterprise<br>is a <span class="gradient-text">Git repository.</span></h2>
+  <p class="reveal">Open source. No vendor. No license fees. Fork it, fill in your config, and start running your company through the same system your agents already understand natively.</p>
+  <div class="reveal">
+    <a href="https://github.com/wolfgangheider/agentic-enterprise" target="_blank" class="btn-primary" style="font-size:1.1rem;padding:18px 40px">Get the repo on GitHub ↗</a>
+  </div>
+  <div class="cta-code reveal">
+    <span>$</span> git clone https://github.com/wolfgangheider/agentic-enterprise.git
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <div class="container">
+    Agentic Enterprise Operating Model — Open Source<br>
+    <span style="color:var(--text3)">Humans decide. Agents execute. Git governs.</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════ SCROLL REVEAL ═══════════════════════════ -->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+});
+</script>
+
+</body>
+</html>
