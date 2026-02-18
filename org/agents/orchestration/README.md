@@ -2,12 +2,15 @@
 
 Agent types that operate at the Orchestration Layer — decomposing missions, assembling crews, coordinating fleets, and managing releases.
 
-See `AGENTIC-ENTERPRISE-BLUEPRINT.md` for the reference catalog of universal orchestration agents.
-
 ## Registered Agent Types
 
-<!-- Add one line per registered agent type -->
-<!-- | agent-id | Name | Status | -->
-<!-- |----------|------|--------| -->
+| Agent ID | Name | Status |
+|----------|------|--------|
+| asset-lifecycle-agent | Asset Lifecycle Agent | proposed |
+| campaign-orchestrator | Campaign Orchestrator | proposed |
+| cross-mission-coordinator | Cross-Mission Coordinator | proposed |
+| fleet-performance-monitor | Fleet Performance Monitor | proposed |
+| mission-orchestrator | Mission Orchestrator | proposed |
+| release-coordinator | Release Coordinator | proposed |
 
-*No agent types registered yet. Use `org/agents/_TEMPLATE-agent-type.md` to register the first one.*
+**Total: 6 agent types**

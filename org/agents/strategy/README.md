@@ -2,12 +2,15 @@
 
 Agent types that operate at the Strategy Layer — discovering opportunities, analyzing markets, drafting mission briefs, and supporting GTM/sales/customer strategy.
 
-See `AGENTIC-ENTERPRISE-BLUEPRINT.md` for the reference catalog of universal strategy agents.
-
 ## Registered Agent Types
 
-<!-- Add one line per registered agent type -->
-<!-- | agent-id | Name | Status | -->
-<!-- |----------|------|--------| -->
+| Agent ID | Name | Status |
+|----------|------|--------|
+| customer-strategy-agent | Customer Strategy Agent | proposed |
+| discovery-agent | Discovery Agent | proposed |
+| gtm-strategist | GTM Strategist | proposed |
+| market-analysis-agent | Market Analysis Agent | proposed |
+| product-strategy-agent | Product Strategy Agent | proposed |
+| sales-strategy-agent | Sales Strategy Agent | proposed |
 
-*No agent types registered yet. Use `org/agents/_TEMPLATE-agent-type.md` to register the first one.*
+**Total: 6 agent types**

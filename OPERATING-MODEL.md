@@ -334,6 +334,27 @@ The Orchestration Layer pre-assigns file ownership via fleet configs with `exclu
 
 ---
 
+## Design Principles
+
+> Derived from empirical data across agentic enterprise deployments. These principles inform all architectural and operational decisions.
+
+### 1. Specialization Over Generalization
+Purpose-built agents outperform general-purpose ones by 3–5× on relevant metrics. Each agent should have a single, well-defined responsibility with clear inputs and outputs. The agent registry (`org/agents/`) enforces this by requiring explicit capability definitions.
+
+### 2. Human-in-the-Loop Is a Feature, Not a Limitation
+The highest-performing agentic systems maintain strategic human checkpoints. Humans handle judgment calls, ethical decisions, and novel situations. Agents handle volume, speed, and consistency. Every mission brief defines explicit human checkpoints.
+
+### 3. Metrics-Driven Everything
+Every agent, mission, and division must define measurable outcomes. Outcome contracts are not aspirational — they are the accountability mechanism. If you can't measure it, you can't manage it. Blueprint reference metrics provide baselines for what's achievable.
+
+### 4. Layered Architecture Enables Scale
+The 5-layer model (Steering → Strategy → Orchestration → Execution → Quality) creates clear separation of concerns. Each layer has distinct decision rights and feedback loops. This prevents the "agent soup" problem where responsibilities blur and accountability disappears.
+
+### 5. Continuous Evolution Is Built In
+The operating model evolves through the same mechanisms it uses for product work: signals surface observations, the steering layer evaluates patterns, and evolution proposals go through PR review. The company that observes itself through every agent improves exponentially faster than one relying on periodic top-down reviews.
+
+---
+
 ## Getting Started
 
 ### For Humans

@@ -1,0 +1,127 @@
+# Agent Type Definition: GTM Strategist
+
+> **Status:** proposed | **Proposed date:** 2026-02-18
+> **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
+
+---
+
+## Identity
+
+| Field | Value |
+|-------|-------|
+| **ID** | `strategy-gtm-strategist` |
+| **Name** | GTM Strategist |
+| **Version** | 1.0.0 |
+
+## Classification
+
+| Field | Value |
+|-------|-------|
+| **Layer** | strategy |
+| **Division** | `—` |
+| **Category** | gtm-strategy |
+
+## Lifecycle
+
+| Field | Value |
+|-------|-------|
+| **Status** | proposed |
+| **Proposed date** | 2026-02-18 |
+| **Approved date** | |
+| **Active date** | |
+| **Deprecated date** | |
+| **Retired date** | |
+| **Superseded by** | |
+
+## Ownership
+
+| Field | Value |
+|-------|-------|
+| **Owning team** | <!-- assign during approval --> |
+| **Contact** | <!-- primary human contact --> |
+| **Approved by** | <!-- CTO or delegate --> |
+
+## Description
+
+**What this agent does:**
+Scans customer conversations, CRM signals, and market trends to draft go-to-market positioning for new products and divisions.
+
+**Problem solved:**
+Every new division needs positioning. This agent ensures GTM happens in parallel with building, not as an afterthought.
+
+**Value proposition:**
+Every enterprise following the agentic operating model benefits from this agent because it addresses a universal organizational need that scales with agent fleet adoption.
+
+## Capabilities
+
+### Skills
+- gtm-strategy
+
+### MCP Servers
+- <!-- configure per enterprise toolchain -->
+
+### Tool Access
+- <!-- configure per enterprise toolchain -->
+
+### Languages
+- <!-- configure per implementation -->
+
+### Data Access
+- crm
+- customer-conversations
+- market-trends
+
+## Instructions Reference
+
+| Field | Value |
+|-------|-------|
+| **Layer AGENT.md** | `org/1-strategy/AGENT.md` |
+| **Division DIVISION.md** | `—` |
+
+### Additional Context
+- `AGENTS.md` — Global agent rules
+- Relevant quality policies in `org/4-quality/policies/`
+
+## Interactions
+
+### Produces
+- <!-- define based on mission assignment -->
+
+### Consumes
+- <!-- define based on mission assignment -->
+
+### Collaborates With
+- <!-- varies by mission -->
+
+### Escalates To
+- Human division lead
+- Layer escalation path
+
+## Scaling
+
+| Parameter | Value |
+|-----------|-------|
+| **Min instances** | 0 |
+| **Max instances** | <!-- configure per workload --> |
+| **Scaling trigger** | mission-assignment |
+| **Cost class** | medium |
+
+## Quality
+
+### Applicable Policies
+- `policies/security.md`
+- `policies/architecture.md`
+
+### Evaluation Frequency
+per-mission
+
+### Performance Metrics
+- Task completion rate
+- Quality evaluation pass rate
+- Escalation frequency
+
+## Changelog
+
+| Date | Change | Author |
+|------|--------|--------|
+| 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

@@ -2,12 +2,18 @@
 
 Agent types that operate at the Steering Layer — analyzing the company itself, aggregating signals, proposing evolution, and optimizing the fleet at the meta level.
 
-See `AGENTIC-ENTERPRISE-BLUEPRINT.md` for the reference catalog of universal steering agents.
-
 ## Registered Agent Types
 
-<!-- Add one line per registered agent type -->
-<!-- | agent-id | Name | Status | -->
-<!-- |----------|------|--------| -->
+| Agent ID | Name | Status |
+|----------|------|--------|
+| belief-validator | Belief Validator | proposed |
+| competitive-intelligence-agent | Competitive Intelligence Agent | proposed |
+| customer-signal-scanner | Customer Signal Scanner | proposed |
+| investment-modeler | Investment Modeler | proposed |
+| operating-model-evolution-agent | Operating Model Evolution Agent | proposed |
+| org-evolution-proposer | Org Evolution Proposer | proposed |
+| portfolio-analyst | Portfolio Analyst | proposed |
+| signal-aggregation-agent | Signal Aggregation Agent | proposed |
+| transformation-health-agent | Transformation Health Agent | proposed |
 
-*No agent types registered yet. Use `org/agents/_TEMPLATE-agent-type.md` to register the first one.*
+**Total: 9 agent types**

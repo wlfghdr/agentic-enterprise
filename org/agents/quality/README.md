@@ -2,12 +2,17 @@
 
 Agent types that operate at the Quality Layer — evaluating outputs against policies, enforcing quality gates, and authoring/evolving policies.
 
-See `AGENTIC-ENTERPRISE-BLUEPRINT.md` for the reference catalog of universal quality agents.
-
 ## Registered Agent Types
 
-<!-- Add one line per registered agent type -->
-<!-- | agent-id | Name | Status | -->
-<!-- |----------|------|--------| -->
+| Agent ID | Name | Status |
+|----------|------|--------|
+| architecture-review-agent | Architecture Review Agent | proposed |
+| brand-content-policy-agent | Brand & Content Policy Agent | proposed |
+| customer-material-evaluator | Customer Material Evaluator | proposed |
+| delivery-evaluator | Delivery Evaluator | proposed |
+| experience-evaluator | Experience Evaluator | proposed |
+| performance-evaluator | Performance Evaluator | proposed |
+| production-readiness-evaluator | Production Readiness Evaluator | proposed |
+| security-policy-enforcer | Security Policy Enforcer | proposed |
 
-*No agent types registered yet. Use `org/agents/_TEMPLATE-agent-type.md` to register the first one.*
+**Total: 8 agent types**

@@ -1,7 +1,7 @@
 # Agent Type Registry
 
 > **What this is:** The governed, versioned registry of all agent types in the {{COMPANY_SHORT}} agentic enterprise. Each agent type has a YAML definition file that describes its capabilities, lifecycle status, scaling parameters, and ownership.  
-> **Governance:** New agent types require Steering Layer evaluation and CTO approval via PR. The Agentic Enterprise Blueprint (`AGENTIC-ENTERPRISE-BLUEPRINT.md`) serves as the reference catalog; this registry is the operational source of truth.
+> **Governance:** New agent types require Steering Layer evaluation and CTO approval via PR. This registry is the operational source of truth for all agent types.
 
 ---
 
@@ -66,6 +66,6 @@ proposed → approved → implementing → active → deprecated → retired
 | Artifact | Relationship |
 |----------|-------------|
 | **Fleet configs** (`org/2-orchestration/fleet-configs/`) | Fleet configs reference agent types from this registry by `id`. Only `active` agent types may be assigned to crews. |
-| **Blueprint** (`AGENTIC-ENTERPRISE-BLUEPRINT.md`) | The Blueprint is the reference catalog of universal agent types. This registry is the governed, versioned source of truth for the deployed agent landscape. |
+| **OPERATING-MODEL.md** | Documents the design principles and organizational structure that inform agent type design. |
 | **Division definitions** (`org/3-execution/divisions/`) | Divisions define domain context. Agent types define capabilities. An agent type belongs to a division (for Execution agents) or to a layer. |
 | **AGENT.md files** (`org/<layer>/AGENT.md`) | Layer instructions define behavioral rules. Agent type definitions specify capabilities & scaling. Both are needed for a complete agent specification. |
