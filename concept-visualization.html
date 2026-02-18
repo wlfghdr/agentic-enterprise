@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Enterprise — Animated Concept Visualization</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --bg: #09090b;
+  --bg2: #111114;
+  --bg3: #18181b;
+  --surface: #1c1c22;
+  --border: #27272a;
+  --border2: #3f3f46;
+  --text: #fafafa;
+  --text2: #a1a1aa;
+  --text3: #71717a;
+  --accent: #a78bfa;
+  --accent2: #7c3aed;
+  --accent3: #c4b5fd;
+  --blue: #60a5fa;
+  --cyan: #22d3ee;
+  --green: #4ade80;
+  --amber: #fbbf24;
+  --rose: #fb7185;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+html,body{height:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background: radial-gradient(circle at 15% 10%, rgba(124,58,237,.14), transparent 35%), var(--bg);
+  color:var(--text);
+  line-height:1.4;
+  overflow:hidden;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent3)}
+
+.app{
+  height:100vh;
+  display:grid;
+  grid-template-columns: 280px minmax(0,1fr);
+  gap:10px;
+  padding:10px;
+}
+.panel{
+  background:linear-gradient(180deg,rgba(24,24,27,.8),rgba(17,17,20,.9));
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  min-height:0;
+}
+.sidebar{display:flex;flex-direction:column}
+.sidebar-header{
+  padding:12px 12px 10px;
+  border-bottom:1px solid var(--border);
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(167,139,250,0.12);
+  border:1px solid rgba(167,139,250,0.2);
+  color:var(--accent3);
+  border-radius:999px;
+  padding:4px 10px;
+  font-size:.66rem;
+  margin-bottom:8px;
+}
+.badge::before{
+  content:'';
+  width:6px;height:6px;border-radius:50%;
+  background:var(--accent);
+  animation:pulse 1.8s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+h1{font-size:1rem;line-height:1.25;margin-bottom:6px}
+.meta{color:var(--text2);font-size:.74rem}
+.sidebar h1{font-size:.86rem}
+
+.viz-panel{
+  display:grid;
+  grid-template-rows:minmax(0,1fr) 132px;
+  gap:8px;
+  padding:8px;
+}
+
+.selector-wrap{padding:10px 12px 8px}
+.selector-label{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+select{
+  width:100%;
+  background:var(--bg2);
+  color:var(--text);
+  border:1px solid var(--border2);
+  border-radius:10px;
+  padding:7px 9px;
+  font-size:.74rem;
+}
+
+.flow-list{padding:0 8px 8px;overflow:auto;min-height:0}
+.flow-item{
+  margin:5px 4px;
+  padding:7px 8px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg2);
+  transition:border-color .2s, transform .2s, background .2s;
+}
+.flow-item.active{border-color:var(--accent2);background:rgba(124,58,237,.12);transform:translateX(3px)}
+.flow-item .phase{color:var(--accent3);font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.flow-item .title{font-size:.7rem;font-weight:600;margin-bottom:2px}
+.flow-item .small{color:var(--text3);font-size:.62rem}
+
+.controls{
+  border-top:1px solid var(--border);
+  padding:12px 16px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.control-dock{
+  position:absolute;
+  left:10px;
+  bottom:52px;
+  z-index:6;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px;
+  border:1px solid var(--border2);
+  border-radius:12px;
+  background:rgba(9,9,11,.9);
+  backdrop-filter:blur(8px);
+  box-shadow:0 10px 28px rgba(0,0,0,.34);
+}
+button{
+  border:1px solid var(--border2);
+  background:var(--bg2);
+  color:var(--text);
+  border-radius:8px;
+  padding:8px 10px;
+  font-size:.74rem;
+  cursor:pointer;
+  min-width:80px;
+}
+button:hover{border-color:var(--accent2)}
+button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-color:transparent}
+
+.stage{
+  position:relative;
+  overflow:hidden;
+  min-height:0;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(34,211,238,.08), transparent 40%),
+    radial-gradient(circle at 75% 75%, rgba(124,58,237,.14), transparent 35%),
+    #0b0b0e;
+}
+.stage::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:28px 28px;
+  mask-image:radial-gradient(circle at center, #000 48%, transparent 92%);
+}
+#links{position:absolute;inset:0;pointer-events:none}
+
+.node{
+  position:absolute;
+  width:112px;
+  border:1px solid var(--border2);
+  border-radius:12px;
+  background:rgba(24,24,27,.9);
+  padding:7px 7px 6px;
+  transform:translate(-50%,-50%);
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+  transition:border-color .2s, box-shadow .2s, transform .2s;
+}
+.node .role{font-size:.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em}
+.node .name{font-size:.68rem;font-weight:700;margin:2px 0 1px}
+.node .path{font-size:.56rem;color:var(--cyan)}
+.node.active{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(34,211,238,.2),0 12px 26px rgba(0,0,0,.32);transform:translate(-50%,-50%) scale(1.03)}
+.node.wakeup{animation:wake .7s ease}
+@keyframes wake{0%{box-shadow:0 0 0 0 rgba(74,222,128,.65)}100%{box-shadow:0 0 0 18px rgba(74,222,128,0)}}
+
+.node{overflow:visible}
+.node::after{
+  content:'';
+  position:absolute;
+  inset:-6px;
+  border-radius:14px;
+  border:1px solid transparent;
+  opacity:0;
+  pointer-events:none;
+}
+.node.wakeup{
+  animation:wakeFlash 1.9s ease-in-out;
+}
+.node.wakeup::after{
+  animation:wakeHalo 1.9s ease-out;
+}
+@keyframes wakeFlash{
+  0%,100%{filter:brightness(1)}
+  8%,26%,44%,62%,80%{filter:brightness(1.55)}
+  17%,35%,53%,71%,89%{filter:brightness(1.05)}
+}
+@keyframes wakeHalo{
+  0%{opacity:0;transform:scale(.96);border-color:rgba(74,222,128,.25);box-shadow:0 0 0 0 rgba(74,222,128,.55)}
+  14%,32%,50%,68%,86%{opacity:1;transform:scale(1.02);border-color:rgba(74,222,128,.95);box-shadow:0 0 0 6px rgba(74,222,128,.2)}
+  100%{opacity:0;transform:scale(1.08);border-color:rgba(74,222,128,0);box-shadow:0 0 0 22px rgba(74,222,128,0)}
+}
+
+.node.repo{
+  width:145px;
+  border-color:var(--accent2);
+  text-align:center;
+  background:linear-gradient(160deg, rgba(124,58,237,.27), rgba(24,24,27,.95));
+}
+.node.repo .name{font-size:.78rem}
+.node.repo .path{color:var(--accent3)}
+
+.pr-dot{
+  position:absolute;
+  width:10px;height:10px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 10px rgba(74,222,128,.8);
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  z-index:5;
+}
+.pr-dot.at-repo{
+  width:12px;
+  height:12px;
+  background:var(--amber);
+  box-shadow:0 0 0 4px rgba(251,191,36,.16),0 0 18px rgba(251,191,36,.95);
+}
+.pr-label{
+  position:absolute;
+  transform:translate(-50%,-140%);
+  background:rgba(9,9,11,.92);
+  border:1px solid var(--border2);
+  color:var(--text);
+  border-radius:999px;
+  padding:2px 6px;
+  font-size:.58rem;
+  white-space:nowrap;
+  pointer-events:none;
+}
+.pr-label.at-repo{
+  border-color:rgba(251,191,36,.5);
+  color:var(--amber);
+}
+
+.legend{
+  position:absolute;
+  left:10px;right:10px;bottom:10px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:rgba(9,9,11,.85);
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:4px;
+  padding:6px;
+  font-size:.61rem;
+  color:var(--text3);
+  z-index:4;
+}
+.legend span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%}
+
+.terminal{
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#09090b;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr);
+  min-height:0;
+}
+.terminal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid var(--border);
+  padding:6px 8px;
+}
+.term-dots{display:flex;gap:6px}
+.term-dots i{width:8px;height:8px;border-radius:50%}
+.term-title{font-size:.6rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em}
+.terminal-body{padding:6px 8px;overflow:auto;font-family:'SF Mono','Fira Code',ui-monospace,monospace;font-size:.66rem;line-height:1.42}
+.terminal-command{color:var(--green);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.terminal-line{color:#d4d4d8;white-space:pre-wrap}
+.terminal-line.info{color:#c4b5fd}
+.terminal-line.wake{color:#67e8f9}
+.terminal-line.event{color:#fbbf24}
+
+@media (max-width:1280px){
+  .app{grid-template-columns:1fr;grid-template-rows: 290px minmax(500px,1fr);overflow:auto;height:auto;min-height:100vh}
+  body{overflow:auto}
+  .viz-panel{grid-template-rows:minmax(330px,1fr) 150px}
+  .control-dock{left:12px;bottom:60px}
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="app">
+    <section class="panel sidebar">
+      <div class="sidebar-header">
+        <div class="badge">Live concept animation</div>
+        <h1>How agents collaborate through Git PRs</h1>
+        <p class="meta">Selector-driven replay of real lifecycle patterns from <a href="examples/README.md">examples/</a>.</p>
+      </div>
+
+      <div class="selector-wrap">
+        <div class="selector-label">Choose scenario</div>
+        <select id="scenarioSelect"></select>
+      </div>
+
+      <div class="flow-list" id="flowList"></div>
+
+    </section>
+
+    <section class="panel viz-panel">
+      <section class="stage" id="stage">
+        <svg id="links" viewBox="0 0 1000 680" preserveAspectRatio="none"></svg>
+        <div class="control-dock" aria-label="Playback controls">
+          <button id="prevBtn">◀ Step</button>
+          <button id="playBtn" class="primary">Pause</button>
+          <button id="nextBtn">Step ▶</button>
+        </div>
+        <div class="legend">
+          <span><i class="dot" style="background:var(--green)"></i>PR created</span>
+          <span><i class="dot" style="background:var(--cyan)"></i>Agent wake-up</span>
+          <span><i class="dot" style="background:var(--accent)"></i>Repo state transition</span>
+        </div>
+      </section>
+
+      <section class="terminal" aria-label="Agent activity terminal">
+        <div class="terminal-head">
+          <div class="term-dots"><i style="background:#fb7185"></i><i style="background:#fbbf24"></i><i style="background:#4ade80"></i></div>
+          <div class="term-title">Agent Activity Log</div>
+          <div class="term-title" id="terminalStep">Phase -</div>
+        </div>
+        <div class="terminal-body" id="terminalBody">
+          <div class="terminal-command" id="terminalCommand">agentic-enterprise(main)$ waiting for scenario step...</div>
+          <div id="terminalLog"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+<script>
+const scenarioData = {
+  feature: {
+    label: 'Generic Feature Lifecycle',
+    summary: 'Customer demand to shipped capability across all 5 layers and 4 loops.',
+    chain: 'Signal → Digest → Mission + Contract → Fleet Config → Execution Outputs → Quality Reports → Release → Operate',
+    steps: [
+      {
+        phase: 'Phase 1',
+        title: 'Customer signal agent opens demand PR',
+        from: 'customer-signal-scanner',
+        fromNode: 'executionSignal',
+        wakes: ['steeringDigest'],
+        branch: 'signal/2026-03-15-bulk-export-customer-demand',
+        artifact: 'work/signals/2026-03-15-bulk-export-customer-demand.md',
+        tags: ['$2.4M ARR risk', '15 customers', 'Operate loop'],
+        narrative: 'Execution detects recurring export demand and opens a signal PR. Once merged, Steering can aggregate it with other converging evidence.'
+      },
+      {
+        phase: 'Phase 2',
+        title: 'Signal aggregation writes weekly digest',
+        from: 'signal-aggregation',
+        fromNode: 'steeringDigest',
+        wakes: ['strategyDiscovery'],
+        branch: 'digest/2026-W12-export-pattern',
+        artifact: 'work/signals/digests/2026-W12-digest.md',
+        tags: ['Pattern alert', '3 converging signals', 'Steering'],
+        narrative: 'Steering creates a digest PR that turns raw observations into a pattern alert. This is the wake-up point for Strategy discovery.'
+      },
+      {
+        phase: 'Phase 3',
+        title: 'Discovery agent escalates validated opportunity',
+        from: 'discovery-agent',
+        fromNode: 'strategyDiscovery',
+        wakes: ['strategyProduct'],
+        branch: 'strategy/validate-bulk-export-opportunity',
+        artifact: 'work/missions/bulk-data-export/BRIEF.md',
+        tags: ['Strategic fit', 'Human checkpoint', 'Discover loop'],
+        narrative: 'Strategy validates fit, scope, and capacity, then prepares the mission path for product strategy authoring.'
+      },
+      {
+        phase: 'Phase 4',
+        title: 'Product strategy submits mission + outcome contract',
+        from: 'product-strategy',
+        fromNode: 'strategyProduct',
+        wakes: ['orchestrationFleet'],
+        branch: 'mission/MISSION-2026-015-bulk-export',
+        artifact: 'work/missions/bulk-data-export/OUTCOME-CONTRACT.md',
+        tags: ['Mission brief', 'Outcome metrics', 'VP approval'],
+        narrative: 'A mission PR formalizes objective, scope, and measurable outcomes. Merged mission artifacts wake orchestration planning.'
+      },
+      {
+        phase: 'Phase 5',
+        title: 'Orchestration creates fleet config PR',
+        from: 'fleet-orchestrator',
+        fromNode: 'orchestrationFleet',
+        wakes: ['executionBuild', 'qualityEval'],
+        branch: 'fleet/bulk-export-streams',
+        artifact: 'org/2-orchestration/fleet-configs/bulk-data-export.yaml',
+        tags: ['Parallel streams', 'Build loop', 'Agent coordination'],
+        narrative: 'Orchestration configures parallel execution streams and assigns agent types. This wakes build execution and quality tracking in parallel.'
+      },
+      {
+        phase: 'Phase 6',
+        title: 'Execution outputs + assets are committed',
+        from: 'coding-agent stream',
+        fromNode: 'executionBuild',
+        wakes: ['qualityEval'],
+        branch: 'build/bulk-export-api-ui-docs',
+        artifact: 'work/assets/bulk-data-export-api.md',
+        tags: ['API + UI + docs', 'Asset registry', 'Execution layer'],
+        narrative: 'Execution agents produce deliverables and asset entries via PRs. Quality evaluation is triggered by completed outputs.'
+      },
+      {
+        phase: 'Phase 7',
+        title: 'Quality evaluator issues release readiness PR',
+        from: 'delivery-evaluator',
+        fromNode: 'qualityEval',
+        wakes: ['releaseOps'],
+        branch: 'quality/MISSION-2026-015-verdict',
+        artifact: 'work/missions/bulk-data-export/QUALITY-EVALUATION-REPORT.md',
+        tags: ['PASS/ESCALATE', 'Policy checks', 'Ship loop'],
+        narrative: 'Quality agents publish verdict artifacts through PR. PASS signals wake release operations and human approval flow.'
+      },
+      {
+        phase: 'Phase 8',
+        title: 'Release + operate loop feeds new signals',
+        from: 'release-manager',
+        fromNode: 'releaseOps',
+        wakes: ['executionSignal'],
+        branch: 'release/2026-04-12-bulk-export',
+        artifact: 'work/releases/2026-04-12-bulk-export-contract.md',
+        tags: ['Progressive rollout', 'Outcome report', 'Cycle continues'],
+        narrative: 'Release PR lands, operation starts, and telemetry generates new signals, closing one loop and beginning the next cycle.'
+      }
+    ]
+  },
+  optimization: {
+    label: 'Company Optimization Lifecycle',
+    summary: 'Internal bottleneck drives steering-led evolution of process and policy.',
+    chain: 'Internal Signals → Digest Pattern → Evolution Proposal → Exec Review → Policy/Fleet Updates → Pilot Rollout → Meta-Quality',
+    steps: [
+      {
+        phase: 'Phase 1',
+        title: 'Performance monitor opens bottleneck signal',
+        from: 'fleet-performance-monitor',
+        fromNode: 'executionSignal',
+        wakes: ['steeringDigest'],
+        branch: 'signal/2026-05-02-deployment-cycle-time-anomaly',
+        artifact: 'work/signals/2026-05-02-deployment-cycle-time-anomaly.md',
+        tags: ['4.2 day cycle', 'Internal signal', 'Operate loop'],
+        narrative: 'Multiple layers report deployment latency. The repo captures each observation as auditable signals via PR.'
+      },
+      {
+        phase: 'Phase 2',
+        title: 'Steering digest marks systemic pattern alert',
+        from: 'signal-aggregation',
+        fromNode: 'steeringDigest',
+        wakes: ['steeringEvolution'],
+        branch: 'digest/2026-W19-pipeline-bottleneck',
+        artifact: 'work/signals/digests/2026-W19-digest.md',
+        tags: ['5 converging signals', 'Urgency high', 'Continuous sensing'],
+        narrative: 'Steering synthesizes evidence and raises a pattern alert, waking structural proposal agents.'
+      },
+      {
+        phase: 'Phase 3',
+        title: 'Evolution proposer submits process-change PR',
+        from: 'org-evolution-proposer',
+        fromNode: 'steeringEvolution',
+        wakes: ['qualityEval', 'orchestrationFleet'],
+        branch: 'evolution/EVO-2026-008-deployment-pipeline-optimization',
+        artifact: 'org/0-steering/EVOLUTION.md',
+        tags: ['Pre-screening', 'Backup approvers', 'Agent scaling'],
+        narrative: 'Steering proposes operating model changes through an evolution PR, explicitly targeting policy and orchestration knobs.'
+      },
+      {
+        phase: 'Phase 4',
+        title: 'Quality policy PR updates delivery rules',
+        from: 'quality-policy-agent',
+        fromNode: 'qualityEval',
+        wakes: ['releaseOps'],
+        branch: 'policy/delivery-prescreening-backup-approver',
+        artifact: 'org/4-quality/policies/delivery.md',
+        tags: ['Policy-as-code', 'COO + CTO gate', 'Quality layer'],
+        narrative: 'Policy changes are versioned through PRs and enforced through quality governance, not informal agreements.'
+      },
+      {
+        phase: 'Phase 5',
+        title: 'Orchestration scales evaluation fleet',
+        from: 'fleet-orchestrator',
+        fromNode: 'orchestrationFleet',
+        wakes: ['executionBuild'],
+        branch: 'fleet/eval-capacity-autoscale',
+        artifact: 'org/2-orchestration/fleet-configs/deployment-pipeline-optimization.yaml',
+        tags: ['+50% eval capacity', 'Queue trigger', 'Pilot'],
+        narrative: 'Orchestration PR modifies fleet behavior for pilot rollout and wakes execution for implementation of automation.'
+      },
+      {
+        phase: 'Phase 6',
+        title: 'Operate loop validates reduced cycle time',
+        from: 'transformation-health',
+        fromNode: 'releaseOps',
+        wakes: ['executionSignal'],
+        branch: 'operate/EVO-2026-008-outcome-review',
+        artifact: 'work/missions/deployment-pipeline-optimization/OUTCOME-REPORT.md',
+        tags: ['Meta-quality', '<1.5 day target', 'New signals'],
+        narrative: 'Outcome reports in Git verify whether structural changes worked, and fresh operating signals feed the next improvement cycle.'
+      }
+    ]
+  },
+  fleet: {
+    label: 'Agent Fleet Change Lifecycle',
+    summary: 'Agent type proposal, transition, and deprecation with measurable comparison.',
+    chain: 'Quality Pattern → Digest Alert → New Agent Proposal → Legacy Assessment → Parallel Run → Deprecation',
+    steps: [
+      {
+        phase: 'Phase 1',
+        title: 'Quality agent reports API contract failures',
+        from: 'delivery-evaluator',
+        fromNode: 'qualityEval',
+        wakes: ['steeringDigest'],
+        branch: 'signal/2026-05-20-api-contract-failures-leading-cause',
+        artifact: 'work/signals/2026-05-20-api-contract-failures-leading-cause.md',
+        tags: ['64% FAIL causes', '33% detection', 'Quality signal'],
+        narrative: 'Quality data reveals systemic contract-testing gaps and opens a signal PR to start governance action.'
+      },
+      {
+        phase: 'Phase 2',
+        title: 'Digest creates API contract testing gap alert',
+        from: 'signal-aggregation',
+        fromNode: 'steeringDigest',
+        wakes: ['steeringEvolution'],
+        branch: 'digest/2026-W21-api-contract-gap',
+        artifact: 'work/signals/digests/2026-W21-digest.md',
+        tags: ['Cross-layer convergence', 'High urgency', 'Steering'],
+        narrative: 'Steering combines quality, execution, and incident signals and promotes them to a formal pattern alert.'
+      },
+      {
+        phase: 'Phase 3',
+        title: 'Steering proposes new agent type via PR',
+        from: 'org-evolution-proposer',
+        fromNode: 'steeringEvolution',
+        wakes: ['orchestrationFleet'],
+        branch: 'evolution/new-agent-type/api-contract-testing-agent',
+        artifact: 'org/agents/execution/api-contract-testing-agent.md',
+        tags: ['Agent registry', 'Proposed → active', 'Structural change'],
+        narrative: 'A new execution agent type is defined in the Agent Type Registry and proposed as a governed PR.'
+      },
+      {
+        phase: 'Phase 4',
+        title: 'Assessment PR recommends partial deprecation',
+        from: 'transformation-health',
+        fromNode: 'steeringEvolution',
+        wakes: ['orchestrationFleet', 'qualityEval'],
+        branch: 'assessment/integration-test-agent-partial-deprecation',
+        artifact: 'work/signals/2026-05-23-integration-test-agent-assessment-request.md',
+        tags: ['Runtime split', 'Rename path', 'Risk-managed'],
+        narrative: 'A second PR evaluates legacy agent performance and recommends retaining runtime tests while moving contract checks.'
+      },
+      {
+        phase: 'Phase 5',
+        title: 'Orchestration runs both agents in parallel',
+        from: 'fleet-orchestrator',
+        fromNode: 'orchestrationFleet',
+        wakes: ['executionBuild', 'qualityEval'],
+        branch: 'fleet/parallel-contract-vs-integration-agents',
+        artifact: 'org/2-orchestration/fleet-configs/api-contract-transition.yaml',
+        tags: ['A/B comparison', 'Graceful migration', 'Build+quality loop'],
+        narrative: 'Transition fleet config PR enables side-by-side performance data before final deprecation decisions.'
+      },
+      {
+        phase: 'Phase 6',
+        title: 'Final deprecation PR closes transition',
+        from: 'org-evolution-proposer',
+        fromNode: 'steeringEvolution',
+        wakes: ['releaseOps', 'executionSignal'],
+        branch: 'evolution/deprecate-integration-contract-scope',
+        artifact: 'org/agents/execution/integration-test-agent.md',
+        tags: ['Deprecated status', 'Evidence-backed', 'Operate feedback'],
+        narrative: 'After measured improvement, a final PR updates lifecycle state and feeds ongoing fleet performance monitoring.'
+      }
+    ]
+  }
+};
+
+const nodeLayout = {
+  steeringDigest: { x: 500, y: 95, role: 'Steering', name: 'Signal Aggregation', path: 'work/signals/digests/' },
+  steeringEvolution: { x: 500, y: 205, role: 'Steering', name: 'Evolution Proposer', path: 'org/0-steering/' },
+  strategyDiscovery: { x: 760, y: 155, role: 'Strategy', name: 'Discovery Agent', path: 'org/1-strategy/' },
+  strategyProduct: { x: 760, y: 265, role: 'Strategy', name: 'Product Strategy', path: 'work/missions/' },
+  orchestrationFleet: { x: 760, y: 410, role: 'Orchestration', name: 'Fleet Orchestrator', path: 'org/2-orchestration/fleet-configs/' },
+  executionSignal: { x: 250, y: 140, role: 'Execution', name: 'Signal Scanner', path: 'work/signals/' },
+  releaseOps: { x: 250, y: 275, role: 'Operate', name: 'Release + Operate', path: 'work/releases/' },
+  qualityEval: { x: 250, y: 410, role: 'Quality', name: 'Delivery Evaluator', path: 'org/4-quality/policies/' },
+  executionBuild: { x: 500, y: 545, role: 'Execution', name: 'Build Streams', path: 'org/3-execution/divisions/' },
+  repo: { x: 500, y: 325, role: 'Git', name: 'Main Repository', path: 'PRs = decisions' }
+};
+
+const stage = document.getElementById('stage');
+const flowList = document.getElementById('flowList');
+const scenarioSelect = document.getElementById('scenarioSelect');
+const linksSvg = document.getElementById('links');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const playBtn = document.getElementById('playBtn');
+const terminalStep = document.getElementById('terminalStep');
+const terminalCommand = document.getElementById('terminalCommand');
+const terminalLog = document.getElementById('terminalLog');
+const STAGE_COORDINATES = { width: 1000, height: 680 };
+
+let currentScenarioKey = 'feature';
+let stepIndex = 0;
+let autoPlay = true;
+let timer = null;
+let nodeEls = {};
+let terminalLineCounter = 0;
+
+function makeNode(id, info) {
+  const el = document.createElement('div');
+  el.className = 'node' + (id === 'repo' ? ' repo' : '');
+  el.dataset.id = id;
+  const pos = coordsToPercent(info.x, info.y);
+  el.style.left = `${pos.x}%`;
+  el.style.top = `${pos.y}%`;
+  el.innerHTML = `<div class="role">${info.role}</div><div class="name">${info.name}</div><div class="path">${info.path}</div>`;
+  stage.appendChild(el);
+  nodeEls[id] = el;
+}
+
+function coordsToPercent(x, y) {
+  return {
+    x: (x / STAGE_COORDINATES.width) * 100,
+    y: (y / STAGE_COORDINATES.height) * 100
+  };
+}
+
+function drawLinks() {
+  const stageRect = stage.getBoundingClientRect();
+  linksSvg.setAttribute('viewBox', `0 0 ${Math.max(1, stageRect.width)} ${Math.max(1, stageRect.height)}`);
+  linksSvg.innerHTML = '';
+  const nodes = Object.entries(nodeLayout).filter(([id]) => id !== 'repo');
+  nodes.forEach(([id]) => {
+    if (!nodeEls[id] || !nodeEls.repo) return;
+    const points = getConnectionPoints(id, 'repo');
+    if (!points) return;
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    path.setAttribute('x1', points.fromEdge.x);
+    path.setAttribute('y1', points.fromEdge.y);
+    path.setAttribute('x2', points.toEdge.x);
+    path.setAttribute('y2', points.toEdge.y);
+    path.setAttribute('stroke', 'rgba(167,139,250,.22)');
+    path.setAttribute('stroke-width', '1.3');
+    path.setAttribute('stroke-dasharray', '6 5');
+    linksSvg.appendChild(path);
+
+    const nodeToNode = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    nodeToNode.setAttribute('x1', points.fromEdge.x);
+    nodeToNode.setAttribute('y1', points.fromEdge.y);
+    nodeToNode.setAttribute('x2', points.fromEdge.x + (points.toEdge.x - points.fromEdge.x) * 0.3);
+    nodeToNode.setAttribute('y2', points.fromEdge.y + (points.toEdge.y - points.fromEdge.y) * 0.3);
+    nodeToNode.setAttribute('stroke', 'rgba(34,211,238,.06)');
+    nodeToNode.setAttribute('stroke-width', '2');
+    linksSvg.appendChild(nodeToNode);
+  });
+}
+
+function getNodeCenterAndHalf(nodeId) {
+  const nodeEl = nodeEls[nodeId];
+  if (!nodeEl) return null;
+  const stageRect = stage.getBoundingClientRect();
+  const rect = nodeEl.getBoundingClientRect();
+  return {
+    x: rect.left - stageRect.left + rect.width / 2,
+    y: rect.top - stageRect.top + rect.height / 2,
+    halfW: rect.width / 2,
+    halfH: rect.height / 2
+  };
+}
+
+function edgePoint(from, to, halfW, halfH) {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const sx = halfW > 0 ? Math.abs(dx) / halfW : 0;
+  const sy = halfH > 0 ? Math.abs(dy) / halfH : 0;
+  const scale = Math.max(sx, sy, 0.0001);
+  return {
+    x: from.x + dx / scale,
+    y: from.y + dy / scale
+  };
+}
+
+function getConnectionPoints(fromNodeId, toNodeId) {
+  const from = getNodeCenterAndHalf(fromNodeId);
+  const to = getNodeCenterAndHalf(toNodeId);
+  if (!from || !to) return null;
+  return {
+    fromCenter: { x: from.x, y: from.y },
+    toCenter: { x: to.x, y: to.y },
+    fromEdge: edgePoint({ x: from.x, y: from.y }, { x: to.x, y: to.y }, from.halfW, from.halfH),
+    toEdge: edgePoint({ x: to.x, y: to.y }, { x: from.x, y: from.y }, to.halfW, to.halfH)
+  };
+}
+
+function buildSelector() {
+  scenarioSelect.innerHTML = '';
+  Object.entries(scenarioData).forEach(([key, value]) => {
+    const option = document.createElement('option');
+    option.value = key;
+    option.textContent = value.label;
+    scenarioSelect.appendChild(option);
+  });
+  scenarioSelect.value = currentScenarioKey;
+}
+
+function updateFlowList() {
+  const scenario = scenarioData[currentScenarioKey];
+  flowList.innerHTML = '';
+  scenario.steps.forEach((step, idx) => {
+    const item = document.createElement('div');
+    item.className = 'flow-item' + (idx === stepIndex ? ' active' : '');
+    item.innerHTML = `
+      <div class="phase">${step.phase}</div>
+      <div class="title">${step.title}</div>
+      <div class="small">${step.from} → PR → ${step.wakes.join(', ')}</div>
+    `;
+    item.addEventListener('click', () => {
+      stepIndex = idx;
+      renderStep(false);
+      restartAutoplay();
+    });
+    flowList.appendChild(item);
+  });
+}
+
+function clearNodeStates() {
+  Object.values(nodeEls).forEach((el) => {
+    el.classList.remove('active');
+    el.classList.remove('wakeup');
+  });
+}
+
+function flashWake(nodeId, delayMs = 0) {
+  if (!nodeEls[nodeId]) return;
+  setTimeout(() => {
+    nodeEls[nodeId].classList.add('active');
+    nodeEls[nodeId].classList.remove('wakeup');
+    requestAnimationFrame(() => nodeEls[nodeId].classList.add('wakeup'));
+  }, delayMs);
+}
+
+function appendTerminalLine(text, type = '') {
+  const line = document.createElement('div');
+  line.className = `terminal-line${type ? ` ${type}` : ''}`;
+  terminalLineCounter += 1;
+  line.textContent = `[${String(terminalLineCounter).padStart(3, '0')}] ${text}`;
+  terminalLog.appendChild(line);
+  while (terminalLog.children.length > 22) {
+    terminalLog.removeChild(terminalLog.firstChild);
+  }
+  terminalLog.parentElement.scrollTop = terminalLog.parentElement.scrollHeight;
+}
+
+function updateTerminalHeader(step) {
+  terminalStep.textContent = `${step.phase} · ${scenarioData[currentScenarioKey].label}`;
+  terminalCommand.textContent = `agentic-enterprise(main)$ agent-run --from "${step.from}" --pr "${step.branch}" --artifact "${step.artifact}"`;
+}
+
+function animatePr(fromNodeId, branchLabel, onRepoImpact) {
+  const points = getConnectionPoints(fromNodeId, 'repo');
+  if (!points) return;
+
+  const dot = document.createElement('div');
+  dot.className = 'pr-dot';
+  const label = document.createElement('div');
+  label.className = 'pr-label';
+  label.textContent = `PR: ${branchLabel}`;
+  stage.appendChild(dot);
+  stage.appendChild(label);
+
+  const duration = 2400;
+  const holdAtRepoMs = 2400;
+  let impactHandled = false;
+  const start = performance.now();
+
+  function frame(now) {
+    const elapsed = now - start;
+    const t = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const x = points.fromEdge.x + (points.toEdge.x - points.fromEdge.x) * ease;
+    const y = points.fromEdge.y + (points.toEdge.y - points.fromEdge.y) * ease;
+    dot.style.left = `${x}px`;
+    dot.style.top = `${y}px`;
+    label.style.left = `${x}px`;
+    label.style.top = `${y}px`;
+
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      if (!impactHandled) {
+        impactHandled = true;
+        dot.classList.add('at-repo');
+        label.classList.add('at-repo');
+        flashWake('repo', 280);
+        if (typeof onRepoImpact === 'function') {
+          onRepoImpact();
+        }
+        setTimeout(() => {
+          dot.remove();
+          label.remove();
+        }, holdAtRepoMs);
+      }
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+function renderStep(withPrAnimation = true) {
+  const scenario = scenarioData[currentScenarioKey];
+  const step = scenario.steps[stepIndex];
+
+  clearNodeStates();
+  if (nodeEls[step.fromNode]) {
+    nodeEls[step.fromNode].classList.add('active');
+  }
+
+  updateTerminalHeader(step);
+  appendTerminalLine(`${step.phase}: ${step.title}`, 'info');
+  appendTerminalLine(`${step.from} opens PR ${step.branch}`, 'event');
+  appendTerminalLine(`artifact: ${step.artifact}`);
+
+  const wakeTargets = () => {
+    appendTerminalLine(`PR merged on main; repo propagates wake events`, 'event');
+    step.wakes.forEach((targetId, idx) => {
+      flashWake(targetId, 700 + idx * 260);
+      const targetName = nodeLayout[targetId] ? nodeLayout[targetId].name : targetId;
+      setTimeout(() => appendTerminalLine(`wake -> ${targetName}`, 'wake'), 700 + idx * 260);
+    });
+    setTimeout(() => appendTerminalLine(`context: ${step.narrative}`), 1150 + step.wakes.length * 180);
+  };
+
+  if (withPrAnimation) {
+    animatePr(step.fromNode, step.branch, wakeTargets);
+  } else {
+    wakeTargets();
+  }
+
+  updateFlowList();
+  requestAnimationFrame(drawLinks);
+}
+
+function nextStep() {
+  const scenario = scenarioData[currentScenarioKey];
+  stepIndex = (stepIndex + 1) % scenario.steps.length;
+  renderStep(true);
+}
+
+function prevStep() {
+  const scenario = scenarioData[currentScenarioKey];
+  stepIndex = (stepIndex - 1 + scenario.steps.length) % scenario.steps.length;
+  renderStep(true);
+}
+
+function restartAutoplay() {
+  if (timer) clearInterval(timer);
+  if (!autoPlay) return;
+  timer = setInterval(nextStep, 6800);
+}
+
+scenarioSelect.addEventListener('change', (e) => {
+  currentScenarioKey = e.target.value;
+  stepIndex = 0;
+  renderStep(false);
+  restartAutoplay();
+});
+
+playBtn.addEventListener('click', () => {
+  autoPlay = !autoPlay;
+  playBtn.textContent = autoPlay ? 'Pause' : 'Play';
+  if (autoPlay) {
+    restartAutoplay();
+  } else if (timer) {
+    clearInterval(timer);
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  nextStep();
+  restartAutoplay();
+});
+
+prevBtn.addEventListener('click', () => {
+  prevStep();
+  restartAutoplay();
+});
+
+Object.entries(nodeLayout).forEach(([id, info]) => makeNode(id, info));
+buildSelector();
+requestAnimationFrame(drawLinks);
+renderStep(false);
+restartAutoplay();
+window.addEventListener('resize', () => requestAnimationFrame(drawLinks));
+</script>
+</body>
+</html>

@@ -48,7 +48,8 @@ section{padding:100px 0}
 .section-sub{color:var(--text2);font-size:clamp(1rem,1.5vw,1.2rem);max-width:680px;margin-top:16px;line-height:1.7}
 
 /* ═══════════════════════════ NAV ═══════════════════════════ */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;backdrop-filter:blur(20px);background:rgba(9,9,11,0.7);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;backdrop-filter:blur(20px);background:rgba(9,9,11,0.7);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;transition:transform .32s ease,opacity .25s ease}
+nav.nav-hidden{transform:translateY(-120%);opacity:0;pointer-events:none}
 nav .logo{font-weight:700;font-size:1rem;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px}
 nav .logo svg{width:28px;height:28px}
 nav ul{display:flex;gap:28px;list-style:none}
@@ -71,6 +72,15 @@ nav ul a:hover{color:var(--text)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,58,237,0.3);color:#fff}
 .btn-secondary{background:transparent;color:var(--text);padding:14px 32px;border-radius:12px;font-weight:600;font-size:1rem;border:1px solid var(--border2);transition:border-color .2s,background .2s;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .btn-secondary:hover{border-color:var(--accent);background:rgba(167,139,250,0.05);color:#fff}
+.btn-visualization{font-size:1.08rem;padding:18px 36px;box-shadow:0 10px 30px rgba(124,58,237,0.26)}
+
+/* ═══════════════════════════ LIVE VISUALIZATION ═══════════════════════════ */
+.live-visualization-section{padding:0;min-height:100vh;background:var(--bg2);display:flex;flex-direction:column;scroll-margin-top:0}
+.viz-embed-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:var(--bg2);display:flex;flex-direction:column;flex:1;min-height:100vh}
+.viz-embed-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(9,9,11,0.92)}
+.viz-embed-head span{font-size:0.78rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em}
+.viz-embed-link{font-size:0.82rem;color:var(--accent3)}
+.viz-embed{width:100%;height:calc(100vh - 49px);border:0;background:var(--bg)}
 
 /* ═══════════════════════════ MANIFESTO MARQUEE ═══════════════════════════ */
 .marquee-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 0;overflow:hidden}
@@ -224,6 +234,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="hero-actions">
         <a href="#model" class="btn-primary">See how it works ↓</a>
         <a href="#adopt" class="btn-secondary">Start in 5 minutes</a>
+        <a href="#live-visualization" class="btn-primary btn-visualization" id="jumpToVisualization">Jump to live visualization ↓</a>
       </div>
     </div>
   </div>
@@ -567,6 +578,17 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   </div>
 </section>
 
+<!-- ═══════════════════════════ LIVE VISUALIZATION EMBED ═══════════════════════════ -->
+<section id="live-visualization" class="live-visualization-section">
+  <div class="viz-embed-wrap">
+    <div class="viz-embed-head">
+      <span>Live visualization · Full screen section</span>
+      <a class="viz-embed-link" href="concept-visualization.html" target="_blank">Open standalone ↗</a>
+    </div>
+    <iframe class="viz-embed" src="concept-visualization.html" title="Agentic Enterprise Live Visualization" loading="lazy"></iframe>
+  </div>
+</section>
+
 <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
 <footer>
   <div class="container">
@@ -582,6 +604,29 @@ document.addEventListener('DOMContentLoaded',()=>{
     entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
   },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  const jumpBtn=document.getElementById('jumpToVisualization');
+  const target=document.getElementById('live-visualization');
+  const topNav=document.querySelector('nav');
+  if(jumpBtn&&target){
+    jumpBtn.addEventListener('click',(event)=>{
+      event.preventDefault();
+      target.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  }
+
+  if(target&&topNav){
+    const navObserver=new IntersectionObserver((entries)=>{
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+          topNav.classList.add('nav-hidden');
+        }else{
+          topNav.classList.remove('nav-hidden');
+        }
+      });
+    },{threshold:0.35});
+    navObserver.observe(target);
+  }
 });
 </script>
 
