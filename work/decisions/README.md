@@ -4,7 +4,7 @@ Architecture, strategy, and process decisions. Each decision is documented using
 
 ## How to Create a Decision Record
 
-1. Use the template: `process/templates/decision-record.md`
+1. Use the template: `work/decisions/_TEMPLATE-decision-record.md`
 2. Name the file: `YYYY-MM-DD-<descriptive-name>.md`
 3. Submit as a Pull Request for review
 4. Architecture decisions require Architecture Governor review

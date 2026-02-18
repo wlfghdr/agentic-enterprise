@@ -2,7 +2,7 @@
 
 > **Template version:** 1.0  
 > **Mission:** [link to `work/missions/<name>/BRIEF.md`]  
-> **Fleet Config:** [link to `org/2-orchestration/fleet-configs/<config>.yaml`]  
+> **Fleet Config:** [link to `org/2-orchestration/fleet-configs/<config>.md`]  
 > **Author:** [Orchestration Layer — Agent Fleet Manager]  
 > **Storage:** `work/missions/<mission-name>/STATUS.md` (append-only, latest entry first)
 

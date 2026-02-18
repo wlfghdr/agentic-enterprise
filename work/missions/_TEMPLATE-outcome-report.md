@@ -2,7 +2,7 @@
 
 > **Template version:** 1.0  
 > **Mission:** [link to `work/missions/<name>/BRIEF.md`]  
-> **Outcome Contract:** [link to `work/missions/<name>/OUTCOME-CONTRACT.yaml`]  
+> **Outcome Contract:** [link to `work/missions/<name>/OUTCOME-CONTRACT.md`]  
 > **Status:** draft | reviewed | accepted  
 > **Date:** YYYY-MM-DD  
 > **Author:** [Ship Loop agent + Strategy Layer Outcome Owner]  
@@ -40,8 +40,8 @@
 
 | Asset | Type | Registry Entry | Status |
 |-------|------|---------------|--------|
-| [Asset name] | code / documentation / content / service | [link to `work/assets/<name>.yaml`] | deployed / published |
-| [Asset name] | code / documentation / content / service | [link to `work/assets/<name>.yaml`] | deployed / published |
+| [Asset name] | code / documentation / content / service | [link to `work/assets/<name>.md`] | deployed / published |
+| [Asset name] | code / documentation / content / service | [link to `work/assets/<name>.md`] | deployed / published |
 
 ## Quality Summary
 

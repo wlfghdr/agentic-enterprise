@@ -4,7 +4,7 @@ Release contracts for shipped software. Each release is documented using the rel
 
 ## How to Create a Release Contract
 
-1. Use the template: `process/templates/release-contract.md`
+1. Use the template: `work/releases/_TEMPLATE-release-contract.md`
 2. Name the file: `YYYY-MM-DD-<release-name>.md`
 3. Submit as a Pull Request for Ship Loop approval
 

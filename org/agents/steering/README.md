@@ -10,4 +10,4 @@ See `AGENTIC-ENTERPRISE-BLUEPRINT.md` for the reference catalog of universal ste
 <!-- | agent-id | Name | Status | -->
 <!-- |----------|------|--------| -->
 
-*No agent types registered yet. Use `org/agents/_TEMPLATE.yaml` to register the first one.*
+*No agent types registered yet. Use `org/agents/_TEMPLATE-agent-type.md` to register the first one.*

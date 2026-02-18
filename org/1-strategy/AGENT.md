@@ -36,7 +36,7 @@ Help the Strategy Layer define **what** {{COMPANY_SHORT}} does and **why** — a
 
 ### Outcome Management & Venture Health
 - **Consume outcome reports** (`work/missions/<name>/OUTCOME-REPORT.md`) to track mission impact on venture metrics
-- **Produce venture health reports** (`process/templates/venture-health-report.md`) monthly or quarterly, stored at `org/1-strategy/ventures/<venture>-health.md`
+- **Produce venture health reports** (`org/1-strategy/ventures/_TEMPLATE-venture-health-report.md`) monthly or quarterly, stored at `org/1-strategy/ventures/<venture>-health.md`
 - **Trigger outcome report creation** when outcome contract `measurement_schedule` dates arrive (initial check, follow-up, final evaluation)
 - Roll up completed mission outcomes into venture success metrics
 - Feed venture health data to Steering Layer for portfolio-level recalibration

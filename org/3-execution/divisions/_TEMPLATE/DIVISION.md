@@ -58,7 +58,7 @@ When working within this division:
 2. Check the Software Catalog for existing services before creating new ones
 3. Follow established code patterns in this division's codebase
 4. Use Conventional Commits (`feat:`, `fix:`, `docs:`, etc.)
-5. Register new components via `process/templates/component-onboarding.md`
+5. Register new components via `org/3-execution/divisions/_TEMPLATE/_TEMPLATE-component-onboarding.md`
 
 ## Assets & Repositories
 

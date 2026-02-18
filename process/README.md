@@ -146,27 +146,27 @@ This is a **Git-native** company. Git is the system of record, not a side channe
 
 ## Templates
 
-All process artifacts use standardized templates. See [templates/](templates/) for the full set:
+All process artifacts use standardized templates. Templates are co-located with the artifacts they produce (no central `templates/` folder). Naming convention: `_TEMPLATE-<type>.md`.
 
-| Template | Purpose | Used In |
-|----------|---------|---------|
-| `signal.md` | Capture a signal (market, customer, technical) | Discover loop |
-| `signal-digest.md` | Weekly aggregated signal summary with patterns and themes | Discover loop (Steering → Strategy) |
-| `mission-brief.md` | Define a mission with scope, constraints, outcomes | Discover → Build |
-| `outcome-contract.yaml` | Define measurable success criteria | Build loop |
-| `mission-status.md` | Append-only mission progress tracking | Build loop (Orchestration) |
-| `decision-record.md` | Document an architecture or strategy decision | Build loop |
-| `quality-evaluation-report.md` | Standardized quality evaluation verdict | Build loop (Quality) |
-| `release-contract.md` | Define release scope, rollout plan, and rollback | Ship loop |
-| `outcome-report.md` | Mission closure: targets vs. actuals, lessons learned | Ship loop → Strategy |
-| `component-onboarding.md` | Checklist for onboarding new components | Build loop |
-| `asset-registry-entry.yaml` | Register non-code deliverables | Any loop |
-| `runbook.md` | Operational runbook for services and workflows | Build → Operate |
-| `postmortem.md` | Blameless incident retrospective | Operate loop |
-| `venture-health-report.md` | Venture-level metrics rollup | Strategy (periodic) |
-| `fleet-performance-report.md` | Fleet throughput, quality, and cost metrics | Orchestration (periodic) |
-| `agent-type-proposal.md` | Proposal for new agent types | Any layer → Steering |
-| `evolution-proposal.md` | Steering Layer change proposal (structure, process, agents) | Steering loop |
+| Template | Location | Purpose | Used In |
+|----------|----------|---------|---------|
+| `_TEMPLATE-signal.md` | `work/signals/` | Capture a signal (market, customer, technical) | Discover loop |
+| `_TEMPLATE-signal-digest.md` | `work/signals/digests/` | Weekly aggregated signal summary with patterns and themes | Discover loop (Steering → Strategy) |
+| `_TEMPLATE-mission-brief.md` | `work/missions/` | Define a mission with scope, constraints, outcomes | Discover → Build |
+| `_TEMPLATE-outcome-contract.md` | `work/missions/` | Define measurable success criteria | Build loop |
+| `_TEMPLATE-mission-status.md` | `work/missions/` | Append-only mission progress tracking | Build loop (Orchestration) |
+| `_TEMPLATE-decision-record.md` | `work/decisions/` | Document an architecture or strategy decision | Build loop |
+| `_TEMPLATE-quality-evaluation-report.md` | `work/missions/` | Standardized quality evaluation verdict | Build loop (Quality) |
+| `_TEMPLATE-release-contract.md` | `work/releases/` | Define release scope, rollout plan, and rollback | Ship loop |
+| `_TEMPLATE-outcome-report.md` | `work/missions/` | Mission closure: targets vs. actuals, lessons learned | Ship loop → Strategy |
+| `_TEMPLATE-component-onboarding.md` | `org/3-execution/divisions/_TEMPLATE/` | Checklist for onboarding new components | Build loop |
+| `_TEMPLATE-asset-registry-entry.md` | `work/assets/` | Register non-code deliverables | Any loop |
+| `_TEMPLATE-runbook.md` | `org/3-execution/divisions/_TEMPLATE/` | Operational runbook for services and workflows | Build → Operate |
+| `_TEMPLATE-postmortem.md` | `work/retrospectives/` | Blameless incident retrospective | Operate loop |
+| `_TEMPLATE-venture-health-report.md` | `org/1-strategy/ventures/` | Venture-level metrics rollup | Strategy (periodic) |
+| `_TEMPLATE-fleet-performance-report.md` | `work/missions/` | Fleet throughput, quality, and cost metrics | Orchestration (periodic) |
+| `_TEMPLATE-agent-type-proposal.md` | `org/agents/` | Proposal for new agent types | Any layer → Steering |
+| `_TEMPLATE-evolution-proposal.md` | `org/0-steering/` | Steering Layer change proposal (structure, process, agents) | Steering loop |
 
 ---
 

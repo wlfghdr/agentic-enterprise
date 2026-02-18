@@ -11,7 +11,7 @@
 Once a mission brief is approved:
 1. Orchestration Layer breaks the mission into work streams
 2. Each stream is assigned to a division
-3. Fleet configuration created (`org/2-orchestration/fleet-configs/<mission>.yaml`)
+3. Fleet configuration created (`org/2-orchestration/fleet-configs/<mission>.md`)
 4. Dependencies between streams mapped
 5. Human checkpoints identified
 
@@ -41,7 +41,7 @@ For each submitted output:
 ### Step 5: Decision Recording
 
 Novel patterns, architecture choices, and strategy decisions discovered during Build are captured:
-1. Use `templates/decision-record.md`
+1. Use `work/decisions/_TEMPLATE-decision-record.md`
 2. Submit as PR to `work/decisions/`
 3. Architecture Governor reviews and approves
 

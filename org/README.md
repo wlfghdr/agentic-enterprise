@@ -178,7 +178,7 @@ org/
 ├── README.md                    ← You are here
 ├── agents/                      ← Agent type registry (governed source of truth)
 │   ├── README.md                ← Registry overview and lifecycle documentation
-│   ├── _TEMPLATE.yaml           ← Template for defining new agent types
+│   ├── _TEMPLATE-agent-type.md  ← Template for defining new agent types
 │   ├── steering/                ← Steering layer agent type definitions
 │   ├── strategy/                ← Strategy layer agent type definitions
 │   ├── orchestration/           ← Orchestration layer agent type definitions
@@ -190,11 +190,11 @@ org/
 ├── 1-strategy/
 │   ├── AGENT.md                 ← Instructions for strategy-layer agents
 │   └── ventures/               ← Venture charters (customize per your market)
-│       └── _TEMPLATE.md         ← Template for creating venture charters
+│       └── _TEMPLATE-venture-charter.md  ← Template for creating venture charters
 ├── 2-orchestration/
 │   ├── AGENT.md                 ← Instructions for orchestration-layer agents
 │   └── fleet-configs/
-│       └── _TEMPLATE.yaml       ← Standard fleet configuration format
+│       └── _TEMPLATE-fleet-config.md ← Standard fleet configuration format
 ├── 3-execution/
 │   ├── AGENT.md                 ← Instructions for execution-layer agents
 │   └── divisions/            ← One folder per division (customize)

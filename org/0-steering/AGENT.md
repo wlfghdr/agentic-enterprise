@@ -55,17 +55,17 @@ Help the executive leadership continuously evolve {{COMPANY_SHORT}} as a company
 
 ### 6. Agent Type Registry Governance
 - **Own the agent type registry** (`org/agents/`) — evaluate proposals for new agent types
-- Review agent type proposals (from `process/templates/agent-type-proposal.md`) with Quality Layer input
+- Review agent type proposals (from `org/agents/_TEMPLATE-agent-type-proposal.md`) with Quality Layer input
 - Approve or reject new agent types (CTO approval required)
 - Propose agent type deprecation when capabilities are superseded or underutilized
 - Ensure registry-fleet consistency: fleet configs may only reference `active` agent types
 - Consume agent utilization metrics from Orchestration Layer for fleet meta-optimization
 
 ### 7. Signal Aggregation & Digests
-- **Produce weekly signal digests** from `work/signals/` using `process/templates/signal-digest.md`
+- **Produce weekly signal digests** from `work/signals/` using `work/signals/digests/_TEMPLATE-signal-digest.md`
 - Store digests in `work/signals/digests/` with naming convention `YYYY-WXX-digest.md`
 - Detect signal patterns: when 3+ related signals converge, produce a pattern alert
-- Produce evolution proposals (`process/templates/evolution-proposal.md`) when patterns indicate structural change is needed
+- Produce evolution proposals (`org/0-steering/_TEMPLATE-evolution-proposal.md`) when patterns indicate structural change is needed
 
 ### 8. Venture Health Consumption
 - **Consume venture health reports** from `org/1-strategy/ventures/<venture>-health.md` for portfolio-level recalibration

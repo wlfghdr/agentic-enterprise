@@ -4,7 +4,7 @@ Incoming observations from market, customer, technical, internal, competitive, a
 
 ## How to Create a Signal
 
-1. Copy the template: `process/templates/signal.md`
+1. Copy the template: `work/signals/_TEMPLATE-signal.md`
 2. Name the file: `YYYY-MM-DD-<descriptive-name>.md`
 3. Fill in the template
 4. Submit as a Pull Request

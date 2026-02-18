@@ -15,7 +15,7 @@ Translate mission briefs from the Strategy Layer into executable agent fleet con
 1. **Company vision & mission:** [../../COMPANY.md](../../COMPANY.md)
 2. **Organizational model:** [../README.md](../README.md)
 3. **Active missions:** [../../work/missions/](../../work/missions/)
-4. **Fleet config template:** [fleet-configs/_TEMPLATE.yaml](fleet-configs/_TEMPLATE.yaml)
+4. **Fleet config template:** [fleet-configs/_TEMPLATE-fleet-config.md](fleet-configs/_TEMPLATE-fleet-config.md)
 5. **Quality policies:** [../4-quality/policies/](../4-quality/policies/)
 6. **Process lifecycle:** [../../process/README.md](../../process/README.md)
 7. **Agent type registry:** [../agents/](../agents/) — available agent types and their capabilities
@@ -44,7 +44,7 @@ Translate mission briefs from the Strategy Layer into executable agent fleet con
 - Propose scaling changes when demand exceeds capacity or pools are underutilized
 
 ### Mission Status Tracking
-- **Produce mission status updates** (`process/templates/mission-status.md`) weekly during active missions
+- **Produce mission status updates** (`work/missions/_TEMPLATE-mission-status.md`) weekly during active missions
 - Store status updates in `work/missions/<name>/STATUS.md` (append-only, latest entry first)
 - Trigger status transitions with evidence (proposed → approved → active → paused → completed)
 
@@ -59,7 +59,7 @@ Translate mission briefs from the Strategy Layer into executable agent fleet con
 - Track fleet throughput (PRs generated, merged, rejected)
 - Monitor quality scores
 - Detect bottlenecks and suggest reconfigurations
-- **Produce fleet performance reports** (`process/templates/fleet-performance-report.md`) per mission or monthly
+- **Produce fleet performance reports** (`work/missions/_TEMPLATE-fleet-performance-report.md`) per mission or monthly
 - Store fleet reports in `work/missions/<name>/FLEET-REPORT.md`
 - **Consume quality evaluation reports** from `work/missions/<name>/evaluations/` for fleet quality trend analysis
 

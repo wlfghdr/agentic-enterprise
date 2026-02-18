@@ -62,7 +62,7 @@ Key elements:
 
 The Orchestration Layer decomposes the mission:
 
-**File created:** `org/2-orchestration/fleet-configs/bulk-data-export.yaml`
+**File created:** `org/2-orchestration/fleet-configs/bulk-data-export.md`
 
 ```yaml
 mission:
@@ -133,7 +133,7 @@ Architecture decision recorded: `work/decisions/2026-03-25-bulk-export-api-desig
 
 ## Phase 7: Release (Ship Loop)
 
-**File created:** Release contract using `process/templates/release-contract.md`
+**File created:** Release contract using `work/releases/_TEMPLATE-release-contract.md`
 
 ```
 Progressive rollout:

@@ -117,7 +117,7 @@ After remediation, verify full recovery:
 ## Post-Incident
 
 - [ ] Log the incident with timeline and remediation steps taken
-- [ ] If SEV1/SEV2: create a postmortem using `process/templates/postmortem.md`
+- [ ] If SEV1/SEV2: create a postmortem using `work/retrospectives/_TEMPLATE-postmortem.md`
 - [ ] If runbook was inadequate: update this runbook and file an improvement signal
 - [ ] If a new failure mode was encountered: file a signal in `work/signals/`
 

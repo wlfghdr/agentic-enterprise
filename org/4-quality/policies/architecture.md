@@ -44,7 +44,7 @@
 
 ### Architecture Decision Records
 - [ ] Novel patterns justified in an Architecture Decision Record (ADR)
-- [ ] ADR follows template: `process/templates/decision-record.md`
+- [ ] ADR follows template: `work/decisions/_TEMPLATE-decision-record.md`
 - [ ] ADR reviewed by at least one Architecture Governor
 
 ### Observability (cross-reference: [observability.md](observability.md))

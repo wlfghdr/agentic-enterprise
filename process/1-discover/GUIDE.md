@@ -25,7 +25,7 @@ Anyone (human or agent) can create a signal:
 
 ```bash
 # Create a new signal file
-cp process/templates/signal.md work/signals/YYYY-MM-DD-<descriptive-name>.md
+cp work/signals/_TEMPLATE-signal.md work/signals/YYYY-MM-DD-<descriptive-name>.md
 # Fill in the template
 # Submit as a Pull Request
 ```
@@ -56,9 +56,9 @@ For signals that proceed:
 ### Step 4: Mission Brief Creation
 
 If the opportunity is validated:
-1. Use `templates/mission-brief.md`
+1. Use `work/missions/_TEMPLATE-mission-brief.md`
 2. Define scope (in-scope / out-of-scope)
-3. Create outcome contract (`templates/outcome-contract.yaml`)
+3. Create outcome contract (`work/missions/_TEMPLATE-outcome-contract.md`)
 4. Identify human checkpoint moments
 5. Estimate fleet composition
 6. Submit as PR for Strategy Layer approval

@@ -13,8 +13,8 @@ Monitor signal sources, detect meaningful signals, draft signal files, assist wi
 ## Context You Must Read
 
 1. **Process overview:** [../README.md](../README.md)
-2. **Signal template:** [../templates/signal.md](../templates/signal.md)
-3. **Mission brief template:** [../templates/mission-brief.md](../templates/mission-brief.md)
+2. **Signal template:** [../../work/signals/_TEMPLATE-signal.md](../../work/signals/_TEMPLATE-signal.md)
+3. **Mission brief template:** [../../work/missions/_TEMPLATE-mission-brief.md](../../work/missions/_TEMPLATE-mission-brief.md)
 4. **Company vision:** [../../COMPANY.md](../../COMPANY.md)
 5. **Strategic beliefs:** [../../COMPANY.md](../../COMPANY.md) — strategic beliefs section
 6. **Active missions:** [../../work/missions/](../../work/missions/) — to avoid duplicates
@@ -23,7 +23,7 @@ Monitor signal sources, detect meaningful signals, draft signal files, assist wi
 
 ### Signal Detection
 - Monitor configured signal sources (see Discover Guide)
-- Draft signal files using `templates/signal.md`
+- Draft signal files using `work/signals/_TEMPLATE-signal.md`
 - Classify signals: market | customer | technical | internal | competitive
 - Assess initial urgency: immediate | next-cycle | monitor
 
@@ -41,9 +41,9 @@ Monitor signal sources, detect meaningful signals, draft signal files, assist wi
 - Draft opportunity summary for Strategy Layer review
 
 ### Mission Brief Drafting
-- Generate mission brief using `templates/mission-brief.md`
+- Generate mission brief using `work/missions/_TEMPLATE-mission-brief.md`
 - Define scope boundaries (in-scope / out-of-scope)
-- Propose outcome contract using `templates/outcome-contract.yaml`
+- Propose outcome contract using `work/missions/_TEMPLATE-outcome-contract.md`
 - Identify dependencies on other missions
 
 ## What You Never Do

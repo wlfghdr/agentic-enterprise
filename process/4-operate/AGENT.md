@@ -28,11 +28,11 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
 2. **Observability policy:** [../../org/4-quality/policies/observability.md](../../org/4-quality/policies/observability.md) — health targets, alerting standards, instrumentation requirements
 3. **Delivery policy:** [../../org/4-quality/policies/delivery.md](../../org/4-quality/policies/delivery.md) — environment progression, rollback criteria, emergency deployments
 4. **Health targets:** Declarative health target configs for the service you're operating
-5. **Runbooks:** Executable runbooks for the service (template: `process/templates/runbook.md`)
+5. **Runbooks:** Executable runbooks for the service (template: `org/3-execution/divisions/_TEMPLATE/_TEMPLATE-runbook.md`)
 6. **Incident response framework:** Escalation paths, severity definitions, communication templates
 7. **Architecture decisions:** [../../work/decisions/](../../work/decisions/) — relevant patterns and constraints
-8. **Postmortem template:** [../../process/templates/postmortem.md](../../process/templates/postmortem.md) — for incident retrospectives
-9. **Signal digest template:** [../../process/templates/signal-digest.md](../../process/templates/signal-digest.md) — signals surface through digests into Loop 1
+8. **Postmortem template:** [../../work/retrospectives/_TEMPLATE-postmortem.md](../../work/retrospectives/_TEMPLATE-postmortem.md) — for incident retrospectives
+9. **Signal digest template:** [../../work/signals/digests/_TEMPLATE-signal-digest.md](../../work/signals/digests/_TEMPLATE-signal-digest.md) — signals surface through digests into Loop 1
 
 ---
 
@@ -74,7 +74,7 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
   - **SEV4 (Low):** Informational signal → log + surface as improvement signal
 - **Diagnose** — Correlate signals across production systems
 - **Coordinate** — During SEV1/SEV2: notify on-call, assemble context package, draft customer communication
-- **Postmortem** — After resolution: generate blameless postmortem draft using **postmortem template** (`process/templates/postmortem.md`), store in `work/retrospectives/YYYY-MM-DD-<incident-name>.md`, identify systemic improvements, file signals
+- **Postmortem** — After resolution: generate blameless postmortem draft using **postmortem template** (`work/retrospectives/_TEMPLATE-postmortem.md`), store in `work/retrospectives/YYYY-MM-DD-<incident-name>.md`, identify systemic improvements, file signals
   - **Policy gap analysis** — if the incident reveals a quality policy gap, include it in the postmortem and surface a signal to `work/signals/` for the Quality Layer
 
 ### Chaos Engineering & Resilience Testing (Resilience Agents)
@@ -101,7 +101,7 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
 This is the critical connection that makes the entire model **circular**:
 
 - **Production signals → Loop 1** — Every operational observation that suggests a product change should be filed as a signal in `work/signals/`
-- **Signals are aggregated into digests** — The Steering Layer produces weekly **signal digests** (`process/templates/signal-digest.md`, stored in `work/signals/digests/`) that compile operational signals with strategic and quality signals for Loop 1 triage
+- **Signals are aggregated into digests** — The Steering Layer produces weekly **signal digests** (`work/signals/digests/_TEMPLATE-signal-digest.md`, stored in `work/signals/digests/`) that compile operational signals with strategic and quality signals for Loop 1 triage
 - **Health target compliance → Quality feedback** — When health target violations correlate with specific quality policy domains (e.g., persistent performance regressions), surface a signal recommending policy tightening or upstream instruction improvement
 - **Signal types from operations:**
   - **Reliability signal:** Recurring incidents suggesting architectural rework

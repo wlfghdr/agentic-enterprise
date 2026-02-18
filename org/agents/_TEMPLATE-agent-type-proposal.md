@@ -96,4 +96,4 @@
 - [ ] Steering Layer evaluation complete
 - [ ] Quality Layer boundary review complete
 - [ ] CTO approval
-- [ ] Registry entry created in `org/agents/<layer>/<agent-id>.yaml`
+- [ ] Registry entry created in `org/agents/<layer>/<agent-id>.md`

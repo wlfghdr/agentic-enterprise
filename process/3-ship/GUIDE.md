@@ -10,7 +10,7 @@
 
 When outputs from the Build loop have received PASS verdicts:
 
-1. Compile a release contract using `templates/release-contract.md`
+1. Compile a release contract using `work/releases/_TEMPLATE-release-contract.md`
 2. List all changes included in this release
 3. Define progressive rollout stages
 4. Document rollback procedures and triggers

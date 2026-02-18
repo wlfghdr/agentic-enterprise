@@ -4,13 +4,13 @@ Asset registry entries for all deliverables — documentation, content, training
 
 ## How to Register an Asset
 
-1. Use the template: `process/templates/asset-registry-entry.yaml`
-2. Name the file: `<asset-name>.yaml`
+1. Use the template: `work/assets/_TEMPLATE-asset-registry-entry.md`
+2. Name the file: `<asset-name>.md`
 3. Submit as a Pull Request
 
 ## Naming Convention
 
-- `<descriptive-asset-name>.yaml` (lowercase, hyphen-separated)
+- `<descriptive-asset-name>.md` (lowercase, hyphen-separated)
 
 ## Asset Statuses
 

@@ -10,7 +10,7 @@
 ```
 org/agents/
 ├── README.md                  ← You are here
-├── _TEMPLATE.yaml             ← Template for new agent type definitions
+├── _TEMPLATE-agent-type.md    ← Template for new agent type definitions
 ├── steering/                  ← Steering Layer agent types
 ├── strategy/                  ← Strategy Layer agent types
 ├── orchestration/             ← Orchestration Layer agent types
@@ -36,15 +36,15 @@ proposed → approved → implementing → active → deprecated → retired
 ## How to Propose a New Agent Type
 
 1. File a signal in `work/signals/` identifying the capability gap
-2. Use the template: `process/templates/agent-type-proposal.md`
+2. Use the template: `org/agents/_TEMPLATE-agent-type-proposal.md`
 3. Submit as a Pull Request — Steering Layer evaluates, Quality Layer reviews boundaries
-4. On CTO approval: create the registry entry using `org/agents/_TEMPLATE.yaml`
+4. On CTO approval: create the registry entry using `org/agents/_TEMPLATE-agent-type.md`
 5. Implementation begins (skills, MCP connections, tool bindings, instructions)
 6. Quality validation → status updated to `active`
 
 ## How to Deprecate an Agent Type
 
-1. File an evolution proposal (see `process/templates/evolution-proposal.md`)
+1. File an evolution proposal (see `org/0-steering/_TEMPLATE-evolution-proposal.md`)
 2. Document the replacement agent type or capability that supersedes it
 3. On CTO approval: update registry entry status to `deprecated`
 4. After migration period: update to `retired`

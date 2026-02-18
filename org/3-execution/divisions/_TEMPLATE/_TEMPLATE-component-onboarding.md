@@ -82,8 +82,8 @@
 - [ ] README.md with setup instructions
 - [ ] API documentation generated
 - [ ] Architecture documentation in {{SERVICE_CATALOG}} TechDocs
-- [ ] Runbook for on-call using `process/templates/runbook.md` (if service)
-- [ ] Component onboarding entry in asset registry (`work/assets/<name>.yaml`)
+- [ ] Runbook for on-call using `org/3-execution/divisions/_TEMPLATE/_TEMPLATE-runbook.md` (if service)
+- [ ] Component onboarding entry in asset registry (`work/assets/<name>.md`)
 
 ## Post-Onboarding
 

@@ -61,14 +61,14 @@ Create your first signal in `work/signals/` and you're live.
 Complete the Quick Start above (Steps 1-4), then:
 
 1. **Seed COMPANY.md** — Write your real vision, mission, and 4-8 strategic beliefs. These anchor every agent's decision-making. Don't ship placeholder text.
-2. **Create your first venture charter** — Copy `org/1-strategy/ventures/_TEMPLATE.md` → `org/1-strategy/ventures/<your-first-product>.md`. Define success metrics and measurement schedule. Even rough targets are better than none.
+2. **Create your first venture charter** — Copy `org/1-strategy/ventures/_TEMPLATE-venture-charter.md` → `org/1-strategy/ventures/<your-first-product>.md`. Define success metrics and measurement schedule. Even rough targets are better than none.
 3. **Define CODEOWNERS** — Review and customize the [CODEOWNERS](CODEOWNERS) file with actual GitHub teams or users that map to each layer's approval authority.
 
 ### Day 0.5 — Organizational Skeleton (1-2 hours)
 
 4. **Create your divisions** — For each team you have, copy `org/3-execution/divisions/_TEMPLATE/` → `org/3-execution/divisions/<your-division>/`. Write the `DIVISION.md` charter with scope boundaries and "never do" rules.
 5. **Seed the agent type registry** — For each agent role you plan to deploy:
-   - Copy `org/agents/_TEMPLATE.yaml` → `org/agents/<layer>/<agent-type-id>.yaml`
+   - Copy `org/agents/_TEMPLATE-agent-type.md` → `org/agents/<layer>/<agent-type-id>.md`
    - Fill in capabilities, layer, division assignment, scaling limits, and quality gates
    - Set `status: active` for agents you're deploying immediately; `proposed` for planned ones
    - At minimum, seed one agent type per layer (Steering, Strategy, Orchestration, Execution, Quality)
@@ -78,11 +78,11 @@ Complete the Quick Start above (Steps 1-4), then:
 
 ### Day 1 — First Signal Flow (30 minutes)
 
-7. **File your first signal** — Create `work/signals/YYYY-MM-DD-<your-first-opportunity>.md` from the template (`process/templates/signal.md`). This is the input that kicks off the entire lifecycle.
+7. **File your first signal** — Create `work/signals/YYYY-MM-DD-<your-first-opportunity>.md` from the template (`work/signals/_TEMPLATE-signal.md`). This is the input that kicks off the entire lifecycle.
 8. **Triage to a mission** — The Steering Layer produces a signal digest, the Strategy Layer triages, and if the signal warrants action:
-   - Create `work/missions/<mission-name>/MISSION-BRIEF.md` from `process/templates/mission-brief.md`
-   - Create `work/missions/<mission-name>/OUTCOME-CONTRACT.yaml` from `process/templates/outcome-contract.yaml`
-9. **Assemble a fleet** — The Orchestration Layer creates a fleet config (`org/2-orchestration/fleet-configs/<mission>.yaml`) referencing active agent types from the registry.
+   - Create `work/missions/<mission-name>/MISSION-BRIEF.md` from `work/missions/_TEMPLATE-mission-brief.md`
+   - Create `work/missions/<mission-name>/OUTCOME-CONTRACT.md` from `work/missions/_TEMPLATE-outcome-contract.md`
+9. **Assemble a fleet** — The Orchestration Layer creates a fleet config (`org/2-orchestration/fleet-configs/<mission>.md`) referencing active agent types from the registry.
 10. **Execute** — Execution agents produce work within mission scope, Quality agents evaluate, Ship agents release, Operate agents monitor. The full loop is live.
 
 ### Day 2+ — Progressive Automation
@@ -93,7 +93,7 @@ Complete the Quick Start above (Steps 1-4), then:
     - Strategy agents update venture health → file in venture charter or as standalone report
 12. **First outcome report** — When a mission's measurement window closes, the Ship Loop produces an outcome report (`work/missions/<name>/OUTCOME-REPORT.md`). This closes the Build→Measure→Learn loop.
 13. **First retrospective** — After any incident, produce a postmortem → `work/retrospectives/`. Signals from postmortems feed back into Loop 1.
-14. **Evolve** — When signal digests reveal patterns (capability gaps, structural friction, new opportunities), the Steering Layer creates evolution proposals (`process/templates/evolution-proposal.md`) — including proposals for new agent types.
+14. **Evolve** — When signal digests reveal patterns (capability gaps, structural friction, new opportunities), the Steering Layer creates evolution proposals (`org/0-steering/_TEMPLATE-evolution-proposal.md`) — including proposals for new agent types.
 
 > **Tip:** Don't try to automate everything on Day 1. Start with one signal → one mission → one execution cycle. Expand the number of active agents, divisions, and ventures progressively as the team builds confidence in the process.
 
@@ -229,7 +229,7 @@ The 3-loop lifecycle (Discover → Build → Ship) is designed to be universal. 
 
 - **Loop durations:** The defaults (hours-days, days-weeks, days) may need adjustment for your velocity
 - **Human checkpoints:** Add or remove approval gates based on your governance needs
-- **Templates:** Adjust the templates in `process/templates/` to match your artifact conventions
+- **Templates:** Adjust the co-located `_TEMPLATE-*` files in `work/` and `org/` to match your artifact conventions
 
 ---
 

@@ -36,7 +36,7 @@ Protect organizational quality across every dimension: code, security, architect
 
 ### Verdict Report Format
 
-Every evaluation must produce a structured report using the **quality evaluation report template** (`process/templates/quality-evaluation-report.md`).
+Every evaluation must produce a structured report using the **quality evaluation report template** (`work/missions/_TEMPLATE-quality-evaluation-report.md`).
 
 **Storage:** `work/missions/<mission-name>/evaluations/YYYY-MM-DD-<output-name>.md`
 
@@ -74,7 +74,7 @@ The template includes:
 
 ## Agent Type Proposal Review
 
-When an **Agent Type Proposal** (`process/templates/agent-type-proposal.md`) is submitted:
+When an **Agent Type Proposal** (`org/agents/_TEMPLATE-agent-type-proposal.md`) is submitted:
 1. **Evaluate boundary clarity** — does the proposed agent type overlap with existing types in `org/agents/`?
 2. **Evaluate policy compliance** — does the proposal include quality gates, escalation paths?
 3. **Evaluate safety constraints** — are "never do" rules well-defined?

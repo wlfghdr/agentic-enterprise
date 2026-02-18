@@ -43,7 +43,7 @@
 
 ## Outcome Contract
 
-> Reference: `work/missions/<name>/OUTCOME-CONTRACT.yaml`
+> Reference: `work/missions/<name>/OUTCOME-CONTRACT.md`
 
 | Metric | Target | Measurement Method | Deadline |
 |--------|--------|-------------------|----------|

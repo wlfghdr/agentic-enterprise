@@ -4,7 +4,7 @@
 
 This document identifies the agents and missions that every organization following an agentic enterprise operating model should consider.
 
-> **Note:** This Blueprint is a *reference catalog* of agent types. The **governed source of truth** for which agent types are active, deprecated, or proposed in your organization is the **Agent Type Registry** at [`org/agents/`](org/agents/). When you adopt an agent type from this Blueprint, register it in the registry using the [`org/agents/_TEMPLATE.yaml`](org/agents/_TEMPLATE.yaml) template. New agent types not listed here should be proposed via [`process/templates/agent-type-proposal.md`](process/templates/agent-type-proposal.md).
+> **Note:** This Blueprint is a *reference catalog* of agent types. The **governed source of truth** for which agent types are active, deprecated, or proposed in your organization is the **Agent Type Registry** at [`org/agents/`](org/agents/). When you adopt an agent type from this Blueprint, register it in the registry using the [`org/agents/_TEMPLATE-agent-type.md`](org/agents/_TEMPLATE-agent-type.md) template. New agent types not listed here should be proposed via [`org/agents/_TEMPLATE-agent-type-proposal.md`](org/agents/_TEMPLATE-agent-type-proposal.md).
 
 The model is organized into **5 layers** that form a complete operating system for the agentic enterprise:
 

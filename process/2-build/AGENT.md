@@ -14,8 +14,8 @@ Execute approved mission briefs by producing outputs: code, tests, documentation
 
 1. **Process overview:** [../README.md](../README.md)
 2. **Quality policies:** [../../org/4-quality/policies/](../../org/4-quality/policies/) — ALL of them
-3. **Decision record template:** [../templates/decision-record.md](../templates/decision-record.md)
-4. **Outcome contract template:** [../templates/outcome-contract.yaml](../templates/outcome-contract.yaml)
+3. **Decision record template:** [../../work/decisions/_TEMPLATE-decision-record.md](../../work/decisions/_TEMPLATE-decision-record.md)
+4. **Outcome contract template:** [../../work/missions/_TEMPLATE-outcome-contract.md](../../work/missions/_TEMPLATE-outcome-contract.md)
 5. **Your fleet configuration** — from `org/2-orchestration/fleet-configs/`
 6. **Active decisions:** [../../work/decisions/](../../work/decisions/)
 
@@ -36,7 +36,7 @@ Execute approved mission briefs by producing outputs: code, tests, documentation
 
 ### Document Decisions
 - Create decision records for novel patterns or architecture choices
-- Use `templates/decision-record.md`
+- Use `work/decisions/_TEMPLATE-decision-record.md`
 - Submit for Architecture Governor review
 
 ### Track Progress

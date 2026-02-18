@@ -91,7 +91,7 @@ native-ai-enterprise/
 ├── org/                          ← ORGANIZATIONAL STRUCTURE (full company)
 │   ├── README.md                 ← 5-layer model overview
 │   ├── agents/                   ← Agent Type Registry (governed source of truth)
-│   │   ├── _TEMPLATE.yaml        ← Template for new agent type definitions
+│   │   ├── _TEMPLATE-agent-type.md ← Template for new agent type definitions
 │   │   ├── steering/             ← Steering layer agent types
 │   │   ├── strategy/             ← Strategy layer agent types
 │   │   ├── orchestration/        ← Orchestration layer agent types
@@ -118,8 +118,7 @@ native-ai-enterprise/
 │   ├── 1-discover/               ← Loop 1: Discover & Decide
 │   ├── 2-build/                  ← Loop 2: Design & Build
 │   ├── 3-ship/                   ← Loop 3: Validate & Ship
-│   ├── 4-operate/                ← Loop 4: Operate & Evolve
-│   └── templates/                ← Artifact templates (17 templates)
+│   └── 4-operate/                ← Loop 4: Operate & Evolve
 │
 ├── work/                         ← ACTIVE WORK (GitOps project management)
 │   ├── signals/                  ← Incoming opportunities/problems

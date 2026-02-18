@@ -28,13 +28,13 @@ work/
 
 | Folder | What Goes Here | Template | Who Creates |
 |--------|---------------|----------|-------------|
-| `signals/` | Market, customer, technical, internal observations | `process/templates/signal.md` | Anyone |
-| `signals/digests/` | Weekly signal digest summaries | `process/templates/signal-digest.md` | Steering Layer |
-| `missions/` | Mission briefs, outcome contracts, status updates, outcome reports, quality evaluations | `process/templates/mission-brief.md` | Strategy Layer |
-| `decisions/` | Architecture and strategy decisions | `process/templates/decision-record.md` | Any Layer |
-| `releases/` | Release contracts for shipped software | `process/templates/release-contract.md` | Ship Loop (Orchestration) |
-| `assets/` | Non-code deliverable registry entries | `process/templates/asset-registry-entry.yaml` | Execution Layer |
-| `retrospectives/` | Postmortems and incident reports | `process/templates/postmortem.md` | Operate Loop agents |
+| `signals/` | Market, customer, technical, internal observations | `work/signals/_TEMPLATE-signal.md` | Anyone |
+| `signals/digests/` | Weekly signal digest summaries | `work/signals/digests/_TEMPLATE-signal-digest.md` | Steering Layer |
+| `missions/` | Mission briefs, outcome contracts, status updates, outcome reports, quality evaluations | `work/missions/_TEMPLATE-mission-brief.md` | Strategy Layer |
+| `decisions/` | Architecture and strategy decisions | `work/decisions/_TEMPLATE-decision-record.md` | Any Layer |
+| `releases/` | Release contracts for shipped software | `work/releases/_TEMPLATE-release-contract.md` | Ship Loop (Orchestration) |
+| `assets/` | Non-code deliverable registry entries | `work/assets/_TEMPLATE-asset-registry-entry.md` | Execution Layer |
+| `retrospectives/` | Postmortems and incident reports | `work/retrospectives/_TEMPLATE-postmortem.md` | Operate Loop agents |
 
 ## Naming Conventions
 
@@ -46,7 +46,7 @@ work/
 - **Quality Evaluations:** `<mission-name>/evaluations/YYYY-MM-DD-<eval-name>.md`
 - **Decisions:** `YYYY-MM-DD-<descriptive-name>.md`
 - **Releases:** `YYYY-MM-DD-<release-name>.md`
-- **Assets:** `<descriptive-asset-name>.yaml`
+- **Assets:** `<descriptive-asset-name>.md`
 - **Retrospectives:** `YYYY-MM-DD-<incident-name>.md`
 
 ## Lifecycle

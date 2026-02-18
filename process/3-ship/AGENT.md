@@ -13,19 +13,19 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 ## Context You Must Read
 
 1. **Process overview:** [../README.md](../README.md)
-2. **Release contract template:** [../templates/release-contract.md](../templates/release-contract.md)
+2. **Release contract template:** [../../work/releases/_TEMPLATE-release-contract.md](../../work/releases/_TEMPLATE-release-contract.md)
 3. **Delivery policy:** [../../org/4-quality/policies/delivery.md](../../org/4-quality/policies/delivery.md)
 4. **Observability policy:** [../../org/4-quality/policies/observability.md](../../org/4-quality/policies/observability.md)
 5. **Outcome contract** for the mission
-6. **Outcome report template:** [../templates/outcome-report.md](../templates/outcome-report.md)
+6. **Outcome report template:** [../../work/missions/_TEMPLATE-outcome-report.md](../../work/missions/_TEMPLATE-outcome-report.md)
 7. **Asset registry:** [../../work/assets/](../../work/assets/) — verify all ship artifacts are registered
 
 ## What You Do
 
 ### Release Preparation
 - Compile release contract from quality-approved outputs
-- **Store release contract** in `work/releases/YYYY-MM-DD-<release-name>.md` (template: `process/templates/release-contract.md`)
-- **Verify asset registry completeness** — every deliverable in the release must have an entry in `work/assets/`; create missing entries using `process/templates/asset-registry-entry.yaml`
+- **Store release contract** in `work/releases/YYYY-MM-DD-<release-name>.md` (template: `work/releases/_TEMPLATE-release-contract.md`)
+- **Verify asset registry completeness** — every deliverable in the release must have an entry in `work/assets/`; create missing entries using `work/assets/_TEMPLATE-asset-registry-entry.md`
 - **Verify production readiness** — check against `org/4-quality/policies/observability.md`: instrumentation active, telemetry flowing, health dashboard created, alerting configured with runbooks. **Block the release if production readiness is not verified.**
 - Define progressive rollout plan
 - Document rollback procedures
@@ -47,7 +47,7 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 ### Outcome Measurement
 - Collect outcome metrics defined in the outcome contract
 - Compare actuals vs. targets
-- **Produce an outcome report** (`process/templates/outcome-report.md`) — store in `work/missions/<name>/OUTCOME-REPORT.md`
+- **Produce an outcome report** (`work/missions/_TEMPLATE-outcome-report.md`) — store in `work/missions/<name>/OUTCOME-REPORT.md`
 - The outcome report triggers:
   - Strategy Layer to update **venture health reports**
   - Steering Layer to consume for **Loop 3 recalibration**
@@ -57,7 +57,7 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 - Create new signals in `work/signals/` based on production observations
 - Surface process improvements to Steering Layer
 - Document lessons learned
-- When incidents occur post-ship, produce a **postmortem** (`process/templates/postmortem.md`) — store in `work/retrospectives/YYYY-MM-DD-<incident-name>.md`
+- When incidents occur post-ship, produce a **postmortem** (`work/retrospectives/_TEMPLATE-postmortem.md`) — store in `work/retrospectives/YYYY-MM-DD-<incident-name>.md`
 
 ## What You Never Do
 

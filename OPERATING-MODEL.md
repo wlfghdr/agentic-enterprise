@@ -76,18 +76,18 @@ In this model, it's a **4-loop lifecycle**:
 | **Validate & Ship** | Staging → GA | Days | 1 (Go/No-Go) |
 | **Operate & Evolve** | GA → Continuous production health, remediation, signals | Continuous (24/7) | By escalation only |
 
-### Templates → `process/templates/`
+### Templates (co-located with artifacts)
 
-Reusable templates that standardize how work is created and tracked:
+Reusable templates that standardize how work is created and tracked. Templates are co-located with their artifacts as `_TEMPLATE-*` files:
 
-| Category | Templates |
-|----------|-----------|
-| **Discover** | `signal.md`, `signal-digest.md`, `mission-brief.md` |
-| **Build** | `outcome-contract.yaml`, `decision-record.md`, `mission-status.md`, `quality-evaluation-report.md`, `component-onboarding.md` |
-| **Ship** | `release-contract.md`, `outcome-report.md`, `asset-registry-entry.yaml` |
-| **Operate** | `runbook.md`, `postmortem.md` |
-| **Strategy** | `venture-health-report.md`, `fleet-performance-report.md` |
-| **Evolution** | `evolution-proposal.md`, `agent-type-proposal.md` |
+| Category | Templates | Location |
+|----------|-----------|----------|
+| **Discover** | `_TEMPLATE-signal.md`, `_TEMPLATE-signal-digest.md`, `_TEMPLATE-mission-brief.md` | `work/signals/`, `work/signals/digests/`, `work/missions/` |
+| **Build** | `_TEMPLATE-outcome-contract.md`, `_TEMPLATE-decision-record.md`, `_TEMPLATE-mission-status.md`, `_TEMPLATE-quality-evaluation-report.md`, `_TEMPLATE-component-onboarding.md` | `work/missions/`, `work/decisions/`, `org/3-execution/divisions/_TEMPLATE/` |
+| **Ship** | `_TEMPLATE-release-contract.md`, `_TEMPLATE-outcome-report.md`, `_TEMPLATE-asset-registry-entry.md` | `work/releases/`, `work/missions/`, `work/assets/` |
+| **Operate** | `_TEMPLATE-runbook.md`, `_TEMPLATE-postmortem.md` | `org/3-execution/divisions/_TEMPLATE/`, `work/retrospectives/` |
+| **Strategy** | `_TEMPLATE-venture-health-report.md`, `_TEMPLATE-fleet-performance-report.md` | `org/1-strategy/ventures/`, `work/missions/` |
+| **Evolution** | `_TEMPLATE-evolution-proposal.md`, `_TEMPLATE-agent-type-proposal.md` | `org/0-steering/`, `org/agents/` |
 
 ### Key Terminology: Fleets and Crews
 
@@ -184,15 +184,15 @@ Signal (work/signals/)
   │
   ▼
 Mission Brief (work/missions/<name>/BRIEF.md)
-  + Outcome Contract (work/missions/<name>/OUTCOME-CONTRACT.yaml)
+  + Outcome Contract (work/missions/<name>/OUTCOME-CONTRACT.md)
   │
-  ├─ Orchestration: Fleet Config (org/2-orchestration/fleet-configs/<mission>.yaml)
+  ├─ Orchestration: Fleet Config (org/2-orchestration/fleet-configs/<mission>.md)
   │                  Mission Status (work/missions/<name>/STATUS.md)
   │                  Fleet Performance Report
   │
   ▼
 Execution Outputs (code PRs, docs, content, assets)
-  + Asset Registry (work/assets/<asset>.yaml)
+  + Asset Registry (work/assets/<asset>.md)
   + Runbooks (per service)
   │
   ├─ Quality: Evaluation Reports (work/missions/<name>/evaluations/)
@@ -219,8 +219,8 @@ Agent types are governed as first-class organizational assets in the **Agent Typ
 
 | Concept | Location | Owner |
 |---------|----------|-------|
-| **Agent type definition** | `org/agents/<layer>/<type-id>.yaml` | Steering Layer (CTO approval) |
-| **Agent type proposal** | PR using `process/templates/agent-type-proposal.md` | Any layer can propose |
+| **Agent type definition** | `org/agents/<layer>/<type-id>.md` | Steering Layer (CTO approval) |
+| **Agent type proposal** | PR using `org/agents/_TEMPLATE-agent-type-proposal.md` | Any layer can propose |
 | **Agent type lifecycle** | `proposed → active → deprecated → retired` | Steering Layer governs transitions |
 | **Agent instances** | Fleet configs referencing active types | Orchestration Layer provisions |
 

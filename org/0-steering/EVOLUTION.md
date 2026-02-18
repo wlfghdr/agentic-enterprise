@@ -51,7 +51,7 @@
 | {{OBSERVABILITY_TOOL}} telemetry | Agent fleet performance, development velocity, deployment safety | Operational data |
 
 ### Sensing Outputs
-- **Signal digest:** Weekly summary of all incoming signals, grouped by theme (template: `process/templates/signal-digest.md`, stored in `work/signals/digests/`)
+- **Signal digest:** Weekly summary of all incoming signals, grouped by theme (template: `work/signals/digests/_TEMPLATE-signal-digest.md`, stored in `work/signals/digests/`)
 - **Pattern alerts:** When 3+ related signals suggest a systemic issue
 - **Anomaly flags:** When a metric deviates significantly from baseline
 
@@ -67,7 +67,7 @@
 Signal Pattern Detected → Analysis → Draft Proposal → Peer Review → Executive Review → Implementation → Measure & Iterate
 ```
 
-**Template:** `process/templates/evolution-proposal.md` — all proposals follow this standardized format.
+**Template:** `org/0-steering/_TEMPLATE-evolution-proposal.md` — all proposals follow this standardized format.
 
 ### Proposal Categories
 

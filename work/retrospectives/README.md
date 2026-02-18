@@ -4,7 +4,7 @@ Postmortems, incident reports, and blameless retrospectives from production oper
 
 ## How to Create a Postmortem
 
-1. Use the template: `process/templates/postmortem.md`
+1. Use the template: `work/retrospectives/_TEMPLATE-postmortem.md`
 2. Name the file: `YYYY-MM-DD-<incident-name>.md`
 3. Submit as a Pull Request
 

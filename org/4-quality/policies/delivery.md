@@ -26,7 +26,7 @@ Promotion between environments requires evidence of health at the current stage.
 
 ### Pre-Deployment
 - [ ] All quality policy evaluations passed (security, architecture, performance, **observability**)
-- [ ] Release contract completed (`process/templates/release-contract.md`)
+- [ ] Release contract completed (`work/releases/_TEMPLATE-release-contract.md`)
 - [ ] Observability verified: instrumentation active, SLOs configured, dashboard created, alerting with runbooks (see `policies/observability.md`)
 - [ ] Rollback plan documented and tested
 - [ ] Feature flags configured for new features

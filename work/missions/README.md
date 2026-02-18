@@ -5,9 +5,9 @@ Active and completed missions. Each mission gets its own folder.
 ## How to Create a Mission
 
 1. A signal must be validated through the Discover loop first
-2. Use the template: `process/templates/mission-brief.md`
+2. Use the template: `work/missions/_TEMPLATE-mission-brief.md`
 3. Create a folder: `<mission-name>/`
-4. Add `BRIEF.md` and `OUTCOME-CONTRACT.yaml` to the folder
+4. Add `BRIEF.md` and `OUTCOME-CONTRACT.md` to the folder
 5. Submit as a Pull Request for Strategy Layer approval
 
 ## Mission Structure
@@ -16,7 +16,7 @@ Active and completed missions. Each mission gets its own folder.
 missions/
 └── <mission-name>/
     ├── BRIEF.md                 # Mission brief (from template)
-    ├── OUTCOME-CONTRACT.yaml    # Measurable success criteria
+    ├── OUTCOME-CONTRACT.md    # Measurable success criteria
     ├── STATUS.md                # Progress updates (append-only, latest first)
     ├── OUTCOME-REPORT.md        # Final outcome measurement (mission closure)
     └── evaluations/             # Quality evaluation reports

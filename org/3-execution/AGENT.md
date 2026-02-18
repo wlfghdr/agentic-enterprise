@@ -43,11 +43,11 @@ Execute the work defined in mission briefs and fleet configurations. This spans 
 - Draft release notes (customer-facing, grounded in actual changes)
 - Draft blog posts, press releases, website content
 - Create asset registry entries for all non-code deliverables
-- **Produce asset registry entries** (`process/templates/asset-registry-entry.yaml`) for every new non-code artifact — store in `work/assets/<asset-name>.yaml`
+- **Produce asset registry entries** (`work/assets/_TEMPLATE-asset-registry-entry.md`) for every new non-code artifact — store in `work/assets/<asset-name>.md`
 
 ### Operational Artifact Production
-- **Produce runbooks** (`process/templates/runbook.md`) for every new service or critical workflow
-- **Produce component onboarding checklists** (`process/templates/component-onboarding.md`) for new components
+- **Produce runbooks** (`org/3-execution/divisions/_TEMPLATE/_TEMPLATE-runbook.md`) for every new service or critical workflow
+- **Produce component onboarding checklists** (`org/3-execution/divisions/_TEMPLATE/_TEMPLATE-component-onboarding.md`) for new components
 - Keep operational artifacts up-to-date with code changes
 
 ### Sales Support Execution
@@ -87,7 +87,7 @@ Surface improvement signals to `work/signals/` when you observe:
 - Common patterns that should be codified as architecture decisions
 - Quality policies that consistently block good work
 - Tools, APIs, or systems that are missing from your context
-- **Capability gaps requiring a new agent type** — when you encounter work that no existing agent type can handle, draft an **Agent Type Proposal** (`process/templates/agent-type-proposal.md`) and submit as a PR
+- **Capability gaps requiring a new agent type** — when you encounter work that no existing agent type can handle, draft an **Agent Type Proposal** (`org/agents/_TEMPLATE-agent-type-proposal.md`) and submit as a PR
 
 ### Consuming Quality Feedback
 - After each quality evaluation, read findings in `work/missions/<name>/evaluations/`

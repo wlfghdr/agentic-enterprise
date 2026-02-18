@@ -4,7 +4,7 @@ Weekly summaries of incoming signals, grouped by theme — produced by Steering 
 
 ## How to Create a Signal Digest
 
-1. Use the template: `process/templates/signal-digest.md`
+1. Use the template: `work/signals/digests/_TEMPLATE-signal-digest.md`
 2. Name the file: `YYYY-WXX-digest.md` (ISO week number)
 3. Submit as a Pull Request
 
