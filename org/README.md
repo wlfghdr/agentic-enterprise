@@ -200,16 +200,24 @@ org/
 │   └── divisions/            ← One folder per division (customize)
 │       └── _TEMPLATE/
 │           └── DIVISION.md    ← Template for creating division definitions
-└── 4-quality/
-    ├── AGENT.md                 ← Instructions for quality-layer agents
-    └── policies/                ← Machine-readable quality policies
-        ├── security.md
-        ├── architecture.md
-        ├── experience.md
-        ├── performance.md
-        ├── delivery.md
-        ├── content.md
-        └── customer.md
+├── 4-quality/
+│   ├── AGENT.md                 ← Instructions for quality-layer agents
+│   └── policies/                ← Machine-readable quality policies
+│       ├── security.md
+│       ├── architecture.md
+│       ├── experience.md
+│       ├── performance.md
+│       ├── delivery.md
+│       ├── content.md
+│       └── customer.md
+└── integrations/                ← Integration Registry (3rd-party tools)
+    ├── README.md                ← How integrations work
+    ├── _TEMPLATE-integration.md ← Template for registering integrations
+    └── categories/              ← Per-category integration guides
+        ├── observability.md     ← Observability & telemetry (essential for scale)
+        ├── enterprise-toolchain.md  ← CI/CD, ITSM, security, catalogs
+        ├── business-systems.md  ← CRM, ERP, support, analytics
+        └── communication.md     ← Chat, messaging, notifications
 ```
 
 ---

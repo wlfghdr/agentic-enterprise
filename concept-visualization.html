@@ -224,6 +224,13 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
 .node.repo .name{font-size:.78rem}
 .node.repo .path{color:var(--accent3)}
 
+.node.integration{
+  border-color:rgba(34,211,238,.35);
+  background:linear-gradient(160deg, rgba(34,211,238,.12), rgba(24,24,27,.95));
+}
+.node.integration .role{color:var(--cyan)}
+.node.integration .path{color:var(--cyan)}
+
 .pr-dot{
   position:absolute;
   width:10px;height:10px;
@@ -315,8 +322,8 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
     <section class="panel sidebar">
       <div class="sidebar-header">
         <div class="badge">Live concept animation</div>
-        <h1>How agents collaborate through Git PRs</h1>
-        <p class="meta">Selector-driven replay of real lifecycle patterns from <a href="examples/README.md">examples/</a>.</p>
+        <h1>How agents collaborate through Git + integrations</h1>
+        <p class="meta">Selector-driven replay of real lifecycle patterns from <a href="examples/README.md">examples/</a>. Agents use Git as the system of record and connect to enterprise tools via the <a href="org/integrations/">Integration Registry</a>.</p>
       </div>
 
       <div class="selector-wrap">
@@ -340,7 +347,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
           <span><i class="dot" style="background:var(--green)"></i>PR created</span>
           <span><i class="dot" style="background:var(--cyan)"></i>Agent wake-up</span>
           <span><i class="dot" style="background:var(--amber)"></i>Design gate</span>
-          <span><i class="dot" style="background:var(--accent)"></i>Repo state transition</span>
+          <span><i class="dot" style="background:var(--accent)"></i>Integration activity</span>
         </div>
       </section>
 
@@ -374,7 +381,7 @@ const scenarioData = {
         branch: 'signal/2026-03-15-bulk-export-customer-demand',
         artifact: 'work/signals/2026-03-15-bulk-export-customer-demand.md',
         tags: ['$2.4M ARR risk', '15 customers', 'Operate loop'],
-        narrative: 'Execution detects recurring export demand and opens a signal PR. Once merged, Steering can aggregate it with other converging evidence.'
+        narrative: 'Execution detects recurring export demand — sourced from CRM integration and support telemetry — and opens a signal PR. Once merged, Steering can aggregate it with other converging evidence.'
       },
       {
         phase: 'Phase 2',
@@ -458,11 +465,11 @@ const scenarioData = {
         title: 'Release + operate loop feeds new signals',
         from: 'release-manager',
         fromNode: 'releaseOps',
-        wakes: ['executionSignal'],
+        wakes: ['executionSignal', 'integrations'],
         branch: 'release/2026-04-12-bulk-export',
         artifact: 'work/releases/2026-04-12-bulk-export-contract.md',
-        tags: ['Progressive rollout', 'Outcome report', 'Cycle continues'],
-        narrative: 'Release PR lands, operation starts, and telemetry generates new signals, closing one loop and beginning the next cycle.'
+        tags: ['Progressive rollout', 'Observability active', 'Cycle continues'],
+        narrative: 'Release PR lands, production observability monitors the rollout via OpenTelemetry traces and platform dashboards, and telemetry generates new signals — closing one loop and beginning the next.'
       }
     ]
   },
@@ -476,11 +483,11 @@ const scenarioData = {
         title: 'Performance monitor opens bottleneck signal',
         from: 'fleet-performance-monitor',
         fromNode: 'executionSignal',
-        wakes: ['steeringDigest'],
+        wakes: ['steeringDigest', 'integrations'],
         branch: 'signal/2026-05-02-deployment-cycle-time-anomaly',
         artifact: 'work/signals/2026-05-02-deployment-cycle-time-anomaly.md',
-        tags: ['4.2 day cycle', 'Internal signal', 'Operate loop'],
-        narrative: 'Multiple layers report deployment latency. The repo captures each observation as auditable signals via PR.'
+        tags: ['4.2 day cycle', 'Observability-sourced', 'Operate loop'],
+        narrative: 'Fleet performance anomalies detected via observability telemetry — agent throughput metrics and pipeline traces reveal deployment latency. Signals are automatically filed from telemetry patterns.'
       },
       {
         phase: 'Phase 2',
@@ -531,11 +538,11 @@ const scenarioData = {
         title: 'Operate loop validates reduced cycle time',
         from: 'transformation-health',
         fromNode: 'releaseOps',
-        wakes: ['executionSignal'],
+        wakes: ['executionSignal', 'integrations'],
         branch: 'operate/EVO-2026-008-outcome-review',
         artifact: 'work/missions/deployment-pipeline-optimization/OUTCOME-REPORT.md',
-        tags: ['Meta-quality', '<1.5 day target', 'New signals'],
-        narrative: 'Outcome reports in Git verify whether structural changes worked, and fresh operating signals feed the next improvement cycle.'
+        tags: ['Meta-quality', '<1.5 day target', 'Telemetry validated'],
+        narrative: 'Outcome reports are validated against observability data — cycle time metrics from the telemetry pipeline confirm the improvement. Fresh operating signals feed the next improvement cycle.'
       }
     ]
   },
@@ -625,7 +632,8 @@ const nodeLayout = {
   qualityEval: { x: 250, y: 410, role: 'Quality', name: 'Delivery Evaluator', path: 'org/4-quality/policies/' },
   executionDesign: { x: 630, y: 500, role: 'Execution', name: 'Design Agent', path: 'work/missions/*/TECHNICAL-DESIGN.md' },
   executionBuild: { x: 380, y: 545, role: 'Execution', name: 'Build Streams', path: 'org/3-execution/divisions/' },
-  repo: { x: 500, y: 325, role: 'Git', name: 'Main Repository', path: 'PRs = decisions' }
+  integrations: { x: 880, y: 545, role: 'Integrations', name: 'Integration Registry', path: 'org/integrations/' },
+  repo: { x: 500, y: 325, role: 'Git', name: 'Main Repository', path: 'PRs = decisions · Integrations extend reach' }
 };
 
 const stage = document.getElementById('stage');
@@ -649,7 +657,7 @@ let terminalLineCounter = 0;
 
 function makeNode(id, info) {
   const el = document.createElement('div');
-  el.className = 'node' + (id === 'repo' ? ' repo' : '');
+  el.className = 'node' + (id === 'repo' ? ' repo' : '') + (id === 'integrations' ? ' integration' : '');
   el.dataset.id = id;
   const pos = coordsToPercent(info.x, info.y);
   el.style.left = `${pos.x}%`;

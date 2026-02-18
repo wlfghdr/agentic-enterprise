@@ -9,7 +9,7 @@
 <h1 align="center">Agentic Enterprise</h1>
 
 <p align="center">
-  <strong>Run your entire company as a Git repository.<br>5 layers. 4 loops. Zero legacy ceremony.</strong>
+  <strong>Run your entire company as a Git repository.<br>5 layers. 4 loops. Integrate everything. Zero legacy ceremony.</strong>
 </p>
 
 <p align="center">
@@ -35,10 +35,11 @@ This is **not** a strategy deck. It's a **live, forkable framework** — with or
 | Problem | This Framework's Answer |
 |---------|------------------------|
 | AI agents need governance, not just prompts | 5-layer organizational model with explicit boundaries, RACI via CODEOWNERS, and policy enforcement |
-| Legacy processes (Jira, wikis, standups) don't work for agent fleets | Git-native everything: PRs = decisions, branches = workflow states, CI/CD = quality gates |
-| No standard way to structure human + agent collaboration | Clear separation: humans steer and decide, agents execute and evaluate, Git is the medium |
+| Legacy processes (Jira, wikis, standups) don't work for agent fleets | Git-native governance: PRs = decisions, branches = workflow states, CI/CD = quality gates |
+| No standard way to structure human + agent collaboration | Clear separation: humans steer and decide, agents execute and evaluate, Git is the system of record |
 | Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 8 quality policy domains, 4 process loops |
 | Agent instructions are scattered and inconsistent | Hierarchical `AGENT.md` files: global → layer → division, all version-controlled |
+| Enterprises run dozens of tools that agents need to use | Integration Registry with governed connections to observability, ITSM, CI/CD, business systems |
 
 ---
 
@@ -92,6 +93,8 @@ Loop 4 feeds signals back into Loop 1, creating a continuous organizational meta
 | Status meetings | `git diff` + mission status | Self-updating, always accurate |
 | Phase gates | CI/CD checks | Automated, consistent |
 | Org restructuring | Evolution PRs | Transparent, reversible, evidence-based |
+| Siloed tool configs | Integration Registry | Governed, auditable, agent-accessible |
+| Manual monitoring setup | Observability-as-config | Declared in CONFIG.yaml, auto-wired |
 
 ### The Autonomy Curve
 
@@ -324,7 +327,10 @@ agentic-enterprise/
 │   │       └── ... (+ domain placeholders)
 │   ├── 4-quality/                   ← Evaluate against policies
 │   │   └── policies/                ← 8 mandatory policy domains
-│   └── agents/                      ← Agent Type Registry
+│   ├── agents/                      ← Agent Type Registry
+│   └── integrations/                ← Integration Registry (3rd-party tools)
+│       ├── categories/              ← Observability, toolchain, business, comms
+│       └── _TEMPLATE-integration.md ← Template for new integrations
 │
 ├── process/                         ← PROCESS DEFINITIONS
 │   ├── 1-discover/                  ← Loop 1: Signal → Mission
@@ -347,7 +353,37 @@ agentic-enterprise/
 
 ## Ecosystem & Integrations
 
-This framework is **runtime-agnostic** — it defines the organizational structure, processes, and governance. You bring the agent runtime. Here's how the ecosystem fits together:
+This framework is **runtime-agnostic** and **integration-ready**. It defines the organizational structure, processes, and governance — you bring the agent runtime and connect your enterprise tools. The **Integration Registry** (`org/integrations/`) provides governed connection patterns for every category of external tool.
+
+### Integration Registry
+
+The operating model lives in the filesystem. But enterprises run on ecosystems. The Integration Registry makes external tool connections explicit, governed, and auditable:
+
+| Category | What Connects | Registry Guide |
+|----------|--------------|----------------|
+| **Observability & Telemetry** | Agent fleet monitoring, governance visibility, anomaly detection, compliance auditing | `org/integrations/categories/observability.md` |
+| **Enterprise Toolchain** | CI/CD pipelines, ITSM, security scanners, service catalogs, developer portals | `org/integrations/categories/enterprise-toolchain.md` |
+| **Business Systems** | CRM, ERP, customer support, analytics, marketing automation | `org/integrations/categories/business-systems.md` |
+| **Communication** | Chat (Slack/Teams), messaging, email, notifications, escalation | `org/integrations/categories/communication.md` |
+
+**Connection patterns:** MCP Servers (agent-callable tools), Webhooks (inbound events), API Integration (outbound actions), OpenTelemetry (standardized telemetry).
+
+All integrations are declared in `CONFIG.yaml → integrations` and governed through the same PR-based process as everything else.
+
+### Observability for Agent Governance at Scale
+
+As agent fleets grow, observability becomes the **scaling layer** for governance — processing telemetry that agents generate, surfacing patterns, and feeding automated signals back into the operating model.
+
+The framework supports any observability platform through OpenTelemetry and platform-native integration patterns:
+
+| Approach | Tools | Best For |
+|----------|-------|----------|
+| **Open standard** | OpenTelemetry + Prometheus + Grafana | Vendor-neutral collection, proven at scale, free |
+| **Full-stack AI-powered** | Dynatrace | Automatic topology, AI root cause analysis, end-to-end tracing |
+| **Log-centric** | Elastic (ELK Stack) | Full-text search, security analytics, APM |
+| **Hybrid** | OpenTelemetry collection + any backend | Maximum flexibility, open collection, differentiated analysis |
+
+See `org/integrations/categories/observability.md` for detailed patterns.
 
 ### Agent Runtimes (Bring Your Own)
 
@@ -392,7 +428,7 @@ This framework is **runtime-agnostic** — it defines the organizational structu
 | 7 | **No dashboards or visualization** | [Issue #7](https://github.com/wlfghdr/agentic-enterprise/issues/7) | Backstage plugins, Grafana, GitHub Projects |
 | 8 | **No cross-repo orchestration** | [Issue #8](https://github.com/wlfghdr/agentic-enterprise/issues/8) | repository_dispatch, ArgoCD, Flux, Nx |
 | 9 | **Agent instructions not enforced** — Trust-based compliance | [Issue #9](https://github.com/wlfghdr/agentic-enterprise/issues/9) | MCP enforcement, NeMo Guardrails |
-| 10 | **No real system connections** — Git-only integration | [Issue #10](https://github.com/wlfghdr/agentic-enterprise/issues/10) | MCP servers, A2A, OpenClaw integrations |
+| 10 | **Integration Registry is templated, not wired** — Patterns defined, connections not live | [Issue #10](https://github.com/wlfghdr/agentic-enterprise/issues/10) | MCP servers, A2A, OpenTelemetry, vendor SDKs |
 
 See [GitHub Discussions](https://github.com/wlfghdr/agentic-enterprise/discussions) for community conversation on each topic.
 

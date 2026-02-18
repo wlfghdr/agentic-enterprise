@@ -46,7 +46,18 @@ Read and adjust these three files — they set the tone for everything:
 2. [AGENTS.md](AGENTS.md) — Global agent rules. Adjust identity and product naming.
 3. [OPERATING-MODEL.md](OPERATING-MODEL.md) — The meta-description. Verify it matches your reality.
 
-### Step 4: Start Using It (5 min)
+### Step 4: Register Your Integrations (5 min)
+
+Review `CONFIG.yaml → integrations` and register the external tools your organization uses:
+
+1. **Observability** — Your monitoring platform (Dynatrace, Grafana, Datadog, etc.) — essential for scaling agent governance
+2. **Enterprise toolchain** — CI/CD, ITSM, security scanning, service catalogs
+3. **Business systems** — CRM, support platforms, analytics
+4. **Communication** — Chat, messaging, notification channels
+
+See `org/integrations/` for detailed guides per category. Start with observability and CI/CD — they provide the most immediate value.
+
+### Step 5: Start Using It (5 min)
 
 Create your first signal in `work/signals/` and you're live.
 
@@ -221,7 +232,31 @@ The framework ships with 7 generic quality policies. Customize each:
 
 ---
 
-### Level 6: Process Customization
+### Level 6: Integrations (3rd-Party Tools)
+
+**Location:** `org/integrations/` and `CONFIG.yaml → integrations`
+
+The framework ships with integration category guides and a template. Connect your enterprise tools:
+
+| Category | Guide | What to Register |
+|----------|-------|-----------------|
+| **Observability** | `org/integrations/categories/observability.md` | Your monitoring platform, telemetry pipeline, dashboarding — essential for scaling agent governance |
+| **Enterprise Toolchain** | `org/integrations/categories/enterprise-toolchain.md` | CI/CD, ITSM, security scanners, service catalogs |
+| **Business Systems** | `org/integrations/categories/business-systems.md` | CRM, ERP, support, analytics, marketing automation |
+| **Communication** | `org/integrations/categories/communication.md` | Chat, messaging, notifications, escalation |
+
+**Getting started:**
+
+1. Register your observability platform in `CONFIG.yaml → integrations.observability` — this is the highest-value integration for governance at scale
+2. Register CI/CD tools — these enforce quality gates
+3. Add business systems and communication channels as needed
+4. For complex integrations, create a spec from `org/integrations/_TEMPLATE-integration.md`
+
+**Key principle:** Start with observability and CI/CD. Add other integrations incrementally as your agent fleet grows. Every integration must be registered — no shadow connections.
+
+---
+
+### Level 7: Process Customization
 
 **Location:** `process/`
 
@@ -233,7 +268,7 @@ The 3-loop lifecycle (Discover → Build → Ship) is designed to be universal. 
 
 ---
 
-### Level 7: Worked Examples
+### Level 8: Worked Examples
 
 **Location:** `examples/`
 
@@ -251,14 +286,17 @@ The framework ships with a generic lifecycle example. Create your own:
 |-----------|------------|-----|
 | 5-layer model | ✅ Yes | Universal organizational pattern |
 | 3-loop lifecycle | ✅ Yes | Universal process pattern |
-| Git-native collaboration | ✅ Yes | Fundamental to the model |
+| Git-native governance | ✅ Yes | Fundamental to the model |
 | Agent instruction hierarchy | ✅ Yes | Critical for multi-agent governance |
 | Improvement signal flow | ✅ Yes | Key innovation of the model |
+| Integration Registry structure | ✅ Yes | Governed connection patterns |
 | Company name/vision/mission | ❌ Customize | Your identity |
 | Ventures | ❌ Customize | Your market offerings |
 | Divisions | ❌ Customize | Your organizational units |
 | Quality thresholds | ❌ Customize | Your risk tolerance |
 | Toolchain references | ❌ Customize | Your infrastructure |
+| Integrations | ❌ Customize | Your enterprise tool ecosystem |
+| Observability platform | ❌ Customize | Your monitoring and telemetry stack |
 | Product naming | ❌ Customize | Your brand |
 | Role titles | 🟡 Optional | The generic titles work for most orgs |
 | Templates | 🟡 Optional | The defaults are reasonable starting points |
@@ -289,6 +327,8 @@ All placeholders in the framework use the `{{VARIABLE}}` syntax. Here's the comp
 | `{{CI_CD}}` | CONFIG.yaml → toolchain.ci_cd | Delivery policy |
 | `{{OBSERVABILITY_TOOL}}` | CONFIG.yaml → toolchain.observability | Monitoring references |
 | `{{SERVICE_CATALOG}}` | CONFIG.yaml → toolchain.service_catalog | Catalog references |
+| `{{OBSERVABILITY_PLATFORM_NAME}}` | CONFIG.yaml → integrations.observability[0].name | Integration guides |
+| `{{OTLP_ENDPOINT}}` | CONFIG.yaml → integrations.observability[0].otlp_endpoint | Telemetry pipeline |
 
 ---
 
@@ -299,9 +339,11 @@ This framework is a **structural template** — a starting point, not a turnkey 
 1. **Split into multiple repos:** Operating model, per-product code, GTM content, customer playbooks — connected via cross-repo references
 2. **Wire governance:** CODEOWNERS, branch protection, CI/CD checks — not just described, but enforced
 3. **Implement agent runtime:** The repo defines *what* agents do; you'll need LLM orchestration, tool bindings, and MCP integrations
-4. **Calibrate policies:** Quality policies need real-world tuning — false positive rates, threshold adjustment, domain expert review
-5. **Build UIs:** Dashboards, signal triage boards, mission control — visual layers over the Git data
-6. **Connect to systems:** Agents need MCP servers, APIs, and tool integrations to interact with real business systems (Jira, ServiceNow, Slack, CRM, CI/CD toolchains)
+4. **Wire integrations:** Connect registered integrations from `org/integrations/` — implement MCP servers, webhooks, API clients, and OpenTelemetry instrumentation for your specific tools
+5. **Deploy observability:** Instrument agent runtimes with OpenTelemetry, connect to your observability platform, build fleet performance dashboards and governance visibility
+6. **Calibrate policies:** Quality policies need real-world tuning — false positive rates, threshold adjustment, domain expert review
+7. **Build UIs:** Dashboards, signal triage boards, mission control — visual layers over the Git data
+8. **Connect business systems:** Agents need MCP servers, APIs, and tool integrations to interact with real business systems (ITSM, CRM, CI/CD toolchains)
 
 ---
 

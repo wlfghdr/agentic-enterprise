@@ -77,6 +77,13 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 - This is not extra work — it is part of every agent's core responsibility. A company that observes itself through every agent improves exponentially faster than one that relies on periodic top-down reviews.
 - **Important:** Signaling is not deciding. You surface observations; the Steering Layer (with executive approval) decides what to change.
 
+### 8. Use integrations through governed channels
+- External tools (observability platforms, ITSM, CRM, CI/CD, communication) are connected through the **Integration Registry** (`org/integrations/`).
+- When using an external tool, verify it is registered and active in CONFIG.yaml → `integrations`.
+- Always prefer registered MCP servers over ad-hoc API calls.
+- Log integration usage as part of your activity telemetry — every external call should be traceable.
+- If you discover a need for an unregistered integration, file a signal. Do not create ad-hoc tool connections.
+
 ## Repository Structure (Quick Reference)
 
 ```
@@ -109,9 +116,13 @@ agentic-enterprise/
 │   ├── 3-execution/              ← Execution Layer (DO the work)
 │   │   ├── AGENT.md
 │   │   └── divisions/         ← One folder per division (customize)
-│   └── 4-quality/                ← Quality Layer (EVALUATE the output)
-│       ├── AGENT.md
-│       └── policies/             ← Quality policies (7 domains)
+│   ├── 4-quality/                ← Quality Layer (EVALUATE the output)
+│   │   ├── AGENT.md
+│   │   └── policies/             ← Quality policies (7 domains)
+│   └── integrations/             ← Integration Registry (3rd-party tools)
+│       ├── README.md             ← How integrations work
+│       ├── _TEMPLATE-integration.md
+│       └── categories/           ← Observability, toolchain, business, comms
 │
 ├── process/                      ← PROCESS ORGANIZATION
 │   ├── README.md                 ← 4-loop lifecycle overview

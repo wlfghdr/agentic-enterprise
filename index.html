@@ -230,7 +230,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
     <div class="hero-content">
       <div class="hero-badge">The post-Jira, post-wiki enterprise</div>
       <h1>Your company as a<br><span class="gradient-text">living Git repository</span></h1>
-      <p class="hero-desc">An open-source operating model where humans set direction and AI agent fleets execute — with every decision, artifact, and approval versioned, auditable, and governed through Git.</p>
+      <p class="hero-desc">An open-source operating model where humans set direction and AI agent fleets execute — with every decision, artifact, and approval versioned and auditable. Git is the system of record. Enterprise tools connect through governed integrations.</p>
       <div class="hero-actions">
         <a href="#model" class="btn-primary">See how it works ↓</a>
         <a href="#adopt" class="btn-secondary">Start in 5 minutes</a>
@@ -378,23 +378,24 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 <!-- ═══════════════════════════ GITOPS REVOLUTION ═══════════════════════════ -->
 <section id="gitops">
   <div class="container">
-    <div class="section-label reveal">The GitOps Revolution</div>
-    <h2 class="reveal">Everything you use today —<br><span class="gradient-text">replaced by Git.</span></h2>
-    <p class="section-sub reveal">Not a migration. A structural reinvention. Git provides branching (workflow), PRs (decisions), CODEOWNERS (RACI), CI/CD (quality gates), and history (audit trail) — all built in.</p>
+    <div class="section-label reveal">The Governance Model</div>
+    <h2 class="reveal">Git as the system of record.<br><span class="gradient-text">Integrations extend the reach.</span></h2>
+    <p class="section-sub reveal">The operating model lives in the filesystem — versioned and auditable. Enterprise tools connect through governed integrations. Your existing tools work with the model, not against it.</p>
 
     <div class="table-wrapper reveal">
       <table class="replace-table">
-        <thead><tr><th>Legacy</th><th>Agentic Enterprise</th><th>Why it's better</th></tr></thead>
+        <thead><tr><th>Traditional Approach</th><th>Agentic Enterprise</th><th>What changes</th></tr></thead>
         <tbody>
-          <tr><td class="old">Jira / Linear ticket</td><td class="new">Markdown file in <code style="color:var(--cyan);font-size:0.82rem">work/</code></td><td class="why">Version-controlled, diffable, agent-native</td></tr>
-          <tr><td class="old">Ticket workflow</td><td class="new">Git branch → PR → merge</td><td class="why">States = branches, approvals = merges</td></tr>
+          <tr><td class="old">Jira / Linear ticket</td><td class="new">Markdown file in <code style="color:var(--cyan);font-size:0.82rem">work/</code></td><td class="why">System of record in Git; existing tools sync via integrations</td></tr>
+          <tr><td class="old">Ticket workflow</td><td class="new">Git branch → PR → merge</td><td class="why">Governance is Git-native; status projects to dashboards</td></tr>
           <tr><td class="old">Sprint planning</td><td class="new">Mission brief creation</td><td class="why">Goal-oriented, not time-boxed</td></tr>
-          <tr><td class="old">Daily standup</td><td class="new">Git log + fleet dashboard</td><td class="why">Always current, zero meetings</td></tr>
+          <tr><td class="old">Daily standup</td><td class="new">Git log + observability dashboards</td><td class="why">Always current, real-time fleet health</td></tr>
           <tr><td class="old">Confluence wiki</td><td class="new">The repository itself</td><td class="why">Single source of truth, versioned</td></tr>
           <tr><td class="old">RACI matrix</td><td class="new"><code style="color:var(--cyan);font-size:0.82rem">CODEOWNERS</code></td><td class="why">Executable, enforced by Git host</td></tr>
           <tr><td class="old">Phase gates</td><td class="new">CI/CD pipeline checks</td><td class="why">Automated, no human bottleneck</td></tr>
-          <tr><td class="old">Status meeting</td><td class="new"><code style="color:var(--cyan);font-size:0.82rem">git diff</code> + mission status</td><td class="why">Self-updating, always accurate</td></tr>
-          <tr><td class="old">Story points</td><td class="new">Fleet throughput metrics</td><td class="why">Measured from reality, not guessed</td></tr>
+          <tr><td class="old">Manual monitoring</td><td class="new">Observability integration</td><td class="why">Telemetry feeds signals back into governance</td></tr>
+          <tr><td class="old">Story points</td><td class="new">Fleet throughput metrics</td><td class="why">Measured from telemetry, not guessed</td></tr>
+          <tr><td class="old">Siloed tool configs</td><td class="new">Integration Registry</td><td class="why">Governed, auditable, agent-accessible</td></tr>
           <tr><td class="old">Annual reorg</td><td class="new">Evolution proposals via PR</td><td class="why">Continuous, transparent, reversible</td></tr>
         </tbody>
       </table>
@@ -511,6 +512,11 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
         <p>Agent Type Registry. Governed definitions for every agent role — capabilities, boundaries, and lifecycle states.</p>
       </div>
       <div class="repo-folder reveal">
+        <div class="folder-icon">🔌</div>
+        <h4><code>org/integrations/</code></h4>
+        <p>Integration Registry. Governed connections to observability, ITSM, CI/CD, business systems, and communication tools. Your enterprise ecosystem, declared and auditable.</p>
+      </div>
+      <div class="repo-folder reveal">
         <div class="folder-icon">⚙️</div>
         <h4><code>CONFIG.yaml</code></h4>
         <p>Single config file. Fill in your company name, mission, products. Search-replace across the entire framework. Done.</p>
@@ -568,8 +574,8 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 
 <!-- ═══════════════════════════ FINAL CTA ═══════════════════════════ -->
 <section class="final-cta">
-  <h2 class="reveal">The future of enterprise<br>is a <span class="gradient-text">Git repository.</span></h2>
-  <p class="reveal">Open source. No vendor. No license fees. Fork it, fill in your config, and start running your company through the same system your agents already understand natively.</p>
+  <h2 class="reveal">The future of enterprise<br>is a <span class="gradient-text">governed repository.</span></h2>
+  <p class="reveal">Open source. No vendor lock-in. Fork it, fill in your config, register your integrations, and start running your company through the same system your agents already understand natively.</p>
   <div class="reveal">
     <a href="https://github.com/wlfghdr/agentic-enterprise" target="_blank" class="btn-primary" style="font-size:1.1rem;padding:18px 40px">Get the repo on GitHub ↗</a>
   </div>

@@ -105,22 +105,25 @@ Reusable templates that standardize how work is created and tracked. Templates a
 
 ---
 
-## The GitOps Revolution: What Replaces What
+## How the Model Relates to Existing Tools
 
-| Legacy Concept | Agentic Enterprise Replacement | Why It's Better |
+The agentic enterprise model does not require replacing every tool in your organization. It introduces a **governance backbone** (Git-based) and a **governed integration layer** that connects to existing enterprise systems. Here's how concepts map:
+
+| Traditional Concept | Agentic Enterprise Equivalent | Relationship |
 |---------------|----------------------|-----------------|
-| **Ticket (Jira/Linear)** | Markdown file in `work/` | Version-controlled, diffable, agent-readable, no API needed |
-| **Ticket workflow** | Git branch → PR → merge | States are branches, transitions are PRs, approvals are merges |
-| **Board/Kanban** | Folder structure + dashboards | Auto-generated, real-time, no manual updates |
+| **Ticket (Jira/Linear)** | Markdown file in `work/` | System of record moves to Git; existing tools can sync via Integration Registry |
+| **Ticket workflow** | Git branch → PR → merge | Governance is Git-native; status can be projected to existing tools |
+| **Board/Kanban** | Auto-generated dashboards from `work/` | Visualization is decoupled from data — use existing dashboards or build new ones |
 | **Sprint planning** | Mission brief creation | Goal-oriented, not time-boxed |
 | **Sprint review** | PR review with embedded evidence | Continuous, not biweekly |
-| **Daily standup** | Git log + fleet dashboard | Always current, no meetings |
-| **Story points** | Fleet throughput metrics | Measured from reality, not estimated |
+| **Daily standup** | Git log + fleet observability dashboards | Always current, no meetings; observability provides real-time fleet health |
+| **Story points** | Fleet throughput metrics (from observability) | Measured from telemetry, not estimated |
 | **Wiki** | This repository | Single source of truth, version-controlled |
-| **Chat discussions** | PR comments + commit messages | Auditable, contextual, traceable |
+| **Chat discussions** | PR comments + chat integration | Auditable via Git; chat is the human interaction surface |
 | **RACI matrix** | CODEOWNERS file | Executable, enforced by the Git host |
 | **Phase gates** | CI/CD pipeline checks | Automated, consistent, no human bottleneck |
-| **Status meeting** | `git diff` + mission status files | Self-updating, always accurate |
+| **Status meeting** | `git diff` + mission status + observability | Self-updating, always accurate |
+| **Monitoring/alerting** | Observability integration (org/integrations/) | Production telemetry feeds signals back into governance |
 | **Retrospective** | Policy evolution PRs + improvement signals | Continuous improvement, not periodic |
 | **Role descriptions** | Agent instruction files | Executable, testable, versionable |
 | **Executive strategy offsite** | Steering Layer evolution process | Continuous, evidence-based, agent-assisted |
