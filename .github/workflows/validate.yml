@@ -65,7 +65,9 @@ jobs:
 
           md_files = [
             p for p in repo.rglob("*.md")
-            if ".git" not in p.parts and "node_modules" not in p.parts
+            if ".git" not in p.parts
+            and "node_modules" not in p.parts
+            and "_TEMPLATE" not in p.name
           ]
 
           inline_link_pattern = re.compile(r"\[[^\]]*\]\(([^)]+)\)")

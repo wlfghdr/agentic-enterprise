@@ -111,7 +111,7 @@ This is a **Git-native** company. Git is the system of record, not a side channe
 |---------|---------------|
 | **Decision** | Pull Request merged to `work/decisions/` |
 | **Approval** | PR review approval |
-| **RACI** | CODEOWNERS file — see [../../CODEOWNERS](../../CODEOWNERS) |
+| **RACI** | CODEOWNERS file — see [../CODEOWNERS](../CODEOWNERS) |
 | **Audit trail** | Git history |
 | **Policy change** | PR to `org/4-quality/policies/` |
 | **Strategy change** | PR to `org/1-strategy/` |
