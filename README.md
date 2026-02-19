@@ -6,6 +6,12 @@
   <img src="https://img.shields.io/badge/status-POC%20%2F%20Demo-yellow?style=for-the-badge" alt="Status">
 </p>
 
+<p align="center">
+  <a href="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml">
+    <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
+  </a>
+</p>
+
 <h1 align="center">Agentic Enterprise</h1>
 
 <p align="center">
