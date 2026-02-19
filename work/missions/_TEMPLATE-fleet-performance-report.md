@@ -1,6 +1,6 @@
 # Fleet Performance Report: [Mission Name or Period]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
+> **Template version:** 1.0 | **Last updated:** 2026-02-20  
 > **Scope:** [mission-specific or monthly fleet-wide]  
 > **Mission:** [link to `work/missions/<name>/BRIEF.md` — if mission-specific]  
 > **Fleet Config:** [link to fleet config (Markdown by default; YAML only if machine-only) — if mission-specific]  
