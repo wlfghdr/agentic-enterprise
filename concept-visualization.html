@@ -698,8 +698,8 @@ const nodeLayout = {
   executionDesign: { x: 630, y: 500, role: 'Execution', name: 'Design Agent', path: 'work/missions/*/TECHNICAL-DESIGN.md' },
   executionBuild: { x: 380, y: 545, role: 'Execution', name: 'Build Streams', path: 'org/3-execution/divisions/' },
   integrations: { x: 880, y: 545, role: 'Integrations', name: 'Integration Registry', path: 'org/integrations/' },
-  observability: { x: 110, y: 545, role: 'Observability', name: 'OTel / Platform', path: 'org/integrations/categories/observability.md' },
-  repo: { x: 500, y: 325, role: 'Git', name: 'Main Repository', path: 'PRs = decisions · telemetry = truth' }
+  observability: { x: 620, y: 340, role: 'Observability', name: 'OTel / Platform', path: 'org/integrations/categories/observability.md' },
+  repo: { x: 390, y: 340, role: 'Git', name: 'Main Repository', path: 'PRs = decisions · telemetry = truth' }
 };
 
 const stage = document.getElementById('stage');
@@ -917,8 +917,8 @@ function animatePr(fromNodeId, branchLabel, onRepoImpact) {
   stage.appendChild(dot);
   stage.appendChild(label);
 
-  const duration = 2400;
-  const holdAtRepoMs = 2400;
+  const duration = 3200;
+  const holdAtRepoMs = 3600;
   let impactHandled = false;
   const start = performance.now();
 
@@ -966,8 +966,8 @@ function animateTelemetry(fromNodeId, labelText, onArrival) {
   stage.appendChild(dot);
   stage.appendChild(label);
 
-  const duration = 1800;
-  const holdMs = 1200;
+  const duration = 2600;
+  const holdMs = 1800;
   let arrived = false;
   const start = performance.now();
 
@@ -1011,8 +1011,8 @@ function animateFromObs(toNodeId, labelText, onArrival) {
   stage.appendChild(dot);
   stage.appendChild(label);
 
-  const duration = 1600;
-  const holdMs = 1000;
+  const duration = 2200;
+  const holdMs = 1800;
   let arrived = false;
   const start = performance.now();
 
@@ -1077,36 +1077,36 @@ function renderStep(withPrAnimation = true) {
   const wakeTargets = () => {
     appendTerminalLine(`PR merged on main; repo propagates wake events`, 'event');
     step.wakes.forEach((targetId, idx) => {
-      flashWake(targetId, 700 + idx * 260);
+      flashWake(targetId, 1000 + idx * 400);
       const targetName = nodeLayout[targetId] ? nodeLayout[targetId].name : targetId;
-      setTimeout(() => appendTerminalLine(`wake -> ${targetName}`, 'wake'), 700 + idx * 260);
+      setTimeout(() => appendTerminalLine(`wake -> ${targetName}`, 'wake'), 1000 + idx * 400);
     });
     // Emit OTel span from the active agent to observability
     setTimeout(() => {
       animateTelemetry(step.fromNode, 'OTel span', () => {
         appendTerminalLine(`otel -> span: ${step.from} · mission=${step.branch.split('/')[1] || 'n/a'}`, 'telemetry');
       });
-    }, 900);
+    }, 1500);
     // Emit git webhook from repo to observability (PR merged event)
     setTimeout(() => {
       animateTelemetry('repo', 'git webhook', () => {
         appendTerminalLine(`otel -> event: governance.pr.merged · pr=${step.branch}`, 'telemetry');
       });
-    }, 1600);
+    }, 2800);
     // Observability processes data and feeds signals back to consuming agents
     const consumers = obsConsumers[step.fromNode] || ['steeringDigest'];
     setTimeout(() => {
       animateFromObs(consumers[0], 'obs→consume', () => {
         appendTerminalLine(`obs -> data consumed by ${nodeLayout[consumers[0]] ? nodeLayout[consumers[0]].name : consumers[0]}`, 'obs-signal');
       });
-    }, 3600);
+    }, 6200);
     // Observability writes auto-generated signal to Git repo
     setTimeout(() => {
       animateFromObs('repo', 'obs→signal', () => {
         appendTerminalLine(`obs -> auto-signal filed: work/signals/ [source: observability-platform]`, 'obs-signal');
       });
-    }, 4600);
-    setTimeout(() => appendTerminalLine(`context: ${step.narrative}`), 1150 + step.wakes.length * 180);
+    }, 8000);
+    setTimeout(() => appendTerminalLine(`context: ${step.narrative}`), 1600 + step.wakes.length * 350);
   };
 
   if (withPrAnimation) {
@@ -1134,7 +1134,7 @@ function prevStep() {
 function restartAutoplay() {
   if (timer) clearInterval(timer);
   if (!autoPlay) return;
-  timer = setInterval(nextStep, 6800);
+  timer = setInterval(nextStep, 12000);
 }
 
 scenarioSelect.addEventListener('change', (e) => {
