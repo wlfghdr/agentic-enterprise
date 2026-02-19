@@ -73,9 +73,9 @@ nav ul a:hover{color:var(--text)}
 .btn-secondary{background:transparent;color:var(--text);padding:14px 32px;border-radius:12px;font-weight:600;font-size:1rem;border:1px solid var(--border2);transition:border-color .2s,background .2s;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .btn-secondary:hover{border-color:var(--accent);background:rgba(167,139,250,0.05);color:#fff}
 .btn-visualization{font-size:1.08rem;padding:18px 36px;box-shadow:0 10px 30px rgba(124,58,237,0.26)}
-.btn-visualization-cta{background:linear-gradient(135deg,#0e7490,#0891b2);color:#fff;padding:18px 36px;border-radius:12px;font-weight:700;font-size:1.1rem;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:10px;position:relative;box-shadow:0 10px 40px rgba(34,211,238,0.25);letter-spacing:-0.01em}
-.btn-visualization-cta:hover{transform:translateY(-2px);box-shadow:0 14px 50px rgba(34,211,238,0.38);color:#fff}
-.viz-cta-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes viz-glow{0%,100%{box-shadow:0 6px 24px rgba(34,211,238,0.15)}50%{box-shadow:0 10px 60px rgba(34,211,238,0.72),0 0 36px rgba(34,211,238,0.32)}}
+.btn-visualization-cta{background:linear-gradient(135deg,#0e7490,#0891b2);color:#fff;padding:18px 36px;border-radius:12px;font-weight:700;font-size:1.1rem;transition:transform .2s;display:inline-flex;align-items:center;gap:10px;position:relative;letter-spacing:-0.01em;animation:viz-glow 2s ease-in-out infinite}
+.btn-visualization-cta:hover{transform:translateY(-2px);color:#fff}
 
 /* ═══════════════════════════ LIVE VISUALIZATION ═══════════════════════════ */
 .live-visualization-section{padding:0;min-height:100vh;background:var(--bg2);display:flex;flex-direction:column;scroll-margin-top:0}
@@ -253,7 +253,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="hero-actions">
         <a href="#model" class="btn-primary">See how it works ↓</a>
         <a href="#adopt" class="btn-secondary">Start in 5 minutes</a>
-        <a href="#live-visualization" class="btn-visualization-cta" id="jumpToVisualization"><span class="viz-cta-pulse"></span>▶ Watch agents work live</a>
+        <a href="#live-visualization" class="btn-visualization-cta" id="jumpToVisualization">▶ Watch agents work live</a>
       </div>
       <p class="hero-linkedin">Want to discuss this concept? <a href="https://linkedin.com/in/wolfgangheider" target="_blank" rel="noopener">Connect on LinkedIn ↗</a></p>
     </div>
