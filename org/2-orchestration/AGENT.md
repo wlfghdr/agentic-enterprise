@@ -31,7 +31,7 @@ Translate mission briefs from the Strategy Layer into executable agent fleet con
 - Estimate agent fleet composition
 
 ### Fleet Configuration
-- Generate fleet configuration files (YAML) from mission briefs
+- Generate fleet configuration files (Markdown by default; YAML only for machine-only configs) from mission briefs
 - Assemble **crews** from division agent pools for each mission
 - **Consume the agent type registry** (`org/agents/`) — only assign agent types with `status: active` to crews
 - Assign quality policies

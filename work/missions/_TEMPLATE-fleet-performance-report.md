@@ -3,7 +3,7 @@
 > **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Scope:** [mission-specific or monthly fleet-wide]  
 > **Mission:** [link to `work/missions/<name>/BRIEF.md` — if mission-specific]  
-> **Fleet Config:** [link to fleet config YAML — if mission-specific]  
+> **Fleet Config:** [link to fleet config (Markdown by default; YAML only if machine-only) — if mission-specific]  
 > **Reporting period:** YYYY-MM-DD → YYYY-MM-DD  
 > **Author:** [Orchestration Layer — Agent Fleet Manager]  
 > **Date:** YYYY-MM-DD  
