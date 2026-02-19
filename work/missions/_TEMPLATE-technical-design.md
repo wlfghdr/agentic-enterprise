@@ -1,6 +1,6 @@
 # Technical Design: [Mission Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Purpose:** Bridge the gap between mission-level outcomes and implementation-level specifications. Required for multi-stream missions, novel architecture patterns, or missions marked `design-required: true`.  
 > **Produced by:** Execution Layer (Technical Design Agent or Tech Lead)  
 > **Reviewed at:** Architecture review human checkpoint (before stream execution begins)  
@@ -253,3 +253,18 @@ Before submitting this design for review, verify:
 - [ ] Open questions have owners and target dates
 - [ ] Design is consistent with architecture policy requirements
 - [ ] Design addresses all acceptance criteria from the Outcome Contract
+---
+
+## Revision History
+
+| Rev | Date | Author | Summary |
+|---|---|---|---|
+| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

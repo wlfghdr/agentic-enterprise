@@ -1,6 +1,6 @@
 # Runbook: [Service/Component] — [Alert/Scenario Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Service/Component:** [component name]  
 > **Division:** [owning division]  
 > **Alert name:** [alert that triggers this runbook, if applicable]  
@@ -130,3 +130,10 @@ After remediation, verify full recovery:
 - **Architecture decision:** [link to relevant decision record]
 - **Related runbooks:** [links to related runbooks for dependent services]
 - **On-call rotation:** [link to on-call schedule]
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

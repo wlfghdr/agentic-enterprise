@@ -260,3 +260,184 @@ jobs:
               echo "OK: process/$loop/$file"
             done
           done
+
+  validate-versioning:
+    name: Validate Versioning
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check version fields and changelog sections exist in governed files
+        run: |
+          python3 - <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          VERSION_RE = re.compile(r"\*\*Version:\*\*\s*\d+\.\d+")
+          TEMPLATE_VERSION_RE = re.compile(r"\*\*Template version:\*\*\s*\d+\.\d+")
+          CHANGELOG_RE = re.compile(r"^## Changelog\s*$", re.MULTILINE)
+
+          repo = Path(".")
+          errors = []
+
+          def check_file(path, version_pattern, label):
+              text = path.read_text(encoding="utf-8")
+              if not version_pattern.search(text):
+                  errors.append(f"MISSING version field ({label}): {path}")
+              elif not CHANGELOG_RE.search(text):
+                  errors.append(f"MISSING '## Changelog' section ({label}): {path}")
+              else:
+                  print(f"OK: {path}")
+
+          # Check layer AGENT.md files
+          for layer in ["0-steering", "1-strategy", "2-orchestration", "3-execution", "4-quality"]:
+              path = repo / f"org/{layer}/AGENT.md"
+              if path.exists():
+                  check_file(path, VERSION_RE, "layer AGENT.md")
+
+          # Check process loop AGENT.md files
+          for loop in ["1-discover", "2-build", "3-ship", "4-operate"]:
+              path = repo / f"process/{loop}/AGENT.md"
+              if path.exists():
+                  check_file(path, VERSION_RE, "process AGENT.md")
+
+          # Check quality policy files
+          policies_dir = repo / "org/4-quality/policies"
+          for policy_file in sorted(policies_dir.glob("*.md")):
+              check_file(policy_file, VERSION_RE, "quality policy")
+
+          # Check template files
+          for template_file in sorted(repo.rglob("_TEMPLATE-*.md")):
+              if ".git" in template_file.parts:
+                  continue
+              check_file(template_file, TEMPLATE_VERSION_RE, "template")
+
+          # Check CONFIG.yaml has framework_version
+          config = repo / "CONFIG.yaml"
+          if config.exists():
+              text = config.read_text(encoding="utf-8")
+              if not re.search(r'^framework_version:', text, re.MULTILINE):
+                  errors.append("MISSING framework_version field in CONFIG.yaml")
+              else:
+                  print("OK: CONFIG.yaml (framework_version)")
+
+          # Check CHANGELOG.md exists
+          changelog = repo / "CHANGELOG.md"
+          if not changelog.exists():
+              errors.append("MISSING CHANGELOG.md at repository root")
+          else:
+              print("OK: CHANGELOG.md")
+
+          if errors:
+              print(f"\n{len(errors)} versioning error(s) found:")
+              for e in errors:
+                  print(f"  ✗ {e}")
+              print("\nEvery governed file must have: version field + ## Changelog section.")
+              print("See AGENTS.md Rule 10 and CHANGELOG.md for conventions.")
+              sys.exit(1)
+
+          print(f"\nAll governed files have required version fields and changelog sections.")
+          PY
+
+      - name: Check changed files have updated version/date
+        run: |
+          python3 - <<'PY'
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          BASE = "${{ github.event.pull_request.base.sha }}"
+          HEAD = "${{ github.event.pull_request.head.sha }}"
+
+          # Get list of changed .md files in this PR
+          result = subprocess.run(
+              ["git", "diff", "--name-only", BASE, HEAD],
+              capture_output=True, text=True
+          )
+          changed_files = [f.strip() for f in result.stdout.splitlines() if f.strip().endswith(".md")]
+
+          # Patterns for version and date fields
+          VERSION_RE = re.compile(r"\*\*Version:\*\*\s*[\d.]+")
+          TEMPLATE_VERSION_RE = re.compile(r"\*\*Template version:\*\*\s*[\d.]+")
+          LAST_UPDATED_RE = re.compile(r"\*\*Last updated:\*\*\s*\d{4}-\d{2}-\d{2}")
+          REVISION_RE = re.compile(r"\*\*Revision:\*\*\s*\d+")
+
+          # Govened path patterns and what we check
+          GOVERNED = [
+              ("org/*/AGENT.md", LAST_UPDATED_RE, "Last updated date"),
+              ("org/4-quality/policies/*.md", LAST_UPDATED_RE, "Last updated date"),
+              ("*/_TEMPLATE-*.md", LAST_UPDATED_RE, "Last updated date"),
+          ]
+
+          errors = []
+          warnings = []
+
+          for changed in changed_files:
+              path = Path(changed)
+
+              # Determine if this file is governed
+              is_agent_md = path.name == "AGENT.md" and path.parts[0] == "org"
+              is_policy = "4-quality/policies" in str(path) and path.suffix == ".md"
+              is_template = "_TEMPLATE-" in path.name
+
+              if not (is_agent_md or is_policy or is_template):
+                  continue
+
+              if not path.exists():
+                  continue  # File was deleted — skip
+
+              # Get current content
+              current_text = path.read_text(encoding="utf-8")
+
+              # Get base content for comparison
+              base_result = subprocess.run(
+                  ["git", "show", f"{BASE}:{changed}"],
+                  capture_output=True, text=True
+              )
+              if base_result.returncode != 0:
+                  # New file — just check it has the field
+                  if is_template and not TEMPLATE_VERSION_RE.search(current_text):
+                      errors.append(f"NEW template file missing 'Template version' field: {changed}")
+                  elif (is_agent_md or is_policy) and not LAST_UPDATED_RE.search(current_text):
+                      errors.append(f"NEW governed file missing 'Last updated' field: {changed}")
+                  else:
+                      print(f"OK (new file): {changed}")
+                  continue
+
+              base_text = base_result.stdout
+
+              # Check that Last updated date changed
+              current_dates = LAST_UPDATED_RE.findall(current_text)
+              base_dates = LAST_UPDATED_RE.findall(base_text)
+
+              if not current_dates:
+                  errors.append(f"MISSING 'Last updated' field in changed file: {changed}")
+              elif current_dates == base_dates:
+                  errors.append(
+                      f"'Last updated' date NOT bumped in changed file: {changed}\n"
+                      f"  Current: {current_dates}\n"
+                      f"  Base:    {base_dates}\n"
+                      f"  → Update the 'Last updated' date when modifying a governed file."
+                  )
+              else:
+                  print(f"OK (date bumped): {changed} {base_dates} → {current_dates}")
+
+          if errors:
+              print("\nVersioning enforcement failures:")
+              for e in errors:
+                  print(f"  ✗ {e}")
+              print("\nTo fix: update the 'Last updated' field in each failing file.")
+              sys.exit(1)
+
+          print("\nAll changed governed files have updated version/date fields.")
+          PY

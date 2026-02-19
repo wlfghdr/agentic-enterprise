@@ -1,6 +1,6 @@
 # Agent Type Proposal: [Agent Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Proposed by:** [name / division / layer]  
 > **Date:** YYYY-MM-DD  
 > **Status:** proposed | under-review | approved | rejected  
@@ -97,3 +97,10 @@
 - [ ] Quality Layer boundary review complete
 - [ ] CTO approval
 - [ ] Registry entry created in `org/agents/<layer>/<agent-id>.md`
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

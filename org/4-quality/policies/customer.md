@@ -1,8 +1,9 @@
 # Customer Policy
 
-> **Applies to:** All customer-facing interactions — proposals, QBRs, support responses, onboarding, renewals, escalations  
-> **Enforced by:** Quality Layer eval agents  
+> **Applies to:** All customer-facing interactions — proposals, QBRs, support responses, onboarding, renewals, escalations
+> **Enforced by:** Quality Layer eval agents
 > **Authority:** Customer Success & Sales leadership
+> **Version:** 1.0 | **Last updated:** 2026-02-19
 
 ---
 
@@ -59,3 +60,11 @@
 | SLA compliance | Within response window | SLA breach |
 | Data privacy | Fully compliant | Customer data mishandled |
 | Human review | All external comms reviewed | Sent without approval |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

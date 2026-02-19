@@ -1,6 +1,6 @@
 # Mission Status: [Mission Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Mission:** [link to `work/missions/<name>/BRIEF.md`]  
 > **Fleet Config:** [link to `org/2-orchestration/fleet-configs/<config>.md`]  
 > **Author:** [Orchestration Layer — Agent Fleet Manager]  
@@ -64,3 +64,18 @@
 ---
 
 <!-- Previous status entries appear below, newest first -->
+---
+
+## Revision History
+
+| Rev | Date | Author | Summary |
+|---|---|---|---|
+| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

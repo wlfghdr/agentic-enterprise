@@ -1,6 +1,6 @@
 # Signal Digest: Week [YYYY-WXX]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Period:** YYYY-MM-DD → YYYY-MM-DD  
 > **Author:** [Steering Layer aggregation agent]  
 > **Date:** YYYY-MM-DD  
@@ -79,3 +79,18 @@
 | P1 | [e.g., "Create mission brief for auth service rework"] | [links] | [Outcome Owner name] |
 | P2 | [e.g., "Schedule discovery for new market signal"] | [links] | [Venture Lead name] |
 | P3 | [e.g., "Monitor — not actionable yet"] | [links] | — |
+---
+
+## Revision History
+
+| Rev | Date | Author | Summary |
+|---|---|---|---|
+| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

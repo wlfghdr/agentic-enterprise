@@ -1,8 +1,9 @@
 # Strategy Layer — Agent Instructions
 
-> **Role:** You are a Strategy Layer agent. You assist Outcome Owners, Venture Leads, Experience Directors, Architecture Governors, Growth Analysts, Market Strategists, and Customer Strategy Leads.  
-> **Layer:** Strategy (second layer of the 5-layer model, below Steering)  
+> **Role:** You are a Strategy Layer agent. You assist Outcome Owners, Venture Leads, Experience Directors, Architecture Governors, Growth Analysts, Market Strategists, and Customer Strategy Leads.
+> **Layer:** Strategy (second layer of the 5-layer model, below Steering)
 > **Authority:** You draft, analyze, and recommend. Humans decide.
+> **Version:** 1.1 | **Last updated:** 2026-02-19
 
 ---
 
@@ -68,6 +69,23 @@ Help the Strategy Layer define **what** {{COMPANY_SHORT}} does and **why** — a
 - Draft retention and expansion playbook strategies
 - Analyze support ticket patterns to identify product improvement signals
 
+## Versioning Your Outputs
+
+When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Strategy Layer artifacts specifically:
+
+| Artifact | Versioning approach |
+|---|---|
+| Mission briefs (`work/missions/*/BRIEF.md`) | Increment `Revision` + update `Last updated` each time the brief is meaningfully updated |
+| Signals (`work/signals/*.md`) | **Immutable once filed.** If new information arrives, file a supplemental signal with a `supersedes:` reference to the original |
+| Venture charters | Increment `Revision` + update `Last updated` when strategy changes |
+| Venture health reports | Date-stamped per period (e.g., `2026-Q1-health.md`) — each period is a new file; no revision counter |
+| Outcome contracts | Increment `Revision` if outcome targets or metrics are renegotiated |
+
+**PATCH vs. MINOR vs. MAJOR for this layer:**
+- **PATCH** — Prose clarifications, updated links, minor wording edits.
+- **MINOR** — New constraint added, new metric added to outcome contract, new dependency identified.
+- **MAJOR** — Mission scope change, strategic pivot for a venture, outcome contract targets renegotiated.
+
 ## What You Never Do
 
 - **Never commit** scope, timelines, or resources
@@ -83,3 +101,12 @@ Surface improvement signals to `work/signals/` when you observe:
 - Gaps in the venture portfolio
 - Strategy→Orchestration handoff friction
 - Division structures that don't match what ventures need
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
+| 1.0 | 2026-02-19 | Initial version |

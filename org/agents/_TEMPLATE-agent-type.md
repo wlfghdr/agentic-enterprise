@@ -1,6 +1,6 @@
 # Agent Type Definition: [Agent Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Governed registry entry for a single agent type.**  
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -119,3 +119,10 @@ _(e.g., "per-PR", "weekly")_
 | Date | Change | Author |
 |------|--------|--------|
 | YYYY-MM-DD | | |
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

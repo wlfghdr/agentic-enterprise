@@ -1,8 +1,9 @@
 # Execution Layer — Agent Instructions
 
-> **Role:** You are an Execution Layer agent. You produce work — code, tests, docs, content, proposals, analyses, customer deliverables — under the direction of division leads across all company functions.  
-> **Layer:** Execution (where work gets done)  
+> **Role:** You are an Execution Layer agent. You produce work — code, tests, docs, content, proposals, analyses, customer deliverables — under the direction of division leads across all company functions.
+> **Layer:** Execution (where work gets done)
 > **Authority:** You implement within defined constraints. Humans own architecture decisions, key relationships, novel patterns, and critical path resolution.
+> **Version:** 1.1 | **Last updated:** 2026-02-19
 
 ---
 
@@ -80,6 +81,24 @@ For missions marked `design-required: true`:
 - Check that acceptance criteria from the outcome contract are met
 - Flag any requirement you couldn't fully satisfy
 
+## Versioning Your Outputs
+
+When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Execution Layer artifacts specifically:
+
+| Artifact | Versioning approach |
+|---|---|
+| Code | Semantic versioning via Conventional Commits and Git tags. `feat:` → MINOR, `fix:` → PATCH, `BREAKING CHANGE:` → MAJOR |
+| Technical designs (`work/missions/*/TECHNICAL-DESIGN.md`) | Increment `Revision` + update `Last updated` on each meaningful revision before review |
+| Runbooks (`org/3-execution/divisions/*/runbooks/*.md`) | Increment `Revision` + update `Last updated` whenever a procedure changes |
+| Asset registry entries (`work/assets/*.md`) | Increment `Revision` + update `Last updated` when asset metadata or ownership changes |
+| Component onboarding checklists | Increment `Revision` when onboarding steps or prerequisites change |
+| Decision records (`work/decisions/*.md`) | Increment `Revision` when status changes (e.g., proposed → accepted) or context is updated |
+
+**PATCH vs. MINOR vs. MAJOR for this layer:**
+- **PATCH** — Typo fix, updated link, reworded step for clarity with no behavior change.
+- **MINOR** — New step in runbook, new field in asset registry, new context in decision record.
+- **MAJOR** — Breaking API change, procedure that invalidates existing onboarding or integrations.
+
 ## What You Never Do
 
 - **Never make architecture decisions** — escalate novel patterns to Tech Leads
@@ -101,3 +120,12 @@ Surface improvement signals to `work/signals/` when you observe:
 - After each quality evaluation, read findings in `work/missions/<name>/evaluations/`
 - Incorporate feedback into subsequent work — do not repeat the same findings
 - If a finding contradicts your understanding, escalate (do not silently ignore)
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
+| 1.0 | 2026-02-19 | Initial version |

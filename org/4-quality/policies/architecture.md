@@ -1,8 +1,9 @@
 # Architecture Policy
 
-> **Applies to:** All code changes, new services, API designs, data models, system integrations  
-> **Enforced by:** Quality Layer eval agents  
+> **Applies to:** All code changes, new services, API designs, data models, system integrations
+> **Enforced by:** Quality Layer eval agents
 > **Authority:** Architecture Governors (Steering Layer delegates)
+> **Version:** 1.0 | **Last updated:** 2026-02-19
 
 ---
 
@@ -76,3 +77,11 @@
 | Service boundary | Aligned with division | Cross-division data sharing |
 | Observability | Instrumented with traces, metrics, logs, health targets | Missing instrumentation or no health targets |
 | Technical design | Design document exists and approved for multi-stream missions | Multi-stream mission executing without reviewed design |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

@@ -1,8 +1,9 @@
 # Integration Registration: {{INTEGRATION_NAME}}
 
-> **Status:** `proposed` | `active` | `deprecated`  
-> **Category:** `observability` | `enterprise-toolchain` | `business-system` | `communication`  
-> **Owner:** {{APPROVING_LAYER}} Layer  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19
+> **Status:** `proposed` | `active` | `deprecated`
+> **Category:** `observability` | `enterprise-toolchain` | `business-system` | `communication`
+> **Owner:** {{APPROVING_LAYER}} Layer
 > **Last updated:** YYYY-MM-DD
 
 ---
@@ -123,3 +124,10 @@ integrations:
 - [ ] Failure mode and fallback defined
 - [ ] Affected agent types updated with integration awareness
 - [ ] Quality policies reviewed for compliance
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

@@ -1,6 +1,7 @@
 # Venture Charter Template
 
-> Copy this file to `<venture-slug>.md` for each of your market-facing ventures.  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19
+> Copy this file to `<venture-slug>.md` for each of your market-facing ventures.
 > See CONFIG.yaml → ventures for the list of ventures to create.
 
 ---
@@ -58,3 +59,10 @@
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | [Risk description] | High/Medium/Low | [Mitigation strategy] |
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

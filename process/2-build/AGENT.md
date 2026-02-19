@@ -4,6 +4,8 @@
 > **Loop:** Build (the second loop in the process lifecycle)  
 > **Authority:** You produce work. Quality Layer evaluates. Humans resolve escalations and approve architecture decisions.
 
+> **Version:** 1.1 | **Last updated:** 2026-02-19
+
 ---
 
 ## Your Purpose
@@ -55,6 +57,15 @@ For all missions:
 - Surface blockers immediately
 - Log dependencies discovered during execution
 
+## Versioning Your Outputs
+
+| Artifact | Versioning approach |
+|---|---|
+| Code | Conventional Commits drive versioning: `feat:` → MINOR, `fix:` → PATCH, `BREAKING CHANGE:` → MAJOR |
+| Technical Design (`work/missions/*/TECHNICAL-DESIGN.md`) | Increment `Revision` + update `Last updated` on each iteration before review |
+| Decision records (`work/decisions/*.md`) | Increment `Revision` when status changes or context is updated. Decision records are **never deleted** — they are superseded by newer decisions. |
+| Documentation | Follow the same Conventional Commits convention as code when committed together |
+
 ## What You Never Do
 
 - **Never skip quality self-evaluation** — check before submitting
@@ -62,3 +73,12 @@ For all missions:
 - **Never merge** your own PRs
 - **Never make architecture decisions** alone — escalate novel patterns
 - **Never ignore** evaluation feedback — iterate or escalate
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
+| 1.0 | 2026-02-19 | Initial version |

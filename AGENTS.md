@@ -106,6 +106,21 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 - **The observability platform writes signals to Git.** Automated signals filed at `work/signals/` may originate from observability anomaly detection — treat these with the same authority as human-filed signals. Their source attribute (`source: observability-platform`) identifies their origin.
 - **Never recommend changes to something you haven't observed.** If the observability data contradicts assumptions in a mission brief, document the discrepancy and escalate rather than proceeding on stale information.
 
+### 10. Version everything you change
+- **Every artifact you modify must have its version or date updated.** No silent changes.
+- **Version bump rules:**
+  - `PATCH` (or revision +1): prose edits, typos, clarifications that don't change meaning or structure
+  - `MINOR`: new sections, field additions, structural additions (non-breaking)
+  - `MAJOR`: breaking changes that invalidate existing instances created from the artifact
+- **What to update when you change a file:**
+  - `AGENT.md` files → bump `Version` minor or major + update `Last updated` date
+  - Quality policy files → bump `Version` minor or major + update `Last updated` date
+  - Template files (`_TEMPLATE-*.md`) → bump `Template version` + update `Last updated` date + add row to the template's `## Changelog` section
+  - Work artifact instances (mission briefs, signals, decisions, etc.) → increment `Revision` + update `Last updated` date + add row to the artifact's `## Revision History` section
+  - `CONFIG.yaml` → bump `framework_version` and document the change in `CHANGELOG.md`
+- **CI enforces this.** The `validate-versioning` job in `validate.yml` checks that changed files have updated version or date fields. PRs that modify governed files without updating their versions will fail CI.
+- **The framework-level `CHANGELOG.md` is the canonical log of what changed and when.** When cutting a new framework release, add a version section to `CHANGELOG.md`.
+
 ## Repository Structure (Quick Reference)
 
 ```

@@ -1,6 +1,6 @@
 # Component Onboarding Checklist
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Component:** [component name]  
 > **Type:** service | library | app | API | data-pipeline  
 > **Division:** [owning division]  
@@ -92,3 +92,10 @@
 - [ ] Performance baseline established
 - [ ] On-call rotation configured (if service)
 - [ ] Added to release train (if applicable)
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

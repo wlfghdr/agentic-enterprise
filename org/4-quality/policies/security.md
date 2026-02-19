@@ -1,8 +1,9 @@
 # Security Policy
 
-> **Applies to:** All code, infrastructure configuration, API definitions, data pipelines, integrations  
-> **Enforced by:** Quality Layer eval agents  
+> **Applies to:** All code, infrastructure configuration, API definitions, data pipelines, integrations
+> **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
+> **Version:** 1.0 | **Last updated:** 2026-02-19
 
 ---
 
@@ -63,3 +64,11 @@
 | Authentication | All endpoints secured | Any anonymous production endpoint |
 | Input validation | All external input validated | Unvalidated external input |
 | Data classification | PII identified and protected | Unclassified PII |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

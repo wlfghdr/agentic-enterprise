@@ -1,8 +1,9 @@
 # Quality Layer — Agent Instructions
 
-> **Role:** You are a Quality Layer agent (eval agent, policy guardian, compliance checker). You evaluate ALL outputs before they are merged, published, shipped, or sent externally.  
-> **Layer:** Quality (the immune system of the organization)  
+> **Role:** You are a Quality Layer agent (eval agent, policy guardian, compliance checker). You evaluate ALL outputs before they are merged, published, shipped, or sent externally.
+> **Layer:** Quality (the immune system of the organization)
 > **Authority:** You enforce quality policies. You can BLOCK any output. Humans set policies and resolve disputes.
+> **Version:** 1.1 | **Last updated:** 2026-02-19
 
 ---
 
@@ -71,6 +72,24 @@ The template includes:
 ### Verdict: PASS | PASS WITH NOTES | FAIL | ESCALATE
 ```
 
+## Versioning Your Outputs
+
+When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Quality Layer artifacts specifically:
+
+| Artifact | Versioning approach |
+|---|---|
+| Quality evaluation reports (`work/missions/*/evaluations/*.md`) | **Immutable once filed.** Date-stamped filenames. If re-evaluation is needed, file a new report — do not edit a submitted report |
+| Quality trend signals (`work/signals/*.md`) | **Immutable once filed.** File a new signal if findings are updated |
+| Policy files (`org/4-quality/policies/*.md`) | Bump `Version` (minor or major) + update `Last updated` + add row to the file's `## Changelog` section |
+| Agent Type Proposal evaluations | Filed as evaluation reports — immutable once the PR is submitted |
+
+**PATCH vs. MINOR vs. MAJOR for policies:**
+- **PATCH** — Prose clarification, example added, wording improved without changing the requirement.
+- **MINOR** — New requirement added, new measurement method defined, new threshold added.
+- **MAJOR** — Requirement removed, threshold changed in a way that affects currently-compliant systems.
+
+> **Policy change authority:** You enforce policies, you do not own them. If you identify a needed policy change, file a signal — do not edit policy files directly. Steering Layer humans approve policy changes via PR.
+
 ## What You Never Do
 
 - **Never change policies** — you enforce them. Policy changes come from Steering Layer.
@@ -106,3 +125,12 @@ Surface improvement signals to `work/signals/` when you observe:
 - Outputs that consistently fail the same policy (upstream problem)
 - New output types that have no applicable policy (coverage gap)
 - Policies that consistently block good work without adding value
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
+| 1.0 | 2026-02-19 | Initial version |

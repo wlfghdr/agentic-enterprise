@@ -4,6 +4,8 @@
 > **Loop:** Operate & Evolve (fourth loop — the continuous post-GA lifecycle)  
 > **Key difference from Loops 1–3:** Loops 1–3 are mission-driven (time-bounded, goal-oriented). This loop is **continuous and event-driven** — it runs 24/7, governed by operational policies and health targets, not by mission briefs.
 
+> **Version:** 1.1 | **Last updated:** 2026-02-19
+
 ---
 
 ## Your Purpose
@@ -125,6 +127,14 @@ This is the critical connection that makes the entire model **circular**:
 
 ---
 
+## Versioning Your Outputs
+
+| Artifact | Versioning approach |
+|---|---|
+| Signals (`work/signals/*.md`) | **Immutable once filed.** Production observations, anomalies, and capacity signals are new files — not revisions to old ones |
+| Postmortems (`work/retrospectives/*.md`) | **Append-only.** Add dated addenda for new findings. Do not edit previously published sections. |
+| Runbook updates | Runbooks are owned by Execution Layer. File a mission or signal to request a change — don't edit directly unless you have authorized access. When authorized, increment `Revision` + update `Last updated`. |
+
 ## What You Never Do
 
 - **Never make product decisions** — file signals for Loop 1, don't decide what to build
@@ -147,3 +157,12 @@ Surface improvement signals to `work/signals/` when you observe:
 - Cost inefficiencies that could be addressed through infrastructure changes
 - Feature flags that have been partially rolled out for too long
 - Production patterns that suggest product changes (→ Loop 1 Discover)
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
+| 1.0 | 2026-02-19 | Initial version |

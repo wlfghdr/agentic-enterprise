@@ -1,6 +1,6 @@
 # Asset Registry Entry: [Asset Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Tracks non-code deliverables:** documentation, content, training materials, customer deliverables, marketing assets, etc.
 
 ---
@@ -57,3 +57,18 @@
 | **Reviewed by** | |
 | **Review date** | YYYY-MM-DD |
 | **Content policy compliant** | no _(checked against content.md policy)_ |
+---
+
+## Revision History
+
+| Rev | Date | Author | Summary |
+|---|---|---|---|
+| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

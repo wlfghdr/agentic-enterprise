@@ -1,9 +1,10 @@
 # Mission Brief: [Mission Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Mission ID:** MISSION-YYYY-NNN  
 > **Status:** proposed | approved | active | paused | completed  
 > **Created:** YYYY-MM-DD  
+> **Revision:** 1 | **Last updated:** YYYY-MM-DD
 > **Author:** [Strategy Layer agent or human]  
 > **Design required:** true | false _(Set to `true` for multi-stream missions, novel architecture patterns, new external APIs, data model changes, or regulated features. The Orchestration Layer will gate execution on a reviewed Technical Design document.)_
 
@@ -75,3 +76,18 @@ These moments require human review and approval:
 - [ ] Strategy Layer human review
 - [ ] Steering Layer review (for large missions)
 - [ ] Affected division leads notified
+---
+
+## Revision History
+
+| Rev | Date | Author | Summary |
+|---|---|---|---|
+| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

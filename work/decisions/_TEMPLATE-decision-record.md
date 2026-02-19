@@ -1,9 +1,10 @@
 # Decision Record: [Short Title]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Decision ID:** DR-YYYY-NNN  
 > **Status:** proposed | accepted | deprecated | superseded  
 > **Created:** YYYY-MM-DD  
+> **Revision:** 1 | **Last updated:** YYYY-MM-DD
 > **Author:** [who drafted this]  
 > **Reviewers:** [who reviewed/approved]
 
@@ -56,3 +57,18 @@
 ## Review Schedule
 
 This decision should be reviewed: [never | quarterly | annually | when triggered by specific condition]
+---
+
+## Revision History
+
+| Rev | Date | Author | Summary |
+|---|---|---|---|
+| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

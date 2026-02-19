@@ -1,6 +1,6 @@
 # Fleet Performance Report: [Mission Name or Period]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Scope:** [mission-specific or monthly fleet-wide]  
 > **Mission:** [link to `work/missions/<name>/BRIEF.md` — if mission-specific]  
 > **Fleet Config:** [link to fleet config YAML — if mission-specific]  
@@ -77,3 +77,18 @@
 | Signal | Category | Link |
 |--------|----------|------|
 | [Signal description] | fleet / process / cost | [link to `work/signals/<signal>.md`] |
+---
+
+## Revision History
+
+| Rev | Date | Author | Summary |
+|---|---|---|---|
+| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

@@ -1,6 +1,6 @@
 # Evolution Proposal: [Proposal Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Proposal ID:** EVO-YYYY-NNN  
 > **Category:** [see categories below]  
 > **Status:** draft | under-review | approved | rejected | implemented  
@@ -121,3 +121,10 @@
 - [ ] Success metrics agreed upon
 - [ ] Required approver(s): [names based on category]
 - [ ] Approval received via PR merge
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

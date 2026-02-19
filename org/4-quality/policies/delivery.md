@@ -1,8 +1,9 @@
 # Delivery Policy
 
-> **Applies to:** All deployments, releases, rollouts, and operational changes  
-> **Enforced by:** Quality Layer eval agents  
+> **Applies to:** All deployments, releases, rollouts, and operational changes
+> **Enforced by:** Quality Layer eval agents
 > **Authority:** Release Management / DevOps leads
+> **Version:** 1.0 | **Last updated:** 2026-02-19
 
 ---
 
@@ -82,3 +83,11 @@ When an active production incident requires an immediate fix:
 | Post-deploy validation | Evidence within window | No validation evidence |
 | Release notes | Customer-ready | Missing or internal-only |
 | Emergency deployment | Security checks maintained, post-incident signal filed | Security bypassed or no follow-up |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

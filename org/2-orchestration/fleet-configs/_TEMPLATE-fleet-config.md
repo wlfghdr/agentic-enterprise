@@ -1,6 +1,6 @@
 # Fleet Configuration: [Mission Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Configuration for agent fleet deployment on a specific mission.**  
 > **Created by:** Orchestration Layer (Mission Lead + Agent Fleet Manager)
 
@@ -65,3 +65,10 @@
 | **Quality threshold** | 0.8 _(minimum quality score before alert)_ |
 | **Throughput alert** | _(alert if throughput drops below this)_ |
 | **Escalation policy** | _(who gets notified on issues)_ |
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

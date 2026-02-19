@@ -1,8 +1,9 @@
 # Performance Policy
 
-> **Applies to:** All services, APIs, data pipelines, and user-facing applications  
-> **Enforced by:** Quality Layer eval agents  
+> **Applies to:** All services, APIs, data pipelines, and user-facing applications
+> **Enforced by:** Quality Layer eval agents
 > **Authority:** Engineering leads
+> **Version:** 1.0 | **Last updated:** 2026-02-19
 
 ---
 
@@ -59,3 +60,11 @@
 | Resource limits | Defined and right-sized | Missing or unbounded |
 | Monitoring | Health targets, dashboards, alerts | Missing observability |
 | Query performance | Indexed, bounded | Unbounded or N+1 queries |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

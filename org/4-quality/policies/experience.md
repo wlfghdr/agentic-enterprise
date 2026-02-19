@@ -1,8 +1,9 @@
 # User Experience Policy
 
-> **Applies to:** All user-facing surfaces — UI, CLI, APIs, documentation, error messages  
-> **Enforced by:** Quality Layer eval agents  
+> **Applies to:** All user-facing surfaces — UI, CLI, APIs, documentation, error messages
+> **Enforced by:** Quality Layer eval agents
 > **Authority:** UX/Design team leads
+> **Version:** 1.0 | **Last updated:** 2026-02-19
 
 ---
 
@@ -56,3 +57,11 @@
 | Error handling | Actionable error messages | Generic "something went wrong" |
 | Loading states | All async ops have states | Missing loading indicators |
 | Keyboard navigation | Fully navigable | Keyboard traps or missing |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

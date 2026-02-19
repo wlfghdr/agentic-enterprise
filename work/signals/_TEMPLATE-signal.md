@@ -1,7 +1,8 @@
 # Signal: [Short Descriptive Title]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Created:** YYYY-MM-DD  
+> **Revision:** 1 | **Last updated:** YYYY-MM-DD
 > **Author:** [human or agent identifier]
 
 ---
@@ -38,3 +39,18 @@
 ## Notes
 
 [Any additional context, caveats, or considerations]
+---
+
+## Revision History
+
+| Rev | Date | Author | Summary |
+|---|---|---|---|
+| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

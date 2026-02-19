@@ -1,6 +1,6 @@
 # Venture Health Report: [Venture Name]
 
-> **Template version:** 1.0  
+> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Venture:** [link to `org/1-strategy/ventures/<venture-name>.md`]  
 > **Reporting period:** YYYY-MM-DD → YYYY-MM-DD  
 > **Author:** [Strategy Layer agent]  
@@ -82,3 +82,10 @@
 - [ ] Venture Lead reviewed metrics and assessment
 - [ ] Strategy Layer acknowledged recommendations
 - [ ] Steering Layer notified (for portfolio-level recalibration input)
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

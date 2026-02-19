@@ -4,6 +4,7 @@
 > **Enforced by:** Quality Layer eval agents, including the dedicated [Observability Compliance Agent](../../agents/quality/observability-compliance-agent.md)
 > **Authority:** Operations leads + Architecture Governors
 > **Principle:** If it runs, it must be observable. If it's not observable, it doesn't ship.
+> **Version:** 1.0 | **Last updated:** 2026-02-19
 
 ---
 
@@ -263,3 +264,11 @@ Observability is checked at multiple points in the lifecycle:
 | Alerting | All alerts have documented runbook actions | Alerts without runbooks or no alerting |
 | Agent observability | Spans for tool calls, decisions, token usage | Agent actions not traced (if agent component) |
 | Git event coverage | Webhook configured, PR lifecycle events flowing | No git webhooks or events not reaching observability integration |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

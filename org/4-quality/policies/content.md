@@ -1,8 +1,9 @@
 # Content Policy
 
-> **Applies to:** All externally-facing content — documentation, blog posts, marketing materials, press releases, website copy, social media, presentations  
-> **Enforced by:** Quality Layer eval agents  
+> **Applies to:** All externally-facing content — documentation, blog posts, marketing materials, press releases, website copy, social media, presentations
+> **Enforced by:** Quality Layer eval agents
 > **Authority:** Content & Communications leads
+> **Version:** 1.0 | **Last updated:** 2026-02-19
 
 ---
 
@@ -59,3 +60,11 @@
 | Documentation type | Clearly classified | Mixed types in one page |
 | Code examples | Tested and working | Untested or broken code |
 | Legal compliance | Reviewed and approved | Confidential info exposed |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-02-19 | Initial version |

@@ -8,6 +8,13 @@
 #
 # After filling this file, follow CUSTOMIZATION-GUIDE.md for deeper
 # customization of ventures, divisions, policies, and processes.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Framework version
+# ─────────────────────────────────────────────────────────────────────────────
+# Tracks the overall framework release. Update when cutting a new version.
+# See CHANGELOG.md for what changed. Uses semantic versioning (MAJOR.MINOR.PATCH).
+framework_version: "1.0.0"
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────────────────
