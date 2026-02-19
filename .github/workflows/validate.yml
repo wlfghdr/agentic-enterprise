@@ -25,7 +25,8 @@ jobs:
         run: pip install pyyaml
 
       - name: Validate CONFIG.yaml
-        run: python3 -c "import yaml; yaml.safe_load(open('CONFIG.yaml')); print('CONFIG.yaml: OK')"
+        run: |
+          python3 -c "import yaml; yaml.safe_load(open('CONFIG.yaml')); print('CONFIG.yaml: OK')"
 
       - name: Validate all YAML files
         run: |
