@@ -21,6 +21,14 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 _Changes merged to `main` but not yet tagged as a release go here. Move to a new version section when cutting a release._
 
+### Added
+
+**Template/instance distinction and `/deploy` skill**
+- `AGENTS.md` Rule 11 — distinguishes template/framework files from work artifact instances; defines completion criteria for each (framework changes require commit + push + green CI before done)
+- `.claude/skills/deploy/SKILL.md` — Claude Code `/deploy` slash command: 5-step template release checklist (verify version fields, add changelog entry, commit, push, watch CI)
+- `.github/prompts/deploy.prompt.md` — GitHub Copilot `/deploy` prompt: same 5-step checklist for Copilot Chat
+- `.github/copilot-instructions.md` — added template vs. instance classification section and reference to `/deploy`
+
 ---
 
 ## [1.1.0] — 2026-02-19

@@ -121,6 +121,38 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 - **CI enforces this.** The `validate-versioning` job in `validate.yml` checks that changed files have updated version or date fields. PRs that modify governed files without updating their versions will fail CI.
 - **The framework-level `CHANGELOG.md` is the canonical log of what changed and when.** When cutting a new framework release, add a version section to `CHANGELOG.md`.
 
+### 11. Know whether you are working on a template or an instance
+
+The repository contains two fundamentally different kinds of files (see `FILE-GUIDE.md`). Identify which one you are touching before you start — the completion criteria are different.
+
+**Templates and framework files** (the OSS framework itself):
+- `_TEMPLATE-*.md` files anywhere in `org/`
+- `AGENT.md` files at each layer (`org/*/AGENT.md`)
+- `AGENTS.md` / `CLAUDE.md` (global agent rules)
+- Quality policies in `org/4-quality/policies/`
+- `CONFIG.yaml`, `OPERATING-MODEL.md`, integration definitions in `org/integrations/`
+
+**Instances** (work artifacts created by agents or humans during operations):
+- Everything under `work/` — signals, missions, decisions, releases, retrospectives
+- Division-specific files created during execution
+
+**Different completion criteria apply:**
+
+When working on a **template or framework file**, the task is NOT done until all of the following are true:
+1. All file changes are made and version/date fields are updated (Rule 10)
+2. A clear, descriptive commit is made explaining *what* changed and *why*
+3. A changelog entry is added — to the file's own `## Changelog` section if it has one, or to root `CHANGELOG.md` otherwise
+4. The commit is pushed to the remote branch
+5. GitHub Actions CI workflows have run and **all checks are green**
+6. If CI fails: investigate, fix the root cause, commit the fix, push again, and re-verify — do **not** mark the task complete while any check is red
+
+When working on an **instance**, the completion gate is human review:
+- Create or update the file, increment `Revision`, update `Last updated`
+- Open a Pull Request — human approval via PR merge is the gate
+- CI must still pass, but you do not need to push-and-watch before raising the PR
+
+**Why this matters:** Framework changes affect every agent and every future instance derived from the template. A regression in a template propagates silently until someone notices. The push-and-verify discipline plus the CI gate exist to catch problems before they reach the entire operating model.
+
 ## Repository Structure (Quick Reference)
 
 ```
