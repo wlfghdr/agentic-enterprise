@@ -687,19 +687,19 @@ const scenarioData = {
 };
 
 const nodeLayout = {
-  steeringDigest: { x: 500, y: 95, role: 'Steering', name: 'Signal Aggregation', path: 'work/signals/digests/' },
-  steeringEvolution: { x: 500, y: 205, role: 'Steering', name: 'Evolution Proposer', path: 'org/0-steering/' },
-  strategyDiscovery: { x: 760, y: 155, role: 'Strategy', name: 'Discovery Agent', path: 'org/1-strategy/' },
-  strategyProduct: { x: 760, y: 265, role: 'Strategy', name: 'Product Strategy', path: 'work/missions/' },
-  orchestrationFleet: { x: 760, y: 410, role: 'Orchestration', name: 'Fleet Orchestrator', path: 'org/2-orchestration/fleet-configs/' },
-  executionSignal: { x: 250, y: 140, role: 'Execution', name: 'Signal Scanner', path: 'work/signals/' },
-  releaseOps: { x: 250, y: 275, role: 'Operate', name: 'Release + Operate', path: 'work/releases/' },
-  qualityEval: { x: 250, y: 410, role: 'Quality', name: 'Delivery Evaluator', path: 'org/4-quality/policies/' },
-  executionDesign: { x: 630, y: 500, role: 'Execution', name: 'Design Agent', path: 'work/missions/*/TECHNICAL-DESIGN.md' },
-  executionBuild: { x: 380, y: 545, role: 'Execution', name: 'Build Streams', path: 'org/3-execution/divisions/' },
-  integrations: { x: 880, y: 545, role: 'Integrations', name: 'Integration Registry', path: 'org/integrations/' },
-  observability: { x: 620, y: 340, role: 'Observability', name: 'OTel / Platform', path: 'org/integrations/categories/observability.md' },
-  repo: { x: 390, y: 340, role: 'Git', name: 'Main Repository', path: 'PRs = decisions · telemetry = truth' }
+  steeringDigest: { x: 500, y: 75, role: 'Steering', name: 'Signal Aggregation', path: 'work/signals/digests/' },
+  steeringEvolution: { x: 500, y: 160, role: 'Steering', name: 'Evolution Proposer', path: 'org/0-steering/' },
+  strategyDiscovery: { x: 770, y: 148, role: 'Strategy', name: 'Discovery Agent', path: 'org/1-strategy/' },
+  strategyProduct: { x: 770, y: 268, role: 'Strategy', name: 'Product Strategy', path: 'work/missions/' },
+  orchestrationFleet: { x: 770, y: 415, role: 'Orchestration', name: 'Fleet Orchestrator', path: 'org/2-orchestration/fleet-configs/' },
+  executionSignal: { x: 230, y: 148, role: 'Execution', name: 'Signal Scanner', path: 'work/signals/' },
+  releaseOps: { x: 230, y: 268, role: 'Operate', name: 'Release + Operate', path: 'work/releases/' },
+  qualityEval: { x: 230, y: 415, role: 'Quality', name: 'Delivery Evaluator', path: 'org/4-quality/policies/' },
+  executionDesign: { x: 650, y: 520, role: 'Execution', name: 'Design Agent', path: 'work/missions/*/TECHNICAL-DESIGN.md' },
+  executionBuild: { x: 380, y: 560, role: 'Execution', name: 'Build Streams', path: 'org/3-execution/divisions/' },
+  integrations: { x: 880, y: 560, role: 'Integrations', name: 'Integration Registry', path: 'org/integrations/' },
+  observability: { x: 500, y: 275, role: 'Observability', name: 'OTel / Platform', path: 'org/integrations/categories/observability.md' },
+  repo: { x: 500, y: 395, role: 'Git', name: 'Main Repository', path: 'PRs = decisions · telemetry = truth' }
 };
 
 const stage = document.getElementById('stage');
@@ -744,62 +744,53 @@ function drawLinks() {
   const stageRect = stage.getBoundingClientRect();
   linksSvg.setAttribute('viewBox', `0 0 ${Math.max(1, stageRect.width)} ${Math.max(1, stageRect.height)}`);
   linksSvg.innerHTML = '';
-  const nodes = Object.entries(nodeLayout).filter(([id]) => id !== 'repo');
-  nodes.forEach(([id]) => {
-    if (!nodeEls[id] || !nodeEls.repo) return;
-    const points = getConnectionPoints(id, 'repo');
-    if (!points) return;
 
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    path.setAttribute('x1', points.fromEdge.x);
-    path.setAttribute('y1', points.fromEdge.y);
-    path.setAttribute('x2', points.toEdge.x);
-    path.setAttribute('y2', points.toEdge.y);
-    path.setAttribute('stroke', 'rgba(167,139,250,.22)');
-    path.setAttribute('stroke-width', '1.3');
-    path.setAttribute('stroke-dasharray', '6 5');
-    linksSvg.appendChild(path);
+  const outerNodes = Object.entries(nodeLayout).filter(([id]) => id !== 'repo' && id !== 'observability');
 
-    const nodeToNode = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    nodeToNode.setAttribute('x1', points.fromEdge.x);
-    nodeToNode.setAttribute('y1', points.fromEdge.y);
-    nodeToNode.setAttribute('x2', points.fromEdge.x + (points.toEdge.x - points.fromEdge.x) * 0.3);
-    nodeToNode.setAttribute('y2', points.fromEdge.y + (points.toEdge.y - points.fromEdge.y) * 0.3);
-    nodeToNode.setAttribute('stroke', 'rgba(34,211,238,.06)');
-    nodeToNode.setAttribute('stroke-width', '2');
-    linksSvg.appendChild(nodeToNode);
-  });
-
-  // Draw faint telemetry lines from every node to observability hub
-  const telemetryNodes = Object.entries(nodeLayout).filter(([id]) => id !== 'observability' && id !== 'repo');
-  telemetryNodes.forEach(([id]) => {
+  // 1. Every agent → observability (amber dashed — same weight as repo lines)
+  outerNodes.forEach(([id]) => {
     if (!nodeEls[id] || !nodeEls.observability) return;
     const pts = getConnectionPoints(id, 'observability');
     if (!pts) return;
-    const tLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    tLine.setAttribute('x1', pts.fromEdge.x);
-    tLine.setAttribute('y1', pts.fromEdge.y);
-    tLine.setAttribute('x2', pts.toEdge.x);
-    tLine.setAttribute('y2', pts.toEdge.y);
-    tLine.setAttribute('stroke', 'rgba(251,191,36,.07)');
-    tLine.setAttribute('stroke-width', '1');
-    tLine.setAttribute('stroke-dasharray', '3 7');
-    linksSvg.appendChild(tLine);
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', pts.fromEdge.x);
+    line.setAttribute('y1', pts.fromEdge.y);
+    line.setAttribute('x2', pts.toEdge.x);
+    line.setAttribute('y2', pts.toEdge.y);
+    line.setAttribute('stroke', 'rgba(251,191,36,.20)');
+    line.setAttribute('stroke-width', '1.2');
+    line.setAttribute('stroke-dasharray', '5 6');
+    linksSvg.appendChild(line);
   });
 
-  // Draw a slightly brighter line from repo to observability (git webhooks)
+  // 2. Every agent → repo (purple dashed — unchanged)
+  outerNodes.forEach(([id]) => {
+    if (!nodeEls[id] || !nodeEls.repo) return;
+    const points = getConnectionPoints(id, 'repo');
+    if (!points) return;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', points.fromEdge.x);
+    line.setAttribute('y1', points.fromEdge.y);
+    line.setAttribute('x2', points.toEdge.x);
+    line.setAttribute('y2', points.toEdge.y);
+    line.setAttribute('stroke', 'rgba(167,139,250,.22)');
+    line.setAttribute('stroke-width', '1.3');
+    line.setAttribute('stroke-dasharray', '6 5');
+    linksSvg.appendChild(line);
+  });
+
+  // 3. Observability ↔ repo — solid amber spine (the two hubs are directly coupled)
   if (nodeEls.repo && nodeEls.observability) {
-    const rpts = getConnectionPoints('repo', 'observability');
-    if (rpts) {
-      const rLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      rLine.setAttribute('x1', rpts.fromEdge.x);
-      rLine.setAttribute('y1', rpts.fromEdge.y);
-      rLine.setAttribute('x2', rpts.toEdge.x);
-      rLine.setAttribute('y2', rpts.toEdge.y);
-      rLine.setAttribute('stroke', 'rgba(251,191,36,.18)');
-      rLine.setAttribute('stroke-width', '1.3');
-      rLine.setAttribute('stroke-dasharray', '4 5');
-      linksSvg.appendChild(rLine);
+    const pts = getConnectionPoints('observability', 'repo');
+    if (pts) {
+      const spine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      spine.setAttribute('x1', pts.fromEdge.x);
+      spine.setAttribute('y1', pts.fromEdge.y);
+      spine.setAttribute('x2', pts.toEdge.x);
+      spine.setAttribute('y2', pts.toEdge.y);
+      spine.setAttribute('stroke', 'rgba(251,191,36,.50)');
+      spine.setAttribute('stroke-width', '1.8');
+      linksSvg.appendChild(spine);
     }
   }
 }
