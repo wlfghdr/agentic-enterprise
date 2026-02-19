@@ -15,6 +15,10 @@
 </p>
 
 <p align="center">
+  <a href="https://wlfghdr.github.io/agentic-enterprise/"><strong>🌐 Website & Interactive Demo →</strong></a>
+</p>
+
+<p align="center">
   <a href="#quick-start">Quick Start</a> •
   <a href="#the-model">The Model</a> •
   <a href="#agent-bootstrap">Agent Bootstrap</a> •
@@ -28,7 +32,7 @@
 
 ## What Is This?
 
-**Agentic Enterprise** is a complete, open-source operating model for running an organization with AI agents — expressed entirely as a Git repository. It replaces legacy ticket systems, wikis, phase-gate processes, and siloed departments with a unified, version-controlled, agent-native operating system.
+**Agentic Enterprise** is a complete, open-source operating model for running an organization with AI agents — expressed entirely as a Git repository. It's built for the post-ticket, post-countless-meetings, post-endless-human-discussions enterprise era: a unified, version-controlled, agent-native operating system with two native communication channels — the **repo itself** (agents read instructions as natural language files, produce artifacts, and file signals — all versioned in Git) and the **observability platform** (real-time telemetry and event exchange that feeds automated signals back into governance).
 
 This is **not** a strategy deck. It's a **live, forkable framework** — with org structure, process definitions, agent instructions, quality policies, work artifacts, and templates — all in Markdown and YAML.
 
@@ -37,7 +41,7 @@ This is **not** a strategy deck. It's a **live, forkable framework** — with or
 | Problem | This Framework's Answer |
 |---------|------------------------|
 | AI agents need governance, not just prompts | 5-layer organizational model with explicit boundaries, RACI via CODEOWNERS, and policy enforcement |
-| Legacy processes (Jira, wikis, standups) don't work for agent fleets | Git-native governance: PRs = decisions, branches = workflow states, CI/CD = quality gates |
+| Legacy processes (tickets, wikis, standups, endless meetings) don't work for agent fleets | Git-native governance: PRs = decisions, branches = workflow states, CI/CD = quality gates |
 | No standard way to structure human + agent collaboration | Clear separation: humans steer and decide, agents execute and evaluate, Git is the system of record |
 | Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 8 quality policy domains, 4 process loops |
 | Agent instructions are scattered and inconsistent | Hierarchical `AGENT.md` files: global → layer → division, all version-controlled |
@@ -81,16 +85,16 @@ Legacy phase-gates are replaced with continuous loops:
 | **3. Validate & Ship** | Staging → GA | Days | 1 Go/No-Go |
 | **4. Operate & Evolve** | GA → Continuous health | 24/7 | By escalation |
 
-Loop 4 feeds signals back into Loop 1, creating a continuous organizational metabolism.
+Loop 4 feeds signals back into Loop 1 via two channels: telemetry from the observability platform surfaces anomalies and files automated signals into `work/signals/`; agents in Discover pick them up as natural language files and initiate the next mission. A continuous organizational metabolism.
 
 ### The GitOps Revolution
 
 | Legacy | Agentic Enterprise | Why Better |
 |--------|-------------------|------------|
-| Jira tickets | Markdown in `work/` | Version-controlled, diffable, agent-readable |
+| Ticket system | Markdown in `work/` | Version-controlled, diffable, agent-readable |
 | Sprint planning | Mission briefs | Goal-oriented, not time-boxed |
 | Daily standup | `git log` + dashboards | Always current, no meetings |
-| Wiki | This repository | Single source of truth |
+| Wiki / knowledge base | This repository | Single source of truth |
 | RACI matrix | `CODEOWNERS` | Executable, enforced by Git |
 | Status meetings | `git diff` + mission status | Self-updating, always accurate |
 | Phase gates | CI/CD checks | Automated, consistent |
@@ -178,6 +182,7 @@ Before doing anything, read these files in order:
 4. The mission brief or task context in work/missions/
 
 Key principles:
+- Two native communication channels: the **repo** (natural language files — read instructions, produce artifacts, file signals) and the **observability platform** (real-time telemetry — emit spans as you act, consume operational data before deciding).
 - Everything is in Git. PRs = decisions. CODEOWNERS = RACI.
 - You recommend; humans decide (via PR merge).
 - Every claim must be grounded in evidence.
@@ -376,7 +381,7 @@ All integrations are declared in `CONFIG.yaml → integrations` and governed thr
 
 ### Observability for Agent Governance at Scale
 
-As agent fleets grow, observability becomes the **scaling layer** for governance — processing telemetry that agents generate, surfacing patterns, and feeding automated signals back into the operating model.
+As agent fleets grow, observability becomes the **second native communication channel** alongside the repo — agents emit OpenTelemetry spans and events as they act, the platform surfaces patterns, and automated signals flow back into `work/signals/` to feed the governance loop. It is not just monitoring — it is a bidirectional coordination layer: agents consume operational data from it *before* deciding, and emit telemetry to it *after* acting.
 
 The framework supports any observability platform through OpenTelemetry and platform-native integration patterns:
 
@@ -399,11 +404,13 @@ See `org/integrations/categories/observability.md` for detailed patterns.
 | [CrewAI](https://github.com/crewai-inc/crewAI) | 44k+ | Role-based agent crews with process orchestration | Natural fit: crews = missions, agents = division roles |
 | [LangGraph](https://github.com/langchain-ai/langgraph) | 24k+ | Stateful agent workflows with cycles and persistence | Model 4-loop lifecycle as graph states |
 
-### Agent Protocols
+### Agent Protocols & Communication Paths
 
-| Protocol | What It Does | How It Fits |
+| Protocol / Channel | What It Does | How It Fits |
 |----------|-------------|-------------|
-| [MCP (Model Context Protocol)](https://github.com/modelcontextprotocol/specification) | Standardized tool/resource connection for agents | Connect agents to business systems (Jira, Slack, DBs) beyond Git |
+| **Natural language in the repo** | Markdown and YAML files — `AGENT.md`, mission briefs, policies, signals — are the primary instruction and coordination medium between humans and agents | Asynchronous, versioned, diffable: agents read instructions, produce artifacts, and surface observations through structured natural language in Git |
+| **Observability platform** | Event bus and telemetry backbone — agents emit OpenTelemetry spans and events; the platform detects patterns and feeds automated signals back into `work/signals/` | Real-time coordination layer: agents consume observability data *before* acting and emit telemetry *after* — closing the loop between execution and governance |
+| [MCP (Model Context Protocol)](https://github.com/modelcontextprotocol/specification) | Standardized tool/resource connection for agents | Connect agents to business systems (ITSM, Slack, DBs) beyond Git |
 | [A2A (Agent2Agent)](https://github.com/google/A2A) | Cross-agent communication protocol (Google/Linux Foundation) | Enable cross-layer and cross-division agent collaboration |
 
 ### Governance & Platform Tools

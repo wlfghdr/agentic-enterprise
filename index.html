@@ -73,9 +73,20 @@ nav ul a:hover{color:var(--text)}
 .btn-secondary{background:transparent;color:var(--text);padding:14px 32px;border-radius:12px;font-weight:600;font-size:1rem;border:1px solid var(--border2);transition:border-color .2s,background .2s;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .btn-secondary:hover{border-color:var(--accent);background:rgba(167,139,250,0.05);color:#fff}
 .btn-visualization{font-size:1.08rem;padding:18px 36px;box-shadow:0 10px 30px rgba(124,58,237,0.26)}
+.btn-visualization-cta{background:linear-gradient(135deg,#0e7490,#0891b2);color:#fff;padding:18px 36px;border-radius:12px;font-weight:700;font-size:1.1rem;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:10px;position:relative;box-shadow:0 10px 40px rgba(34,211,238,0.25);letter-spacing:-0.01em}
+.btn-visualization-cta:hover{transform:translateY(-2px);box-shadow:0 14px 50px rgba(34,211,238,0.38);color:#fff}
+.viz-cta-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite;flex-shrink:0}
 
 /* ═══════════════════════════ LIVE VISUALIZATION ═══════════════════════════ */
 .live-visualization-section{padding:0;min-height:100vh;background:var(--bg2);display:flex;flex-direction:column;scroll-margin-top:0}
+.viz-intro-bar{padding:56px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);border-bottom:1px solid var(--border)}
+.viz-intro-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.viz-intro-text{flex:1;min-width:280px}
+.viz-intro-heading{font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 12px}
+.viz-intro-sub{color:var(--text2);font-size:clamp(1rem,1.5vw,1.15rem);max-width:520px;margin-top:12px;line-height:1.7}
+.viz-intro-right{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:8px}
+.viz-scenario-chips{display:flex;flex-direction:column;gap:8px}
+.viz-chip{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;background:rgba(34,211,238,0.07);border:1px solid rgba(34,211,238,0.18);border-radius:8px;font-size:0.88rem;color:var(--cyan);font-weight:500}
 .viz-embed-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:var(--bg2);display:flex;flex-direction:column;flex:1;min-height:100vh}
 .viz-embed-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(9,9,11,0.92)}
 .viz-embed-head span{font-size:0.78rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em}
@@ -199,6 +210,13 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   .beliefs-grid{grid-template-columns:1fr}
 }
 
+/* ═══════════════════════════ LINKEDIN ═══════════════════════════ */
+.hero-linkedin{margin-top:20px;font-size:0.82rem;color:var(--text3)}
+.hero-linkedin a{color:var(--text3);border-bottom:1px solid rgba(161,161,170,0.25);padding-bottom:1px;transition:color .2s,border-color .2s}
+.hero-linkedin a:hover{color:var(--text2);border-color:rgba(161,161,170,0.5)}
+.footer-linkedin{display:inline-block;margin-top:12px;font-size:0.78rem;color:var(--text3);border-bottom:1px solid rgba(161,161,170,0.2);padding-bottom:1px;transition:color .2s}
+.footer-linkedin:hover{color:var(--text2)}
+
 /* ═══════════════════════════ ANIMATIONS ═══════════════════════════ */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -220,6 +238,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
     <li><a href="#loops">Process</a></li>
     <li><a href="#gitops">GitOps</a></li>
     <li><a href="#adopt">Adopt</a></li>
+    <li><a href="#live-visualization" style="color:var(--cyan)">▶ Live Demo</a></li>
   </ul>
   <a href="https://github.com/wlfghdr/agentic-enterprise" target="_blank" class="nav-cta">GitHub ↗</a>
 </nav>
@@ -228,14 +247,15 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 <section id="hero">
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge">The post-Jira, post-wiki enterprise</div>
+      <div class="hero-badge">The post-ticket · post-meeting · post-endless-discussion enterprise era</div>
       <h1>Your company as a<br><span class="gradient-text">living Git repository</span></h1>
-      <p class="hero-desc">An open-source operating model where humans set direction and AI agent fleets execute — with every decision, artifact, and approval versioned and auditable. Git is the system of record. Enterprise tools connect through governed integrations.</p>
+      <p class="hero-desc">An open-source operating model where humans set direction and AI agent fleets execute. Agents coordinate through two native channels: the <strong style="color:var(--text)">repo</strong> — versioned natural language files where instructions flow down and signals flow up — and the <strong style="color:var(--text)">observability platform</strong> — real-time telemetry and event exchange that closes the loop. Git is the system of record. Enterprise tools connect through governed integrations.</p>
       <div class="hero-actions">
         <a href="#model" class="btn-primary">See how it works ↓</a>
         <a href="#adopt" class="btn-secondary">Start in 5 minutes</a>
-        <a href="#live-visualization" class="btn-primary btn-visualization" id="jumpToVisualization">Jump to live visualization ↓</a>
+        <a href="#live-visualization" class="btn-visualization-cta" id="jumpToVisualization"><span class="viz-cta-pulse"></span>▶ Watch agents work live</a>
       </div>
+      <p class="hero-linkedin">Want to discuss this concept? <a href="https://linkedin.com/in/wolfgangheider" target="_blank" rel="noopener">Connect on LinkedIn ↗</a></p>
     </div>
   </div>
 </section>
@@ -273,12 +293,12 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="problem-card reveal">
         <div class="icon" style="background:rgba(251,113,133,0.1);color:var(--rose)">⚡</div>
         <h3>Tickets are dead weight</h3>
-        <p><span class="strike">Jira, Linear, Asana</span> — designed for humans typing status updates. Agents need structured files, not ticket boards. Every context switch between systems is wasted compute.</p>
+        <p>Ticket boards, backlog grooming, status updates — designed for humans in sprint cycles. Agents need structured files, not ticket boards. Every context switch between systems is wasted compute.</p>
       </div>
       <div class="problem-card reveal">
         <div class="icon" style="background:rgba(251,191,36,0.1);color:var(--amber)">🔗</div>
         <h3>Wikis create knowledge silos</h3>
-        <p><span class="strike">Confluence, Notion</span> — separate systems from where work happens. Agent instructions live with the code. Everything in one repo, one source of truth.</p>
+        <p>Separate wiki systems, endless meeting notes, scattered docs — disconnected from where work actually happens. Agent instructions live with the code. Everything in one repo, one source of truth.</p>
       </div>
       <div class="problem-card reveal">
         <div class="icon" style="background:rgba(96,165,250,0.1);color:var(--blue)">🏛️</div>
@@ -294,7 +314,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="container">
     <div class="section-label reveal">Organizational Structure</div>
     <h2 class="reveal">Five layers.<br><span class="gradient-text">One system of record.</span></h2>
-    <p class="section-sub reveal">The entire company — engineering, GTM, sales, support — operates in a single 5-layer model. Information flows down, intelligence flows up.</p>
+    <p class="section-sub reveal">The entire company — engineering, GTM, sales, support — operates in a single 5-layer model. Instructions and artifacts flow down through repo files. Signals and telemetry flow up through the observability platform.</p>
 
     <div class="layers-visual reveal">
       <div class="layer-row" style="border-left:3px solid var(--rose)">
@@ -340,7 +360,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="container">
     <div class="section-label reveal">Process Lifecycle</div>
     <h2 class="reveal">Four loops. <span class="gradient-text">Idea to production in weeks.</span></h2>
-    <p class="section-sub reveal">No sprints. No phase gates. Continuous loops that feed into each other — production signals become tomorrow's missions.</p>
+    <p class="section-sub reveal">No sprints. No phase gates. Continuous loops that feed into each other — telemetry from the observability platform surfaces signals, which become tomorrow's missions in the repo.</p>
 
     <div class="loops-grid reveal">
       <div class="loop-card">
@@ -364,13 +384,13 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="loop-card">
         <div class="loop-num" style="border-color:var(--amber);color:var(--amber)">4</div>
         <h3>Operate</h3>
-        <p>24/7 production health. Agents monitor, remediate, manage rollouts. Incidents auto-escalate. New signals loop back to Discover.</p>
+        <p>24/7 production health. Agents emit telemetry to the observability platform; it surfaces anomalies and files signals back into the repo. Incidents auto-escalate. The loop never stops.</p>
         <span class="loop-time">Continuous</span>
       </div>
     </div>
     <div class="loop-feedback reveal">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-      Production signals feed back into Discover — the system never stops learning
+      Observability telemetry surfaces patterns → signals are filed in the repo → Discover picks them up. The system never stops learning.
     </div>
   </div>
 </section>
@@ -380,17 +400,17 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="container">
     <div class="section-label reveal">The Governance Model</div>
     <h2 class="reveal">Git as the system of record.<br><span class="gradient-text">Integrations extend the reach.</span></h2>
-    <p class="section-sub reveal">The operating model lives in the filesystem — versioned and auditable. Enterprise tools connect through governed integrations. Your existing tools work with the model, not against it.</p>
+    <p class="section-sub reveal">The operating model lives in the filesystem — versioned and auditable. Two native channels power agent coordination: the <strong style="color:var(--text)">repo</strong> (async natural language — instructions, artifacts, signals, all in Git) and the <strong style="color:var(--text)">observability platform</strong> (real-time telemetry and event exchange, feeding signals back into governance). Enterprise tools connect through governed integrations and work with the model, not against it.</p>
 
     <div class="table-wrapper reveal">
       <table class="replace-table">
         <thead><tr><th>Traditional Approach</th><th>Agentic Enterprise</th><th>What changes</th></tr></thead>
         <tbody>
-          <tr><td class="old">Jira / Linear ticket</td><td class="new">Markdown file in <code style="color:var(--cyan);font-size:0.82rem">work/</code></td><td class="why">System of record in Git; existing tools sync via integrations</td></tr>
+          <tr><td class="old">Ticket system</td><td class="new">Markdown file in <code style="color:var(--cyan);font-size:0.82rem">work/</code></td><td class="why">System of record in Git; existing tools sync via integrations</td></tr>
           <tr><td class="old">Ticket workflow</td><td class="new">Git branch → PR → merge</td><td class="why">Governance is Git-native; status projects to dashboards</td></tr>
           <tr><td class="old">Sprint planning</td><td class="new">Mission brief creation</td><td class="why">Goal-oriented, not time-boxed</td></tr>
           <tr><td class="old">Daily standup</td><td class="new">Git log + observability dashboards</td><td class="why">Always current, real-time fleet health</td></tr>
-          <tr><td class="old">Confluence wiki</td><td class="new">The repository itself</td><td class="why">Single source of truth, versioned</td></tr>
+          <tr><td class="old">Enterprise wiki</td><td class="new">The repository itself</td><td class="why">Single source of truth, versioned</td></tr>
           <tr><td class="old">RACI matrix</td><td class="new"><code style="color:var(--cyan);font-size:0.82rem">CODEOWNERS</code></td><td class="why">Executable, enforced by Git host</td></tr>
           <tr><td class="old">Phase gates</td><td class="new">CI/CD pipeline checks</td><td class="why">Automated, no human bottleneck</td></tr>
           <tr><td class="old">Manual monitoring</td><td class="new">Observability integration</td><td class="why">Telemetry feeds signals back into governance</td></tr>
@@ -565,7 +585,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
         <div class="step-num">5</div>
         <div>
           <h3>Let agents work</h3>
-          <p>Point your AI agents at the AGENTS.md file. They read their instructions, follow the process, submit PRs. You review and merge. That's it.</p>
+          <p>Point your AI agents at the AGENTS.md file. They read instructions from the repo, execute the process, emit telemetry, and submit PRs with their outputs. You review and merge. That's it.</p>
         </div>
       </div>
     </div>
@@ -586,9 +606,28 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 
 <!-- ═══════════════════════════ LIVE VISUALIZATION EMBED ═══════════════════════════ -->
 <section id="live-visualization" class="live-visualization-section">
+  <div class="viz-intro-bar">
+    <div class="container">
+      <div class="viz-intro-inner">
+        <div class="viz-intro-text">
+          <div class="section-label" style="margin-bottom:12px">Interactive Demo</div>
+          <h2 class="viz-intro-heading">Watch <span class="gradient-text">agents execute.</span></h2>
+          <p class="viz-intro-sub">Three real scenarios playing out in real-time. Agent fleets coordinate, PRs flow, telemetry fires, signals loop back. This is the operating model — alive.</p>
+        </div>
+        <div class="viz-intro-right">
+          <div class="viz-scenario-chips">
+            <div class="viz-chip">🔄 Feature lifecycle</div>
+            <div class="viz-chip">🏢 Company optimization</div>
+            <div class="viz-chip">🤖 Fleet change cycle</div>
+          </div>
+          <a href="concept-visualization.html" target="_blank" class="btn-secondary" style="margin-top:16px;display:inline-flex">Open fullscreen ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="viz-embed-wrap">
     <div class="viz-embed-head">
-      <span>Live visualization · Full screen section</span>
+      <span>Live · Interactive · No setup required — click a scenario and watch</span>
       <a class="viz-embed-link" href="concept-visualization.html" target="_blank">Open standalone ↗</a>
     </div>
     <iframe class="viz-embed" src="concept-visualization.html" title="Agentic Enterprise Live Visualization" loading="lazy"></iframe>
@@ -599,7 +638,8 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 <footer>
   <div class="container">
     Agentic Enterprise Operating Model — Open Source<br>
-    <span style="color:var(--text3)">Humans decide. Agents execute. Git governs.</span>
+    <span style="color:var(--text3)">Humans decide. Agents execute. Git governs.</span><br>
+    <a href="https://linkedin.com/in/wolfgangheider" target="_blank" rel="noopener" class="footer-linkedin">Discuss this concept on LinkedIn ↗</a>
   </div>
 </footer>
 
