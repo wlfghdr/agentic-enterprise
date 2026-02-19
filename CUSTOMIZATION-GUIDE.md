@@ -262,7 +262,7 @@ The framework ships with integration category guides and a template. Connect you
 
 **Location:** `process/`
 
-The 3-loop lifecycle (Discover → Build → Ship) is designed to be universal. Customize:
+The 4-loop lifecycle (Discover → Build → Ship → Operate) is designed to be universal. Customize:
 
 - **Loop durations:** The defaults (hours-days, days-weeks, days) may need adjustment for your velocity
 - **Human checkpoints:** Add or remove approval gates based on your governance needs
@@ -287,7 +287,7 @@ The framework ships with a generic lifecycle example. Create your own:
 | Component | Keep As-Is? | Why |
 |-----------|------------|-----|
 | 5-layer model | ✅ Yes | Universal organizational pattern |
-| 3-loop lifecycle | ✅ Yes | Universal process pattern |
+| 4-loop lifecycle | ✅ Yes | Universal process pattern |
 | Git-native governance | ✅ Yes | Fundamental to the model |
 | Agent instruction hierarchy | ✅ Yes | Critical for multi-agent governance |
 | Improvement signal flow | ✅ Yes | Key innovation of the model |
