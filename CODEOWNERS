@@ -14,13 +14,36 @@
 # Ensures every file has at least one owner. Specific rules below override this.
 *                                   @steering-executive
 
-# ─── Global / Root ────────────────────────────────────────────────
-# Company-level artifacts require executive (Steering) approval
+# ─── OSS Framework Infrastructure ────────────────────────────────
+# Files that exist because this is a public open-source template.
+# In a private fork these can be removed; if contributing back to the
+# upstream template they require Steering approval.
+README.md                           @steering-executive
+CONTRIBUTING.md                     @steering-executive
+CODE_OF_CONDUCT.md                  @steering-executive
+SECURITY.md                         @steering-executive
+LICENSE                             @steering-executive
+NOTICE                              @steering-executive
+AGENT-BOOTSTRAP-PROMPT.md          @steering-executive
+concept-visualization.html          @steering-executive
+index.html                          @steering-executive
+.github/                            @steering-executive @cto
+
+# ─── Agent Runtime Bootstrap ──────────────────────────────────────
+# CLAUDE.md is loaded automatically by Claude Code and mirrors the
+# content of AGENTS.md for Claude-specific tooling. Changes must stay
+# in sync with AGENTS.md — treat it as a derived/companion file.
+CLAUDE.md                           @steering-executive
+
+# ─── Company Operating Model Content ──────────────────────────────
+# These files ARE the company's operating model. In a fork you fill
+# them in and own them fully. Changes require executive (Steering) approval.
 COMPANY.md                          @steering-executive
 CONFIG.yaml                         @steering-executive
 AGENTS.md                           @steering-executive
 OPERATING-MODEL.md                  @steering-executive
 CUSTOMIZATION-GUIDE.md              @steering-executive
+FILE-GUIDE.md                       @steering-executive
 CODEOWNERS                          @steering-executive
 
 # ─── Examples ─────────────────────────────────────────────────────
@@ -52,6 +75,10 @@ org/3-execution/divisions/          @execution-division-lead
 # Quality policies are law — Policy Authors approve changes
 org/4-quality/                      @quality-policy-author
 org/4-quality/policies/             @quality-policy-author
+
+# ─── Integration Registry ─────────────────────────────────────────
+# New integrations and category changes require Orchestration + Steering sign-off
+org/integrations/                   @orchestration-fleet-manager @steering-executive
 
 # ─── Process Lifecycle ───────────────────────────────────────────
 process/                            @orchestration-fleet-manager @quality-policy-author
@@ -91,3 +118,4 @@ work/missions/_TEMPLATE-outcome-report.md             @strategy-venture-lead
 work/missions/_TEMPLATE-mission-status.md             @orchestration-fleet-manager
 work/missions/_TEMPLATE-fleet-performance-report.md   @orchestration-fleet-manager
 work/missions/_TEMPLATE-quality-evaluation-report.md  @quality-policy-author
+work/missions/_TEMPLATE-technical-design.md           @execution-division-lead @cto

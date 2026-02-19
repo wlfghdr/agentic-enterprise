@@ -120,6 +120,8 @@ This framework gives you the **governance infrastructure** to move right on this
 
 ## Quick Start
 
+> **Before you start:** [FILE-GUIDE.md](FILE-GUIDE.md) maps every file in this repo to one of three categories — OSS infrastructure (delete in a private fork), company operating model content (fill in and own), or agent bootstrap helpers. Read it to avoid editing files you should delete, or deleting files you should fill in.
+
 ### 1. Fork & Clone
 
 ```bash

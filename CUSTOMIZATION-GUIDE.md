@@ -3,6 +3,8 @@
 > **Start here** after cloning this framework.  
 > This guide walks you through every step of making this operating model your own.
 
+> **New to the repo layout?** Read [FILE-GUIDE.md](FILE-GUIDE.md) first — it explains which root files are part of the open-source template infrastructure (safe to delete in a private fork) and which are your company's actual operating model content (fill in and own).
+
 ---
 
 ## Quick Start (30 minutes to a working framework)
