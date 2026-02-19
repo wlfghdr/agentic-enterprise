@@ -43,12 +43,56 @@ Mission created       → span: mission lifecycle
 Fleet assembled       → span: orchestration
 Agent task started    → span: execution (per agent, per stream)
 Tool call (MCP/API)   → span: tool invocation (latency, success/failure)
-PR created            → event: governance checkpoint
+PR created            → event: governance checkpoint       ← git webhook
 Quality evaluation    → span: evaluation (verdict, evidence)
-PR merged/rejected    → event: decision point
-Release deployed      → span: ship loop
+PR merged/rejected    → event: decision point              ← git webhook
+Release deployed      → span: ship loop                   ← git tag webhook
 Production alert      → event: operate loop signal
 Improvement signal    → event: feedback loop closed
+```
+
+### Git Webhooks as an Observability Source
+
+The Git repository is the system of record for all decisions in this operating model. Every meaningful Git event should generate an observation in the observability platform — connecting repository activity to the telemetry timeline.
+
+**Configure webhooks at the repository or organization level** to push to the observability platform's webhook ingest or OTLP HTTP endpoint:
+
+| Git Event | Observability Event | Key Attributes |
+|-----------|--------------------|-----------------|
+| PR opened | `governance.pr.opened` | `pr.number`, `pr.branch`, `agent.name`, `mission.id` |
+| PR updated | `governance.pr.updated` | `pr.number`, `pr.commits_added` |
+| PR review submitted | `governance.pr.reviewed` | `pr.number`, `review.outcome`, `reviewer` |
+| PR merged | `governance.pr.merged` | `pr.number`, `merge.sha`, `time_to_merge_seconds` |
+| PR closed (no merge) | `governance.pr.rejected` | `pr.number`, `close.reason` |
+| Tag / release created | `release.tagged` | `tag.name`, `release.sha` |
+| Branch created | `governance.branch.created` | `branch.name`, `mission.id` (parsed from branch naming convention) |
+
+**What this unlocks:**
+- **Cycle time observability** — from first commit on a signal branch to PR merged = end-to-end mission latency, fully measurable
+- **Change impact correlation** — observability platform correlates production anomalies to specific PR merges automatically
+- **Approval audit trail** — every governance decision (who approved, when) is an observable event, not just a Git log entry
+- **Automated signal generation** — if PR review time spikes or deployment frequency drops, observability detects it and files a signal automatically
+
+**Configuration pattern (GitHub):**
+```yaml
+# In GitHub org/repo settings → Webhooks
+url: "https://{{OTLP_INGEST_ENDPOINT}}/github-events"
+content_type: application/json
+events:
+  - pull_request
+  - pull_request_review
+  - create          # branch/tag creation
+  - push
+```
+
+**Configuration pattern (GitLab):**
+```yaml
+# In GitLab project/group settings → Webhooks
+url: "https://{{OTLP_INGEST_ENDPOINT}}/gitlab-events"
+events:
+  - merge_requests_events: true
+  - tag_push_events: true
+  - push_events: true
 ```
 
 ---

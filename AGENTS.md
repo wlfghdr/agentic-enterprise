@@ -84,6 +84,15 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 - Log integration usage as part of your activity telemetry — every external call should be traceable.
 - If you discover a need for an unregistered integration, file a signal. Do not create ad-hoc tool connections.
 
+### 9. Emit activity telemetry — always
+- **Every agent action produces an OpenTelemetry span.** No silent execution. This is not optional.
+- Every span MUST include: `agent.name`, `agent.layer`, `agent.mission_id`, `agent.tool`, `agent.model` (if applicable), `agent.token_usage.input`, `agent.token_usage.output`.
+- Every decision point (approve, reject, escalate, delegate) emits an event with: `governance.decision`, `governance.reason`, `pr.number` (if applicable).
+- Every tool call (MCP server, API, file write, Git operation) is wrapped in a child span with latency and outcome recorded.
+- Telemetry is exported to the registered observability integration via OTLP. If no observability integration is configured, log structured JSON to stdout at minimum.
+- **Agents do not self-censor telemetry.** If an action happened, it is observable. Policy violations, escalations, retries, and failures are especially important to instrument — they are the most valuable signals.
+- The observability integration is the system of truth for what agents actually did. The Git repo is the system of truth for what was decided. Both are required for a complete audit trail.
+
 ## Repository Structure (Quick Reference)
 
 ```

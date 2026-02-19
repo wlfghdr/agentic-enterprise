@@ -231,6 +231,42 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
 .node.integration .role{color:var(--cyan)}
 .node.integration .path{color:var(--cyan)}
 
+.node.observability{
+  width:130px;
+  border-color:rgba(251,191,36,.5);
+  background:linear-gradient(160deg, rgba(251,191,36,.14), rgba(24,24,27,.95));
+  box-shadow:0 0 0 1px rgba(251,191,36,.08);
+}
+.node.observability .role{color:var(--amber)}
+.node.observability .name{font-size:.72rem}
+.node.observability .path{color:var(--amber);opacity:.75}
+.node.observability.active{border-color:var(--amber);box-shadow:0 0 0 2px rgba(251,191,36,.25),0 12px 26px rgba(0,0,0,.32)}
+
+.telemetry-dot{
+  position:absolute;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--amber);
+  box-shadow:0 0 8px rgba(251,191,36,.9);
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  z-index:5;
+  opacity:.9;
+}
+.telemetry-label{
+  position:absolute;
+  transform:translate(-50%,-140%);
+  background:rgba(9,9,11,.88);
+  border:1px solid rgba(251,191,36,.4);
+  color:var(--amber);
+  border-radius:999px;
+  padding:2px 6px;
+  font-size:.56rem;
+  white-space:nowrap;
+  pointer-events:none;
+  opacity:.9;
+}
+
 .pr-dot{
   position:absolute;
   width:10px;height:10px;
@@ -271,7 +307,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
   border-radius:10px;
   background:rgba(9,9,11,.85);
   display:grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(5,1fr);
   gap:4px;
   padding:6px;
   font-size:.61rem;
@@ -306,6 +342,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
 .terminal-line.info{color:#c4b5fd}
 .terminal-line.wake{color:#67e8f9}
 .terminal-line.event{color:#fbbf24}
+.terminal-line.telemetry{color:#f59e0b;opacity:.85}
 
 @media (max-width:1280px){
   .app{grid-template-columns:1fr;grid-template-rows: 290px minmax(500px,1fr);overflow:auto;height:auto;min-height:100vh}
@@ -348,6 +385,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
           <span><i class="dot" style="background:var(--cyan)"></i>Agent wake-up</span>
           <span><i class="dot" style="background:var(--amber)"></i>Design gate</span>
           <span><i class="dot" style="background:var(--accent)"></i>Integration activity</span>
+          <span><i class="dot" style="background:var(--amber);opacity:.7"></i>OTel telemetry</span>
         </div>
       </section>
 
@@ -633,7 +671,8 @@ const nodeLayout = {
   executionDesign: { x: 630, y: 500, role: 'Execution', name: 'Design Agent', path: 'work/missions/*/TECHNICAL-DESIGN.md' },
   executionBuild: { x: 380, y: 545, role: 'Execution', name: 'Build Streams', path: 'org/3-execution/divisions/' },
   integrations: { x: 880, y: 545, role: 'Integrations', name: 'Integration Registry', path: 'org/integrations/' },
-  repo: { x: 500, y: 325, role: 'Git', name: 'Main Repository', path: 'PRs = decisions · Integrations extend reach' }
+  observability: { x: 110, y: 545, role: 'Observability', name: 'OTel / Platform', path: 'org/integrations/categories/observability.md' },
+  repo: { x: 500, y: 325, role: 'Git', name: 'Main Repository', path: 'PRs = decisions · telemetry = truth' }
 };
 
 const stage = document.getElementById('stage');
@@ -657,7 +696,7 @@ let terminalLineCounter = 0;
 
 function makeNode(id, info) {
   const el = document.createElement('div');
-  el.className = 'node' + (id === 'repo' ? ' repo' : '') + (id === 'integrations' ? ' integration' : '');
+  el.className = 'node' + (id === 'repo' ? ' repo' : '') + (id === 'integrations' ? ' integration' : '') + (id === 'observability' ? ' observability' : '');
   el.dataset.id = id;
   const pos = coordsToPercent(info.x, info.y);
   el.style.left = `${pos.x}%`;
@@ -703,6 +742,39 @@ function drawLinks() {
     nodeToNode.setAttribute('stroke-width', '2');
     linksSvg.appendChild(nodeToNode);
   });
+
+  // Draw faint telemetry lines from every node to observability hub
+  const telemetryNodes = Object.entries(nodeLayout).filter(([id]) => id !== 'observability' && id !== 'repo');
+  telemetryNodes.forEach(([id]) => {
+    if (!nodeEls[id] || !nodeEls.observability) return;
+    const pts = getConnectionPoints(id, 'observability');
+    if (!pts) return;
+    const tLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    tLine.setAttribute('x1', pts.fromEdge.x);
+    tLine.setAttribute('y1', pts.fromEdge.y);
+    tLine.setAttribute('x2', pts.toEdge.x);
+    tLine.setAttribute('y2', pts.toEdge.y);
+    tLine.setAttribute('stroke', 'rgba(251,191,36,.07)');
+    tLine.setAttribute('stroke-width', '1');
+    tLine.setAttribute('stroke-dasharray', '3 7');
+    linksSvg.appendChild(tLine);
+  });
+
+  // Draw a slightly brighter line from repo to observability (git webhooks)
+  if (nodeEls.repo && nodeEls.observability) {
+    const rpts = getConnectionPoints('repo', 'observability');
+    if (rpts) {
+      const rLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      rLine.setAttribute('x1', rpts.fromEdge.x);
+      rLine.setAttribute('y1', rpts.fromEdge.y);
+      rLine.setAttribute('x2', rpts.toEdge.x);
+      rLine.setAttribute('y2', rpts.toEdge.y);
+      rLine.setAttribute('stroke', 'rgba(251,191,36,.18)');
+      rLine.setAttribute('stroke-width', '1.3');
+      rLine.setAttribute('stroke-dasharray', '4 5');
+      linksSvg.appendChild(rLine);
+    }
+  }
 }
 
 function getNodeCenterAndHalf(nodeId) {
@@ -855,6 +927,51 @@ function animatePr(fromNodeId, branchLabel, onRepoImpact) {
   requestAnimationFrame(frame);
 }
 
+function animateTelemetry(fromNodeId, labelText, onArrival) {
+  const points = getConnectionPoints(fromNodeId, 'observability');
+  if (!points) return;
+
+  const dot = document.createElement('div');
+  dot.className = 'telemetry-dot';
+  const label = document.createElement('div');
+  label.className = 'telemetry-label';
+  label.textContent = labelText;
+  stage.appendChild(dot);
+  stage.appendChild(label);
+
+  const duration = 1800;
+  const holdMs = 1200;
+  let arrived = false;
+  const start = performance.now();
+
+  function frame(now) {
+    const elapsed = now - start;
+    const t = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const x = points.fromEdge.x + (points.toEdge.x - points.fromEdge.x) * ease;
+    const y = points.fromEdge.y + (points.toEdge.y - points.fromEdge.y) * ease;
+    dot.style.left = `${x}px`;
+    dot.style.top = `${y}px`;
+    label.style.left = `${x}px`;
+    label.style.top = `${y}px`;
+
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      if (!arrived) {
+        arrived = true;
+        if (nodeEls.observability) {
+          nodeEls.observability.classList.remove('wakeup');
+          requestAnimationFrame(() => nodeEls.observability.classList.add('wakeup'));
+        }
+        if (typeof onArrival === 'function') onArrival();
+        setTimeout(() => { dot.remove(); label.remove(); }, holdMs);
+      }
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
 function renderStep(withPrAnimation = true) {
   const scenario = scenarioData[currentScenarioKey];
   const step = scenario.steps[stepIndex];
@@ -876,6 +993,18 @@ function renderStep(withPrAnimation = true) {
       const targetName = nodeLayout[targetId] ? nodeLayout[targetId].name : targetId;
       setTimeout(() => appendTerminalLine(`wake -> ${targetName}`, 'wake'), 700 + idx * 260);
     });
+    // Emit OTel span from the active agent to observability
+    setTimeout(() => {
+      animateTelemetry(step.fromNode, 'OTel span', () => {
+        appendTerminalLine(`otel -> span: ${step.from} · mission=${step.branch.split('/')[1] || 'n/a'}`, 'telemetry');
+      });
+    }, 900);
+    // Emit git webhook from repo to observability (PR merged event)
+    setTimeout(() => {
+      animateTelemetry('repo', 'git webhook', () => {
+        appendTerminalLine(`otel -> event: governance.pr.merged · pr=${step.branch}`, 'telemetry');
+      });
+    }, 1600);
     setTimeout(() => appendTerminalLine(`context: ${step.narrative}`), 1150 + step.wakes.length * 180);
   };
 

@@ -1,9 +1,29 @@
 # Quality Policy: Observability
 
-> **Applies to:** All services, apps, components, agents, and pipelines — nothing ships without proper observability  
-> **Enforced by:** Quality Layer eval agents  
-> **Authority:** Operations leads + Architecture Governors  
+> **Applies to:** All services, apps, components, agents, and pipelines — nothing ships without proper observability
+> **Enforced by:** Quality Layer eval agents, including the dedicated [Observability Compliance Agent](../../agents/quality/observability-compliance-agent.md)
+> **Authority:** Operations leads + Architecture Governors
 > **Principle:** If it runs, it must be observable. If it's not observable, it doesn't ship.
+
+---
+
+## Observable by Default — The Prime Directive
+
+**Observability is not a feature you add later. It is the first thing you build.**
+
+Before any component, agent, workflow, or pipeline is considered "done" — before it enters PR review, before quality evaluation, before any merge — its instrumentation must be complete and telemetry must be verified flowing to the registered observability integration.
+
+This policy establishes observability as a **hard gate**, not a checklist item:
+
+| Stage | Gate |
+|-------|------|
+| PR opened | Instrumentation code present (static check) |
+| PR review | Telemetry verified in staging (evidence required) |
+| Quality evaluation | Observability Compliance Agent issues PASS verdict |
+| Release contract | SLOs configured, dashboards linked, alerts active |
+| Production deploy | Post-deploy monitoring plan active |
+
+**No exception exists for shipping without any observability.** The Observability Compliance Agent will BLOCK any output that lacks verified instrumentation.
 
 ---
 
@@ -160,6 +180,36 @@ AI agents are first-class citizens that require purpose-built observability:
 
 ---
 
+## Git Events as Observability Source
+
+Every Git operation in this repository is a significant lifecycle event. The observability integration MUST receive events for every meaningful Git change via webhooks.
+
+### Required Git Event Coverage
+
+- [ ] **PR created** → event: `governance.pr.opened` with branch name, author agent, mission ID
+- [ ] **PR updated** (new commits pushed) → event: `governance.pr.updated`
+- [ ] **PR review requested / completed** → event: `governance.pr.review`
+- [ ] **PR merged** → event: `governance.pr.merged` with merge SHA, approver(s), time-to-merge
+- [ ] **PR rejected / closed without merge** → event: `governance.pr.rejected` with reason (if documented)
+- [ ] **Tag / release created** → event: `release.tagged`
+- [ ] **Branch created** → event: `governance.branch.created` (correlate to fleet config or mission)
+
+### What Git Webhooks Enable
+
+| Capability | Explanation |
+|-----------|-------------|
+| **Cycle time tracking** | Time from signal filed (first commit on branch) to PR merged = end-to-end mission latency |
+| **Compliance evidence** | Every approval in Git is an observable event with timestamp and approver identity |
+| **Change impact correlation** | Observability platform correlates production behavior changes to specific PR merges |
+| **Automated signal generation** | Deployment frequency drops, review time spikes → auto-filed signals in `work/signals/` |
+| **Audit trail completeness** | Git + telemetry together provide the full audit trail: what was decided (Git) + what actually happened (telemetry) |
+
+### Configuration
+
+Git webhooks are configured at the repository or organization level to push events to the OTLP endpoint or webhook ingest of the registered observability integration. See `org/integrations/categories/observability.md` for configuration patterns.
+
+---
+
 ## Verification Gates
 
 Observability is checked at multiple points in the lifecycle:
@@ -212,3 +262,4 @@ Observability is checked at multiple points in the lifecycle:
 | Dashboards | Service health dashboard created and linked | No dashboard or not linked in catalog |
 | Alerting | All alerts have documented runbook actions | Alerts without runbooks or no alerting |
 | Agent observability | Spans for tool calls, decisions, token usage | Agent actions not traced (if agent component) |
+| Git event coverage | Webhook configured, PR lifecycle events flowing | No git webhooks or events not reaching observability integration |

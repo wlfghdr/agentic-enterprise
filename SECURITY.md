@@ -26,7 +26,7 @@ Report privately via GitHub Security Advisories:
 - Include: affected files, risk description, proof-of-concept, mitigation ideas
 
 If Security Advisories are unavailable, contact maintainers directly at:
-`security@agentic-enterprise.dev`
+`wulf.ai.m@gmail.com`
 
 ## What to Include in Reports
 

@@ -11,8 +11,9 @@ Agent types that operate at the Quality Layer — evaluating outputs against pol
 | customer-material-evaluator | Customer Material Evaluator | proposed |
 | delivery-evaluator | Delivery Evaluator | proposed |
 | experience-evaluator | Experience Evaluator | proposed |
+| observability-compliance-agent | Observability Compliance Agent | proposed |
 | performance-evaluator | Performance Evaluator | proposed |
 | production-readiness-evaluator | Production Readiness Evaluator | proposed |
 | security-policy-enforcer | Security Policy Enforcer | proposed |
 
-**Total: 8 agent types**
+**Total: 9 agent types**
