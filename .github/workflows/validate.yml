@@ -54,29 +54,124 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check for broken internal links
+      - name: Check for broken internal links and cross-file references
         run: |
-          echo "Checking internal markdown links..."
-          BROKEN=0
-          while IFS= read -r line; do
-            FILE=$(echo "$line" | cut -d: -f1)
-            LINK=$(echo "$line" | grep -oP '\]\(\K[^)]+' | head -1)
-            # Skip external links, anchors, and template placeholders
-            if [[ "$LINK" == http* ]] || [[ "$LINK" == \#* ]] || [[ "$LINK" == *"{{"* ]]; then
-              continue
-            fi
-            DIR=$(dirname "$FILE")
-            TARGET="$DIR/$LINK"
-            if [[ ! -f "$TARGET" ]] && [[ ! -d "$TARGET" ]]; then
-              echo "BROKEN: $FILE -> $LINK"
-              BROKEN=$((BROKEN + 1))
-            fi
-          done < <(grep -rn ']\(\./' --include="*.md" . || true)
-          if [ $BROKEN -gt 0 ]; then
-            echo "$BROKEN broken link(s) found"
-            exit 1
-          fi
-          echo "All internal links OK"
+          python3 - <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          repo = Path(".").resolve()
+
+          md_files = [
+            p for p in repo.rglob("*.md")
+            if ".git" not in p.parts and "node_modules" not in p.parts
+          ]
+
+          inline_link_pattern = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+          reference_use_pattern = re.compile(r"\[[^\]]+\]\[([^\]]+)\]")
+          reference_def_pattern = re.compile(r"^\s*\[([^\]]+)\]:\s*(\S+)", re.MULTILINE)
+          heading_pattern = re.compile(r"^#{1,6}\s+(.+?)\s*$", re.MULTILINE)
+
+          def normalize_anchor(text: str) -> str:
+            value = text.strip().lower()
+            value = re.sub(r"[`*_~\[\](){}.!?,:;\"'\\\\]", "", value)
+            value = re.sub(r"\s+", "-", value)
+            value = re.sub(r"-+", "-", value).strip("-")
+            return value
+
+          def is_external(target: str) -> bool:
+            lower = target.lower()
+            return (
+              lower.startswith("http://")
+              or lower.startswith("https://")
+              or lower.startswith("mailto:")
+              or lower.startswith("tel:")
+              or lower.startswith("ftp://")
+            )
+
+          def parse_target(raw: str):
+            cleaned = raw.strip()
+            if cleaned.startswith("<") and cleaned.endswith(">"):
+              cleaned = cleaned[1:-1].strip()
+            if " " in cleaned:
+              cleaned = cleaned.split(" ", 1)[0]
+            if "{{" in cleaned:
+              return None, None, True
+            if is_external(cleaned):
+              return None, None, True
+            if cleaned.startswith("#"):
+              return "", cleaned[1:], False
+            path_part, anchor = (cleaned.split("#", 1) + [""])[:2] if "#" in cleaned else (cleaned, "")
+            return path_part, anchor, False
+
+          def resolve_path(source: Path, path_part: str) -> Path:
+            if path_part.startswith("/"):
+              target = repo / path_part.lstrip("/")
+            else:
+              target = (source.parent / path_part).resolve()
+            return target
+
+          heading_cache = {}
+
+          def get_headings(md_file: Path):
+            if md_file in heading_cache:
+              return heading_cache[md_file]
+            text = md_file.read_text(encoding="utf-8", errors="ignore")
+            anchors = {normalize_anchor(m.group(1)) for m in heading_pattern.finditer(text)}
+            heading_cache[md_file] = anchors
+            return anchors
+
+          broken = []
+
+          for md_file in md_files:
+            text = md_file.read_text(encoding="utf-8", errors="ignore")
+
+            ref_defs = {
+              key.strip().lower(): value.strip()
+              for key, value in reference_def_pattern.findall(text)
+            }
+
+            candidates = [match.group(1).strip() for match in inline_link_pattern.finditer(text)]
+
+            for ref_key in reference_use_pattern.findall(text):
+              ref_target = ref_defs.get(ref_key.strip().lower())
+              if ref_target:
+                candidates.append(ref_target)
+
+            for candidate in candidates:
+              path_part, anchor, skip = parse_target(candidate)
+              if skip:
+                continue
+
+              target_file = md_file if path_part == "" else resolve_path(md_file, path_part)
+
+              try:
+                target_file.relative_to(repo)
+              except ValueError:
+                broken.append((md_file, candidate, "target escapes repository"))
+                continue
+
+              if not target_file.exists():
+                broken.append((md_file, candidate, "target does not exist"))
+                continue
+
+              if anchor:
+                if target_file.suffix.lower() == ".md":
+                  anchors = get_headings(target_file)
+                  normalized = normalize_anchor(anchor)
+                  if normalized not in anchors:
+                    broken.append((md_file, candidate, f"missing anchor #{anchor}"))
+
+          if broken:
+            print("Broken markdown links found:")
+            for src, link, reason in broken:
+              print(f"- {src.relative_to(repo)} -> {link} ({reason})")
+            print(f"\nTotal broken links: {len(broken)}")
+            sys.exit(1)
+
+          print(f"Checked {len(md_files)} markdown files: all internal links OK")
+          PY
 
   validate-placeholders:
     name: Check Placeholders
