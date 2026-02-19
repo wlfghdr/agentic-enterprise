@@ -264,7 +264,6 @@ jobs:
   validate-versioning:
     name: Validate Versioning
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -274,6 +273,23 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Resolve diff base and head
+        id: refs
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "base=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
+            echo "head=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          else
+            BEFORE="${{ github.event.before }}"
+            # All-zeros means initial push or force-push with no common ancestor — skip diff
+            if echo "$BEFORE" | grep -qE '^0+$'; then
+              echo "base=" >> "$GITHUB_OUTPUT"
+            else
+              echo "base=$BEFORE" >> "$GITHUB_OUTPUT"
+            fi
+            echo "head=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Check version fields and changelog sections exist in governed files
         run: |
@@ -349,17 +365,25 @@ jobs:
           PY
 
       - name: Check changed files have updated version/date
+        env:
+          BASE: ${{ steps.refs.outputs.base }}
+          HEAD: ${{ steps.refs.outputs.head }}
         run: |
           python3 - <<'PY'
+          import os
           import re
           import subprocess
           import sys
           from pathlib import Path
 
-          BASE = "${{ github.event.pull_request.base.sha }}"
-          HEAD = "${{ github.event.pull_request.head.sha }}"
+          BASE = os.environ.get("BASE", "").strip()
+          HEAD = os.environ.get("HEAD", "").strip()
 
-          # Get list of changed .md files in this PR
+          if not BASE:
+              print("No base SHA available (initial push or force-push) — skipping diff check.")
+              sys.exit(0)
+
+          # Get list of changed .md files between base and head
           result = subprocess.run(
               ["git", "diff", "--name-only", BASE, HEAD],
               capture_output=True, text=True
