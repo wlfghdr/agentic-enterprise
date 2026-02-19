@@ -267,6 +267,31 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
   opacity:.9;
 }
 
+.obs-signal-dot{
+  position:absolute;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--rose);
+  box-shadow:0 0 8px rgba(251,113,133,.9);
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  z-index:5;
+  opacity:.88;
+}
+.obs-signal-label{
+  position:absolute;
+  transform:translate(-50%,-140%);
+  background:rgba(9,9,11,.88);
+  border:1px solid rgba(251,113,133,.4);
+  color:var(--rose);
+  border-radius:999px;
+  padding:2px 6px;
+  font-size:.56rem;
+  white-space:nowrap;
+  pointer-events:none;
+  opacity:.88;
+}
+
 .pr-dot{
   position:absolute;
   width:10px;height:10px;
@@ -307,7 +332,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
   border-radius:10px;
   background:rgba(9,9,11,.85);
   display:grid;
-  grid-template-columns: repeat(5,1fr);
+  grid-template-columns: repeat(6,1fr);
   gap:4px;
   padding:6px;
   font-size:.61rem;
@@ -343,6 +368,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
 .terminal-line.wake{color:#67e8f9}
 .terminal-line.event{color:#fbbf24}
 .terminal-line.telemetry{color:#f59e0b;opacity:.85}
+.terminal-line.obs-signal{color:#fb7185;opacity:.85}
 
 @media (max-width:1280px){
   .app{grid-template-columns:1fr;grid-template-rows: 290px minmax(500px,1fr);overflow:auto;height:auto;min-height:100vh}
@@ -360,7 +386,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
       <div class="sidebar-header">
         <div class="badge">Live concept animation</div>
         <h1>How agents collaborate through Git + integrations</h1>
-        <p class="meta">Selector-driven replay of real lifecycle patterns from <a href="examples/README.md">examples/</a>. Agents use Git as the system of record and connect to enterprise tools via the <a href="org/integrations/">Integration Registry</a>.</p>
+        <p class="meta">Selector-driven replay of real lifecycle patterns from <a href="examples/README.md">examples/</a>. Agents emit OTel telemetry and receive signals from the <a href="org/integrations/categories/observability.md">Observability Platform</a>. Git is the system of record; observability is the nervous system.</p>
       </div>
 
       <div class="selector-wrap">
@@ -386,6 +412,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
           <span><i class="dot" style="background:var(--amber)"></i>Design gate</span>
           <span><i class="dot" style="background:var(--accent)"></i>Integration activity</span>
           <span><i class="dot" style="background:var(--amber);opacity:.7"></i>OTel telemetry</span>
+          <span><i class="dot" style="background:var(--rose);opacity:.8"></i>Obs → agent</span>
         </div>
       </section>
 
@@ -972,6 +999,67 @@ function animateTelemetry(fromNodeId, labelText, onArrival) {
   requestAnimationFrame(frame);
 }
 
+function animateFromObs(toNodeId, labelText, onArrival) {
+  const points = getConnectionPoints('observability', toNodeId);
+  if (!points) return;
+
+  const dot = document.createElement('div');
+  dot.className = 'obs-signal-dot';
+  const label = document.createElement('div');
+  label.className = 'obs-signal-label';
+  label.textContent = labelText;
+  stage.appendChild(dot);
+  stage.appendChild(label);
+
+  const duration = 1600;
+  const holdMs = 1000;
+  let arrived = false;
+  const start = performance.now();
+
+  function frame(now) {
+    const elapsed = now - start;
+    const t = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const x = points.fromEdge.x + (points.toEdge.x - points.fromEdge.x) * ease;
+    const y = points.fromEdge.y + (points.toEdge.y - points.fromEdge.y) * ease;
+    dot.style.left = `${x}px`;
+    dot.style.top = `${y}px`;
+    label.style.left = `${x}px`;
+    label.style.top = `${y}px`;
+
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      if (!arrived) {
+        arrived = true;
+        if (nodeEls[toNodeId]) {
+          nodeEls[toNodeId].classList.remove('wakeup');
+          requestAnimationFrame(() => nodeEls[toNodeId].classList.add('wakeup'));
+        }
+        if (typeof onArrival === 'function') onArrival();
+        setTimeout(() => { dot.remove(); label.remove(); }, holdMs);
+      }
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+// Which nodes consume from observability, by layer affinity of the active node
+const obsConsumers = {
+  steeringDigest:     ['steeringDigest'],
+  steeringEvolution:  ['steeringDigest'],
+  strategyDiscovery:  ['strategyDiscovery'],
+  strategyProduct:    ['strategyProduct'],
+  orchestrationFleet: ['orchestrationFleet'],
+  executionSignal:    ['steeringDigest'],
+  releaseOps:         ['qualityEval'],
+  qualityEval:        ['qualityEval'],
+  executionDesign:    ['qualityEval'],
+  executionBuild:     ['qualityEval'],
+  integrations:       ['steeringDigest'],
+  observability:      ['steeringDigest'],
+};
+
 function renderStep(withPrAnimation = true) {
   const scenario = scenarioData[currentScenarioKey];
   const step = scenario.steps[stepIndex];
@@ -1005,6 +1093,19 @@ function renderStep(withPrAnimation = true) {
         appendTerminalLine(`otel -> event: governance.pr.merged · pr=${step.branch}`, 'telemetry');
       });
     }, 1600);
+    // Observability processes data and feeds signals back to consuming agents
+    const consumers = obsConsumers[step.fromNode] || ['steeringDigest'];
+    setTimeout(() => {
+      animateFromObs(consumers[0], 'obs→consume', () => {
+        appendTerminalLine(`obs -> data consumed by ${nodeLayout[consumers[0]] ? nodeLayout[consumers[0]].name : consumers[0]}`, 'obs-signal');
+      });
+    }, 3600);
+    // Observability writes auto-generated signal to Git repo
+    setTimeout(() => {
+      animateFromObs('repo', 'obs→signal', () => {
+        appendTerminalLine(`obs -> auto-signal filed: work/signals/ [source: observability-platform]`, 'obs-signal');
+      });
+    }, 4600);
     setTimeout(() => appendTerminalLine(`context: ${step.narrative}`), 1150 + step.wakes.length * 180);
   };
 

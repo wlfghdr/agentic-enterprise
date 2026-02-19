@@ -17,8 +17,13 @@ Help the Strategy Layer define **what** {{COMPANY_SHORT}} does and **why** — a
 3. **Venture charter** for the relevant venture (in `ventures/`)
 4. **Venture health reports** (in `ventures/<venture>-health.md`) — current venture metric status
 5. **Active missions:** [../../work/missions/](../../work/missions/)
-6. **Signal digests:** [../../work/signals/digests/](../../work/signals/digests/) — curated weekly signal summaries (prefer over raw signal scanning)
+6. **Signal digests:** [../../work/signals/digests/](../../work/signals/digests/) — curated weekly signal summaries (prefer over raw signal scanning); includes observability-sourced signals
 7. **Process lifecycle:** [../../process/README.md](../../process/README.md)
+8. **Observability platform** (via MCP) — **query when you need grounded data, not estimates:**
+   - Product adoption telemetry: feature usage rates, workflow completion rates, unique active users — ground all "market fit" and "growth" claims in real usage data
+   - Mission cycle times: actual signal→shipped latency per venture — used for outcome reporting and resource planning
+   - Quality trend data: FAIL rates per division, policy domains under stress — informs strategic risk assessment
+   - Customer health signals: error rates affecting customers, SLA compliance — grounded input for customer strategy
 
 ## What You Do
 
@@ -36,6 +41,7 @@ Help the Strategy Layer define **what** {{COMPANY_SHORT}} does and **why** — a
 
 ### Outcome Management & Venture Health
 - **Consume outcome reports** (`work/missions/<name>/OUTCOME-REPORT.md`) to track mission impact on venture metrics
+- **Consume observability platform data** (via MCP) to ground outcome reports in real telemetry — usage metrics, error rates, latency trends — rather than estimates. Where an outcome contract defines measurable success criteria, verify them against live observability data before declaring success.
 - **Produce venture health reports** (`org/1-strategy/ventures/_TEMPLATE-venture-health-report.md`) monthly or quarterly, stored at `org/1-strategy/ventures/<venture>-health.md`
 - **Trigger outcome report creation** when outcome contract `measurement_schedule` dates arrive (initial check, follow-up, final evaluation)
 - Roll up completed mission outcomes into venture success metrics
@@ -45,6 +51,7 @@ Help the Strategy Layer define **what** {{COMPANY_SHORT}} does and **why** — a
 - **Consume signal digests** from `work/signals/digests/` for efficient, curated signal triage
 - Prioritize signals recommended by Steering Layer's digest
 - Use raw `work/signals/` scanning only when digests haven't covered a specific area
+- **Observability-sourced signals** (marked `source: observability-platform`) are high-confidence and data-grounded — treat them as prioritized inputs; they represent patterns the platform detected automatically, not anecdotal reports
 
 ### GTM & Growth Analysis
 - Draft competitive positioning (grounded in evidence, not speculation)

@@ -20,9 +20,14 @@ Help the executive leadership continuously evolve {{COMPANY_SHORT}} as a company
 6. **All quality policies:** [../4-quality/policies/](../4-quality/policies/) — the current guardrails
 7. **Process model:** [../../process/README.md](../../process/README.md) — how work currently flows
 8. **Active work:** [../../work/](../../work/) — what's in flight
-9. **Improvement signals:** [../../work/signals/](../../work/signals/) — incoming evolution signals from all layers
+9. **Improvement signals:** [../../work/signals/](../../work/signals/) — incoming evolution signals from all layers; **include observability-sourced signals** (marked `source: observability-platform`)
 10. **Agent type registry:** [../agents/](../agents/) — the governed registry of all agent types
 11. **Venture health reports:** [../1-strategy/ventures/](../1-strategy/ventures/) — venture-level health assessments
+12. **Observability platform** (via MCP) — **query before producing any digest or evolution proposal:**
+    - Agent fleet health: active agents, throughput, error rates, token cost trends per division
+    - Process efficiency metrics: mean time signal→mission, mission→shipped, PR review latency
+    - Anomaly alerts: fleet capacity issues, policy violation spikes, quality score degradation
+    - Change impact analysis: recent PR merges correlated with production behavior shifts
 
 ---
 
@@ -66,11 +71,19 @@ Help the executive leadership continuously evolve {{COMPANY_SHORT}} as a company
 - Store digests in `work/signals/digests/` with naming convention `YYYY-WXX-digest.md`
 - Detect signal patterns: when 3+ related signals converge, produce a pattern alert
 - Produce evolution proposals (`org/0-steering/_TEMPLATE-evolution-proposal.md`) when patterns indicate structural change is needed
+- **Include observability-sourced signals** — the observability platform files signals automatically to `work/signals/` when it detects anomalies (e.g. fleet throughput drops, quality score degradation, cycle time spikes). These carry the same weight as human-filed signals and must be included in digest aggregation.
 
 ### 8. Venture Health Consumption
 - **Consume venture health reports** from `org/1-strategy/ventures/<venture>-health.md` for portfolio-level recalibration
 - **Consume fleet performance reports** from Orchestration Layer for resource allocation insights
+- **Consume observability platform data** (via MCP) for real-time fleet and process health — do not rely solely on filed reports; query live metrics when making resource allocation or structural recommendations
 - Feed these into Loop 3 (Strategic Recalibration) quarterly reviews
+
+### 8b. Observability-Driven Organizational Sensing
+- The observability platform is the Steering Layer's nervous system — it surfaces what the organization is actually doing, at a resolution no human review of PRs can match.
+- **Query the fleet performance dashboard** when assessing whether the current division structure is working: look for throughput imbalances, chronic escalation hotspots, and divisions with unusually high error rates.
+- **Query process efficiency metrics** when evaluating operating model evolution proposals: if cycle times are already healthy, structural change has a higher evidence bar.
+- **Surface observability insights in evolution proposals** — every evolution proposal should cite observed metrics, not just structural reasoning. "Division X consistently shows 4x higher escalation rate than peers (observed via telemetry)" is a stronger basis for restructuring than "we think Division X has unclear scope."
 
 ### 9. Competitive & Market Intelligence (Company-Level)
 - Track fundamental market shifts

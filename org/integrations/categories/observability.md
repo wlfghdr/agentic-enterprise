@@ -209,6 +209,66 @@ Log-centric observability with full-text search, APM, and security analytics.
 
 ---
 
+## Observability Writes to Git — Closing the Loop
+
+The observability integration is not read-only. When it detects patterns that warrant human or agent attention, **it files signals directly to the Git repository**, making it an active participant in the operating model — not just a passive monitor.
+
+### Automated Signal Filing
+
+When the observability platform detects a qualifying anomaly or pattern, it creates a signal file at `work/signals/YYYY-MM-DD-<signal-name>.md` via the Git API or an automation workflow. The signal carries:
+
+```yaml
+source: observability-platform           # identifies origin
+platform: "{{OBSERVABILITY_PLATFORM_NAME}}"
+trigger: anomaly-detection | threshold-breach | pattern-detection
+evidence:
+  - metric: "agent.error_rate"
+    value: 0.23
+    threshold: 0.10
+    duration: "45m"
+  - dashboard: "https://{{OBSERVABILITY_DASHBOARD_URL}}"
+```
+
+### Triggering Conditions for Auto-Filed Signals
+
+| Condition | Signal Filed | Routed To |
+|-----------|-------------|-----------|
+| Agent fleet error rate > threshold for > 30 min | Fleet health degradation signal | Steering → Orchestration |
+| Quality evaluation FAIL rate rising across a division | Quality trend signal | Quality Layer → Steering |
+| Mission cycle time exceeds 2× baseline | Process efficiency signal | Orchestration → Steering |
+| PR review latency spike across multiple missions | Governance bottleneck signal | Steering |
+| Observability coverage drops below threshold | Observability compliance signal | Quality Layer |
+| Production SLO burn rate alerts | Operate loop signal | Execution → Orchestration |
+| Token cost per mission exceeds budget threshold | Cost anomaly signal | Orchestration → Steering |
+
+### Agents Consume These Signals
+
+Steering, Strategy, and Quality layer agents MUST include observability-sourced signals in their analysis:
+- They appear in `work/signals/` alongside human-filed signals
+- They are tagged `source: observability-platform` for easy identification
+- They carry evidence links (dashboard URLs, metric values, time windows) that make them immediately actionable
+- **They are higher-confidence than manually-filed signals** — they are data-driven, not observation-based
+
+### Layer Consumption Patterns
+
+```
+Observability Platform
+  │
+  ├── Auto-files signals → work/signals/
+  │     └── Steering aggregates into digests → Strategy acts on digests
+  │
+  ├── Quality agents query live compliance data → evaluate outputs against real telemetry
+  │     └── Query: "Is telemetry flowing from this component in staging?"
+  │
+  ├── Strategy agents query adoption & health metrics → ground outcome reports in real data
+  │     └── Query: "What is the actual feature adoption rate for the shipped mission?"
+  │
+  └── Steering agents query fleet performance dashboards → inform evolution proposals
+        └── Query: "Which divisions have the highest escalation rates this quarter?"
+```
+
+---
+
 ## What Observability Enables at Scale
 
 ### For the Orchestration Layer

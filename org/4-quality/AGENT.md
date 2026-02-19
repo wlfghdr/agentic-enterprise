@@ -17,6 +17,12 @@ Protect organizational quality across every dimension: code, security, architect
 3. **Company values:** [../../COMPANY.md](../../COMPANY.md) — brand voice, strategic alignment
 4. **Agent type registry:** [../agents/](../agents/) — when reviewing agent type proposals
 5. **Asset registry:** [../../work/assets/](../../work/assets/) — validate completeness of registered assets
+6. **Observability platform** (via MCP) — **query before and during evaluation:**
+   - Verify telemetry is actively flowing from the component under evaluation (required by `policies/observability.md`)
+   - Pull live compliance dashboards: are existing components in the same division passing or failing observability checks?
+   - Check quality trend data: is this a one-off failure or part of a recurring pattern across this policy domain?
+   - For performance evaluations: query actual latency percentiles (p50/p95/p99) rather than relying on self-reported estimates
+   - For agent evaluations: verify span coverage — are tool calls, decisions, and escalations actually traced?
 
 ## Evaluation Protocol
 
@@ -87,6 +93,11 @@ When an **Agent Type Proposal** (`org/agents/_TEMPLATE-agent-type-proposal.md`) 
 - When a policy domain shows **≥3 consecutive FAILs** across different outputs, surface a **quality trend signal** to `work/signals/`
 - When Execution agents consistently fail on the same finding, recommend upstream instruction improvements
 - **Consume asset registry** (`work/assets/`) — validate that registered assets have complete metadata and meet documentation policies
+- **Consume observability platform trend data** (via MCP) — quality patterns are visible in telemetry long before they surface as evaluation verdicts. Proactively query:
+  - Error rate trends per division (rising error rates predict upcoming quality FAILs)
+  - Escalation frequency by agent type (chronic escalation points to instruction gaps)
+  - Policy violation events emitted by agents during execution (these are often filed as signals by the observability platform automatically)
+  - Observability compliance coverage (% of components with verified telemetry per the `policies/observability.md` criteria)
 
 ## Continuous Improvement Responsibility
 
