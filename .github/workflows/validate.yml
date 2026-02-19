@@ -26,7 +26,14 @@ jobs:
 
       - name: Validate CONFIG.yaml
         run: |
-          python3 -c "import yaml; yaml.safe_load(open('CONFIG.yaml')); print('CONFIG.yaml: OK')"
+          python3 - <<'PY'
+          import yaml
+
+          with open("CONFIG.yaml", "r", encoding="utf-8") as file:
+              yaml.safe_load(file)
+
+          print("CONFIG.yaml: OK")
+          PY
 
       - name: Validate all YAML files
         run: |
