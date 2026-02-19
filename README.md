@@ -1,12 +1,8 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/model-Agentic%20Enterprise-blueviolet?style=for-the-badge" alt="Agentic Enterprise">
-  <img src="https://img.shields.io/badge/license-Apache%202.0-blue?style=for-the-badge" alt="License">
-  <img src="https://img.shields.io/github/stars/wlfghdr/agentic-enterprise?style=for-the-badge" alt="Stars">
-  <img src="https://img.shields.io/badge/runtime-bring%20your%20own-orange?style=for-the-badge" alt="Runtime">
-  <img src="https://img.shields.io/badge/status-POC%20%2F%20Demo-yellow?style=for-the-badge" alt="Status">
-</p>
-
-<p align="center">
+  <img src="https://img.shields.io/badge/model-Agentic%20Enterprise-blueviolet" alt="Agentic Enterprise">
+  <img src="https://img.shields.io/badge/version-1.0.0-brightgreen" alt="Version">
+  <img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License">
+  <img src="https://img.shields.io/badge/runtime-bring%20your%20own-orange" alt="Runtime">
   <a href="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml">
     <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
   </a>
