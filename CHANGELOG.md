@@ -36,10 +36,9 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 - `org/agents/execution/procurement-agent.md` — Procurement Agent: vendor sourcing, RFP/RFQ management, PO drafting, spend tracking
 - `CONFIG.yaml` — added `corporate` division category with people, legal, finance-procurement divisions
 
-**HR Recruiting full lifecycle example (signal → mission → fleet config)**
-- `work/signals/2026-02-20-pr-review-cycle-time-bottleneck.md` — Observability-generated signal: PR review cycle time 310% over SLA, identifying engineering capacity gap
-- `work/missions/engineering-reviewer-capacity/BRIEF.md` — Mission MISSION-2026-010: recruit 2 senior engineers to resolve review bottleneck
-- `org/2-orchestration/fleet-configs/engineering-reviewer-capacity.md` — 3-stream fleet config: Workforce Analysis → Recruiting Pipeline → Interview & Offer Management; illustrates People division in action
+**HR Recruiting full lifecycle example**
+- `examples/hr-recruiting-lifecycle.md` — End-to-end walkthrough: observability platform auto-files PR review latency signal → Steering authorizes recruiting mission → 3-stream People division fleet (Workforce Analysis, Recruiting Pipeline, Interview & Offer Management) with blocking cross-division gates (Legal + Finance) → outcome measured back in the observability platform; shows corporate functions as first-class divisions
+- `examples/README.md` — Added HR Recruiting to Available Examples table, Coverage Matrix (new column), and recommended reading order
 
 **PR consistency fixes — lock and governance exception integration (follow-up to PRs #38, #39)**
 - `AGENTS.md` Rule 4 — added governance exception process guidance: when, how, and who must approve exceptions; references `_TEMPLATE-governance-exception.md`
