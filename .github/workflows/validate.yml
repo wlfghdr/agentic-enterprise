@@ -473,8 +473,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Advisory check: CODEOWNERS + branch protection
+      - name: "Advisory check: CODEOWNERS + branch protection"
         env:
-          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch || 'main' }}
+          GITHUB_DEFAULT_BRANCH: "${{ github.event.repository.default_branch || 'main' }}"
         run: |
           python3 scripts/check_github_governance.py
