@@ -106,6 +106,9 @@ work/assets/                        @execution-division-lead @quality-policy-aut
 # Retrospectives: Operate agents create, Steering reviews patterns
 work/retrospectives/                @steering-executive @quality-policy-author
 
+# Locks: any agent or human can acquire/release, Orchestration approves (fast path)
+work/locks/                         @orchestration-fleet-manager
+
 # ─── Template Ownership Overrides ─────────────────────────────────
 # Templates define process structure and must be governed by the layer
 # responsible for that process — not by whoever creates instance files.
@@ -119,3 +122,10 @@ work/missions/_TEMPLATE-mission-status.md             @orchestration-fleet-manag
 work/missions/_TEMPLATE-fleet-performance-report.md   @orchestration-fleet-manager
 work/missions/_TEMPLATE-quality-evaluation-report.md  @quality-policy-author
 work/missions/_TEMPLATE-technical-design.md           @execution-division-lead @cto
+
+# Decision templates — governance exceptions touch policies, so require Steering + Policy Author
+work/decisions/_TEMPLATE-decision-record.md           @execution-division-lead @quality-policy-author
+work/decisions/_TEMPLATE-governance-exception.md      @steering-executive @quality-policy-author
+
+# Lock template — framework-level, Steering governs
+work/locks/_TEMPLATE-lock.md                          @steering-executive

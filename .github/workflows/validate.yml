@@ -447,12 +447,27 @@ jobs:
               if not current_dates:
                   errors.append(f"MISSING 'Last updated' field in changed file: {changed}")
               elif current_dates == base_dates:
-                  errors.append(
-                      f"'Last updated' date NOT bumped in changed file: {changed}\n"
-                      f"  Current: {current_dates}\n"
-                      f"  Base:    {base_dates}\n"
-                      f"  → Update the 'Last updated' date when modifying a governed file."
-                  )
+                  # Date unchanged — for templates, also accept a Template version bump
+                  # (handles same-day create+modify where the date cannot advance)
+                  if is_template:
+                      current_versions = TEMPLATE_VERSION_RE.findall(current_text)
+                      base_versions = TEMPLATE_VERSION_RE.findall(base_text)
+                      if current_versions != base_versions:
+                          print(f"OK (template version bumped): {changed} {base_versions} → {current_versions}")
+                      else:
+                          errors.append(
+                              f"'Last updated' date NOT bumped in changed file: {changed}\n"
+                              f"  Current: {current_dates}\n"
+                              f"  Base:    {base_dates}\n"
+                              f"  → Update the 'Last updated' date (or bump Template version) when modifying a template."
+                          )
+                  else:
+                      errors.append(
+                          f"'Last updated' date NOT bumped in changed file: {changed}\n"
+                          f"  Current: {current_dates}\n"
+                          f"  Base:    {base_dates}\n"
+                          f"  → Update the 'Last updated' date when modifying a governed file."
+                      )
               else:
                   print(f"OK (date bumped): {changed} {base_dates} → {current_dates}")
 

@@ -58,6 +58,7 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 - Quality policies in `org/4-quality/policies/` are mandatory, not advisory
 - If your output violates a policy, fix it before submitting — don't submit and hope
 - If a policy seems wrong, flag it for a human Policy Author — don't ignore it
+- **Governance exceptions exist but are rare.** When a policy genuinely blocks valid, time-critical work and a human Policy Author has confirmed an exception is warranted, use the formal process: create a Governance Exception record from `work/decisions/_TEMPLATE-governance-exception.md`, store it as `work/decisions/EXC-YYYY-NNN-<description>.md`, and get it approved via PR before bypassing the policy. Exceptions must be time-bounded and document the risk and mitigation. Never self-authorize an exception — the Policy Author and Steering Layer must approve.
 
 ### 5. Stay in your lane
 - Read your layer's AGENT.md and follow its boundaries
@@ -126,14 +127,14 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 The repository contains two fundamentally different kinds of files (see `FILE-GUIDE.md`). Identify which one you are touching before you start — the completion criteria are different.
 
 **Templates and framework files** (the OSS framework itself):
-- `_TEMPLATE-*.md` files anywhere in `org/`
+- `_TEMPLATE-*.md` files anywhere in the repository (including `work/` subdirectories such as `work/locks/` and `work/decisions/`)
 - `AGENT.md` files at each layer (`org/*/AGENT.md`)
 - `AGENTS.md` / `CLAUDE.md` (global agent rules)
 - Quality policies in `org/4-quality/policies/`
 - `CONFIG.yaml`, `OPERATING-MODEL.md`, integration definitions in `org/integrations/`
 
 **Instances** (work artifacts created by agents or humans during operations):
-- Everything under `work/` — signals, missions, decisions, releases, retrospectives
+- Non-template files under `work/` — signals, missions, decisions, releases, retrospectives, locks
 - Division-specific files created during execution
 
 **Different completion criteria apply:**
@@ -204,10 +205,11 @@ agentic-enterprise/
 │   ├── signals/                  ← Incoming opportunities/problems
 │   │   └── digests/              ← Weekly signal digests (Steering → Strategy)
 │   ├── missions/                 ← Active missions with outcome contracts
-│   ├── decisions/                ← Decision Records (DACI)
+│   ├── decisions/                ← Decision Records (DACI) + Governance Exceptions
 │   ├── releases/                 ← Release contracts (Ship loop outputs)
 │   ├── assets/                   ← Asset registry entries (non-code deliverables)
-│   └── retrospectives/           ← Postmortems (incident retrospectives)
+│   ├── retrospectives/           ← Postmortems (incident retrospectives)
+│   └── locks/                    ← Concurrency locks for critical shared files
 │
 └── examples/                     ← Execution examples (reference)
 ```

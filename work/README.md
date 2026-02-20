@@ -14,13 +14,15 @@ work/
 │   └── README.md
 ├── missions/             # Active and completed missions
 │   └── README.md
-├── decisions/            # Architecture and strategy decisions
+├── decisions/            # Architecture decisions + Governance Exceptions
 │   └── README.md
 ├── releases/             # Release contracts for shipped software
 │   └── README.md
 ├── assets/               # Asset registry entries (non-code deliverables)
 │   └── README.md
-└── retrospectives/       # Postmortems and incident reports
+├── retrospectives/       # Postmortems and incident reports
+│   └── README.md
+└── locks/                # Concurrency locks for critical shared files
     └── README.md
 ```
 
@@ -32,9 +34,11 @@ work/
 | `signals/digests/` | Weekly signal digest summaries | `work/signals/digests/_TEMPLATE-signal-digest.md` | Steering Layer |
 | `missions/` | Mission briefs, outcome contracts, status updates, outcome reports, quality evaluations | `work/missions/_TEMPLATE-mission-brief.md` | Strategy Layer |
 | `decisions/` | Architecture and strategy decisions | `work/decisions/_TEMPLATE-decision-record.md` | Any Layer |
+| `decisions/` | Time-bounded policy exceptions (approved by Policy Author + Steering) | `work/decisions/_TEMPLATE-governance-exception.md` | Any Layer (human approval required) |
 | `releases/` | Release contracts for shipped software | `work/releases/_TEMPLATE-release-contract.md` | Ship Loop (Orchestration) |
 | `assets/` | Non-code deliverable registry entries | `work/assets/_TEMPLATE-asset-registry-entry.md` | Execution Layer |
 | `retrospectives/` | Postmortems and incident reports | `work/retrospectives/_TEMPLATE-postmortem.md` | Operate Loop agents |
+| `locks/` | Concurrency locks for critical shared files | `work/locks/_TEMPLATE-lock.md` | Any agent or human editing a protected file |
 
 ## Naming Conventions
 
@@ -45,9 +49,11 @@ work/
 - **Outcome Reports:** `<mission-name>/OUTCOME-REPORT.md` (mission closure)
 - **Quality Evaluations:** `<mission-name>/evaluations/YYYY-MM-DD-<eval-name>.md`
 - **Decisions:** `YYYY-MM-DD-<descriptive-name>.md`
+- **Governance Exceptions:** `EXC-YYYY-NNN-<descriptive-name>.md` (e.g., `EXC-2026-001-skip-coverage-gate.md`)
 - **Releases:** `YYYY-MM-DD-<release-name>.md`
 - **Assets:** `<descriptive-asset-name>.md`
 - **Retrospectives:** `YYYY-MM-DD-<incident-name>.md`
+- **Locks:** `<lock-id>.md` where lock-id is path-derived slug (e.g., `org-4-quality-policies-security-md.md`)
 
 ## Lifecycle
 

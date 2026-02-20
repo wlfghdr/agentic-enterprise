@@ -1,6 +1,9 @@
 # Governance Exception: <short title>
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-20
+> **Template version:** 1.1 | **Last updated:** 2026-02-20
+
+> **Instance metadata** (fill in when creating an exception from this template):
+> **Revision:** 1 | **Last updated:** YYYY-MM-DD | **Status:** proposed | approved | expired | revoked
 
 ## Summary
 
@@ -37,8 +40,19 @@
 - Expiry date
 - How to revert the exception
 
+## Revision History
+
+_This section is for instances (filled-in exception records). Add a row each time this exception record is modified._
+
+| Rev | Date | Author | Summary |
+|---|---|---|---|
+| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-20 | Added instance metadata block (Revision, Last updated, Status) and Revision History section; clarified naming convention |
 | 1.0 | 2026-02-20 | Initial template |
