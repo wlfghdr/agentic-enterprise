@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/wlfghdr/agentic-enterprise/schemas/work/mission-brief.schema.json",
+  "title": "Mission Brief Work Artifact",
+  "description": "Validation schema for work/missions/**/BRIEF.md and mission-brief.md files (excluding templates).",
+  "artifact_type": "markdown",
+  "filename_pattern": "(BRIEF|mission-brief)\\.md$",
+  "required_sections": [
+    "Objective",
+    "Scope",
+    "Divisions Involved"
+  ],
+  "required_fields": [
+    {
+      "name": "Status",
+      "inline_pattern": "\\*\\*Status:\\*\\*\\s*([^|\\n]+)",
+      "allowed_values": ["proposed", "approved", "active", "paused", "completed"],
+      "required": true
+    },
+    {
+      "name": "Mission ID",
+      "inline_pattern": "\\*\\*Mission ID[:\\*]*\\*?\\s*\\|?\\s*([A-Z][^|\\n]+)",
+      "id_pattern": "^MISSION-\\d{4}-\\d{3,}",
+      "required": true
+    }
+  ]
+}

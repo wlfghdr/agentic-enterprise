@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/wlfghdr/agentic-enterprise/schemas/work/signal.schema.json",
+  "title": "Signal Work Artifact",
+  "description": "Validation schema for work/signals/*.md files (excluding templates and digests).",
+  "artifact_type": "markdown",
+  "filename_pattern": "^\\d{4}-\\d{2}-\\d{2}-.+\\.md$",
+  "required_sections": [
+    "Source",
+    "Observation",
+    "Initial Assessment",
+    "Recommended Disposition"
+  ],
+  "required_fields": [
+    {
+      "name": "Category",
+      "inline_pattern": "\\*\\*Category:\\*\\*\\s*([^|\\n]+)",
+      "allowed_values": ["market", "customer", "technical", "internal", "competitive", "financial"],
+      "required": true
+    },
+    {
+      "name": "Confidence",
+      "inline_pattern": "\\*\\*Confidence:\\*\\*\\s*([^|\\n]+)",
+      "allowed_values": ["high", "medium", "low"],
+      "required": true
+    },
+    {
+      "name": "Urgency",
+      "inline_pattern": "\\*\\*Urgency:\\*\\*\\s*([^|\\n]+)",
+      "allowed_values": ["immediate", "next-cycle", "monitor"],
+      "required": true
+    },
+    {
+      "name": "Potential impact",
+      "inline_pattern": "\\*\\*Potential impact:\\*\\*\\s*([^|\\n]+)",
+      "allowed_values": ["high", "medium", "low"],
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/wlfghdr/agentic-enterprise/schemas/work/release-contract.schema.json",
+  "title": "Release Contract Work Artifact",
+  "description": "Validation schema for work/releases/*.md files (excluding templates).",
+  "artifact_type": "markdown",
+  "filename_pattern": ".*release-contract\\.md$",
+  "required_sections": [
+    "Release Summary",
+    "Changes Included",
+    "Rollback Plan"
+  ],
+  "required_fields": [
+    {
+      "name": "Status",
+      "inline_pattern": "\\*\\*Status:\\*\\*\\s*([^|\\n]+)",
+      "allowed_values": ["draft", "approved", "deploying", "deployed", "rolled-back"],
+      "required": true
+    },
+    {
+      "name": "Release ID",
+      "inline_pattern": "\\*\\*Release ID:\\*\\*\\s*([^|\\n]+)",
+      "id_pattern": "^REL-\\d{4}-\\d{3,}$",
+      "required": true
+    },
+    {
+      "name": "Release Manager",
+      "inline_pattern": "\\*\\*Release Manager:\\*\\*\\s*([^|\\n]+)",
+      "required": true
+    }
+  ]
+}
