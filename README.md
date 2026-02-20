@@ -306,14 +306,20 @@ enterprise_agent = CrewAgent(
 agentic-enterprise/
 ├── README.md                        ← You are here
 ├── AGENTS.md                        ← Global agent instruction hierarchy
+├── CLAUDE.md                        ← Mirrors AGENTS.md (keep in sync)
 ├── COMPANY.md                       ← Vision, mission, strategic beliefs
 ├── CONFIG.yaml                      ← Central configuration (fill FIRST)
 ├── CUSTOMIZATION-GUIDE.md           ← Step-by-step onboarding
+├── FILE-GUIDE.md                    ← What each file is and what to do in a fork
 ├── OPERATING-MODEL.md               ← How the whole system works
 ├── CODEOWNERS                       ← RACI — who approves what
 ├── CONTRIBUTING.md                  ← How to contribute
+├── CHANGELOG.md                     ← Framework version history
 ├── AGENT-BOOTSTRAP-PROMPT.md        ← Copy-paste prompts for any agent
-├── CLAUDE.md                        → Symlink to AGENTS.md
+├── locks.yaml                       ← Protected path definitions for lock enforcement
+├── docs/                            ← Setup and governance reference guides
+├── schemas/                         ← JSON schemas for CONFIG.yaml validation
+├── scripts/                         ← Automation scripts (validation, checks)
 │
 ├── org/                             ← ORGANIZATIONAL STRUCTURE
 │   ├── 0-steering/                  ← Evolve the company itself
@@ -322,7 +328,7 @@ agentic-enterprise/
 │   ├── 2-orchestration/             ← Translate strategy → work
 │   │   └── fleet-configs/           ← Agent fleet configurations
 │   ├── 3-execution/                 ← Do the work
-│   │   └── divisions/               ← 12 specialized divisions
+│   │   └── divisions/               ← 15 specialized divisions
 │   │       ├── ai-intelligence/
 │   │       ├── core-applications/
 │   │       ├── core-services/
@@ -333,6 +339,9 @@ agentic-enterprise/
 │   │       ├── product-marketing/
 │   │       ├── knowledge-enablement/
 │   │       ├── customer-experience/
+│   │       ├── finance-procurement/
+│   │       ├── legal/
+│   │       ├── people/
 │   │       └── ... (+ domain placeholders)
 │   ├── 4-quality/                   ← Evaluate against policies
 │   │   └── policies/                ← 8 mandatory policy domains
@@ -353,7 +362,8 @@ agentic-enterprise/
 │   ├── decisions/                   ← Decision Records (DACI)
 │   ├── releases/                    ← Release contracts
 │   ├── assets/                      ← Non-code deliverable registry
-│   └── retrospectives/              ← Postmortems
+│   ├── retrospectives/              ← Postmortems
+│   └── locks/                       ← Concurrency locks for shared files
 │
 └── examples/                        ← Reference implementation examples
 ```

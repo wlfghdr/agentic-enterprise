@@ -218,7 +218,7 @@ Each division folder should contain a `DIVISION.md` that defines:
 
 **Location:** `org/4-quality/policies/`
 
-The framework ships with 7 generic quality policies. Customize each:
+The framework ships with 8 generic quality policies. Customize each:
 
 | Policy | What to Customize |
 |--------|------------------|
@@ -229,6 +229,7 @@ The framework ships with 7 generic quality policies. Customize each:
 | [delivery.md](org/4-quality/policies/delivery.md) | Your deployment model, environments, rollback procedures |
 | [content.md](org/4-quality/policies/content.md) | Your brand guidelines, documentation standards, content taxonomy |
 | [customer.md](org/4-quality/policies/customer.md) | Your SLA definitions, customer interaction standards |
+| [observability.md](org/4-quality/policies/observability.md) | Your telemetry standards, agent observability requirements, alerting thresholds |
 
 **Key principle:** Start with the policies as shipped (they're reasonable defaults for a software enterprise). Then tighten or loosen based on your regulatory environment, risk tolerance, and maturity level.
 

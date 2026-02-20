@@ -133,6 +133,12 @@ nav ul a:hover{color:var(--text)}
 .loop-card .loop-time{display:inline-block;margin-top:12px;font-size:0.72rem;color:var(--text3);background:var(--bg);padding:4px 12px;border-radius:100px;border:1px solid var(--border)}
 .loop-feedback{text-align:center;margin-top:20px;color:var(--text3);font-size:0.85rem;display:flex;align-items:center;justify-content:center;gap:8px}
 .loop-feedback svg{width:16px;height:16px;color:var(--cyan)}
+.loops-artifacts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:3px}
+.loop-artifact-tile{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;display:flex;flex-direction:column;gap:7px}
+.artifact-row{display:flex;gap:8px;align-items:flex-start;font-size:0.77rem;color:var(--text2);line-height:1.45}
+.artifact-badge{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:2px 7px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.artifact-badge.in{background:rgba(167,139,250,0.1);color:var(--accent3);border:1px solid rgba(167,139,250,0.2)}
+.artifact-badge.out{background:rgba(34,211,238,0.1);color:var(--cyan);border:1px solid rgba(34,211,238,0.2)}
 
 /* ═══════════════════════════ GITOPS TABLE ═══════════════════════════ */
 .replace-table{margin-top:48px;width:100%;border-collapse:separate;border-spacing:0;font-size:0.88rem}
@@ -197,6 +203,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 @media(max-width:900px){
   .loops-grid{grid-template-columns:repeat(2,1fr)}
   .loops-grid::before{display:none}
+  .loops-artifacts-grid{grid-template-columns:repeat(2,1fr)}
   .layer-row{grid-template-columns:1fr;gap:6px}
   .layer-badge{text-align:left}
   .curve-steps{flex-direction:column}
@@ -206,6 +213,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 }
 @media(max-width:600px){
   .loops-grid{grid-template-columns:1fr}
+  .loops-artifacts-grid{grid-template-columns:1fr}
   section{padding:64px 0}
   .beliefs-grid{grid-template-columns:1fr}
 }
@@ -388,6 +396,24 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
         <span class="loop-time">Continuous</span>
       </div>
     </div>
+    <div class="loops-artifacts-grid reveal">
+      <div class="loop-artifact-tile">
+        <div class="artifact-row"><span class="artifact-badge in">IN</span><span>Production telemetry · customer feedback · market signals · observability anomaly alerts</span></div>
+        <div class="artifact-row"><span class="artifact-badge out">OUT</span><span>Approved mission brief · Go/No-Go decision record · outcome contract</span></div>
+      </div>
+      <div class="loop-artifact-tile">
+        <div class="artifact-row"><span class="artifact-badge in">IN</span><span>Approved mission brief · fleet config · quality policies · agent instructions</span></div>
+        <div class="artifact-row"><span class="artifact-badge out">OUT</span><span>Code &amp; work artifacts · evaluated PRs · quality evaluations · release candidate</span></div>
+      </div>
+      <div class="loop-artifact-tile">
+        <div class="artifact-row"><span class="artifact-badge in">IN</span><span>Release candidate · release contract · success metrics · rollout plan</span></div>
+        <div class="artifact-row"><span class="artifact-badge out">OUT</span><span>Deployed release · rollout telemetry · GA decision · incident retrospective (if needed)</span></div>
+      </div>
+      <div class="loop-artifact-tile">
+        <div class="artifact-row"><span class="artifact-badge in">IN</span><span>Live system · SLO dashboards · alert rules · incident events</span></div>
+        <div class="artifact-row"><span class="artifact-badge out">OUT</span><span>OTel spans · performance signals · incident records · new signals filed back to repo</span></div>
+      </div>
+    </div>
     <div class="loop-feedback reveal">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
       Observability telemetry surfaces patterns → signals are filed in the repo → Discover picks them up. The system never stops learning.
@@ -520,6 +546,11 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
         <div class="folder-icon">⚡</div>
         <h4><code>work/</code></h4>
         <p>Active work artifacts. Signals, missions, decisions, releases, retrospectives. GitOps project management.</p>
+      </div>
+      <div class="repo-folder reveal" style="border-color:rgba(167,139,250,0.25);background:rgba(167,139,250,0.03)">
+        <div class="folder-icon">🎯</div>
+        <h4>Mission — the atomic unit of work</h4>
+        <p>A mission is how strategy becomes execution. It carries an <strong style="color:var(--text);font-weight:600">outcome contract</strong> (not a task list), a defined crew assembled by Orchestration, a fleet config, and a time-bounded scope. Missions are created from signals, executed by agent fleets with human oversight at critical gates, and closed when the outcome is confirmed — not when the tasks are done.</p>
       </div>
       <div class="repo-folder reveal">
         <div class="folder-icon">🛡️</div>
