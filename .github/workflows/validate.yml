@@ -493,3 +493,20 @@ jobs:
           GITHUB_DEFAULT_BRANCH: "${{ github.event.repository.default_branch || 'main' }}"
         run: |
           python3 scripts/check_github_governance.py
+
+  validate-schema:
+    name: Validate Schemas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml jsonschema
+
+      - name: Validate CONFIG.yaml and work artifact schemas
+        run: python3 scripts/validate_schema.py

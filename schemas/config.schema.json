@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/wlfghdr/agentic-enterprise/schemas/config.schema.json",
+  "title": "Agentic Enterprise CONFIG.yaml",
+  "description": "Schema for the root CONFIG.yaml framework configuration file.",
+  "type": "object",
+  "required": [
+    "framework_version",
+    "company",
+    "vision",
+    "strategic_beliefs",
+    "ventures",
+    "divisions",
+    "toolchain",
+    "quality",
+    "org_size"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "framework_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of the framework (MAJOR.MINOR.PATCH)."
+    },
+    "company": {
+      "type": "object",
+      "required": ["name", "short_name", "repo_slug", "domain"],
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": "string" },
+        "short_name": { "type": "string" },
+        "repo_slug": { "type": "string" },
+        "domain": { "type": "string" }
+      }
+    },
+    "vision": {
+      "type": "object",
+      "required": ["north_star", "mission"],
+      "additionalProperties": true,
+      "properties": {
+        "north_star": { "type": "string" },
+        "mission": { "type": "string" }
+      }
+    },
+    "strategic_beliefs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "summary"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "title": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "ventures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "divisions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["id", "name", "description"],
+          "additionalProperties": true,
+          "properties": {
+            "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "name": { "type": "string", "minLength": 1 },
+            "description": { "type": "string" }
+          }
+        }
+      }
+    },
+    "toolchain": {
+      "type": "object",
+      "required": ["git_host", "ci_cd"],
+      "additionalProperties": true,
+      "properties": {
+        "git_host": {
+          "type": "string",
+          "enum": ["GitHub", "GitLab", "Bitbucket"]
+        },
+        "ci_cd": { "type": "string", "minLength": 1 }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "required": ["code_coverage_minimum", "api_response_p95_ms"],
+      "additionalProperties": true,
+      "properties": {
+        "code_coverage_minimum": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "api_response_p95_ms": { "type": "integer", "minimum": 1 },
+        "dashboard_load_p95_ms": { "type": "integer", "minimum": 1 },
+        "agent_tool_call_p95_ms": { "type": "integer", "minimum": 1 },
+        "accessibility_standard": { "type": "string" },
+        "deployment_rollback_target_min": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "org_size": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "integrations": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "products": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}
