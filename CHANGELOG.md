@@ -23,6 +23,13 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 
+**Blocking CI check for unfilled placeholders in non-template docs (fix/issue-25)**
+- `scripts/check_placeholders.py` — new script that detects unfilled placeholders (`{{VAR}}`, `[TODO]`, `[TBD]`, `T.B.D.`, `Coming Soon`, `__PLACEHOLDER__`, `<PLACEHOLDER>`, `<TODO>`, `_TO_BE_DEFINED_`) in non-template Markdown files; includes self-check mode (`--self-check`) for CI integrity verification
+- `.github/workflows/validate.yml` — `validate-placeholders` job upgraded from warning-only to **blocking** (exit 1 on violations); self-check step added for script integrity
+- `docs/PLACEHOLDER-CHECK.md` — full guidance on what is detected, what is excluded, per-file opt-out (`<!-- placeholder-ok -->`), and how to fix violations
+- `.github/PULL_REQUEST_TEMPLATE.md` — updated checklist to list all detected patterns and reference the blocking CI check
+- Framework files that ship with intentional `{{VAR}}` markers (AGENTS.md, COMPANY.md, policy files, process guides, etc.) annotated with `<!-- placeholder-ok -->` opt-out pragma
+
 **Corporate function divisions — People, Legal & Compliance, Finance & Procurement (PR #TBD)**
 - `org/3-execution/divisions/people/DIVISION.md` — People division: recruiting, workforce planning, HR operations, onboarding, performance, L&D
 - `org/3-execution/divisions/legal/DIVISION.md` — Legal & Compliance division: contract management, regulatory advisory, IP, privacy law
