@@ -164,6 +164,17 @@ divisions:
       name: "Customer Experience"
       description: "Success, support, onboarding, health, renewals"
 
+  corporate:
+    - id: "people"
+      name: "People"
+      description: "Recruiting, workforce planning, HR operations, onboarding, performance, learning & development"
+    - id: "legal"
+      name: "Legal & Compliance"
+      description: "Contract management, regulatory compliance, IP, privacy law, employment law advisory"
+    - id: "finance-procurement"
+      name: "Finance & Procurement"
+      description: "Budget management, spend analytics, vendor procurement, financial reporting, cost optimization"
+
 # ───────────────────────────────────────────────────────────────────────────
 # 7. TOOLCHAIN & INFRASTRUCTURE
 # ───────────────────────────────────────────────────────────────────────────

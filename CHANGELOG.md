@@ -23,6 +23,44 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 
+**Corporate function divisions — People, Legal & Compliance, Finance & Procurement (PR #TBD)**
+- `org/3-execution/divisions/people/DIVISION.md` — People division: recruiting, workforce planning, HR operations, onboarding, performance, L&D
+- `org/3-execution/divisions/legal/DIVISION.md` — Legal & Compliance division: contract management, regulatory advisory, IP, privacy law
+- `org/3-execution/divisions/finance-procurement/DIVISION.md` — Finance & Procurement division: budget management, vendor procurement, financial reporting
+- `org/agents/execution/workforce-planner-agent.md` — Workforce Planner Agent: translates operational capacity signals into headcount recommendations
+- `org/agents/execution/recruiting-coordinator-agent.md` — Recruiting Coordinator Agent: end-to-end talent acquisition pipeline execution
+- `org/agents/execution/hr-generalist-agent.md` — HR Generalist Agent: HR operations, onboarding, performance review facilitation, culture signal analysis
+- `org/agents/execution/contract-review-agent.md` — Contract Review Agent: first-pass contract review, redlining, template drafting, lifecycle tracking
+- `org/agents/execution/compliance-advisor-agent.md` — Compliance Advisor Agent: regulatory monitoring, compliance guidance, privacy advisory
+- `org/agents/execution/budget-analyst-agent.md` — Budget Analyst Agent: continuous budget tracking, variance analysis, spend forecasting
+- `org/agents/execution/procurement-agent.md` — Procurement Agent: vendor sourcing, RFP/RFQ management, PO drafting, spend tracking
+- `CONFIG.yaml` — added `corporate` division category with people, legal, finance-procurement divisions
+
+**HR Recruiting full lifecycle example (signal → mission → fleet config)**
+- `work/signals/2026-02-20-pr-review-cycle-time-bottleneck.md` — Observability-generated signal: PR review cycle time 310% over SLA, identifying engineering capacity gap
+- `work/missions/engineering-reviewer-capacity/BRIEF.md` — Mission MISSION-2026-010: recruit 2 senior engineers to resolve review bottleneck
+- `org/2-orchestration/fleet-configs/engineering-reviewer-capacity.md` — 3-stream fleet config: Workforce Analysis → Recruiting Pipeline → Interview & Offer Management; illustrates People division in action
+
+**PR consistency fixes — lock and governance exception integration (follow-up to PRs #38, #39)**
+- `AGENTS.md` Rule 4 — added governance exception process guidance: when, how, and who must approve exceptions; references `_TEMPLATE-governance-exception.md`
+- `AGENTS.md` Rule 11 — fixed template classification to include `_TEMPLATE-*.md` files anywhere in the repo (including `work/locks/` and `work/decisions/`), not just `org/`
+- `AGENTS.md` repo structure — added `work/locks/` to the structure diagram
+- `CLAUDE.md` — synced with all `AGENTS.md` changes above
+- `CODEOWNERS` — added `work/locks/ @orchestration-fleet-manager`; added template overrides for `work/decisions/_TEMPLATE-governance-exception.md` (`@steering-executive @quality-policy-author`) and `work/locks/_TEMPLATE-lock.md` (`@steering-executive`)
+- `work/decisions/_TEMPLATE-governance-exception.md` — v1.0 → v1.1: added instance metadata block (Revision, Last updated, Status fields) and Revision History section for instance tracking
+- `work/README.md` — added `locks/` to the folder structure diagram and How It Works table; added governance exception row to the table; added naming conventions for governance exceptions (`EXC-YYYY-NNN-...`) and locks (path-derived slug)
+- `org/4-quality/AGENT.md` — v1.1 → v1.2: updated "What You Never Do" to reference the Governance Exception process; clarified that a merged, unexpired exception record is required to unlock a policy bypass
+- `CHANGELOG.md` — added retroactive entries for PRs #38 and #39 (previously unlogged)
+
+**Retroactive entries for previously merged PRs:**
+
+_PR #39 (2026-02-20) — Add governance exception template_
+- `work/decisions/_TEMPLATE-governance-exception.md` — new template for time-bounded policy exceptions with risk documentation and required approvers
+
+_PR #38 (2026-02-20) — Define work lock convention_
+- `work/locks/README.md` — lock convention: when to lock, lock file format, acquire/release protocol, stale lock handling
+- `work/locks/_TEMPLATE-lock.md` — lock file template
+
 **Template/instance distinction and `/deploy` skill**
 - `AGENTS.md` Rule 11 — distinguishes template/framework files from work artifact instances; defines completion criteria for each (framework changes require commit + push + green CI before done)
 - `.claude/skills/deploy/SKILL.md` — Claude Code `/deploy` slash command: 5-step template release checklist (verify version fields, add changelog entry, commit, push, watch CI)
