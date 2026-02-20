@@ -1,0 +1,22 @@
+# locks.yaml — Protected paths requiring a lock before modification
+# See docs/LOCK-ENFORCEMENT.md for details.
+#
+# Each entry defines a glob pattern. Any PR that modifies files matching
+# a protected pattern must have a corresponding lock file in work/locks/
+# OR an inline exception (ci:lock-exempt in the commit message).
+
+protected_paths:
+  # Core operating model & identity
+  - "COMPANY.md"
+  - "OPERATING-MODEL.md"
+  - "AGENTS.md"
+  - "CONFIG.yaml"
+
+  # Quality policies
+  - "org/4-quality/policies/*.md"
+
+  # Global templates (cross-cutting changes)
+  - "**/[_]TEMPLATE-*.md"
+
+  # Lock convention itself (meta-protection)
+  - "locks.yaml"
