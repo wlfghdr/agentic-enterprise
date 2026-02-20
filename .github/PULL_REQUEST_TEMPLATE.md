@@ -15,6 +15,6 @@ Closes #
 ## Checklist
 
 - [ ] YAML files parse without errors
-- [ ] No unfilled `{{PLACEHOLDER}}` markers in non-template files
+- [ ] No unfilled placeholders in non-template files (`{{VAR}}`, `[TODO]`, `[TBD]`, `T.B.D.`, `Coming Soon`, etc.) — **CI blocks on violations** (see `docs/PLACEHOLDER-CHECK.md`)
 - [ ] This is a framework change, not a company-specific customization
 - [ ] Follows [Conventional Commits](https://www.conventionalcommits.org/)

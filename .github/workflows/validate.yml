@@ -176,33 +176,24 @@ jobs:
           PY
 
   validate-placeholders:
-    name: Check Placeholders
+    name: Check Placeholders (blocking)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Ensure templates use placeholders correctly
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Self-check (script integrity)
+        run: python3 scripts/check_placeholders.py --self-check
+
+      - name: Check for unfilled placeholders in non-template docs
         run: |
-          echo "Checking placeholder consistency..."
-          # Non-template files should not have unfilled placeholders
-          # (except CONFIG.yaml which defines them)
-          VIOLATIONS=$(grep -rn '{{[A-Z_]*}}' --include="*.md" . \
-            | grep -v '_TEMPLATE' \
-            | grep -v 'CONFIG.yaml' \
-            | grep -v 'CONTRIBUTING.md' \
-            | grep -v 'CUSTOMIZATION-GUIDE.md' \
-            | grep -v 'AGENT-BOOTSTRAP-PROMPT.md' \
-            | grep -v 'OPERATING-MODEL.md' \
-            | grep -v '.github/' \
-            || true)
-          if [ -n "$VIOLATIONS" ]; then
-            echo "Found unfilled placeholders in non-template files:"
-            echo "$VIOLATIONS"
-            echo ""
-            echo "Either fill these from CONFIG.yaml or convert the file to a _TEMPLATE."
-            # Warning only — don't fail the build
-          fi
-          echo "Placeholder check complete"
+          python3 scripts/check_placeholders.py
+          # Exit code 1 = violations found → CI fails (blocking check)
+          # See docs/PLACEHOLDER-CHECK.md for patterns detected and opt-out instructions.
 
   validate-structure:
     name: Validate Structure
