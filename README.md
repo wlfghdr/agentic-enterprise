@@ -263,6 +263,8 @@ tools:
 
 OpenClaw's persistent memory, multi-channel routing, and 50+ integrations make it an excellent companion for operationalizing this framework beyond the Git interface. See [openclaw.ai](https://openclaw.ai) and [docs.openclaw.ai](https://docs.openclaw.ai).
 
+> **Operational guide available:** For a complete setup reference — agent fleet sizing, model tier assignment, heartbeat strategy, auto-merge gates, and self-organizing artifact loops — see [`docs/OPENCLAW-SETUP.md`](docs/OPENCLAW-SETUP.md).
+
 </details>
 
 <details>

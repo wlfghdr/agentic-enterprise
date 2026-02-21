@@ -449,8 +449,9 @@ The operating model evolves through the same mechanisms it uses for product work
 2. Read your layer's AGENT.md — your specific instructions
 3. Read relevant quality policies — your guardrails
 4. Read your task context (mission brief, fleet config, division charter)
-5. Start working — submit PRs for review
-6. Surface improvement signals — file signals in `work/signals/`
+5. If you are running this via OpenClaw, align your fleet config with [`docs/OPENCLAW-SETUP.md`](docs/OPENCLAW-SETUP.md)
+6. Start working — submit PRs for review
+7. Surface improvement signals — file signals in `work/signals/`
 
 ### For the Execution Example (Next Step)
 The `examples/` folder contains worked-through examples of specific features going through the entire lifecycle — from signal to shipped feature — demonstrating how all the pieces fit together.
