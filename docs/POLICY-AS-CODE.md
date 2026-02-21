@@ -14,7 +14,7 @@ repo-level standards on every pull request.
 3. [Running Locally](#running-locally)
 4. [Current Policies](#current-policies)
 5. [Adding a New Policy](#adding-a-new-policy)
-6. [Approving an Exception / Waiver](#approving-an-exception--waiver)
+6. [Approving an Exception - Waiver](#approving-an-exception-waiver)
 7. [CI Integration](#ci-integration)
 8. [Extending to Other Targets](#extending-to-other-targets)
 
@@ -189,7 +189,7 @@ Local composite actions (`uses: ./...`) are exempt.
 
 ---
 
-## Approving an Exception / Waiver
+## Approving an Exception - Waiver
 
 Sometimes a legitimate use case conflicts with a policy. The process:
 
