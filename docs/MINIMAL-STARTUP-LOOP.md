@@ -10,12 +10,12 @@
 
 You need exactly **4 agent roles**. Each maps to a model tier:
 
-| Role | What it does | Recommended model | When it runs |
-|------|-------------|-------------------|-------------|
-| **Orchestrator** | Reads signals, creates missions, assigns work, checks DoD | Claude Sonnet 4 | On every signal or mission state change |
-| **Coder** | Implements missions — writes code, tests, PRs | Claude Sonnet 4 / Codex | When a mission is `assigned` |
-| **Researcher** | Deep analysis, architecture decisions, market research | Claude Opus 4 | When a signal needs investigation or a mission needs design |
-| **Triage** | Cheap pre-filter: classifies signals, checks CI, does reviews | Claude Haiku / GPT-4.1-mini | Continuously (webhook/cron) |
+| Role | What it does | Recommended tier | When it runs |
+|------|-------------|------------------|-------------|
+| **Orchestrator** | Reads signals, creates missions, assigns work, checks DoD | High-quality reasoning model | On every signal or mission state change |
+| **Coder** | Implements missions — writes code, tests, PRs | Code-specialist model | When a mission is `assigned` |
+| **Researcher** | Deep analysis, architecture decisions, market research | Highest-quality / deep-reasoning model | When a signal needs investigation or a mission needs design |
+| **Triage** | Cheap pre-filter: classifies signals, checks CI, does reviews | Fast, low-cost model | Continuously (webhook/cron) |
 
 > **Solo founder rule:** You are the Steering Layer. You merge PRs. That's your only required action.
 
@@ -157,25 +157,25 @@ For OpenClaw / Claude Code / any orchestrator that spawns agents:
 ```yaml
 agents:
   orchestrator:
-    model: claude-sonnet-4-20250514
+    model: <your-high-quality-reasoning-model>
     trigger: cron (every 30min) OR on git push to work/signals/
     reads: work/signals/, work/missions/*/STATUS.md, CONFIG.yaml
     writes: work/missions/
 
   coder:
-    model: claude-sonnet-4-20250514  # or codex for pure code tasks
+    model: <your-code-specialist-model>
     trigger: assigned by orchestrator
     reads: work/missions/<assigned>/BRIEF.md, OUTCOME-CONTRACT.md, source code
     writes: source code, tests, STATUS.md
 
   researcher:
-    model: claude-opus-4-20250514
+    model: <your-deep-reasoning-model>
     trigger: assigned by orchestrator (design/research missions)
     reads: work/signals/, work/missions/, external sources
     writes: work/missions/<assigned>/, work/signals/ (new findings)
 
   triage:
-    model: claude-haiku-3-20250514  # cheap, fast
+    model: <your-fast-low-cost-model>
     trigger: cron (every 15min) OR webhook (CI, errors)
     reads: work/signals/, CI output, error logs
     writes: work/signals/ (new + assessed)
