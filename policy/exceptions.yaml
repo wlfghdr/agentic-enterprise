@@ -1,0 +1,23 @@
+# Policy Exceptions / Waivers
+# ─────────────────────────────────────────────────────────────────────────────
+# Use this file to approve known exceptions to Policy-as-Code rules.
+# Each entry MUST document: reason, approved-by, and an expiry date.
+#
+# Format:
+#   workflows:
+#     allow_missing_permissions:
+#       - "Workflow Name"   # reason: ..., approved: YYYY-MM-DD, expires: YYYY-MM-DD
+#     allow_unpinned_actions:
+#       - "owner/repo@ref"  # reason: ..., approved: YYYY-MM-DD, expires: YYYY-MM-DD
+#
+# See docs/POLICY-AS-CODE.md for the full exception process.
+# ─────────────────────────────────────────────────────────────────────────────
+
+workflows:
+  # Workflows exempt from the top-level permissions check.
+  # Add the workflow's `name:` field value here.
+  allow_missing_permissions: []
+
+  # Action refs exempt from the pinned-actions check.
+  # Add the full ref string (e.g., "myorg/myaction@main") here.
+  allow_unpinned_actions: []
