@@ -1,0 +1,9 @@
+# Conftest configuration — Policy-as-Code (OPA/Rego)
+# https://www.conftest.dev/
+#
+# Run locally:
+#   conftest test .github/workflows/ --policy policy/ --data policy/ --namespace workflows
+#
+# See docs/POLICY-AS-CODE.md for full usage instructions and how to add rules.
+
+policy = ["policy"]

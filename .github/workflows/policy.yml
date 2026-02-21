@@ -1,0 +1,46 @@
+name: Policy Checks (OPA/Conftest)
+
+# Enforces Policy-as-Code rules via Conftest + OPA/Rego.
+# Policies live in policy/ — see docs/POLICY-AS-CODE.md for details.
+#
+# Current checks (blocking):
+#   - workflows/permissions: all workflows must declare top-level `permissions`
+#   - workflows/pinned_actions: external action refs must be pinned (no @main/@latest)
+#
+# To add a policy exception: edit policy/exceptions.yaml.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  conftest:
+    name: Conftest Policy Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install conftest
+        run: |
+          VERSION=0.51.0
+          curl -sL \
+            "https://github.com/open-policy-agent/conftest/releases/download/v${VERSION}/conftest_${VERSION}_Linux_x86_64.tar.gz" \
+            | tar xz conftest
+          sudo mv conftest /usr/local/bin/conftest
+          conftest --version
+
+      - name: Check workflow policies
+        run: |
+          conftest test .github/workflows/ \
+            --policy policy/ \
+            --data policy/ \
+            --namespace workflows \
+            --output table
+        # Failures (deny rules) cause a non-zero exit → CI fails.
+        # Warnings (warn rules) are advisory only.
