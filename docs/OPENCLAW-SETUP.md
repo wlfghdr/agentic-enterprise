@@ -1,6 +1,6 @@
 # OpenClaw Setup Guide for Agentic Enterprise
 
-> **Purpose:** Practical operator guide for running the Agentic Enterprise operating model on [OpenClaw](https://openclaw.ai) with **Anthropic + OpenAI only**.  
+> **Purpose:** Practical operator guide for running the Agentic Enterprise operating model on [OpenClaw](https://openclaw.ai).  
 > **Audience:** Operators bootstrapping an "agentic company" runtime (fleet, loops, automation).  
 > **Status:** Living document — adjust as your fleet, budgets, and reliability needs evolve.
 
@@ -23,7 +23,7 @@
 
 ## Design Principles
 
-1. **Provider policy: Anthropic + OpenAI only.** Keep keys and failure modes simple.
+1. **Keep your provider policy tight.** Fewer providers = fewer keys and failure modes.
 2. **Role-first, model-second.** Assign *tiers* to roles; map tiers to concrete models in one place.
 3. **Model transparency in agent identity (internally).** Operator-facing agent IDs should tell you what they are.
 4. **Repo is the coordination protocol.** Loops close via PRs + artifacts, not hidden state.
@@ -141,10 +141,11 @@ If you want to go further, add:
 
 **Key rule:** keep human work separate from assistant work.
 
-- Issues assigned to `wlfghdr` = **human-owned**, do **not** auto-start.
-- Issues assigned to `WulfAI` = **assistant-owned**, eligible for automation.
+- Issues assigned to your **human owner account** = human-owned; do **not** auto-start.
+- Issues assigned to your **assistant/bot identity** = assistant-owned; eligible for automation.
 
-This prevents the assistant from hijacking your personal backlog.
+**Practical tip:** create a dedicated GitHub user/bot (e.g., `YourCompanyAI`) for automation assignments.
+This prevents the assistant from hijacking the human’s backlog and makes ownership explicit.
 
 ---
 
