@@ -48,6 +48,10 @@ Read and adjust these three files — they set the tone for everything:
 2. [AGENTS.md](AGENTS.md) — Global agent rules. Adjust identity and product naming.
 3. [OPERATING-MODEL.md](OPERATING-MODEL.md) — The meta-description. Verify it matches your reality.
 
+### Solo Founder? Start Here Instead
+
+If you're a **1-person startup** and the full framework feels heavy, read **[docs/MINIMAL-STARTUP-LOOP.md](docs/MINIMAL-STARTUP-LOOP.md)** — it strips the model down to 4 agents and a single self-sustaining loop. You can always grow into the full framework later.
+
 ### Step 4: Register Your Integrations (5 min)
 
 Review `CONFIG.yaml → integrations` and register the external tools your organization uses:

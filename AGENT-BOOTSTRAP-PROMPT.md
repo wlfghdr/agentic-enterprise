@@ -71,6 +71,21 @@ framework for running an entire organization with AI agents and human oversight.
 
 ---
 
+## Recommended Minimal Agent Team
+
+For solo founders or small teams, start with these 4 agents:
+
+| Role | Recommended tier | Purpose |
+|------|-----------------|---------|
+| **Orchestrator** | High-quality reasoning model | Reads signals, creates/assigns missions, verifies DoD |
+| **Coder** | Code-specialist model | Implements missions — code, tests, PRs |
+| **Researcher** | Highest-quality / deep-reasoning model | Deep analysis, architecture, market research |
+| **Triage** | Fast, low-cost model | Cheap signal classification, CI monitoring, reviews |
+
+> See **[docs/MINIMAL-STARTUP-LOOP.md](docs/MINIMAL-STARTUP-LOOP.md)** for the full minimal setup guide.
+
+---
+
 ## Platform-Specific Prompts
 
 ### Claude Code
@@ -363,7 +378,7 @@ app = workflow.compile()
 import autogen
 
 # Map layers to AutoGen agent groups
-config_list = [{"model": "gpt-4o", "api_key": "..."}]
+config_list = [{"model": "<your-model>", "api_key": "..."}]
 
 steering_agent = autogen.AssistantAgent(
     name="Steering",
