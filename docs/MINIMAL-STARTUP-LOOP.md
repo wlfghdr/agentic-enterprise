@@ -152,7 +152,7 @@ That's it. The system is now self-sustaining.
 
 ## 6. Recommended Agent Configuration
 
-For OpenClaw / Claude Code / any orchestrator that spawns agents:
+For OpenClaw or any orchestrator that spawns agents:
 
 ```yaml
 agents:
