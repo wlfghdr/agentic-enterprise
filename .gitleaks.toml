@@ -1,0 +1,43 @@
+# Gitleaks configuration for agentic-enterprise
+# See: https://github.com/gitleaks/gitleaks#configuration
+#
+# This file extends the built-in Gitleaks ruleset and declares allowlisted
+# patterns that are intentional and not actual secrets.
+#
+# HOW TO USE:
+#   Run locally: gitleaks detect --config .gitleaks.toml --source . -v
+#   Scan git log: gitleaks detect --config .gitleaks.toml --source . --log-opts="--all" -v
+#
+# HOW TO ALLOWLIST A FALSE POSITIVE:
+#   1. Identify the rule ID from the scan output (e.g., "generic-api-key")
+#   2. Add the specific commit, path, or regex pattern to the [allowlist] below
+#   3. Add a comment explaining why it is safe to ignore
+#   4. Commit the updated .gitleaks.toml — the CI will pick it up automatically
+
+title = "agentic-enterprise"
+
+[extend]
+# Extend Gitleaks' built-in ruleset instead of replacing it
+useDefault = true
+
+[allowlist]
+  description = "Allowlisted patterns that are not real secrets"
+
+  # Paths that intentionally contain example/placeholder tokens (e.g., docs, templates)
+  paths = [
+    '''(?i)CUSTOMIZATION-GUIDE\.md''',
+    '''(?i)examples/.*''',
+    '''(?i)_TEMPLATE-.*\.md''',
+  ]
+
+  # Regex patterns for known non-secret strings (e.g., example values in docs)
+  regexes = [
+    # Generic placeholder pattern used in documentation: {{PLACEHOLDER}}
+    '''(?i)\{\{[A-Z_]+\}\}''',
+  ]
+
+  # Specific commits to skip (add SHA here with a reason comment if a false positive
+  # is already in history and cannot be rewritten)
+  # commits = [
+  #   "abcdef1234567890",  # reason: example token in initial bootstrap commit
+  # ]
