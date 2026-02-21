@@ -31,6 +31,7 @@ Most adopters only ever need the **Company fork** context. The OSS context matte
 | `index.html` | Landing/demo page for the public GitHub Pages site (`wlfghdr.github.io/agentic-enterprise`). | Delete |
 | `concept-visualization.html` | Interactive HTML visualization of the framework model — demo/presentation aid. | Delete (or keep for internal presentations) |
 | `AGENT-BOOTSTRAP-PROMPT.md` | Copy-paste prompts for pointing any AI agent at the framework. | Keep (useful) or inline the prompts into onboarding docs |
+| `docs/OPENCLAW-SETUP.md` | OpenClaw-specific fleet setup guide — model tiers, heartbeat strategy, auto-merge gates. | Operator reference |
 | `.github/` | CI workflows (`validate.yml`), PR templates, and Copilot instructions for this public repo. | Adapt to your org's CI/CD conventions |
 
 ---
