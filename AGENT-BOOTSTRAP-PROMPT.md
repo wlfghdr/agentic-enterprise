@@ -71,6 +71,21 @@ framework for running an entire organization with AI agents and human oversight.
 
 ---
 
+## Recommended Minimal Agent Team
+
+For solo founders or small teams, start with these 4 agents:
+
+| Role | Model | Purpose |
+|------|-------|---------|
+| **Orchestrator** | Claude Sonnet 4 | Reads signals, creates/assigns missions, verifies DoD |
+| **Coder** | Claude Sonnet 4 / Codex | Implements missions — code, tests, PRs |
+| **Researcher** | Claude Opus 4 | Deep analysis, architecture, market research |
+| **Triage** | Claude Haiku / GPT-4.1-mini | Cheap signal classification, CI monitoring, reviews |
+
+> See **[docs/MINIMAL-STARTUP-LOOP.md](docs/MINIMAL-STARTUP-LOOP.md)** for the full minimal setup guide.
+
+---
+
 ## Platform-Specific Prompts
 
 ### Claude Code
