@@ -1,0 +1,59 @@
+name: Security Scanning
+
+# Enforces the security policy requirements from org/4-quality/policies/security.md:
+#   - "No secrets in source code" → Gitleaks (blocking)
+#   - "Dependencies scanned for known vulnerabilities" → Dependency Review (blocking on PR)
+#
+# See docs/SECURITY-SCANNING.md for local usage, findings management, and allowlist strategy.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  scan-secrets:
+    name: Secret Scanning (Gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history is required so Gitleaks can scan all commits in a push/PR
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITLEAKS_LICENSE is optional — only required for GitHub org-level private repos.
+          # Set it as a repository/org secret if you receive a license requirement error.
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+
+  scan-dependencies:
+    name: Dependency Vulnerability Scan (Dependency Review)
+    # Dependency Review requires a pull_request event to compare base vs. head manifests.
+    # On push to main we rely on the Gitleaks scan; dep review runs on every PR.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write   # allows posting a summary comment on the PR
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          # Block the PR if any newly introduced dependency has a HIGH or CRITICAL CVE.
+          # MODERATE and LOW findings are surfaced as warnings in the PR comment but do
+          # not block merging — see docs/SECURITY-SCANNING.md for triage guidance.
+          fail-on-severity: high
+          # Post a summary comment on the PR so reviewers see the scan result inline.
+          comment-summary-in-pr: always
+          # Allow-list: add specific GHSA IDs here for accepted/risk-accepted findings.
+          # Format: "GHSA-xxxx-yyyy-zzzz"
+          # allow-ghsas: ""
