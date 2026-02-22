@@ -99,6 +99,25 @@ Heartbeats are periodic wake-ups. They should **batch** small checks and either:
 | `steering` | ✅ (optional) | 1–2× / day | Strategic digest. Not needed hourly. |
 | `builder` | ❌ | — | Builders should be **triggered**, not polling. |
 
+### Adaptive backoff (recommended)
+
+Don't run fixed-interval heartbeats — use **exponential backoff** that adapts to activity:
+
+| Condition | Cadence | Rationale |
+|---|---|---|
+| Recent activity (new signals, open PRs, missions in-flight) | **10 min** (minimum) | High change rate → agents should react quickly. |
+| Moderate activity (some work in progress, no urgency) | **30–60 min** | Normal operating rhythm. |
+| Low activity (no open missions, no pending PRs) | **2–4 hours** | Save tokens; wake faster if a new signal lands. |
+| Idle (nothing changed since last heartbeat) | **1× daily** (maximum) | Baseline liveness check — still produces `HEARTBEAT_OK`. |
+
+**How it works:**
+1. After each heartbeat, the agent evaluates how much actionable work it found.
+2. If work was found → reset cadence to **minimum** (10 min).
+3. If no work was found → **double** the interval (up to the daily cap).
+4. External events (new signal filed, PR opened, webhook) → immediately reset to minimum regardless of current interval.
+
+This keeps costs near zero during quiet periods while ensuring sub-15-minute response times during active development.
+
 **Cost rule of thumb:** if a heartbeat doesn't create a tangible artifact or reduce human load, disable it.
 
 ### Heartbeat checklist pattern

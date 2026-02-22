@@ -376,6 +376,46 @@ All placeholders in the framework use the `{{VARIABLE}}` syntax. Here's the comp
 
 ---
 
+## Staying in Sync with the Upstream Framework
+
+Your fork is a living instance of the [Agentic Enterprise](https://github.com/wlfghdr/agentic-enterprise) template. The upstream framework evolves — new patterns, improved policies, better templates. Treat the relationship as bidirectional: **pull improvements in, push discoveries back.**
+
+### Adopting upstream updates
+
+```bash
+# Add upstream remote (one-time)
+git remote add upstream https://github.com/wlfghdr/agentic-enterprise.git
+
+# Fetch upstream changes
+git fetch upstream main
+
+# Review what changed
+git log upstream/main --oneline --since="last month"
+git diff main...upstream/main -- CHANGELOG.md
+```
+
+**Recommended cadence:** Check upstream at least monthly, or as part of your Steering Layer's evolution cycle. Compare the upstream `CHANGELOG.md` against your current `framework_version` in `CONFIG.yaml`.
+
+**Merge selectively.** Not every upstream change applies to your instance — you may have deliberately diverged in areas like policies, divisions, or process. Evaluate each update against your local customizations:
+- Template improvements (`_TEMPLATE-*.md`) → usually safe to adopt
+- New agent types or policies → evaluate fit before merging
+- Structural changes to `AGENTS.md` or `OPERATING-MODEL.md` → review carefully, may conflict with local rules
+
+### Contributing improvements back
+
+When your agents (or you) discover a pattern, fix, or improvement that is **not company-specific**, share it upstream:
+
+1. **File an issue** on the template repo describing the improvement
+2. **Open a PR** following the upstream `CONTRIBUTING.md` guidelines
+3. Or at minimum, **start a discussion** — even a rough observation is valuable
+
+What belongs upstream: bug fixes in templates, new generic agent types, policy refinements, structural patterns, documentation improvements.
+What stays in your fork: company identity, proprietary strategies, division details, custom integrations, internal work artifacts.
+
+**Why this matters:** Every instance that contributes back makes the framework better for all adopters. Your agents already observe friction and file improvement signals (Rule 7 in AGENTS.md) — extending that habit to the upstream framework is a natural evolution. Rule 12 in AGENTS.md instructs agents to do this automatically.
+
+---
+
 ## Production Deployment Notes
 
 This framework is a **structural template** — a starting point, not a turnkey deployment. For production use:
