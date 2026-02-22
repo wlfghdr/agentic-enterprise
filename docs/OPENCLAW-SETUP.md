@@ -66,6 +66,14 @@ Avoid hard-coding specific model names in docs and long-lived instructions. Use 
 
 ## OpenClaw Agent IDs & Naming
 
+### Runtime wiring checklist (make this explicit)
+Before judging whether “autonomy works”, ensure each runtime agent is wired to:
+- the **correct repo path** (the company fork)
+- the **instruction hierarchy** (AGENTS.md → layer AGENT.md → division → mission brief)
+- an **output channel** (PRs + repo artifacts)
+
+If this step is missing, agents will behave like generic chatbots and adopters will misdiagnose it as an LLM problem.
+
 Two practical approaches:
 
 ### Option A — Simple IDs (recommended)
@@ -88,6 +96,20 @@ If you choose this, **keep it internal** (operator docs) and avoid scattering mo
 Heartbeats are periodic wake-ups. They should **batch** small checks and either:
 - create a repo artifact (signal, digest, status update), or
 - respond with `HEARTBEAT_OK`.
+
+### Adaptive heartbeat backoff (cost control)
+A good default is **adaptive cadence**:
+- set a **min** interval (fast enough to feel alive)
+- set a **max** interval (hard budget barrier)
+- **double** the interval on each idle run
+- **reset** back to min when visible work appears
+
+Example defaults (starter company):
+- min: 30m
+- max: 24h
+
+This can be implemented even if your runtime only supports a fixed heartbeat schedule:
+run the heartbeat frequently, but self-gate in the agent’s checklist using a small state file.
 
 ### Who gets heartbeat?
 
@@ -148,6 +170,15 @@ If you want to go further, add:
 This prevents the assistant from hijacking the human’s backlog and makes ownership explicit.
 
 ---
+
+## Daily human reporting (default trust artifact)
+A repo-native agentic company should produce one predictable, human-friendly report per day.
+
+Recommended:
+- Write: `work/reports/daily/YYYY-MM-DD.md`
+- Send: a short chat summary to the human owner (what changed, what’s next, blockers)
+
+This prevents the system from feeling “silent” and keeps trust high.
 
 ## Self-Organizing via Repo Artifacts
 
