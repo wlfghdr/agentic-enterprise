@@ -110,10 +110,10 @@ Divisions are the **execution units** of the organization — each owns a domain
 
 | Division | What It Owns |
 |-----------|-------------|
-| **Data Foundation** | Core data storage, query engine ({{QUERY_LANGUAGE}}), data governance, enrichment, semantic normalization |
+| **Data Foundation** | Core data storage, query and analytics engine, data governance, enrichment, semantic normalization |
 | **Core Services** | IAM, RBAC, tokens, lifecycle management, serverless runtime, APIs |
-| **Core Applications** | Dashboards, notebooks, search, navigation, {{ASSISTANT_NAME}} UI |
-| **AI & Intelligence** | {{AI_INTELLIGENCE_NAME}}, {{ASSISTANT_NAME}} backend, agent reasoning, NL↔{{QUERY_LANGUAGE}}, AI safety |
+| **Core Applications** | Dashboards, notebooks, search, navigation, conversational interface |
+| **AI & Intelligence** | AI reasoning layer, conversational interface backend, agent orchestration, natural language interfaces, AI safety |
 
 ### Engineering Divisions — Domain
 

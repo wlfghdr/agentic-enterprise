@@ -14,7 +14,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Tracks the overall framework release. Update when cutting a new version.
 # See CHANGELOG.md for what changed. Uses semantic versioning (MAJOR.MINOR.PATCH).
-framework_version: "1.0.0"
+framework_version: "2.0.0"
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────────────────
@@ -73,17 +73,10 @@ strategic_beliefs:
     summary: "Every AI capability must be explainable, auditable, and reversible."
 
 # ───────────────────────────────────────────────────────────────────────────
-# 4. PRODUCT NAMES
+# 4. PRODUCT NAME
 # ─────────────────────────────────────────────────────────────────────────
 
-products:
-  core_product_name: ""            # e.g., "Acme Suite" — the core product offering
-  ai_intelligence_name: ""        # e.g., "Acme Intelligence" — the AI/reasoning layer
-  assistant_name: ""              # e.g., "Acme Assist" — the conversational AI interface
-  agent_brand: ""                 # e.g., "Acme Agents" — how you refer to purpose-built AI agents
-  data_store_name: ""             # e.g., "Acme DataLake" — the data warehouse/lakehouse
-  query_language: ""              # e.g., "AQL" — your query/analytics language
-  design_system_name: ""          # e.g., "Acme Design System" — UI component library
+product_name: ""                   # e.g., "Acme Suite" — your primary product or offering name
 
 # ───────────────────────────────────────────────────────────────────────────
 # 5. VENTURES (Strategy Layer)

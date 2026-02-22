@@ -21,6 +21,17 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 _Changes merged to `main` but not yet tagged as a release go here. Move to a new version section when cutting a release._
 
+### Changed
+
+**Simplify products section to single `product_name` field (MAJOR — framework version 2.0.0)**
+- `CONFIG.yaml` — replaced 7-field `products:` block (`core_product_name`, `ai_intelligence_name`, `assistant_name`, `agent_brand`, `data_store_name`, `query_language`, `design_system_name`) with a single top-level `product_name: ""` field; bumped `framework_version` from `1.0.0` to `2.0.0`
+- `AGENTS.md` — removed "Product Naming (Mandatory)" section; the product-specific terminology table referenced variables that no longer exist
+- `COMPANY.md` — replaced `{{DATA_STORE_NAME}}` with neutral prose; replaced `{{PRODUCT_NAME}}` dog-fooding reference with generic language
+- `org/README.md` — replaced `{{QUERY_LANGUAGE}}`, `{{ASSISTANT_NAME}}`, and `{{AI_INTELLIGENCE_NAME}}` in division descriptions with generic capability descriptions
+- `org/4-quality/policies/experience.md` — v1.0 → v1.1: replaced `{{DESIGN_SYSTEM_NAME}}` with "the company design system"
+- `org/4-quality/policies/architecture.md` — v1.0 → v1.1: replaced `{{DESIGN_SYSTEM_NAME}}` with "the company design system"
+- `CUSTOMIZATION-GUIDE.md` — updated Step 1 table, Step 2 sed block, and Placeholder Reference table to reflect single `product_name` field
+
 ### Added
 
 **Blocking CI check for unfilled placeholders in non-template docs (fix/issue-25)**
