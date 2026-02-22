@@ -3,7 +3,7 @@
 > **Applies to:** All user-facing surfaces — UI, CLI, APIs, documentation, error messages
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** UX/Design team leads
-> **Version:** 1.0 | **Last updated:** 2026-02-19
+> **Version:** 1.1 | **Last updated:** 2026-02-23
 
 ---
 
@@ -17,7 +17,7 @@
 ## Mandatory Requirements
 
 ### Visual Design
-- [ ] Uses {{DESIGN_SYSTEM_NAME}} components and tokens exclusively
+- [ ] Uses the company design system components and tokens exclusively
 - [ ] Typography, spacing, and color follow design system guidelines
 - [ ] Icons from the approved icon set only
 - [ ] No pixel-based sizing (use design tokens / rem / em)
@@ -65,3 +65,4 @@
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-02-19 | Initial version |
+| 1.1 | 2026-02-23 | Replace {{DESIGN_SYSTEM_NAME}} placeholder with generic "company design system" language |

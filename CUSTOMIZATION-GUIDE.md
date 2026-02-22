@@ -11,14 +11,13 @@
 
 ### Step 1: Fill in CONFIG.yaml (10 min)
 
-Open [CONFIG.yaml](CONFIG.yaml) and fill in every field. This gives the framework your company's identity, product names, toolchain, and organizational shape. The most critical fields:
+Open [CONFIG.yaml](CONFIG.yaml) and fill in every field. This gives the framework your company's identity, toolchain, and organizational shape. The most critical fields:
 
 | Field | Why It Matters |
 |-------|---------------|
 | `company.name` | Appears throughout every document |
 | `vision.north_star` | Anchors all strategic alignment checks |
 | `vision.mission` | Guides every agent's decision-making |
-| `products.*` | Referenced in architecture policies, agent instructions, and templates |
 | `toolchain.*` | Determines which concrete tools implement your quality policies |
 
 ### Step 2: Search & Replace Placeholders (5 min)
@@ -29,15 +28,6 @@ After filling CONFIG.yaml, do a global search-and-replace across the repository:
 # Replace company name throughout
 find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{COMPANY_NAME}}/YourCompanyName/g'
 find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{COMPANY_SHORT}}/YourShort/g'
-
-# Replace product names
-find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{PRODUCT_NAME}}/YourProduct/g'
-find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{AI_INTELLIGENCE_NAME}}/YourAI/g'
-find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{ASSISTANT_NAME}}/YourAssist/g'
-find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{AGENT_BRAND}}/YourAgents/g'
-find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{DATA_STORE_NAME}}/YourDataStore/g'
-find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{QUERY_LANGUAGE}}/YourQL/g'
-find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{DESIGN_SYSTEM_NAME}}/YourDesignSystem/g'
 ```
 
 ### Step 3: Review Core Documents (10 min)
@@ -45,7 +35,7 @@ find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{DESIGN_SYSTEM_NAME}
 Read and adjust these three files — they set the tone for everything:
 
 1. [COMPANY.md](COMPANY.md) — Vision, mission, strategic beliefs. Make them yours.
-2. [AGENTS.md](AGENTS.md) — Global agent rules. Adjust identity and product naming.
+2. [AGENTS.md](AGENTS.md) — Global agent rules. Adjust identity section.
 3. [OPERATING-MODEL.md](OPERATING-MODEL.md) — The meta-description. Verify it matches your reality.
 
 ### Small Team or Solo Founder?
@@ -373,13 +363,6 @@ All placeholders in the framework use the `{{VARIABLE}}` syntax. Here's the comp
 |------------|--------------|---------|
 | `{{COMPANY_NAME}}` | CONFIG.yaml → company.name | Everywhere |
 | `{{COMPANY_SHORT}}` | CONFIG.yaml → company.short_name | Prose references |
-| `{{PRODUCT_NAME}}` | CONFIG.yaml → products.core_product_name | Architecture, policies |
-| `{{AI_INTELLIGENCE_NAME}}` | CONFIG.yaml → products.ai_intelligence_name | Agent instructions, policies |
-| `{{ASSISTANT_NAME}}` | CONFIG.yaml → products.assistant_name | UX references, examples |
-| `{{AGENT_BRAND}}` | CONFIG.yaml → products.agent_brand | Agent instructions |
-| `{{DATA_STORE_NAME}}` | CONFIG.yaml → products.data_store_name | Architecture policy, data refs |
-| `{{QUERY_LANGUAGE}}` | CONFIG.yaml → products.query_language | Architecture policy, data access |
-| `{{DESIGN_SYSTEM_NAME}}` | CONFIG.yaml → products.design_system_name | Experience policy |
 | `{{VENTURE_N_NAME}}` | CONFIG.yaml → ventures[n].name | Venture charters |
 | `{{VENTURE_N_DESCRIPTION}}` | CONFIG.yaml → ventures[n].description | Venture charters |
 | `{{DOMAIN_CAP_N_NAME}}` | CONFIG.yaml → divisions.engineering_domain[n].name | Division definitions |

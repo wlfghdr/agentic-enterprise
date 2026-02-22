@@ -119,9 +119,9 @@
       "type": "object",
       "additionalProperties": true
     },
-    "products": {
-      "type": "object",
-      "additionalProperties": { "type": "string" }
+    "product_name": {
+      "type": "string",
+      "description": "Primary product or offering name."
     }
   }
 }

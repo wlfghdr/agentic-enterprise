@@ -88,7 +88,7 @@ In a world of autonomous agents acting on production systems, trust is not a fea
 
 ### What we will never compromise
 
-- **Data integrity** — {{DATA_STORE_NAME}} is the source of truth. No approximations, no sampling artifacts on mission-critical queries.
+- **Data integrity** — Our data is the source of truth. No approximations, no shortcuts on mission-critical information.
 - **Security posture** — Agent actions are policy-bounded, auditable, and reversible. Always.
 - **Customer trust** — We handle sensitive operational data. Zero tolerance for data leakage, unauthorized access, or opaque AI decisions.
 - **Openness** — Open standards, public APIs. Customers own their data and their integrations.
@@ -105,7 +105,7 @@ In a world of autonomous agents acting on production systems, trust is not a fea
 4. **We sell with agent fleets** — every account executive walks into every meeting agent-prepared: briefings, proposals, demo environments, objection handling
 5. **We succeed customers with agent fleets** — health monitoring, QBR preparation, adoption analysis, renewal risk assessment, all agent-powered
 6. **We support with agent fleets** — triage, diagnostics, knowledge base generation, SLA tracking, all agent-assisted
-7. **We measure ourselves with {{PRODUCT_NAME}}** — our agent fleets, our CI/CD, our deployments, our customer health, all flow through {{PRODUCT_NAME}} (dog-fooding)
+7. **We are our own first customer** — our agent fleets, our CI/CD, our deployments, our customer health — we operate on our own platform (dog-fooding)
 8. **We govern through outcomes** — not process compliance, but measurable customer and business outcomes
 9. **We evolve ourselves with agent fleets** — the company continuously observes its own structure, processes, and operating model through every agent in every layer, aggregates improvement signals in the Steering Layer, and evolves itself through the same PR-governed process as everything else. This is not periodic strategic planning — it is continuous organizational metabolism.
 

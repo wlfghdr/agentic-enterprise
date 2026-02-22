@@ -3,7 +3,7 @@
 > **Applies to:** All code changes, new services, API designs, data models, system integrations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Architecture Governors (Steering Layer delegates)
-> **Version:** 1.0 | **Last updated:** 2026-02-19
+> **Version:** 1.1 | **Last updated:** 2026-02-23
 
 ---
 
@@ -39,7 +39,7 @@
 - [ ] Error handling: no swallowed exceptions, structured error responses
 
 ### Design System (UI)
-- [ ] UI components use {{DESIGN_SYSTEM_NAME}} components exclusively
+- [ ] UI components use the company design system components exclusively
 - [ ] No custom CSS that overrides design system tokens
 - [ ] Accessibility: WCAG 2.1 AA minimum
 - [ ] Responsive design for supported viewport sizes
@@ -85,3 +85,4 @@
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-02-19 | Initial version |
+| 1.1 | 2026-02-23 | Replace {{DESIGN_SYSTEM_NAME}} placeholder with generic "company design system" language |
