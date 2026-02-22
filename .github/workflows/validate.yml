@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   validate-yaml:
-    name: Validate YAML
+    name: validate-yaml
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +49,7 @@ jobs:
           exit $EXIT_CODE
 
   validate-markdown:
-    name: Validate Markdown
+    name: validate-markdown
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -176,7 +176,7 @@ jobs:
           PY
 
   validate-placeholders:
-    name: Check Placeholders (blocking)
+    name: validate-placeholders
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -196,7 +196,7 @@ jobs:
           # See docs/PLACEHOLDER-CHECK.md for patterns detected and opt-out instructions.
 
   validate-structure:
-    name: Validate Structure
+    name: validate-structure
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -253,7 +253,7 @@ jobs:
           done
 
   validate-versioning:
-    name: Validate Versioning
+    name: validate-versioning
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -473,7 +473,7 @@ jobs:
           PY
 
   validate-github-governance:
-    name: Validate GitHub Governance (advisory)
+    name: validate-github-governance
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -486,7 +486,7 @@ jobs:
           python3 scripts/check_github_governance.py
 
   validate-locks:
-    name: Enforce Path Locks
+    name: validate-locks
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
@@ -506,7 +506,7 @@ jobs:
         run: python3 scripts/check_locks.py
 
   validate-schema:
-    name: Validate Schemas
+    name: validate-schema
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   conftest:
-    name: Conftest Policy Checks
+    name: conftest
     runs-on: ubuntu-latest
 
     steps:
