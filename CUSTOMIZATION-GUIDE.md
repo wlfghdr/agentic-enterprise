@@ -11,14 +11,13 @@
 
 ### Step 1: Fill in CONFIG.yaml (10 min)
 
-Open [CONFIG.yaml](CONFIG.yaml) and fill in every field. This gives the framework your company's identity, product names, toolchain, and organizational shape. The most critical fields:
+Open [CONFIG.yaml](CONFIG.yaml) and fill in every field. This gives the framework your company's identity, toolchain, and organizational shape. The most critical fields:
 
 | Field | Why It Matters |
 |-------|---------------|
 | `company.name` | Appears throughout every document |
 | `vision.north_star` | Anchors all strategic alignment checks |
 | `vision.mission` | Guides every agent's decision-making |
-| `product_name` | Your primary product or offering name |
 | `toolchain.*` | Determines which concrete tools implement your quality policies |
 
 ### Step 2: Search & Replace Placeholders (5 min)
@@ -29,9 +28,6 @@ After filling CONFIG.yaml, do a global search-and-replace across the repository:
 # Replace company name throughout
 find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{COMPANY_NAME}}/YourCompanyName/g'
 find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{COMPANY_SHORT}}/YourShort/g'
-
-# Replace product name
-find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{PRODUCT_NAME}}/YourProduct/g'
 ```
 
 ### Step 3: Review Core Documents (10 min)
@@ -367,7 +363,6 @@ All placeholders in the framework use the `{{VARIABLE}}` syntax. Here's the comp
 |------------|--------------|---------|
 | `{{COMPANY_NAME}}` | CONFIG.yaml → company.name | Everywhere |
 | `{{COMPANY_SHORT}}` | CONFIG.yaml → company.short_name | Prose references |
-| `{{PRODUCT_NAME}}` | CONFIG.yaml → product_name | Company identity, dog-fooding references |
 | `{{VENTURE_N_NAME}}` | CONFIG.yaml → ventures[n].name | Venture charters |
 | `{{VENTURE_N_DESCRIPTION}}` | CONFIG.yaml → ventures[n].description | Venture charters |
 | `{{DOMAIN_CAP_N_NAME}}` | CONFIG.yaml → divisions.engineering_domain[n].name | Division definitions |
