@@ -11,13 +11,13 @@
 1. [Design Principles](#design-principles)
 2. [A Minimal Fleet (recommended starting point)](#a-minimal-fleet-recommended-starting-point)
 3. [Model Tier Strategy (no hard-coded model names)](#model-tier-strategy-no-hard-coded-model-names)
-4. [OpenClaw Agent IDs & Naming](#openclaw-agent-ids--naming)
+4. [OpenClaw Agent IDs and Naming](#openclaw-agent-ids-and-naming)
 5. [Heartbeat Strategy](#heartbeat-strategy)
 6. [Cron Automation (GitHub loops)](#cron-automation-github-loops)
 7. [Safe Auto-Merge Gates](#safe-auto-merge-gates)
 8. [Issue Intake Rules (human vs assistant identity)](#issue-intake-rules-human-vs-assistant-identity)
 9. [Self-Organizing via Repo Artifacts](#self-organizing-via-repo-artifacts)
-10. [Cost & Reliability Notes](#cost--reliability-notes)
+10. [Cost and Reliability Notes](#cost-and-reliability-notes)
 
 ---
 
@@ -64,7 +64,7 @@ Avoid hard-coding specific model names in docs and long-lived instructions. Use 
 
 ---
 
-## OpenClaw Agent IDs & Naming
+## OpenClaw Agent IDs and Naming
 
 Two practical approaches:
 
@@ -162,7 +162,7 @@ If an agent finishes a mission, it should create at least one new signal ("next 
 
 ---
 
-## Cost & Reliability Notes
+## Cost and Reliability Notes
 
 ### Cost controls
 - Run heartbeats on **ops** first; add others only if needed.
