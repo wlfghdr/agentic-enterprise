@@ -73,6 +73,21 @@ _PR #38 (2026-02-20) — Define work lock convention_
 - `.github/prompts/deploy.prompt.md` — GitHub Copilot `/deploy` prompt: same 5-step checklist for Copilot Chat
 - `.github/copilot-instructions.md` — added template vs. instance classification section and reference to `/deploy`
 
+**Docs reorganization and runtime-agnostic structure (2026-02-22)**
+- `docs/FILE-GUIDE.md` — moved from root `FILE-GUIDE.md`; all cross-references updated
+- `docs/runtimes/openclaw.md` — moved from `docs/OPENCLAW-SETUP.md` into new `docs/runtimes/` directory for runtime-specific guides
+- `docs/runtimes/README.md` — new index for the runtimes directory
+- `docs/README.md` — new index for the docs directory
+- `AGENT-BOOTSTRAP-PROMPT.md` — deleted; bootstrap content consolidated into `CUSTOMIZATION-GUIDE.md` Step 6
+- `docs/MINIMAL-STARTUP-LOOP.md` — deleted; minimal fleet content moved to new `CUSTOMIZATION-GUIDE.md` "Minimal Agent Fleet" section
+- `CUSTOMIZATION-GUIDE.md` — added "Minimal Agent Fleet" section (3-agent starting point, self-sustaining loop, scaling guidance) and "Step 6 — Bootstrap Your Agents" section
+- `.claude/skills/deploy/SKILL.md` — updated `/deploy` skill to full PR workflow: branch → commit → push → PR → CI watch → merge → return to main (previously stopped after push)
+- `CODEOWNERS`, `CONTRIBUTING.md`, `OPERATING-MODEL.md`, `README.md`, `AGENTS.md` — updated all references from deleted/moved files to new paths
+- `docs/PLACEHOLDER-CHECK.md` — removed `AGENT-BOOTSTRAP-PROMPT.md` from exclude list
+- `docs/REQUIRED-GITHUB-SETTINGS.md` — added context notes for OSS template vs. company fork
+- `index.html` — added executive section styles and hero outcomes; minor hero-desc tweak
+- `scripts/check_placeholders.py` — removed `AGENT-BOOTSTRAP-PROMPT.md` from framework file exclusion list
+
 ---
 
 ## [1.1.0] — 2026-02-19

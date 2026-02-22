@@ -75,7 +75,6 @@ EXEMPT_FILENAMES: frozenset[str] = frozenset(
     {
         "CONTRIBUTING.md",
         "CUSTOMIZATION-GUIDE.md",
-        "AGENT-BOOTSTRAP-PROMPT.md",
         "OPERATING-MODEL.md",
     }
 )
@@ -97,7 +96,7 @@ FRAMEWORK_FILES: frozenset[str] = frozenset(
         "AGENTS.md",
         "CLAUDE.md",          # symlink → AGENTS.md
         "COMPANY.md",
-        "FILE-GUIDE.md",
+        "docs/FILE-GUIDE.md",
         "README.md",
         # Org layer instructions (ship with {{COMPANY_SHORT}} etc.)
         "org/README.md",

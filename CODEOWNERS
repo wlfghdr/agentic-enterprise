@@ -24,7 +24,7 @@ CODE_OF_CONDUCT.md                  @steering-executive
 SECURITY.md                         @steering-executive
 LICENSE                             @steering-executive
 NOTICE                              @steering-executive
-AGENT-BOOTSTRAP-PROMPT.md          @steering-executive
+docs/runtimes/                      @steering-executive
 concept-visualization.html          @steering-executive
 index.html                          @steering-executive
 .github/                            @steering-executive @cto
@@ -43,7 +43,7 @@ CONFIG.yaml                         @steering-executive
 AGENTS.md                           @steering-executive
 OPERATING-MODEL.md                  @steering-executive
 CUSTOMIZATION-GUIDE.md              @steering-executive
-FILE-GUIDE.md                       @steering-executive
+docs/FILE-GUIDE.md                  @steering-executive
 CODEOWNERS                          @steering-executive
 
 # ─── Examples ─────────────────────────────────────────────────────

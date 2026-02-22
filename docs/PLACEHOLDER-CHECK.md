@@ -45,7 +45,7 @@ The following are **always excluded** from scanning:
 | Files inside a directory named `_TEMPLATE` (e.g. `org/…/_TEMPLATE/DIVISION.md`) | Same — template scaffolding |
 | Files inside `templates/` or `docs/templates/` directories | Template directories |
 | `.github/` PR/issue templates | GitHub-managed templates |
-| `CONTRIBUTING.md`, `CUSTOMIZATION-GUIDE.md`, `AGENT-BOOTSTRAP-PROMPT.md`, `OPERATING-MODEL.md` | Framework meta-docs that explain placeholder syntax |
+| `CONTRIBUTING.md`, `CUSTOMIZATION-GUIDE.md`, `OPERATING-MODEL.md` | Framework meta-docs that explain placeholder syntax |
 | Files listed in `FRAMEWORK_FILES` in `scripts/check_placeholders.py` | Framework base files that ship with intentional `{{VAR}}` markers (e.g. `AGENTS.md`, `COMPANY.md`, layer `AGENT.md` files, quality policies) — filled in by operators via `CONFIG.yaml` |
 
 ---

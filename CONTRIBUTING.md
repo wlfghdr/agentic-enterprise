@@ -89,7 +89,7 @@ Division-specific agent instructions, new agent type definitions, or improvement
 
 Patterns for connecting this model to agent runtimes.
 
-- **Files:** `AGENT-BOOTSTRAP-PROMPT.md`, `examples/`
+- **Files:** `docs/runtimes/`, `examples/`
 - **Requirements:** Include working code samples, tested against the target runtime
 - **Supported runtimes:** [OpenClaw](https://github.com/nicepkg/openclaw), [OpenAI Agents SDK](https://github.com/openai/openai-agents-python), [CrewAI](https://github.com/crewAIInc/crewAI), [LangGraph](https://github.com/langchain-ai/langgraph), [AutoGen](https://github.com/microsoft/autogen), [Semantic Kernel](https://github.com/microsoft/semantic-kernel)
 
@@ -190,7 +190,7 @@ refactor(agents): simplify execution layer hierarchy
 When proposing significant changes, keep these design principles in mind:
 
 1. **Git-native** — Everything must work as plain files in a Git repository. No databases, no proprietary formats, no build steps required.
-2. **Runtime-agnostic** — The framework must not favor any specific agent runtime. Integration examples go in `AGENT-BOOTSTRAP-PROMPT.md` and `examples/`.
+2. **Runtime-agnostic** — The framework must not favor any specific agent runtime. Runtime-specific guides go in `docs/runtimes/`; integration examples go in `examples/`.
 3. **Layer separation** — The 5-layer model is a core architectural constraint. Each layer has clear boundaries and responsibilities.
 4. **Policies over enforcement** — Quality policies describe WHAT must be true, not HOW to check it. Enforcement tooling is separate.
 5. **Templates over opinions** — Provide structure, not prescriptive content. Placeholders let adopters fill in their own context.

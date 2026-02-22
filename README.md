@@ -120,7 +120,7 @@ This framework gives you the **governance infrastructure** to move right on this
 
 ## Quick Start
 
-> **Before you start:** [FILE-GUIDE.md](FILE-GUIDE.md) maps every file in this repo to one of three categories — OSS infrastructure (delete in a private fork), company operating model content (fill in and own), or agent bootstrap helpers. Read it to avoid editing files you should delete, or deleting files you should fill in.
+> **Before you start:** [docs/FILE-GUIDE.md](docs/FILE-GUIDE.md) maps every file in this repo to one of three categories — OSS infrastructure (delete in a private fork), company operating model content (fill in and own), or agent bootstrap helpers. Read it to avoid editing files you should delete, or deleting files you should fill in.
 
 ### 1. Fork & Clone
 
@@ -160,7 +160,7 @@ Review `org/3-execution/divisions/` — keep what fits, rename or remove what do
 
 ### 5. Point Your Agents
 
-See the [Agent Bootstrap Prompt](#agent-bootstrap) section below, or the full [AGENT-BOOTSTRAP-PROMPT.md](AGENT-BOOTSTRAP-PROMPT.md) for copy-paste prompts for every major agent platform.
+See the [Agent Bootstrap](#agent-bootstrap) section below. For runtime-specific fleet setup, see [docs/runtimes/](docs/runtimes/).
 
 > **Detailed guide:** [CUSTOMIZATION-GUIDE.md](CUSTOMIZATION-GUIDE.md) walks through every customization step.
 
@@ -263,7 +263,7 @@ tools:
 
 OpenClaw's persistent memory, multi-channel routing, and 50+ integrations make it an excellent companion for operationalizing this framework beyond the Git interface. See [openclaw.ai](https://openclaw.ai) and [docs.openclaw.ai](https://docs.openclaw.ai).
 
-> **Operational guide available:** For a complete setup reference — agent fleet sizing, model tier assignment, heartbeat strategy, auto-merge gates, and self-organizing artifact loops — see [`docs/OPENCLAW-SETUP.md`](docs/OPENCLAW-SETUP.md).
+> **Operational guide available:** For a complete setup reference — agent fleet sizing, model tier assignment, heartbeat strategy, auto-merge gates, and self-organizing artifact loops — see [`docs/runtimes/openclaw.md`](docs/runtimes/openclaw.md).
 
 </details>
 
@@ -298,7 +298,7 @@ enterprise_agent = CrewAgent(
 
 </details>
 
-> **Full bootstrap guide:** [AGENT-BOOTSTRAP-PROMPT.md](AGENT-BOOTSTRAP-PROMPT.md)
+> **Full setup guide:** [CUSTOMIZATION-GUIDE.md](CUSTOMIZATION-GUIDE.md) — including agent bootstrap steps and minimal fleet configuration.
 
 ---
 
@@ -311,15 +311,18 @@ agentic-enterprise/
 ├── CLAUDE.md                        ← Mirrors AGENTS.md (keep in sync)
 ├── COMPANY.md                       ← Vision, mission, strategic beliefs
 ├── CONFIG.yaml                      ← Central configuration (fill FIRST)
-├── CUSTOMIZATION-GUIDE.md           ← Step-by-step onboarding
-├── FILE-GUIDE.md                    ← What each file is and what to do in a fork
+├── CUSTOMIZATION-GUIDE.md           ← Step-by-step onboarding (start here)
 ├── OPERATING-MODEL.md               ← How the whole system works
 ├── CODEOWNERS                       ← RACI — who approves what
 ├── CONTRIBUTING.md                  ← How to contribute
 ├── CHANGELOG.md                     ← Framework version history
-├── AGENT-BOOTSTRAP-PROMPT.md        ← Copy-paste prompts for any agent
 ├── locks.yaml                       ← Protected path definitions for lock enforcement
-├── docs/                            ← Setup and governance reference guides
+├── docs/                            ← Operator guides and reference documentation
+│   ├── README.md                    ← docs/ index with template vs. company guide
+│   ├── FILE-GUIDE.md                ← What each file is and what to do in a fork
+│   ├── runtimes/                    ← Runtime-specific implementation guides
+│   │   ├── README.md               ← Runtime guide index
+│   │   └── openclaw.md             ← OpenClaw fleet setup guide
 ├── schemas/                         ← JSON schemas for CONFIG.yaml validation
 ├── scripts/                         ← Automation scripts (validation, checks)
 │

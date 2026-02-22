@@ -1,6 +1,6 @@
 ---
 name: deploy
-description: Release template or framework file changes — commit with a meaningful message, push to remote, and verify all GitHub Actions CI checks are green before considering done
+description: Release template or framework file changes — branch off main if needed, commit, open a PR, verify all GitHub Actions CI checks are green, merge, and return to main
 argument-hint: "[optional: description of what changed]"
 disable-model-invocation: true
 allowed-tools: Bash(git *), Bash(gh *)
@@ -51,7 +51,29 @@ The entry must explain **what** changed and **why** — not just "updated file".
 
 ---
 
-## Step 3 — Commit
+## Step 3 — Ensure you are on a feature branch
+
+Check the current branch:
+
+```bash
+git branch --show-current
+```
+
+**If you are on `main`:** create a descriptive feature branch now — do this before committing:
+
+```bash
+git checkout -b <type>/<short-description>
+```
+
+Use the same `<type>` prefix you will use for the commit message (`feat`, `fix`, `docs`, `refactor`). Example: `docs/update-agent-versioning-rules`.
+
+**If you are already on a feature branch:** continue to Step 4.
+
+> Direct pushes to `main` are blocked by branch protection. All changes must go through a Pull Request.
+
+---
+
+## Step 4 — Commit
 
 Stage only the files you intentionally changed — do not use `git add -A` or `git add .` blindly.
 
@@ -70,35 +92,68 @@ Confirm the commit was created successfully.
 
 ---
 
-## Step 4 — Push
+## Step 5 — Push and open Pull Request
+
+Push the branch:
 
 ```bash
-git push
+git push -u origin <branch>
 ```
 
-If the branch has no upstream yet: `git push -u origin <branch>`.
+Then open a Pull Request:
 
-Confirm the push succeeded.
+```bash
+gh pr create --title "<type>: <short summary>" --body "$(cat <<'EOF'
+## Summary
+<what changed and why>
+
+## Files changed
+<list the key files>
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+EOF
+)"
+```
+
+Confirm the PR URL and note the PR number.
 
 ---
 
-## Step 5 — Watch CI
+## Step 6 — Watch CI
 
 ```bash
 gh run list --limit 3
 ```
 
-Wait for all checks to complete, then inspect:
+Wait for all checks on the PR branch to complete, then inspect:
 
 ```bash
 gh run view <run-id>
 ```
 
-**All checks green → done.** Report success with the run URL.
+**All checks green → proceed to Step 7.**
 
 **Any check red:**
 1. Read the failure log: `gh run view <run-id> --log-failed`
 2. Diagnose the root cause — read the actual output, do not guess
 3. Fix the issue; if the fix touches governed files, update their version/date fields
-4. Return to Step 3 and repeat
-5. Do **not** mark the task complete while any check is red
+4. Return to Step 4 and repeat
+5. Do **not** proceed to Step 7 while any check is red
+
+---
+
+## Step 7 — Merge PR and return to main
+
+Once all CI checks are green, merge the PR:
+
+```bash
+gh pr merge <pr-number> --squash --delete-branch
+```
+
+Then switch the local working copy back to `main` and pull the merged commit:
+
+```bash
+git checkout main && git pull
+```
+
+Confirm the local `main` is up to date with the merged changes and report success with the PR URL.
