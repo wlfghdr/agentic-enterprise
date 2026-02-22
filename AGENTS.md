@@ -124,7 +124,7 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 
 ### 11. Know whether you are working on a template or an instance
 
-The repository contains two fundamentally different kinds of files (see `FILE-GUIDE.md`). Identify which one you are touching before you start — the completion criteria are different.
+The repository contains two fundamentally different kinds of files (see [docs/FILE-GUIDE.md](docs/FILE-GUIDE.md)). Identify which one you are touching before you start — the completion criteria are different.
 
 **Templates and framework files** (the OSS framework itself):
 - `_TEMPLATE-*.md` files anywhere in the repository (including `work/` subdirectories such as `work/locks/` and `work/decisions/`)

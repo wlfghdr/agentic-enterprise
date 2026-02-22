@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   scan-secrets:
-    name: Secret Scanning (Gitleaks)
+    name: scan-secrets
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
 
   scan-dependencies:
-    name: Dependency Vulnerability Scan (Dependency Review)
+    name: scan-dependencies
     # Dependency Review requires a pull_request event to compare base vs. head manifests.
     # On push to main we rely on the Gitleaks scan; dep review runs on every PR.
     if: github.event_name == 'pull_request'

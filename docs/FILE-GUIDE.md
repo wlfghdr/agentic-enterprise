@@ -30,9 +30,26 @@ Most adopters only ever need the **Company fork** context. The OSS context matte
 | `NOTICE` | Attribution notice (Apache 2.0 requirement). | Keep (required by Apache 2.0) |
 | `index.html` | Landing/demo page for the public GitHub Pages site (`wlfghdr.github.io/agentic-enterprise`). | Delete |
 | `concept-visualization.html` | Interactive HTML visualization of the framework model — demo/presentation aid. | Delete (or keep for internal presentations) |
-| `AGENT-BOOTSTRAP-PROMPT.md` | Copy-paste prompts for pointing any AI agent at the framework. | Keep (useful) or inline the prompts into onboarding docs |
-| `docs/OPENCLAW-SETUP.md` | OpenClaw-specific fleet setup guide — model tiers, heartbeat strategy, auto-merge gates. | Operator reference |
-| `.github/` | CI workflows (`validate.yml`), PR templates, and Copilot instructions for this public repo. | Adapt to your org's CI/CD conventions |
+
+### The `.github/` folder — file by file
+
+The `.github/` folder mixes OSS infrastructure with governance tooling that's genuinely useful in a company fork. Do not delete it wholesale — read the per-file guidance below.
+
+**Quick summary:**
+- **Keep:** `workflows/validate.yml`, `PULL_REQUEST_TEMPLATE.md`, `copilot-instructions.md`
+- **Keep if using the CI feature:** `workflows/policy.yml`, `workflows/security.yml`
+- **Delete:** `workflows/stale.yml`, `ISSUE_TEMPLATE/`
+
+| File / Folder | OSS purpose | Company fork action |
+|---|---|---|
+| `workflows/validate.yml` | Core CI: validates operating model docs, schemas, locks, placeholders | **Keep** — these gates enforce governance in your fork too. They check that your config, policies, and artifacts stay consistent. |
+| `workflows/policy.yml` | OPA/Conftest policy enforcement (workflow permissions, pinned actions) | **Keep** if using the Policy-as-Code gate (see `docs/POLICY-AS-CODE.md`); delete if not |
+| `workflows/security.yml` | Gitleaks secret scanning + GitHub Dependency Review | **Keep** if using security scanning (see `docs/SECURITY-SCANNING.md`); delete if not |
+| `workflows/stale.yml` | Marks and closes stale GitHub Issues/PRs (OSS housekeeping) | **Delete** — irrelevant in a private fork. Your work flows through `work/signals/` and `work/missions/`, not GitHub Issues. |
+| `ISSUE_TEMPLATE/` | Bug report and config forms for OSS contributors | **Delete** — your fork uses `work/signals/` for signal intake, not GitHub Issues for internal triage |
+| `PULL_REQUEST_TEMPLATE.md` | PR checklist reminding contributors to cite policies and evidence | **Keep and adapt** — update checklist items to match your fork's governance conventions |
+| `copilot-instructions.md` | GitHub Copilot agent instructions for working in this repo | **Keep and update** — edit after customization to reference your company name, divisions, and active missions |
+| `prompts/` | Agent skill prompts (e.g., `/deploy` workflow) | **Keep and adapt** — update prompts to reference your company's structure and toolchain |
 
 ---
 
@@ -103,7 +120,6 @@ LICENSE
 NOTICE
 
 # Optionally keep
-AGENT-BOOTSTRAP-PROMPT.md   # useful for onboarding agents
 examples/                   # useful until team is fluent
 
 # Delete — OSS/demo only, irrelevant in a private fork
@@ -113,14 +129,17 @@ CODE_OF_CONDUCT.md
 SECURITY.md                 # replace with your org's policy
 index.html
 concept-visualization.html
-.github/                    # adapt or replace
+
+# .github/ — keep selectively (see per-file table above)
+# Keep: validate.yml, PULL_REQUEST_TEMPLATE.md, copilot-instructions.md
+# Delete: stale.yml, ISSUE_TEMPLATE/
 ```
 
 ---
 
 ## CODEOWNERS Classification
 
-The [CODEOWNERS](CODEOWNERS) file follows the same categorization:
+The [CODEOWNERS](../CODEOWNERS) file follows the same categorization:
 
 | Section | Who Reviews |
 |---|---|

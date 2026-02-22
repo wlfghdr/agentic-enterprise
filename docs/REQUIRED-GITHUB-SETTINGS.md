@@ -2,6 +2,11 @@
 
 This framework assumes **GitHub enforces governance**. The repository can document roles (via `CODEOWNERS`) and quality gates (via Actions), but **only GitHub branch protection** makes these rules binding.
 
+> **Applies to:** Both the OSS template repo and company forks.
+> For the OSS template repo: these settings are what the public repo itself should have configured.
+> For your company fork: these settings are what **your fork must configure** before agents operate in it.
+> Either way, do this before going live — without branch protection, PRs are advisory, not binding.
+
 Use this checklist when you fork/customize the framework.
 
 ---
@@ -10,6 +15,8 @@ Use this checklist when you fork/customize the framework.
 
 Repo → **Settings → General → Features**
 - ✅ Issues
+
+> **Company fork note:** If your fork is private and uses `work/signals/` for signal intake rather than GitHub Issues for internal triage, you may disable Issues. The signals workflow is the native intake mechanism. GitHub Issues remain useful for external contributors or public-facing bug reports.
 
 ---
 

@@ -66,7 +66,7 @@ nav ul a:hover{color:var(--text)}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);border-radius:100px;padding:6px 16px;font-size:0.8rem;color:var(--accent3);margin-bottom:28px;font-weight:500}
 .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.hero-desc{color:var(--text2);font-size:clamp(1.1rem,2vw,1.35rem);max-width:640px;margin-top:24px;line-height:1.7}
+.hero-desc{color:var(--text2);font-size:clamp(1.1rem,2vw,1.35rem);margin-top:24px;line-height:1.7}
 .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
 .btn-primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);color:#fff;padding:14px 32px;border-radius:12px;font-weight:600;font-size:1rem;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,58,237,0.3);color:#fff}
@@ -225,6 +225,25 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 .footer-linkedin{display:inline-block;margin-top:12px;font-size:0.78rem;color:var(--text3);border-bottom:1px solid rgba(161,161,170,0.2);padding-bottom:1px;transition:color .2s}
 .footer-linkedin:hover{color:var(--text2)}
 
+/* ═══════════════════════════ EXECUTIVE SECTION ═══════════════════════════ */
+.exec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:48px}
+.exec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;transition:border-color .3s}
+.exec-card:hover{border-color:var(--accent2)}
+.exec-icon{font-size:1.8rem;margin-bottom:16px}
+.exec-card h3{font-size:1.1rem;margin-bottom:10px}
+.exec-card p{color:var(--text2);font-size:0.9rem;line-height:1.65}
+.csuite-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.csuite-card{padding:22px 24px;border:1px solid var(--border);border-radius:var(--radius-sm);background:rgba(167,139,250,0.04)}
+.csuite-role{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);margin-bottom:8px}
+.csuite-card p{color:var(--text2);font-size:0.865rem;line-height:1.6;margin:0}
+.exec-quote{border-left:3px solid var(--accent2);padding:18px 28px;margin-top:40px;background:rgba(124,58,237,0.06);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--text2);font-size:1.05rem;line-height:1.7;font-style:italic}
+
+/* ═══════════════════════════ HERO OUTCOMES ═══════════════════════════ */
+.hero-outcomes{display:flex;gap:36px;margin-top:32px;margin-bottom:8px;flex-wrap:wrap;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.outcome-item{display:flex;flex-direction:column;gap:3px}
+.outcome-num{font-size:1.9rem;font-weight:800;background:linear-gradient(135deg,var(--accent3),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.outcome-label{font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
+
 /* ═══════════════════════════ ANIMATIONS ═══════════════════════════ */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -242,6 +261,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   </div>
   <ul>
     <li><a href="#problem">The Problem</a></li>
+    <li><a href="#for-leaders" style="color:var(--accent3)">For C-Suite</a></li>
     <li><a href="#model">The Model</a></li>
     <li><a href="#loops">Process</a></li>
     <li><a href="#gitops">GitOps</a></li>
@@ -257,12 +277,19 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
     <div class="hero-content">
       <div class="hero-badge">The post-ticket · post-meeting · post-endless-discussion enterprise era</div>
       <h1>Your company as a<br><span class="gradient-text">living Git repository</span></h1>
-      <p class="hero-desc">An open-source operating model where humans set direction and AI agent fleets execute. Agents coordinate through two native channels: the <strong style="color:var(--text)">repo</strong> — versioned natural language files where instructions flow down and signals flow up — and the <strong style="color:var(--text)">observability platform</strong> — real-time telemetry and event exchange that closes the loop. Git is the system of record. Enterprise tools connect through governed integrations.</p>
+      <p class="hero-desc">Your entire organization — every team, every decision, every deliverable — governed by a single system. <strong style="color:var(--text)">AI agents do the execution. Humans set direction and approve what matters.</strong> The bottleneck shifts from "can we execute this?" to "what should we prioritize next?" — and that's a fundamentally better problem to have.</p>
+      <div class="hero-outcomes">
+        <div class="outcome-item"><span class="outcome-num">10×</span><span class="outcome-label">Faster delivery</span></div>
+        <div class="outcome-item"><span class="outcome-num">100%</span><span class="outcome-label">Auditable</span></div>
+        <div class="outcome-item"><span class="outcome-num">0</span><span class="outcome-label">Vendor lock-in</span></div>
+        <div class="outcome-item"><span class="outcome-num">∞</span><span class="outcome-label">Agent scale</span></div>
+      </div>
       <div class="hero-actions">
         <a href="#model" class="btn-primary">See how it works ↓</a>
         <a href="#adopt" class="btn-secondary">Start in 5 minutes</a>
         <a href="#live-visualization" class="btn-visualization-cta" id="jumpToVisualization">▶ Watch agents work live</a>
       </div>
+      <p style="color:var(--text3);font-size:0.88rem;margin-top:16px;line-height:1.65"><strong style="color:var(--text2)">Technical details:</strong> An open-source operating model where agents coordinate through two native channels: the <strong style="color:var(--text2)">repo</strong> — versioned natural language files where instructions flow down and signals flow up — and the <strong style="color:var(--text2)">observability platform</strong> — real-time telemetry and event exchange that closes the loop. Git is the system of record. Enterprise tools connect through governed integrations.</p>
       <p class="hero-linkedin">Want to discuss this concept? <a href="https://linkedin.com/in/wolfgangheider" target="_blank" rel="noopener">Connect on LinkedIn ↗</a></p>
     </div>
   </div>
@@ -271,22 +298,22 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 <!-- ═══════════════════════════ MARQUEE ═══════════════════════════ -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <span>PRs replace approvals</span>
-    <span>CODEOWNERS replace RACI</span>
-    <span>CI/CD replaces phase gates</span>
-    <span>Markdown replaces tickets</span>
-    <span>Git log replaces standups</span>
-    <span>Agent fleets replace toil</span>
+    <span>AI executes · humans decide</span>
+    <span>Every decision is auditable</span>
+    <span>Governance at machine speed</span>
+    <span>Outcomes replace status meetings</span>
+    <span>Policy enforced automatically</span>
+    <span>Agent fleets replace repetitive toil</span>
     <span>Signals replace roadmap debates</span>
-    <span>The repo is the company</span>
-    <span>PRs replace approvals</span>
-    <span>CODEOWNERS replace RACI</span>
-    <span>CI/CD replaces phase gates</span>
-    <span>Markdown replaces tickets</span>
-    <span>Git log replaces standups</span>
-    <span>Agent fleets replace toil</span>
+    <span>The company runs itself</span>
+    <span>AI executes · humans decide</span>
+    <span>Every decision is auditable</span>
+    <span>Governance at machine speed</span>
+    <span>Outcomes replace status meetings</span>
+    <span>Policy enforced automatically</span>
+    <span>Agent fleets replace repetitive toil</span>
     <span>Signals replace roadmap debates</span>
-    <span>The repo is the company</span>
+    <span>The company runs itself</span>
   </div>
 </div>
 
@@ -295,7 +322,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="container">
     <div class="section-label reveal">The Problem</div>
     <h2 class="reveal">Legacy enterprise tools<br>weren't built for agents</h2>
-    <p class="section-sub reveal">AI agents can write code 100× faster than humans. The bottleneck is no longer execution — it's <strong style="color:var(--text)">governance, coordination, and trust</strong>.</p>
+    <p class="section-sub reveal">AI agents can execute 100× faster than any human team. The bottleneck is no longer capacity — it's <strong style="color:var(--text)">governance, coordination, and trust</strong>. The companies that solve this first win.</p>
 
     <div class="problem-grid">
       <div class="problem-card reveal">
@@ -314,6 +341,61 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
         <p>When 1,000 agents ship simultaneously, you need <strong style="color:var(--text)">automated quality gates</strong>, not approval meetings. Git's PR model was built for exactly this — at scale.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOR BUSINESS LEADERS ═══════════════════════════ -->
+<section id="for-leaders" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label reveal">For Business Leaders</div>
+    <h2 class="reveal">Not AI hype.<br><span class="gradient-text">A new way to run a company.</span></h2>
+    <p class="section-sub reveal">The question isn't whether AI will reshape enterprise operations — it already is. The question is whether you'll have the governance infrastructure to stay in control when it does.</p>
+
+    <div class="exec-grid">
+      <div class="exec-card reveal">
+        <div class="exec-icon">🚀</div>
+        <h3>Weeks, not quarters</h3>
+        <p>Agent fleets execute at machine speed. What used to take a sprint cycle takes hours. The bottleneck is no longer execution capacity — it's strategic clarity. Fix the governance, and velocity follows automatically.</p>
+      </div>
+      <div class="exec-card reveal">
+        <div class="exec-icon">🔍</div>
+        <h3>Full auditability — by design</h3>
+        <p>Every agent action, every decision, every output is logged and versioned automatically. Regulators ask for accountability. This model builds it into the operating system — not bolted on as an afterthought.</p>
+      </div>
+      <div class="exec-card reveal">
+        <div class="exec-icon">⚖️</div>
+        <h3>Humans stay in control</h3>
+        <p>Agents propose, humans approve. Quality policies are machine-enforced. No agent can exceed its mandate — by design, not by policy memo. Supervised autonomy is the default, not the exception.</p>
+      </div>
+      <div class="exec-card reveal">
+        <div class="exec-icon">📈</div>
+        <h3>Multiply your team's leverage</h3>
+        <p>One strategist can direct a fleet of 100 agents. Operations scale without proportional headcount growth. The constraint shifts from execution capacity to the quality of strategic direction.</p>
+      </div>
+    </div>
+
+    <div class="csuite-grid reveal">
+      <div class="csuite-card">
+        <div class="csuite-role">CEO</div>
+        <p>Define direction once. Agents execute everywhere. Every strategic initiative gets measurable outcomes — not status updates.</p>
+      </div>
+      <div class="csuite-card">
+        <div class="csuite-role">CFO</div>
+        <p>Cost per mission replaces story point estimates. Every agent action is traceable to a business outcome. No invisible spend.</p>
+      </div>
+      <div class="csuite-card">
+        <div class="csuite-role">CTO</div>
+        <p>Governance infrastructure built for AI at scale. Your policies become machine-enforced rules — no compliance theater, no audit gaps.</p>
+      </div>
+      <div class="csuite-card">
+        <div class="csuite-role">COO</div>
+        <p>24/7 agent fleets handle operations. Your people escalate by exception, not by default. Nothing falls through the cracks.</p>
+      </div>
+    </div>
+
+    <blockquote class="exec-quote reveal">
+      "You define direction. Agents do the work. Every decision is logged. Every policy is enforced automatically. <strong style="color:var(--text);font-style:normal">That's the deal.</strong>"
+    </blockquote>
   </div>
 </section>
 
@@ -425,8 +507,8 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 <section id="gitops">
   <div class="container">
     <div class="section-label reveal">The Governance Model</div>
-    <h2 class="reveal">Git as the system of record.<br><span class="gradient-text">Integrations extend the reach.</span></h2>
-    <p class="section-sub reveal">The operating model lives in the filesystem — versioned and auditable. Two native channels power agent coordination: the <strong style="color:var(--text)">repo</strong> (async natural language — instructions, artifacts, signals, all in Git) and the <strong style="color:var(--text)">observability platform</strong> (real-time telemetry and event exchange, feeding signals back into governance). Enterprise tools connect through governed integrations and work with the model, not against it.</p>
+    <h2 class="reveal">One governed system of record.<br><span class="gradient-text">Everything auditable. No silos.</span></h2>
+    <p class="section-sub reveal">All work, all decisions, all policies — in a single versioned system every agent reads and every human can audit. Two coordination channels keep it alive: the <strong style="color:var(--text)">repo</strong> (async governance in plain language — instructions, decisions, signals, all versioned) and the <strong style="color:var(--text)">observability platform</strong> (real-time telemetry that feeds intelligence back into governance). Your existing enterprise tools integrate in — they don't get replaced.</p>
 
     <div class="table-wrapper reveal">
       <table class="replace-table">

@@ -3,7 +3,7 @@
 > **Start here** after cloning this framework.  
 > This guide walks you through every step of making this operating model your own.
 
-> **New to the repo layout?** Read [FILE-GUIDE.md](FILE-GUIDE.md) first — it explains which root files are part of the open-source template infrastructure (safe to delete in a private fork) and which are your company's actual operating model content (fill in and own).
+> **New to the repo layout?** Read [docs/FILE-GUIDE.md](docs/FILE-GUIDE.md) first — it explains which root files are part of the open-source template infrastructure (safe to delete in a private fork) and which are your company's actual operating model content (fill in and own).
 
 ---
 
@@ -48,9 +48,9 @@ Read and adjust these three files — they set the tone for everything:
 2. [AGENTS.md](AGENTS.md) — Global agent rules. Adjust identity and product naming.
 3. [OPERATING-MODEL.md](OPERATING-MODEL.md) — The meta-description. Verify it matches your reality.
 
-### Solo Founder? Start Here Instead
+### Small Team or Solo Founder?
 
-If you're a **1-person startup** and the full framework feels heavy, read **[docs/MINIMAL-STARTUP-LOOP.md](docs/MINIMAL-STARTUP-LOOP.md)** — it strips the model down to 4 agents and a single self-sustaining loop. You can always grow into the full framework later.
+If you're a small team or solo founder, start with a **minimal agent fleet** — one agent per active layer. See [Minimal Agent Fleet](#minimal-agent-fleet) below for the exact setup.
 
 ### Step 4: Register Your Integrations (5 min)
 
@@ -66,6 +66,60 @@ See `org/integrations/` for detailed guides per category. Start with observabili
 ### Step 5: Start Using It (5 min)
 
 Create your first signal in `work/signals/` and you're live.
+
+---
+
+## Minimal Agent Fleet
+
+For small teams and solo founders where humans act as Steering and Strategy, start with **3 active agents** — one per operational layer. Expand as signal volume and mission throughput grow.
+
+### How the 5 Layers Map to a Small Team
+
+| Layer | Small team | Scales to |
+|---|---|---|
+| **Steering** — evolve the company | You (human) | Steering agents + AI assistance |
+| **Strategy** — decide WHY + WHAT | You (human) | Strategy agents |
+| **Orchestration** — HOW to execute | Orchestration Agent | Fleet of orchestrators |
+| **Execution** — DO the work | Execution Agent(s) | Dozens of specialized agents |
+| **Quality** — EVALUATE outputs | Quality Agent | Domain-specific evaluators |
+
+> **Solo founder rule:** You are Steering and Strategy. You merge PRs. That is your only required action.
+
+### Minimal 3-Agent Fleet
+
+| Agent | Layer | What it does | When it runs |
+|---|---|---|---|
+| **Orchestration Agent** | Layer 2 | Reads signals, creates mission briefs, assigns work to execution, verifies DoD | On every signal or mission state change |
+| **Execution Agent** | Layer 3 | Implements missions — code, research, content, tests, PRs | When a mission is assigned |
+| **Quality Agent** | Layer 4 | Evaluates outputs against policies, triages new signals, flags stalled missions | Continuously (after builds, before merges) |
+
+Add specialized Execution Agents first as you scale (e.g., one coding-focused, one research-focused), then a dedicated Orchestration or Steering Agent when signal volume justifies it.
+
+### The Self-Sustaining Loop
+
+Every completed mission **must** produce at least one new signal. This is the anti-stall mechanism:
+
+```
+Signal → Mission → Work → Done → Signal (≥1)
+  ↑                                   │
+  └───────────────────────────────────┘
+```
+
+A mission is **done** when all of the following are true:
+
+- [ ] `OUTCOME-CONTRACT.md` acceptance criteria are met
+- [ ] PR is merged to `main`
+- [ ] `STATUS.md` updated to `done` with completion date
+- [ ] **At least one new signal filed** in `work/signals/`
+
+The last item is the key: even "nothing to improve" is worth filing. It keeps the loop turning.
+
+### What You Don't Need
+
+- ❌ External project management tool — missions **are** your tickets
+- ❌ Observability platform for agent health — git history **is** your audit log
+- ❌ Standup meetings — `STATUS.md` **is** the standup
+- ❌ Separate OKR framework — `CONFIG.yaml` vision + active missions = your strategy
 
 ---
 
@@ -361,3 +415,19 @@ This framework is a **structural template** — a starting point, not a turnkey 
 - **Process questions:** Read [process/README.md](process/README.md)
 - **Quality questions:** Read the relevant policy in `org/4-quality/policies/`
 - **Examples:** See `examples/` for worked-through lifecycle examples
+
+---
+
+## Step 6 — Bootstrap Your Agents
+
+With configuration complete, point your agents at the repo. Each agent needs three things, in order:
+
+1. **Read `AGENTS.md`** — global rules. The top of the instruction hierarchy. Non-negotiable.
+2. **Read their layer's `org/<layer>/AGENT.md`** — layer-specific instructions and boundaries.
+3. **Read their assigned mission** in `work/missions/` — the specific task context.
+
+That is the complete bootstrap. No additional configuration files required. AGENTS.md auto-loads in Claude Code (via `CLAUDE.md`) and GitHub Copilot (via `.github/copilot-instructions.md`) — for other runtimes, point them at `AGENTS.md` explicitly.
+
+> **Tip:** Don't bootstrap agents against an unconfigured fork. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
+
+For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](docs/runtimes/)**.

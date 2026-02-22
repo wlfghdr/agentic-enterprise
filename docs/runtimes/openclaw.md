@@ -1,7 +1,7 @@
 # OpenClaw Setup Guide for Agentic Enterprise
 
-> **Purpose:** Practical operator guide for running the Agentic Enterprise operating model on [OpenClaw](https://openclaw.ai).  
-> **Audience:** Operators bootstrapping an "agentic company" runtime (fleet, loops, automation).  
+> **Purpose:** Practical operator guide for running the Agentic Enterprise operating model on [OpenClaw](https://openclaw.ai).
+> **Audience:** Operators bootstrapping an "agentic company" runtime (fleet, loops, automation).
 > **Status:** Living document — adjust as your fleet, budgets, and reliability needs evolve.
 
 ---
@@ -11,13 +11,13 @@
 1. [Design Principles](#design-principles)
 2. [A Minimal Fleet (recommended starting point)](#a-minimal-fleet-recommended-starting-point)
 3. [Model Tier Strategy (no hard-coded model names)](#model-tier-strategy-no-hard-coded-model-names)
-4. [OpenClaw Agent IDs & Naming](#openclaw-agent-ids-&-naming)
+4. [OpenClaw Agent IDs and Naming](#openclaw-agent-ids-and-naming)
 5. [Heartbeat Strategy](#heartbeat-strategy)
 6. [Cron Automation (GitHub loops)](#cron-automation-github-loops)
 7. [Safe Auto-Merge Gates](#safe-auto-merge-gates)
 8. [Issue Intake Rules (human vs assistant identity)](#issue-intake-rules-human-vs-assistant-identity)
 9. [Self-Organizing via Repo Artifacts](#self-organizing-via-repo-artifacts)
-10. [Cost & Reliability Notes](#cost-&-reliability-notes)
+10. [Cost and Reliability Notes](#cost-and-reliability-notes)
 
 ---
 
@@ -64,7 +64,7 @@ Avoid hard-coding specific model names in docs and long-lived instructions. Use 
 
 ---
 
-## OpenClaw Agent IDs & Naming
+## OpenClaw Agent IDs and Naming
 
 Two practical approaches:
 
@@ -99,7 +99,7 @@ Heartbeats are periodic wake-ups. They should **batch** small checks and either:
 | `steering` | ✅ (optional) | 1–2× / day | Strategic digest. Not needed hourly. |
 | `builder` | ❌ | — | Builders should be **triggered**, not polling. |
 
-**Cost rule of thumb:** if a heartbeat doesn’t create a tangible artifact or reduce human load, disable it.
+**Cost rule of thumb:** if a heartbeat doesn't create a tangible artifact or reduce human load, disable it.
 
 ### Heartbeat checklist pattern
 Keep a short `HEARTBEAT.md` checklist in the workspace, owned by `ops`.
@@ -133,7 +133,7 @@ Recommended gates (all must pass):
 
 If you want to go further, add:
 - PR size limits
-- “quality eval” bot comment requirement
+- "quality eval" bot comment requirement
 
 ---
 
@@ -145,7 +145,7 @@ If you want to go further, add:
 - Issues assigned to your **assistant/bot identity** = assistant-owned; eligible for automation.
 
 **Practical tip:** create a dedicated GitHub user/bot (e.g., `YourCompanyAI`) for automation assignments.
-This prevents the assistant from hijacking the human’s backlog and makes ownership explicit.
+This prevents the assistant from hijacking the human's backlog and makes ownership explicit.
 
 ---
 
@@ -158,11 +158,11 @@ The loops work when agents write to the repo:
 - `STATUS.md` — progress + blockers
 - evaluation notes — why a PR is safe/unsafe to merge
 
-If an agent finishes a mission, it should create at least one new signal (“next improvement”).
+If an agent finishes a mission, it should create at least one new signal ("next improvement").
 
 ---
 
-## Cost & Reliability Notes
+## Cost and Reliability Notes
 
 ### Cost controls
 - Run heartbeats on **ops** first; add others only if needed.
@@ -176,4 +176,4 @@ If an agent finishes a mission, it should create at least one new signal (“nex
 
 ---
 
-*See also:* the wider operating model in [`OPERATING-MODEL.md`](../OPERATING-MODEL.md).
+*See also:* the wider operating model in [`OPERATING-MODEL.md`](../../OPERATING-MODEL.md) and the [runtimes index](README.md) for other runtime implementation guides.
