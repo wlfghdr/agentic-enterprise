@@ -1,8 +1,8 @@
-# Lock: agents-md
+# Lock: operating-model-md
 
 > **Template version:** 1.0 | **Last updated:** 2026-02-23
 
-- **Target:** `AGENTS.md`
+- **Target:** `OPERATING-MODEL.md`
 - **Owner:** `@wlfghdr`
 - **Reason:** Release v2.0.0 — adding version metadata
 - **Created:** 2026-02-23T00:00:00Z
