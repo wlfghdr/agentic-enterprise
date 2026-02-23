@@ -1,5 +1,7 @@
 # Contributing to Agentic Enterprise
 
+> **Version:** 2.0 | **Last updated:** 2026-02-23
+
 Thank you for your interest in improving this operating model! This guide covers how to contribute effectively — whether you're fixing a typo, proposing a new quality policy, or building a full runtime integration.
 
 ## What This Project Is

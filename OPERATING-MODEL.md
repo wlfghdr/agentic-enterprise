@@ -1,6 +1,8 @@
 # Operating Model: The Agentic Enterprise GitOps Model
 
-> **What this document is:** The meta-description of how this entire system works — the replacement of legacy ticket-based, ceremony-driven, phase-gated product development with a Git-native, agent-driven, outcome-governed operating model.  
+> **Version:** 2.0 | **Last updated:** 2026-02-23
+
+> **What this document is:** The meta-description of how this entire system works — the replacement of legacy ticket-based, ceremony-driven, phase-gated product development with a Git-native, agent-driven, outcome-governed operating model.
 > **Audience:** Humans and agents who need to understand the big picture.
 
 > **⚠️ POC / Demo Disclaimer**  

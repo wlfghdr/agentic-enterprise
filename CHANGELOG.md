@@ -21,9 +21,13 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 _Changes merged to `main` but not yet tagged as a release go here. Move to a new version section when cutting a release._
 
+---
+
+## [2.0.0] — 2026-02-23
+
 ### Changed
 
-**Simplify products section to single `product_name` field (MAJOR — framework version 2.0.0)**
+**BREAKING: Simplify products section to single `product_name` field**
 - `CONFIG.yaml` — replaced 7-field `products:` block (`core_product_name`, `ai_intelligence_name`, `assistant_name`, `agent_brand`, `data_store_name`, `query_language`, `design_system_name`) with a single top-level `product_name: ""` field; bumped `framework_version` from `1.0.0` to `2.0.0`
 - `AGENTS.md` — removed "Product Naming (Mandatory)" section; the product-specific terminology table referenced variables that no longer exist
 - `COMPANY.md` — replaced `{{DATA_STORE_NAME}}` with neutral prose; replaced `{{PRODUCT_NAME}}` dog-fooding reference with generic language
@@ -32,7 +36,18 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 - `org/4-quality/policies/architecture.md` — v1.0 → v1.1: replaced `{{DESIGN_SYSTEM_NAME}}` with "the company design system"
 - `CUSTOMIZATION-GUIDE.md` — updated Step 1 table, Step 2 sed block, and Placeholder Reference table to reflect single `product_name` field
 
+**Version metadata for root governed files**
+- `AGENTS.md`, `OPERATING-MODEL.md`, `CUSTOMIZATION-GUIDE.md`, `CONTRIBUTING.md` — added `> **Version:** 2.0 | **Last updated:** 2026-02-23` metadata line, aligning with the pattern already used by layer AGENT.md files
+
 ### Added
+
+**Framework ecosystem participation — Rule 12 (PR #51)**
+- `AGENTS.md` Rule 12 — new non-negotiable rule: participate in the framework ecosystem
+  - 12a: Contribute generic improvements (bug fixes, patterns, policies) back to upstream template repo as issues/PRs
+  - 12b: Periodically check for and propose adoption of upstream template updates (monthly cadence, via signals)
+- `CUSTOMIZATION-GUIDE.md` — new "Staying in Sync with the Upstream Framework" section: practical git commands for fetching upstream, reviewing changes, selective merging, and contributing back
+- `docs/runtimes/openclaw.md` — adaptive heartbeat backoff recommendation: exponential backoff from 10 min (high activity) to 1× daily (idle), with immediate reset on external events
+- `docs/runtimes/README.md` — recommended runtimes overview and two-layer architecture pattern (Scheduling + Event Layer + Agent Runtime)
 
 **Blocking CI check for unfilled placeholders in non-template docs (fix/issue-25)**
 - `scripts/check_placeholders.py` — new script that detects unfilled placeholders (`{{VAR}}`, `[TODO]`, `[TBD]`, `T.B.D.`, `Coming Soon`, `__PLACEHOLDER__`, `<PLACEHOLDER>`, `<TODO>`, `_TO_BE_DEFINED_`) in non-template Markdown files; includes self-check mode (`--self-check`) for CI integrity verification
@@ -41,7 +56,7 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 - `.github/PULL_REQUEST_TEMPLATE.md` — updated checklist to list all detected patterns and reference the blocking CI check
 - Framework files that ship with intentional `{{VAR}}` markers (AGENTS.md, COMPANY.md, policy files, process guides, etc.) annotated with `<!-- placeholder-ok -->` opt-out pragma
 
-**Corporate function divisions — People, Legal & Compliance, Finance & Procurement (PR #TBD)**
+**Corporate function divisions — People, Legal & Compliance, Finance & Procurement**
 - `org/3-execution/divisions/people/DIVISION.md` — People division: recruiting, workforce planning, HR operations, onboarding, performance, L&D
 - `org/3-execution/divisions/legal/DIVISION.md` — Legal & Compliance division: contract management, regulatory advisory, IP, privacy law
 - `org/3-execution/divisions/finance-procurement/DIVISION.md` — Finance & Procurement division: budget management, vendor procurement, financial reporting

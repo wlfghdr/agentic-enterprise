@@ -1,6 +1,8 @@
 # Agent Instructions (Global)
 
-> **Scope:** Every AI agent working in this repository — regardless of layer, role, or task — must follow these instructions.  
+> **Version:** 2.0 | **Last updated:** 2026-02-23
+
+> **Scope:** Every AI agent working in this repository — regardless of layer, role, or task — must follow these instructions.
 > **This file is the top of the instruction hierarchy.** Layer-specific and division-specific instructions extend (never contradict) these rules.
 
 > **⚠️ POC / Demo Notice:** This operating model is a proof-of-concept. In a production deployment, these agent instructions would be distributed across multiple repositories, injected via system prompts from an orchestration layer, and enforced through automated compliance checks rather than relying solely on agent self-compliance. The mono-repo structure here is a simplification for demonstration purposes. Additionally: agents are represented here only as `AGENT.md` instruction files — in production, they would be implemented with **skills, MCP server connections, and API integrations** to interact with real business systems (Jira, ServiceNow, Slack, CRM, CI/CD, etc.). And while this POC routes all approvals through Git PRs, production interaction would happen via **chat, messaging, web UIs, and existing enterprise tools** — with Git as the underlying system of record.
