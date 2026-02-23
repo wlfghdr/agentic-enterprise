@@ -143,6 +143,24 @@ When working on an **instance**, the completion gate is human review:
 
 **Why this matters:** Framework changes affect every agent and every future instance derived from the template. A regression in a template propagates silently until someone notices. The push-and-verify discipline plus the CI gate exist to catch problems before they reach the entire operating model.
 
+### 12. Participate in the framework ecosystem
+
+This operating model is derived from the [Agentic Enterprise](https://github.com/wlfghdr/agentic-enterprise) open-source framework. Every running instance is both a consumer and a potential contributor. Treat this as a two-way relationship.
+
+#### 12a. Contribute improvements back to the upstream template
+- When you discover a pattern, fix, policy improvement, or structural insight that is **not company-specific**, it likely benefits every adopter of the framework.
+- **File upstream:** Open an issue or PR against the upstream template repository (`github.com/wlfghdr/agentic-enterprise`) describing the improvement. Use the framework's `CONTRIBUTING.md` guidelines.
+- What belongs upstream: bug fixes in templates, new generic agent types, policy improvements, process refinements, documentation fixes, structural patterns that generalize across companies.
+- What stays in your fork: company-specific configuration, proprietary strategies, division details, custom integrations, internal signals and missions.
+- This is a natural extension of Rule 7 (Continuously improve the company) — except the improvement target is the framework itself, not just your instance. If the improvement helps the ecosystem, share it.
+
+#### 12b. Adopt upstream template updates
+- The upstream framework evolves. New patterns, policies, templates, and structural improvements are released as new versions.
+- **Periodically check** for upstream changes (recommended: at least monthly, or as part of the Steering Layer's evolution cycle). Compare `CHANGELOG.md` in the upstream repo against your current framework version.
+- When relevant updates are available, **propose adoption** as a signal in `work/signals/` with source `upstream-framework`. The Steering Layer triages and decides which updates to merge.
+- Never blindly merge upstream — evaluate each change against your company's customizations and policies. Some updates may conflict with deliberate local choices.
+- **Version tracking:** Record your current upstream framework version in `CONFIG.yaml → framework_version`. This makes it easy to see how far behind (or ahead) your instance is.
+
 ## Repository Structure (Quick Reference)
 
 ```
