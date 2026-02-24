@@ -142,6 +142,61 @@ Keep cron conservative:
 
 ---
 
+## Troubleshooting: Multi-agent setups (credentials, provider IDs, dispatch state, restarts)
+
+This section is specific to **OpenClaw-based** fleets where you have a dispatcher/orchestrator that triggers one or more **execution agents**.
+
+### 1) Execution-agent credentials are per `agentDir` (not implicitly shared)
+
+In multi-agent setups, each agent may run with a different `agentDir`. In OpenClaw terms, that means:
+- each agent can have its own local config + auth store
+- credentials you set up for one agent are **not guaranteed** to be available to another
+
+**Symptom:** dispatcher works, but an execution agent fails with an auth error even though “keys are set somewhere”.
+
+**Operator check:** verify the execution agent can see credentials for the provider/profile it is actually using (in its own `agentDir`).
+
+### 2) Provider/model identifier mismatches ("I set OPENAI_API_KEY, why is it asking for something else?")
+
+Some model selections route through provider IDs that may not match your mental model.
+
+**Symptom:** the runtime logs mention a provider/profile you didn't expect.
+
+**Operator check:** look at the provider ID/profile name the runtime is requesting in the execution agent's logs, then ensure credentials exist **for that exact provider/profile** in that agent's environment/auth config.
+
+### 3) Dispatch idempotency: state file contract (re-dispatch safely)
+
+Handsfree dispatch scripts should persist an idempotency state file so they don't spam duplicate work.
+
+Recommended minimal schema:
+
+```json
+{
+  "version": 1,
+  "prs": {
+    "123": {
+      "lastDispatchedAt": "2026-02-24T00:00:00Z",
+      "status": "dispatched",
+      "note": "optional freeform"
+    }
+  }
+}
+```
+
+**Safe operator action:** to re-dispatch a single PR, remove just that PR key (e.g. `"123"`) and keep the rest of the file intact.
+
+### 4) Container restarts: `systemctl --user` is often unavailable
+
+In containerized environments, `systemctl --user` frequently isn't available.
+
+**Recommendation:** document your restart path in terms of your actual supervisor:
+- Docker Compose: `docker compose restart <service>`
+- Kubernetes: roll the deployment
+
+Where OpenClaw supports dynamic reloads, prefer reload over restart.
+
+---
+
 ## Safe Auto-Merge Gates
 
 Recommended gates (all must pass):
