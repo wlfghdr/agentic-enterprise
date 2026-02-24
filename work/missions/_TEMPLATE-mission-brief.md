@@ -1,8 +1,8 @@
 # Mission Brief: [Mission Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
+> **Template version:** 1.1 | **Last updated:** 2026-02-24
 > **Mission ID:** MISSION-YYYY-NNN  
-> **Status:** proposed | approved | active | paused | completed  
+> **Status:** proposed | approved | planning | active | paused | completed | cancelled
 > **Created:** YYYY-MM-DD  
 > **Revision:** 1 | **Last updated:** YYYY-MM-DD
 > **Author:** [Strategy Layer agent or human]  
@@ -71,6 +71,22 @@ These moments require human review and approval:
 - **Agent fleet size:** [estimated number of concurrent agent streams]
 - **Human touchpoints:** [estimated number of human reviews needed]
 
+## Status Transition Rules
+
+Missions follow a governed lifecycle. Each transition has a gate that must be satisfied before the status can change. See [docs/mission-lifecycle.md](../../docs/mission-lifecycle.md) for the full lifecycle guide.
+
+| From | To | Gate |
+|------|----|------|
+| `proposed` | `approved` | Strategy Layer human approves the Mission Brief via PR merge |
+| `approved` | `planning` | Orchestrator creates Fleet Config; Technical Design started (if `design-required: true`) |
+| `planning` | `active` | **TASKS.md must exist with at least one task** (unless mission has no Execution Layer scope — see exception below). Technical Design approved (if required). |
+| `active` | `paused` | Human decision (resource conflict, external dependency, reprioritization) |
+| `paused` | `active` | Human decision; original gate conditions still satisfied |
+| `active` | `completed` | Outcome Report produced; outcomes measured against contract |
+| any | `cancelled` | Human decision with documented rationale in STATUS.md |
+
+> **Exception — missions without Execution tasks:** Some missions are scoped entirely to Strategy or Steering considerations (e.g., market analysis, policy evolution, organizational restructuring). These missions may transition to `active` without a TASKS.md. Document this explicitly in the Scope section with the rationale.
+
 ## Approval
 
 - [ ] Strategy Layer human review
@@ -90,4 +106,5 @@ These moments require human review and approval:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-24 | Added `planning` and `cancelled` statuses; added Status Transition Rules section with gates; documented TASKS.md requirement for `active` status and exception for non-execution missions |
 | 1.0 | 2026-02-19 | Initial version |

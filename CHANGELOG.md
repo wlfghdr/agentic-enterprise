@@ -21,6 +21,16 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 _Changes merged to `main` but not yet tagged as a release go here. Move to a new version section when cutting a release._
 
+### Added
+
+**Mission lifecycle: Divide & Conquer task decomposition and status gates (Issue #56)**
+- `work/missions/_TEMPLATE-tasks.md` — new template for mission task decomposition; required for missions transitioning to `active` status; includes task structure with assignment, dependencies, acceptance criteria, and asset entry generation
+- `docs/mission-lifecycle.md` — new Mission Lifecycle Guide documenting the full mission flow (Divide & Conquer pattern), all status transitions with gate requirements, task decomposition criteria, and 5 named anti-patterns from real operating instances
+- `work/missions/_TEMPLATE-mission-brief.md` — v1.0 → v1.1: added `planning` and `cancelled` statuses; added Status Transition Rules section documenting gates for each transition; documented TASKS.md requirement for `active` status and exception for non-execution missions
+- `org/2-orchestration/AGENT.md` — v1.1 → v1.2: added Task Decomposition section (TASKS.md as mandatory handoff interface); added `planning` and `cancelled` to status transitions; added TASKS.md to versioning table
+- `work/missions/README.md` — updated mission folder structure to include TASKS.md, TECHNICAL-DESIGN.md, and FLEET-REPORT.md; added `planning` and `cancelled` statuses; added step 6 (task decomposition) to "How to Create a Mission"
+- `docs/README.md` — added mission-lifecycle.md to setup reference guides and classification table
+
 ---
 
 ## [2.0.0] — 2026-02-23
