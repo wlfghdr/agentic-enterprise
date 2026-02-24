@@ -32,6 +32,9 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 - `docs/README.md` — added mission-lifecycle.md to setup reference guides and classification table
 - `org/3-execution/AGENT.md` — v1.1 → v1.2: added Task Pickup section (TASKS.md as primary work intake for execution agents); added TASKS.md as first item in Context You Must Read
 - `process/2-build/AGENT.md` — v1.1 → v1.2: added TASKS.md as primary work intake in Context and Execute Work Streams; added task status tracking to Track Progress
+- `org/4-quality/AGENT.md` — v1.2 → v1.3: added TASKS.md to evaluation context; added task traceability (step 2) and acceptance criteria verification (step 5) to Evaluation Protocol
+- `work/missions/_TEMPLATE-quality-evaluation-report.md` — v1.0 → v1.1: added Task reference field in metadata; added Task Acceptance Criteria section for traceability between tasks and quality evaluations
+- `docs/mission-lifecycle.md` — added "Quality in the Task Lifecycle" section documenting the full task-output-evaluation-verdict cycle; added "The Untraceable Output" anti-pattern; updated Divide & Conquer diagram with quality feedback loop
 
 ---
 

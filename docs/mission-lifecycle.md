@@ -22,7 +22,8 @@ FLEET CONFIG                    Agent pool composition and stream structure
 TASKS (TASKS.md)                Concrete, assignable work items
   ↓  Execution Agents pick up
 ASSETS (commits, PRs, files)    Delivered artifacts with registry entries
-  ↓  Quality Layer evaluates
+  ↓  Quality Layer evaluates ←──── evaluates against policies AND task acceptance criteria
+  ↓  PASS → merge / FAIL → feedback loop back to Execution
 OUTCOME REPORT                  Targets vs. actuals measurement
 ```
 
@@ -35,7 +36,7 @@ Each arrow represents a **Git PR** with **CODEOWNERS-enforced approval**. The Gi
 | **Strategy Layer** | Defines the mission brief and outcome contract. Approves mission scope. |
 | **Orchestrator** | Decomposes BRIEF.md into Fleet Config and TASKS.md. Monitors progress. |
 | **Execution Agents** | Pick up tasks from TASKS.md, execute, update status, generate assets. |
-| **Quality Layer** | Evaluates outputs against policies. Issues verdicts. |
+| **Quality Layer** | Evaluates outputs against policies AND task acceptance criteria. Traces each output to its originating task. Issues verdicts. |
 | **Steering Layer** | Aggregates signals, approves structural changes, owns company evolution. |
 
 ---
@@ -116,6 +117,50 @@ Every completed task should generate **asset entries** (`work/assets/_TEMPLATE-a
 
 ---
 
+## Quality in the Task Lifecycle
+
+Quality agents are not downstream observers — they are active participants in every task's lifecycle. The full cycle for a single task is:
+
+```
+TASK in TASKS.md (status: pending)
+  ↓  Execution Agent claims task
+TASK (status: in-progress)
+  ↓  Agent produces output (code, doc, content)
+OUTPUT submitted as PR
+  ↓  Quality Agent evaluates
+  ├── reads TASKS.md to find originating task
+  ├── evaluates output against quality policies (8 domains)
+  ├── evaluates output against task acceptance criteria
+  └── produces Evaluation Report (with Task ID reference)
+  ↓
+  ├── PASS → PR merges → task status: completed → asset entry filed
+  └── FAIL → feedback to Execution Agent → iterate → re-evaluate
+```
+
+### What Quality Evaluates Per Task
+
+| Evaluation dimension | Source | What is checked |
+|---------------------|--------|-----------------|
+| **Policy compliance** | `org/4-quality/policies/` | Security, architecture, observability, performance, delivery, experience, content, customer |
+| **Task acceptance criteria** | `TASKS.md` → task's acceptance criteria | Each criterion verified with evidence |
+| **Asset traceability** | `work/assets/` | Output has a corresponding asset registry entry |
+| **Task-output linkage** | Evaluation Report `Task:` field | Output traces back to a specific task; orphan outputs are flagged |
+
+### Evaluation Report → Task Traceability
+
+Every quality evaluation report includes a **Task reference field** (`Task: TASK-NNN`) that links the evaluation back to the originating task. This creates the full audit chain:
+
+```
+Mission → Task → Output → Evaluation Report → Verdict
+```
+
+This chain enables:
+- **Mission-level quality dashboards** — aggregate pass/fail rates per mission by querying evaluation reports
+- **Task-level accountability** — identify which tasks produce the most quality issues
+- **Pattern detection** — Quality agents surface trends when the same task type or division repeatedly fails
+
+---
+
 ## Mission Folder Structure
 
 A fully active mission folder contains:
@@ -171,7 +216,15 @@ These are known failure modes from real operating instances. Each has a named pa
 
 **Fix:** The Orchestrator reviews the dependency graph before setting status to `active`. Circular dependencies must be broken by splitting tasks or identifying the true ordering.
 
-### 5. The Zombie Mission
+### 5. The Untraceable Output
+
+**Symptom:** Quality evaluation reports have no Task reference. It's impossible to tell which task produced which output or whether acceptance criteria were met.
+
+**Root cause:** Execution agents submitted PRs without referencing their task. Quality agents evaluated against policies only, skipping task acceptance criteria.
+
+**Fix:** Evaluation reports must include a `Task:` field referencing the originating task ID. Quality agents check TASKS.md as part of every evaluation. Outputs without task traceability are flagged as a finding.
+
+### 6. The Zombie Mission
 
 **Symptom:** Mission is `active` but no status updates have been filed for multiple cycles. No blockers documented.
 
