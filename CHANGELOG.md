@@ -35,6 +35,9 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 - `org/4-quality/AGENT.md` — v1.2 → v1.3: added TASKS.md to evaluation context; added task traceability (step 2) and acceptance criteria verification (step 5) to Evaluation Protocol
 - `work/missions/_TEMPLATE-quality-evaluation-report.md` — v1.0 → v1.1: added Task reference field in metadata; added Task Acceptance Criteria section for traceability between tasks and quality evaluations
 - `docs/mission-lifecycle.md` — added "Quality in the Task Lifecycle" section documenting the full task-output-evaluation-verdict cycle; added "The Untraceable Output" anti-pattern; updated Divide & Conquer diagram with quality feedback loop
+- `work/missions/_TEMPLATE-mission-status.md` — v1.0 → v1.1: added Task Progress section with task completion metrics and blocked task detail table
+- `work/missions/_TEMPLATE-outcome-report.md` — v1.0 → v1.1: added Task Completion section with completion metrics, verdict (all completed / descoped / incomplete), and detail table for incomplete/descoped tasks
+- `process/3-ship/AGENT.md` — v1.1 → v1.2: added TASKS.md to context; added task completion verification as release gate; added "Never ship with open tasks" rule
 
 ---
 

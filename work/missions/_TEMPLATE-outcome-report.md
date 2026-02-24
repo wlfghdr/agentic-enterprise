@@ -1,6 +1,6 @@
 # Outcome Report: [Mission Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
+> **Template version:** 1.1 | **Last updated:** 2026-02-24  
 > **Mission:** [link to `work/missions/<name>/BRIEF.md`]  
 > **Outcome Contract:** [link to `work/missions/<name>/OUTCOME-CONTRACT.md`]  
 > **Status:** draft | reviewed | accepted  
@@ -42,6 +42,28 @@
 |-------|------|---------------|--------|
 | [Asset name] | code / documentation / content / service | [link to `work/assets/<name>.md`] | deployed / published |
 | [Asset name] | code / documentation / content / service | [link to `work/assets/<name>.md`] | deployed / published |
+
+## Task Completion
+
+> Source: `work/missions/<mission-name>/TASKS.md`
+
+| Metric | Value |
+|--------|-------|
+| Total tasks | [count] |
+| Completed | [count] |
+| Descoped (with rationale) | [count] |
+| Incomplete | [count] |
+
+**Task completion verdict:**
+- [ ] **All tasks completed** — every task in TASKS.md reached `completed` status
+- [ ] **Completed with descoped tasks** — some tasks were explicitly descoped (rationale documented in TASKS.md)
+- [ ] **Incomplete** — tasks remain open; document reason and follow-up plan below
+
+**Incomplete/descoped task details (if any):**
+
+| Task ID | Summary | Final Status | Rationale / Follow-up |
+|---------|---------|-------------|----------------------|
+| [TASK-NNN] | [brief] | descoped / incomplete | [why, and what happens next] |
 
 ## Quality Summary
 
@@ -112,4 +134,5 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-24 | Added Task Completion section with completion metrics, verdict, and descoped/incomplete task detail |
 | 1.0 | 2026-02-19 | Initial version |
