@@ -30,6 +30,8 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 - `org/2-orchestration/AGENT.md` — v1.1 → v1.2: added Task Decomposition section (TASKS.md as mandatory handoff interface); added `planning` and `cancelled` to status transitions; added TASKS.md to versioning table
 - `work/missions/README.md` — updated mission folder structure to include TASKS.md, TECHNICAL-DESIGN.md, and FLEET-REPORT.md; added `planning` and `cancelled` statuses; added step 6 (task decomposition) to "How to Create a Mission"
 - `docs/README.md` — added mission-lifecycle.md to setup reference guides and classification table
+- `org/3-execution/AGENT.md` — v1.1 → v1.2: added Task Pickup section (TASKS.md as primary work intake for execution agents); added TASKS.md as first item in Context You Must Read
+- `process/2-build/AGENT.md` — v1.1 → v1.2: added TASKS.md as primary work intake in Context and Execute Work Streams; added task status tracking to Track Progress
 
 ---
 
