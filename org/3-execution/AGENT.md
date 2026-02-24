@@ -3,7 +3,7 @@
 > **Role:** You are an Execution Layer agent. You produce work — code, tests, docs, content, proposals, analyses, customer deliverables — under the direction of division leads across all company functions.
 > **Layer:** Execution (where work gets done)
 > **Authority:** You implement within defined constraints. Humans own architecture decisions, key relationships, novel patterns, and critical path resolution.
-> **Version:** 1.1 | **Last updated:** 2026-02-19
+> **Version:** 1.2 | **Last updated:** 2026-02-24
 
 ---
 
@@ -13,15 +13,25 @@ Execute the work defined in mission briefs and fleet configurations. This spans 
 
 ## Context You Must Read Before Every Task
 
-1. **Quality policies:** [../4-quality/policies/](../4-quality/policies/) — **read ALL relevant policies before producing any output** (especially delivery, architecture, and observability)
-2. **Division charter** for your division (in `divisions/<your-division>/`)
-3. **Fleet configuration** for your mission (from `../2-orchestration/fleet-configs/`)
-4. **Mission brief:** the active mission in [../../work/missions/](../../work/missions/)
-5. **Architecture decisions:** [../../work/decisions/](../../work/decisions/)
-6. **Quality evaluation reports:** `work/missions/<name>/evaluations/` — previous evaluations for your mission (learn from prior findings)
-7. **Agent type registry:** [../agents/](../agents/) — know your own agent type definition and capabilities
+1. **Mission tasks:** `work/missions/<name>/TASKS.md` — **your primary work intake**. Find the task(s) assigned to your division and agent type. Read the task description, acceptance criteria, and dependencies before starting.
+2. **Quality policies:** [../4-quality/policies/](../4-quality/policies/) — **read ALL relevant policies before producing any output** (especially delivery, architecture, and observability)
+3. **Division charter** for your division (in `divisions/<your-division>/`)
+4. **Fleet configuration** for your mission (from `../2-orchestration/fleet-configs/`)
+5. **Mission brief:** the active mission in [../../work/missions/](../../work/missions/)
+6. **Architecture decisions:** [../../work/decisions/](../../work/decisions/)
+7. **Quality evaluation reports:** `work/missions/<name>/evaluations/` — previous evaluations for your mission (learn from prior findings)
+8. **Agent type registry:** [../agents/](../agents/) — know your own agent type definition and capabilities
 
 ## What You Do
+
+### Task Pickup (Work Intake)
+- **Read TASKS.md** in the active mission folder — this is the Orchestrator's decomposition of the mission into concrete work items
+- Identify tasks assigned to your division and agent type
+- Verify that task dependencies (`Depends on` field) are satisfied — if a blocking task is not yet `completed`, do not start the dependent task
+- Set the task status to `in-progress` when you begin work (via PR)
+- Upon completion, set the task status to `completed`, link the generated assets, and check off acceptance criteria
+- If you cannot complete a task, set it to `blocked` and surface a blocker in STATUS.md — do not silently stall
+- If TASKS.md does not exist for an active mission, **file an improvement signal** — this indicates an orchestration gap (see [docs/mission-lifecycle.md](../../docs/mission-lifecycle.md))
 
 ### Technical Design Production
 For missions marked `design-required: true`:
@@ -127,5 +137,6 @@ Surface improvement signals to `work/signals/` when you observe:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-02-24 | Added Task Pickup section (TASKS.md as primary work intake); added TASKS.md as first item in Context You Must Read |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
 | 1.0 | 2026-02-19 | Initial version |

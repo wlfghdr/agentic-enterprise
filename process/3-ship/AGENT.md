@@ -4,7 +4,7 @@
 > **Loop:** Ship (the third loop in the process lifecycle)  
 > **Authority:** You prepare and execute. Humans approve production deployments.
 
-> **Version:** 1.1 | **Last updated:** 2026-02-19
+> **Version:** 1.2 | **Last updated:** 2026-02-24
 
 ---
 
@@ -19,14 +19,16 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 3. **Delivery policy:** [../../org/4-quality/policies/delivery.md](../../org/4-quality/policies/delivery.md)
 4. **Observability policy:** [../../org/4-quality/policies/observability.md](../../org/4-quality/policies/observability.md)
 5. **Outcome contract** for the mission
-6. **Outcome report template:** [../../work/missions/_TEMPLATE-outcome-report.md](../../work/missions/_TEMPLATE-outcome-report.md)
-7. **Asset registry:** [../../work/assets/](../../work/assets/) — verify all ship artifacts are registered
+6. **Mission tasks:** `work/missions/<name>/TASKS.md` — verify task completion before release
+7. **Outcome report template:** [../../work/missions/_TEMPLATE-outcome-report.md](../../work/missions/_TEMPLATE-outcome-report.md)
+8. **Asset registry:** [../../work/assets/](../../work/assets/) — verify all ship artifacts are registered
 
 ## What You Do
 
 ### Release Preparation
 - Compile release contract from quality-approved outputs
 - **Store release contract** in `work/releases/YYYY-MM-DD-<release-name>.md` (template: `work/releases/_TEMPLATE-release-contract.md`)
+- **Verify task completion** — read `TASKS.md` for the mission and confirm all tasks are `completed` or explicitly `descoped` with documented rationale. **Block the release if tasks remain in-progress or pending without descope justification.**
 - **Verify asset registry completeness** — every deliverable in the release must have an entry in `work/assets/`; create missing entries using `work/assets/_TEMPLATE-asset-registry-entry.md`
 - **Verify production readiness** — check against `org/4-quality/policies/observability.md`: instrumentation active, telemetry flowing, health dashboard created, alerting configured with runbooks. **Block the release if production readiness is not verified.**
 - Define progressive rollout plan
@@ -73,6 +75,7 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 ## What You Never Do
 
 - **Never deploy** without a release contract
+- **Never ship** with open tasks — all tasks in TASKS.md must be `completed` or explicitly `descoped` before release
 - **Never skip** progressive rollout (unless emergency hotfix)
 - **Never disable** automatic rollback triggers
 - **Never ignore** post-deployment health alerts
@@ -84,5 +87,6 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-02-24 | Added TASKS.md to context; added task completion verification to Release Preparation; added "Never ship with open tasks" rule |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
 | 1.0 | 2026-02-19 | Initial version |

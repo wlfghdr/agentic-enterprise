@@ -1,6 +1,6 @@
 # Mission Status: [Mission Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
+> **Template version:** 1.1 | **Last updated:** 2026-02-24  
 > **Mission:** [link to `work/missions/<name>/BRIEF.md`]  
 > **Fleet Config:** [link to `org/2-orchestration/fleet-configs/<config>.md`]  
 > **Author:** [Orchestration Layer — Agent Fleet Manager]  
@@ -26,6 +26,25 @@
 |--------|----------|--------|----------|-------|
 | [Stream 1 from fleet config] | [division] | active / completed / blocked | [% or checklist summary] | [brief note] |
 | [Stream 2] | [division] | active / completed / blocked | [% or checklist summary] | [brief note] |
+
+### Task Progress
+
+> Source: `work/missions/<mission-name>/TASKS.md`
+
+| Metric | Count |
+|--------|-------|
+| Total tasks | [count] |
+| Completed | [count] |
+| In-progress | [count] |
+| Blocked | [count] |
+| Pending | [count] |
+| Completion rate | [%] |
+
+**Blocked tasks:**
+
+| Task ID | Summary | Blocked by | Since |
+|---------|---------|-----------|-------|
+| [TASK-NNN] | [brief] | [dependency or blocker] | [date] |
 
 ### Blockers
 
@@ -78,4 +97,5 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-24 | Added Task Progress section with task metrics and blocked task detail table |
 | 1.0 | 2026-02-19 | Initial version |

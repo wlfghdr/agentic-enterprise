@@ -1,11 +1,12 @@
 # Quality Evaluation Report: [Output Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
-> **Output:** [description or link to the artifact being evaluated]  
-> **Type:** code | documentation | content | proposal | customer-deliverable | release | agent-type  
-> **Mission:** [link to `work/missions/<name>/BRIEF.md` if applicable]  
-> **Evaluated by:** [agent-id or evaluator name]  
-> **Date:** YYYY-MM-DD  
+> **Template version:** 1.1 | **Last updated:** 2026-02-24
+> **Output:** [description or link to the artifact being evaluated]
+> **Type:** code | documentation | content | proposal | customer-deliverable | release | agent-type
+> **Mission:** [link to `work/missions/<name>/BRIEF.md` if applicable]
+> **Task:** [Task ID from TASKS.md, e.g., `TASK-003` — link to the specific task that produced this output. Write `N/A` if the output is not task-traceable.]
+> **Evaluated by:** [agent-id or evaluator name]
+> **Date:** YYYY-MM-DD
 > **Storage:** `work/missions/<mission-name>/evaluations/YYYY-MM-DD-<eval-name>.md`
 
 ---
@@ -28,6 +29,17 @@
 | [experience.md](../../org/4-quality/policies/experience.md) | yes / no / partial | PASS / FAIL / ESCALATE | [brief note] |
 | [content.md](../../org/4-quality/policies/content.md) | yes / no / partial | PASS / FAIL / ESCALATE | [brief note] |
 | [customer.md](../../org/4-quality/policies/customer.md) | yes / no / partial | PASS / FAIL / ESCALATE | [brief note] |
+
+## Task Acceptance Criteria
+
+> If the output traces to a task in TASKS.md, verify each acceptance criterion here. If the output is not task-traceable (`Task: N/A`), skip this section.
+
+| Criterion (from TASKS.md) | Met? | Evidence / Notes |
+|---------------------------|------|------------------|
+| [Acceptance criterion 1] | yes / no / partial | [evidence or reason] |
+| [Acceptance criterion 2] | yes / no / partial | [evidence or reason] |
+
+**Acceptance verdict:** All met / Partially met / Not met
 
 ## Findings
 
@@ -91,4 +103,5 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-24 | Added Task reference field in metadata; added Task Acceptance Criteria section for traceability between tasks and quality evaluations |
 | 1.0 | 2026-02-19 | Initial version |

@@ -4,7 +4,7 @@
 > **Loop:** Build (the second loop in the process lifecycle)  
 > **Authority:** You produce work. Quality Layer evaluates. Humans resolve escalations and approve architecture decisions.
 
-> **Version:** 1.1 | **Last updated:** 2026-02-19
+> **Version:** 1.2 | **Last updated:** 2026-02-24
 
 ---
 
@@ -14,13 +14,14 @@ Execute approved mission briefs by producing outputs: code, tests, documentation
 
 ## Context You Must Read
 
-1. **Process overview:** [../README.md](../README.md)
-2. **Quality policies:** [../../org/4-quality/policies/](../../org/4-quality/policies/) — ALL of them
-3. **Decision record template:** [../../work/decisions/_TEMPLATE-decision-record.md](../../work/decisions/_TEMPLATE-decision-record.md)
-4. **Outcome contract template:** [../../work/missions/_TEMPLATE-outcome-contract.md](../../work/missions/_TEMPLATE-outcome-contract.md)
-5. **Your fleet configuration** — from `org/2-orchestration/fleet-configs/`
-6. **Technical design** (if exists) — from `work/missions/<name>/TECHNICAL-DESIGN.md`
-7. **Active decisions:** [../../work/decisions/](../../work/decisions/)
+1. **Mission tasks:** `work/missions/<name>/TASKS.md` — **your work intake**. Identify your assigned tasks, check dependencies, and verify acceptance criteria before starting.
+2. **Process overview:** [../README.md](../README.md)
+3. **Quality policies:** [../../org/4-quality/policies/](../../org/4-quality/policies/) — ALL of them
+4. **Decision record template:** [../../work/decisions/_TEMPLATE-decision-record.md](../../work/decisions/_TEMPLATE-decision-record.md)
+5. **Outcome contract template:** [../../work/missions/_TEMPLATE-outcome-contract.md](../../work/missions/_TEMPLATE-outcome-contract.md)
+6. **Your fleet configuration** — from `org/2-orchestration/fleet-configs/`
+7. **Technical design** (if exists) — from `work/missions/<name>/TECHNICAL-DESIGN.md`
+8. **Active decisions:** [../../work/decisions/](../../work/decisions/)
 
 ## What You Do
 
@@ -35,10 +36,13 @@ For all missions:
 - If the Technical Design is absent for a multi-stream mission, raise a blocker to the Orchestration Layer
 
 ### Execute Work Streams
+- Pick up tasks from `TASKS.md` that are assigned to your division and agent type
 - Follow the fleet configuration for your assigned stream
+- Update task status in TASKS.md as you progress (`pending` → `in-progress` → `completed` or `blocked`)
 - Produce outputs within the defined working paths
 - Respect exclusive path ownership (don't touch other streams' files)
 - Submit outputs as Pull Requests
+- Link generated assets back to the task in TASKS.md upon completion
 
 ### Maintain Quality
 - Self-evaluate against all applicable quality policies BEFORE submitting
@@ -53,9 +57,10 @@ For all missions:
 - Submit for Architecture Governor review
 
 ### Track Progress
-- Update mission status in fleet configuration
-- Surface blockers immediately
+- Update task status in TASKS.md — this is the primary progress indicator
+- Surface blockers immediately (set task to `blocked`, document in STATUS.md)
 - Log dependencies discovered during execution
+- If TASKS.md does not exist for an active mission, file an improvement signal — do not guess at work items
 
 ## Versioning Your Outputs
 
@@ -80,5 +85,6 @@ For all missions:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-02-24 | Added TASKS.md as primary work intake in Context and Execute Work Streams; added task status tracking to Track Progress; added missing TASKS.md signal guidance |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
 | 1.0 | 2026-02-19 | Initial version |

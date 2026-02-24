@@ -9,6 +9,9 @@ Active and completed missions. Each mission gets its own folder.
 3. Create a folder: `<mission-name>/`
 4. Add `BRIEF.md` and `OUTCOME-CONTRACT.md` to the folder
 5. Submit as a Pull Request for Strategy Layer approval
+6. Once approved, the Orchestrator creates `TASKS.md` (from `_TEMPLATE-tasks.md`) during the `planning` phase — this is **required** before the mission can become `active`
+
+For the full lifecycle and status transition rules, see [docs/mission-lifecycle.md](../../docs/mission-lifecycle.md).
 
 ## Mission Structure
 
@@ -16,22 +19,29 @@ Active and completed missions. Each mission gets its own folder.
 missions/
 └── <mission-name>/
     ├── BRIEF.md                 # Mission brief (from template)
-    ├── OUTCOME-CONTRACT.md    # Measurable success criteria
+    ├── OUTCOME-CONTRACT.md      # Measurable success criteria
+    ├── TASKS.md                 # Decomposed work items (REQUIRED for active status)
     ├── STATUS.md                # Progress updates (append-only, latest first)
+    ├── TECHNICAL-DESIGN.md      # Technical design (if design-required: true)
+    ├── FLEET-REPORT.md          # Fleet performance report (optional)
     ├── OUTCOME-REPORT.md        # Final outcome measurement (mission closure)
     └── evaluations/             # Quality evaluation reports
         └── YYYY-MM-DD-<eval>.md # Individual quality evaluations
 ```
 
+> **Important:** A mission cannot transition to `active` without a TASKS.md file containing at least one task. See [docs/mission-lifecycle.md](../../docs/mission-lifecycle.md) for the full lifecycle guide and gate requirements.
+
 ## Mission Statuses
 
 | Status | Meaning |
 |--------|---------|
-| **proposed** | Brief created, awaiting approval |
-| **approved** | Approved by Strategy Layer, ready for Build loop |
-| **active** | Currently being executed |
-| **paused** | Temporarily suspended |
+| **proposed** | Brief created, awaiting Strategy Layer approval |
+| **approved** | Approved by Strategy Layer, ready for orchestration |
+| **planning** | Orchestrator creating fleet config and decomposing tasks |
+| **active** | TASKS.md exists, execution agents are working |
+| **paused** | Temporarily suspended by human decision |
 | **completed** | Outcomes measured, mission closed |
+| **cancelled** | Terminated before completion, rationale documented in STATUS.md |
 
 ---
 

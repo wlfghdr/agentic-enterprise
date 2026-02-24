@@ -22,6 +22,7 @@ Each document falls into one of three categories:
 | [`LOCK-ENFORCEMENT.md`](LOCK-ENFORCEMENT.md) | CI feature | ✅ Template CI gate | **Keep** if using lock enforcement; delete otherwise |
 | [`PLACEHOLDER-CHECK.md`](PLACEHOLDER-CHECK.md) | CI feature | ✅ Template CI gate | **Keep** if using placeholder CI gate; delete otherwise |
 | [`SCHEMA-GUIDE.md`](SCHEMA-GUIDE.md) | CI feature | ✅ Template CI gate | **Keep** if using schema validation; delete otherwise |
+| [`mission-lifecycle.md`](mission-lifecycle.md) | Process reference | ✅ Framework doc | **Keep** — mission lifecycle, status transitions, Divide & Conquer pattern |
 
 ---
 
@@ -33,6 +34,7 @@ Guides that help you bootstrap a new fork or understand the framework structure.
 |---|---|
 | [`FILE-GUIDE.md`](FILE-GUIDE.md) | Maps every root file to a category (OSS infrastructure, company content, or agent bootstrap). Answers "what do I keep, what do I delete?" for every file including `.github/` configs. |
 | [`REQUIRED-GITHUB-SETTINGS.md`](REQUIRED-GITHUB-SETTINGS.md) | Checklist for GitHub branch protection, CODEOWNERS enforcement, and required status checks. Without this, PRs are advisory — not binding. |
+| [`mission-lifecycle.md`](mission-lifecycle.md) | End-to-end mission lifecycle: status transitions, Divide & Conquer decomposition, gate requirements, anti-patterns. Required reading for Orchestration and Execution agents. |
 
 ---
 
