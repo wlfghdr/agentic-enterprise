@@ -1,6 +1,6 @@
 # Postmortem: [Incident Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
+> **Template version:** 1.1 | **Last updated:** 2026-02-25  
 > **Incident ID:** INC-YYYY-NNN  
 > **Severity:** SEV1 (Critical) | SEV2 (Major) | SEV3 (Minor) | SEV4 (Low)  
 > **Status:** draft | reviewed | accepted  
@@ -105,11 +105,19 @@
 | [Architectural rework to eliminate SPOF] | yes / no | [link to `work/signals/`] |
 | [Policy update to prevent recurrence] | yes / no | [link to `work/signals/`] |
 
-## Generated Signals
+## Signals Filed
 
-| Signal | Category | Link |
-|--------|----------|------|
-| [Signal description] | technical / process / policy / architecture | [link to `work/signals/<signal>.md`] |
+> **Every postmortem must produce at least one signal.** Insights from incidents feed back into the Discover loop via `work/signals/`. This section is the explicit link between retrospectives and the signal lifecycle — it ensures no insight is lost.
+
+| Signal ID | Description | Category | Link |
+|-----------|-------------|----------|------|
+| YYYY-MM-DD-<slug> | [What this signal captures from the incident] | technical / process / policy / architecture | [`work/signals/YYYY-MM-DD-<slug>.md`](../../signals/YYYY-MM-DD-<slug>.md) |
+| | | | |
+
+**Filing guidance:**
+- File at least one signal per postmortem — even if the lesson is "our monitoring worked correctly"
+- For policy gaps identified in the Policy Gap Analysis above, file a separate signal per gap
+- For long-term architectural issues, file a signal that may become a mission
 
 ## Lessons Learned
 
@@ -142,4 +150,5 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-25 | Renamed "Generated Signals" to "Signals Filed" with explicit signal IDs, file links, filing guidance, and Discover loop feedback requirement |
 | 1.0 | 2026-02-19 | Initial version |

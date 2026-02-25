@@ -1,12 +1,14 @@
 # Mission Brief: [Mission Name]
 
-> **Template version:** 1.1 | **Last updated:** 2026-02-24
-> **Mission ID:** MISSION-YYYY-NNN  
+> **Template version:** 1.2 | **Last updated:** 2026-02-25
+> **Mission ID:** MISSION-YYYY-NNN
 > **Status:** proposed | approved | planning | active | paused | completed | cancelled
-> **Created:** YYYY-MM-DD  
+> **Created:** YYYY-MM-DD
 > **Revision:** 1 | **Last updated:** YYYY-MM-DD
-> **Author:** [Strategy Layer agent or human]  
+> **Author:** [Strategy Layer agent or human]
 > **Design required:** true | false _(Set to `true` for multi-stream missions, novel architecture patterns, new external APIs, data model changes, or regulated features. The Orchestration Layer will gate execution on a reviewed Technical Design document.)_
+> **Blocked by:** _(optional — comma-separated Mission IDs that must complete before this mission can start, e.g., `MISSION-2026-040, MISSION-2026-041`)_
+> **Blocks:** _(optional — comma-separated Mission IDs that depend on this mission's completion)_
 
 ---
 
@@ -106,5 +108,6 @@ Missions follow a governed lifecycle. Each transition has a gate that must be sa
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-02-25 | Added optional `blocked_by` and `blocks` fields for cross-mission dependency declaration |
 | 1.1 | 2026-02-24 | Added `planning` and `cancelled` statuses; added Status Transition Rules section with gates; documented TASKS.md requirement for `active` status and exception for non-execution missions |
 | 1.0 | 2026-02-19 | Initial version |

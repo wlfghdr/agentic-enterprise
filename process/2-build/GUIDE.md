@@ -92,6 +92,30 @@ Before submitting any output:
 | Customer Success | QBR packages, health reports | customer |
 | Operations | Runbooks, dashboards, alerts | performance, security |
 
+## Exit Criteria / Handoff to Ship
+
+Before a mission's outputs can proceed from Build to Ship, **all** of the following must be true:
+
+### Required Artifacts
+- [ ] All tasks in `TASKS.md` are marked `done` (or explicitly descoped with rationale)
+- [ ] All PRs for in-scope deliverables are merged to `main`
+- [ ] Quality evaluation reports exist for every output (`work/missions/<name>/evaluations/`)
+- [ ] All evaluation verdicts are **PASS** or **PASS WITH NOTES** — no open FAILs or ESCALATEs
+- [ ] Decision records filed for all novel patterns or architecture choices (`work/decisions/`)
+
+### Quality Gates Passed
+- [ ] All applicable quality policies evaluated (security, architecture, performance, etc.)
+- [ ] Automated checks pass (lint, test, security scan) for all code outputs
+- [ ] Task acceptance criteria verified by Quality Layer
+
+### Ownership Transfer
+- [ ] **Build owner:** Execution Layer agents (mission complete from their perspective)
+- [ ] **Ship owner:** Orchestration Layer (takes over for release preparation)
+- [ ] Orchestration Layer notified that Build is complete and release preparation can begin
+- [ ] `STATUS.md` updated to reflect readiness for Ship loop
+
+> **Gate enforcer:** The Quality Layer verifies this checklist before approving the Build→Ship transition. The Orchestration Layer cannot create a release contract until all items are checked.
+
 ## Anti-Patterns
 
 - ❌ Starting execution without reading the Technical Design (when one exists)

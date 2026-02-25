@@ -14,7 +14,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Tracks the overall framework release. Update when cutting a new version.
 # See CHANGELOG.md for what changed. Uses semantic versioning (MAJOR.MINOR.PATCH).
-framework_version: "2.0.0"
+framework_version: "2.1.0"
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 # Customization Guide — Agentic Enterprise Operating Model
 
-> **Version:** 2.0 | **Last updated:** 2026-02-23
+> **Version:** 2.1 | **Last updated:** 2026-02-25
 
 > **Start here** after cloning this framework.
 > This guide walks you through every step of making this operating model your own.
@@ -63,29 +63,42 @@ Create your first signal in `work/signals/` and you're live.
 
 ## Minimal Agent Fleet
 
-For small teams and solo founders where humans act as Steering and Strategy, start with **3 active agents** — one per operational layer. Expand as signal volume and mission throughput grow.
+For small teams and solo founders, start with **5 agents — one per layer**. This gives every layer a dedicated owner with clear boundaries and no collapsed responsibilities. Expand agent counts within each layer as signal volume and mission throughput grow.
+
+### Minimal 5-Agent Fleet
+
+| Agent | Layer | Responsibility | When it runs |
+|---|---|---|---|
+| **Steering Agent** | Layer 0 | Signal aggregation, weekly digests, pattern detection, evolution proposals | Weekly (digest cadence) + on signal volume threshold |
+| **Strategy Agent** | Layer 1 | Signal triage, mission brief creation, outcome contracts, venture health | On every signal digest + mission lifecycle events |
+| **Orchestration Agent** | Layer 2 | Fleet config, mission decomposition, release preparation, mission status tracking | On every mission state change + release events |
+| **Execution Agent(s)** | Layer 3 | Implementation — code, research, content, tests, PRs | When a task is assigned |
+| **Quality Agent** | Layer 4 | Policy evaluation, operate-loop signaling, outcome measurement, stall detection | Continuously (after builds, before merges, on measurement schedule dates) |
+
+> **Solo founder rule:** You still merge PRs — that is your only required action. But each layer now has a dedicated agent, so no responsibilities are collapsed or dropped.
+
+### Why 5 Agents, Not 3
+
+The original 3-agent fleet collapsed Steering + Strategy + Orchestration into a single Orchestration Agent and overloaded the Quality Agent with operate-loop duties. This caused:
+
+- **Signal triage gap:** No agent explicitly owned the Signal → Mission Brief flow
+- **Digest gap:** Weekly signal aggregation had no owner
+- **Ship/Release gap:** Release preparation was not wired to any agent
+- **Operate-loop gap:** Production signaling and stall detection were undocumented responsibilities
+
+With one agent per layer, every loop in the lifecycle has an explicit owner.
 
 ### How the 5 Layers Map to a Small Team
 
-| Layer | Small team | Scales to |
+| Layer | Small team (1 agent) | Scales to |
 |---|---|---|
-| **Steering** — evolve the company | You (human) | Steering agents + AI assistance |
-| **Strategy** — decide WHY + WHAT | You (human) | Strategy agents |
-| **Orchestration** — HOW to execute | Orchestration Agent | Fleet of orchestrators |
-| **Execution** — DO the work | Execution Agent(s) | Dozens of specialized agents |
+| **Steering** — evolve the company | Steering Agent (+ you as approver) | Multiple steering agents + AI assistance |
+| **Strategy** — decide WHY + WHAT | Strategy Agent (+ you as approver) | Venture-specific strategy agents |
+| **Orchestration** — HOW to execute | Orchestration Agent | Fleet of orchestrators per domain |
+| **Execution** — DO the work | Execution Agent(s) | Dozens of specialized agents per division |
 | **Quality** — EVALUATE outputs | Quality Agent | Domain-specific evaluators |
 
-> **Solo founder rule:** You are Steering and Strategy. You merge PRs. That is your only required action.
-
-### Minimal 3-Agent Fleet
-
-| Agent | Layer | What it does | When it runs |
-|---|---|---|---|
-| **Orchestration Agent** | Layer 2 | Reads signals, creates mission briefs, assigns work to execution, verifies DoD | On every signal or mission state change |
-| **Execution Agent** | Layer 3 | Implements missions — code, research, content, tests, PRs | When a mission is assigned |
-| **Quality Agent** | Layer 4 | Evaluates outputs against policies, triages new signals, flags stalled missions | Continuously (after builds, before merges) |
-
-Add specialized Execution Agents first as you scale (e.g., one coding-focused, one research-focused), then a dedicated Orchestration or Steering Agent when signal volume justifies it.
+Add specialized Execution Agents first as you scale (e.g., one coding-focused, one research-focused), then additional Orchestration or Steering Agents when signal volume or mission throughput justifies it.
 
 ### The Self-Sustaining Loop
 
@@ -142,11 +155,13 @@ Complete the Quick Start above (Steps 1-4), then:
 ### Day 1 — First Signal Flow (30 minutes)
 
 7. **File your first signal** — Create `work/signals/YYYY-MM-DD-<your-first-opportunity>.md` from the template (`work/signals/_TEMPLATE-signal.md`). This is the input that kicks off the entire lifecycle.
-8. **Triage to a mission** — The Steering Layer produces a signal digest, the Strategy Layer triages, and if the signal warrants action:
-   - Create `work/missions/<mission-name>/MISSION-BRIEF.md` from `work/missions/_TEMPLATE-mission-brief.md`
-   - Create `work/missions/<mission-name>/OUTCOME-CONTRACT.md` from `work/missions/_TEMPLATE-outcome-contract.md`
-9. **Assemble a fleet** — The Orchestration Layer creates a fleet config (`org/2-orchestration/fleet-configs/<mission>.md`) referencing active agent types from the registry.
-10. **Execute** — Execution agents produce work within mission scope, Quality agents evaluate, Ship agents release, Operate agents monitor. The full loop is live.
+8. **Steering Agent: Produce first digest** — The Steering Agent aggregates signals into a weekly digest (`work/signals/digests/YYYY-WXX-digest.md`), detecting patterns and flagging priorities.
+9. **Strategy Agent: Triage to a mission** — The Strategy Agent consumes the digest, triages signals, and if a signal warrants action:
+   - Creates `work/missions/<mission-name>/MISSION-BRIEF.md` from `work/missions/_TEMPLATE-mission-brief.md`
+   - Creates `work/missions/<mission-name>/OUTCOME-CONTRACT.md` from `work/missions/_TEMPLATE-outcome-contract.md` (with `measurement_schedule` dates)
+10. **Orchestration Agent: Assemble fleet + decompose tasks** — The Orchestration Agent creates a fleet config (`org/2-orchestration/fleet-configs/<mission>.md`), decomposes the mission into tasks (TASKS.md), and prepares release contracts when outputs are quality-approved.
+11. **Execution Agent(s): Execute** — Execution agents produce work within mission scope (code, docs, content, tests).
+12. **Quality Agent: Evaluate + close the loop** — The Quality Agent evaluates outputs against policies, triggers outcome reports when measurement schedule dates arrive, files production signals, and detects stalled missions. The full 5-layer loop is live.
 
 ### Day 2+ — Progressive Automation
 

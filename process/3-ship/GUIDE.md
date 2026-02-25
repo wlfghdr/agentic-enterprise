@@ -102,6 +102,32 @@ For critical production issues:
 5. **Validate** — Post-deployment health check (15 min window)
 6. **Document** — Post-incident signal in `work/signals/`
 
+## Exit Criteria / Handoff to Operate
+
+Before a release transitions from Ship to Operate, **all** of the following must be true:
+
+### Required Artifacts
+- [ ] Release contract exists and is approved (`work/releases/YYYY-MM-DD-<release>.md`)
+- [ ] Progressive deployment completed through all stages (canary → GA → full rollout)
+- [ ] Post-deployment validation passed (error rates, latency, smoke tests)
+- [ ] Outcome contract has `measurement_schedule` dates filled in (`work/missions/<name>/OUTCOME-CONTRACT.md`)
+- [ ] Runbook exists for the deployed service/feature (if applicable)
+
+### Quality Gates Passed
+- [ ] Error rates within normal bounds after full rollout
+- [ ] No critical alerts triggered during validation window
+- [ ] Latency within target for all affected endpoints
+- [ ] Smoke tests and user-facing functionality verified
+
+### Ownership Transfer
+- [ ] **Ship owner:** Orchestration Layer (release complete from their perspective)
+- [ ] **Operate owner:** Quality Layer (takes over for outcome measurement, production signaling, and stall detection)
+- [ ] Quality Layer has the `measurement_schedule` dates and will trigger outcome reports at each checkpoint
+- [ ] On-call team is aware of the new deployment and has access to rollback procedures
+- [ ] `STATUS.md` updated to reflect that the mission is in the Operate/measurement phase
+
+> **Gate enforcer:** The Orchestration Layer verifies this checklist before declaring the release complete. The Quality Layer begins the Operate loop once the handoff is confirmed.
+
 ## Anti-Patterns
 
 - ❌ Big-bang deployments (no progressive rollout)
