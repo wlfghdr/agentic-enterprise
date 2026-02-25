@@ -4,7 +4,7 @@
 > **Enforced by:** Quality Layer eval agents, including the dedicated [Observability Compliance Agent](../../agents/quality/observability-compliance-agent.md)
 > **Authority:** Operations leads + Architecture Governors
 > **Principle:** If it runs, it must be observable. If it's not observable, it doesn't ship.
-> **Version:** 1.0 | **Last updated:** 2026-02-19
+> **Version:** 1.1 | **Last updated:** 2026-02-25
 
 ---
 
@@ -18,6 +18,7 @@ This policy establishes observability as a **hard gate**, not a checklist item:
 
 | Stage | Gate |
 |-------|------|
+| Technical Design approved | Observability Design section complete, production baselines queried, impact assessed |
 | PR opened | Instrumentation code present (static check) |
 | PR review | Telemetry verified in staging (evidence required) |
 | Quality evaluation | Observability Compliance Agent issues PASS verdict |
@@ -25,6 +26,28 @@ This policy establishes observability as a **hard gate**, not a checklist item:
 | Production deploy | Post-deploy monitoring plan active |
 
 **No exception exists for shipping without any observability.** The Observability Compliance Agent will BLOCK any output that lacks verified instrumentation.
+
+---
+
+## Design-Time Observability — Shift Left
+
+> Per AGENTS.md Rule 9c: Observability-driven development shifts engineering from reactive fixes to predictive prevention by using real production data during design. Agents evaluate architecture, performance, and resilience upfront — flagging risky assumptions before coding begins.
+
+**Observability must be _designed_, not just _implemented_.**
+
+Every Technical Design document must include an Observability Design section (see `work/missions/_TEMPLATE-technical-design.md`). A Technical Design without an observability section is incomplete and must be returned for revision by Quality Layer agents. The observability design is reviewed alongside architectural and security design — it is not a secondary artifact.
+
+### Design-Time Requirements
+
+1. **Define before building:** Every designed component, endpoint, service call, agent workflow, and error path must have a corresponding instrumentation plan, metrics definition, SLO proposal, dashboard plan, and alerting plan _before_ implementation begins.
+
+2. **Consult production reality:** When a mission modifies existing components, agents must query the observability platform for current production baselines — traffic patterns, error budgets, SLO compliance, dependency maps, latency percentiles — and document these in the Technical Design's Production Baseline section. A design that ignores production reality is incomplete.
+
+3. **Assess impact predictively:** Use current observability data to evaluate whether the proposed design could degrade existing production behavior. If an existing service is near its error budget, a design that adds load or changes dependencies must explicitly account for that risk with documented mitigation.
+
+4. **Surface contradictions:** If observability data contradicts assumptions in the mission brief or technical design (e.g., assumed low traffic but production shows high volume), document the discrepancy, escalate to the mission sponsor, and do not proceed until the design is reconciled with reality.
+
+5. **Mission briefs include observability requirements:** Every mission brief must populate the Observability Requirements section (see `work/missions/_TEMPLATE-mission-brief.md`), identifying key metrics, production baselines at risk, and observability dependencies — even before the full Technical Design is produced.
 
 ---
 
@@ -215,6 +238,16 @@ Git webhooks are configured at the repository or organization level to push even
 
 Observability is checked at multiple points in the lifecycle:
 
+### At Design Time (Technical Design Review)
+- Observability Design section populated in the Technical Design document
+- Instrumentation plan covers all new endpoints, service calls, error paths, and agent workflows
+- Metrics defined (RED + business + agent-specific where applicable)
+- SLOs proposed with error budget thresholds and burn rate alert configuration
+- Dashboard and alerting plans specified
+- Production baselines queried from observability platform for all modified components (or documented as N/A for greenfield)
+- Impact assessment completed: no proposed change targets a component near error budget exhaustion without explicit mitigation
+- Observability design reviewed alongside architecture and security design — incomplete designs returned as FAIL
+
 ### At Component Onboarding
 - All observability items in the component onboarding checklist completed
 - Telemetry data visible in {{OBSERVABILITY_TOOL}} within 5 minutes of first deployment
@@ -255,6 +288,7 @@ Observability is checked at multiple points in the lifecycle:
 
 | Criterion | PASS | FAIL |
 |-----------|------|------|
+| Design-time observability | Observability designed before build; instrumentation plan, metrics, SLOs, dashboards, alerting defined in Technical Design; production baselines consulted for modified components | No observability design, or design started after coding, or production baselines not consulted |
 | Instrumentation | At least one source active, telemetry verified | No instrumentation or telemetry not flowing |
 | Traces | End-to-end traces with W3C context propagation | Missing traces or broken context propagation |
 | Metrics | RED metrics on all endpoints | Missing rate, error, or duration metrics |
@@ -271,4 +305,5 @@ Observability is checked at multiple points in the lifecycle:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-25 | Added Design-Time Observability section (shift-left); added design-time stage gate and verification gate (At Design Time); added design-time observability evaluation criterion; cross-referenced AGENTS.md Rule 9c and Technical Design template |
 | 1.0 | 2026-02-19 | Initial version |

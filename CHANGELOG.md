@@ -23,6 +23,35 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 
+**Observability-driven design: shift observability left into design and discovery phases**
+
+> Observability-driven AI development shifts software engineering from reactive fixes to predictive prevention by using real production data during design. Agents evaluate architecture, performance, and resilience upfront — flagging risky assumptions before coding begins.
+
+_Global agent rules:_
+- `AGENTS.md` — v2.0 → v2.1: added Rule 9c "Design with observability — before building" mandating that agents define what to observe before building, consult production baselines, assess impact predictively, surface contradictions, ensure observability coverage from design through production, and evaluate observability design at quality review
+
+_Templates:_
+- `work/missions/_TEMPLATE-technical-design.md` — v1.0 → v1.1: added Observability Design section (production baseline, instrumentation plan, metrics design, health targets/SLOs, dashboard specification, alerting plan, observability coverage checklist); updated Design Review Checklist with observability, production baselines, and impact assessment items
+- `work/missions/_TEMPLATE-mission-brief.md` — v1.2 → v1.3: added Observability Requirements section (key metrics, production baselines at risk, observability dependencies)
+
+_Quality policies:_
+- `org/4-quality/policies/observability.md` — v1.0 → v1.1: added Design-Time Observability section; added design-time stage gate (Technical Design approved → observability design complete); added "At Design Time" verification gate; added design-time observability evaluation criterion
+- `org/4-quality/policies/architecture.md` — v1.1 → v1.2: added observability design to Technical Design checklist; updated evaluation criteria to include design-time observability
+
+_Process guides:_
+- `process/1-discover/GUIDE.md` — added observability requirements step to Mission Brief Creation
+- `process/1-discover/AGENT.md` — v1.1 → v1.2: added observability-driven signal detection and Observability Requirements to Mission Brief Drafting
+- `process/2-build/GUIDE.md` — added observability design to Technical Design step; added observability to Work Stream Types key policies (Design/Spec, Engineering); added observability to Build Quality Checklist and Exit Criteria
+- `process/2-build/AGENT.md` — v1.2 → v1.3: added observability design to Technical Design production; expanded Maintain Quality with observability coverage verification
+
+_Layer agent instructions:_
+- `org/2-orchestration/AGENT.md` — v1.3 → v1.4: added observability design verification to Technical Design Gate; added observability policy assignment to Fleet Configuration
+- `org/3-execution/AGENT.md` — v1.2 → v1.3: added observability design to Technical Design Production; added production baseline consultation and impact assessment
+- `org/4-quality/AGENT.md` — v1.4 → v1.5: added design-time observability evaluation to Evaluation Protocol (step 6)
+
+_Configuration:_
+- `CONFIG.yaml` — bumped `framework_version` from `2.1.0` to `2.2.0`
+
 **Expand Minimal Fleet to 5 agents and close structural gaps (Issue #58)**
 
 _Fleet expansion:_

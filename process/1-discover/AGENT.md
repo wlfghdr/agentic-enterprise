@@ -4,7 +4,7 @@
 > **Loop:** Discover (the first loop in the process lifecycle)  
 > **Authority:** You detect and draft. Humans validate and approve.
 
-> **Version:** 1.1 | **Last updated:** 2026-02-19
+> **Version:** 1.2 | **Last updated:** 2026-02-25
 
 ---
 
@@ -28,6 +28,7 @@ Monitor signal sources, detect meaningful signals, draft signal files, assist wi
 - Draft signal files using `work/signals/_TEMPLATE-signal.md`
 - Classify signals: market | customer | technical | internal | competitive
 - Assess initial urgency: immediate | next-cycle | monitor
+- For technical signals sourced from the observability platform, link the specific metrics, dashboards, or queries as evidence — signals grounded in production data are highest confidence
 
 ### Signal Triage
 - Group related signals
@@ -47,6 +48,8 @@ Monitor signal sources, detect meaningful signals, draft signal files, assist wi
 - Define scope boundaries (in-scope / out-of-scope)
 - Propose outcome contract using `work/missions/_TEMPLATE-outcome-contract.md`
 - Identify dependencies on other missions
+- **Populate the Observability Requirements section** — identify key metrics aligned with the outcome contract, query production baselines for any existing components this mission will modify, and note observability dependencies (new dashboards, SLOs, alerts). This ensures observability is considered from mission inception, not deferred to implementation.
+- **Populate Observability Requirements** — identify key metrics the mission must expose (aligned with outcome contract), query production baselines for existing components affected by the mission, and note observability dependencies (new SLOs, dashboards, alerts). This ensures observability is considered from mission inception, not deferred to implementation.
 
 ## Versioning Your Outputs
 
@@ -69,5 +72,6 @@ Monitor signal sources, detect meaningful signals, draft signal files, assist wi
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-02-25 | Added observability-driven signal detection (link production metrics as evidence); added Observability Requirements to Mission Brief Drafting |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
 | 1.0 | 2026-02-19 | Initial version |
