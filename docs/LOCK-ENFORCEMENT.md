@@ -1,10 +1,12 @@
 # Lock Enforcement CI Gate
 
-> **Version:** 1.0 | **Last updated:** 2025-07-22
+> **Version:** 1.1 | **Last updated:** 2026-02-25
 
 ## Overview
 
-A CI job (`validate-locks`) blocks PRs that modify **protected paths** without a corresponding active lock file in `work/locks/`.
+A CI job (`validate-locks`) can block PRs that modify **protected paths** without a corresponding active lock file in `work/locks/`.
+
+> **Template vs. Instance:** Lock enforcement CI is **disabled by default** in the upstream template repository — template development doesn't need concurrency locks. When you deploy this framework as a company instance, **uncomment the `validate-locks` job** in `.github/workflows/validate.yml` to activate enforcement. Everything else (scripts, lock files, `locks.yaml`) ships ready to use.
 
 ## How It Works
 
@@ -51,4 +53,5 @@ Add `ci:lock-exempt` anywhere in a commit message to bypass enforcement for that
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-25 | Clarified lock enforcement as an instance concern; CI job disabled by default in the upstream template, with instructions to enable |
 | 1.0 | 2025-07-22 | Initial CI gate |

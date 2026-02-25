@@ -497,25 +497,28 @@ jobs:
         run: |
           python3 scripts/check_github_governance.py
 
-  validate-locks:
-    name: validate-locks
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Check protected paths have active locks
-        env:
-          BASE: ${{ github.event.pull_request.base.sha }}
-          HEAD: ${{ github.event.pull_request.head.sha }}
-        run: python3 scripts/check_locks.py
+  # NOTE: Lock enforcement (validate-locks) is not active in the upstream
+  # template repository — it is designed for company instances where
+  # protected paths need concurrency control. To enable it in your instance,
+  # uncomment the job below. See docs/LOCK-ENFORCEMENT.md for details.
+  #
+  # validate-locks:
+  #   name: validate-locks
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'pull_request'
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: "3.12"
+  #     - name: Check protected paths have active locks
+  #       env:
+  #         BASE: ${{ github.event.pull_request.base.sha }}
+  #         HEAD: ${{ github.event.pull_request.head.sha }}
+  #       run: python3 scripts/check_locks.py
 
   validate-schema:
     name: validate-schema
