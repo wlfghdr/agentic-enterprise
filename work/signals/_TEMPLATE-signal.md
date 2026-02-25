@@ -1,9 +1,10 @@
 # Signal: [Short Descriptive Title]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
-> **Created:** YYYY-MM-DD  
+> **Template version:** 1.1 | **Last updated:** 2026-02-25
+> **Created:** YYYY-MM-DD
 > **Revision:** 1 | **Last updated:** YYYY-MM-DD
 > **Author:** [human or agent identifier]
+> **Supersedes:** _(optional — signal ID that this signal replaces, e.g., `2026-02-10-api-latency-spike.md`)_
 
 ---
 
@@ -29,6 +30,13 @@
 
 - [Link to related signals, if any]
 
+## Supersession
+
+> **When to supersede vs. file new:** Use `supersedes` when new information **invalidates or replaces** a previous signal's core observation (e.g., updated data shows the original signal was based on incomplete information). File a **new, separate signal** when the new information is **additive** — it extends, corroborates, or provides a different angle on the original signal. Superseded signals remain in the repository for audit trail purposes but are excluded from active triage.
+
+- **Superseded signal:** [link to the signal being replaced, if applicable]
+- **Reason for supersession:** [why this signal replaces the previous one]
+
 ## Recommended Disposition
 
 - [ ] Proceed to opportunity validation
@@ -53,4 +61,5 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-25 | Added optional `supersedes` field in metadata and Supersession section with usage guidance (when to supersede vs. file new) |
 | 1.0 | 2026-02-19 | Initial version |

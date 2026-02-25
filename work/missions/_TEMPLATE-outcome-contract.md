@@ -1,6 +1,6 @@
 # Outcome Contract: [Mission Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
+> **Template version:** 1.1 | **Last updated:** 2026-02-25  
 > **Defines measurable success criteria for a mission.**  
 > **Lives alongside the mission brief in** `work/missions/<name>/`
 
@@ -37,11 +37,18 @@
 
 ## Measurement Schedule
 
-| Checkpoint | Timing |
-|------------|--------|
-| **Initial check** | _(e.g., "1 week post-deployment")_ |
-| **Follow-up** | _(e.g., "4 weeks post-deployment")_ |
-| **Final evaluation** | _(e.g., "8 weeks post-deployment")_ |
+> **Purpose:** These dates trigger outcome measurement. The Quality Layer monitors these dates and produces outcome reports when each checkpoint arrives. The Strategy Layer uses `measurement_schedule` dates to trigger outcome report creation.
+
+| Field | Value |
+|-------|-------|
+| **Measurement window start** | YYYY-MM-DD _(when to begin measuring outcomes — typically deployment date)_ |
+| **Measurement window end** | YYYY-MM-DD _(when final measurement closes — typically 4-12 weeks post-deployment)_ |
+
+| Checkpoint | Date | Status |
+|------------|------|--------|
+| **Initial check** | YYYY-MM-DD _(e.g., 1 week post-deployment)_ | pending _(pending / completed / skipped)_ |
+| **Interim check** | YYYY-MM-DD _(e.g., 4 weeks post-deployment; add rows for additional interim checks if needed)_ | pending |
+| **Final evaluation** | YYYY-MM-DD _(e.g., 8 weeks post-deployment)_ | pending |
 ---
 
 ## Revision History
@@ -56,4 +63,5 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-25 | Enhanced Measurement Schedule with structured date fields (window start/end, interim checks with status tracking); added purpose note linking to Quality and Strategy Layer consumption |
 | 1.0 | 2026-02-19 | Initial version |

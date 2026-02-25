@@ -23,6 +23,33 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 
+**Expand Minimal Fleet to 5 agents and close structural gaps (Issue #58)**
+
+_Fleet expansion:_
+- `CUSTOMIZATION-GUIDE.md` — v2.0 → v2.1: replaced Minimal 3-Agent Fleet with Minimal 5-Agent Fleet (one agent per layer); added "Why 5 Agents, Not 3" rationale section; updated Day 0 → Day 1 initialization sequence to reference all 5 agents with explicit role assignments
+
+_Layer AGENT.md wiring:_
+- `org/1-strategy/AGENT.md` — v1.1 → v1.2: expanded "Signal Triage (via Digests)" into full "Signal Triage" workflow section with input/process/output, prioritization criteria, and disposition options
+- `org/0-steering/AGENT.md` — v1.1 → v1.2: expanded "Signal Aggregation & Digests" into full "Continuous Sensing Loop" with input/process/output, pattern detection criteria (3+ signals in 4-week window), anomaly flagging, observability cross-reference, and weekly cadence
+- `org/2-orchestration/AGENT.md` — v1.2 → v1.3: added "Release Preparation (Ship Loop)" section with input/process/output/handoff; added "Dependency Management" section with deadlock detection and escalation path
+- `org/4-quality/AGENT.md` — v1.3 → v1.4: added "Operate Loop" section with outcome measurement (measurement_schedule monitoring), production signaling (reliability/adoption/performance anomalies), and stall detection (7-day threshold)
+
+_Template enhancements:_
+- `work/signals/_TEMPLATE-signal.md` — v1.0 → v1.1: added optional `supersedes` field in metadata and "Supersession" section with usage guidance (when to supersede vs. file new)
+- `work/missions/_TEMPLATE-outcome-contract.md` — v1.0 → v1.1: enhanced Measurement Schedule with structured date fields (window start/end, interim checks with status tracking); added purpose note linking to Quality and Strategy Layer consumption
+- `work/retrospectives/_TEMPLATE-postmortem.md` — v1.0 → v1.1: renamed "Generated Signals" to "Signals Filed" with explicit signal IDs, file links, filing guidance, and Discover loop feedback requirement
+- `work/missions/_TEMPLATE-mission-brief.md` — v1.1 → v1.2: added optional `blocked_by` and `blocks` fields for cross-mission dependency declaration
+
+_Governance and process:_
+- `org/agents/README.md` — expanded Agent Type Lifecycle table with operational rules per state; added Lifecycle Transition Approvals table; added Deprecation Rules and Retirement Process sections
+- `process/2-build/GUIDE.md` — added "Exit Criteria / Handoff to Ship" checklist (required artifacts, quality gates, ownership transfer)
+- `process/3-ship/GUIDE.md` — added "Exit Criteria / Handoff to Operate" checklist (required artifacts, quality gates, ownership transfer)
+
+_Configuration:_
+- `CONFIG.yaml` — bumped `framework_version` from `2.0.0` to `2.1.0`
+
+### Previously added
+
 **Mission lifecycle: Divide & Conquer task decomposition and status gates (Issue #56)**
 - `work/missions/_TEMPLATE-tasks.md` — new template for mission task decomposition; required for missions transitioning to `active` status; includes task structure with assignment, dependencies, acceptance criteria, and asset entry generation
 - `docs/mission-lifecycle.md` — new Mission Lifecycle Guide documenting the full mission flow (Divide & Conquer pattern), all status transitions with gate requirements, task decomposition criteria, and 5 named anti-patterns from real operating instances

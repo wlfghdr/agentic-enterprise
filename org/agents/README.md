@@ -24,14 +24,38 @@ org/agents/
 proposed → approved → implementing → active → deprecated → retired
 ```
 
-| Status | Meaning |
-|--------|---------|
-| **proposed** | Agent type proposal submitted, awaiting Steering review |
-| **approved** | CTO approved, awaiting implementation |
-| **implementing** | Skills, tools, and instructions being built |
-| **active** | Deployed and available for fleet assignment |
-| **deprecated** | Still running but superseded; no new assignments |
-| **retired** | Decommissioned, definition kept for audit |
+| Status | Meaning | Operational Rules |
+|--------|---------|-------------------|
+| **proposed** | Agent type proposal submitted, awaiting Steering review | Cannot be referenced in fleet configs. No instances may be provisioned. |
+| **approved** | CTO approved, awaiting implementation | Cannot be referenced in fleet configs. Implementation work may begin. |
+| **implementing** | Skills, tools, and instructions being built | Cannot be referenced in fleet configs. Test instances allowed in non-production environments only. |
+| **active** | Deployed and available for fleet assignment | **Only `active` agent types may be assigned to crews in fleet configs.** Production instances allowed. |
+| **deprecated** | Still running but superseded; no new assignments | **Fleet configs must NOT reference deprecated types.** Existing running instances may continue until their current mission completes, but no new assignments are permitted. Orchestration Layer must migrate to the replacement type. |
+| **retired** | Decommissioned, definition kept for audit | No instances may run. Definition file remains in the registry for audit trail. Fleet configs referencing retired types will fail CI validation. |
+
+### Lifecycle Transition Approvals
+
+| Transition | Who Approves | Required Evidence |
+|------------|-------------|-------------------|
+| proposed → approved | CTO (via PR merge) | Quality Layer evaluation of proposal boundaries and safety constraints |
+| approved → implementing | Automatic (on PR merge of approved status) | — |
+| implementing → active | CTO (via PR merge) | Quality validation report confirming capabilities, safety constraints, and policy compliance |
+| active → deprecated | CTO (via PR merge) | Evolution proposal documenting replacement type and migration plan |
+| deprecated → retired | CTO (via PR merge) | Confirmation that no fleet configs reference this type and no instances are running |
+
+### Deprecation Rules
+
+- A deprecated agent type **must** have a `superseded_by` field pointing to the replacement agent type ID
+- The Orchestration Layer is responsible for migrating fleet configs from the deprecated type to the replacement type
+- Deprecation does not mean immediate shutdown — existing missions using the deprecated type may complete their current work
+- The Steering Layer sets the **migration deadline** (typically 30-90 days) in the evolution proposal
+- After the migration deadline, the type transitions to `retired`
+
+### Retirement Process
+
+- **When to retire (vs. keep deprecated):** Retire when all fleet configs have been migrated and no instances are running. Deprecation is a transition state, not a permanent one.
+- **Retirement does not delete the file.** The definition file stays in the registry with `status: retired` for audit trail and historical reference.
+- **Archived definitions** may be moved to a `retired/` subdirectory within the layer folder if the active registry becomes cluttered — this is optional and at Steering Layer discretion.
 
 ## How to Propose a New Agent Type
 
