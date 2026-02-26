@@ -1,6 +1,6 @@
 # Technical Design: [Mission Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
+> **Template version:** 1.1 | **Last updated:** 2026-02-25  
 > **Purpose:** Bridge the gap between mission-level outcomes and implementation-level specifications. Required for multi-stream missions, novel architecture patterns, or missions marked `design-required: true`.  
 > **Produced by:** Execution Layer (Technical Design Agent or Tech Lead)  
 > **Reviewed at:** Architecture review human checkpoint (before stream execution begins)  
@@ -210,6 +210,97 @@ Scenario: [Error case name]
 
 ---
 
+## Observability Design
+
+> **Requirement:** Per AGENTS.md Rule 9c — "Define what will be observed before defining how it will be built."  
+> Per observability policy — observability is not a feature you add later. Design instrumentation, metrics, health targets, dashboards, and alerting as part of the Technical Design, not after implementation.
+
+### Production Baseline (Existing Components)
+
+> For missions that modify existing components, query the observability platform for current production baselines **before** finalizing the design. Skip this section only for entirely new greenfield components.
+
+| Component | Metric | Current Value | Source Dashboard | Risk if Degraded |
+|-----------|--------|---------------|------------------|------------------|
+| _(e.g., User API)_ | _(e.g., p95 latency)_ | _(e.g., 142ms)_ | _(link to dashboard)_ | _(e.g., SLO breach — 2% error budget remaining)_ |
+| _(e.g., Auth Service)_ | _(e.g., error rate)_ | _(e.g., 0.03%)_ | _(link)_ | _(e.g., low risk — 85% error budget remaining)_ |
+
+- [ ] Production baselines queried from observability platform for all modified components
+- [ ] Error budget status reviewed — no proposed change targets a component with <20% error budget remaining without explicit risk mitigation
+- [ ] Dependency map reviewed — downstream impact of proposed changes assessed
+
+### Instrumentation Plan
+
+> Define what traces, spans, and instrumentation each new or modified component will produce.
+
+| Component | Span Name | Type | Attributes | Notes |
+|-----------|-----------|------|------------|-------|
+| _(e.g., Export API)_ | _(e.g., `export.job.create`)_ | _(e.g., server span)_ | _(e.g., `export.format`, `customer.id`)_ | _(custom span for job creation)_ |
+| _(e.g., Data Processor)_ | _(e.g., `export.process.batch`)_ | _(e.g., internal span)_ | _(e.g., `batch.size`, `batch.duration`)_ | _(child span per batch)_ |
+
+- [ ] All new endpoints produce traces (HTTP, gRPC, messaging)
+- [ ] Custom spans defined for business-critical operations (not just framework-level)
+- [ ] Trace context propagation designed across all new service boundaries (W3C Trace Context)
+- [ ] Agent workflows include spans for tool calls, decisions, and escalations (if applicable)
+
+### Metrics Design
+
+| Metric Name | Type | Labels/Dimensions | Description |
+|-------------|------|-------------------|-------------|
+| _(e.g., `export.jobs.created`)_ | _(counter)_ | _(format, customer_tier)_ | _(Total export jobs created)_ |
+| _(e.g., `export.processing.duration`)_ | _(histogram)_ | _(format, batch_size_bucket)_ | _(Processing time per export job)_ |
+
+- [ ] **RED metrics** defined for every new endpoint (Rate, Errors, Duration)
+- [ ] **Business metrics** defined for user-facing features (adoption, conversion, volume)
+- [ ] **Agent-specific metrics** defined (if applicable): token usage, tool call rates, decision latency
+- [ ] Metric naming follows standard conventions (dot-separated, lowercase)
+- [ ] Required dimensions include: `service.name`, `service.version`, `division`
+
+### Health Targets / SLOs
+
+| Component | SLO Type | Target | Error Budget | Burn Rate Alert Threshold |
+|-----------|----------|--------|-------------|---------------------------|
+| _(e.g., Export API)_ | _(availability)_ | _(99.9%)_ | _(0.1% over 30d rolling)_ | _(2x burn rate for 1h window)_ |
+| _(e.g., Export API)_ | _(latency p95)_ | _(< 200ms)_ | _(5% of requests may exceed)_ | _(3x burn rate for 15m window)_ |
+
+- [ ] At least one health target defined per new production component
+- [ ] Targets aligned with Performance Budgets section above
+- [ ] Error budget thresholds defined with burn rate alert configuration
+
+### Dashboard Specification
+
+| Dashboard | Key Visualizations | Audience | Auto-Created |
+|-----------|--------------------|----------|--------------|
+| _(e.g., Export Service Health)_ | _(RED metrics, SLO burn-down, deployment markers, dependency health)_ | _(on-call, division lead)_ | _(yes/no)_ |
+
+- [ ] Service health dashboard planned for every new production component
+- [ ] Dashboard includes: RED metrics, SLO status, error budget, dependency health, deployment timeline
+- [ ] Dashboard URL will be registered in Software Catalog entity metadata
+
+### Alerting Plan
+
+| Alert | Condition | Severity | Routing | Runbook |
+|-------|-----------|----------|---------|---------|
+| _(e.g., Export error rate spike)_ | _(error_rate > 2x baseline for 5m)_ | _(P2)_ | _(on-call paging)_ | _(link to runbook)_ |
+| _(e.g., SLO burn rate critical)_ | _(burn_rate > 3x for 15m)_ | _(P1)_ | _(on-call paging)_ | _(link to runbook)_ |
+
+- [ ] Alerts defined for SLO burn rate, error rate spikes, latency degradation, resource saturation
+- [ ] Every alert has a documented runbook action
+- [ ] Alert routing defined (P1/P2 → paging, P3/P4 → team channel, agent-resolvable → remediation agent)
+- [ ] Alert definitions designed as code (GitOps)
+
+### Observability Coverage Checklist
+
+- [ ] Every new endpoint has a corresponding instrumentation plan entry
+- [ ] Every new service-to-service call is traceable end-to-end
+- [ ] Every new error path produces structured logs with trace correlation
+- [ ] Every new agent workflow includes observability spans (if applicable)
+- [ ] SLOs defined for all new production components
+- [ ] Dashboard and alerting planned for all new production components
+- [ ] Production baselines consulted for all modified components (or documented as N/A for greenfield)
+- [ ] Impact assessment completed: no proposed change degrades existing SLOs without documented risk mitigation
+
+---
+
 ## Architecture Decisions
 
 > Key technical choices made during design. For novel patterns, create a full Architecture Decision Record in `work/decisions/`. For standard choices, document them inline here.
@@ -249,6 +340,9 @@ Before submitting this design for review, verify:
 - [ ] Behavioral specs cover ambiguous or cross-stream behaviors
 - [ ] Security threat model completed for new attack surfaces
 - [ ] Performance budgets set with measurement methods
+- [ ] **Observability design completed:** instrumentation plan, metrics, SLOs, dashboards, alerting
+- [ ] **Production baselines queried** for all modified components (or N/A for greenfield documented)
+- [ ] **Impact assessment:** no proposed change degrades existing SLOs without documented mitigation
 - [ ] Architecture decisions documented (or linked to ADRs)
 - [ ] Open questions have owners and target dates
 - [ ] Design is consistent with architecture policy requirements
@@ -267,4 +361,5 @@ Before submitting this design for review, verify:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-02-25 | Added Observability Design section (instrumentation plan, metrics, SLOs, dashboards, alerting, production baselines); updated Design Review Checklist with observability and impact assessment items |
 | 1.0 | 2026-02-19 | Initial version |

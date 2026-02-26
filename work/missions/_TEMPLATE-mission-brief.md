@@ -1,6 +1,6 @@
 # Mission Brief: [Mission Name]
 
-> **Template version:** 1.2 | **Last updated:** 2026-02-25
+> **Template version:** 1.3 | **Last updated:** 2026-02-25
 > **Mission ID:** MISSION-YYYY-NNN
 > **Status:** proposed | approved | planning | active | paused | completed | cancelled
 > **Created:** YYYY-MM-DD
@@ -67,6 +67,35 @@ These moments require human review and approval:
 |------|-----------|--------|------------|
 | [Risk 1] | high/med/low | high/med/low | [Mitigation strategy] |
 
+## Observability Requirements
+
+> **Requirement:** Per AGENTS.md Rule 9c — observability must be considered from mission inception, not deferred to implementation. For missions marked `design-required: true`, the full Observability Design lives in the Technical Design document. This section captures the high-level requirements that inform that design.
+
+### Key Metrics
+
+> What must be measurable for this mission to demonstrate success? These should align with the Outcome Contract metrics.
+
+| Metric | Measurement Approach | Existing or New | Notes |
+|--------|---------------------|-----------------|-------|
+| [Outcome metric 1] | [How it will be observed — dashboard, query, etc.] | existing | new | [Notes] |
+
+### Production Baselines at Risk
+
+> For missions that touch existing production components, identify what must not degrade. Query the observability platform for current baselines.
+
+| Component | Current SLO Status | Error Budget Remaining | Risk Level |
+|-----------|--------------------|----------------------|------------|
+| [Existing component 1] | [e.g., 99.95% availability] | [e.g., 62%] | low / medium / high |
+
+> _Skip this section for entirely greenfield missions with no production dependencies._
+
+### Observability Dependencies
+
+- [ ] New dashboards required: yes / no — _(describe if yes)_
+- [ ] New SLOs / health targets required: yes / no — _(describe if yes)_
+- [ ] New alerting required: yes / no — _(describe if yes)_
+- [ ] Existing monitoring must be updated: yes / no — _(describe if yes)_
+
 ## Estimated Effort
 
 - **Size:** small (< 2 weeks) | medium (2-6 weeks) | large (6+ weeks)
@@ -108,6 +137,7 @@ Missions follow a governed lifecycle. Each transition has a gate that must be sa
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3 | 2026-02-25 | Added Observability Requirements section (key metrics, production baselines at risk, observability dependencies) per AGENTS.md Rule 9c |
 | 1.2 | 2026-02-25 | Added optional `blocked_by` and `blocks` fields for cross-mission dependency declaration |
 | 1.1 | 2026-02-24 | Added `planning` and `cancelled` statuses; added Status Transition Rules section with gates; documented TASKS.md requirement for `active` status and exception for non-execution missions |
 | 1.0 | 2026-02-19 | Initial version |

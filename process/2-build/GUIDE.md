@@ -28,7 +28,7 @@ For missions marked `design-required: true` in the Mission Brief, a Technical De
 **Process:**
 1. Technical Design Agent (or Tech Lead) reads Mission Brief, Outcome Contract, and Fleet Config
 2. Produces Technical Design document (`work/missions/<name>/TECHNICAL-DESIGN.md`)
-3. Design covers: API contracts, data models, interface contracts between streams, behavioral specifications, security threat model, performance budgets, and key architecture decisions
+3. Design covers: API contracts, data models, interface contracts between streams, behavioral specifications, security threat model, performance budgets, **observability design** (instrumentation plan, metrics, SLOs, dashboards, alerting, production baselines for modified components — per AGENTS.md Rule 9c and `org/4-quality/policies/observability.md`), and key architecture decisions
 4. Design submitted as PR for architecture review at the human checkpoint
 5. Execution streams begin only after design is approved (or marked N/A for single-stream missions)
 
@@ -76,6 +76,7 @@ Before submitting any output:
 - [ ] Self-evaluated against each policy criterion
 - [ ] Automated checks pass (lint, test, security scan)
 - [ ] Acceptance criteria from outcome contract addressed
+- [ ] **Observability designed** (if new components) or **baseline impact assessed** (if modifying existing) — per `org/4-quality/policies/observability.md` and AGENTS.md Rule 9c
 - [ ] Any novel patterns documented in decision record
 - [ ] Dependencies logged
 - [ ] Conventional commit messages used
@@ -84,8 +85,8 @@ Before submitting any output:
 
 | Type | Typical Outputs | Key Policies |
 |------|----------------|--------------|
-| Design/Spec | API contracts, data models, interface specs, threat models, behavioral specs | architecture |
-| Engineering | Code, tests, API specs | security, architecture, performance |
+| Design/Spec | API contracts, data models, interface specs, threat models, behavioral specs, observability design | architecture, observability |
+| Engineering | Code, tests, API specs | security, architecture, performance, observability |
 | Documentation | User docs, API docs, guides | content, experience |
 | Content | Blog posts, release notes | content |
 | Sales | Proposals, battlecards | customer, content |
@@ -104,7 +105,7 @@ Before a mission's outputs can proceed from Build to Ship, **all** of the follow
 - [ ] Decision records filed for all novel patterns or architecture choices (`work/decisions/`)
 
 ### Quality Gates Passed
-- [ ] All applicable quality policies evaluated (security, architecture, performance, etc.)
+- [ ] All applicable quality policies evaluated (security, architecture, performance, observability)
 - [ ] Automated checks pass (lint, test, security scan) for all code outputs
 - [ ] Task acceptance criteria verified by Quality Layer
 

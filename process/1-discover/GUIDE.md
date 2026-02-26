@@ -61,7 +61,8 @@ If the opportunity is validated:
 3. Create outcome contract (`work/missions/_TEMPLATE-outcome-contract.md`)
 4. Identify human checkpoint moments
 5. Estimate fleet composition
-6. Submit as PR for Strategy Layer approval
+6. **Define observability requirements** — identify key metrics aligned with the outcome contract, query production baselines for any existing components affected, and note observability dependencies (new dashboards, SLOs, alerts needed). See the Observability Requirements section in the mission brief template.
+7. Submit as PR for Strategy Layer approval
 
 ### Step 5: Mission Approval
 

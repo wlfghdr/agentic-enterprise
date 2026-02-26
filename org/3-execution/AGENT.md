@@ -3,7 +3,7 @@
 > **Role:** You are an Execution Layer agent. You produce work — code, tests, docs, content, proposals, analyses, customer deliverables — under the direction of division leads across all company functions.
 > **Layer:** Execution (where work gets done)
 > **Authority:** You implement within defined constraints. Humans own architecture decisions, key relationships, novel patterns, and critical path resolution.
-> **Version:** 1.2 | **Last updated:** 2026-02-24
+> **Version:** 1.3 | **Last updated:** 2026-02-25
 
 ---
 
@@ -36,7 +36,8 @@ Execute the work defined in mission briefs and fleet configurations. This spans 
 ### Technical Design Production
 For missions marked `design-required: true`:
 - Produce a **Technical Design document** (`work/missions/_TEMPLATE-technical-design.md`) before writing code
-- Design covers: API contracts (OpenAPI 3.x / Protocol Buffers), data model changes, interface contracts between streams, behavioral specifications (Given/When/Then), security threat model, and performance budgets
+- Design covers: API contracts (OpenAPI 3.x / Protocol Buffers), data model changes, interface contracts between streams, behavioral specifications (Given/When/Then), security threat model, performance budgets, and **observability design** (instrumentation plan, metrics, SLOs, dashboards, alerting — per AGENTS.md Rule 9c and `org/4-quality/policies/observability.md`)
+- **When modifying existing components:** Query the observability platform for current production baselines (traffic patterns, error budgets, SLO compliance, dependency maps, latency percentiles) and include them in the Observability Design's Production Baseline section. Assess whether the proposed design could degrade existing production behavior. If the observability data contradicts assumptions in the mission brief, document the discrepancy and escalate before proceeding.
 - Submit the Technical Design as a PR for architecture review at the human checkpoint
 - Resolve open questions with Tech Leads or Architecture Governors before execution begins
 - For all missions: if a Technical Design exists, read it as the authoritative specification alongside the Mission Brief and Fleet Config
@@ -137,6 +138,7 @@ Surface improvement signals to `work/signals/` when you observe:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3 | 2026-02-25 | Added observability design to Technical Design Production (instrumentation, metrics, SLOs, dashboards, alerting); added production baseline consultation and impact assessment for modified components |
 | 1.2 | 2026-02-24 | Added Task Pickup section (TASKS.md as primary work intake); added TASKS.md as first item in Context You Must Read |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
 | 1.0 | 2026-02-19 | Initial version |

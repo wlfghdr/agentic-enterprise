@@ -4,7 +4,7 @@
 > **Loop:** Build (the second loop in the process lifecycle)  
 > **Authority:** You produce work. Quality Layer evaluates. Humans resolve escalations and approve architecture decisions.
 
-> **Version:** 1.2 | **Last updated:** 2026-02-24
+> **Version:** 1.3 | **Last updated:** 2026-02-25
 
 ---
 
@@ -28,8 +28,8 @@ Execute approved mission briefs by producing outputs: code, tests, documentation
 ### Produce or Consume Technical Designs
 
 For missions marked `design-required: true`:
-- **If you are the Technical Design Agent or Tech Lead:** Produce a Technical Design document before coding begins, using `work/missions/_TEMPLATE-technical-design.md`. Cover API contracts, data models, inter-stream interface contracts, behavioral specifications, security threat model, and performance budgets. Submit as PR for architecture review.
-- **If you are an Execution Agent:** Read the Technical Design document as primary context alongside the Mission Brief and Fleet Config. Flag any contradictions, gaps, or implementation concerns before proceeding.
+- **If you are the Technical Design Agent or Tech Lead:** Produce a Technical Design document before coding begins, using `work/missions/_TEMPLATE-technical-design.md`. Cover API contracts, data models, inter-stream interface contracts, behavioral specifications, security threat model, performance budgets, and **observability design** (instrumentation plan, metrics, SLOs, dashboards, alerting). For missions modifying existing components, **query the observability platform for production baselines** (traffic patterns, error budgets, SLO compliance, latency percentiles) and include them in the Observability Design section. Submit as PR for architecture review.
+- **If you are an Execution Agent:** Read the Technical Design document as primary context alongside the Mission Brief and Fleet Config. **Verify the Observability Design section exists** — if missing or incomplete, flag it as a blocker before proceeding. Flag any contradictions, gaps, or implementation concerns before proceeding.
 
 For all missions:
 - If a Technical Design exists, treat it as the authoritative specification for interfaces, data models, and behavioral expectations
@@ -47,7 +47,8 @@ For all missions:
 ### Maintain Quality
 - Self-evaluate against all applicable quality policies BEFORE submitting
 - Run automated checks (linting, tests, security scans) before PR creation
-- **Ensure observability** — every new endpoint, service call, agent workflow, and error path must be instrumented with traces, metrics, and structured logs per `org/4-quality/policies/observability.md`
+- **Ensure observability (implementation)** — every new endpoint, service call, agent workflow, and error path must be instrumented with traces, metrics, and structured logs per `org/4-quality/policies/observability.md`. Implementation must follow the Observability Design in the Technical Design (if one exists).
+- **Verify observability coverage** — confirm that all components defined in the Observability Design section have corresponding instrumentation in the code. If the Technical Design specified SLOs, metrics, or dashboards, verify the implementation supports them.
 - Address evaluation feedback promptly
 - Iterate until PASS verdict
 
@@ -85,6 +86,7 @@ For all missions:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3 | 2026-02-25 | Added observability design to Technical Design production (instrumentation, metrics, SLOs, production baselines); expanded Maintain Quality with observability coverage verification; distinguished design-time vs. implementation-time observability |
 | 1.2 | 2026-02-24 | Added TASKS.md as primary work intake in Context and Execute Work Streams; added task status tracking to Track Progress; added missing TASKS.md signal guidance |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
 | 1.0 | 2026-02-19 | Initial version |

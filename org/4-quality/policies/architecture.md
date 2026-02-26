@@ -3,7 +3,7 @@
 > **Applies to:** All code changes, new services, API designs, data models, system integrations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Architecture Governors (Steering Layer delegates)
-> **Version:** 1.1 | **Last updated:** 2026-02-23
+> **Version:** 1.2 | **Last updated:** 2026-02-25
 
 ---
 
@@ -25,7 +25,7 @@
 
 ### Technical Design
 - [ ] **Multi-stream missions** (2+ streams with dependencies) must have a Technical Design document (`_TEMPLATE-technical-design.md`) approved before execution begins
-- [ ] Technical Design includes: API contracts, data model changes, interface contracts between streams, behavioral specifications, security threat model, and performance budgets
+- [ ] Technical Design includes: API contracts, data model changes, interface contracts between streams, behavioral specifications, security threat model, performance budgets, and **observability design** (instrumentation plan, metrics, SLOs, dashboards, alerting — per [observability.md](observability.md))
 - [ ] Technical Design reviewed by Architecture Governor (and Security Lead if security-sensitive)
 - [ ] All inter-stream interface contracts from the fleet config are defined in the Technical Design — no implicit interfaces
 - [ ] Behavioral specifications map to acceptance criteria in the Outcome Contract
@@ -75,7 +75,7 @@
 | Code coverage | ≥ {{MIN_CODE_COVERAGE}} | Below threshold |
 | Design system | Uses standard components | Custom components without approval |
 | Service boundary | Aligned with division | Cross-division data sharing |
-| Observability | Instrumented with traces, metrics, logs, health targets | Missing instrumentation or no health targets |
+| Observability | Instrumented with traces, metrics, logs, health targets; observability designed in Technical Design with production baselines consulted | Missing instrumentation, no health targets, or no observability design in Technical Design |
 | Technical design | Design document exists and approved for multi-stream missions | Multi-stream mission executing without reviewed design |
 
 ---
@@ -85,4 +85,5 @@
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 2026-02-19 | Initial version |
+| 1.2 | 2026-02-25 | Added observability design to Technical Design checklist; updated evaluation criteria to include design-time observability |
 | 1.1 | 2026-02-23 | Replace {{DESIGN_SYSTEM_NAME}} placeholder with generic "company design system" language |

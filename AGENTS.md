@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 2.0 | **Last updated:** 2026-02-23
+> **Version:** 2.1 | **Last updated:** 2026-02-25
 
 > **Scope:** Every AI agent working in this repository — regardless of layer, role, or task — must follow these instructions.
 > **This file is the top of the instruction hierarchy.** Layer-specific and division-specific instructions extend (never contradict) these rules.
@@ -97,6 +97,19 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
   - Query mission cycle times before strategy or steering decisions
 - **The observability platform writes signals to Git.** Automated signals filed at `work/signals/` may originate from observability anomaly detection — treat these with the same authority as human-filed signals. Their source attribute (`source: observability-platform`) identifies their origin.
 - **Never recommend changes to something you haven't observed.** If the observability data contradicts assumptions in a mission brief, document the discrepancy and escalate rather than proceeding on stale information.
+
+#### 9c. Design with observability — before building
+- **Observability is a design-time discipline, not a post-implementation afterthought.** Shifting observability left — into architecture and mission design — prevents incidents, cuts delivery time, and produces production-aware engineering from the start.
+- **Every agent involved in design or planning** (Technical Design Agents, Architecture Governors, Strategy Agents drafting missions, Orchestration Agents configuring fleets) must define what will be observed before defining how it will be built:
+  - What traces and spans the deliverable will produce (instrument plan)
+  - What metrics it will expose (RED, business, custom)
+  - What health targets / SLOs it must meet
+  - What dashboards and alerts will be created
+- **Consult production reality before committing to a design.** When a mission touches existing components, agents must query the observability platform for current baselines — traffic patterns, error budgets, SLO compliance, dependency maps, latency percentiles — and factor these into the proposed design. A design that ignores production reality is incomplete.
+- **Assess impact predictively.** Use current observability data to evaluate whether the proposed design could degrade existing production behavior. If the observability platform shows an existing service is near its error budget, a design that adds load or changes dependencies must account for that risk explicitly.
+- **Surface contradictions.** If observability data contradicts assumptions in a mission brief or technical design (e.g., assumed low traffic but production shows high volume; assumed stable service but error rate is trending up), document the discrepancy, escalate to the mission sponsor, and do not proceed until the design is reconciled with reality.
+- **Ensure observability coverage from design through production.** Every designed component, endpoint, service call, agent workflow, and error path must have an observability plan in the Technical Design before implementation begins. The Observability Design section in the Technical Design template (`work/missions/_TEMPLATE-technical-design.md`) is the governed artifact for this.
+- **Quality agents evaluate observability design, not just implementation.** When reviewing Technical Designs, Quality Layer agents verify the observability design is complete — returning incomplete designs as FAIL, not waiting to discover missing observability at PR review time.
 
 ### 10. Version everything you change
 - **Every artifact you modify must have its version or date updated.** No silent changes.
