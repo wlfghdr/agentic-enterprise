@@ -683,6 +683,79 @@ const scenarioData = {
         narrative: 'After measured improvement, a final PR updates lifecycle state and feeds ongoing fleet performance monitoring.'
       }
     ]
+  },
+  selfimprovement: {
+    label: '✦ Template That Improves Itself',
+    summary: 'SandboxCorp detects a GTM gap, spawns a steering agent, ships a narrative PR, and proves the self-optimization loop — live.',
+    chain: 'Signal → Steering → Execution → Proof → Loop',
+    steps: [
+      {
+        phase: 'Phase 1',
+        title: 'GTM signal detected: narrative gap found',
+        from: 'customer-signal-scanner',
+        fromNode: 'executionSignal',
+        wakes: ['steeringDigest'],
+        branch: 'signal/2026-02-27-gtm-self-optimization-narrative-missing',
+        artifact: 'work/signals/2026-02-27-gtm-self-optimization-narrative-missing.md',
+        tags: ['GTM gap', 'confidence=0.92', 'Operate loop'],
+        narrative: 'SandboxCorp\'s signal scanner reviews GTM assets and detects a missing story: the template\'s self-improvement capability is not yet explained publicly. A signal PR is filed automatically — no human involvement yet.'
+      },
+      {
+        phase: 'Phase 2',
+        title: 'Steering digest confirms pattern, raises priority',
+        from: 'signal-aggregation',
+        fromNode: 'steeringDigest',
+        wakes: ['steeringEvolution'],
+        branch: 'digest/2026-W09-gtm-narrative-gap',
+        artifact: 'work/signals/digests/2026-W09-digest.md',
+        tags: ['Pattern confirmed', 'Priority: high', 'Steering layer'],
+        narrative: 'Steering aggregates the GTM signal with prior narrative-quality checks. Pattern is confirmed: the self-optimization story needs to be told, and it needs to be told by the template itself.'
+      },
+      {
+        phase: 'Phase 3',
+        title: 'Steering agent spawned: GTM narrative mission',
+        from: 'org-evolution-proposer',
+        fromNode: 'steeringEvolution',
+        wakes: ['strategyProduct'],
+        branch: 'gtm-self-optimization-narrative',
+        artifact: 'org/0-steering/STEERING-REPORT.md',
+        tags: ['model=claude-sonnet', 'label=gtm-self-optimization-narrative', 'Steering agent'],
+        narrative: 'A steering agent is spawned with full context: GTM signal, repo structure, narrative brief. Its mission: write the self-improvement story into the landing page — demonstrating the capability it is describing.'
+      },
+      {
+        phase: 'Phase 4',
+        title: 'Execution: narrative + animation crafted, PR opened',
+        from: 'coding-agent stream',
+        fromNode: 'executionBuild',
+        wakes: ['qualityEval'],
+        branch: 'gtm-self-optimization-narrative',
+        artifact: 'index.html',
+        tags: ['Animated loop', 'Signal terminal', 'PR #61'],
+        narrative: 'The steering agent clones the repo, authors the "Template That Improves Itself" section with an animated signal terminal and proof points, and opens PR #61 — all without human authorship of a single line.'
+      },
+      {
+        phase: 'Phase 5',
+        title: 'Quality review: Wolfgang approves PR',
+        from: 'delivery-evaluator',
+        fromNode: 'qualityEval',
+        wakes: ['releaseOps'],
+        branch: 'gtm-self-optimization-narrative',
+        artifact: 'work/missions/gtm-self-optimization/QUALITY-EVALUATION-REPORT.md',
+        tags: ['Human review', 'Approved', 'PR #61'],
+        narrative: 'Wolfgang reviews the PR — narrative quality, animation fidelity, no internal tool references. Approved. The only human action in the entire loop was a single review click.'
+      },
+      {
+        phase: 'Phase 6',
+        title: 'Proof: PR merged, narrative live on index.html',
+        from: 'release-manager',
+        fromNode: 'releaseOps',
+        wakes: ['executionSignal'],
+        branch: 'main',
+        artifact: 'index.html',
+        tags: ['Signal resolved', 'Loop complete', 'Cycle continues'],
+        narrative: 'PR #61 merges to main. The GTM signal is resolved. The template has updated its own story — and the next signal is already being scanned. This page is itself proof of the loop.'
+      }
+    ]
   }
 };
 
