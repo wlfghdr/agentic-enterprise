@@ -266,6 +266,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
     <li><a href="#loops">Process</a></li>
     <li><a href="#gitops">GitOps</a></li>
     <li><a href="#adopt">Adopt</a></li>
+    <li><a href="#self-optimization">Self-Improving</a></li>
     <li><a href="#live-visualization" style="color:var(--cyan)">▶ Live Demo</a></li>
   </ul>
   <a href="https://github.com/wlfghdr/agentic-enterprise" target="_blank" class="nav-cta">GitHub ↗</a>
@@ -722,36 +723,6 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   </p>
 </section>
 
-<!-- ═══════════════════════════ LIVE VISUALIZATION EMBED ═══════════════════════════ -->
-<section id="live-visualization" class="live-visualization-section">
-  <div class="viz-intro-bar">
-    <div class="container">
-      <div class="viz-intro-inner">
-        <div class="viz-intro-text">
-          <div class="section-label" style="margin-bottom:12px">Interactive Demo</div>
-          <h2 class="viz-intro-heading">Watch <span class="gradient-text">agents execute.</span></h2>
-          <p class="viz-intro-sub">Three real scenarios playing out in real-time. Agent fleets coordinate, PRs flow, telemetry fires, signals loop back. This is the operating model — alive.</p>
-        </div>
-        <div class="viz-intro-right">
-          <div class="viz-scenario-chips">
-            <div class="viz-chip">🔄 Feature lifecycle</div>
-            <div class="viz-chip">🏢 Company optimization</div>
-            <div class="viz-chip">🤖 Fleet change cycle</div>
-          </div>
-          <a href="concept-visualization.html" target="_blank" class="btn-secondary" style="margin-top:16px;display:inline-flex">Open fullscreen ↗</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="viz-embed-wrap">
-    <div class="viz-embed-head">
-      <span>Live · Interactive · No setup required — click a scenario and watch</span>
-      <a class="viz-embed-link" href="concept-visualization.html" target="_blank">Open standalone ↗</a>
-    </div>
-    <iframe class="viz-embed" src="concept-visualization.html" title="Agentic Enterprise Live Visualization" loading="lazy"></iframe>
-  </div>
-</section>
-
 <!-- ═══════════════════════════ SANDBOXCORP SELF-OPTIMIZATION ═══════════════════════════ -->
 <section id="self-optimization" style="padding:100px 0;background:radial-gradient(ellipse at 60% 0%,rgba(124,58,237,.1),transparent 60%),radial-gradient(ellipse at 10% 80%,rgba(34,211,238,.07),transparent 50%)">
 <style>
@@ -798,7 +769,6 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 @keyframes fadeline{to{opacity:1}}
 .selfopt-quote{background:rgba(28,28,34,.7);border-left:3px solid var(--accent);padding:18px 22px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:.95rem;color:var(--text2);line-height:1.7;font-style:italic;max-width:680px;margin:32px 0}
 .selfopt-quote strong{color:var(--text);font-style:normal}
-.selfopt-cta{margin-top:48px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
 </style>
 <div class="container">
   <div class="reveal">
@@ -914,11 +884,37 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
     Watch it improve itself in real-time.&rdquo;
   </blockquote>
 
-  <div class="selfopt-cta reveal">
-    <a href="https://github.com/wlfghdr/agentic-enterprise" target="_blank" class="btn-primary">Fork the Template &#x2197;</a>
-    <a href="concept-visualization.html" class="btn-secondary">Watch it run &#x2192;</a>
-  </div>
 </div>
+</section>
+
+<!-- ═══════════════════════════ LIVE VISUALIZATION EMBED ═══════════════════════════ -->
+<section id="live-visualization" class="live-visualization-section">
+  <div class="viz-intro-bar">
+    <div class="container">
+      <div class="viz-intro-inner">
+        <div class="viz-intro-text">
+          <div class="section-label" style="margin-bottom:12px">Interactive Demo</div>
+          <h2 class="viz-intro-heading">Watch <span class="gradient-text">agents execute.</span></h2>
+          <p class="viz-intro-sub">Three real scenarios playing out in real-time. Agent fleets coordinate, PRs flow, telemetry fires, signals loop back. This is the operating model — alive.</p>
+        </div>
+        <div class="viz-intro-right">
+          <div class="viz-scenario-chips">
+            <div class="viz-chip">🔄 Feature lifecycle</div>
+            <div class="viz-chip">🏢 Company optimization</div>
+            <div class="viz-chip">🤖 Fleet change cycle</div>
+          </div>
+          <a href="concept-visualization.html" target="_blank" class="btn-secondary" style="margin-top:16px;display:inline-flex">Open fullscreen ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="viz-embed-wrap">
+    <div class="viz-embed-head">
+      <span>Live · Interactive · No setup required — click a scenario and watch</span>
+      <a class="viz-embed-link" href="concept-visualization.html" target="_blank">Open standalone ↗</a>
+    </div>
+    <iframe class="viz-embed" src="concept-visualization.html" title="Agentic Enterprise Live Visualization" loading="lazy"></iframe>
+  </div>
 </section>
 
 <script>
