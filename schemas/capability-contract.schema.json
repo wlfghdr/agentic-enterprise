@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/wlfghdr/agentic-enterprise/schemas/capability-contract.schema.json",
+  "title": "Agent Capability Contract",
+  "description": "Versioned capability contract for an agent type. Binds an agent type to a specific set of skills and MCP profiles, forming an auditable capability record.",
+  "type": "object",
+  "required": ["schema_version", "agent_type_id", "contract_version", "effective_date", "skills", "mcp_profiles", "approved_by"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "enum": ["1.0"] },
+    "agent_type_id": { "type": "string", "description": "Agent type this contract applies to (matches agent type registry ID)." },
+    "contract_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Version of this contract. Increment on any permission change." },
+    "effective_date": { "type": "string", "format": "date" },
+    "expiry_date": { "type": "string", "format": "date", "description": "Optional. Contract must be renewed before this date." },
+    "status": { "type": "string", "enum": ["draft", "active", "superseded", "revoked"] },
+    "skills": {
+      "type": "array",
+      "description": "Skills granted to this agent type.",
+      "items": {
+        "type": "object",
+        "required": ["skill_id", "skill_version"],
+        "additionalProperties": false,
+        "properties": {
+          "skill_id": { "type": "string" },
+          "skill_version": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "mcp_profiles": {
+      "type": "array",
+      "description": "MCP profiles granted to this agent type.",
+      "items": {
+        "type": "object",
+        "required": ["profile_id", "profile_version"],
+        "additionalProperties": false,
+        "properties": {
+          "profile_id": { "type": "string" },
+          "profile_version": { "type": "string" },
+          "tool_overrides": {
+            "type": "array",
+            "description": "Per-tool overrides specific to this agent type (more restrictive than the profile default).",
+            "items": {
+              "type": "object",
+              "required": ["tool", "override"],
+              "additionalProperties": false,
+              "properties": {
+                "tool": { "type": "string" },
+                "override": { "type": "string", "enum": ["allow", "deny", "require-approval"] },
+                "reason": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "approved_by": {
+      "type": "string",
+      "description": "Human or role who approved this contract version."
+    },
+    "review_required_by": {
+      "type": "string",
+      "description": "Role responsible for the next review."
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Why this agent type needs these capabilities."
+    },
+    "changelog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["version", "date", "change", "approved_by"],
+        "additionalProperties": false,
+        "properties": {
+          "version": { "type": "string" },
+          "date": { "type": "string" },
+          "change": { "type": "string" },
+          "approved_by": { "type": "string" }
+        }
+      }
+    }
+  }
+}

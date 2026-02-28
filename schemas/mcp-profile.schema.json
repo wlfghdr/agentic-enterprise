@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/wlfghdr/agentic-enterprise/schemas/mcp-profile.schema.json",
+  "title": "MCP Tool Profile",
+  "description": "Declarative profile for a Model Context Protocol server, including permission matrix and allowed operations.",
+  "type": "object",
+  "required": ["schema_version", "id", "name", "version", "description", "server", "permissions_matrix"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "enum": ["1.0"] },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$" },
+    "name": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "description": { "type": "string", "minLength": 10 },
+    "server": {
+      "type": "object",
+      "required": ["type", "transport"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "enum": ["builtin", "npm", "docker", "http", "stdio"] },
+        "transport": { "type": "string", "enum": ["stdio", "sse", "http"] },
+        "package": { "type": "string", "description": "npm package or Docker image if applicable." },
+        "command": { "type": "string", "description": "Command to start server (stdio)." },
+        "url": { "type": "string", "description": "Base URL for http/sse transports." },
+        "env_vars": {
+          "type": "array",
+          "description": "Environment variables required to configure the server.",
+          "items": {
+            "type": "object",
+            "required": ["name", "description", "required"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "required": { "type": "boolean" },
+              "secret": { "type": "boolean", "default": false }
+            }
+          }
+        }
+      }
+    },
+    "permissions_matrix": {
+      "type": "array",
+      "description": "Per-agent-layer permission grants for each tool/capability exposed by this MCP server.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["tool", "description", "allowed_layers"],
+        "additionalProperties": false,
+        "properties": {
+          "tool": { "type": "string", "description": "MCP tool name (as exposed by the server)." },
+          "description": { "type": "string" },
+          "risk_level": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+          "allowed_layers": {
+            "type": "array",
+            "description": "Agent layers permitted to invoke this tool.",
+            "items": {
+              "type": "string",
+              "enum": ["steering", "strategy", "orchestration", "execution", "quality"]
+            }
+          },
+          "denied_layers": {
+            "type": "array",
+            "description": "Agent layers explicitly denied (overrides allowed_layers).",
+            "items": { "type": "string" }
+          },
+          "requires_approval": { "type": "boolean", "default": false, "description": "If true, human approval is required before invocation." },
+          "rate_limit": { "type": "string", "description": "Optional rate limit (e.g. '10/hour')." },
+          "constraints": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "description": "Auditing requirements for this MCP server.",
+      "additionalProperties": false,
+      "properties": {
+        "log_all_calls": { "type": "boolean", "default": true },
+        "retention_days": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "changelog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["version", "date", "change"],
+        "additionalProperties": false,
+        "properties": {
+          "version": { "type": "string" },
+          "date": { "type": "string" },
+          "change": { "type": "string" }
+        }
+      }
+    }
+  }
+}
