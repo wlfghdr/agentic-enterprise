@@ -112,7 +112,7 @@ Existing agent type definition files (`org/agents/<layer>/<type>.md`) retain the
 ```markdown
 ## Capabilities
 
-> Authoritative capability contract: [`org/capability-contracts/execution-builder.contract.json`](../../../org/capability-contracts/execution-builder.contract.json)
+> Authoritative capability contract: [`org/capability-contracts/execution-builder.contract.json`](../org/capability-contracts/execution-builder.contract.json)
 
 ### Skills (summary)
 - `github-code-implementation` v1.0.0
