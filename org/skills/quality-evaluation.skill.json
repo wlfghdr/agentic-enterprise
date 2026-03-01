@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "id": "quality-evaluation",
+  "name": "Quality Evaluation",
+  "version": "1.0.0",
+  "description": "Evaluate artifacts (PRs, mission outputs, signals) against defined quality gates and policy rules. Produce structured evaluation reports.",
+  "category": "evaluation",
+  "inputs": [
+    { "type": "pull-request", "description": "Pull request to evaluate.", "required": false },
+    { "type": "mission-output", "description": "Mission outputs to evaluate.", "required": false },
+    { "type": "policy-rules", "description": "Quality gates and policy rules.", "required": true }
+  ],
+  "outputs": [
+    { "type": "quality-evaluation-report", "description": "Structured evaluation report with pass/fail and recommendations." }
+  ],
+  "permissions": {
+    "level": "read-only",
+    "justification": "Evaluation is a read-only activity. Reports are filed as new artifacts, not mutations of existing ones.",
+    "scope": ["repo:read", "pull_requests:read"]
+  },
+  "mcp_servers": [
+    { "profile_id": "github", "required": true }
+  ],
+  "tool_permissions": [],
+  "applicable_agent_types": ["quality-evaluator", "quality-pr-reviewer"],
+  "constraints": [
+    "Must not modify the artifact being evaluated.",
+    "Evaluation reports must cite specific policy rules.",
+    "Must flag but not act on critical findings — escalate to human."
+  ],
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-02-28", "change": "Initial version." }
+  ]
+}

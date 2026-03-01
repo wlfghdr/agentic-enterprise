@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "id": "signal-triage",
+  "name": "Signal Triage",
+  "version": "1.0.0",
+  "description": "Monitor incoming signals, classify them by type and priority, route to appropriate layers or missions, and file structured triage reports.",
+  "category": "signal-processing",
+  "inputs": [
+    { "type": "signal", "description": "Raw signals from work/signals/ directory.", "required": true },
+    { "type": "mission-brief", "description": "Active mission briefs for context.", "required": false }
+  ],
+  "outputs": [
+    { "type": "signal", "description": "Classified and enriched signal records." },
+    { "type": "mission-brief", "description": "New mission briefs spawned from high-priority signals." }
+  ],
+  "permissions": {
+    "level": "read-write",
+    "justification": "Must read signals and write triage outputs. No external system access required.",
+    "scope": ["repo:read", "repo:write"]
+  },
+  "mcp_servers": [
+    { "profile_id": "github", "required": true }
+  ],
+  "tool_permissions": [],
+  "applicable_agent_types": ["ops-triage"],
+  "constraints": [
+    "Must not delete or archive signals — only annotate them.",
+    "Must route critical signals within one heartbeat cycle.",
+    "Must not spawn more than 3 mission briefs per triage run."
+  ],
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-02-28", "change": "Initial version." }
+  ]
+}

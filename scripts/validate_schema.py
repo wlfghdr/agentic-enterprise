@@ -212,6 +212,40 @@ def discover_release_contracts() -> list[Path]:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 
+def validate_json_artifacts(schema_path: Path, glob_pattern: str) -> tuple[list[str], list[str]]:
+    """Validate all JSON files matching glob_pattern against schema_path.
+    Returns (errors, ok_labels)."""
+    errors: list[str] = []
+    ok_labels: list[str] = []
+
+    if not schema_path.exists():
+        errors.append(f"Schema file missing: {schema_path.relative_to(REPO)}")
+        return errors, ok_labels
+
+    schema = load_json(schema_path)
+    files = sorted(REPO.glob(glob_pattern))
+
+    if not files:
+        print(f"INFO: No files matched {glob_pattern} — skipping.")
+        return errors, ok_labels
+
+    for f in files:
+        rel = str(f.relative_to(REPO))
+        try:
+            instance = load_json(f)
+        except json.JSONDecodeError as exc:
+            errors.append(f"{rel}: JSON parse error — {exc}")
+            continue
+        try:
+            validate(instance=instance, schema=schema)
+            ok_labels.append(rel)
+        except ValidationError as exc:
+            errors.append(f"{rel}: {exc.message}")
+        except SchemaError as exc:
+            errors.append(f"Schema error in {schema_path.name}: {exc.message}")
+
+    return errors, ok_labels
+
 def main() -> int:
     all_errors: list[str] = []
     all_ok: list[str] = []
@@ -279,6 +313,25 @@ def main() -> int:
     else:
         all_errors.append(f"Schema file missing: {release_schema_path.relative_to(REPO)}")
 
+
+    # ── 5. Skill manifests ────────────────────────────────────────────────
+    skill_schema_path = REPO / "schemas" / "skill-manifest.schema.json"
+    errs, oks = validate_json_artifacts(skill_schema_path, "org/skills/*.skill.json")
+    all_errors.extend(errs)
+    all_ok.extend(oks)
+
+    # ── 6. MCP profiles ───────────────────────────────────────────────────
+    mcp_schema_path = REPO / "schemas" / "mcp-profile.schema.json"
+    errs, oks = validate_json_artifacts(mcp_schema_path, "org/mcp-profiles/*.mcp-profile.json")
+    all_errors.extend(errs)
+    all_ok.extend(oks)
+
+    # ── 7. Capability contracts ───────────────────────────────────────────
+    contract_schema_path = REPO / "schemas" / "capability-contract.schema.json"
+    errs, oks = validate_json_artifacts(contract_schema_path, "org/capability-contracts/*.contract.json")
+    all_errors.extend(errs)
+    all_ok.extend(oks)
+
     # ── Report ──────────────────────────────────────────────────────────────
     for ok in all_ok:
         print(f"  ✓  {ok}")
@@ -299,3 +352,8 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+# ── Capability artifact validators (Issue #5) ─────────────────────────────────
+
+

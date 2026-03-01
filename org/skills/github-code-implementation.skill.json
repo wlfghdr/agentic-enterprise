@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "github-code-implementation",
+  "name": "GitHub Code Implementation",
+  "version": "1.0.0",
+  "description": "Implement code changes in a repository: create branches, write code, commit, push, and open pull requests. Does not merge.",
+  "category": "code-generation",
+  "inputs": [
+    { "type": "mission-brief", "description": "Mission brief specifying what to implement.", "required": true },
+    { "type": "codebase-context", "description": "Relevant existing code and documentation.", "required": false }
+  ],
+  "outputs": [
+    { "type": "pull-request", "description": "Pull request opened with the implementation." },
+    { "type": "signal", "description": "Completion signal filed after PR is open." }
+  ],
+  "permissions": {
+    "level": "read-write",
+    "justification": "Must read repository content and push code to feature branches. Cannot merge or modify protected branches.",
+    "scope": ["repo:read", "repo:write", "pull_requests:write"]
+  },
+  "mcp_servers": [
+    { "profile_id": "github", "required": true }
+  ],
+  "tool_permissions": [
+    { "tool": "git", "access": "write", "scope": "feature-branches-only" },
+    { "tool": "bash", "access": "execute", "scope": "sandboxed" }
+  ],
+  "applicable_agent_types": ["execution-builder", "execution-security-fixer"],
+  "constraints": [
+    "Must not push to main, master, or any protected branch.",
+    "Must not modify policy/, CODEOWNERS, or SECURITY.md files.",
+    "All commits must be signed or traceable to the agent identity.",
+    "PR description must reference the originating mission brief."
+  ],
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-02-28", "change": "Initial version." }
+  ]
+}

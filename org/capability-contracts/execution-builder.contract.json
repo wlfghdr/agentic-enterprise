@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "agent_type_id": "execution-builder",
+  "contract_version": "1.0.0",
+  "effective_date": "2026-02-28",
+  "status": "active",
+  "rationale": "The execution-builder agent implements code changes and opens PRs. It needs read-write access to feature branches and the ability to create PRs, but must never merge or touch protected branches.",
+  "skills": [
+    { "skill_id": "github-code-implementation", "skill_version": "1.0.0" }
+  ],
+  "mcp_profiles": [
+    {
+      "profile_id": "github",
+      "profile_version": "1.0.0",
+      "tool_overrides": [
+        { "tool": "merge_pull_request", "override": "deny", "reason": "Builders must not merge their own PRs." },
+        { "tool": "delete_file", "override": "deny", "reason": "File deletion requires human approval, never automated." },
+        { "tool": "create_issue", "override": "deny", "reason": "Issue creation is not in scope for builder agents." }
+      ]
+    }
+  ],
+  "approved_by": "CTO",
+  "review_required_by": "CTO",
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-02-28", "change": "Initial contract.", "approved_by": "CTO" }
+  ]
+}

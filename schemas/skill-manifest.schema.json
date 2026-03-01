@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/wlfghdr/agentic-enterprise/schemas/skill-manifest.schema.json",
+  "title": "Agent Skill Manifest",
+  "description": "Declarative skill manifest defining a named capability an agent type can possess.",
+  "type": "object",
+  "required": ["schema_version", "id", "name", "version", "description", "category", "inputs", "outputs", "permissions"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "enum": ["1.0"] },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$" },
+    "name": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "description": { "type": "string", "minLength": 10 },
+    "category": {
+      "type": "string",
+      "enum": ["code-generation", "code-review", "signal-processing", "evaluation", "orchestration", "planning", "content", "data-access", "integration", "monitoring", "security"]
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "type": { "type": "string" },
+          "description": { "type": "string" },
+          "required": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "type": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "required": ["level"],
+      "additionalProperties": false,
+      "properties": {
+        "level": { "type": "string", "enum": ["read-only", "read-write", "elevated", "admin"] },
+        "justification": { "type": "string" },
+        "scope": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "mcp_servers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["profile_id", "required"],
+        "additionalProperties": false,
+        "properties": {
+          "profile_id": { "type": "string" },
+          "required": { "type": "boolean" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "tool_permissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tool", "access"],
+        "additionalProperties": false,
+        "properties": {
+          "tool": { "type": "string" },
+          "access": { "type": "string", "enum": ["read", "write", "execute", "admin"] },
+          "scope": { "type": "string" }
+        }
+      }
+    },
+    "applicable_agent_types": { "type": "array", "items": { "type": "string" } },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "changelog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["version", "date", "change"],
+        "additionalProperties": false,
+        "properties": {
+          "version": { "type": "string" },
+          "date": { "type": "string" },
+          "change": { "type": "string" }
+        }
+      }
+    }
+  }
+}

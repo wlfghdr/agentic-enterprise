@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "id": "mission-orchestration",
+  "name": "Mission Orchestration",
+  "version": "1.0.0",
+  "description": "Decompose high-level mission briefs into PR-sized work units, assign to execution agents, track progress, and coordinate handoffs.",
+  "category": "orchestration",
+  "inputs": [
+    { "type": "mission-brief", "description": "High-level mission to decompose.", "required": true },
+    { "type": "fleet-config", "description": "Available agent types and capacity.", "required": false }
+  ],
+  "outputs": [
+    { "type": "mission-brief", "description": "Child mission briefs for execution agents." },
+    { "type": "signal", "description": "Coordination signals and status updates." }
+  ],
+  "permissions": {
+    "level": "read-write",
+    "justification": "Must read mission briefs and write child missions and status signals.",
+    "scope": ["repo:read", "repo:write"]
+  },
+  "mcp_servers": [
+    { "profile_id": "github", "required": true }
+  ],
+  "tool_permissions": [],
+  "applicable_agent_types": ["orchestration-coordinator"],
+  "constraints": [
+    "Must not assign missions to agents outside their capability contract.",
+    "Each child mission must fit within a single PR.",
+    "Must not spawn more than 5 child missions in a single orchestration run."
+  ],
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-02-28", "change": "Initial version." }
+  ]
+}

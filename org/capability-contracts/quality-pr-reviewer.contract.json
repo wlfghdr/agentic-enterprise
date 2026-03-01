@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "agent_type_id": "quality-pr-reviewer",
+  "contract_version": "1.0.0",
+  "effective_date": "2026-02-28",
+  "status": "active",
+  "rationale": "The quality-pr-reviewer agent reviews pull requests against policy and quality gates. It needs read access to the full repository and the ability to post review comments, but must never push code or merge.",
+  "skills": [
+    { "skill_id": "github-pr-review", "skill_version": "1.0.0" },
+    { "skill_id": "quality-evaluation", "skill_version": "1.0.0" }
+  ],
+  "mcp_profiles": [
+    {
+      "profile_id": "github",
+      "profile_version": "1.0.0",
+      "tool_overrides": [
+        { "tool": "push_files", "override": "deny", "reason": "Quality agents must not push code." },
+        { "tool": "merge_pull_request", "override": "deny", "reason": "Quality agents must not merge PRs." },
+        { "tool": "create_pull_request", "override": "deny", "reason": "PR creation is not in scope for quality agents." },
+        { "tool": "create_pull_request_review", "override": "allow", "reason": "Core function of this agent type." }
+      ]
+    }
+  ],
+  "approved_by": "CTO",
+  "review_required_by": "CTO",
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-02-28", "change": "Initial contract.", "approved_by": "CTO" }
+  ]
+}

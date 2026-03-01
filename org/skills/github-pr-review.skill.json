@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "id": "github-pr-review",
+  "name": "GitHub Pull Request Review",
+  "version": "1.0.0",
+  "description": "Review pull requests on GitHub: read diffs, check against policy, post structured review comments, and approve or request changes.",
+  "category": "code-review",
+  "inputs": [
+    { "type": "pull-request-diff", "description": "The diff of the pull request to review.", "required": true },
+    { "type": "policy-rules", "description": "Repository and org-level policy rules to evaluate against.", "required": false }
+  ],
+  "outputs": [
+    { "type": "review-comment", "description": "Structured review comments posted to the PR." },
+    { "type": "quality-evaluation-report", "description": "Evaluation summary filed as a work artifact." }
+  ],
+  "permissions": {
+    "level": "read-write",
+    "justification": "Must read PR diffs and post review comments. Cannot merge or push code.",
+    "scope": ["repo:read", "pull_requests:write"]
+  },
+  "mcp_servers": [
+    { "profile_id": "github", "required": true }
+  ],
+  "tool_permissions": [
+    { "tool": "git", "access": "read", "scope": "repo-only" }
+  ],
+  "applicable_agent_types": ["quality-pr-reviewer", "quality-security-reviewer"],
+  "constraints": [
+    "Must not approve PRs that modify policy/ or CODEOWNERS without explicit human approval.",
+    "Must not merge PRs directly — review only.",
+    "Review comments must cite the specific policy rule violated."
+  ],
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-02-28", "change": "Initial version." }
+  ]
+}

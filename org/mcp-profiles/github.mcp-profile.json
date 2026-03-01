@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "id": "github",
+  "name": "GitHub MCP Server",
+  "version": "1.0.0",
+  "description": "MCP server providing access to GitHub repositories, pull requests, issues, and workflows. All operations are subject to the authenticated GitHub token's scopes.",
+  "server": {
+    "type": "npm",
+    "transport": "stdio",
+    "package": "@modelcontextprotocol/server-github",
+    "command": "npx -y @modelcontextprotocol/server-github",
+    "env_vars": [
+      {
+        "name": "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "description": "GitHub PAT with appropriate scopes for the operations permitted by this profile.",
+        "required": true,
+        "secret": true
+      }
+    ]
+  },
+  "permissions_matrix": [
+    {
+      "tool": "list_repositories",
+      "description": "List repositories for an organization or user.",
+      "risk_level": "low",
+      "allowed_layers": ["steering", "strategy", "orchestration", "execution", "quality"],
+      "requires_approval": false
+    },
+    {
+      "tool": "get_file_contents",
+      "description": "Read file contents from a repository.",
+      "risk_level": "low",
+      "allowed_layers": ["steering", "strategy", "orchestration", "execution", "quality"],
+      "requires_approval": false
+    },
+    {
+      "tool": "search_code",
+      "description": "Search code across repositories.",
+      "risk_level": "low",
+      "allowed_layers": ["steering", "strategy", "orchestration", "execution", "quality"],
+      "requires_approval": false,
+      "rate_limit": "30/minute"
+    },
+    {
+      "tool": "list_issues",
+      "description": "List issues for a repository.",
+      "risk_level": "low",
+      "allowed_layers": ["steering", "strategy", "orchestration", "execution", "quality"],
+      "requires_approval": false
+    },
+    {
+      "tool": "get_issue",
+      "description": "Get details of a specific issue.",
+      "risk_level": "low",
+      "allowed_layers": ["steering", "strategy", "orchestration", "execution", "quality"],
+      "requires_approval": false
+    },
+    {
+      "tool": "create_issue",
+      "description": "Create a new GitHub issue.",
+      "risk_level": "medium",
+      "allowed_layers": ["steering", "strategy", "orchestration", "orchestration"],
+      "denied_layers": ["execution"],
+      "requires_approval": false,
+      "constraints": ["Issue must include agent identity in the body."]
+    },
+    {
+      "tool": "list_pull_requests",
+      "description": "List pull requests for a repository.",
+      "risk_level": "low",
+      "allowed_layers": ["steering", "strategy", "orchestration", "execution", "quality"],
+      "requires_approval": false
+    },
+    {
+      "tool": "get_pull_request",
+      "description": "Get details and diff of a specific pull request.",
+      "risk_level": "low",
+      "allowed_layers": ["steering", "strategy", "orchestration", "execution", "quality"],
+      "requires_approval": false
+    },
+    {
+      "tool": "create_pull_request",
+      "description": "Create a new pull request.",
+      "risk_level": "medium",
+      "allowed_layers": ["execution"],
+      "requires_approval": false,
+      "constraints": [
+        "PR must target a non-protected branch or require review before merge.",
+        "PR body must reference the originating mission brief."
+      ]
+    },
+    {
+      "tool": "create_pull_request_review",
+      "description": "Post a review on a pull request (approve, request changes, comment).",
+      "risk_level": "medium",
+      "allowed_layers": ["quality"],
+      "requires_approval": false,
+      "constraints": ["Must not approve PRs that modify policy/ or CODEOWNERS."]
+    },
+    {
+      "tool": "merge_pull_request",
+      "description": "Merge a pull request.",
+      "risk_level": "high",
+      "allowed_layers": [],
+      "requires_approval": true,
+      "constraints": [
+        "Only the human owner may trigger merges via automation — never an agent directly.",
+        "All CI checks must be passing.",
+        "PR must have at least one human approval."
+      ]
+    },
+    {
+      "tool": "push_files",
+      "description": "Push file changes to a branch.",
+      "risk_level": "high",
+      "allowed_layers": ["execution"],
+      "denied_layers": ["steering", "strategy", "orchestration", "quality"],
+      "requires_approval": false,
+      "constraints": [
+        "Must not push to protected branches (main, master, release/*).",
+        "Commits must be traceable to the agent identity."
+      ]
+    },
+    {
+      "tool": "delete_file",
+      "description": "Delete a file from a repository.",
+      "risk_level": "critical",
+      "allowed_layers": [],
+      "requires_approval": true,
+      "constraints": ["Requires explicit human approval. Agents must not delete files autonomously."]
+    },
+    {
+      "tool": "manage_repository_collaborators",
+      "description": "Add or remove repository collaborators.",
+      "risk_level": "critical",
+      "allowed_layers": [],
+      "requires_approval": true
+    },
+    {
+      "tool": "list_workflow_runs",
+      "description": "List CI workflow runs.",
+      "risk_level": "low",
+      "allowed_layers": ["orchestration", "quality", "orchestration"],
+      "requires_approval": false
+    },
+    {
+      "tool": "get_workflow_run_logs",
+      "description": "Fetch logs from a CI workflow run.",
+      "risk_level": "low",
+      "allowed_layers": ["orchestration", "execution", "quality"],
+      "requires_approval": false
+    }
+  ],
+  "audit": {
+    "log_all_calls": true,
+    "retention_days": 90
+  },
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-02-28", "change": "Initial profile covering core GitHub MCP server tools." }
+  ]
+}
