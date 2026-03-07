@@ -4,6 +4,7 @@
 > **Type:** Operations
 > **Layer:** Execution
 > **Status:** Active
+> **Version:** 1.1 | **Last updated:** 2026-03-07
 
 ---
 
@@ -24,7 +25,7 @@ Owns the developer portal, build infrastructure, CI/CD pipelines, golden paths, 
 
 ### Out of Scope
 - Cloud infrastructure provisioning (→ Infrastructure Operations)
-- Security scanning and vulnerability triage (→ Quality & Security Engineering)
+- Final security policy enforcement and compliance verdicts (→ Quality Layer)
 - Application code implementation (→ domain-specific divisions)
 
 ## Key Responsibilities
@@ -41,7 +42,7 @@ Owns the developer portal, build infrastructure, CI/CD pipelines, golden paths, 
 |-----------|------|-----------|
 | Receives from | Strategy Layer | Mission briefs involving this division |
 | Delivers to | Quality Layer | Work outputs for quality evaluation |
-| Collaborates with | Infrastructure Operations, Quality & Security Engineering | Shared data contracts / APIs |
+| Collaborates with | Infrastructure Operations, Quality Layer | Shared data contracts / APIs |
 
 ## Quality Policies
 

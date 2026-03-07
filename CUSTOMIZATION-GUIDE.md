@@ -1,6 +1,6 @@
 # Customization Guide — Agentic Enterprise Operating Model
 
-> **Version:** 2.1 | **Last updated:** 2026-02-25
+> **Version:** 2.2 | **Last updated:** 2026-03-07
 
 > **Start here** after cloning this framework.
 > This guide walks you through every step of making this operating model your own.
@@ -220,11 +220,12 @@ After the quick start, customize layer by layer. Each section below tells you **
 2. **What are your ventures?** Ventures are market-facing offerings. Create one charter per venture in `org/1-strategy/ventures/`. The framework ships with placeholder examples — replace them with yours (e.g., "Cloud Migration", "DevOps Suite", "Security Suite", "Customer Analytics").
 
 3. **What are your divisions?** Divisions are execution teams — each groups agents by expert knowledge, specialized tools, and domain-specific goals. Create one folder per division in `org/3-execution/divisions/`. The framework ships with generic categories:
-   - **Core divisions:** Data Foundation, Core Services, Core Applications, AI & Intelligence
+   - **Core divisions:** Data Foundation, Core Services, Core Applications
    - **Domain divisions:** Placeholders — fill with your product-specific domains
-   - **Ops divisions:** Engineering Foundation, Infrastructure Operations, Quality & Security
+   - **Ops divisions:** Engineering Foundation, Infrastructure Operations
    - **GTM divisions:** Product Marketing, Knowledge & Enablement
    - **Customer divisions:** Customer Experience
+   - **Optional extensions:** AI & Intelligence, GTM Web, Quality & Security Engineering when your operating model truly needs dedicated execution-side specialization
 
    **To add a division:** Create `org/3-execution/divisions/<name>/DIVISION.md` using the template pattern.
 

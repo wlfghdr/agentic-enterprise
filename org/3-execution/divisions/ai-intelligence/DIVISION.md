@@ -4,6 +4,7 @@
 > **Type:** Core
 > **Layer:** Execution
 > **Status:** Active
+> **Version:** 1.1 | **Last updated:** 2026-03-07
 
 ---
 
@@ -23,7 +24,7 @@ Owns AI reasoning, natural language interfaces, agent orchestration, workflow au
 ### Out of Scope
 - Data storage and pipelines (→ Data Foundation)
 - UI and dashboard rendering (→ Core Applications)
-- Security scanning of code artifacts (→ Quality & Security Engineering)
+- Final security policy enforcement and compliance evaluation (→ Quality Layer)
 
 ## Key Responsibilities
 

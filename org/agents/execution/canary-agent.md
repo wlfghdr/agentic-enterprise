@@ -1,6 +1,6 @@
 # Agent Type Definition: Canary Agent
 
-> **Status:** proposed | **Proposed date:** 2026-02-18
+> **Status:** deprecated | **Proposed date:** 2026-02-18
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
 ---
@@ -11,7 +11,7 @@
 |-------|-------|
 | **ID** | `exec-canary-agent` |
 | **Name** | Canary Agent |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 
 ## Classification
 
@@ -25,13 +25,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Status** | proposed |
+| **Status** | deprecated |
 | **Proposed date** | 2026-02-18 |
 | **Approved date** | |
 | **Active date** | |
-| **Deprecated date** | |
+| **Deprecated date** | 2026-03-07 |
 | **Retired date** | |
-| **Superseded by** | |
+| **Superseded by** | `exec-deploy-agent` |
 
 ## Ownership
 
@@ -44,13 +44,13 @@
 ## Description
 
 **What this agent does:**
-Monitors canary deployments vs baseline health. Auto-promotes or rolls back based on statistical analysis.
+Historically proposed as a standalone execution agent for canary analysis and promotion decisions.
 
 **Problem solved:**
 Progressive delivery with evidence-based promotion prevents bad releases from reaching all users.
 
 **Value proposition:**
-Every enterprise following the agentic operating model benefits from this agent because it addresses a universal organizational need that scales with agent fleet adoption.
+Canary analysis remains important, but the generic framework now treats it as a deployment strategy owned by `exec-deploy-agent` rather than a standalone base-template agent type.
 
 ## Capabilities
 
@@ -122,4 +122,5 @@ per-mission
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-03-07 | Deprecated in the base template; canary evaluation is now treated as a Deploy Agent capability | GitHub Copilot |
 | 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

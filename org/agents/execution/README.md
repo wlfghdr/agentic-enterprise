@@ -1,6 +1,38 @@
 # Agent Type Registry — Execution Layer
 
+> **Version:** 1.1 | **Last updated:** 2026-03-07
+
 Agent types that operate at the Execution Layer — producing code, content, documentation, customer deliverables, sales materials, and support responses.
+
+## Base Template Starter Set
+
+The generic template should start from a smaller core set and treat the remaining files in this directory as optional extensions or proposals under consolidation review.
+
+### Recommended Core Defaults
+
+- `technical-design-agent`
+- `coding-agent-fleet`
+- `build-agent`
+- `deploy-agent`
+- `doc-generation-agent`
+- `release-notes-agent`
+- `production-health-agent`
+- `incident-response-agent`
+- `infrastructure-provisioning-agent`
+- `content-creation-agent`
+- `customer-health-analyzer`
+- `support-triage-agent`
+- `recruiting-coordinator-agent`
+- `budget-analyst-agent`
+- `procurement-agent`
+- `compliance-advisor-agent`
+
+### Consolidation Guidance
+
+- Treat rollout mechanics such as feature flags, canaries, and rollback as `deploy-agent` capabilities unless a company has a proven reason to separate them.
+- Treat team or language specialization as `coding-agent-fleet` configuration unless the boundary changes responsibilities, tooling, and evaluation criteria.
+- Prefer one infrastructure-health boundary over separate monitor types for hosts, networks, processes, containers, and cloud resources.
+- Prefer a small number of customer-service and customer-health boundaries over a dozen lifecycle-step agents.
 
 ## Registered Agent Types
 
@@ -10,18 +42,18 @@ Agent types that operate at the Execution Layer — producing code, content, doc
 |----------|------|--------|
 | technical-design-agent | Technical Design Agent | proposed |
 | coding-agent-fleet | Coding Agent Fleet | proposed |
-| team-specific-coding-agents | Team-Specific Coding Agents | proposed |
+| team-specific-coding-agents | Team-Specific Coding Agents | deprecated |
 | team-specific-test-agents | Team-Specific Test Agents | proposed |
 | build-agent | Build Agent | proposed |
 | deploy-agent | Deploy Agent | proposed |
 | doc-generation-agent | Doc Generation Agent | proposed |
 | release-notes-agent | Release Notes Agent | proposed |
-| feature-flag-agent | Feature Flag Agent | proposed |
+| feature-flag-agent | Feature Flag Agent | deprecated |
 | quality-gate-agent | Quality Gate Agent | proposed |
 | schema-management-agent | Schema Management Agent | proposed |
 | performance-agent | Performance Agent | proposed |
-| canary-agent | Canary Agent | proposed |
-| rollback-agent | Rollback Agent | proposed |
+| canary-agent | Canary Agent | deprecated |
+| rollback-agent | Rollback Agent | deprecated |
 
 ### Operations & Monitoring
 
@@ -123,3 +155,10 @@ Agent types that operate at the Execution Layer — producing code, content, doc
 | user-experience-agent | User Experience Agent | proposed |
 
 **Total: 78 agent types**
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1 | 2026-03-07 | Added core starter set and consolidation guidance to distinguish generic defaults from extension proposals |
+| 1.0 | 2026-02-23 | Initial version |

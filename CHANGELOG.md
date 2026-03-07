@@ -23,6 +23,25 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 
+**Framework taxonomy cleanup for generic adoption (Issue #concept-review)**
+
+_Execution divisions:_
+- `CONFIG.yaml` — bumped `framework_version` from `2.2.0` to `2.3.0`; removed `ai-intelligence` and `quality-security-engineering` from default division lists and kept them as commented optional extensions instead
+- `org/README.md` — added version metadata and reframed execution divisions into core defaults, optional extensions, and company-specific product divisions; clarified that Quality & Security Engineering should not be implied as a default standalone split
+- `CUSTOMIZATION-GUIDE.md` — updated division customization guidance so AI & Intelligence, GTM Web, and Quality & Security Engineering are treated as optional extensions rather than assumed defaults
+- `org/3-execution/divisions/engineering-foundation/DIVISION.md`, `org/3-execution/divisions/core-services/DIVISION.md`, `org/3-execution/divisions/infrastructure-operations/DIVISION.md`, `org/3-execution/divisions/legal/DIVISION.md`, `org/3-execution/divisions/ai-intelligence/DIVISION.md` — removed stale assumptions that Quality & Security Engineering is a mandatory adjacent default and aligned interfaces with the new split between execution implementation and Quality-layer governance
+
+_Agent registry guidance:_
+- `org/agents/README.md` — added version metadata plus explicit criteria for what belongs in the base template, when to use configuration instead of new agent types, and common anti-patterns such as tool-level and task-level agent definitions
+- `org/agents/execution/README.md` — added version metadata, a recommended execution starter set, and consolidation guidance for deploy, monitoring, coding, and customer-service agent boundaries
+
+_Targeted execution-agent cleanup:_
+- `org/agents/execution/feature-flag-agent.md` — deprecated in favor of `exec-deploy-agent`
+- `org/agents/execution/canary-agent.md` — deprecated in favor of `exec-deploy-agent`
+- `org/agents/execution/rollback-agent.md` — deprecated in favor of `exec-deploy-agent`
+- `org/agents/execution/team-specific-coding-agents.md` — deprecated in favor of `exec-coding-agent-fleet`
+- `examples/generic-feature-lifecycle.md` — updated rollout example to use `deploy-agent` for feature-flag management to match the cleaned execution taxonomy
+
 **Connector pattern foundation for real system integrations (Issue #10)**
 
 _Integration architecture and governance:_
