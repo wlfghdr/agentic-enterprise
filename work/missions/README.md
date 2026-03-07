@@ -45,24 +45,6 @@ missions/
 
 ---
 
-## Core Missions (Pre-created)
-
-These missions are bootstrapped as universally applicable to any agentic enterprise:
-
-| Mission ID | Name | Folder | Priority |
-|------------|------|--------|----------|
-| MISSION-2026-001 | [Agentic Enterprise Product Launch](agentic-enterprise-product-launch/) | `agentic-enterprise-product-launch/` | critical |
-| MISSION-2026-002 | [Fleet Cost Optimization](fleet-cost-optimization/) | `fleet-cost-optimization/` | high |
-| MISSION-2026-003 | [DORA Metrics Excellence](dora-metrics-excellence/) | `dora-metrics-excellence/` | high |
-| MISSION-2026-004 | [Automated Security Response](automated-security-response/) | `automated-security-response/` | critical |
-| MISSION-2026-005 | [Automated Issue Response](automated-issue-response/) | `automated-issue-response/` | high |
-| MISSION-2026-006 | [Support Automation at Scale](support-automation-at-scale/) | `support-automation-at-scale/` | high |
-| MISSION-2026-007 | [Data Governance](data-governance/) | `data-governance/` | high |
-| MISSION-2026-008 | [Security Posture Hardening](security-posture-hardening/) | `security-posture-hardening/` | critical |
-| MISSION-2026-009 | [Compliance Automation](compliance-automation/) | `compliance-automation/` | high |
-
----
-
 ## Example Missions Catalog
 
 The following missions are examples from the Agentic Enterprise Blueprint. They are not pre-created but serve as inspiration for missions your enterprise may choose to activate. Create them using the templates when ready.
