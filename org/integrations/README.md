@@ -72,6 +72,9 @@ Each integration entry defines:
 - **How it connects** — MCP, API, webhook, data export, OpenTelemetry
 - **What it enables** — which layers, loops, and agent types benefit
 - **Governance** — who approves activation, what data flows, what policies apply
+- **Risk posture** — read-only vs side-effecting behavior, approval mode, and audit requirements
+
+See also: [`docs/integrations/connector-pattern.md`](../../docs/integrations/connector-pattern.md) for the reference connector architecture and rollout model.
 
 ---
 
@@ -106,3 +109,13 @@ As agent fleets grow, filesystem-based governance alone cannot provide the real-
 ### 5. Open standards preferred, proprietary supported
 
 Prefer OpenTelemetry for telemetry, MCP for tool connections, and open APIs for data exchange. But real enterprises use proprietary platforms — and that's fine. The registry supports both.
+
+### 6. Side effects are gated
+
+Integrations that can mutate external systems (create/update/delete) must declare their side-effect level and approval mode before activation:
+
+- **none** — read-only operations
+- **low** — bounded writes with operational approval
+- **high** — privileged or destructive actions requiring explicit human approval
+
+This keeps the default rollout path safe (`read-only first`) while enabling controlled operational automation over time.

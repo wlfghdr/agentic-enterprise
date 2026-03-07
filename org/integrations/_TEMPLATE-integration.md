@@ -1,6 +1,6 @@
 # Integration Registration: {{INTEGRATION_NAME}}
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19
+> **Template version:** 1.1 | **Last updated:** 2026-03-07
 > **Status:** `proposed` | `active` | `deprecated`
 > **Category:** `observability` | `enterprise-toolchain` | `business-system` | `communication`
 > **Owner:** {{APPROVING_LAYER}} Layer
@@ -16,6 +16,9 @@
 | **Vendor / Project** | {{VENDOR_OR_PROJECT}} |
 | **Category** | {{CATEGORY}} |
 | **Connection Pattern** | MCP Server / API / Webhook / Data Export / OpenTelemetry |
+| **Access Mode** | Read-only / Read-write |
+| **Side-Effect Level** | none / low / high |
+| **Approval Mode** | auto / operational-approval / human-approval |
 | **Layers Affected** | Steering / Strategy / Orchestration / Execution / Quality |
 | **Loops Affected** | Discover / Build / Ship / Operate |
 
@@ -87,6 +90,9 @@ Outbound:  Operating model → External system (actions, updates, notifications)
 - **Data classification:** What data flows through this integration?
 - **Retention:** What retention policies apply?
 - **Audit:** How is usage logged and auditable?
+- **Access mode:** Read-only or read-write?
+- **Side-effect level:** none / low / high
+- **Approval mode:** auto / operational-approval / human-approval
 - **Policy references:** Which quality policies apply?
   - [ ] `org/4-quality/policies/security.md`
   - [ ] `org/4-quality/policies/delivery.md`
@@ -121,6 +127,8 @@ integrations:
 - [ ] Security review completed
 - [ ] Data governance review completed (if required)
 - [ ] Connection tested and documented
+- [ ] Access mode and side-effect level declared
+- [ ] Approval mode declared for side-effecting operations
 - [ ] Failure mode and fallback defined
 - [ ] Affected agent types updated with integration awareness
 - [ ] Quality policies reviewed for compliance
@@ -130,4 +138,5 @@ integrations:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-03-07 | Added access mode, side-effect level, and approval mode governance fields/checks |
 | 1.0 | 2026-02-19 | Initial version |

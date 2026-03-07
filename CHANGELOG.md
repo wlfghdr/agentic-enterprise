@@ -23,6 +23,13 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 
+**Connector pattern foundation for real system integrations (Issue #10)**
+
+_Integration architecture and governance:_
+- `docs/integrations/connector-pattern.md` — new reference pattern for MCP/A2A/business-system connectors with capability levels (L1–L4), read-only-first rollout, policy-gated side effects, and observability requirements
+- `org/integrations/README.md` — added explicit side-effect gating model (`none`/`low`/`high`) and link to connector pattern guidance
+- `org/integrations/_TEMPLATE-integration.md` — template v1.0 → v1.1: added `Access Mode`, `Side-Effect Level`, and `Approval Mode` fields; extended security/compliance and validation checklist; updated template changelog
+
 **Work deduplication — Rule 12: Deduplicate before acting**
 
 > Multi-agent systems are prone to duplicate work — multiple agents independently creating issues, PRs, or artifacts for the same problem. This rule makes deduplication a first-class obligation at every layer.
