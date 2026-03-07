@@ -196,6 +196,29 @@ This operating model is derived from the [Agentic Enterprise](https://github.com
 - Never blindly merge upstream — evaluate each change against your company's customizations and policies. Some updates may conflict with deliberate local choices.
 - **Version tracking:** Record your current upstream framework version in `CONFIG.yaml → framework_version`. This makes it easy to see how far behind (or ahead) your instance is.
 
+### 14. Archive completed work — keep active directories clean
+
+Work directories accumulate artifacts over time. Without active archiving, agents waste time scanning irrelevant closed items, and active work becomes hard to find.
+
+**Policy:** Every `work/<area>/` directory has an `archive/` subfolder. Completed, closed, or superseded items move there. Full details in `docs/ARCHIVE-POLICY.md`.
+
+**When to archive:**
+- Signals: status = `done` or `upstream-issued` + action confirmed
+- Missions: STATUS.md says `closed`, `completed`, or `consolidated` → archive **entire folder**
+- Triage records: corresponding signal was archived
+- Reports: older than 30 days
+- Run logs: monthly rotation (if applicable)
+
+**How:**
+- Use `git mv` (preserves blame) or an automation script
+- **Never delete** work artifacts — always archive (git history = audit trail)
+- Templates (`_TEMPLATE-*`) and README.md files are never archived
+
+**Agent responsibility:**
+- **After closing a mission or completing a signal**: archive it in the same PR/commit
+- **Orchestration agents**: periodically scan for archivable items and archive them
+- **All agents**: when scanning `work/missions/` or `work/signals/`, ignore the `archive/` subfolder — only active items live in the parent directory
+
 ## Repository Structure (Quick Reference)
 
 ```
