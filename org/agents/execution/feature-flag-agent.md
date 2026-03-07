@@ -1,6 +1,6 @@
 # Agent Type Definition: Feature Flag Agent
 
-> **Status:** proposed | **Proposed date:** 2026-02-18
+> **Status:** deprecated | **Proposed date:** 2026-02-18
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
 ---
@@ -11,7 +11,7 @@
 |-------|-------|
 | **ID** | `exec-feature-flag-agent` |
 | **Name** | Feature Flag Agent |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 
 ## Classification
 
@@ -25,13 +25,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Status** | proposed |
+| **Status** | deprecated |
 | **Proposed date** | 2026-02-18 |
 | **Approved date** | |
 | **Active date** | |
-| **Deprecated date** | |
+| **Deprecated date** | 2026-03-07 |
 | **Retired date** | |
-| **Superseded by** | |
+| **Superseded by** | `exec-deploy-agent` |
 
 ## Ownership
 
@@ -44,13 +44,13 @@
 ## Description
 
 **What this agent does:**
-Manages feature flag lifecycle — evaluation, progressive rollout, health-driven rollback, and A/B experimentation.
+Historically proposed as a standalone execution agent for feature flag lifecycle management.
 
 **Problem solved:**
 Progressive delivery and experimentation are essential for managing risk in modern software.
 
 **Value proposition:**
-Every enterprise following the agentic operating model benefits from this agent because it addresses a universal organizational need that scales with agent fleet adoption.
+The capability is still broadly useful, but the framework now treats feature flag management as a `deploy-agent` capability by default rather than a separate base-template agent type.
 
 ## Capabilities
 
@@ -122,4 +122,5 @@ per-mission
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-03-07 | Deprecated in the base template; feature flag management is now treated as a Deploy Agent capability | GitHub Copilot |
 | 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

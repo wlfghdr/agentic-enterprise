@@ -1,6 +1,6 @@
 # Agent Type Definition: Team-Specific Coding Agents
 
-> **Status:** proposed | **Proposed date:** 2026-02-18
+> **Status:** deprecated | **Proposed date:** 2026-02-18
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
 ---
@@ -11,7 +11,7 @@
 |-------|-------|
 | **ID** | `exec-team-specific-coding-agents` |
 | **Name** | Team-Specific Coding Agents |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 
 ## Classification
 
@@ -25,13 +25,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Status** | proposed |
+| **Status** | deprecated |
 | **Proposed date** | 2026-02-18 |
 | **Approved date** | |
 | **Active date** | |
-| **Deprecated date** | |
+| **Deprecated date** | 2026-03-07 |
 | **Retired date** | |
-| **Superseded by** | |
+| **Superseded by** | `exec-coding-agent-fleet` |
 
 ## Ownership
 
@@ -44,13 +44,13 @@
 ## Description
 
 **What this agent does:**
-Specialized coding agents per team domain (core, data, security, frontend, DevEx, customer-facing, GTM tooling, operations).
+Historically proposed as a standalone registry entry for team-specialized coding variants.
 
 **Problem solved:**
 Different domains have different patterns and constraints. Specialization improves quality.
 
 **Value proposition:**
-Every enterprise following the agentic operating model benefits from this agent because it addresses a universal organizational need that scales with agent fleet adoption.
+Team specialization is still valuable, but the generic framework now treats those differences as configuration profiles of `exec-coding-agent-fleet` rather than separate base-template agent types.
 
 ## Capabilities
 
@@ -122,4 +122,5 @@ per-mission
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-03-07 | Deprecated in the base template; team specialization now belongs in Coding Agent Fleet configuration profiles | GitHub Copilot |
 | 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

@@ -4,6 +4,7 @@
 > **Type:** Core
 > **Layer:** Execution
 > **Status:** Active
+> **Version:** 1.1 | **Last updated:** 2026-03-07
 
 ---
 
@@ -23,7 +24,7 @@ Owns identity, authentication, authorization, RBAC, API lifecycle management, an
 ### Out of Scope
 - UI layer and dashboards (→ Core Applications)
 - Infrastructure provisioning (→ Infrastructure Operations)
-- Security scanning and vulnerability management (→ Quality & Security Engineering)
+- Security scanning implementation and final compliance evaluation (→ Engineering Foundation / Quality Layer)
 
 ## Key Responsibilities
 

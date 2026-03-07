@@ -890,9 +890,9 @@ With all streams merged and quality evaluations passed, the `release-coordinator
 
 ## Phase 12: Deployment & Validation
 
-**Layer:** Execution · **Loop:** Ship · **Agent type:** `deploy-agent`, `feature-flag-agent`
+**Layer:** Execution · **Loop:** Ship · **Agent type:** `deploy-agent`
 
-The `deploy-agent` executes the progressive rollout defined in the release contract. The `feature-flag-agent` manages the `bulk_export_enabled` flag.
+The `deploy-agent` executes the progressive rollout defined in the release contract, including management of the `bulk_export_enabled` flag.
 
 ### Stage 1: Canary (5%) — 24 hours
 
@@ -908,7 +908,7 @@ The `deploy-agent` executes the progressive rollout defined in the release contr
 
 ### Stage 2: Early Adopters (25%) — 48 hours
 
-- `feature-flag-agent` targets the 25% cohort to include the 8 requesting enterprise customers
+- `deploy-agent` targets the 25% cohort to include the 8 requesting enterprise customers
 - Customer Success is notified (via signal: `work/signals/2026-04-09-bulk-export-early-access-available.md`)
 - **Results after 48 hours:**
   - 5 enterprise customers have used the export feature
@@ -920,7 +920,7 @@ The `deploy-agent` executes the progressive rollout defined in the release contr
 
 ### Stage 3: General Availability (100%)
 
-- `feature-flag-agent` enables for all customers
+- `deploy-agent` enables for all customers
 - `deploy-agent` runs post-deployment validation:
   - Smoke tests passing ✅
   - Error rates within normal bounds ✅
@@ -1020,7 +1020,7 @@ The NRR metric improves from "at-risk" to "on-track" based on the 8 secured rene
 
 ## Phase 14: Operate
 
-**Layer:** Execution · **Loop:** Operate · **Agent types:** `monitoring-agent`, `incident-response-agent`, `feature-flag-agent`
+**Layer:** Execution · **Loop:** Operate · **Agent types:** `monitoring-agent`, `incident-response-agent`, `deploy-agent`
 
 The mission is complete, but the feature is now in production. The Operate Loop takes over.
 
@@ -1046,7 +1046,7 @@ If the error had been outside the agent's remediation authority (e.g., requiring
 
 ### Feature Flag Lifecycle
 
-The `feature-flag-agent` tracks the `bulk_export_enabled` flag:
+The `deploy-agent` tracks the `bulk_export_enabled` flag:
 - **Week 1–2:** Progressive rollout (managed above)
 - **Week 4:** Flag has been at 100% for 3 weeks with stable metrics. Agent recommends flag cleanup.
 - **Week 6:** Human approves flag removal. Agent creates a PR to remove the flag and replace conditional code with permanent implementation.

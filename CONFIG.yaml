@@ -14,7 +14,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Tracks the overall framework release. Update when cutting a new version.
 # See CHANGELOG.md for what changed. Uses semantic versioning (MAJOR.MINOR.PATCH).
-framework_version: "2.2.0"
+framework_version: "2.3.0"
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────────────────
@@ -121,9 +121,10 @@ divisions:
     - id: "core-applications"
       name: "Core Applications"
       description: "UI layer, dashboards, search, navigation"
-    - id: "ai-intelligence"
-      name: "AI & Intelligence"
-      description: "AI reasoning, NL interfaces, agent orchestration, AI safety"
+    # Optional extension for AI-native products or companies building agent platforms:
+    # - id: "ai-intelligence"
+    #   name: "AI & Intelligence"
+    #   description: "AI reasoning, NL interfaces, agent orchestration, AI safety"
 
   engineering_domain:
     - id: "core-domain-1"
@@ -140,9 +141,12 @@ divisions:
     - id: "infrastructure-operations"
       name: "Infrastructure Operations"
       description: "Cloud accounts, IaC, cost management, production operations, incident management"
-    - id: "quality-security-engineering"
-      name: "Quality & Security Engineering"
-      description: "Security testing, privacy, compliance, quality gates, supply chain"
+    # Optional extension when execution-side security implementation warrants its own division.
+    # For the generic template, quality governance stays in the Quality Layer and
+    # security implementation work is owned by Engineering Foundation / Infrastructure Operations.
+    # - id: "quality-security-engineering"
+    #   name: "Quality & Security Engineering"
+    #   description: "Security testing, privacy, compliance evidence, supply chain hardening"
 
   gtm:
     - id: "product-marketing"

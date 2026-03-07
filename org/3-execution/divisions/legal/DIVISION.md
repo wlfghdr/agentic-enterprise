@@ -4,6 +4,7 @@
 > **Type:** Corporate Function
 > **Layer:** Execution
 > **Status:** Active
+> **Version:** 1.1 | **Last updated:** 2026-03-07
 
 ---
 
@@ -28,7 +29,7 @@ Owns legal advisory, contract management, regulatory compliance, intellectual pr
 ### Out of Scope
 - Day-to-day HR operations (→ People)
 - Financial reporting and tax filings (→ Finance & Procurement)
-- Security policy enforcement (→ Quality & Security Engineering)
+- Security policy enforcement (→ Quality Layer)
 - Procurement decisions and purchase orders (→ Finance & Procurement)
 
 ## Key Responsibilities
@@ -47,7 +48,7 @@ Owns legal advisory, contract management, regulatory compliance, intellectual pr
 | Receives from | All Divisions | Contract requests, compliance questions, IP review requests via signals |
 | Receives from | People | Employment contract needs, HR compliance questions |
 | Receives from | Finance & Procurement | Vendor contract review requests |
-| Receives from | Quality & Security Engineering | Regulatory requirements for security policies |
+| Receives from | Quality Layer | Policy requirements and control expectations that have legal implications |
 | Delivers to | Quality Layer | Legal compliance evaluations (privacy, regulatory) |
 | Delivers to | Steering Layer | Legal risk assessments, regulatory change signals |
 | Delivers to | All Divisions | Compliance guidance, contract templates, legal advisory |
