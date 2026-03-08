@@ -28,7 +28,7 @@ Morning report → script collects data, LLM formats      ← HYBRID
 | Run log archival | `scripts/archive_runs.sh` | Monthly rotation of run artifacts |
 | Schema validation | `scripts/validate_schema.py` | Validate YAML/Markdown against schema |
 | Governance check | `scripts/check_github_governance.py` | Verify GitHub settings match policy |
-| Placeholder check | `scripts/check_placeholders.py` | Detect unfilled {{VARIABLE}} placeholders |
+| Placeholder check | `scripts/check_placeholders.py` | Detect unfilled template placeholders |
 | Lock enforcement | `scripts/check_locks.py` | Verify lock files are respected |
 
 ### Pure LLM Tasks (requires understanding/reasoning/generation)
