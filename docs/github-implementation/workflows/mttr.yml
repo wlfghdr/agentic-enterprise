@@ -1,0 +1,75 @@
+name: MTTR Tracking
+
+# Tracks Mean Time To Recovery (MTTR).
+# MTTR = time from incident detection (deploy failure) to recovery (successful deploy).
+# DORA Elite target: ≤ 5 minutes.
+#
+# State machine:
+#   deploy failure  → incident_open  (record incident_start)
+#   deploy success  → check if incident was open → incident_resolved (record incident_end, emit MTTR)
+#
+# NOTE: Without a persistent state store, incident state is approximated by
+# inspecting recent workflow run history. This is a pipeline-level proxy.
+# A real MTTR system would use an ITSM integration (PagerDuty, etc.).
+
+on:
+  workflow_run:
+    workflows: ["Deploy"]
+    types: [completed]
+
+permissions: {}
+
+jobs:
+  track-mttr:
+    name: Track MTTR Event
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+
+    steps:
+      - name: Detect incident open (deploy failure)
+        if: github.event.workflow_run.conclusion == 'failure'
+        run: |
+          RUN_ID="${{ github.event.workflow_run.id }}"
+          SHA="${{ github.event.workflow_run.head_sha }}"
+          INCIDENT_START="${{ github.event.workflow_run.updated_at }}"
+
+          echo "INCIDENT OPEN — deploy failure detected"
+          echo '{"metric":"mttr","event":"incident_open","workflow_run_id":'"$RUN_ID"',"sha":"'"$SHA"'","incident_start":"'"$INCIDENT_START"'","incident_end":null,"recovery_seconds":null}' | tee mttr-incident-open.json
+
+          # TODO: emit to ITSM / PagerDuty when observability platform is configured
+
+      - name: Detect incident resolved (success after prior failure)
+        if: github.event.workflow_run.conclusion == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RUN_ID="${{ github.event.workflow_run.id }}"
+          SHA="${{ github.event.workflow_run.head_sha }}"
+          INCIDENT_END="${{ github.event.workflow_run.updated_at }}"
+          REPO="${{ github.repository }}"
+
+          echo "Deploy succeeded — checking for prior failure (incident resolution)"
+
+          # Query recent workflow runs to find the most recent failure before this success
+          PRIOR_FAILURE=$(gh api \
+            "repos/$REPO/actions/workflows/deploy.yml/runs?status=failure&per_page=5" \
+            --jq '.workflow_runs | sort_by(.updated_at) | reverse | .[0]' 2>/dev/null || echo "null")
+
+          if [ "$PRIOR_FAILURE" = "null" ] || [ -z "$PRIOR_FAILURE" ]; then
+            echo "No prior failure found — this is a clean deployment, not a recovery"
+            echo '{"metric":"mttr","event":"clean_deployment","workflow_run_id":'"$RUN_ID"',"sha":"'"$SHA"'","timestamp":"'"$INCIDENT_END"'"}' | tee mttr-clean-deploy.json
+          else
+            INCIDENT_START=$(echo "$PRIOR_FAILURE" | jq -r '.updated_at')
+            FAILURE_RUN_ID=$(echo "$PRIOR_FAILURE" | jq -r '.id')
+
+            # Calculate MTTR
+            START_TS=$(date -d "$INCIDENT_START" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$INCIDENT_START" +%s)
+            END_TS=$(date -d "$INCIDENT_END" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$INCIDENT_END" +%s)
+            RECOVERY_SECONDS=$((END_TS - START_TS))
+
+            echo "INCIDENT RESOLVED — MTTR: ${RECOVERY_SECONDS}s"
+            echo '{"metric":"mttr","event":"incident_resolved","workflow_run_id":'"$RUN_ID"',"prior_failure_run_id":'"$FAILURE_RUN_ID"',"sha":"'"$SHA"'","incident_start":"'"$INCIDENT_START"'","incident_end":"'"$INCIDENT_END"'","recovery_seconds":'"$RECOVERY_SECONDS"'}' | tee mttr-resolved.json
+
+            # TODO: emit to OTLP endpoint when observability platform is configured
+          fi

@@ -1,0 +1,130 @@
+name: Deploy
+
+# ─────────────────────────────────────────────────────────────────────────────
+# agentic-enterprise Deployment Pipeline
+# Part of: DORA Metrics Excellence (DORA Metrics)
+#
+# This workflow emits DORA deployment-frequency telemetry on every successful
+# push to main. It is triggered by the completion of the "Validate Framework"
+# workflow (validate.yml) — which already performs all YAML/schema/structure
+# checks — so that duplicate validation is eliminated (Bottleneck 2 fix,
+# 2026-03-08, saves ~10s + 1 runner per push).
+#
+# Trigger: workflow_run on "Validate Framework" (validate.yml) — only fires
+# when that workflow completes successfully on main, so this pipeline will
+# never emit a deploy event for a broken commit.
+#
+# The actual ACC Dynatrace App deployment lives in the agent-command-center
+# repository — this repo is the operating model, not the app source.
+#
+# Optional GitHub environment secrets (for DORA telemetry):
+#   OTLP_ENDPOINT  — Dynatrace log/biz-event ingest URL
+#   OTLP_API_KEY   — Dynatrace API token for OTLP ingest
+# ─────────────────────────────────────────────────────────────────────────────
+
+on:
+  # Trigger after Validate Framework completes on main — eliminates the need
+  # to re-run YAML/schema validation that validate.yml already performed.
+  workflow_run:
+    workflows: ["Validate Framework"]
+    types: [completed]
+    branches: [main]
+  # Allow manual trigger (e.g., re-emit telemetry without a new push)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ───────────────────────────────────────────────────────────────────────────
+  # DORA Telemetry — emit deploy event for framework changes
+  # Only runs when validation passed (workflow_run.conclusion == 'success')
+  # or when manually dispatched.
+  # ───────────────────────────────────────────────────────────────────────────
+  telemetry:
+    name: Emit DORA Deploy Event
+    runs-on: ubuntu-latest
+    # Skip if triggered by a failed validate run
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve deploy metadata
+        id: meta
+        run: |
+          # When triggered by workflow_run, use the triggering commit SHA;
+          # otherwise fall back to the current push SHA.
+          COMMIT_SHA="${{ github.event.workflow_run.head_sha || github.sha }}"
+          echo "sha=${COMMIT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "short_sha=$(echo "${COMMIT_SHA}" | cut -c1-8)" >> "$GITHUB_OUTPUT"
+          echo "timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+          echo "actor=${{ github.event.workflow_run.triggering_actor.login || github.actor }}" >> "$GITHUB_OUTPUT"
+          echo "run_id=${{ github.run_id }}" >> "$GITHUB_OUTPUT"
+          echo "run_number=${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+
+      - name: Emit DORA deploy event
+        if: always()
+        env:
+          OTLP_ENDPOINT: ${{ secrets.OTLP_ENDPOINT }}
+          OTLP_API_KEY: ${{ secrets.OTLP_API_KEY }}
+        run: |
+          python3 - <<PYEOF
+          import json, os, sys, urllib.request, urllib.error
+
+          event = {
+            "event.type": "deploy",
+            "event.name": "sandboxcorp.deploy",
+            "mission.id": "DORA Metrics",
+            "dora.metric": "deployment_frequency",
+            "deploy.timestamp": "${{ steps.meta.outputs.timestamp }}",
+            "deploy.commit_sha": "${{ steps.meta.outputs.sha }}",
+            "deploy.commit_sha_short": "${{ steps.meta.outputs.short_sha }}",
+            "deploy.outcome": "success",
+            "deploy.target": "sandboxcorp-framework",
+            "deploy.actor": "${{ steps.meta.outputs.actor }}",
+            "deploy.run_id": "${{ steps.meta.outputs.run_id }}",
+            "deploy.run_number": "${{ steps.meta.outputs.run_number }}",
+            "deploy.repo": "WulfAI/sandboxcorp",
+            "deploy.pipeline": "github-actions",
+            "agent.layer": "execution",
+            "agent.name": "engineering-foundation",
+          }
+
+          print("::group::DORA Deploy Event")
+          print(json.dumps(event, indent=2))
+          print("::endgroup::")
+
+          with open("deploy-event.json", "w") as f:
+            json.dump(event, f, indent=2)
+
+          endpoint = os.environ.get("OTLP_ENDPOINT", "").strip()
+          api_key = os.environ.get("OTLP_API_KEY", "").strip()
+          if endpoint and api_key:
+            try:
+              payload = json.dumps([event]).encode()
+              req = urllib.request.Request(
+                endpoint,
+                data=payload,
+                headers={
+                  "Content-Type": "application/json",
+                  "Authorization": f"Api-Token {api_key}",
+                },
+                method="POST",
+              )
+              with urllib.request.urlopen(req, timeout=10) as resp:
+                print(f"OTLP ingest: HTTP {resp.status}")
+            except Exception as ex:
+              print(f"Warning: OTLP ingest failed: {ex}", file=sys.stderr)
+          else:
+            print("No OTLP endpoint configured — telemetry logged to stdout only.")
+          PYEOF
+
+      - name: Upload deploy event artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-event-${{ steps.meta.outputs.short_sha }}
+          path: deploy-event.json
+          retention-days: 90

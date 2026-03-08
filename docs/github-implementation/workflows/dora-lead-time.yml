@@ -1,0 +1,85 @@
+name: DORA — Lead Time for Changes
+
+# Mission: DORA Metrics (DORA Metrics Excellence)
+# Tracks PR open → merge time as a proxy for Lead Time for Changes.
+#
+# ⚠️  MEASUREMENT GAP: This workflow measures PR creation → merge, NOT
+#     commit → production deploy. Full DORA lead time measurement is blocked
+#     by the absence of a deploy pipeline (P0 blocker SIG-2026-03-02-001).
+#     When a deploy pipeline is available, update this workflow to track
+#     deployment events instead.
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  lead-time:
+    name: Measure Lead Time for Changes
+    runs-on: ubuntu-latest
+    # Only run when the PR was actually merged (not just closed)
+    if: github.event.pull_request.merged == true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make tracker script executable
+        run: chmod +x .github/scripts/lead-time-tracker.sh
+
+      - name: Calculate lead time
+        id: lead_time
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          REPO="${{ github.repository }}"
+          
+          echo "Calculating lead time for PR #${PR_NUMBER} in ${REPO}..."
+          
+          JSON=$(.github/scripts/lead-time-tracker.sh "$PR_NUMBER" "$REPO")
+          
+          echo "## 📊 DORA — Lead Time for Changes" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**PR:** #${PR_NUMBER} — ${{ github.event.pull_request.title }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          echo "$JSON" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          
+          # Extract lead time for threshold check
+          MINUTES=$(echo "$JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('lead_time_minutes','N/A'))")
+          TARGET=150  # 2.5 hours in minutes
+          
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Result" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Metric | Value |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|--------|-------|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Lead Time (proxy) | **${MINUTES} min** |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| DORA Target | ≤ ${TARGET} min (2.5 h) |" >> "$GITHUB_STEP_SUMMARY"
+          
+          python3 - "$MINUTES" "$TARGET" <<'PYEOF'
+          import sys
+          minutes = float(sys.argv[1])
+          target = float(sys.argv[2])
+          if minutes <= target:
+              print("| Status | ✅ Within target |")
+          else:
+              print("| Status | ⚠️ Exceeds target |")
+          PYEOF
+          
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "> ⚠️ **Measurement note:** Lead time is measured as PR creation → merge (proxy)." >> "$GITHUB_STEP_SUMMARY"
+          echo "> Full commit → production deploy tracking is pending deploy pipeline setup." >> "$GITHUB_STEP_SUMMARY"
+          echo "> Blocker: SIG-2026-03-02-001 (P0 — no deployment target defined)" >> "$GITHUB_STEP_SUMMARY"
+          
+          # Also emit to log for traceability
+          echo "DORA_LEAD_TIME_JSON=${JSON}" | tr '\n' ' '
+          echo ""
+          echo "Lead time result: ${MINUTES} minutes (target: ${TARGET} min)"

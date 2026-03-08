@@ -42,6 +42,18 @@ Guides that help you bootstrap a new fork or understand the framework structure.
 
 ---
 
+## Platform Implementation Guides
+
+Guides for implementing the framework on specific platforms (GitHub, GitLab, etc.).
+
+| Guide | Purpose |
+|---|---|
+| [`github-implementation/README.md`](github-implementation/README.md) | GitHub Issues as work backend, Projects for visibility, Actions workflows (active + reference DORA implementations), label structure, automation scripts. |
+| [`WORK-BACKEND.md`](WORK-BACKEND.md) | How to configure git-files vs. github-issues backend in CONFIG.yaml. |
+| [`AUTOMATION-PATTERNS.md`](AUTOMATION-PATTERNS.md) | Script-first, LLM-second principle. Classification of what to automate via scripts vs. what needs LLM agents. |
+
+---
+
 ## Runtime Implementation Guides
 
 Guides for connecting specific agent runtimes and platforms to the framework. The framework core is runtime-agnostic — these guides cover runtime-specific configuration only.

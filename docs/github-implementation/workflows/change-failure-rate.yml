@@ -1,0 +1,64 @@
+name: Change Failure Rate Tracking
+
+# Tracks deployment outcomes to calculate Change Failure Rate (CFR).
+# CFR = (failed deployments / total deployments) × 100%
+# DORA Elite target: ≤ 2%
+#
+# Triggered on completion of the deploy workflow.
+# When no real deployment target exists, this workflow instruments the
+# deploy.yml run outcome as a pipeline-level proxy for CFR.
+
+on:
+  workflow_run:
+    workflows: ["Deploy"]
+    types: [completed]
+
+permissions: {}
+
+jobs:
+  record-cfr-event:
+    name: Record Change Failure Rate Event
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Emit CFR event
+        run: |
+          RUN_ID="${{ github.event.workflow_run.id }}"
+          CONCLUSION="${{ github.event.workflow_run.conclusion }}"
+          SHA="${{ github.event.workflow_run.head_sha }}"
+          TIMESTAMP="${{ github.event.workflow_run.updated_at }}"
+          WORKFLOW_NAME="${{ github.event.workflow_run.name }}"
+
+          echo "CFR event: workflow_run completed"
+          echo '{"metric":"change_failure_rate","workflow_run_id":'"$RUN_ID"',"workflow_name":"'"$WORKFLOW_NAME"'","conclusion":"'"$CONCLUSION"'","sha":"'"$SHA"'","timestamp":"'"$TIMESTAMP"'"}' | tee cfr-event.json
+
+          # TODO: emit to OTLP endpoint when observability platform is configured
+
+      - name: Label as failed deployment
+        if: github.event.workflow_run.conclusion == 'failure'
+        run: |
+          RUN_ID="${{ github.event.workflow_run.id }}"
+          SHA="${{ github.event.workflow_run.head_sha }}"
+          TIMESTAMP="${{ github.event.workflow_run.updated_at }}"
+
+          echo "FAILED DEPLOYMENT detected — flagging for CFR calculation"
+          echo '{"metric":"change_failure_rate","event":"failed_deployment","workflow_run_id":'"$RUN_ID"',"sha":"'"$SHA"'","timestamp":"'"$TIMESTAMP"'","cfr_label":"failed_deployment"}' | tee cfr-failure-event.json
+
+          # TODO: When a real deployment target exists:
+          # 1. Emit incident event to ITSM / PagerDuty
+          # 2. Trigger rollback workflow
+          # 3. Record in MTTR tracking (mttr.yml will pick up workflow_run failure)
+
+      - name: Confirm successful deployment
+        if: github.event.workflow_run.conclusion == 'success'
+        run: |
+          RUN_ID="${{ github.event.workflow_run.id }}"
+          SHA="${{ github.event.workflow_run.head_sha }}"
+          TIMESTAMP="${{ github.event.workflow_run.updated_at }}"
+
+          echo "Deployment SUCCESS — counting toward CFR denominator"
+          echo '{"metric":"change_failure_rate","event":"successful_deployment","workflow_run_id":'"$RUN_ID"',"sha":"'"$SHA"'","timestamp":"'"$TIMESTAMP"'","cfr_label":"success"}' | tee cfr-success-event.json
