@@ -1,6 +1,6 @@
 # Work Backends — Git Files vs. Issue Tracker
 
-> **Version:** 1.1 | **Last updated:** 2026-03-07
+> **Version:** 1.2 | **Last updated:** 2026-03-08
 
 > **What this document is:** A comprehensive guide to how work artifacts can be tracked using different backends — either as Markdown files in Git (the original model) or as issues in an issue tracker (GitHub Issues, Jira, Linear, etc.).
 
@@ -292,6 +292,78 @@ When `use_projects: true`, create GitHub Projects boards for visual tracking:
 
 ---
 
+## Assignment Discipline (Issues, PRs, and Reviews)
+
+**Every issue, pull request, and review request must have an assignee at all times.** This applies regardless of which work backend is configured — PRs exist in both modes (governance backbone changes always go through PRs). Assignment is not optional metadata — it is the primary mechanism for communicating ownership and expected next action.
+
+### Assignment Rules — Issues
+
+| Situation | Assignee | Why |
+|-----------|----------|-----|
+| Agent is executing a task | Agent's GitHub bot account | Agent owns the work and is responsible for completion |
+| Work needs human approval | The approving human | Human must act — review, approve, reject, or request changes |
+| Work needs human decision | The deciding human | Human must make a judgment call |
+| Agent is blocked, needs human input | The human who can unblock | Prevents silent stalls |
+| Issue just created, not yet triaged | The triaging human or orchestration agent | Ensures someone picks it up |
+| Completed work, pending closure | The person who will close/archive | Clean handoff to final step |
+
+### Assignment Rules — Pull Requests
+
+| Situation | Assignee | Reviewers | Why |
+|-----------|----------|-----------|-----|
+| Agent opens a PR | Agent bot account (author) | Human(s) from CODEOWNERS or relevant approver | Author owns the PR; reviewer must act |
+| PR review requested | Agent bot account (author) | The specific human(s) who should review | Reviewer sees it in their review queue |
+| Reviewer requests changes | Agent bot account | Same reviewer (stays assigned) | Agent must address feedback |
+| Agent addresses feedback | Agent bot account | Re-request review from same reviewer | Reviewer must re-evaluate |
+| PR approved, ready to merge | The person who will merge (human or agent if permitted) | — | Clean handoff to final step |
+| PR is blocked or has failing checks | Agent bot account | — | Agent must investigate and fix |
+
+### Handoff Protocol — Issues
+
+**Core principle:** Humans never need to touch labels. They comment and re-assign. Agents handle all label management.
+
+1. **Agent → Human (approval needed):** Agent sets the status label (e.g., `status:proposed`), re-assigns to the approving human, and leaves a comment that:
+   - Summarizes what was done and what to review
+   - Lists the human's options in plain language (e.g., "You can: **Approve** — comment 'approved' and assign back to @acme-ai-bot | **Reject** — comment what needs to change and assign back to @acme-ai-bot | **Ask questions** — comment your questions and keep yourself assigned")
+   - Links to relevant artifacts if applicable
+2. **Human → Agent (any decision):** Human leaves a comment with their decision in plain language (e.g., "Approved", "Looks good", "Rejected — the rollback plan is incomplete", "Please revise the scope to exclude X") and re-assigns to the agent.
+3. **Agent processes human decision:** Agent reads the comment, interprets the decision, applies the appropriate label change (e.g., `status:proposed` → `status:approved`), and continues with the next step. If the agent cannot confidently interpret the comment, it asks a clarifying question in a follow-up comment and keeps the issue assigned to the human.
+
+### Handoff Protocol — Pull Requests
+
+1. **Agent opens PR:** Agent creates the PR, assigns itself, requests review from the appropriate human(s), and writes a PR description that:
+   - Summarizes the change and its purpose
+   - Links to the originating issue/mission/task
+   - States what the reviewer should focus on
+   - Lists the reviewer's options (e.g., "You can: **Approve** the review | **Request changes** with comments | **Comment** with questions")
+2. **Reviewer acts:** Reviewer submits a GitHub review (approve, request changes, or comment). No re-assignment needed — the review system handles notification.
+3. **Agent processes review:** If approved and agent has merge permission, it merges. If changes are requested, the agent addresses them, pushes new commits, and re-requests review. If the review comment is unclear, the agent replies on the PR asking for clarification.
+4. **Merge handoff:** If the agent cannot merge (branch protection requires a human), it comments on the PR stating it is ready to merge and assigns the PR to the human who should merge.
+
+### Next-Action Clarity
+
+Every assigned issue, PR, and review request must make the expected next action obvious. An assignee or reviewer should be able to look at an item and immediately understand what they need to do and what their options are — without reading the full history or knowing the label system.
+
+Mechanisms for next-action clarity:
+- **Agent-authored handoff comment** (issues) — always present when an agent hands off to a human; lists options in plain language
+- **PR description** — always explains what to review and what the reviewer's options are
+- **Review re-request** — after addressing feedback, agent comments summarizing what changed
+- **Issue description** — for new issues, the description itself states the expected action and available options
+- **Status label** — maintained by agents as machine-readable state; humans can ignore it
+
+### Unassigned Item Sweep
+
+Orchestration agents must periodically scan for unassigned open issues and PRs. Unassigned items are workflow failures — they represent work that nobody is driving. For each unassigned item:
+1. Determine the correct assignee based on the artifact type, status, and layer
+2. Assign the item (and request reviewers for PRs if missing)
+3. If the correct assignee cannot be determined, escalate by assigning to the orchestration layer's human supervisor
+
+### Agent Identity
+
+Agents must use a dedicated GitHub bot/user account (e.g., `acme-ai-bot`). This makes it unambiguous whether an item is human-owned or agent-owned, across issues, PRs, and reviews. Configure the agent identity in `CONFIG.yaml → work_backend.github_issues`.
+
+---
+
 ## Agent Behavior Differences by Backend
 
 ### Creating Artifacts
@@ -310,25 +382,25 @@ When `use_projects: true`, create GitHub Projects boards for visual tracking:
 
 | Mechanism | Git Files Backend | Issue Backend |
 |-----------|-------------------|---------------|
-| Signal triage | PR merge = approval | Authorized human removes `status:new` and applies exactly one of `status:proceed`, `status:defer`, `status:monitor`, or `status:done` |
-| Mission approval | PR merge = approval | Label change (`status:proposed` → `status:approved`) by authorized human |
-| Decision approval | PR merge = approval | Label change (`status:proposed` → `status:accepted`) by authorized human |
+| Signal triage | PR merge = approval | Human comments with triage decision (e.g., "proceed", "defer", "monitor", "done") and re-assigns to agent. Agent applies the corresponding `status:` label. |
+| Mission approval | PR merge = approval | Human comments approval (e.g., "approved") and re-assigns to agent. Agent changes `status:proposed` → `status:approved`. |
+| Decision approval | PR merge = approval | Human comments acceptance and re-assigns to agent. Agent changes `status:proposed` → `status:accepted`. |
 | Quality gate | Evaluation file with PASS verdict | Evaluation file in Git references the issue-backed mission/task |
-| Release go/no-go | PR merge = approval | Label change (`status:draft` → `status:approved`) by authorized human |
+| Release go/no-go | PR merge = approval | Human comments approval and re-assigns to agent. Agent changes `status:draft` → `status:approved`. |
 
 ### Human Approval Cheat Sheet
 
-When humans are the approval gate in the issue backend, the action should be explicit and mechanical:
+Humans approve by **commenting and re-assigning** — they never need to touch labels. The agent's handoff comment always explains the available options.
 
-| Artifact | Human does this | Approval result |
-|----------|-----------------|-----------------|
-| Signal | Review the issue, leave a short rationale comment, replace `status:new` with one terminal triage label | Signal is triaged |
-| Mission | Confirm scope/outcomes, leave a short approval comment, replace `status:proposed` with `status:approved` | Mission can move to planning |
-| Decision | Review context and tradeoffs, leave a short approval comment, replace `status:proposed` with `status:accepted` | Decision becomes active |
-| Release | Review rollout and rollback plan, leave a short approval comment, replace `status:draft` with `status:approved` | Deployment may begin |
-| Retrospective | Review findings and follow-ups, leave a short approval comment, replace `status:draft` with `status:accepted` | Postmortem is closed |
+| Artifact | Human does this | Agent does this after |
+|----------|-----------------|---------------------|
+| Signal | Review the issue, comment with triage decision (e.g., "proceed" or "defer — not a priority this quarter"), re-assign to agent | Agent applies the terminal `status:` label based on the comment |
+| Mission | Review scope and outcomes, comment approval or rejection, re-assign to agent | Agent changes `status:proposed` → `status:approved` (or keeps and notes rejection) |
+| Decision | Review context and tradeoffs, comment acceptance or rejection, re-assign to agent | Agent changes `status:proposed` → `status:accepted` (or keeps and notes rejection) |
+| Release | Review rollout and rollback plan, comment approval, re-assign to agent | Agent changes `status:draft` → `status:approved` |
+| Retrospective | Review findings and follow-ups, comment acceptance, re-assign to agent | Agent changes `status:draft` → `status:accepted` |
 
-Do not rely on issue closure alone as approval. Closure archives work; the `status:` label change is the approval event.
+Do not rely on issue closure alone as approval. Closure archives work; the `status:` label change (performed by the agent) is the approval event.
 
 ### Audit Trail
 
@@ -385,5 +457,6 @@ Templates are **never** tracked in the issue system. They are framework files, g
 
 | Version | Date | Change |
 |---------|------|--------|
+| 1.2 | 2026-03-08 | Added assignment discipline section covering issues, PRs, and reviews — mandatory assignees, handoff protocols for both issues and PRs, next-action clarity, unassigned item sweep, agent identity. Human approval via comment+re-assign (agents handle labels). |
 | 1.1 | 2026-03-07 | Clarified Git-only companion artifacts, added human approval cheat sheet, removed issue-only claims for digests/evaluations/outcome reports/fleet reports, linked GitHub implementation guide |
 | 1.0 | 2026-03-07 | Initial version — introduced work backend abstraction concept |

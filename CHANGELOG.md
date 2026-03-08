@@ -21,6 +21,9 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 _Changes merged to `main` but not yet tagged as a release go here. Move to a new version section when cutting a release._
 
+### Added
+- **Assignment discipline for all GitHub artifacts** (AGENTS.md Rule 3, WORK-BACKENDS.md, GITHUB-ISSUES.md): Every issue, PR, and review request must have an assignee at all times. Mandatory handoff protocols for both issues and PRs. Comment-based human approval model — humans comment and re-assign, agents handle all label management. PR handoff protocol covers review requests, feedback cycles, and merge handoffs. Orchestration agents must sweep for unassigned items. Agent identity via dedicated bot accounts required.
+
 ---
 
 ## [3.0.0] — 2026-03-07

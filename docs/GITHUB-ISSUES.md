@@ -1,6 +1,6 @@
 # GitHub Issues Backend Guide
 
-> **Version:** 1.0 | **Last updated:** 2026-03-07
+> **Version:** 1.1 | **Last updated:** 2026-03-08
 
 > **What this document is:** The concrete implementation guide for running operational work artifacts in GitHub Issues. Use this when `CONFIG.yaml → work_backend.type` is `github-issues`.
 
@@ -204,33 +204,89 @@ If you prefer GitHub CLI, create labels with `gh label create` using the same na
 
 ## Human Approval Table
 
-Humans should not have to guess what “approve” means.
+Humans should not have to guess what “approve” means — and they should never need to manage labels.
 
-Use these approval actions exactly:
+**How it works:** When an agent needs a human decision, it assigns the issue to the human and leaves a comment that explains what to review and what the options are. The human comments with their decision in plain language and re-assigns to the agent. The agent then applies the correct label.
 
-| Artifact | Human action | Approval result |
-|----------|--------------|-----------------|
-| Signal | Review the issue, leave a short rationale comment, replace `status:new` with one of `status:proceed`, `status:defer`, `status:monitor`, or `status:done` | Signal is triaged |
-| Mission | Review scope and outcome contract, leave a short approval comment, replace `status:proposed` with `status:approved` | Mission may move to planning |
-| Decision | Review context and tradeoffs, leave a short approval comment, replace `status:proposed` with `status:accepted` | Decision is accepted |
-| Release | Review rollout and rollback plan, leave a short approval comment, replace `status:draft` with `status:approved` | Deployment may begin |
-| Retrospective | Review findings and follow-ups, leave a short approval comment, replace `status:draft` with `status:accepted` | Postmortem is closed |
+| Artifact | What the agent's comment tells the human | Human does this |
+|----------|------------------------------------------|-----------------|
+| Signal | “Please triage this signal. You can: **Proceed** (create a mission), **Defer** (not now), **Monitor** (watch for more data), or **Done** (no action needed). Comment your decision and assign back to me.” | Comment (e.g., “Proceed — this is high priority”) and re-assign to agent |
+| Mission | “Please review the scope and outcome contract. You can: **Approve** or **Reject** (with reason). Comment your decision and assign back to me.” | Comment (e.g., “Approved” or “Rejected — scope too broad”) and re-assign to agent |
+| Decision | “Please review context and tradeoffs. You can: **Accept** or **Reject** (with reason). Comment your decision and assign back to me.” | Comment decision and re-assign to agent |
+| Release | “Please review rollout and rollback plan. You can: **Approve** or **Reject** (with reason). Comment your decision and assign back to me.” | Comment decision and re-assign to agent |
+| Retrospective | “Please review findings and follow-ups. You can: **Accept** or **Reject** (with reason). Comment your decision and assign back to me.” | Comment decision and re-assign to agent |
 
 Do not use issue closure as the approval signal.
-Closure archives completed work. The label transition is the approval event.
+Closure archives completed work. The label transition (performed by the agent after reading the human's comment) is the approval event.
+
+---
+
+## Assignment Rules
+
+Every issue, PR, and review request must have an assignee. Assignment is how ownership and next-action responsibility are communicated. These rules apply to **all GitHub artifacts**, not just issues.
+
+### Who Gets Assigned — Issues
+
+| Issue state | Assigned to | Rationale |
+|-------------|-------------|-----------|
+| Newly created, awaiting triage | Triaging human or orchestration agent | Someone must pick it up |
+| Agent is executing | Agent bot account | Agent owns the work |
+| Awaiting human approval | The approving human | Human must act next |
+| Approved, execution continues | The executing agent | Agent resumes work |
+| Blocked, needs human input | The human who can unblock | Prevents silent stalls |
+| Completed, pending closure | The person closing | Clean handoff |
+
+### Who Gets Assigned — Pull Requests
+
+| PR state | Assigned to | Reviewers | Rationale |
+|----------|-------------|-----------|-----------|
+| Just opened by agent | Agent bot account | Human(s) from CODEOWNERS or relevant approver | Author owns the PR; reviewer sees it in their queue |
+| Changes requested | Agent bot account | Reviewer stays assigned | Agent must address feedback |
+| Feedback addressed | Agent bot account | Re-request same reviewer | Reviewer must re-evaluate |
+| Approved, ready to merge | Person who merges (human or agent) | — | Clean handoff |
+| Blocked by failing checks | Agent bot account | — | Agent investigates |
+
+### Handoff Mechanics — Issues
+
+**Core principle:** Humans comment and re-assign. Agents handle all label management. Humans never need to know the label system.
+
+When work transitions between agent and human:
+
+1. **Agent finishes, needs approval:** Agent sets the `status:` label, re-assigns to the approving human, and leaves a comment that (a) summarizes what was done, (b) explains what to review, and (c) lists the human's options in plain language (e.g., "You can: **Approve** — comment 'approved' and assign back to @acme-ai-bot | **Reject** — comment what needs to change and assign back to @acme-ai-bot").
+2. **Human decides:** Human comments with their decision in plain language (e.g., "Approved", "Looks good, go ahead", "Rejected — need more detail on rollback") and re-assigns to the agent.
+3. **Agent processes decision:** Agent reads the comment, interprets the decision, applies the appropriate label change, and continues. If the comment is ambiguous, the agent asks a clarifying question and keeps the issue assigned to the human.
+
+### Handoff Mechanics — Pull Requests
+
+1. **Agent opens PR:** Agent creates the PR, assigns itself, requests review from the appropriate human(s), and writes a description that summarizes the change, links to the originating issue/task, explains what to focus on, and lists the reviewer's options (approve, request changes, comment).
+2. **Reviewer acts:** Reviewer submits a GitHub review. No re-assignment needed — GitHub's review system handles notification.
+3. **Agent processes review:** If approved and the agent has merge permission, it merges. If changes are requested, the agent addresses them, pushes, and re-requests review with a comment summarizing what changed. If the review is unclear, the agent asks for clarification on the PR.
+4. **Merge handoff:** If branch protection requires a human to merge, the agent comments that the PR is ready and assigns it to the human who should merge.
+
+### Agent Identity
+
+Agents must use a dedicated GitHub bot/user account (e.g., `acme-ai-bot`) so that human-owned and agent-owned items are visually distinguishable at a glance — across issues, PRs, and reviews.
 
 ---
 
 ## Human Operating Rules
 
-These rules keep the issue backend consistent:
+These rules keep GitHub collaboration consistent. **You never need to manage labels — agents do that.**
 
-1. Never leave multiple `status:` labels on one issue.
-2. Always leave a short comment when approving, rejecting, or cancelling.
-3. Close completed work only after the final status label is applied.
+### For Issues
+1. Always leave a short comment when approving, rejecting, or requesting changes. Plain language is fine — the agent interprets it.
+2. After commenting, always re-assign the issue to the agent (or next responsible human). Never leave an issue assigned to yourself after you've made your decision.
+3. Never leave an issue unassigned — if you are done with your part, assign it forward.
 4. Close child task issues before closing the parent mission issue.
 5. For missions, keep the issue body as the current mission brief and use comments for running status updates.
 6. For tasks, put acceptance criteria directly in the task issue body so execution and quality agents can evaluate against them.
+7. If the agent's handoff comment lists your options, pick one and state it clearly. If none of the options fit, explain what you'd prefer instead.
+
+### For Pull Requests
+1. When assigned as a reviewer, submit a GitHub review (approve, request changes, or comment). The PR description explains what to focus on.
+2. If you request changes, be specific about what needs to change — the agent will address your feedback and re-request your review.
+3. If branch protection requires you to merge, do so after all checks pass. The agent will comment when the PR is ready.
+4. Never leave a PR without reviewers — if you can't review it, re-assign the review to someone who can.
 
 ---
 
@@ -287,4 +343,5 @@ Git still holds the durable review-heavy artifacts.
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-03-08 | Added assignment rules for issues and PRs, handoff mechanics for both, agent identity requirement, human operating rules for issues and PRs, comment-based approval model |
 | 1.0 | 2026-03-07 | Initial version — concrete GitHub issue-backend implementation guide |

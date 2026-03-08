@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 3.0 | **Last updated:** 2026-03-07
+> **Version:** 3.1 | **Last updated:** 2026-03-08
 
 > **Scope:** Every AI agent working in this repository — regardless of layer, role, or task — must follow these instructions.
 > **This file is the top of the instruction hierarchy.** Layer-specific and division-specific instructions extend (never contradict) these rules.
@@ -42,7 +42,16 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 ### 3. Process is governed
 - All work artifacts are tracked in the **configured work backend** — either as Markdown files in `work/` or as issues in the configured issue tracker (see `CONFIG.yaml → work_backend` and [docs/WORK-BACKENDS.md](docs/WORK-BACKENDS.md))
 - **Git-files backend:** All changes go through Pull Requests. All approvals are PR merges. Git history is the audit trail.
-- **Issue backend:** All changes go through issue state transitions. Approvals are label changes by authorized humans. Issue activity logs are the audit trail.
+- **Issue backend:** All changes go through issue state transitions. Approvals happen through human comments and re-assignment — agents handle all label management. Issue activity logs are the audit trail.
+- **Assignment discipline (all GitHub artifacts):** Every issue, PR, and review request must have an assignee at all times. This applies regardless of work backend — PRs exist in both modes. Assignment communicates ownership and next action:
+  - **Agent-owned work** (tasks, implementation, analysis): Assign to the agent's GitHub user/bot account. This signals the agent is responsible for execution.
+  - **Human-owned work** (approvals, decisions, reviews): Assign to the responsible human. This signals the human must act next.
+  - **Issues — approval handoffs:** When an agent completes work that requires human approval, the agent sets the status label, re-assigns to the approving human, and leaves a comment that clearly explains (a) what was done, (b) what the human should review, and (c) what the human's options are (e.g., "approve", "reject", "request changes"). The human never touches labels — they comment with their decision and re-assign back to the agent. The agent then reads the comment, applies the appropriate label change, and continues.
+  - **PRs — same principle:** When an agent opens a PR, it assigns the PR to itself (author), requests review from the appropriate human(s), and writes a PR description that explains what to review and what the reviewer's options are. After a human approves the review, the agent may merge (if permitted) or re-assigns to the human who merges. If the reviewer requests changes, the agent addresses them and re-requests review.
+  - **PR reviews:** Agents request reviews from the humans defined in CODEOWNERS or the relevant approver for the artifact type. Never open a PR without requesting a review — an unreviewed PR is invisible.
+  - **After approval:** When the agent detects a human approval (comment + re-assignment on issues, or approved PR review), it updates labels/state accordingly and proceeds with execution.
+  - **Never unassigned:** If an issue or PR has no assignee, it is invisible to the workflow. Orchestration agents must scan for unassigned items and either assign them or escalate.
+  - **Next-action clarity:** Every issue, PR, and review request must make the expected next action obvious — through a comment, the description, or the review request message. An assignee or reviewer must be able to understand what is expected of them and what their options are without reading the full history or knowing the label system.
 - **Regardless of backend:** Governance backbone files (org structure, policies, agent instructions, templates, CONFIG.yaml) always live in Git and are governed via PRs.
 - Write meaningful commit messages (for Git-backed artifacts) or clear issue descriptions (for issue-backed artifacts)
 
