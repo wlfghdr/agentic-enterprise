@@ -2,7 +2,7 @@
 
 > **Version:** 1.0 | **Last updated:** 2026-03-08
 > **Spec reference:** [OTel GenAI Semantic Conventions (Development)](https://opentelemetry.io/docs/specs/semconv/gen-ai/) — verify currency before use
-> **Related:** `work/missions/_TEMPLATE-observability-design.md` (full instrumentation design template)
+> **Related:** `work/missions/_TEMPLATE-technical-design.md` (Observability Design section — full instrumentation design template)
 
 ---
 
@@ -18,7 +18,7 @@ The OpenTelemetry GenAI Semantic Conventions Working Group has standardized this
 2. **Cross-team comparability** — Teams adopting this template produce comparable traces. Benchmarking, shared dashboards, and fleet-level cost analysis become trivially achievable.
 3. **Ecosystem longevity** — The GenAI conventions are on the standards track. Aligning now avoids a painful migration later.
 
-This file is a **quick-reference** for agents and developers. For the full instrumentation design template (span hierarchy, metrics design, SLOs, alerting, dashboard spec), see [`work/missions/_TEMPLATE-observability-design.md`](../work/missions/_TEMPLATE-observability-design.md).
+This file is a **quick-reference** for agents and developers. For the full instrumentation design template (span hierarchy, metrics design, SLOs, alerting, dashboard spec), see the Observability Design section in [`work/missions/_TEMPLATE-technical-design.md`](../work/missions/_TEMPLATE-technical-design.md).
 
 ---
 
@@ -244,7 +244,7 @@ Use this as a PR-level quality gate when adding or modifying agent LLM calls:
 |------|---------|
 | `AGENTS.md Rule 9` | Mandate: all agents MUST emit OTel spans (what to do) |
 | **This file** | Standard: which span names and attributes to use (how to do it) |
-| `work/missions/_TEMPLATE-observability-design.md` | Full design template: span hierarchy, metrics, SLOs, dashboards, alerting for a complete mission |
+| `work/missions/_TEMPLATE-technical-design.md` (Observability Design section) | Full design template: span hierarchy, metrics, SLOs, dashboards, alerting for a complete mission |
 | `org/integrations/` | Integration Registry: where spans are exported (OTLP endpoint config) |
 
 ---
