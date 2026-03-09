@@ -25,10 +25,10 @@
 
 1. [Resource Attributes](#1-resource-attributes)
 2. [Span Naming Conventions](#2-span-naming-conventions)
-3. [Standard OTel / GenAI Attributes](#3-standard-otel--genai-attributes)
+3. [Standard OTel and GenAI Attributes](#3-standard-otel-and-genai-attributes)
 4. [Custom Agentic-Enterprise Attributes](#4-custom-agentic-enterprise-attributes)
 5. [Span Hierarchy Example](#5-span-hierarchy-example)
-6. [Span Events — Native vs Derived](#6-span-events--native-vs-derived)
+6. [Span Events - Native vs Derived](#6-span-events---native-vs-derived)
 7. [Standard Metrics](#7-standard-metrics)
 8. [Privacy and Content Capture Defaults](#8-privacy-and-content-capture-defaults)
 9. [Canonical Mapping and Deprecation Table](#9-canonical-mapping-and-deprecation-table)
@@ -84,7 +84,7 @@ All agentic-enterprise span names use a fixed vocabulary. Non-standard span name
 
 ---
 
-## 3. Standard OTel / GenAI Attributes
+## 3. Standard OTel and GenAI Attributes
 
 These are **standard attributes from the OpenTelemetry semantic conventions registry**. Use them as-is. Do not create custom aliases or parallel fields.
 
@@ -230,7 +230,7 @@ git.operation pr_open                               ← CLIENT
 
 ---
 
-## 6. Span Events — Native vs Derived
+## 6. Span Events - Native vs Derived
 
 ### 6.1 Native OTel Span Events
 
