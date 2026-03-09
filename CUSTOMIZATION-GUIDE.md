@@ -172,7 +172,7 @@ Complete the Quick Start above (Steps 1-4), then:
 
 7. **File your first signal:**
    - **Git-files backend:** Create `work/signals/YYYY-MM-DD-<your-first-opportunity>.md` from the template (`work/signals/_TEMPLATE-signal.md`).
-   - **Issue backend:** Create a GitHub Issue with label `artifact:signal`, `status:new`, and the structured body from the signal template.
+   - **Issue backend:** Create a GitHub Issue with label `artifact:signal` and the structured body from the signal template. The issue's Project Status will default to `Backlog`.
    This is the input that kicks off the entire lifecycle.
 8. **Steering Agent: Produce first digest** — The Steering Agent aggregates signals into a weekly digest (`work/signals/digests/YYYY-WXX-digest.md`), detecting patterns and flagging priorities.
 9. **Strategy Agent: Triage to a mission** — The Strategy Agent consumes the digest, triages signals, and if a signal warrants action:

@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 3.1 | **Last updated:** 2026-03-08
+> **Version:** 3.2 | **Last updated:** 2026-03-08
 
 > **Scope:** Every AI agent working in this repository — regardless of layer, role, or task — must follow these instructions.
 > **This file is the top of the instruction hierarchy.** Layer-specific and division-specific instructions extend (never contradict) these rules.
@@ -46,10 +46,10 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 - **Assignment discipline (all GitHub artifacts):** Every issue, PR, and review request must have an assignee at all times. This applies regardless of work backend — PRs exist in both modes. Assignment communicates ownership and next action:
   - **Agent-owned work** (tasks, implementation, analysis): Assign to the agent's GitHub user/bot account. This signals the agent is responsible for execution.
   - **Human-owned work** (approvals, decisions, reviews): Assign to the responsible human. This signals the human must act next.
-  - **Issues — approval handoffs:** When an agent completes work that requires human approval, the agent sets the status label, re-assigns to the approving human, and leaves a comment that clearly explains (a) what was done, (b) what the human should review, and (c) what the human's options are (e.g., "approve", "reject", "request changes"). The human never touches labels — they comment with their decision and re-assign back to the agent. The agent then reads the comment, applies the appropriate label change, and continues.
+  - **Issues — approval handoffs:** When an agent completes work that requires human approval, the agent sets the project status, re-assigns to the approving human, and leaves a comment that clearly explains (a) what was done, (b) what the human should review, and (c) what the human's options are (e.g., "approve", "reject", "request changes"). The human never touches labels or project status fields — they comment with their decision and re-assign back to the agent. The agent then reads the comment, updates the project status accordingly, and continues.
   - **PRs — same principle:** When an agent opens a PR, it assigns the PR to itself (author), requests review from the appropriate human(s), and writes a PR description that explains what to review and what the reviewer's options are. After a human approves the review, the agent may merge (if permitted) or re-assigns to the human who merges. If the reviewer requests changes, the agent addresses them and re-requests review.
   - **PR reviews:** Agents request reviews from the humans defined in CODEOWNERS or the relevant approver for the artifact type. Never open a PR without requesting a review — an unreviewed PR is invisible.
-  - **After approval:** When the agent detects a human approval (comment + re-assignment on issues, or approved PR review), it updates labels/state accordingly and proceeds with execution.
+  - **After approval:** When the agent detects a human approval (comment + re-assignment on issues, or approved PR review), it updates project status/state accordingly and proceeds with execution.
   - **Never unassigned:** If an issue or PR has no assignee, it is invisible to the workflow. Orchestration agents must scan for unassigned items and either assign them or escalate.
   - **Next-action clarity:** Every issue, PR, and review request must make the expected next action obvious — through a comment, the description, or the review request message. An assignee or reviewer must be able to understand what is expected of them and what their options are without reading the full history or knowing the label system.
 - **Regardless of backend:** Governance backbone files (org structure, policies, agent instructions, templates, CONFIG.yaml) always live in Git and are governed via PRs.
@@ -165,7 +165,7 @@ When working on a **template or framework file**, the task is NOT done until all
 
 When working on an **instance**, the completion gate is human review:
 - **Git-files backend:** Create or update the file, increment `Revision`, update `Last updated`. Open a Pull Request — human approval via PR merge is the gate. CI must still pass.
-- **Issue backend:** Create or update the issue with appropriate labels and structured body. Human approval is via label change (e.g., `status:proposed` → `status:approved`) or issue state transition by an authorized human.
+- **Issue backend:** Create or update the issue with appropriate labels and structured body. Human approval is via project status transition (e.g., `Backlog` → `Approved`) or issue state transition by an authorized human.
 
 **Why this matters:** Framework changes affect every agent and every future instance derived from the template. A regression in a template propagates silently until someone notices. The push-and-verify discipline plus the CI gate exist to catch problems before they reach the entire operating model.
 
@@ -230,7 +230,7 @@ Work artifacts accumulate over time. Without active archiving, agents waste time
 **Issue backend:**
 
 - **Close** completed issues — the issue tracker's closed state is the equivalent of archiving
-- Ensure final status labels are applied before closing (e.g., `status:completed`, `status:done`)
+- Ensure the project status is set to `Done` before closing (enables filtering and reporting)
 - Closed issues remain searchable as historical record — no data is lost
 - **Never delete** issues — close them with a resolution note
 

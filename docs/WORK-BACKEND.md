@@ -19,8 +19,10 @@ work_backend:
 
   github_issues:
     repo: "your-org/your-repo"   # GitHub repo for issues
-    use_projects: true            # use GitHub Projects for boards
-    use_label_prefixes: true      # structured labels (artifact:, status:, etc.)
+    use_projects: true            # use GitHub Projects for boards + status tracking
+    project_owner: "your-org"    # GitHub org or user owning the project
+    project_number: 2             # GitHub Project v2 number
+    use_label_prefixes: true      # structured labels (artifact:, layer:, loop:, etc.)
 
   overrides:
     # These artifact types always stay in git (documents, not workflow)
@@ -63,7 +65,7 @@ Issues use prefixed labels for structured filtering:
 | Prefix | Values | Example |
 |--------|--------|---------|
 | `artifact:` | signal, signal-triage, mission, task | `artifact:task` |
-| `status:` | open, pending, active, in-progress, done, closed | `status:pending` |
+| _(Status)_ | Tracked via GitHub Project Status field, not labels | _(see GITHUB-ISSUES.md)_ |
 | `layer:` | steering, strategy, orchestration, execution, quality | `layer:execution` |
 | `loop:` | discover, build, ship, operate | `loop:build` |
 | `priority:` | critical, high, medium, low | `priority:high` |

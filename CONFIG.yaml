@@ -14,7 +14,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Tracks the overall framework release. Update when cutting a new version.
 # See CHANGELOG.md for what changed. Uses semantic versioning (MAJOR.MINOR.PATCH).
-framework_version: "3.0.0"
+framework_version: "3.1.0"
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────────────────
@@ -213,8 +213,10 @@ work_backend:
   # Configuration for github-issues backend
   github_issues:
     repo: ""                          # empty = same repo; or "org/repo" for a separate issue repo
-    use_projects: true                # use GitHub Projects for Kanban board views
-    use_label_prefixes: true          # use artifact:, status:, layer: label prefixes (recommended)
+    use_projects: true                # use GitHub Projects for board views + status tracking
+    project_owner: ""                 # GitHub org or user that owns the project (e.g., "acme-corp")
+    project_number: 0                 # GitHub Project v2 number (e.g., 2)
+    use_label_prefixes: true          # use artifact:, layer:, loop: label prefixes (recommended)
 
   # Artifact-level overrides: force specific artifact types to a backend
   # regardless of the global type setting.

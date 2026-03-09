@@ -21,6 +21,47 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 _Changes merged to `main` but not yet tagged as a release go here. Move to a new version section when cutting a release._
 
+---
+
+## [3.1.0] — 2026-03-08
+
+> **Status tracking moves from labels to GitHub Project Status fields.** This release replaces `status:*` labels with the GitHub Projects v2 native Status field for issue-backend state tracking. Labels remain for categorization (`artifact:`, `layer:`, `loop:`, `priority:`, `category:`, `urgency:`). Status transitions happen via a single-select Project Status field with values: Backlog, Triage, Approved, Planning, In Progress, Blocked, Done. Terminal states use GitHub's native close mechanism (completed / not planned).
+
+### Changed
+
+**Status tracking: labels → GitHub Project Status field (MINOR)**
+
+_Core configuration:_
+- `CONFIG.yaml` — added `project_owner` and `project_number` under `work_backend.github_issues`; bumped `framework_version` from `3.0.0` to `3.1.0`
+- `schemas/config.schema.json` — added `project_owner` (string) and `project_number` (integer) properties; updated `use_label_prefixes` description to remove `status:`
+
+_Primary documentation:_
+- `docs/GITHUB-ISSUES.md` — **major rewrite (v1.1 → v2.0)**: removed ~20 `status:*` labels; added "Status Tracking via GitHub Project" section with Project Status Field Options, Terminal States, "Why Not Labels?" rationale, Status Mapping by Artifact Type; updated setup checklist, label bootstrap, human approval table, handoff mechanics
+- `docs/WORK-BACKENDS.md` — replaced "Status Labels" section with "Status Tracking (GitHub Project Status Field)"; updated handoff protocol, approval mechanisms, audit trail; version bumped to v1.3
+- `docs/WORK-BACKEND.md` — updated config sample and label table to remove `status:` row
+- `docs/mission-lifecycle.md` — added Project Status field column to Mission Statuses table; updated gate transitions from `status:` labels to Project Status transitions
+- `docs/ARCHIVE-POLICY.md` — updated close guidance from "apply final status labels" to "set project status to Done"
+- `docs/REQUIRED-GITHUB-SETTINGS.md` — updated required label families and human approval examples
+- `docs/github-implementation/README.md` — updated label table (removed `status:` row, added note about Project Status field); board view grouping changed from `status:` label to Project Status field
+
+_Agent instructions:_
+- `AGENTS.md` (v3.1 → v3.2) — updated 5 references from status labels to project status transitions; CLAUDE.md updated via symlink
+- `org/4-quality/AGENT.md` — stall detection now references project status `In Progress` instead of `status:active` label
+
+_Work artifact references:_
+- `work/README.md` — issue backend table updated from `status:*` labels to Project Status transitions
+- `CUSTOMIZATION-GUIDE.md` — signal creation updated from `status:new` label to Project Status default
+- `process/README.md` — approval row changed from "Label change" to "Project status transition"
+
+_Issue form templates (removed default `status:*` labels):_
+- `docs/github-issues/forms/signal.sample.yml`, `mission.sample.yml`, `task.sample.yml`, `decision.sample.yml`, `release.sample.yml`, `retrospective.sample.yml`
+
+_Automation scripts:_
+- `scripts/work_backend.py` — added `project_owner` and `project_number` to WorkBackend dataclass; added GraphQL helpers: `_graphql_cmd()`, `get_project_statuses()`, `set_project_status()`, `_find_project_item()`, `_get_issue_node_id()`
+- `scripts/find_pending_work.py` — `issue_backend_report()` now uses `get_project_statuses()` batch query instead of `prefixed_label(issue, "status:")`
+- `scripts/approval_queue.py` — `build()` now uses `get_project_statuses()` batch query instead of `prefixed_label(issue, "status:")`
+- `scripts/triage_signals.py` — `handle_issue_backend()` now uses `get_project_statuses()` for reading and `set_project_status()` for writing, replacing `gh issue edit --add-label/--remove-label` commands
+
 ### Added
 - **Assignment discipline for all GitHub artifacts** (AGENTS.md Rule 3, WORK-BACKENDS.md, GITHUB-ISSUES.md): Every issue, PR, and review request must have an assignee at all times. Mandatory handoff protocols for both issues and PRs. Comment-based human approval model — humans comment and re-assign, agents handle all label management. PR handoff protocol covers review requests, feedback cycles, and merge handoffs. Orchestration agents must sweep for unassigned items. Agent identity via dedicated bot accounts required.
 

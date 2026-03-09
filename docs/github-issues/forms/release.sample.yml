@@ -1,7 +1,7 @@
 name: "Release"
 description: "Create a release contract issue when using the GitHub issue backend"
 title: "[Release] "
-labels: ["artifact:release", "status:draft", "loop:ship", "layer:orchestration"]
+labels: ["artifact:release", "loop:ship", "layer:orchestration"]
 body:
   - type: input
     id: release-id

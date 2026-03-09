@@ -110,7 +110,7 @@ Git is the **governance backbone** — organizational structure, policies, agent
 | Concept | Git-Files Backend | Issue Backend |
 |---------|-------------------|---------------|
 | **Decision** | PR merged to `work/decisions/` | Issue with `artifact:decision` label, approved via label change |
-| **Approval** | PR review approval | Label change by authorized human (e.g., `status:proposed` → `status:approved`) |
+| **Approval** | PR review approval | Project status transition by authorized human (e.g., `Backlog` → `Approved`) |
 | **RACI** | CODEOWNERS file — see [../CODEOWNERS](../CODEOWNERS) | CODEOWNERS (for governance) + issue assignment (for work artifacts) |
 | **Audit trail** | Git history | Git history (governance) + issue activity log (work artifacts) |
 | **Policy change** | PR to `org/4-quality/policies/` | PR to `org/4-quality/policies/` (always Git) |

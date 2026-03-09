@@ -82,9 +82,9 @@ The same triggers from the git-files table apply. When an artifact reaches a ter
 
 ### How to Close
 
-1. **Apply final status label** before closing — e.g., `status:completed`, `status:done`, `status:upstream-issued`, `status:superseded`
+1. **Set project status to `Done`** before closing — this enables filtering and reporting
 2. **Add a closing comment** summarizing the outcome or linking to the follow-up work
-3. **Close the issue** (not delete)
+3. **Close the issue** (not delete) — use close reason `completed` or `not planned` as appropriate
 
 For missions tracked as issue hierarchies:
 - Close child task issues first
@@ -94,7 +94,7 @@ For missions tracked as issue hierarchies:
 ### Rules
 
 1. **Never delete** issues — close them with a resolution note
-2. **Always apply final status labels** before closing (enables filtering and reporting)
+2. **Always set project status to `Done` before closing** (enables filtering and reporting)
 3. **Closed issues remain searchable** — they are the audit trail equivalent of `archive/` subfolders
 4. **Templates** (issues with `template:*` labels, if any) are not closed
 5. **Agents filter by open status** — when scanning active work, query only open issues

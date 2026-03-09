@@ -1,6 +1,6 @@
 # Work Backends — Git Files vs. Issue Tracker
 
-> **Version:** 1.2 | **Last updated:** 2026-03-08
+> **Version:** 1.3 | **Last updated:** 2026-03-08
 
 > **What this document is:** A comprehensive guide to how work artifacts can be tracked using different backends — either as Markdown files in Git (the original model) or as issues in an issue tracker (GitHub Issues, Jira, Linear, etc.).
 
@@ -83,8 +83,10 @@ work_backend:
 
   github_issues:
     repo: ""                # empty = same repo; or "org/repo" for separate issue repo
-    use_projects: true      # use GitHub Projects for Kanban board views
-    use_label_prefixes: true # use artifact:, status:, layer: prefixes
+    use_projects: true      # use GitHub Projects for board views + status tracking
+    project_owner: ""       # GitHub org or user that owns the project
+    project_number: 0       # GitHub Project v2 number
+    use_label_prefixes: true # use artifact:, layer:, loop: prefixes
 
   overrides:
     # Force specific artifacts to a backend regardless of the global type.
@@ -101,7 +103,7 @@ When `work_backend.type` is `"git-files"` (the default), the framework behaves e
 
 ## Issue Backend: Label Taxonomy
 
-When using an issue tracker, **labels replace file paths and YAML frontmatter** as the primary metadata mechanism. The following label taxonomy provides the same structural information that the Markdown templates encode.
+When using an issue tracker, **labels provide categorization metadata** while **status is tracked via the GitHub Project Status field**. Labels replace file paths and YAML frontmatter for artifact type, layer, loop, and priority — but not for workflow status.
 
 ### Artifact Type Labels (`artifact:`)
 
@@ -115,39 +117,27 @@ When using an issue tracker, **labels replace file paths and YAML frontmatter** 
 | `artifact:retrospective` | `_TEMPLATE-postmortem.md` |
 | `artifact:governance-exception` | `_TEMPLATE-governance-exception.md` |
 
-### Status Labels (`status:`)
+### Status Tracking (GitHub Project Status Field)
 
-Status labels are shared across artifact types. Apply the relevant ones:
+**Status is tracked via the GitHub Project v2 Status field, not via labels.** This provides single-select workflow semantics, native Kanban board views, and transition logic that labels cannot offer.
 
-| Label | Used By |
-|-------|---------|
-| `status:new` | Signals (freshly filed) |
-| `status:proposed` | Missions, Decisions, Governance Exceptions |
-| `status:approved` | Missions, Decisions, Releases, Governance Exceptions |
-| `status:planning` | Missions |
-| `status:active` | Missions |
-| `status:paused` | Missions |
-| `status:completed` | Missions, Tasks |
-| `status:cancelled` | Missions, Tasks |
-| `status:pending` | Tasks |
-| `status:in-progress` | Tasks |
-| `status:blocked` | Tasks |
-| `status:proceed` | Signals (disposition: proceed to mission) |
-| `status:defer` | Signals |
-| `status:monitor` | Signals |
-| `status:done` | Signals |
-| `status:accepted` | Decisions, Retrospectives |
-| `status:deprecated` | Decisions |
-| `status:superseded` | Decisions |
-| `status:draft` | Releases, Retrospectives |
-| `status:deploying` | Releases |
-| `status:deployed` | Releases |
-| `status:rolled-back` | Releases |
-| `status:pass` | Quality Evaluations |
-| `status:fail` | Quality Evaluations |
-| `status:escalate` | Quality Evaluations |
+| Project Status | Used By |
+|----------------|---------|
+| Backlog | All artifacts (newly filed, not yet prioritized) |
+| Triage | Signals (being evaluated) |
+| Approved | Missions, Decisions, Releases, Governance Exceptions |
+| Planning | Missions (being decomposed into tasks) |
+| In Progress | Missions, Tasks, Releases |
+| Blocked | Tasks (waiting on dependency) |
+| Done | All artifacts (completed — ready to close) |
 
-**Status label rule:** Use exactly one `status:` label per issue. When the artifact advances, remove the old `status:*` label and add the new one in the same action.
+Terminal states use GitHub's native close mechanism:
+- **Completed** → close issue (reason: `completed`)
+- **Cancelled** → close issue (reason: `not planned`)
+
+See [GITHUB-ISSUES.md](GITHUB-ISSUES.md) for the full status model and setup instructions.
+
+**Status label rule:** Do not use `status:*` labels. Use the Project Status field exclusively.
 
 ### Layer Labels (`layer:`)
 
@@ -237,15 +227,15 @@ A **mission** in the issue backend is an issue with `artifact:mission` label. It
 
 ```
 Mission Issue (#42)
-  ├── artifact:mission, status:active, layer:strategy, loop:build
+  ├── artifact:mission, layer:strategy, loop:build  (Project Status: In Progress)
   ├── Body: Mission brief content (from template structure)
   ├── Comment: Outcome Contract (or linked issue)
   ├── Comment: Status Update 1 (newest first)
   ├── Comment: Status Update 2
   │
-  ├── Sub-Issue: Task 1 (#43) — artifact:task, status:in-progress, division:core-services
-  ├── Sub-Issue: Task 2 (#44) — artifact:task, status:pending, division:data-foundation
-  └── Sub-Issue: Task 3 (#45) — artifact:task, status:blocked, division:engineering-foundation
+  ├── Sub-Issue: Task 1 (#43) — artifact:task, division:core-services  (Project Status: In Progress)
+  ├── Sub-Issue: Task 2 (#44) — artifact:task, division:data-foundation  (Project Status: Backlog)
+  └── Sub-Issue: Task 3 (#45) — artifact:task, division:engineering-foundation  (Project Status: Blocked)
 ```
 
 Git-backed companion artifacts still exist alongside the issue hierarchy where required:
@@ -280,7 +270,7 @@ Instance repos should copy these samples into `.github/ISSUE_TEMPLATE/` when ena
 
 ### GitHub Projects Integration
 
-When `use_projects: true`, create GitHub Projects boards for visual tracking:
+When `use_projects: true` (recommended), create a GitHub Project v2 with a **Status** single-select field. The Project provides native Kanban board views grouped by status — no label-based grouping needed.
 
 | Board | View | Filter |
 |-------|------|--------|
@@ -320,14 +310,14 @@ When `use_projects: true`, create GitHub Projects boards for visual tracking:
 
 ### Handoff Protocol — Issues
 
-**Core principle:** Humans never need to touch labels. They comment and re-assign. Agents handle all label management.
+**Core principle:** Humans never need to touch labels or project status fields. They comment and re-assign. Agents handle all label and project status management.
 
-1. **Agent → Human (approval needed):** Agent sets the status label (e.g., `status:proposed`), re-assigns to the approving human, and leaves a comment that:
+1. **Agent → Human (approval needed):** Agent sets the project status (e.g., `Triage`), re-assigns to the approving human, and leaves a comment that:
    - Summarizes what was done and what to review
    - Lists the human's options in plain language (e.g., "You can: **Approve** — comment 'approved' and assign back to @acme-ai-bot | **Reject** — comment what needs to change and assign back to @acme-ai-bot | **Ask questions** — comment your questions and keep yourself assigned")
    - Links to relevant artifacts if applicable
 2. **Human → Agent (any decision):** Human leaves a comment with their decision in plain language (e.g., "Approved", "Looks good", "Rejected — the rollback plan is incomplete", "Please revise the scope to exclude X") and re-assigns to the agent.
-3. **Agent processes human decision:** Agent reads the comment, interprets the decision, applies the appropriate label change (e.g., `status:proposed` → `status:approved`), and continues with the next step. If the agent cannot confidently interpret the comment, it asks a clarifying question in a follow-up comment and keeps the issue assigned to the human.
+3. **Agent processes human decision:** Agent reads the comment, interprets the decision, updates the project status field accordingly (e.g., `Backlog` → `Approved`), and continues with the next step. If the agent cannot confidently interpret the comment, it asks a clarifying question in a follow-up comment and keeps the issue assigned to the human.
 
 ### Handoff Protocol — Pull Requests
 
@@ -349,7 +339,7 @@ Mechanisms for next-action clarity:
 - **PR description** — always explains what to review and what the reviewer's options are
 - **Review re-request** — after addressing feedback, agent comments summarizing what changed
 - **Issue description** — for new issues, the description itself states the expected action and available options
-- **Status label** — maintained by agents as machine-readable state; humans can ignore it
+- **Project status field** — maintained by agents as machine-readable state; humans can ignore it
 
 ### Unassigned Item Sweep
 
@@ -373,42 +363,42 @@ Agents must use a dedicated GitHub bot/user account (e.g., `acme-ai-bot`). This 
 | File a signal | Create `work/signals/YYYY-MM-DD-name.md`, commit, open PR | Create issue with `artifact:signal` + metadata labels |
 | Create a mission | Create `work/missions/<name>/BRIEF.md`, commit, open PR | Create issue with `artifact:mission` label, body from template |
 | Decompose tasks | Edit `TASKS.md`, commit | Create sub-issues with `artifact:task` labels |
-| Update status | Append to `STATUS.md`, commit | Add comment to mission issue, update status labels |
+| Update status | Append to `STATUS.md`, commit | Add comment to mission issue, update project status field |
 | Quality evaluation | Create `evaluations/*.md`, commit | Create `evaluations/*.md`, commit, and reference the mission/task issues |
 | Decision record | Create `work/decisions/*.md`, commit, open PR | Create issue with `artifact:decision` label |
-| Close mission | Update status in files, archive folder | Close issue, update labels to `status:completed` |
+| Close mission | Update status in files, archive folder | Set project status to `Done`, then close issue |
 
 ### Approval Mechanisms
 
 | Mechanism | Git Files Backend | Issue Backend |
 |-----------|-------------------|---------------|
-| Signal triage | PR merge = approval | Human comments with triage decision (e.g., "proceed", "defer", "monitor", "done") and re-assigns to agent. Agent applies the corresponding `status:` label. |
-| Mission approval | PR merge = approval | Human comments approval (e.g., "approved") and re-assigns to agent. Agent changes `status:proposed` → `status:approved`. |
-| Decision approval | PR merge = approval | Human comments acceptance and re-assigns to agent. Agent changes `status:proposed` → `status:accepted`. |
+| Signal triage | PR merge = approval | Human comments with triage decision (e.g., "proceed", "defer", "monitor", "done") and re-assigns to agent. Agent updates the project status field accordingly (e.g., `Triage` → `Approved`). |
+| Mission approval | PR merge = approval | Human comments approval (e.g., "approved") and re-assigns to agent. Agent changes project status `Backlog` → `Approved`. |
+| Decision approval | PR merge = approval | Human comments acceptance and re-assigns to agent. Agent changes project status `Backlog` → `Approved`. |
 | Quality gate | Evaluation file with PASS verdict | Evaluation file in Git references the issue-backed mission/task |
-| Release go/no-go | PR merge = approval | Human comments approval and re-assigns to agent. Agent changes `status:draft` → `status:approved`. |
+| Release go/no-go | PR merge = approval | Human comments approval and re-assigns to agent. Agent changes project status `Backlog` → `Approved`. |
 
 ### Human Approval Cheat Sheet
 
-Humans approve by **commenting and re-assigning** — they never need to touch labels. The agent's handoff comment always explains the available options.
+Humans approve by **commenting and re-assigning** — they never need to touch labels or project status fields. The agent's handoff comment always explains the available options.
 
 | Artifact | Human does this | Agent does this after |
 |----------|-----------------|---------------------|
-| Signal | Review the issue, comment with triage decision (e.g., "proceed" or "defer — not a priority this quarter"), re-assign to agent | Agent applies the terminal `status:` label based on the comment |
-| Mission | Review scope and outcomes, comment approval or rejection, re-assign to agent | Agent changes `status:proposed` → `status:approved` (or keeps and notes rejection) |
-| Decision | Review context and tradeoffs, comment acceptance or rejection, re-assign to agent | Agent changes `status:proposed` → `status:accepted` (or keeps and notes rejection) |
-| Release | Review rollout and rollback plan, comment approval, re-assign to agent | Agent changes `status:draft` → `status:approved` |
-| Retrospective | Review findings and follow-ups, comment acceptance, re-assign to agent | Agent changes `status:draft` → `status:accepted` |
+| Signal | Review the issue, comment with triage decision (e.g., "proceed" or "defer — not a priority this quarter"), re-assign to agent | Agent updates the project status based on the comment (e.g., `Triage` → `Approved` or `Done`) |
+| Mission | Review scope and outcomes, comment approval or rejection, re-assign to agent | Agent changes project status `Backlog` → `Approved` (or keeps and notes rejection) |
+| Decision | Review context and tradeoffs, comment acceptance or rejection, re-assign to agent | Agent changes project status `Backlog` → `Approved` (or keeps and notes rejection) |
+| Release | Review rollout and rollback plan, comment approval, re-assign to agent | Agent changes project status `Backlog` → `Approved` |
+| Retrospective | Review findings and follow-ups, comment acceptance, re-assign to agent | Agent changes project status to `Done` |
 
-Do not rely on issue closure alone as approval. Closure archives work; the `status:` label change (performed by the agent) is the approval event.
+Do not rely on issue closure alone as approval. Closure archives work; the project status transition (performed by the agent) is the approval event.
 
 ### Audit Trail
 
 | Aspect | Git Files Backend | Issue Backend |
 |--------|-------------------|---------------|
-| Who changed what | Git blame + commit history | Issue activity log + label change history |
+| Who changed what | Git blame + commit history | Issue activity log + project status change history |
 | When | Commit timestamps | Issue event timestamps |
-| Why | Commit messages + PR descriptions | Issue comments + label change context |
+| Why | Commit messages + PR descriptions | Issue comments + status change context |
 | Completeness | Full — Git captures everything | Full — issue trackers log all events |
 
 ---

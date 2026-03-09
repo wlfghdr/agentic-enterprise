@@ -27,13 +27,13 @@ ASSETS (commits, PRs, files)    Delivered artifacts with registry entries
 OUTCOME REPORT                  Targets vs. actuals measurement
 ```
 
-In the git-files backend, these artifacts are files and the approvals are PR-based. In the issue backend, the mission brief and tasks move to issues, and approvals are explicit `status:` label transitions by authorized humans. Git remains the audit trail for governance and Git-backed companion artifacts; issue history is the audit trail for issue-backed work artifacts.
+In the git-files backend, these artifacts are files and the approvals are PR-based. In the issue backend, the mission brief and tasks move to issues, and approvals are explicit Project Status transitions by authorized humans. Git remains the audit trail for governance and Git-backed companion artifacts; issue history is the audit trail for issue-backed work artifacts.
 
 ### Who Does What
 
 | Role | Responsibility |
 |------|---------------|
-| **Strategy Layer** | Defines the mission brief and outcome contract. Approves mission scope via PR merge or issue label transition. |
+| **Strategy Layer** | Defines the mission brief and outcome contract. Approves mission scope via PR merge or project status transition. |
 | **Orchestrator** | Decomposes the mission into Fleet Config and TASKS.md or task issues. Monitors progress. |
 | **Execution Agents** | Pick up tasks from TASKS.md or task issues, execute, update status, generate assets. |
 | **Quality Layer** | Evaluates outputs against policies AND task acceptance criteria. Traces each output to its originating task. Issues verdicts. |
@@ -43,15 +43,15 @@ In the git-files backend, these artifacts are files and the approvals are PR-bas
 
 ## Mission Statuses
 
-| Status | Meaning |
-|--------|---------|
-| **proposed** | Brief created, awaiting Strategy Layer approval |
-| **approved** | Approved by Strategy Layer, ready for orchestration |
-| **planning** | Orchestrator creating fleet config and decomposing tasks |
-| **active** | Tasks exist and execution agents are working |
-| **paused** | Temporarily suspended by human decision |
-| **completed** | Outcomes measured, mission closed |
-| **cancelled** | Terminated before completion, with documented rationale |
+| Status | Meaning | Project Status field |
+|--------|---------|---------------------|
+| **proposed** | Brief created, awaiting Strategy Layer approval | Backlog |
+| **approved** | Approved by Strategy Layer, ready for orchestration | Approved |
+| **planning** | Orchestrator creating fleet config and decomposing tasks | Planning |
+| **active** | Tasks exist and execution agents are working | In Progress |
+| **paused** | Temporarily suspended by human decision | Blocked |
+| **completed** | Outcomes measured, mission closed | Done (issue closed) |
+| **cancelled** | Terminated before completion, with documented rationale | Done (issue closed as not planned) |
 
 ---
 
@@ -69,7 +69,7 @@ proposed ──→ approved ──→ planning ──→ active ──→ comple
 
 | From | To | Gate | Who |
 |------|----|------|-----|
-| `proposed` | `approved` | Strategy Layer human approves Mission Brief via PR merge (git-files) or label transition (`status:proposed` → `status:approved`) in the mission issue | Strategy Layer human |
+| `proposed` | `approved` | Strategy Layer human approves Mission Brief via PR merge (git-files) or project status transition (`Backlog` → `Approved`) in the mission issue | Strategy Layer human |
 | `approved` | `planning` | Orchestrator creates Fleet Config; Technical Design initiated if `design-required: true` | Orchestrator |
 | `planning` | `active` | **TASKS.md exists with at least one task** (git-files) or **at least one child issue exists with `artifact:task` label** (issue backend). Technical Design approved (if required). | Orchestrator (gate checked by Orchestrator and CI where applicable) |
 | `active` | `paused` | Human decision — resource conflict, external blocker, reprioritization | Human (any layer) |

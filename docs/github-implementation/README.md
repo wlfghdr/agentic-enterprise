@@ -28,12 +28,13 @@ When using `use_label_prefixes: true`, create these labels:
 | Prefix | Values |
 |--------|--------|
 | `artifact:` | `signal`, `signal-triage`, `mission`, `task` |
-| `status:` | `open`, `pending`, `proposed`, `active`, `in-progress`, `done`, `closed`, `proceed`, `defer`, `monitor` |
 | `layer:` | `steering`, `strategy`, `orchestration`, `execution`, `quality` |
 | `loop:` | `discover`, `build`, `ship`, `operate` |
 | `priority:` | `critical`, `high`, `medium`, `low` |
 | `category:` | `market`, `customer`, `technical`, `internal` |
 | `urgency:` | `immediate`, `next-cycle`, `monitor` |
+
+> **Status tracking:** Do not create `status:*` labels. Use the GitHub Project (v2) **Status** field instead. See [docs/GITHUB-ISSUES.md](../GITHUB-ISSUES.md).
 
 ### Issue Templates
 
@@ -52,7 +53,7 @@ Create a GitHub Project board for operational visibility:
 
 | View | Type | Group by | Filter |
 |------|------|----------|--------|
-| **Kanban** | Board | `status:` label | Open issues |
+| **Kanban** | Board | Project Status field | Open issues |
 | **By Layer** | Table | `layer:` label | Open issues |
 | **By Priority** | Table | Sort by `priority:` | Open issues |
 | **Recently Updated** | Table | Sort by updated | Last 14 days |

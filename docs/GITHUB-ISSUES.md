@@ -1,6 +1,6 @@
 # GitHub Issues Backend Guide
 
-> **Version:** 1.1 | **Last updated:** 2026-03-08
+> **Version:** 2.0 | **Last updated:** 2026-03-08
 
 > **What this document is:** The concrete implementation guide for running operational work artifacts in GitHub Issues. Use this when `CONFIG.yaml → work_backend.type` is `github-issues`.
 
@@ -10,8 +10,8 @@
 
 This guide makes the GitHub issue backend operational without implicit knowledge.
 
-If a human needs to approve something, the required label change is written out explicitly.
-If GitHub needs configuration, the exact repo settings, labels, and issue forms are listed here.
+If a human needs to approve something, the required status transition is written out explicitly.
+If GitHub needs configuration, the exact repo settings, labels, project setup, and issue forms are listed here.
 
 Use this guide together with [WORK-BACKENDS.md](WORK-BACKENDS.md) and [REQUIRED-GITHUB-SETTINGS.md](REQUIRED-GITHUB-SETTINGS.md).
 
@@ -23,11 +23,12 @@ Complete these steps before using the issue backend in a real fork:
 
 1. Set `work_backend.type: "github-issues"` in `CONFIG.yaml`.
 2. Enable GitHub Issues and Issue Forms in the repository settings.
-3. Copy the sample forms from `docs/github-issues/forms/` into `.github/ISSUE_TEMPLATE/` in your instance repository.
-4. Copy `docs/github-issues/config.sample.yml` to `.github/ISSUE_TEMPLATE/config.yml` in your instance repository and customize the links.
-5. Create the required labels listed below.
-6. Tell humans who approve work to use the approval transitions exactly as written in the approval table.
-7. Keep Git-backed companion artifacts in the repository: signal digests, technical designs, quality evaluations, fleet reports, outcome reports, asset registry entries, governance exceptions, and locks.
+3. **Create a GitHub Project (v2)** with a **Status** field containing these single-select options: `Backlog`, `Triage`, `Approved`, `Planning`, `In Progress`, `Blocked`, `Done`. Set `project_owner` and `project_number` in `CONFIG.yaml`.
+4. Copy the sample forms from `docs/github-issues/forms/` into `.github/ISSUE_TEMPLATE/` in your instance repository.
+5. Copy `docs/github-issues/config.sample.yml` to `.github/ISSUE_TEMPLATE/config.yml` in your instance repository and customize the links.
+6. Create the required labels listed below. (Note: status is tracked via the Project Status field, not via labels.)
+7. Tell humans who approve work to use the approval transitions exactly as written in the approval table.
+8. Keep Git-backed companion artifacts in the repository: signal digests, technical designs, quality evaluations, fleet reports, outcome reports, asset registry entries, governance exceptions, and locks.
 
 ---
 
@@ -42,6 +43,8 @@ work_backend:
   github_issues:
     repo: ""                    # empty = same repo
     use_projects: true
+    project_owner: ""           # GitHub org or user owning the project
+    project_number: 0           # GitHub Project v2 number
     use_label_prefixes: true
 
   overrides:
@@ -59,6 +62,8 @@ work_backend:
   github_issues:
     repo: "acme/operating-work"
     use_projects: true
+    project_owner: "acme"
+    project_number: 2
     use_label_prefixes: true
 
   overrides:
@@ -71,7 +76,7 @@ work_backend:
 
 ## Required Labels
 
-These labels are the minimum viable set for the issue backend.
+These labels are the minimum viable set for the issue backend. **Status is tracked via the GitHub Project Status field, not via labels** — see the Status Tracking section below.
 
 ### Artifact Labels
 
@@ -81,31 +86,6 @@ These labels are the minimum viable set for the issue backend.
 - `artifact:decision`
 - `artifact:release`
 - `artifact:retrospective`
-
-### Status Labels
-
-- `status:new`
-- `status:proposed`
-- `status:approved`
-- `status:planning`
-- `status:active`
-- `status:paused`
-- `status:completed`
-- `status:cancelled`
-- `status:pending`
-- `status:in-progress`
-- `status:blocked`
-- `status:proceed`
-- `status:defer`
-- `status:monitor`
-- `status:done`
-- `status:accepted`
-- `status:superseded`
-- `status:deprecated`
-- `status:draft`
-- `status:deploying`
-- `status:deployed`
-- `status:rolled-back`
 
 ### Layer Labels
 
@@ -144,16 +124,59 @@ These labels are the minimum viable set for the issue backend.
 - `confidence:medium`
 - `confidence:low`
 
-### Label Rule
+---
 
-Use exactly one `status:` label per issue.
-When the state changes, remove the old `status:*` label and add the new one in the same action.
+## Status Tracking via GitHub Project
+
+**Status is a workflow state — it belongs in the GitHub Project Status field, not in labels.** Labels are for categorization (artifact type, priority, layer, loop, division). Status is a single-select field with ordered transitions that naturally produce a Kanban board.
+
+### Project Status Field Options
+
+| Project Status | Meaning |
+|----------------|---------|
+| Backlog | Newly filed or not yet prioritized |
+| Triage | Being evaluated (signals undergoing triage) |
+| Approved | Approved by human, waiting for capacity |
+| Planning | Being decomposed into tasks (missions) |
+| In Progress | Actively being worked on |
+| Blocked | Waiting on a dependency |
+| Done | Work completed — ready to close |
+
+### Terminal States
+
+Terminal states use GitHub's native **close** mechanism, not a project status:
+
+- **Completed** → close the issue (reason: `completed`)
+- **Cancelled** → close the issue (reason: `not planned`)
+
+"Done" as a Project Status is the board-visible state before formal closure. The true terminal state is `CLOSED` with the appropriate close reason. Scripts should check both: `state == "CLOSED"` AND project status == `"Done"`.
+
+### Why Not Labels?
+
+Labels lack workflow semantics:
+- No enforced single-select — multiple `status:*` labels can coexist by mistake
+- No ordering or transition logic — anyone can set any label
+- No native board view — Projects v2 renders the Status field as a Kanban board automatically
+- Label explosion — 20 status labels + artifact + layer + priority + division = unmanageable dropdown
+
+Moving status to the Project field removes ~20 labels and gives you a Kanban board for free.
+
+### Status Mapping by Artifact Type
+
+| Artifact | Typical status flow |
+|----------|---------------------|
+| Signal | Backlog → Triage → Approved / Done |
+| Mission | Backlog → Approved → Planning → In Progress → Done → close |
+| Task | Backlog → In Progress → Blocked → Done → close |
+| Decision | Backlog → Approved → close |
+| Release | Backlog → Approved → In Progress → Done → close |
+| Retrospective | Backlog → In Progress → Done → close |
 
 ---
 
 ## Label Bootstrap Sample
 
-If you manage labels as code, this YAML structure is a practical starting point:
+If you manage labels as code, this YAML structure is a practical starting point. Note that status labels are no longer needed — status is tracked via the GitHub Project Status field.
 
 ```yaml
 labels:
@@ -175,27 +198,33 @@ labels:
   - name: "artifact:retrospective"
     color: "B60205"
     description: "Incident retrospective"
-  - name: "status:new"
+  - name: "layer:steering"
+    color: "C5DEF5"
+    description: "Steering layer"
+  - name: "layer:strategy"
+    color: "BFD4F2"
+    description: "Strategy layer"
+  - name: "layer:orchestration"
     color: "D4C5F9"
-    description: "Freshly filed"
-  - name: "status:proposed"
+    description: "Orchestration layer"
+  - name: "layer:execution"
     color: "C2E0C6"
-    description: "Awaiting human approval"
-  - name: "status:approved"
-    color: "0E8A16"
-    description: "Approved by authorized human"
-  - name: "status:active"
-    color: "1D76DB"
-    description: "Work is in flight"
-  - name: "status:completed"
-    color: "5319E7"
-    description: "Work completed"
-  - name: "status:blocked"
-    color: "B60205"
-    description: "Blocked pending action"
-  - name: "status:draft"
+    description: "Execution layer"
+  - name: "layer:quality"
     color: "F9D0C4"
-    description: "Draft awaiting approval"
+    description: "Quality layer"
+  - name: "priority:critical"
+    color: "B60205"
+    description: "Blocking — immediate action required"
+  - name: "priority:high"
+    color: "D93F0B"
+    description: "Important — next cycle"
+  - name: "priority:medium"
+    color: "FBCA04"
+    description: "Normal priority"
+  - name: "priority:low"
+    color: "0E8A16"
+    description: "Nice to have"
 ```
 
 If you prefer GitHub CLI, create labels with `gh label create` using the same names.
@@ -204,9 +233,9 @@ If you prefer GitHub CLI, create labels with `gh label create` using the same na
 
 ## Human Approval Table
 
-Humans should not have to guess what “approve” means — and they should never need to manage labels.
+Humans should not have to guess what "approve" means — and they should never need to manage labels or project status fields.
 
-**How it works:** When an agent needs a human decision, it assigns the issue to the human and leaves a comment that explains what to review and what the options are. The human comments with their decision in plain language and re-assigns to the agent. The agent then applies the correct label.
+**How it works:** When an agent needs a human decision, it assigns the issue to the human and leaves a comment that explains what to review and what the options are. The human comments with their decision in plain language and re-assigns to the agent. The agent then updates the Project Status field accordingly.
 
 | Artifact | What the agent's comment tells the human | Human does this |
 |----------|------------------------------------------|-----------------|
@@ -217,7 +246,7 @@ Humans should not have to guess what “approve” means — and they should nev
 | Retrospective | “Please review findings and follow-ups. You can: **Accept** or **Reject** (with reason). Comment your decision and assign back to me.” | Comment decision and re-assign to agent |
 
 Do not use issue closure as the approval signal.
-Closure archives completed work. The label transition (performed by the agent after reading the human's comment) is the approval event.
+Closure archives completed work. The project status transition (performed by the agent after reading the human's comment) is the approval event.
 
 ---
 
@@ -248,13 +277,13 @@ Every issue, PR, and review request must have an assignee. Assignment is how own
 
 ### Handoff Mechanics — Issues
 
-**Core principle:** Humans comment and re-assign. Agents handle all label management. Humans never need to know the label system.
+**Core principle:** Humans comment and re-assign. Agents handle all label and project status management. Humans never need to know the label system or the project field.
 
 When work transitions between agent and human:
 
-1. **Agent finishes, needs approval:** Agent sets the `status:` label, re-assigns to the approving human, and leaves a comment that (a) summarizes what was done, (b) explains what to review, and (c) lists the human's options in plain language (e.g., "You can: **Approve** — comment 'approved' and assign back to @acme-ai-bot | **Reject** — comment what needs to change and assign back to @acme-ai-bot").
+1. **Agent finishes, needs approval:** Agent sets the project status (e.g., `Triage` or `Backlog`), re-assigns to the approving human, and leaves a comment that (a) summarizes what was done, (b) explains what to review, and (c) lists the human's options in plain language (e.g., "You can: **Approve** — comment 'approved' and assign back to @acme-ai-bot | **Reject** — comment what needs to change and assign back to @acme-ai-bot").
 2. **Human decides:** Human comments with their decision in plain language (e.g., "Approved", "Looks good, go ahead", "Rejected — need more detail on rollback") and re-assigns to the agent.
-3. **Agent processes decision:** Agent reads the comment, interprets the decision, applies the appropriate label change, and continues. If the comment is ambiguous, the agent asks a clarifying question and keeps the issue assigned to the human.
+3. **Agent processes decision:** Agent reads the comment, interprets the decision, updates the project status field accordingly (e.g., `Backlog` → `Approved`), and continues. If the comment is ambiguous, the agent asks a clarifying question and keeps the issue assigned to the human.
 
 ### Handoff Mechanics — Pull Requests
 
@@ -271,7 +300,7 @@ Agents must use a dedicated GitHub bot/user account (e.g., `acme-ai-bot`) so tha
 
 ## Human Operating Rules
 
-These rules keep GitHub collaboration consistent. **You never need to manage labels — agents do that.**
+These rules keep GitHub collaboration consistent. **You never need to manage labels or project status fields — agents do that.**
 
 ### For Issues
 1. Always leave a short comment when approving, rejecting, or requesting changes. Plain language is fine — the agent interprets it.
@@ -310,7 +339,7 @@ These samples pre-apply the base artifact labels and ask for the fields humans t
 
 ## GitHub Projects Recommendation
 
-If `use_projects: true`, create these minimum views:
+When `use_projects: true` (recommended), create a GitHub Project v2 with a **Status** single-select field containing the options listed in the Status Tracking section above. Create these minimum views:
 
 | Project View | Filter |
 |--------------|--------|
@@ -318,6 +347,8 @@ If `use_projects: true`, create these minimum views:
 | Active Missions | `label:artifact:mission is:open` |
 | Mission Tasks | `label:artifact:task is:open` |
 | Release Pipeline | `label:artifact:release is:open` |
+
+The Status field produces a native Kanban board automatically — no label-based grouping needed.
 
 ---
 
@@ -343,5 +374,6 @@ Git still holds the durable review-heavy artifacts.
 
 | Version | Date | Change |
 |---|---|---|
+| 2.0 | 2026-03-08 | Migrated status tracking from labels to GitHub Project Status field. Removed ~20 status labels. Added project setup guidance, project_owner/project_number config fields, unified status model (Backlog → Done + close), terminal state documentation. |
 | 1.1 | 2026-03-08 | Added assignment rules for issues and PRs, handoff mechanics for both, agent identity requirement, human operating rules for issues and PRs, comment-based approval model |
 | 1.0 | 2026-03-07 | Initial version — concrete GitHub issue-backend implementation guide |

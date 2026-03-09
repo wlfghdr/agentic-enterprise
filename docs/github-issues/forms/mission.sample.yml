@@ -1,7 +1,7 @@
 name: "Mission"
 description: "Create a mission issue when using the GitHub issue backend"
 title: "[Mission] "
-labels: ["artifact:mission", "status:proposed", "layer:strategy", "loop:build"]
+labels: ["artifact:mission", "layer:strategy", "loop:build"]
 body:
   - type: input
     id: mission-id

@@ -26,7 +26,15 @@ import subprocess
 import datetime
 from pathlib import Path
 
-from work_backend import gh_json, label_names, load_work_backend, prefixed_label, strip_prefix
+from work_backend import (
+    gh_json,
+    get_project_statuses,
+    label_names,
+    load_work_backend,
+    prefixed_label,
+    set_project_status,
+    strip_prefix,
+)
 
 REPO_ROOT = Path(__file__).parent.parent
 SIGNALS_DIR = REPO_ROOT / "work" / "signals"
@@ -69,9 +77,24 @@ def handle_issue_backend(apply_issue_labels: bool) -> int:
         print(f"ERROR: unable to query GitHub Issues backend: {exc}", file=sys.stderr)
         return 1
 
+    # Fetch project statuses in one batch
+    all_numbers = [i["number"] for i in issues]
+    try:
+        project_statuses = get_project_statuses(WORK_BACKEND, all_numbers)
+    except RuntimeError:
+        project_statuses = {}
+
+    # Map disposition → project status option name
+    DISPOSITION_STATUS = {
+        "proceed": "Approved",
+        "defer": "Backlog",
+        "monitor": "Backlog",
+    }
+
     pending = []
     for issue in issues:
-        if prefixed_label(issue, "status:") != "status:new":
+        status = project_statuses.get(issue["number"])
+        if status not in (None, "Backlog", "Triage"):
             continue
         urgency = strip_prefix(prefixed_label(issue, "urgency:"), "urgency:")
         signal = {
@@ -92,34 +115,22 @@ def handle_issue_backend(apply_issue_labels: bool) -> int:
 
     changed = 0
     for issue, disposition in pending:
-        recommendation = f"#{issue['number']} → recommend status:{disposition} ({issue['title']})"
+        target_status = DISPOSITION_STATUS.get(disposition, "Backlog")
+        recommendation = f"#{issue['number']} → recommend {target_status} ({issue['title']})"
         if apply_issue_labels:
-            subprocess.run(
-                [
-                    "gh",
-                    "issue",
-                    "edit",
-                    str(issue["number"]),
-                    "--remove-label",
-                    "status:new",
-                    "--add-label",
-                    f"status:{disposition}",
-                    *( ["--repo", repo] if repo else [] ),
-                ],
-                cwd=str(REPO_ROOT),
-                check=False,
-                capture_output=True,
-                text=True,
-            )
-            changed += 1
-            print(f"  [APPLIED] {recommendation}")
+            try:
+                set_project_status(WORK_BACKEND, issue["number"], target_status, repo=repo)
+                changed += 1
+                print(f"  [APPLIED] {recommendation}")
+            except RuntimeError as exc:
+                print(f"  [ERROR] {recommendation}: {exc}", file=sys.stderr)
         else:
             print(f"  [REVIEW] {recommendation}")
             print(f"           {issue['url']}")
 
     print("\n=== Issue Triage Summary ===")
-    print(f"  open status:new signals : {len(pending)}")
-    print(f"  label changes applied   : {changed}")
+    print(f"  open signals needing triage : {len(pending)}")
+    print(f"  status changes applied      : {changed}")
     if not apply_issue_labels:
         print("  human approval remains required; rerun with --apply-issue-labels only if explicitly desired")
     return 0

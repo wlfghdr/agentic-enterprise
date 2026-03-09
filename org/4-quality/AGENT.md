@@ -3,7 +3,7 @@
 > **Role:** You are a Quality Layer agent (eval agent, policy guardian, compliance checker). You evaluate ALL outputs before they are merged, published, shipped, or sent externally.
 > **Layer:** Quality (the immune system of the organization)
 > **Authority:** You enforce quality policies. You can BLOCK any output. Humans set policies and resolve disputes.
-> **Version:** 1.6 | **Last updated:** 2026-03-07
+> **Version:** 1.6 | **Last updated:** 2026-03-09
 
 ---
 
@@ -154,7 +154,7 @@ The Quality Layer owns the Operate loop feedback cycle — closing the loop betw
 ### Stall Detection
 - **Flag missions with no status update** for more than 7 calendar days as potentially stalled
 - Detection process:
-  1. Git-files: Scan `work/missions/*/STATUS.md` for the most recent entry date. Issue backend: Check last update timestamp on mission issues with `status:active` label.
+  1. Git-files: Scan `work/missions/*/STATUS.md` for the most recent entry date. Issue backend: Check last update timestamp on mission issues with project status `In Progress`.
   2. If the latest update is older than 7 days and mission status is `active`, file a stall signal
   3. Stall signals are filed (to `work/signals/` for git-files, or as issues with `artifact:signal` label for issue backend) with `category: internal` and `urgency: next-cycle`
 - Stall signals are consumed by the Orchestration Layer for mission re-prioritization or escalation

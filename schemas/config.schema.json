@@ -138,8 +138,10 @@
           "additionalProperties": true,
           "properties": {
             "repo": { "type": "string", "description": "Issue repo (empty = same repo)." },
-            "use_projects": { "type": "boolean", "description": "Use GitHub Projects for board views." },
-            "use_label_prefixes": { "type": "boolean", "description": "Use artifact:, status:, layer: label prefixes." }
+            "use_projects": { "type": "boolean", "description": "Use GitHub Projects for board views and status tracking." },
+            "project_owner": { "type": "string", "description": "GitHub org or user that owns the project." },
+            "project_number": { "type": "integer", "description": "GitHub Project v2 number." },
+            "use_label_prefixes": { "type": "boolean", "description": "Use artifact:, layer:, loop: label prefixes." }
           }
         },
         "overrides": {

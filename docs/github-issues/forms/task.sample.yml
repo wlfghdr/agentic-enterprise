@@ -1,7 +1,7 @@
 name: "Task"
 description: "Create a mission task issue when using the GitHub issue backend"
 title: "[Task] "
-labels: ["artifact:task", "status:pending", "layer:execution", "loop:build"]
+labels: ["artifact:task", "layer:execution", "loop:build"]
 body:
   - type: input
     id: mission-reference

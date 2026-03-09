@@ -69,12 +69,12 @@ work/
 
 | Artifact | Label | Who Creates | Approval |
 |----------|-------|-------------|----------|
-| Signal | `artifact:signal` + `status:new` | Anyone | Label change by Steering |
-| Mission | `artifact:mission` + `status:proposed` | Strategy Layer | Label → `status:approved` |
-| Task | `artifact:task` (sub-issue of mission) | Orchestration Layer | Label transitions |
-| Decision | `artifact:decision` + `status:proposed` | Any Layer | Label → `status:accepted` |
-| Release | `artifact:release` + `status:draft` | Orchestration Layer | Label → `status:approved` |
-| Retrospective | `artifact:retrospective` + `status:draft` | Operate Loop | Label → `status:accepted` |
+| Signal | `artifact:signal` | Anyone | Project Status → `Approved` by Steering |
+| Mission | `artifact:mission` | Strategy Layer | Project Status → `Approved` |
+| Task | `artifact:task` (sub-issue of mission) | Orchestration Layer | Project Status transitions |
+| Decision | `artifact:decision` | Any Layer | Project Status → `Done` (accepted) |
+| Release | `artifact:release` | Orchestration Layer | Project Status → `Approved` |
+| Retrospective | `artifact:retrospective` | Operate Loop | Project Status → `Done` (accepted) |
 
 Git-only companion artifacts still apply in issue backend: signal digests, technical designs, evaluation reports, fleet reports, outcome reports, asset registry entries, governance exceptions, and locks.
 

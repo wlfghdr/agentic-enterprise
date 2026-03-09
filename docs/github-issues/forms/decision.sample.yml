@@ -1,7 +1,7 @@
 name: "Decision"
 description: "Create a decision record issue when using the GitHub issue backend"
 title: "[Decision] "
-labels: ["artifact:decision", "status:proposed", "loop:build"]
+labels: ["artifact:decision", "loop:build"]
 body:
   - type: input
     id: decision-id

@@ -1,7 +1,7 @@
 name: "Retrospective"
 description: "Create a postmortem issue when using the GitHub issue backend"
 title: "[Retrospective] "
-labels: ["artifact:retrospective", "status:draft", "loop:operate", "layer:execution"]
+labels: ["artifact:retrospective", "loop:operate", "layer:execution"]
 body:
   - type: input
     id: incident-id

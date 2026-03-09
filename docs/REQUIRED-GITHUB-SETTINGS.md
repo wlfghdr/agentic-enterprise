@@ -30,7 +30,7 @@ Then copy the sample files from `docs/github-issues/` into `.github/ISSUE_TEMPLA
 
 Minimum required label families for a usable GitHub issue backend:
 - `artifact:` labels for each issue-backed artifact type
-- `status:` labels for each governed state transition
+- A GitHub Project (v2) with a **Status** field for state transitions
 - `layer:` labels for ownership
 - `loop:` labels for lifecycle stage
 - `priority:` labels for triage
@@ -93,9 +93,9 @@ The model’s rule of thumb:
 Without branch protection, these become advisory.
 
 If you use the issue backend, add one more operating rule for humans:
-- **Approval = explicit status label transition by an authorized human**
+- **Approval = explicit Project Status transition by an authorized human**
 
 Examples:
-- Mission approval: replace `status:proposed` with `status:approved`
-- Release approval: replace `status:draft` with `status:approved`
-- Signal triage: replace `status:new` with one of `status:proceed`, `status:defer`, `status:monitor`, or `status:done`
+- Mission approval: set Project Status from `Backlog` to `Approved`
+- Release approval: set Project Status from `Backlog` to `Approved`
+- Signal triage: set Project Status from `Backlog`/`Triage` to `Approved`, `Done`, etc.

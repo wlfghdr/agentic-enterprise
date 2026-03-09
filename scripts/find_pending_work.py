@@ -24,7 +24,13 @@ import re
 import json
 from pathlib import Path
 
-from work_backend import gh_json, issue_reference_from_body, load_work_backend, prefixed_label
+from work_backend import (
+    gh_json,
+    get_project_statuses,
+    issue_reference_from_body,
+    load_work_backend,
+    prefixed_label,
+)
 
 REPO_ROOT = Path(__file__).parent.parent
 SIGNALS_DIR = REPO_ROOT / "work" / "signals"
@@ -99,22 +105,26 @@ def issue_backend_report() -> dict:
         report["backend_error"] = str(exc)
         return report
 
+    # Fetch project statuses for all issues in one batch
+    all_numbers = [i["number"] for i in issues]
+    try:
+        project_statuses = get_project_statuses(WORK_BACKEND, all_numbers)
+    except RuntimeError:
+        project_statuses = {}
+
     for issue in issues:
-        labels = {label for label in (issue.get("labels") or []) if isinstance(label, str)}
-        if not labels:
-            labels = set(prefixed_label(issue, prefix) for prefix in ())
         artifact = prefixed_label(issue, "artifact:")
-        status = prefixed_label(issue, "status:")
+        status = project_statuses.get(issue["number"])
 
         if artifact == "artifact:signal" and issue.get("state") == "OPEN":
-            if status == "status:new":
+            if status in (None, "Backlog", "Triage"):
                 report["untriaged_signals"].append(issue)
-            if status == "status:proceed":
+            if status == "Approved":
                 report["proceed_without_brief"].append(issue)
 
         if artifact == "artifact:mission" and issue.get("state") == "OPEN":
             missions[issue["number"]] = issue
-            if status == "status:proposed":
+            if status == "Backlog":
                 report["proposed_missions"].append(issue)
 
         if artifact == "artifact:task":
@@ -122,17 +132,17 @@ def issue_backend_report() -> dict:
             if not parent_issue:
                 continue
             task_state = tasks_by_mission.setdefault(parent_issue, {"open": 0, "done": 0})
-            if issue.get("state") == "OPEN" and status in {"status:pending", "status:in-progress", "status:blocked"}:
+            if issue.get("state") == "OPEN" and status in {"Backlog", "In Progress", "Blocked"}:
                 task_state["open"] += 1
-            if status in {"status:completed", "status:cancelled"} or issue.get("state") == "CLOSED":
+            if status == "Done" or issue.get("state") == "CLOSED":
                 task_state["done"] += 1
 
     for number, mission in missions.items():
         counts = tasks_by_mission.get(number, {"open": 0, "done": 0})
-        status = prefixed_label(mission, "status:")
-        if status in {"status:approved", "status:planning"} and counts["done"] == 0 and counts["open"] == 0:
+        status = project_statuses.get(number)
+        if status in {"Approved", "Planning"} and counts["done"] == 0 and counts["open"] == 0:
             report["approved_without_tasks"].append(mission)
-        if status == "status:active" and counts["open"] > 0:
+        if status == "In Progress" and counts["open"] > 0:
             report["active_with_open_tasks"].append({
                 "number": number,
                 "title": mission["title"],
@@ -140,7 +150,7 @@ def issue_backend_report() -> dict:
                 "open": counts["open"],
                 "done": counts["done"],
             })
-        if status == "status:active" and counts["open"] == 0 and counts["done"] > 0:
+        if status == "In Progress" and counts["open"] == 0 and counts["done"] > 0:
             report["completed_missions"].append(mission)
 
     return report

@@ -1,7 +1,7 @@
 name: "Signal"
 description: "File a new operational signal when using the GitHub issue backend"
 title: "[Signal] "
-labels: ["artifact:signal", "status:new", "loop:discover"]
+labels: ["artifact:signal", "loop:discover"]
 body:
   - type: input
     id: source-system
