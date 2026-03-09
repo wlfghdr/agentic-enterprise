@@ -4,6 +4,12 @@
 
 This guide covers the GitHub-specific implementation details: Issues as work backend, Projects for visibility, Actions workflows for CI/CD and DORA metrics.
 
+This folder is the GitHub instance kit for company forks:
+
+- `README.md` explains the GitHub operating model.
+- `issue-templates/` contains copyable files for `.github/ISSUE_TEMPLATE/`.
+- `workflows/` contains reference workflows you can copy into `.github/workflows/`.
+
 ---
 
 ## 1. GitHub Issues as Work Backend
@@ -19,7 +25,7 @@ work_backend:
     use_label_prefixes: true
 ```
 
-See [`docs/WORK-BACKEND.md`](../WORK-BACKEND.md) for the full backend configuration guide.
+See [`docs/WORK-BACKENDS.md`](../WORK-BACKENDS.md) for the full backend configuration guide.
 
 ### Required Labels
 
@@ -42,6 +48,8 @@ Consider creating `.github/ISSUE_TEMPLATE/` templates for:
 - Signal (observation filed by agent or human)
 - Mission (strategic intent with outcomes)
 - Task (concrete work item)
+
+Copy the samples from `issue-templates/` in this folder into your instance repository when you enable the issue backend.
 
 ---
 

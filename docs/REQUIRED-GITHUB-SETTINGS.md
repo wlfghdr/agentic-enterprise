@@ -26,7 +26,7 @@ Repo → **Settings → General → Features**
 - ✅ Issues
 - ✅ Issue forms
 
-Then copy the sample files from `docs/github-issues/` into `.github/ISSUE_TEMPLATE/` in your instance repository and customize them.
+Then copy the sample files from `docs/github/issue-templates/` into `.github/ISSUE_TEMPLATE/` in your instance repository and customize them.
 
 Minimum required label families for a usable GitHub issue backend:
 - `artifact:` labels for each issue-backed artifact type

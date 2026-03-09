@@ -1,6 +1,6 @@
 # GitHub Issues Backend Guide
 
-> **Version:** 2.0 | **Last updated:** 2026-03-08
+> **Version:** 2.1 | **Last updated:** 2026-03-09
 
 > **What this document is:** The concrete implementation guide for running operational work artifacts in GitHub Issues. Use this when `CONFIG.yaml → work_backend.type` is `github-issues`.
 
@@ -13,7 +13,7 @@ This guide makes the GitHub issue backend operational without implicit knowledge
 If a human needs to approve something, the required status transition is written out explicitly.
 If GitHub needs configuration, the exact repo settings, labels, project setup, and issue forms are listed here.
 
-Use this guide together with [WORK-BACKENDS.md](WORK-BACKENDS.md) and [REQUIRED-GITHUB-SETTINGS.md](REQUIRED-GITHUB-SETTINGS.md).
+Use this guide together with [WORK-BACKENDS.md](WORK-BACKENDS.md), [REQUIRED-GITHUB-SETTINGS.md](REQUIRED-GITHUB-SETTINGS.md), and [github/README.md](github/README.md).
 
 ---
 
@@ -24,8 +24,8 @@ Complete these steps before using the issue backend in a real fork:
 1. Set `work_backend.type: "github-issues"` in `CONFIG.yaml`.
 2. Enable GitHub Issues and Issue Forms in the repository settings.
 3. **Create a GitHub Project (v2)** with a **Status** field containing these single-select options: `Backlog`, `Triage`, `Approved`, `Planning`, `In Progress`, `Blocked`, `Done`. Set `project_owner` and `project_number` in `CONFIG.yaml`.
-4. Copy the sample forms from `docs/github-issues/forms/` into `.github/ISSUE_TEMPLATE/` in your instance repository.
-5. Copy `docs/github-issues/config.sample.yml` to `.github/ISSUE_TEMPLATE/config.yml` in your instance repository and customize the links.
+4. Copy the sample forms from `docs/github/issue-templates/forms/` into `.github/ISSUE_TEMPLATE/` in your instance repository.
+5. Copy `docs/github/issue-templates/config.sample.yml` to `.github/ISSUE_TEMPLATE/config.yml` in your instance repository and customize the links.
 6. Create the required labels listed below. (Note: status is tracked via the Project Status field, not via labels.)
 7. Tell humans who approve work to use the approval transitions exactly as written in the approval table.
 8. Keep Git-backed companion artifacts in the repository: signal digests, technical designs, quality evaluations, fleet reports, outcome reports, asset registry entries, governance exceptions, and locks.
@@ -325,13 +325,13 @@ This template repository keeps the operational GitHub issue forms as documentati
 
 Copy these into `.github/ISSUE_TEMPLATE/` in your company fork when you enable the issue backend:
 
-- `docs/github-issues/config.sample.yml`
-- `docs/github-issues/forms/signal.sample.yml`
-- `docs/github-issues/forms/mission.sample.yml`
-- `docs/github-issues/forms/task.sample.yml`
-- `docs/github-issues/forms/decision.sample.yml`
-- `docs/github-issues/forms/release.sample.yml`
-- `docs/github-issues/forms/retrospective.sample.yml`
+- `docs/github/issue-templates/config.sample.yml`
+- `docs/github/issue-templates/forms/signal.sample.yml`
+- `docs/github/issue-templates/forms/mission.sample.yml`
+- `docs/github/issue-templates/forms/task.sample.yml`
+- `docs/github/issue-templates/forms/decision.sample.yml`
+- `docs/github/issue-templates/forms/release.sample.yml`
+- `docs/github/issue-templates/forms/retrospective.sample.yml`
 
 These samples pre-apply the base artifact labels and ask for the fields humans typically forget.
 
@@ -374,6 +374,7 @@ Git still holds the durable review-heavy artifacts.
 
 | Version | Date | Change |
 |---|---|---|
+| 2.1 | 2026-03-09 | Updated sample file paths after consolidating GitHub instance assets under `docs/github/`. |
 | 2.0 | 2026-03-08 | Migrated status tracking from labels to GitHub Project Status field. Removed ~20 status labels. Added project setup guidance, project_owner/project_number config fields, unified status model (Backlog → Done + close), terminal state documentation. |
 | 1.1 | 2026-03-08 | Added assignment rules for issues and PRs, handoff mechanics for both, agent identity requirement, human operating rules for issues and PRs, comment-based approval model |
 | 1.0 | 2026-03-07 | Initial version — concrete GitHub issue-backend implementation guide |

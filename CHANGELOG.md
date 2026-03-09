@@ -21,6 +21,14 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 _Changes merged to `main` but not yet tagged as a release go here. Move to a new version section when cutting a release._
 
+### Changed
+
+- Documentation cleanup in `docs/`: removed the duplicate backend config guide `WORK-BACKEND.md` in favor of `WORK-BACKENDS.md`, removed the duplicate observability quick-reference `observability-genai.md` in favor of `OTEL-CONTRACT.md`, and rewrote `docs/README.md` as a shorter navigation index with clearer reading paths.
+- Consolidated GitHub instance assets under `docs/github/`: moved the former `docs/github-implementation/` guide and `docs/github-issues/` samples into one GitHub-focused folder with `issue-templates/` and `workflows/` subfolders, and updated references accordingly.
+- Clarified agent observability correlation guidance: `org/integrations/categories/observability.md` now uses canonical `git.*` and `agentic.*` field names in Git-derived event examples and explicitly distinguishes native spans from derived UI events.
+- Expanded `docs/OTEL-CONTRACT.md` to define how downstream UIs correlate flattened activity records to traces using canonical `trace.id`, `span.id`, and `parent.span.id` identifiers, closing a gap for command-center trace linking.
+- Tightened `org/4-quality/policies/observability.md` so trace-linkability of derived activity records is now a policy-level requirement, not just a contract detail.
+
 ---
 
 ## [3.1.0] — 2026-03-08

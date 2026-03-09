@@ -1,8 +1,11 @@
 # Work Backends — Git Files vs. Issue Tracker
 
-> **Version:** 1.3 | **Last updated:** 2026-03-08
+> **Version:** 1.4 | **Last updated:** 2026-03-09
 
 > **What this document is:** A comprehensive guide to how work artifacts can be tracked using different backends — either as Markdown files in Git (the original model) or as issues in an issue tracker (GitHub Issues, Jira, Linear, etc.).
+
+> **Use this document for:** choosing a backend, configuring `CONFIG.yaml`, understanding which artifacts stay in Git, and comparing backend behavior.
+> **Do not use this document for:** step-by-step GitHub issue operations. For that, use [GITHUB-ISSUES.md](GITHUB-ISSUES.md).
 
 ---
 
@@ -257,7 +260,7 @@ Git-backed companion artifacts still exist alongside the issue hierarchy where r
 
 ### Issue Templates
 
-GitHub Issue Templates (`.github/ISSUE_TEMPLATE/`) can mirror the Markdown templates. In this template repository, the operational forms are stored as docs-only samples under `docs/github-issues/forms/` so the framework repo itself does not behave like an instance repo.
+GitHub Issue Templates (`.github/ISSUE_TEMPLATE/`) can mirror the Markdown templates. In this template repository, the operational forms are stored as docs-only samples under `docs/github/issue-templates/forms/` so the framework repo itself does not behave like an instance repo.
 
 - `signal.sample.yml` — maps to `_TEMPLATE-signal.md`
 - `mission.sample.yml` — maps to `_TEMPLATE-mission-brief.md`
@@ -447,6 +450,7 @@ Templates are **never** tracked in the issue system. They are framework files, g
 
 | Version | Date | Change |
 |---------|------|--------|
+| 1.4 | 2026-03-09 | Consolidated backend configuration here and removed the duplicate `WORK-BACKEND.md` doc. Clarified this file's scope vs. `GITHUB-ISSUES.md`. |
 | 1.2 | 2026-03-08 | Added assignment discipline section covering issues, PRs, and reviews — mandatory assignees, handoff protocols for both issues and PRs, next-action clarity, unassigned item sweep, agent identity. Human approval via comment+re-assign (agents handle labels). |
 | 1.1 | 2026-03-07 | Clarified Git-only companion artifacts, added human approval cheat sheet, removed issue-only claims for digests/evaluations/outcome reports/fleet reports, linked GitHub implementation guide |
 | 1.0 | 2026-03-07 | Initial version — introduced work backend abstraction concept |
