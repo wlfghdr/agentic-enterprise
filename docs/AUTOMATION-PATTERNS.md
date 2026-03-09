@@ -72,4 +72,4 @@ GitHub webhooks → agent dispatch. No polling at all. The agentic-enterprise mo
 
 ## Work Backend
 
-Scripts use `work_backend.py` to abstract the storage backend. See `docs/WORK-BACKEND.md` for details on git-files vs. github-issues configuration.
+Scripts use `work_backend.py` to abstract the storage backend. See `docs/WORK-BACKENDS.md` for backend selection, configuration, and artifact placement.

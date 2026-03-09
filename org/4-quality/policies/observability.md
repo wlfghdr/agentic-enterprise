@@ -4,7 +4,7 @@
 > **Enforced by:** Quality Layer eval agents, including the dedicated [Observability Compliance Agent](../../agents/quality/observability-compliance-agent.md)
 > **Authority:** Operations leads + Architecture Governors
 > **Principle:** If it runs, it must be observable. If it's not observable, it doesn't ship.
-> **Version:** 1.2 | **Last updated:** 2026-03-09
+> **Version:** 1.3 | **Last updated:** 2026-03-10
 
 ---
 
@@ -187,6 +187,7 @@ AI agents are first-class citizens that require purpose-built observability:
   - `inference.chat` / `inference.generate` spans: `gen_ai.operation.name`, `gen_ai.provider.name`, `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens`
   - `tool.execute` spans: `tool.name`, `tool.type`
   - Decision events: `governance.decision`, `governance.reason` (as native OTel span events)
+- [ ] **Trace-linkability for derived activity records is preserved** for downstream dashboards and command centers: observability backends expose `trace.id` as the primary correlation key and `span.id` / `parent.span.id` when available, following [`docs/OTEL-CONTRACT.md`](../../../docs/OTEL-CONTRACT.md) Section 6.3. New instrumentation must not introduce parallel custom fields such as `trace_id` or `span_id` unless an ingest edge cannot preserve dotted names and the mapping is documented.
 - [ ] **Agent error traces** capture:
   - Tool call failures (with error details)
   - Policy violations detected
@@ -303,5 +304,6 @@ Observability is checked at multiple points in the lifecycle:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3 | 2026-03-10 | Added an explicit policy requirement that downstream activity records remain trace-linkable via canonical `trace.id`, `span.id`, and `parent.span.id` identifiers defined in `docs/OTEL-CONTRACT.md`. |
 | 1.1 | 2026-02-25 | Added Design-Time Observability section (shift-left); added design-time stage gate and verification gate (At Design Time); added design-time observability evaluation criterion; cross-referenced AGENTS.md Rule 9c and Technical Design template |
 | 1.0 | 2026-02-19 | Initial version |

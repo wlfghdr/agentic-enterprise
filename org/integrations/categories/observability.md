@@ -1,5 +1,7 @@
 # Observability & Telemetry Integration
 
+> **Version:** 1.1 | **Last updated:** 2026-03-09
+
 > **Category:** Observability  
 > **Relevance:** Essential for scaling agent governance, fleet performance monitoring, compliance auditing, and continuous improvement  
 > **Layers Affected:** All — but especially Orchestration, Execution, Quality, and Steering
@@ -43,10 +45,10 @@ Mission created       → span: mission lifecycle
 Fleet assembled       → span: orchestration
 Agent task started    → span: execution (per agent, per stream)
 Tool call (MCP/API)   → span: tool invocation (latency, success/failure)
-PR created            → event: governance checkpoint       ← git webhook
+PR created            → derived event from git.operation   ← git webhook
 Quality evaluation    → span: evaluation (verdict, evidence)
-PR merged/rejected    → event: decision point              ← git webhook
-Release deployed      → span: ship loop                   ← git tag webhook
+PR merged/rejected    → derived event from git.operation   ← git webhook
+Release deployed      → derived release event              ← git tag webhook
 Production alert      → event: operate loop signal
 Improvement signal    → event: feedback loop closed
 ```
@@ -57,15 +59,17 @@ The Git repository is the system of record for all decisions in this operating m
 
 **Configure webhooks at the repository or organization level** to push to the observability platform's webhook ingest or OTLP HTTP endpoint:
 
-| Git Event | Observability Event | Key Attributes |
-|-----------|--------------------|-----------------|
-| PR opened | `governance.pr.opened` | `pr.number`, `pr.branch`, `agent.name`, `mission.id` |
-| PR updated | `governance.pr.updated` | `pr.number`, `pr.commits_added` |
-| PR review submitted | `governance.pr.reviewed` | `pr.number`, `review.outcome`, `reviewer` |
-| PR merged | `governance.pr.merged` | `pr.number`, `merge.sha`, `time_to_merge_seconds` |
-| PR closed (no merge) | `governance.pr.rejected` | `pr.number`, `close.reason` |
-| Tag / release created | `release.tagged` | `tag.name`, `release.sha` |
-| Branch created | `governance.branch.created` | `branch.name`, `mission.id` (parsed from branch naming convention) |
+| Git Event | Observability Event | Canonical Correlation Fields |
+|-----------|--------------------|------------------------------|
+| PR opened | `governance.pr.opened` | `git.pr.number`, `git.branch`, `git.repo`, `agentic.mission.id` |
+| PR updated | `governance.pr.updated` | `git.pr.number`, `git.branch`, `git.repo` |
+| PR review submitted | `governance.pr.reviewed` | `git.pr.number`, `git.repo` plus platform-specific reviewer metadata |
+| PR merged | `governance.pr.merged` | `git.pr.number`, `git.repo`, `git.branch` |
+| PR closed (no merge) | `governance.pr.rejected` | `git.pr.number`, `git.repo` |
+| Tag / release created | `release.tagged` | `git.repo`, `git.branch` or release/tag metadata |
+| Branch created | `governance.branch.created` | `git.branch`, `git.repo`, `agentic.mission.id` (if derivable) |
+
+> **Contract rule:** Git lifecycle records shown in dashboards are derived events. Agents emit spans and native span events; the observability platform derives Git-facing UI events from webhook data and `git.operation` spans. See [`docs/OTEL-CONTRACT.md`](../../../docs/OTEL-CONTRACT.md) Section 6.
 
 **What this unlocks:**
 - **Cycle time observability** — from first commit on a signal branch to PR merged = end-to-end mission latency, fully measurable
@@ -121,13 +125,15 @@ Agent Runtime (instrumented with OTel SDK)
                                       └── Automated signals → work/signals/
 ```
 
-**Canonical semantic conventions for agents are defined in [`docs/OTEL-CONTRACT.md`](../../../docs/OTEL-CONTRACT.md)** — the single source of truth for all attribute names, span names, resource attributes, and privacy defaults. Key custom agentic-enterprise attributes (in addition to standard OTel/GenAI fields) include:
+**Canonical semantic conventions for agents are defined in [`docs/OTEL-CONTRACT.md`](../../../docs/OTEL-CONTRACT.md)** — the single source of truth for all attribute names, span names, resource attributes, privacy defaults, and derived-event correlation rules. Key custom agentic-enterprise attributes (in addition to standard OTel/GenAI fields) include:
 - `agentic.layer` — `steering` / `strategy` / `orchestration` / `execution` / `quality`
 - `agentic.division` — which execution division
 - `agentic.mission.id` — active mission identifier
 - `agentic.loop` — `discover` / `build` / `ship` / `operate`
 - `governance.pr.number` — associated pull request
 - `governance.decision` — `approve` / `reject` / `escalate` (emitted as native OTel span event)
+
+For UI consumers such as command-center dashboards, use platform-exposed trace context identifiers `trace.id`, `span.id`, and `parent.span.id` on derived records when correlating an activity item to a distributed trace waterfall. Do not invent parallel custom fields such as `trace_id` or `span_id` in new instrumentation unless a downstream ingest pipeline cannot preserve dotted names.
 
 > **Deprecated names:** `agent.type`, `agent.layer`, `agent.division`, `mission.id`, `loop`, `pr.number` are replaced by the canonical names above. See the deprecation table in `docs/OTEL-CONTRACT.md` Section 9.
 

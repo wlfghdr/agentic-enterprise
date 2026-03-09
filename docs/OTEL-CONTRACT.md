@@ -1,6 +1,6 @@
 # Canonical OTel Telemetry Contract
 
-> **Version:** 1.0 | **Last updated:** 2026-03-09
+> **Version:** 1.2 | **Last updated:** 2026-03-09
 > **Status:** Active — single source of truth for all agent telemetry
 > **Supersedes:** inline attribute lists in `AGENTS.md` Rule 9a, `org/4-quality/policies/observability.md` Agent Observability section, and `org/integrations/categories/observability.md` semantic conventions section
 > **Spec references:**
@@ -8,6 +8,8 @@
 > - [OTel GenAI Agent Spans](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/)
 > - [OTel Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/)
 > - [OTel General Attribute Registry](https://opentelemetry.io/docs/specs/semconv/general/attributes/)
+
+This file now also absorbs the former `docs/observability-genai.md` quick-reference so span naming, required attributes, metrics, and instrumentation checks live in one place.
 
 ---
 
@@ -261,6 +263,25 @@ Derived events are produced by the observability platform by processing span dat
 
 > **Rule:** Agents emit native span events. The observability platform produces derived events. Do not conflate the two. If a governance decision needs to be observable, emit a native span event on the relevant span — do not try to push a derived event directly.
 
+### 6.3 Trace Context in Derived Records and UI Correlation
+
+When traces are rendered in downstream dashboards or command-center UIs, correlation happens through the platform-exposed trace context identifiers attached to derived records:
+
+| Identifier | Source | Use |
+|-----------|--------|-----|
+| `trace.id` | OTel trace context | Primary join key from an activity record to the full distributed trace |
+| `span.id` | OTel span context | Optional deep-link to the specific span that produced the record |
+| `parent.span.id` | OTel parent span context | Optional breadcrumb for reconstructing local hierarchy in flattened views |
+
+Rules:
+
+1. **Do not duplicate trace context as custom span attributes.** OTel already carries trace and span identifiers in context. Emit spans normally and let the backend expose `trace.id` / `span.id` on derived records and query results.
+2. **Use dotted names in derived records when the platform supports them.** Prefer `trace.id`, `span.id`, and `parent.span.id` over ad-hoc aliases like `trace_id` and `span_id`.
+3. **If a downstream ingest path cannot preserve dotted field names, map them losslessly at the edge and document the mapping.** The canonical names remain `trace.id`, `span.id`, and `parent.span.id`.
+4. **UI correlation should start from `trace.id`.** `span.id` is a secondary precision key for linking an activity entry to a specific span in a waterfall or trace viewer.
+
+This rule exists specifically to support observability surfaces such as agent command centers: spans remain the source of truth, while flattened activity/event records remain trace-linkable without introducing a second telemetry schema.
+
 ---
 
 ## 7. Standard Metrics
@@ -387,7 +408,7 @@ This contract tracks the OTel GenAI spec version it was validated against:
 
 | Contract Version | OTel GenAI Spec Version | Validated Date |
 |-----------------|------------------------|----------------|
-| 1.0 | Development (2026-03-09 snapshot) | 2026-03-09 |
+| 1.2 | Development (2026-03-09 snapshot) | 2026-03-09 |
 
 ---
 
@@ -669,7 +690,6 @@ deprecated_attributes:
 | `AGENTS.md` Rule 9a | Mandate: every agent MUST emit OTel spans. Attribute list deferred to this file. |
 | `org/4-quality/policies/observability.md` | Policy: Agent Observability section references this file for attribute requirements |
 | `org/integrations/categories/observability.md` | Integration: semantic conventions section references this file |
-| `docs/observability-genai.md` | Guide: OTel GenAI span types for LLM/agent calls — detailed usage guide |
 | `examples/observability/agent-span-example.md` | Example: concrete well-instrumented agent workflow |
 | `work/missions/_TEMPLATE-technical-design.md` | Template: Observability Design section for mission-level instrumentation planning |
 
@@ -679,4 +699,5 @@ deprecated_attributes:
 
 | Version | Date | Summary |
 |---------|------|---------|
+| 1.1 | 2026-03-09 | Folded the former `docs/observability-genai.md` quick-reference into the canonical telemetry contract to remove duplicate observability guidance. |
 | 1.0 | 2026-03-09 | Initial canonical contract — consolidates AGENTS.md Rule 9a, observability policy, and integration docs. Closes issue #77. |
