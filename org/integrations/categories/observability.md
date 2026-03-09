@@ -121,14 +121,15 @@ Agent Runtime (instrumented with OTel SDK)
                                       └── Automated signals → work/signals/
 ```
 
-**Recommended OpenTelemetry semantic conventions for agents:**
-- `agent.type` — from the Agent Type Registry
-- `agent.layer` — steering / strategy / orchestration / execution / quality
-- `agent.division` — which execution division
-- `mission.id` — active mission identifier
-- `loop` — discover / build / ship / operate
-- `pr.number` — associated pull request
-- `governance.decision` — approve / reject / escalate
+**Canonical semantic conventions for agents are defined in [`docs/OTEL-CONTRACT.md`](../../../docs/OTEL-CONTRACT.md)** — the single source of truth for all attribute names, span names, resource attributes, and privacy defaults. Key custom agentic-enterprise attributes (in addition to standard OTel/GenAI fields) include:
+- `agentic.layer` — `steering` / `strategy` / `orchestration` / `execution` / `quality`
+- `agentic.division` — which execution division
+- `agentic.mission.id` — active mission identifier
+- `agentic.loop` — `discover` / `build` / `ship` / `operate`
+- `governance.pr.number` — associated pull request
+- `governance.decision` — `approve` / `reject` / `escalate` (emitted as native OTel span event)
+
+> **Deprecated names:** `agent.type`, `agent.layer`, `agent.division`, `mission.id`, `loop`, `pr.number` are replaced by the canonical names above. See the deprecation table in `docs/OTEL-CONTRACT.md` Section 9.
 
 ### Pattern 2: Platform-Native Integration
 

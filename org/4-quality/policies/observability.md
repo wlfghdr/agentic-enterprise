@@ -4,7 +4,7 @@
 > **Enforced by:** Quality Layer eval agents, including the dedicated [Observability Compliance Agent](../../agents/quality/observability-compliance-agent.md)
 > **Authority:** Operations leads + Architecture Governors
 > **Principle:** If it runs, it must be observable. If it's not observable, it doesn't ship.
-> **Version:** 1.1 | **Last updated:** 2026-02-25
+> **Version:** 1.2 | **Last updated:** 2026-03-09
 
 ---
 
@@ -182,13 +182,11 @@ Every production service MUST define and track at least one health target:
 
 AI agents are first-class citizens that require purpose-built observability:
 
-- [ ] **Every agent action produces a span** with:
-  - `agent.name`, `agent.role`, `agent.layer` (steering/strategy/orchestration/execution/quality)
-  - `agent.mission_id` — links to the mission being executed
-  - `agent.tool` — the tool being invoked
-  - `agent.model` — LLM model used (if applicable)
-  - `agent.token_usage.input`, `agent.token_usage.output` — token counts
-  - `agent.decision` — the decision made (summarized)
+- [ ] **Every agent action produces a span** with required attributes as defined in [`docs/OTEL-CONTRACT.md`](../../../docs/OTEL-CONTRACT.md) — the single canonical source of truth for all agent telemetry attribute names, span names, and resource attributes. Key required attributes per span type are:
+  - `agent.run` spans: `gen_ai.agent.name`, `gen_ai.agent.id`, `agentic.layer`, `agentic.mission.id`
+  - `inference.chat` / `inference.generate` spans: `gen_ai.operation.name`, `gen_ai.provider.name`, `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens`
+  - `tool.execute` spans: `tool.name`, `tool.type`
+  - Decision events: `governance.decision`, `governance.reason` (as native OTel span events)
 - [ ] **Agent error traces** capture:
   - Tool call failures (with error details)
   - Policy violations detected

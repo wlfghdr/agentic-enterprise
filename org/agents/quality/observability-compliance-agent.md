@@ -101,7 +101,8 @@ For every output under evaluation, this agent performs the following checks in o
 
 ### 1. Instrumentation Presence (Static)
 - Verify instrumentation code exists for the component type (OTel SDK, APM agent, or API ingest)
-- Verify span attributes include mandatory fields: `agent.name`, `agent.layer`, `agent.mission_id`, `agent.tool`
+- Verify span attributes include mandatory fields per span type as defined in [`docs/OTEL-CONTRACT.md`](../../../docs/OTEL-CONTRACT.md): `gen_ai.agent.name`, `gen_ai.agent.id`, `agentic.layer`, `agentic.mission.id` on `agent.run` spans; `gen_ai.usage.input_tokens` and `gen_ai.usage.output_tokens` on all inference spans; `tool.name` and `tool.type` on `tool.execute` spans
+- Verify deprecated attribute names (e.g., `agent.name`, `agent.mission_id`, `agent.layer`) are not used in new instrumentation — see deprecation table in `docs/OTEL-CONTRACT.md` Section 9
 - Verify structured logging with trace ID correlation is present
 - Verify external calls are wrapped in spans
 - **FAIL immediately** if no instrumentation code is present

@@ -23,6 +23,14 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 - **Assignment discipline for all GitHub artifacts** (AGENTS.md Rule 3, WORK-BACKENDS.md, GITHUB-ISSUES.md): Every issue, PR, and review request must have an assignee at all times. Mandatory handoff protocols for both issues and PRs. Comment-based human approval model — humans comment and re-assign, agents handle all label management. PR handoff protocol covers review requests, feedback cycles, and merge handoffs. Orchestration agents must sweep for unassigned items. Agent identity via dedicated bot accounts required.
+- **Canonical OTel Telemetry Contract** (`docs/OTEL-CONTRACT.md`): Single source of truth for all agent telemetry. OTel-first design — standard OTel/GenAI semantic conventions (`gen_ai.*`) take precedence; custom `agentic.*` and `governance.*` attributes used only where OTel has no equivalent. Includes: canonical span names (`agent.run`, `agent.subagent.invoke`, `tool.execute`, `quality.evaluate`, `git.operation`, `mission.transition`, `inference.chat`, `inference.generate`), resource attribute requirements, native vs derived event contract, privacy defaults (content capture off by default), canonical deprecation table for all legacy field names, semconv stability and migration policy, machine-readable YAML schema appendix. Closes #77, supersedes inline attribute lists in AGENTS.md, observability policy, and integration docs.
+- **Instrumented workflow example** (`examples/observability/agent-span-example.md`): Concrete end-to-end trace example covering agent run, inference, tool calls, git operations, quality evaluation, governance decision events, and error scenarios.
+
+### Changed
+- **AGENTS.md Rule 9a** (version 3.1 → 3.2): Replaced inline attribute list with reference to `docs/OTEL-CONTRACT.md`. Updated span event and tool span naming to use canonical names.
+- **`org/4-quality/policies/observability.md`** (version 1.1 → 1.2): Replaced Agent Observability attribute list with reference to `docs/OTEL-CONTRACT.md`.
+- **`org/integrations/categories/observability.md`**: Replaced "Recommended OpenTelemetry semantic conventions" section with reference to `docs/OTEL-CONTRACT.md`; documents deprecated field names.
+- **`org/agents/quality/observability-compliance-agent.md`**: Updated Instrumentation Presence check to reference canonical contract and flag deprecated attribute names.
 
 ---
 

@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 3.1 | **Last updated:** 2026-03-08
+> **Version:** 3.2 | **Last updated:** 2026-03-09
 
 > **Scope:** Every AI agent working in this repository — regardless of layer, role, or task — must follow these instructions.
 > **This file is the top of the instruction hierarchy.** Layer-specific and division-specific instructions extend (never contradict) these rules.
@@ -90,9 +90,10 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 
 #### 9a. Emit activity telemetry — always
 - **Every agent action produces an OpenTelemetry span.** No silent execution. This is not optional.
-- Every span MUST include: `agent.name`, `agent.layer`, `agent.mission_id`, `agent.tool`, `agent.model` (if applicable), `agent.token_usage.input`, `agent.token_usage.output`.
-- Every decision point (approve, reject, escalate, delegate) emits an event with: `governance.decision`, `governance.reason`, `pr.number` (if applicable).
-- Every tool call (MCP server, API, file write, Git operation) is wrapped in a child span with latency and outcome recorded.
+- **Canonical attribute names, span names, resource attributes, and privacy defaults are defined in [`docs/OTEL-CONTRACT.md`](docs/OTEL-CONTRACT.md).** Use that file as the single source of truth — do not inline attribute lists here or in other files.
+- Every span MUST carry the required attributes for its span type as defined in `docs/OTEL-CONTRACT.md` Section 3 (standard OTel/GenAI attributes) and Section 4 (custom agentic-enterprise attributes).
+- Every decision point (approve, reject, escalate, delegate) emits a native span event named `governance.decision` with attributes `governance.decision`, `governance.reason`, and `governance.pr.number` (if applicable) as defined in `docs/OTEL-CONTRACT.md` Section 6.1.
+- Every tool call (MCP server, API, file write, Git operation) is wrapped in a child `tool.execute` span with latency and outcome recorded.
 - Telemetry is exported to the registered observability integration via OTLP. If no observability integration is configured, log structured JSON to stdout at minimum.
 - **Agents do not self-censor telemetry.** If an action happened, it is observable. Policy violations, escalations, retries, and failures are especially important to instrument — they are the most valuable signals.
 - The observability integration is the system of truth for what agents actually did. The Git repo is the system of truth for what was decided. Both are required for a complete audit trail.
