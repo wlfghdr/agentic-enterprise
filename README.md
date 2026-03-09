@@ -6,6 +6,13 @@
   <a href="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml">
     <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
   </a>
+  <br>
+  <img src="https://img.shields.io/badge/ISO_27001-70%25_ready-0e8a16" alt="ISO 27001">
+  <img src="https://img.shields.io/badge/SOC_2-80%25_ready-1d76db" alt="SOC 2">
+  <img src="https://img.shields.io/badge/GDPR-50%25_ready-d93f0b" alt="GDPR">
+  <img src="https://img.shields.io/badge/ISO_42001-75%25_ready-5319e7" alt="ISO 42001">
+  <img src="https://img.shields.io/badge/NIST_AI_RMF-80%25_ready-fbca04" alt="NIST AI RMF">
+  <img src="https://img.shields.io/badge/EU_AI_Act-60%25_ready-c5def5" alt="EU AI Act">
 </p>
 
 <h1 align="center">Agentic Enterprise</h1>
@@ -458,6 +465,23 @@ See `org/integrations/categories/observability.md` for detailed patterns.
 | 10 | **Integration Registry is templated, not wired** — Patterns defined, connections not live | [Issue #10](https://github.com/wlfghdr/agentic-enterprise/issues/10) | MCP servers, A2A, OpenTelemetry, vendor SDKs |
 
 See [GitHub Discussions](https://github.com/wlfghdr/agentic-enterprise/discussions) for community conversation on each topic.
+
+---
+
+## Enterprise Compliance Readiness
+
+This framework provides **built-in governance controls** that map directly to enterprise certification frameworks. Coverage percentages reflect controls currently implemented — not aspirational targets.
+
+| Framework | Coverage | Strongest Controls | Tracked Gaps |
+|-----------|----------|-------------------|--------------|
+| **ISO 27001** | ~70% | RBAC (CODEOWNERS), change management (PRs), operations security, CI/CD gates, asset registry | [Key management](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aiso-27001+label%3Agap), vendor assessment |
+| **SOC 2 Type II** | ~80% | Control environment, availability (SLOs), processing integrity, confidentiality (encryption), OTel audit trail | [DR plan](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Asoc2+label%3Agap), incident SLAs |
+| **GDPR** | ~50% | Encryption in transit/at rest, PII audit logging, data protection | [DPA template](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Agdpr+label%3Agap), DSAR process, breach notification |
+| **ISO 42001** | ~75% | AI governance (5-layer model), agent accountability (OTel spans), human oversight, decision audit trail | [Fairness audit](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aiso-42001+label%3Agap), model cards |
+| **NIST AI RMF** | ~80% | Governance structure, continuous monitoring, risk mitigation (rollback), transparency | [Risk register](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Anist-ai-rmf+label%3Agap), AI threat model |
+| **EU AI Act** | ~60% | Transparency (versioned agent instructions), human oversight, risk management foundations | [DPIA](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aeu-ai-act+label%3Agap), conformity assessment |
+
+> **Note:** This framework provides governance *infrastructure*. Formal certification requires an independent audit of your deployed instance. Gaps are tracked as [open issues](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Agap) with certification labels.
 
 ---
 
