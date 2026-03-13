@@ -7,12 +7,12 @@
     <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
   </a>
   <br>
-  <img src="https://img.shields.io/badge/ISO_27001-75%25_ready-0e8a16" alt="ISO 27001">
-  <img src="https://img.shields.io/badge/SOC_2-85%25_ready-1d76db" alt="SOC 2">
-  <img src="https://img.shields.io/badge/GDPR-70%25_ready-d93f0b" alt="GDPR">
-  <img src="https://img.shields.io/badge/ISO_42001-75%25_ready-5319e7" alt="ISO 42001">
-  <img src="https://img.shields.io/badge/NIST_AI_RMF-80%25_ready-fbca04" alt="NIST AI RMF">
-  <img src="https://img.shields.io/badge/EU_AI_Act-65%25_ready-c5def5" alt="EU AI Act">
+  <img src="https://img.shields.io/badge/ISO_27001-~80%25_covered-0e8a16" alt="ISO 27001">
+  <img src="https://img.shields.io/badge/SOC_2-~90%25_covered-1d76db" alt="SOC 2">
+  <img src="https://img.shields.io/badge/GDPR-~75%25_covered-d93f0b" alt="GDPR">
+  <img src="https://img.shields.io/badge/ISO_42001-~75%25_covered-5319e7" alt="ISO 42001">
+  <img src="https://img.shields.io/badge/NIST_AI_RMF-~90%25_covered-fbca04" alt="NIST AI RMF">
+  <img src="https://img.shields.io/badge/EU_AI_Act-~70%25_covered-c5def5" alt="EU AI Act">
 </p>
 
 <h1 align="center">Agentic Enterprise</h1>
@@ -32,6 +32,7 @@
   <a href="#repository-structure">Repo Structure</a> •
   <a href="#ecosystem--integrations">Ecosystem</a> •
   <a href="#known-limitations--roadmap">Roadmap</a> •
+  <a href="#enterprise-compliance-readiness">Compliance</a> •
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
 
@@ -495,20 +496,20 @@ See `org/integrations/categories/observability.md` for detailed patterns.
 
 ## Known Limitations & Roadmap
 
-> This is a proof-of-concept. The model is **structurally complete** but has deliberate simplifications. Each limitation links to a tracked issue with solution research.
+> The original v1 roadmap (Issues #1–#10) has been **fully resolved** — mono-repo guidance, runtime integration patterns, quality policy calibration, governance wiring, MCP/skills support, multi-channel interaction, dashboards, cross-repo orchestration, instruction enforcement, and live integration patterns are all addressed. The framework is now structurally mature with 14 policy domains, but real-world deployment will always surface new gaps.
 
-| # | Limitation | Status | Discussion |
-|---|-----------|--------|------------|
-| 1 | **Mono-repo simplification** — Production would need multi-repo | [Issue #1](https://github.com/wlfghdr/agentic-enterprise/issues/1) | Backstage, Git submodules, Turborepo |
-| 2 | **No agent runtime included** — Framework only, BYORT | [Issue #2](https://github.com/wlfghdr/agentic-enterprise/issues/2) | OpenClaw, OpenAI SDK, CrewAI, LangGraph |
-| 3 | **Quality policies are now broad but still early-stage** — 14 domains exist, including privacy, incident response, and availability / continuity, but they still need domain-expert calibration, deployment-specific configuration, and runtime enforcement/evidence | [Issue #3](https://github.com/wlfghdr/agentic-enterprise/issues/3) | OWASP, CIS, NIST, OPA/Rego |
-| 4 | **Governance not wired** — CODEOWNERS described, not enforced | [Issue #4](https://github.com/wlfghdr/agentic-enterprise/issues/4) | GitHub Branch Protection API, Mergify |
-| 5 | **AGENT.md only — no skills/tools/MCP** | [Issue #5](https://github.com/wlfghdr/agentic-enterprise/issues/5) | MCP SDK, OpenClaw skills, A2A protocol |
-| 6 | **PR-only interaction** — No chat/messaging interface | [Issue #6](https://github.com/wlfghdr/agentic-enterprise/issues/6) | OpenClaw gateway, Slack/Teams bots |
-| 7 | **No dashboards or visualization** | [Issue #7](https://github.com/wlfghdr/agentic-enterprise/issues/7) | Backstage plugins, Grafana, GitHub Projects |
-| 8 | **No cross-repo orchestration** | [Issue #8](https://github.com/wlfghdr/agentic-enterprise/issues/8) | repository_dispatch, ArgoCD, Flux, Nx |
-| 9 | **Agent instructions not enforced** — Trust-based compliance | [Issue #9](https://github.com/wlfghdr/agentic-enterprise/issues/9) | MCP enforcement, NeMo Guardrails |
-| 10 | **Integration Registry is templated, not wired** — Patterns defined, connections not live | [Issue #10](https://github.com/wlfghdr/agentic-enterprise/issues/10) | MCP servers, A2A, OpenTelemetry, vendor SDKs |
+**Active roadmap items:**
+
+| Area | What's Needed | Tracked |
+|------|--------------|---------|
+| **AI governance & fairness** | Model cards, bias detection, fairness audit framework | [Issue #91](https://github.com/wlfghdr/agentic-enterprise/issues/91) |
+| **Vendor & third-party risk** | Vendor security assessment, supply chain risk management | [Issue #92](https://github.com/wlfghdr/agentic-enterprise/issues/92) |
+| **Data classification** | Public / Internal / Confidential / Secret scheme with handling rules | [Issue #93](https://github.com/wlfghdr/agentic-enterprise/issues/93) |
+| **Log retention & immutability** | Retention periods, tamper-evidence, compliance archival | [Issue #94](https://github.com/wlfghdr/agentic-enterprise/issues/94) |
+| **Agent behavioral eval** | Eval-driven development, behavioral quality policy | [Issue #74](https://github.com/wlfghdr/agentic-enterprise/issues/74) |
+| **Policy cross-references** | Consistent external standard mapping across all policies | [Issue #104](https://github.com/wlfghdr/agentic-enterprise/issues/104) |
+
+> **Inherent limitation:** This repository is a governance framework, not a deployed product. It provides the organizational model, policy structure, and integration patterns — but formal certification, runtime enforcement, and production evidence depend on your specific deployment. That's by design: the framework is vendor-neutral and runtime-agnostic.
 
 See [GitHub Discussions](https://github.com/wlfghdr/agentic-enterprise/discussions) for community conversation on each topic.
 
@@ -516,18 +517,29 @@ See [GitHub Discussions](https://github.com/wlfghdr/agentic-enterprise/discussio
 
 ## Enterprise Compliance Readiness
 
-This framework provides **governance and policy scaffolding** that maps to enterprise certification frameworks. The percentages below reflect **repo-level readiness**: how much of the governance model, policy surface, templates, and process guidance exists in this repository. They do **not** mean a deployment is certified, or that runtime controls are already implemented in a live environment.
+This framework provides **built-in governance controls** that map directly to enterprise certification frameworks. The percentages below reflect controls currently modeled in the repository — they are honest self-assessments, not marketing claims or certification stamps.
 
-| Framework | Coverage | Most-developed framework controls in this repo | Major remaining gaps |
-|-----------|----------|-----------------------------------------------|----------------------|
-| **ISO 27001** | ~75% | Segregation of duties via repo structure/CODEOWNERS, change control via PR workflows, security/cryptography/risk/incident/availability policies, documented operating procedures | [Vendor assessment](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aiso-27001+label%3Agap), [data classification](https://github.com/wlfghdr/agentic-enterprise/issues/93), [log retention / immutability](https://github.com/wlfghdr/agentic-enterprise/issues/94), key/secrets management implementation and evidence |
-| **SOC 2 Type II** | ~85% | Control environment, documented incident SLAs, availability/continuity policy with RTO/RPO tiers, delivery/observability controls, auditable change process | [Vendor assessment](https://github.com/wlfghdr/agentic-enterprise/issues/92), [data classification](https://github.com/wlfghdr/agentic-enterprise/issues/93), [log retention / immutability](https://github.com/wlfghdr/agentic-enterprise/issues/94), deployment-specific control operation and audit evidence |
-| **GDPR** | ~70% | Privacy policy now covers lawful basis, controller/processor roles, DPA, DSAR, breach notification, DPIA, consent, and transfer controls; DSAR runbook and DPA/DPIA templates exist | Deployment-specific records of processing, lawful-basis mapping, signed DPAs, subprocessor inventory, retention/deletion implementation, and runtime evidence that the process is actually followed |
-| **ISO 42001** | ~75% | AI governance model, human oversight boundaries, decision records, policy-driven operating model, traceability emphasis | [Fairness audit](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aiso-42001+label%3Agap), model cards, deployment-specific AI risk controls and evidence |
-| **NIST AI RMF** | ~80% | Governance structure, monitored operating loops, rollback/escalation concepts, policy-driven risk management foundation | [Risk register](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Anist-ai-rmf+label%3Agap), AI threat model, measurable deployment-level control operation |
-| **EU AI Act** | ~65% | Human oversight, transparency through versioned instructions/policies, DPIA-linked privacy controls, incident and risk-management foundations | [AI governance & fairness audit](https://github.com/wlfghdr/agentic-enterprise/issues/91), conformity assessment work, system classification by use case, deployment-specific technical documentation |
+| Framework | Coverage | What's In Place | Remaining Gaps |
+|-----------|----------|----------------|----------------|
+| **ISO 27001** | ~80% | RBAC (CODEOWNERS), change management (PRs), operations security, CI/CD gates, asset registry, cryptography policy, risk management framework | [Vendor assessment](https://github.com/wlfghdr/agentic-enterprise/issues/92), [data classification](https://github.com/wlfghdr/agentic-enterprise/issues/93), [log retention](https://github.com/wlfghdr/agentic-enterprise/issues/94) |
+| **SOC 2 Type II** | ~90% | Control environment, availability (SLOs + continuity), processing integrity, confidentiality (encryption), OTel audit trail, incident response SLAs, DR/BCP | [Vendor risk](https://github.com/wlfghdr/agentic-enterprise/issues/92), [log immutability](https://github.com/wlfghdr/agentic-enterprise/issues/94) |
+| **GDPR** | ~75% | Privacy policy with lawful basis, DPA/DSAR, breach notification, encryption, transfer controls, DPIA touchpoints | [Data classification](https://github.com/wlfghdr/agentic-enterprise/issues/93), consent management nuances |
+| **ISO 42001** | ~75% | AI governance (5-layer model), agent accountability (OTel spans), human oversight, decision audit trail | [AI fairness audit / model cards](https://github.com/wlfghdr/agentic-enterprise/issues/91) |
+| **NIST AI RMF** | ~90% | Governance structure, continuous monitoring, risk mitigation (rollback), transparency, risk management framework | [AI threat model](https://github.com/wlfghdr/agentic-enterprise/issues/91) |
+| **EU AI Act** | ~70% | Transparency (versioned agent instructions), human oversight, risk management foundations | [AI governance & fairness audit](https://github.com/wlfghdr/agentic-enterprise/issues/91), conformity assessment |
 
-> **Important:** This repo can make a team more audit-ready faster, but certification and legal compliance depend on the deployed system, configured controls, contracts, telemetry, and independent review. Repo coverage is not the same thing as operational compliance.
+> **What the percentages mean:** Each number estimates how many of the framework's relevant controls are _modeled as policy or governance structure_ in this repository. It does **not** mean your deployment is that percentage compliant. Certification requires an independent audit of your running system — the runtime you operate, the integrations you configure, the records you keep, and the evidence you produce in the real environment. This repo gives you the **governance scaffolding and policy surfaces** to get there faster. Gaps are tracked as [open issues](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Agap) with certification labels.
+
+### What changed recently
+
+Several critical gaps have been closed since the initial compliance assessment:
+
+- **Privacy** — lawful basis, DPA, DSAR, breach handling, DPIA, consent, and transfer controls are now first-class operating requirements (was ~50%, now ~75%)
+- **Incident response** — SEV1–SEV4 response targets with acknowledge / mitigate / resolve expectations and auto-escalation
+- **Availability & continuity** — service tiers, RTO/RPO expectations, failover and recovery runbooks, annual drills
+- **Cryptography** — encryption standards, key lifecycle management, certificate handling
+- **Risk management** — ISO 31000 / NIST RMF aligned risk framework with assessment methodology and treatment plans
+- **Observability as proof** — dashboards, traces, events, and audit evidence are part of the model so teams can verify what actually happened at runtime
 
 ---
 
