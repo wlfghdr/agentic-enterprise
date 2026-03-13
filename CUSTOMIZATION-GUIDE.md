@@ -1,6 +1,6 @@
 # Customization Guide — Agentic Enterprise Operating Model
 
-> **Version:** 3.0 | **Last updated:** 2026-03-07
+> **Version:** 3.1 | **Last updated:** 2026-03-13
 
 > **Start here** after cloning this framework.
 > This guide walks you through every step of making this operating model your own.
@@ -303,11 +303,13 @@ Each division folder should contain a `DIVISION.md` that defines:
 
 **Location:** `org/4-quality/policies/`
 
-The framework ships with 8 generic quality policies. Customize each:
+The framework ships with 10 quality policies. Customize each:
 
 | Policy | What to Customize |
 |--------|------------------|
 | [security.md](org/4-quality/policies/security.md) | Your specific security requirements, compliance frameworks (SOC2, HIPAA, etc.) |
+| [agent-security.md](org/4-quality/policies/agent-security.md) | Your agent-specific security posture (prompt injection mitigations, tool abuse prevention, OWASP LLM Top 10 coverage) |
+| [risk-management.md](org/4-quality/policies/risk-management.md) | Your risk appetite thresholds (via `CONFIG.yaml → risk_appetite`), agent autonomy tier assignments, risk taxonomy applicability, regulatory crosswalk for your target certifications |
 | [architecture.md](org/4-quality/policies/architecture.md) | Your API conventions, service patterns, catalog requirements |
 | [experience.md](org/4-quality/policies/experience.md) | Your design system name, accessibility standards, UI patterns |
 | [performance.md](org/4-quality/policies/performance.md) | Your specific latency budgets, cost constraints, resource limits |
@@ -317,6 +319,8 @@ The framework ships with 8 generic quality policies. Customize each:
 | [observability.md](org/4-quality/policies/observability.md) | Your telemetry standards, agent observability requirements, alerting thresholds |
 
 **Key principle:** Start with the policies as shipped (they're reasonable defaults for a software enterprise). Then tighten or loosen based on your regulatory environment, risk tolerance, and maturity level.
+
+> **Risk management note:** The risk management policy references configurable thresholds from `CONFIG.yaml → risk_appetite`. Fill in these values during Step 1 — they define your organization's risk tolerance for downtime, cost overruns, escalation rates, and agent behavioral thresholds. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{RISK_*}}` variables.
 
 ---
 
@@ -411,6 +415,13 @@ All placeholders in the framework use the `{{VARIABLE}}` syntax. Here's the comp
 | `{{SERVICE_CATALOG}}` | CONFIG.yaml → toolchain.service_catalog | Catalog references |
 | `{{OBSERVABILITY_PLATFORM_NAME}}` | CONFIG.yaml → integrations.observability[0].name | Integration guides |
 | `{{OTLP_ENDPOINT}}` | CONFIG.yaml → integrations.observability[0].otlp_endpoint | Telemetry pipeline |
+| `{{RISK_MAX_DOWNTIME_MINUTES}}` | CONFIG.yaml → risk_appetite.max_downtime_minutes | Risk management policy |
+| `{{RISK_COST_OVERRUN_THRESHOLD}}` | CONFIG.yaml → risk_appetite.cost_overrun_threshold_pct | Risk management policy |
+| `{{RISK_KILL_SWITCH_TARGET_SECONDS}}` | CONFIG.yaml → risk_appetite.kill_switch_target_seconds | Risk management policy |
+| `{{RISK_ESCALATION_RATE_THRESHOLD}}` | CONFIG.yaml → risk_appetite.escalation_rate_threshold_pct | Risk management policy |
+| `{{RISK_TOOL_FAILURE_THRESHOLD}}` | CONFIG.yaml → risk_appetite.tool_failure_threshold_pct | Risk management policy |
+| `{{RISK_CYCLE_TIME_VARIANCE}}` | CONFIG.yaml → risk_appetite.cycle_time_variance_pct | Risk management policy |
+| `{{RISK_HALLUCINATION_THRESHOLD}}` | CONFIG.yaml → risk_appetite.hallucination_threshold_pct | Risk management policy |
 
 ---
 
