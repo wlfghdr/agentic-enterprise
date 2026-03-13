@@ -7,12 +7,9 @@
     <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
   </a>
   <br>
-  <img src="https://img.shields.io/badge/ISO_27001-75%25_ready-0e8a16" alt="ISO 27001">
-  <img src="https://img.shields.io/badge/SOC_2-85%25_ready-1d76db" alt="SOC 2">
-  <img src="https://img.shields.io/badge/GDPR-70%25_ready-d93f0b" alt="GDPR">
-  <img src="https://img.shields.io/badge/ISO_42001-75%25_ready-5319e7" alt="ISO 42001">
-  <img src="https://img.shields.io/badge/NIST_AI_RMF-80%25_ready-fbca04" alt="NIST AI RMF">
-  <img src="https://img.shields.io/badge/EU_AI_Act-65%25_ready-c5def5" alt="EU AI Act">
+  <img src="https://img.shields.io/badge/policies-14_mandatory_domains-0e8a16" alt="14 policy domains">
+  <img src="https://img.shields.io/badge/trust-privacy_|_incident_|_availability-1d76db" alt="Trust surfaces">
+  <img src="https://img.shields.io/badge/evidence-telemetry_backed-5319e7" alt="Telemetry backed evidence">
 </p>
 
 <h1 align="center">Agentic Enterprise</h1>
@@ -32,6 +29,7 @@
   <a href="#repository-structure">Repo Structure</a> •
   <a href="#ecosystem--integrations">Ecosystem</a> •
   <a href="#known-limitations--roadmap">Roadmap</a> •
+  <a href="#enterprise-trust--audit-readiness">Trust</a> •
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
 
@@ -514,20 +512,24 @@ See [GitHub Discussions](https://github.com/wlfghdr/agentic-enterprise/discussio
 
 ---
 
-## Enterprise Compliance Readiness
+## Enterprise Trust & Audit Readiness
 
-This framework provides **governance and policy scaffolding** that maps to enterprise certification frameworks. The percentages below reflect **repo-level readiness**: how much of the governance model, policy surface, templates, and process guidance exists in this repository. They do **not** mean a deployment is certified, or that runtime controls are already implemented in a live environment.
+This repository now includes meaningful trust surfaces — not just placeholder policy names. In particular, the framework has explicit operating guidance for:
 
-| Framework | Coverage | Most-developed framework controls in this repo | Major remaining gaps |
-|-----------|----------|-----------------------------------------------|----------------------|
-| **ISO 27001** | ~75% | Segregation of duties via repo structure/CODEOWNERS, change control via PR workflows, security/cryptography/risk/incident/availability policies, documented operating procedures | [Vendor assessment](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aiso-27001+label%3Agap), [data classification](https://github.com/wlfghdr/agentic-enterprise/issues/93), [log retention / immutability](https://github.com/wlfghdr/agentic-enterprise/issues/94), key/secrets management implementation and evidence |
-| **SOC 2 Type II** | ~85% | Control environment, documented incident SLAs, availability/continuity policy with RTO/RPO tiers, delivery/observability controls, auditable change process | [Vendor assessment](https://github.com/wlfghdr/agentic-enterprise/issues/92), [data classification](https://github.com/wlfghdr/agentic-enterprise/issues/93), [log retention / immutability](https://github.com/wlfghdr/agentic-enterprise/issues/94), deployment-specific control operation and audit evidence |
-| **GDPR** | ~70% | Privacy policy now covers lawful basis, controller/processor roles, DPA, DSAR, breach notification, DPIA, consent, and transfer controls; DSAR runbook and DPA/DPIA templates exist | Deployment-specific records of processing, lawful-basis mapping, signed DPAs, subprocessor inventory, retention/deletion implementation, and runtime evidence that the process is actually followed |
-| **ISO 42001** | ~75% | AI governance model, human oversight boundaries, decision records, policy-driven operating model, traceability emphasis | [Fairness audit](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aiso-42001+label%3Agap), model cards, deployment-specific AI risk controls and evidence |
-| **NIST AI RMF** | ~80% | Governance structure, monitored operating loops, rollback/escalation concepts, policy-driven risk management foundation | [Risk register](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Anist-ai-rmf+label%3Agap), AI threat model, measurable deployment-level control operation |
-| **EU AI Act** | ~65% | Human oversight, transparency through versioned instructions/policies, DPIA-linked privacy controls, incident and risk-management foundations | [AI governance & fairness audit](https://github.com/wlfghdr/agentic-enterprise/issues/91), conformity assessment work, system classification by use case, deployment-specific technical documentation |
+- **Privacy** — lawful basis, DPA / DPIA touchpoints, DSAR handling, breach response, and transfer controls
+- **Incident response** — severity levels, response targets, escalation rules, and post-incident learning loops
+- **Availability & continuity** — service tiers, RTO / RPO expectations, failover / recovery runbooks, and drill expectations
+- **Observability & evidence** — telemetry, dashboards, traces, events, and audit artifacts that help prove what actually happened
 
-> **Important:** This repo can make a team more audit-ready faster, but certification and legal compliance depend on the deployed system, configured controls, contracts, telemetry, and independent review. Repo coverage is not the same thing as operational compliance.
+That is the right framing for this repository: **it makes a team more audit-ready by giving them governance structure, policy surfaces, and evidence patterns**. It does **not** make a deployment compliant by itself. Certification, legal compliance, and control effectiveness still depend on the runtime you operate, the integrations you configure, the records you keep, and the evidence you can produce in the real environment.
+
+If you want the short version:
+
+- this repo is **strong on operating model and policy scaffolding**
+- it is **honest about bring-your-own runtime and deployment controls**
+- it is **designed to help teams move faster toward enterprise readiness without pretending the repo alone is the audit**
+
+See the tracked roadmap items and discussions in GitHub Issues / Discussions for deployment-specific gaps, enforcement work, and certification-oriented follow-up.
 
 ---
 
