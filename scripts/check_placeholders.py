@@ -116,6 +116,7 @@ FRAMEWORK_FILES: frozenset[str] = frozenset(
         "org/4-quality/policies/experience.md",
         "org/4-quality/policies/observability.md",
         "org/4-quality/policies/performance.md",
+        "org/4-quality/policies/risk-management.md",
         "org/4-quality/policies/security.md",
         # Integration registry (uses {{OTLP_INGEST_ENDPOINT}} etc.)
         "org/integrations/categories/observability.md",
