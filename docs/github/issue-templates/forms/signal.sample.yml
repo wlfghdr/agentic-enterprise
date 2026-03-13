@@ -1,0 +1,93 @@
+name: "Signal"
+description: "File a new operational signal when using the GitHub issue backend"
+title: "[Signal] "
+labels: ["artifact:signal", "loop:discover"]
+body:
+  - type: input
+    id: source-system
+    attributes:
+      label: "Source system"
+      description: "Where did this signal come from?"
+      placeholder: "e.g., customer interview, observability platform, sales call"
+    validations:
+      required: true
+
+  - type: input
+    id: source-reference
+    attributes:
+      label: "Source URL or reference"
+      description: "Link to dashboard, document, thread, or data source if available"
+      placeholder: "https://... or internal reference"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: "Category"
+      options:
+        - market
+        - customer
+        - technical
+        - internal
+        - competitive
+        - financial
+    validations:
+      required: true
+
+  - type: dropdown
+    id: confidence
+    attributes:
+      label: "Confidence"
+      options:
+        - high
+        - medium
+        - low
+    validations:
+      required: true
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: "Urgency"
+      options:
+        - immediate
+        - next-cycle
+        - monitor
+    validations:
+      required: true
+
+  - type: textarea
+    id: observation
+    attributes:
+      label: "Observation"
+      description: "Describe what was observed. Use facts, metrics, or quotes rather than opinion."
+      placeholder: "Describe the signal clearly and concretely."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alignment-impact
+    attributes:
+      label: "Strategic alignment and potential impact"
+      description: "Which strategic beliefs does this affect, and how large is the impact?"
+      placeholder: "Belief: ... Impact: high/medium/low ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: divisions
+    attributes:
+      label: "Affected divisions"
+      description: "List the divisions likely to be involved if this becomes a mission"
+      placeholder: "core-services, engineering-foundation"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-signals
+    attributes:
+      label: "Related signals or prior context"
+      description: "Link related issues or files if this adds to existing evidence"
+    validations:
+      required: false

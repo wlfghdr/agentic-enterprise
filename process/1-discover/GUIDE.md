@@ -23,6 +23,7 @@
 
 Anyone (human or agent) can create a signal:
 
+**Git-files backend:**
 ```bash
 # Create a new signal file
 cp work/signals/_TEMPLATE-signal.md work/signals/YYYY-MM-DD-<descriptive-name>.md
@@ -30,7 +31,10 @@ cp work/signals/_TEMPLATE-signal.md work/signals/YYYY-MM-DD-<descriptive-name>.m
 # Submit as a Pull Request
 ```
 
-**Signal file must include:**
+**Issue backend:**
+Create a new issue with label `artifact:signal`. Use the signal issue template (if configured) or fill in the required fields: source, category, raw data/observation, urgency, and link to source data.
+
+**Signal must include:**
 - Source (where did this signal come from?)
 - Category (market | customer | technical | internal | competitive | financial)
 - Raw data or observation
@@ -56,13 +60,13 @@ For signals that proceed:
 ### Step 4: Mission Brief Creation
 
 If the opportunity is validated:
-1. Use `work/missions/_TEMPLATE-mission-brief.md`
+1. Use `work/missions/_TEMPLATE-mission-brief.md` (git-files) or create a mission issue with `artifact:mission` label (issue backend)
 2. Define scope (in-scope / out-of-scope)
-3. Create outcome contract (`work/missions/_TEMPLATE-outcome-contract.md`)
+3. Create outcome contract (`work/missions/_TEMPLATE-outcome-contract.md` or as a linked issue)
 4. Identify human checkpoint moments
 5. Estimate fleet composition
 6. **Define observability requirements** — identify key metrics aligned with the outcome contract, query production baselines for any existing components affected, and note observability dependencies (new dashboards, SLOs, alerts needed). See the Observability Requirements section in the mission brief template.
-7. Submit as PR for Strategy Layer approval
+7. Submit for Strategy Layer approval (PR for git-files backend, label change for issue backend)
 
 ### Step 5: Mission Approval
 

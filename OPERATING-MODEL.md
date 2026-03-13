@@ -1,8 +1,8 @@
 # Operating Model: The Agentic Enterprise GitOps Model
 
-> **Version:** 2.0 | **Last updated:** 2026-02-23
+> **Version:** 3.0 | **Last updated:** 2026-03-07
 
-> **What this document is:** The meta-description of how this entire system works — the replacement of legacy ticket-based, ceremony-driven, phase-gated product development with a Git-native, agent-driven, outcome-governed operating model.
+> **What this document is:** The meta-description of how this entire system works — the replacement of legacy ticket-based, ceremony-driven, phase-gated product development with an agent-driven, outcome-governed operating model where Git provides the governance backbone and work tracking adapts to the tools that work best for your team.
 > **Audience:** Humans and agents who need to understand the big picture.
 
 > **⚠️ POC / Demo Disclaimer**  
@@ -23,7 +23,7 @@ A fully working operating model for running {{COMPANY_SHORT}} as an agentic ente
 
 - **5 layers** — Steering → Strategy → Orchestration → Execution → Quality — covering the entire company (eng, delivery, GTM, sales, CS, support), not just R&D
 - **4 loops** — Discover → Build → Ship → Operate — replacing legacy phase-gate processes. Idea-to-GA in 2–4 weeks. Continuous production operations feed signals back into Discover.
-- **Git is the system of record** — PRs = decisions. CODEOWNERS = RACI. CI/CD = quality gates. Agents are native Git citizens. Enterprise tools connect through governed integrations.
+- **Git is the governance backbone** — Org structure, policies, agent instructions, and templates are always Git-native. Work tracking (signals, missions, tasks) adapts to your preferred system — Git files or issue trackers. See [docs/WORK-BACKENDS.md](docs/WORK-BACKENDS.md).
 - **Integration-ready** — Observability platforms, ITSM, CI/CD, business systems, and communication channels plug in through a governed Integration Registry (`org/integrations/`). The model works with your existing tools, not against them.
 - **Self-evolving** — Every agent surfaces improvement signals → Steering Layer aggregates → proposes org/process changes as PRs → execs approve by merging. Continuous organizational metabolism, not annual reorgs
 
@@ -113,9 +113,9 @@ The agentic enterprise model does not require replacing every tool in your organ
 
 | Traditional Concept | Agentic Enterprise Equivalent | Relationship |
 |---------------|----------------------|-----------------|
-| **Ticket (Jira/Linear)** | Markdown file in `work/` | System of record moves to Git; existing tools can sync via Integration Registry |
-| **Ticket workflow** | Git branch → PR → merge | Governance is Git-native; status can be projected to existing tools |
-| **Board/Kanban** | Auto-generated dashboards from `work/` | Visualization is decoupled from data — use existing dashboards or build new ones |
+| **Ticket (Jira/Linear)** | Work artifact (issue or Markdown) | Tracked in configured work backend (`CONFIG.yaml → work_backend`) — either as issues with structured labels or as Markdown files in `work/` |
+| **Ticket workflow** | Label transitions or Git branch → PR → merge | Governance adapts to backend; status labels replace file status fields |
+| **Board/Kanban** | GitHub Projects or auto-generated views | Native board views with issue backend; generated from files with git-files backend |
 | **Sprint planning** | Mission brief creation | Goal-oriented, not time-boxed |
 | **Sprint review** | PR review with embedded evidence | Continuous, not biweekly |
 | **Daily standup** | Git log + fleet observability dashboards | Always current, no meetings; observability provides real-time fleet health |
@@ -178,34 +178,34 @@ The agentic enterprise model does not require replacing every tool in your organ
                            └──────────────────────────────────┘
 ```
 
-Every arrow in this diagram is a **Git operation** (commit, branch, PR, merge, review comment) — the system of record. In practice, agents also interact with enterprise tools (observability platforms, ITSM, CI/CD, communication channels) through governed integrations. Git remains the canonical record; external tools extend the operating model's reach.
+Every arrow in this diagram is a **governed operation** — a Git commit, PR, issue state change, or label transition — depending on the configured work backend. Git remains the canonical record for governance decisions; the work backend handles operational tracking. In practice, agents also interact with enterprise tools (observability platforms, ITSM, CI/CD, communication channels) through governed integrations.
 
 ---
 
 ## Artifact Flow: The Complete Chain
 
-Every handoff between layers and loops is mediated by a concrete artifact stored in the repository. No implicit handoffs.
+Every handoff between layers and loops is mediated by a concrete artifact. No implicit handoffs. Artifacts are tracked in the configured work backend (see `CONFIG.yaml → work_backend` and [docs/WORK-BACKENDS.md](docs/WORK-BACKENDS.md)).
+
+**Git-files backend:** Artifacts are Markdown files in `work/` as shown below.
+**Issue backend:** Artifacts are issues with `artifact:*` labels. The same logical flow applies — just the medium changes.
 
 ```
-Signal (work/signals/)
+Signal (work/signals/ or issue with artifact:signal)
   │
-  ├─ Steering: Signal Digest (work/signals/digests/)
+  ├─ Steering: Signal Digest
   │
   ▼
-Mission Brief (work/missions/<name>/BRIEF.md)
-  + Outcome Contract (work/missions/<name>/OUTCOME-CONTRACT.md)
+Mission Brief + Outcome Contract
   │
   ├─ Orchestration: Fleet Config (org/2-orchestration/fleet-configs/<mission>.md)
-  │                  Mission Status (work/missions/<name>/STATUS.md)
+  │                  Mission Status (append-only updates)
   │                  Fleet Performance Report
   │
-  ├─ Technical Design (work/missions/<name>/TECHNICAL-DESIGN.md)
-  │  (for design-required missions: API contracts, data models,
-  │   interface specs, behavioral specs, threat model, perf budgets)
+  ├─ Technical Design (always in Git — code-review-adjacent)
   │
   ▼
 Execution Outputs (code PRs, docs, content, assets)
-  + Asset Registry (work/assets/<asset>.md)
+  + Asset Registry (always in Git — persistent documentation)
   + Runbooks (per service)
   │
   ├─ Quality: Evaluation Reports (work/missions/<name>/evaluations/)
@@ -247,14 +247,15 @@ See [org/agents/README.md](org/agents/README.md) for the full lifecycle document
 
 ### Layer 1: Git + PR Interface (The Foundation)
 
-Every human interaction ultimately maps to a Git operation. But the *surface* varies by role:
+Every human interaction ultimately maps to a governed operation — a Git commit, issue state change, or label transition. The *surface* varies by role:
 
 | Interaction Surface | Who Uses It | What They Do |
 |---|---|---|
-| **{{GIT_HOST}} Web UI** | Everyone | Review PRs, approve merges, browse structure |
+| **{{GIT_HOST}} Web UI** | Everyone | Review PRs, approve merges, browse structure, triage issues |
 | **IDE (VS Code + Copilot)** | Tech Leads, Policy Authors | Edit policies, review code, write decision records |
 | **Git CLI** | Agent Fleet Managers, advanced users | Scripted operations, bulk changes |
-| **Chat / Messaging Interface** | Outcome Owners, Executives, all layers | Natural-language commands → agent actions → PRs |
+| **Issue Tracker** | Everyone | Triage signals, track missions, assign tasks, comment on progress |
+| **Chat / Messaging Interface** | Outcome Owners, Executives, all layers | Natural-language commands → agent actions → PRs/issues |
 | **Dashboard / Web App** | Executives, Mission Leads, Fleet Managers | Real-time mission status, fleet health, quality metrics |
 | **Mobile notifications** | Outcome Owners, on-call | Approve/reject decisions, escalation alerts |
 
@@ -273,14 +274,14 @@ Agent:            [merges PR #247, creates enablement branch, notifies
                   "Done. PR #247 merged. Enablement stream initiated."
 ```
 
-**Key design principle:** Every chat action that changes state produces a Git commit. Chat is the *input surface*, Git is the *state machine*. Conversations are ephemeral; Git is permanent.
+**Key design principle:** Every chat action that changes state produces a governed record — a Git commit, issue update, or label change. Chat is the *input surface*, the work backend is the *state machine*. Conversations are ephemeral; the audit trail is permanent.
 
 ### Layer 3: Web UIs & Dashboards (The Visual Layer)
 
 | UI | Purpose | Data Source |
 |---|---|---|
-| **Mission Control Dashboard** | Kanban-style view of all active missions | `work/missions/` + Git activity |
-| **Signal Triage Board** | Incoming signals ranked by urgency/impact | `work/signals/` + agent analysis |
+| **Mission Control Dashboard** | Kanban-style view of all active missions | Work backend (issues or `work/missions/`) |
+| **Signal Triage Board** | Incoming signals ranked by urgency/impact | Work backend (issues or `work/signals/`) |
 | **Fleet Performance Dashboard** | Agent throughput, error rates, cost per task | {{OBSERVABILITY_TOOL}} metrics |
 | **Quality Scorecard** | Per-division quality grades, compliance rates | `org/4-quality/` evaluation results |
 | **Org Health Visualizer** | Interactive 5-layer org chart | `org/` folder structure |

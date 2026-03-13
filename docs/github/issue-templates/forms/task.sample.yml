@@ -1,0 +1,85 @@
+name: "Task"
+description: "Create a mission task issue when using the GitHub issue backend"
+title: "[Task] "
+labels: ["artifact:task", "layer:execution", "loop:build"]
+body:
+  - type: input
+    id: mission-reference
+    attributes:
+      label: "Parent mission"
+      description: "Link the mission issue this task belongs to"
+      placeholder: "#123"
+    validations:
+      required: true
+
+  - type: input
+    id: task-id
+    attributes:
+      label: "Task ID"
+      placeholder: "TASK-001"
+    validations:
+      required: true
+
+  - type: input
+    id: assigned-to
+    attributes:
+      label: "Assigned to"
+      description: "Division and agent type or human role"
+      placeholder: "core-services — builder agent"
+    validations:
+      required: true
+
+  - type: input
+    id: depends-on
+    attributes:
+      label: "Depends on"
+      description: "Use task IDs or issue references"
+      placeholder: "None or TASK-002 / #456"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority"
+      options:
+        - critical
+        - high
+        - medium
+        - low
+    validations:
+      required: true
+
+  - type: input
+    id: target-date
+    attributes:
+      label: "Target date"
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Write the task so the assigned agent can start without more clarification"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance criteria"
+      description: "Use checkboxes or one item per line"
+      placeholder: "- Criterion 1\n- Criterion 2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: linked-work
+    attributes:
+      label: "Linked PRs or issues"
+      description: "Fill this as soon as work starts to avoid duplicate work"
+      placeholder: "PR #789"
+    validations:
+      required: false

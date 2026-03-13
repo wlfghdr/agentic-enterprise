@@ -55,7 +55,7 @@ Loop 3 (Ship) completes → Feature is GA → Loop 4 begins (and never ends)
   │           └────────┴────────┘                                      │
   │                    │                                                │
   │                    ▼                                                │
-  │        File improvement signal → work/signals/ → Loop 1 (Discover)│
+  │        File improvement signal → Loop 1 (Discover)               │
   │                                                                    │
   │  In parallel (always running):                                     │
   │  • Feature flag agents manage progressive rollouts                 │
@@ -87,7 +87,7 @@ You author the policies that operations agents enforce autonomously:
 
 ### 2. Respond to Escalations (On-Call Engineers)
 
-When operations agents escalate, you investigate and resolve:
+When operations agents escalate, you investigate and resolve. Escalations appear as notifications on issues (issue backend) or as updates in `work/signals/` and `STATUS.md` (git-files backend):
 
 | Escalation Type | Your Response |
 |---|---|
@@ -113,7 +113,7 @@ Feature flag agents manage ongoing rollouts, but key decisions are yours:
 
 The most valuable output of Loop 4 is the **feedback loop to Loop 1**:
 
-- Operations agents file signals in `work/signals/` based on production observations
+- Operations agents file signals based on production observations (to `work/signals/` for git-files, or as issues with `artifact:signal` label for issue backend)
 - You interpret whether these signals warrant new missions
 - **This is the loop that closes the entire model.** Without Operate → Discover feedback, the model is linear. With it, the model is circular.
 
@@ -151,7 +151,7 @@ The most valuable output of Loop 4 is the **feedback loop to Loop 1**:
    "Query Z degrades 5% per month at current data growth"
          │
          ▼
- Signals filed in work/signals/
+ Signals filed as work artifacts
          │
          ▼
  Loop 1 (Discover) picks them up:

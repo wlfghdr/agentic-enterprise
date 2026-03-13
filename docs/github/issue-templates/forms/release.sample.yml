@@ -1,0 +1,57 @@
+name: "Release"
+description: "Create a release contract issue when using the GitHub issue backend"
+title: "[Release] "
+labels: ["artifact:release", "loop:ship", "layer:orchestration"]
+body:
+  - type: input
+    id: release-id
+    attributes:
+      label: "Release ID"
+      placeholder: "REL-2026-001"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: "Release summary"
+    validations:
+      required: true
+
+  - type: textarea
+    id: changes
+    attributes:
+      label: "Changes included"
+      description: "List changes, missions, and quality verdicts"
+    validations:
+      required: true
+
+  - type: textarea
+    id: rollout
+    attributes:
+      label: "Progressive rollout plan"
+      placeholder: "Canary ...\nEarly adopters ...\nGeneral ...\nFull ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: rollback
+    attributes:
+      label: "Rollback plan"
+    validations:
+      required: true
+
+  - type: textarea
+    id: predeploy
+    attributes:
+      label: "Pre-deployment checklist"
+      description: "Call out production readiness, rollback readiness, and on-call notification"
+    validations:
+      required: true
+
+  - type: textarea
+    id: release-notes
+    attributes:
+      label: "Release notes"
+    validations:
+      required: true

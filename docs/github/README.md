@@ -4,6 +4,12 @@
 
 This guide covers the GitHub-specific implementation details: Issues as work backend, Projects for visibility, Actions workflows for CI/CD and DORA metrics.
 
+This folder is the GitHub instance kit for company forks:
+
+- `README.md` explains the GitHub operating model.
+- `issue-templates/` contains copyable files for `.github/ISSUE_TEMPLATE/`.
+- `workflows/` contains reference workflows you can copy into `.github/workflows/`.
+
 ---
 
 ## 1. GitHub Issues as Work Backend
@@ -19,7 +25,7 @@ work_backend:
     use_label_prefixes: true
 ```
 
-See [`docs/WORK-BACKEND.md`](../WORK-BACKEND.md) for the full backend configuration guide.
+See [`docs/WORK-BACKENDS.md`](../WORK-BACKENDS.md) for the full backend configuration guide.
 
 ### Required Labels
 
@@ -28,12 +34,13 @@ When using `use_label_prefixes: true`, create these labels:
 | Prefix | Values |
 |--------|--------|
 | `artifact:` | `signal`, `signal-triage`, `mission`, `task` |
-| `status:` | `open`, `pending`, `proposed`, `active`, `in-progress`, `done`, `closed`, `proceed`, `defer`, `monitor` |
 | `layer:` | `steering`, `strategy`, `orchestration`, `execution`, `quality` |
 | `loop:` | `discover`, `build`, `ship`, `operate` |
 | `priority:` | `critical`, `high`, `medium`, `low` |
 | `category:` | `market`, `customer`, `technical`, `internal` |
 | `urgency:` | `immediate`, `next-cycle`, `monitor` |
+
+> **Status tracking:** Do not create `status:*` labels. Use the GitHub Project (v2) **Status** field instead. See [docs/GITHUB-ISSUES.md](../GITHUB-ISSUES.md).
 
 ### Issue Templates
 
@@ -41,6 +48,8 @@ Consider creating `.github/ISSUE_TEMPLATE/` templates for:
 - Signal (observation filed by agent or human)
 - Mission (strategic intent with outcomes)
 - Task (concrete work item)
+
+Copy the samples from `issue-templates/` in this folder into your instance repository when you enable the issue backend.
 
 ---
 
@@ -52,7 +61,7 @@ Create a GitHub Project board for operational visibility:
 
 | View | Type | Group by | Filter |
 |------|------|----------|--------|
-| **Kanban** | Board | `status:` label | Open issues |
+| **Kanban** | Board | Project Status field | Open issues |
 | **By Layer** | Table | `layer:` label | Open issues |
 | **By Priority** | Table | Sort by `priority:` | Open issues |
 | **Recently Updated** | Table | Sort by updated | Last 14 days |

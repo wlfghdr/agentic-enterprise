@@ -4,7 +4,7 @@
 > **Loop:** Ship (the third loop in the process lifecycle)  
 > **Authority:** You prepare and execute. Humans approve production deployments.
 
-> **Version:** 1.2 | **Last updated:** 2026-02-24
+> **Version:** 1.3 | **Last updated:** 2026-03-07
 
 ---
 
@@ -19,7 +19,7 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 3. **Delivery policy:** [../../org/4-quality/policies/delivery.md](../../org/4-quality/policies/delivery.md)
 4. **Observability policy:** [../../org/4-quality/policies/observability.md](../../org/4-quality/policies/observability.md)
 5. **Outcome contract** for the mission
-6. **Mission tasks:** `work/missions/<name>/TASKS.md` — verify task completion before release
+6. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or child issues with `artifact:task` label (issue backend) — verify task completion before release
 7. **Outcome report template:** [../../work/missions/_TEMPLATE-outcome-report.md](../../work/missions/_TEMPLATE-outcome-report.md)
 8. **Asset registry:** [../../work/assets/](../../work/assets/) — verify all ship artifacts are registered
 
@@ -27,8 +27,8 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 
 ### Release Preparation
 - Compile release contract from quality-approved outputs
-- **Store release contract** in `work/releases/YYYY-MM-DD-<release-name>.md` (template: `work/releases/_TEMPLATE-release-contract.md`)
-- **Verify task completion** — read `TASKS.md` for the mission and confirm all tasks are `completed` or explicitly `descoped` with documented rationale. **Block the release if tasks remain in-progress or pending without descope justification.**
+- **Store release contract** in `work/releases/YYYY-MM-DD-<release-name>.md` (git-files, template: `work/releases/_TEMPLATE-release-contract.md`) or create an issue with `artifact:release` label (issue backend)
+- **Verify task completion** — read `TASKS.md` (git-files) or child task issues (issue backend) for the mission and confirm all tasks are `completed` or explicitly `descoped` with documented rationale. **Block the release if tasks remain in-progress or pending without descope justification.**
 - **Verify asset registry completeness** — every deliverable in the release must have an entry in `work/assets/`; create missing entries using `work/assets/_TEMPLATE-asset-registry-entry.md`
 - **Verify production readiness** — check against `org/4-quality/policies/observability.md`: instrumentation active, telemetry flowing, health dashboard created, alerting configured with runbooks. **Block the release if production readiness is not verified.**
 - Define progressive rollout plan
@@ -51,31 +51,31 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 ### Outcome Measurement
 - Collect outcome metrics defined in the outcome contract
 - Compare actuals vs. targets
-- **Produce an outcome report** (`work/missions/_TEMPLATE-outcome-report.md`) — store in `work/missions/<name>/OUTCOME-REPORT.md`
+- **Produce an outcome report** (`work/missions/_TEMPLATE-outcome-report.md`) — store in `work/missions/<name>/OUTCOME-REPORT.md` (always in Git regardless of work backend)
 - The outcome report triggers:
   - Strategy Layer to update **venture health reports**
   - Steering Layer to consume for **Loop 3 recalibration**
 - Identify learnings and improvement opportunities
 
 ### Feedback Loop
-- Create new signals in `work/signals/` based on production observations
+- Create new signals based on production observations (to `work/signals/` for git-files, or as issues with `artifact:signal` label for issue backend)
 - Surface process improvements to Steering Layer
 - Document lessons learned
-- When incidents occur post-ship, produce a **postmortem** (`work/retrospectives/_TEMPLATE-postmortem.md`) — store in `work/retrospectives/YYYY-MM-DD-<incident-name>.md`
+- When incidents occur post-ship, produce a **postmortem** (`work/retrospectives/_TEMPLATE-postmortem.md`) — store in `work/retrospectives/YYYY-MM-DD-<incident-name>.md` (git-files) or create an issue with `artifact:retrospective` label (issue backend)
 
 ## Versioning Your Outputs
 
 | Artifact | Versioning approach |
 |---|---|
-| Release contracts (`work/releases/*.md`) | **Immutable once merged.** Date-stamped filenames. A hotfix or re-release gets a new release contract file. |
-| Outcome reports (`work/missions/*/OUTCOME-REPORT.md`) | Increment `Revision` if updated post-filing (e.g., final metrics confirmed after initial estimate) |
-| Postmortems (`work/retrospectives/*.md`) | **Append-only.** Once a postmortem PR is merged, add new findings as dated addendum entries — do not re-edit earlier sections |
+| Release contracts | **Immutable once approved.** Date-stamped. A hotfix or re-release gets a new release contract. (Git-files: `work/releases/*.md`; issue backend: new issue with `artifact:release` label.) |
+| Outcome reports (`work/missions/*/OUTCOME-REPORT.md`) | Increment `Revision` if updated post-filing (e.g., final metrics confirmed after initial estimate). Always in Git. |
+| Postmortems | **Append-only.** Once approved, add new findings as dated addendum entries — do not re-edit earlier sections. (Git-files: `work/retrospectives/*.md`; issue backend: issue comments for addenda.) |
 | Asset registry entries (`work/assets/*.md`) | Increment `Revision` + update `Last updated` when ownership or metadata changes at ship time |
 
 ## What You Never Do
 
 - **Never deploy** without a release contract
-- **Never ship** with open tasks — all tasks in TASKS.md must be `completed` or explicitly `descoped` before release
+- **Never ship** with open tasks — all tasks must be `completed` or explicitly `descoped` before release (verified via TASKS.md for git-files, or task issue status for issue backend)
 - **Never skip** progressive rollout (unless emergency hotfix)
 - **Never disable** automatic rollback triggers
 - **Never ignore** post-deployment health alerts
@@ -87,6 +87,7 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
 | 1.2 | 2026-02-24 | Added TASKS.md to context; added task completion verification to Release Preparation; added "Never ship with open tasks" rule |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
 | 1.0 | 2026-02-19 | Initial version |

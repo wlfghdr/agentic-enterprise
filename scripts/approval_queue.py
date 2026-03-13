@@ -30,7 +30,7 @@ import sys
 from pathlib import Path
 import re
 
-from work_backend import gh_json, load_work_backend, prefixed_label
+from work_backend import gh_json, get_project_statuses, load_work_backend, prefixed_label
 
 REPO_ROOT = Path(__file__).parent.parent
 MISSIONS_DIR = REPO_ROOT / "work" / "missions"
@@ -134,17 +134,24 @@ def build() -> dict:
         except RuntimeError:
             issues = []
 
+        # Fetch project statuses in one batch
+        all_numbers = [i["number"] for i in issues]
+        try:
+            project_statuses = get_project_statuses(WORK_BACKEND, all_numbers)
+        except RuntimeError:
+            project_statuses = {}
+
         signal_triage = []
         mission_approvals = []
         release_approvals = []
         for issue in issues:
             artifact = prefixed_label(issue, "artifact:")
-            status = prefixed_label(issue, "status:")
-            if artifact == "artifact:signal" and status == "status:new":
+            status = project_statuses.get(issue["number"])
+            if artifact == "artifact:signal" and status in (None, "Backlog", "Triage"):
                 signal_triage.append(issue)
-            if artifact == "artifact:mission" and status == "status:proposed":
+            if artifact == "artifact:mission" and status == "Backlog":
                 mission_approvals.append(issue)
-            if artifact == "artifact:release" and status == "status:draft":
+            if artifact == "artifact:release" and status == "Backlog":
                 release_approvals.append(issue)
 
         return {
@@ -169,7 +176,7 @@ def render(queue: dict) -> str:
     prs = queue.get("open_prs") or []
 
     if st:
-        lines.append("Signals (status:new → need triage label change):")
+        lines.append("Signals (need triage → set project status):")
         for issue in st:
             lines.append(f"- #{issue['number']} — {issue['title']}")
             if issue.get("url"):

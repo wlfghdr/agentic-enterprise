@@ -7,7 +7,22 @@
 
 ---
 
-## Template vs. Company Fork — Which Docs Apply to You?
+## Start Here
+
+Pick the shortest path that matches what you are trying to do:
+
+| If you need to... | Read this first | Then read |
+|---|---|---|
+| Understand what belongs where in the repo | [`FILE-GUIDE.md`](FILE-GUIDE.md) | [`mission-lifecycle.md`](mission-lifecycle.md) if you are working on missions |
+| Choose or configure a work backend | [`WORK-BACKENDS.md`](WORK-BACKENDS.md) | [`GITHUB-ISSUES.md`](GITHUB-ISSUES.md) for the GitHub issue backend |
+| Make GitHub governance enforceable | [`REQUIRED-GITHUB-SETTINGS.md`](REQUIRED-GITHUB-SETTINGS.md) | [`github/README.md`](github/README.md) |
+| Understand mission flow and status gates | [`mission-lifecycle.md`](mission-lifecycle.md) | [`WORK-BACKENDS.md`](WORK-BACKENDS.md) for backend differences |
+| Work on CI or policy gates | One of the CI feature guides below | [`AUTOMATION-PATTERNS.md`](AUTOMATION-PATTERNS.md) for script-vs-agent guidance |
+| Implement telemetry or observability | [`OTEL-CONTRACT.md`](OTEL-CONTRACT.md) | [`../examples/observability/agent-span-example.md`](../examples/observability/agent-span-example.md) |
+
+---
+
+## Template vs. Company Fork
 
 Each document falls into one of three categories:
 
@@ -23,30 +38,32 @@ Each document falls into one of three categories:
 | [`PLACEHOLDER-CHECK.md`](PLACEHOLDER-CHECK.md) | CI feature | ✅ Template CI gate | **Keep** if using placeholder CI gate; delete otherwise |
 | [`SCHEMA-GUIDE.md`](SCHEMA-GUIDE.md) | CI feature | ✅ Template CI gate | **Keep** if using schema validation; delete otherwise |
 | [`mission-lifecycle.md`](mission-lifecycle.md) | Process reference | ✅ Framework doc | **Keep** — mission lifecycle, status transitions, Divide & Conquer pattern |
-| [`policy-source-notes-2026-03.md`](policy-source-notes-2026-03.md) | Reference notes | ✅ Framework doc | **Keep** if you want concise source rationale for the privacy, incident response, and availability policies |
+| [`GITHUB-ISSUES.md`](GITHUB-ISSUES.md) | Setup reference | ✅ Framework doc | **Keep** — concrete GitHub issue-backend implementation guide |
+| [`WORK-BACKENDS.md`](WORK-BACKENDS.md) | Setup reference | ✅ Framework doc | **Keep** — guide to work backend choice (git-files vs. issue tracker) |
 
 ---
 
-## Setup Reference Guides
+## Core Guides
 
-Guides that help you bootstrap a new fork or understand the framework structure.
+These are the primary docs most operators need.
 
 | Guide | Purpose |
 |---|---|
 | [`FILE-GUIDE.md`](FILE-GUIDE.md) | Maps every root file to a category (OSS infrastructure, company content, or agent bootstrap). Answers "what do I keep, what do I delete?" for every file including `.github/` configs. |
 | [`REQUIRED-GITHUB-SETTINGS.md`](REQUIRED-GITHUB-SETTINGS.md) | Checklist for GitHub branch protection, CODEOWNERS enforcement, and required status checks. Without this, PRs are advisory — not binding. |
+| [`WORK-BACKENDS.md`](WORK-BACKENDS.md) | Canonical backend guide: backend choice, `CONFIG.yaml` structure, artifact placement, migration paths, and backend-specific behavior. |
+| [`GITHUB-ISSUES.md`](GITHUB-ISSUES.md) | GitHub issue-backend operations guide: project setup, labels, issue forms, handoff rules, and human approval flow. |
 | [`mission-lifecycle.md`](mission-lifecycle.md) | End-to-end mission lifecycle: status transitions, Divide & Conquer decomposition, gate requirements, anti-patterns. Required reading for Orchestration and Execution agents. |
 
 ---
 
-## Platform Implementation Guides
+## Platform Implementation
 
 Guides for implementing the framework on specific platforms (GitHub, GitLab, etc.).
 
 | Guide | Purpose |
 |---|---|
-| [`github-implementation/README.md`](github-implementation/README.md) | GitHub Issues as work backend, Projects for visibility, Actions workflows (active + reference DORA implementations), label structure, automation scripts. |
-| [`WORK-BACKEND.md`](WORK-BACKEND.md) | How to configure git-files vs. github-issues backend in CONFIG.yaml. |
+| [`github/README.md`](github/README.md) | GitHub instance kit: platform overview, Projects guidance, reference workflows, and the colocated issue-template assets used by company forks. |
 | [`AUTOMATION-PATTERNS.md`](AUTOMATION-PATTERNS.md) | Script-first, LLM-second principle. Classification of what to automate via scripts vs. what needs LLM agents. |
 
 ---
@@ -73,6 +90,17 @@ Reference documentation for the CI/automation gates that ship with the template.
 | [`LOCK-ENFORCEMENT.md`](LOCK-ENFORCEMENT.md) | Lock files for protected paths (prevents concurrent edits to critical docs) |
 | [`PLACEHOLDER-CHECK.md`](PLACEHOLDER-CHECK.md) | Blocks PRs with unfilled `{{VAR}}`, `[TODO]`, `[TBD]` placeholders |
 | [`SCHEMA-GUIDE.md`](SCHEMA-GUIDE.md) | JSON Schema validation for `CONFIG.yaml` and work artifact markdown |
+
+---
+
+## Consistency Rules
+
+The docs folder now follows a simple split:
+
+- `WORK-BACKENDS.md` is the single source of truth for backend selection and configuration.
+- `GITHUB-ISSUES.md` is the single source of truth for GitHub issue-backend operations.
+- `OTEL-CONTRACT.md` is the single source of truth for telemetry naming, attributes, and metrics.
+- `README.md` is only a navigation layer and should stay short.
 
 ---
 

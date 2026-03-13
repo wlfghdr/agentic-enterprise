@@ -122,6 +122,37 @@
     "product_name": {
       "type": "string",
       "description": "Primary product or offering name."
+    },
+    "work_backend": {
+      "type": "object",
+      "description": "Where operational work artifacts are tracked. See docs/WORK-BACKENDS.md.",
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["git-files", "github-issues"],
+          "description": "Work tracking backend: git-files (Markdown in work/) or github-issues."
+        },
+        "github_issues": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "repo": { "type": "string", "description": "Issue repo (empty = same repo)." },
+            "use_projects": { "type": "boolean", "description": "Use GitHub Projects for board views and status tracking." },
+            "project_owner": { "type": "string", "description": "GitHub org or user that owns the project." },
+            "project_number": { "type": "integer", "description": "GitHub Project v2 number." },
+            "use_label_prefixes": { "type": "boolean", "description": "Use artifact:, layer:, loop: label prefixes." }
+          }
+        },
+        "overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "enum": ["git-files", "github-issues"]
+          },
+          "description": "Per-artifact backend overrides."
+        }
+      }
     }
   }
 }

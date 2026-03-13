@@ -33,7 +33,7 @@
 │              Feedback loops (continuous)                   │
 └──────────────────────────┼────────────────────────────────┘
                            │
-                    work/signals/ ← new signals from production
+                    signals ← new signals from production
 ```
 
 ## The Three Loops in Detail
@@ -43,10 +43,10 @@
 
 | Phase | Input | Output | Owner |
 |-------|-------|--------|-------|
-| Signal capture | Raw signal | `work/signals/<signal>.md` | Anyone (human or agent) |
-| Signal triage | Signal file | Prioritized, categorized signal | Strategy Layer |
+| Signal capture | Raw signal | Signal artifact (file in `work/signals/` or issue with `artifact:signal` label) | Anyone (human or agent) |
+| Signal triage | Signal file / issue | Prioritized, categorized signal | Strategy Layer |
 | Opportunity validation | Prioritized signal | Validated opportunity | Strategy Layer + Steering Layer |
-| Mission brief | Validated opportunity | `work/missions/<name>/BRIEF.md` | Strategy Layer |
+| Mission brief | Validated opportunity | Mission brief (file in `work/missions/` or issue with `artifact:mission` label) | Strategy Layer |
 
 **Loop details:** [1-discover/GUIDE.md](1-discover/GUIDE.md)  
 **Agent instructions:** [1-discover/AGENT.md](1-discover/AGENT.md)
@@ -93,7 +93,7 @@ Like Loops 1–3, the Operate loop **spans all 5 layers** — it is not confined
 | Incident response | SEV1-4 alerts | Resolution, postmortem, policy updates | Incident agents + on-call engineers (**Execution**) |
 | Capacity & performance | Resource metrics, traffic patterns | Optimization actions, forecasts | Capacity agents (**Execution**) |
 | Signal interpretation | Production observations | New missions, strategic pivots | Outcome Owners (**Strategy**) |
-| Signal generation | All production observations | `work/signals/` entries → Loop 1 | All operations agents (**Execution → Strategy**) |
+| Signal generation | All production observations | Signal artifacts → Loop 1 | All operations agents (**Execution → Strategy**) |
 | Systemic signal aggregation | Operational trends, maturity metrics | Company-level evolution proposals | Steering agents (**Steering**) |
 
 **Key distinction:** Loops 1–3 are mission-driven (time-bounded). Loop 4 is continuous (event-driven, 24/7).
@@ -103,19 +103,19 @@ Like Loops 1–3, the Operate loop **spans all 5 layers** — it is not confined
 
 ---
 
-## Process Governance: Git-Native
+## Process Governance
 
-This is a **Git-native** company. Git is the system of record, not a side channel.
+Git is the **governance backbone** — organizational structure, policies, agent instructions, and templates always live in Git and are governed via PRs. Operational work artifacts (signals, missions, decisions, releases) can be tracked in either Git files or an issue tracker, depending on your configured work backend (see `CONFIG.yaml → work_backend` and [../docs/WORK-BACKENDS.md](../docs/WORK-BACKENDS.md)).
 
-| Concept | Git Mechanism |
-|---------|---------------|
-| **Decision** | Pull Request merged to `work/decisions/` |
-| **Approval** | PR review approval |
-| **RACI** | CODEOWNERS file — see [../CODEOWNERS](../CODEOWNERS) |
-| **Audit trail** | Git history |
-| **Policy change** | PR to `org/4-quality/policies/` |
-| **Strategy change** | PR to `org/1-strategy/` |
-| **Escalation** | PR with `escalation` label |
+| Concept | Git-Files Backend | Issue Backend |
+|---------|-------------------|---------------|
+| **Decision** | PR merged to `work/decisions/` | Issue with `artifact:decision` label, approved via label change |
+| **Approval** | PR review approval | Project status transition by authorized human (e.g., `Backlog` → `Approved`) |
+| **RACI** | CODEOWNERS file — see [../CODEOWNERS](../CODEOWNERS) | CODEOWNERS (for governance) + issue assignment (for work artifacts) |
+| **Audit trail** | Git history | Git history (governance) + issue activity log (work artifacts) |
+| **Policy change** | PR to `org/4-quality/policies/` | PR to `org/4-quality/policies/` (always Git) |
+| **Strategy change** | PR to `org/1-strategy/` | PR to `org/1-strategy/` (always Git) |
+| **Escalation** | PR with `escalation` label | Issue with `escalation` label |
 
 ### CODEOWNERS Structure
 

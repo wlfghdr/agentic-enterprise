@@ -1,6 +1,6 @@
 # Customization Guide — Agentic Enterprise Operating Model
 
-> **Version:** 2.1 | **Last updated:** 2026-02-25
+> **Version:** 3.2 | **Last updated:** 2026-03-13
 
 > **Start here** after cloning this framework.
 > This guide walks you through every step of making this operating model your own.
@@ -21,6 +21,7 @@ Open [CONFIG.yaml](CONFIG.yaml) and fill in every field. This gives the framewor
 | `vision.north_star` | Anchors all strategic alignment checks |
 | `vision.mission` | Guides every agent's decision-making |
 | `toolchain.*` | Determines which concrete tools implement your quality policies |
+| `work_backend.type` | Determines where work artifacts are tracked (git files or issue tracker) |
 
 ### Step 2: Search & Replace Placeholders (5 min)
 
@@ -44,7 +45,20 @@ Read and adjust these three files — they set the tone for everything:
 
 If you're a small team or solo founder, start with a **minimal agent fleet** — one agent per active layer. See [Minimal Agent Fleet](#minimal-agent-fleet) below for the exact setup.
 
-### Step 4: Register Your Integrations (5 min)
+### Step 4: Choose Your Work Backend (2 min)
+
+Decide where operational work artifacts (signals, missions, tasks, decisions) will be tracked:
+
+| Backend | Best For | Set In CONFIG.yaml |
+|---------|----------|--------------------|
+| **Git files** (default) | Self-contained, no external dependencies, maximum auditability | `work_backend.type: "git-files"` |
+| **GitHub Issues** | Better human collaboration, native boards, labels, notifications, mobile access | `work_backend.type: "github-issues"` |
+
+If using GitHub, **GitHub Issues is recommended** — it's always available and provides dramatically better visibility for humans. See [docs/WORK-BACKENDS.md](docs/WORK-BACKENDS.md) for the full guide including label taxonomy.
+
+> **Note:** Governance backbone files (org structure, policies, agent instructions, templates) always stay in Git regardless of this choice.
+
+### Step 5: Register Your Integrations (5 min)
 
 Review `CONFIG.yaml → integrations` and register the external tools your organization uses:
 
@@ -55,9 +69,11 @@ Review `CONFIG.yaml → integrations` and register the external tools your organ
 
 See `org/integrations/` for detailed guides per category. Start with observability and CI/CD — they provide the most immediate value.
 
-### Step 5: Start Using It (5 min)
+### Step 6: Start Using It (5 min)
 
-Create your first signal in `work/signals/` and you're live.
+**Git-files backend:** Create your first signal in `work/signals/` and you're live.
+
+**Issue backend:** Create your first GitHub Issue with label `artifact:signal` and you're live. Use the template structure from `work/signals/_TEMPLATE-signal.md` for the issue body.
 
 ---
 
@@ -121,10 +137,10 @@ The last item is the key: even "nothing to improve" is worth filing. It keeps th
 
 ### What You Don't Need
 
-- ❌ External project management tool — missions **are** your tickets
-- ❌ Observability platform for agent health — git history **is** your audit log
-- ❌ Standup meetings — `STATUS.md` **is** the standup
+- ❌ Heavyweight project management tool — missions **are** your tickets (whether as issues or files)
+- ❌ Standup meetings — mission status updates **are** the standup (issue comments or STATUS.md)
 - ❌ Separate OKR framework — `CONFIG.yaml` vision + active missions = your strategy
+- ✅ An issue tracker is optional but **recommended** for human-facing visibility (`work_backend.type: "github-issues"`)
 
 ---
 
@@ -154,7 +170,10 @@ Complete the Quick Start above (Steps 1-4), then:
 
 ### Day 1 — First Signal Flow (30 minutes)
 
-7. **File your first signal** — Create `work/signals/YYYY-MM-DD-<your-first-opportunity>.md` from the template (`work/signals/_TEMPLATE-signal.md`). This is the input that kicks off the entire lifecycle.
+7. **File your first signal:**
+   - **Git-files backend:** Create `work/signals/YYYY-MM-DD-<your-first-opportunity>.md` from the template (`work/signals/_TEMPLATE-signal.md`).
+   - **Issue backend:** Create a GitHub Issue with label `artifact:signal` and the structured body from the signal template. The issue's Project Status will default to `Backlog`.
+   This is the input that kicks off the entire lifecycle.
 8. **Steering Agent: Produce first digest** — The Steering Agent aggregates signals into a weekly digest (`work/signals/digests/YYYY-WXX-digest.md`), detecting patterns and flagging priorities.
 9. **Strategy Agent: Triage to a mission** — The Strategy Agent consumes the digest, triages signals, and if a signal warrants action:
    - Creates `work/missions/<mission-name>/MISSION-BRIEF.md` from `work/missions/_TEMPLATE-mission-brief.md`
@@ -220,11 +239,12 @@ After the quick start, customize layer by layer. Each section below tells you **
 2. **What are your ventures?** Ventures are market-facing offerings. Create one charter per venture in `org/1-strategy/ventures/`. The framework ships with placeholder examples — replace them with yours (e.g., "Cloud Migration", "DevOps Suite", "Security Suite", "Customer Analytics").
 
 3. **What are your divisions?** Divisions are execution teams — each groups agents by expert knowledge, specialized tools, and domain-specific goals. Create one folder per division in `org/3-execution/divisions/`. The framework ships with generic categories:
-   - **Core divisions:** Data Foundation, Core Services, Core Applications, AI & Intelligence
+   - **Core divisions:** Data Foundation, Core Services, Core Applications
    - **Domain divisions:** Placeholders — fill with your product-specific domains
-   - **Ops divisions:** Engineering Foundation, Infrastructure Operations, Quality & Security
+   - **Ops divisions:** Engineering Foundation, Infrastructure Operations
    - **GTM divisions:** Product Marketing, Knowledge & Enablement
    - **Customer divisions:** Customer Experience
+   - **Optional extensions:** AI & Intelligence, GTM Web, Quality & Security Engineering when your operating model truly needs dedicated execution-side specialization
 
    **To add a division:** Create `org/3-execution/divisions/<name>/DIVISION.md` using the template pattern.
 
@@ -283,11 +303,14 @@ Each division folder should contain a `DIVISION.md` that defines:
 
 **Location:** `org/4-quality/policies/`
 
-The framework ships with 11 quality policies. Customize each:
+The framework ships with 14 quality policies. Customize each:
 
 | Policy | What to Customize |
 |--------|------------------|
 | [security.md](org/4-quality/policies/security.md) | Your specific security requirements, compliance frameworks (SOC2, HIPAA, etc.) |
+| [agent-security.md](org/4-quality/policies/agent-security.md) | Your agent-specific security posture (prompt injection mitigations, tool abuse prevention, OWASP LLM Top 10 coverage) |
+| [risk-management.md](org/4-quality/policies/risk-management.md) | Your risk appetite thresholds (via `CONFIG.yaml → risk_appetite`), agent autonomy tier assignments, risk taxonomy applicability, regulatory crosswalk for your target certifications |
+| [cryptography.md](org/4-quality/policies/cryptography.md) | Your approved algorithms, key rotation schedules (via `CONFIG.yaml → encryption`), certificate lifetimes, KMS integration, post-quantum migration timeline |
 | [privacy.md](org/4-quality/policies/privacy.md) | Your controller/processor model, lawful bases, DPA terms, DSAR channels, breach-notification contacts, transfer mechanisms |
 | [architecture.md](org/4-quality/policies/architecture.md) | Your API conventions, service patterns, catalog requirements |
 | [experience.md](org/4-quality/policies/experience.md) | Your design system name, accessibility standards, UI patterns |
@@ -300,6 +323,10 @@ The framework ships with 11 quality policies. Customize each:
 | [observability.md](org/4-quality/policies/observability.md) | Your telemetry standards, agent observability requirements, alerting thresholds |
 
 **Key principle:** Start with the policies as shipped (they're reasonable defaults for a software enterprise). Then tighten or loosen based on your regulatory environment, risk tolerance, and maturity level.
+
+> **Risk management note:** The risk management policy references configurable thresholds from `CONFIG.yaml → risk_appetite`. Fill in these values during Step 1 — they define your organization's risk tolerance for downtime, cost overruns, escalation rates, and agent behavioral thresholds. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{RISK_*}}` variables.
+
+> **Encryption note:** The cryptography policy references key rotation schedules and certificate lifetimes from `CONFIG.yaml → encryption`. Fill in these values during Step 1 — defaults are conservative (90-day symmetric key rotation, 90-day cert lifetime). Adjust based on your compliance requirements (PCI DSS, HIPAA, FedRAMP) and operational maturity. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{CRYPTO_*}}` variables.
 
 ---
 
@@ -357,11 +384,12 @@ The framework ships with a generic lifecycle example. Create your own:
 |-----------|------------|-----|
 | 5-layer model | ✅ Yes | Universal organizational pattern |
 | 4-loop lifecycle | ✅ Yes | Universal process pattern |
-| Git-native governance | ✅ Yes | Fundamental to the model |
+| Git-native governance | ✅ Yes | Fundamental to the model (for governance backbone) |
 | Agent instruction hierarchy | ✅ Yes | Critical for multi-agent governance |
 | Improvement signal flow | ✅ Yes | Key innovation of the model |
 | Integration Registry structure | ✅ Yes | Governed connection patterns |
 | Company name/vision/mission | ❌ Customize | Your identity |
+| Work backend choice | ❌ Customize | Git files or issue tracker — your preference |
 | Ventures | ❌ Customize | Your market offerings |
 | Divisions | ❌ Customize | Your organizational units |
 | Quality thresholds | ❌ Customize | Your risk tolerance |
@@ -393,6 +421,21 @@ All placeholders in the framework use the `{{VARIABLE}}` syntax. Here's the comp
 | `{{SERVICE_CATALOG}}` | CONFIG.yaml → toolchain.service_catalog | Catalog references |
 | `{{OBSERVABILITY_PLATFORM_NAME}}` | CONFIG.yaml → integrations.observability[0].name | Integration guides |
 | `{{OTLP_ENDPOINT}}` | CONFIG.yaml → integrations.observability[0].otlp_endpoint | Telemetry pipeline |
+| `{{RISK_MAX_DOWNTIME_MINUTES}}` | CONFIG.yaml → risk_appetite.max_downtime_minutes | Risk management policy |
+| `{{RISK_COST_OVERRUN_THRESHOLD}}` | CONFIG.yaml → risk_appetite.cost_overrun_threshold_pct | Risk management policy |
+| `{{RISK_KILL_SWITCH_TARGET_SECONDS}}` | CONFIG.yaml → risk_appetite.kill_switch_target_seconds | Risk management policy |
+| `{{RISK_ESCALATION_RATE_THRESHOLD}}` | CONFIG.yaml → risk_appetite.escalation_rate_threshold_pct | Risk management policy |
+| `{{RISK_TOOL_FAILURE_THRESHOLD}}` | CONFIG.yaml → risk_appetite.tool_failure_threshold_pct | Risk management policy |
+| `{{RISK_CYCLE_TIME_VARIANCE}}` | CONFIG.yaml → risk_appetite.cycle_time_variance_pct | Risk management policy |
+| `{{RISK_HALLUCINATION_THRESHOLD}}` | CONFIG.yaml → risk_appetite.hallucination_threshold_pct | Risk management policy |
+| `{{CRYPTO_ROTATION_SYMMETRIC_DAYS}}` | CONFIG.yaml → encryption.rotation_symmetric_days | Cryptography policy |
+| `{{CRYPTO_ROTATION_SIGNING_DAYS}}` | CONFIG.yaml → encryption.rotation_signing_days | Cryptography policy |
+| `{{CRYPTO_ROTATION_ASYMMETRIC_DAYS}}` | CONFIG.yaml → encryption.rotation_asymmetric_days | Cryptography policy |
+| `{{CRYPTO_ROTATION_API_KEY_DAYS}}` | CONFIG.yaml → encryption.rotation_api_key_days | Cryptography policy |
+| `{{CRYPTO_CERT_LIFETIME_DAYS}}` | CONFIG.yaml → encryption.cert_lifetime_days | Cryptography policy |
+| `{{CRYPTO_RSA2048_DEPRECATION_DATE}}` | CONFIG.yaml → encryption.rsa2048_deprecation_date | Cryptography policy |
+| `{{CRYPTO_REVOCATION_TARGET_HOURS}}` | CONFIG.yaml → encryption.revocation_target_hours | Cryptography policy |
+| `{{CERT_MANAGER}}` | CONFIG.yaml → encryption.cert_manager | Cryptography policy |
 
 ---
 

@@ -1,0 +1,58 @@
+name: "Decision"
+description: "Create a decision record issue when using the GitHub issue backend"
+title: "[Decision] "
+labels: ["artifact:decision", "loop:build"]
+body:
+  - type: input
+    id: decision-id
+    attributes:
+      label: "Decision ID"
+      placeholder: "DR-2026-001"
+    validations:
+      required: true
+
+  - type: input
+    id: related-mission
+    attributes:
+      label: "Related mission or context"
+      placeholder: "#123 or mission name"
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "Context"
+    validations:
+      required: true
+
+  - type: textarea
+    id: decision
+    attributes:
+      label: "Decision"
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives considered"
+      placeholder: "Alternative 1 ...\nAlternative 2 ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: consequences
+    attributes:
+      label: "Consequences"
+      description: "Positive, negative, and neutral effects"
+    validations:
+      required: true
+
+  - type: input
+    id: review-schedule
+    attributes:
+      label: "Review schedule"
+      placeholder: "never / quarterly / annually / trigger condition"
+    validations:
+      required: true

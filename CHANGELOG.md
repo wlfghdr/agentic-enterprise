@@ -23,6 +23,153 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 
+- New quality policy: `org/4-quality/policies/agent-security.md` — covers prompt injection mitigations, tool abuse prevention, insecure output handling, and security testing requirements. Maps to OWASP LLM Top 10. Closes #69.
+- New quality policy: `org/4-quality/policies/risk-management.md` — formal risk management framework with 5×5 scoring methodology, AI risk taxonomy (22 canonical risks across 5 dimensions), agent autonomy tiers, observability-driven KRIs, and regulatory crosswalk (ISO 31000 / NIST RMF / NIST AI RMF / ISO 27001 / SOC 2 / EU AI Act). Closes #86.
+- New template: `work/decisions/_TEMPLATE-risk-register.md` — risk register entry template with mandatory fields per ISO 27001 §6.1.2 and SOC 2 CC3.
+- New CONFIG.yaml section: `risk_appetite` (§11) — configurable risk tolerance thresholds referenced by risk-management.md.
+- New quality policy: `org/4-quality/policies/cryptography.md` — encryption & key management covering approved algorithms (AES-256-GCM, TLS 1.3, post-quantum readiness), key lifecycle (NIST SP 800-57), AI/agent-specific encryption (model protection, credential isolation, inter-agent mTLS), certificate management, KMS infrastructure, and compliance mapping (ISO 27001 A.8.24 / SOC 2 CC6.1 / NIST SP 800-57 / PCI DSS / GDPR / EU AI Act). Closes #88.
+- New CONFIG.yaml section: `encryption` (§12) — configurable key rotation schedules, certificate lifetimes, and crypto infrastructure referenced by cryptography.md.
+
+### Changed
+
+- Updated `org/4-quality/AGENT.md` (v1.9) to include encryption & key management in quality dimensions.
+- Updated `org/4-quality/policies/risk-management.md` §10 to include cryptography.md in the policy-to-risk-control mapping.
+- Updated `CUSTOMIZATION-GUIDE.md` (v3.2) with cryptography policy customization guidance, encryption note, and `{{CRYPTO_*}}` placeholder reference.
+- Updated `README.md` and `index.html` to reflect 11 quality policy domains (was 10).
+- Documentation cleanup in `docs/`: removed the duplicate backend config guide `WORK-BACKEND.md` in favor of `WORK-BACKENDS.md`, removed the duplicate observability quick-reference `observability-genai.md` in favor of `OTEL-CONTRACT.md`, and rewrote `docs/README.md` as a shorter navigation index with clearer reading paths.
+- Consolidated GitHub instance assets under `docs/github/`: moved the former `docs/github-implementation/` guide and `docs/github-issues/` samples into one GitHub-focused folder with `issue-templates/` and `workflows/` subfolders, and updated references accordingly.
+- Clarified agent observability correlation guidance: `org/integrations/categories/observability.md` now uses canonical `git.*` and `agentic.*` field names in Git-derived event examples and explicitly distinguishes native spans from derived UI events.
+- Expanded `docs/OTEL-CONTRACT.md` to define how downstream UIs correlate flattened activity records to traces using canonical `trace.id`, `span.id`, and `parent.span.id` identifiers, closing a gap for command-center trace linking.
+- Tightened `org/4-quality/policies/observability.md` so trace-linkability of derived activity records is now a policy-level requirement, not just a contract detail.
+
+---
+
+## [3.1.0] — 2026-03-08
+
+> **Status tracking moves from labels to GitHub Project Status fields.** This release replaces `status:*` labels with the GitHub Projects v2 native Status field for issue-backend state tracking. Labels remain for categorization (`artifact:`, `layer:`, `loop:`, `priority:`, `category:`, `urgency:`). Status transitions happen via a single-select Project Status field with values: Backlog, Triage, Approved, Planning, In Progress, Blocked, Done. Terminal states use GitHub's native close mechanism (completed / not planned).
+
+### Changed
+
+**Status tracking: labels → GitHub Project Status field (MINOR)**
+
+_Core configuration:_
+- `CONFIG.yaml` — added `project_owner` and `project_number` under `work_backend.github_issues`; bumped `framework_version` from `3.0.0` to `3.1.0`
+- `schemas/config.schema.json` — added `project_owner` (string) and `project_number` (integer) properties; updated `use_label_prefixes` description to remove `status:`
+
+_Primary documentation:_
+- `docs/GITHUB-ISSUES.md` — **major rewrite (v1.1 → v2.0)**: removed ~20 `status:*` labels; added "Status Tracking via GitHub Project" section with Project Status Field Options, Terminal States, "Why Not Labels?" rationale, Status Mapping by Artifact Type; updated setup checklist, label bootstrap, human approval table, handoff mechanics
+- `docs/WORK-BACKENDS.md` — replaced "Status Labels" section with "Status Tracking (GitHub Project Status Field)"; updated handoff protocol, approval mechanisms, audit trail; version bumped to v1.3
+- `docs/WORK-BACKEND.md` — updated config sample and label table to remove `status:` row
+- `docs/mission-lifecycle.md` — added Project Status field column to Mission Statuses table; updated gate transitions from `status:` labels to Project Status transitions
+- `docs/ARCHIVE-POLICY.md` — updated close guidance from "apply final status labels" to "set project status to Done"
+- `docs/REQUIRED-GITHUB-SETTINGS.md` — updated required label families and human approval examples
+- `docs/github-implementation/README.md` — updated label table (removed `status:` row, added note about Project Status field); board view grouping changed from `status:` label to Project Status field
+
+_Agent instructions:_
+- `AGENTS.md` (v3.1 → v3.2) — updated 5 references from status labels to project status transitions; CLAUDE.md updated via symlink
+- `org/4-quality/AGENT.md` — stall detection now references project status `In Progress` instead of `status:active` label
+
+_Work artifact references:_
+- `work/README.md` — issue backend table updated from `status:*` labels to Project Status transitions
+- `CUSTOMIZATION-GUIDE.md` — signal creation updated from `status:new` label to Project Status default
+- `process/README.md` — approval row changed from "Label change" to "Project status transition"
+
+_Issue form templates (removed default `status:*` labels):_
+- `docs/github-issues/forms/signal.sample.yml`, `mission.sample.yml`, `task.sample.yml`, `decision.sample.yml`, `release.sample.yml`, `retrospective.sample.yml`
+
+_Automation scripts:_
+- `scripts/work_backend.py` — added `project_owner` and `project_number` to WorkBackend dataclass; added GraphQL helpers: `_graphql_cmd()`, `get_project_statuses()`, `set_project_status()`, `_find_project_item()`, `_get_issue_node_id()`
+- `scripts/find_pending_work.py` — `issue_backend_report()` now uses `get_project_statuses()` batch query instead of `prefixed_label(issue, "status:")`
+- `scripts/approval_queue.py` — `build()` now uses `get_project_statuses()` batch query instead of `prefixed_label(issue, "status:")`
+- `scripts/triage_signals.py` — `handle_issue_backend()` now uses `get_project_statuses()` for reading and `set_project_status()` for writing, replacing `gh issue edit --add-label/--remove-label` commands
+
+### Added
+- **Assignment discipline for all GitHub artifacts** (AGENTS.md Rule 3, WORK-BACKENDS.md, GITHUB-ISSUES.md): Every issue, PR, and review request must have an assignee at all times. Mandatory handoff protocols for both issues and PRs. Comment-based human approval model — humans comment and re-assign, agents handle all label management. PR handoff protocol covers review requests, feedback cycles, and merge handoffs. Orchestration agents must sweep for unassigned items. Agent identity via dedicated bot accounts required.
+- **Canonical OTel Telemetry Contract** (`docs/OTEL-CONTRACT.md`): Single source of truth for all agent telemetry. OTel-first design — standard OTel/GenAI semantic conventions (`gen_ai.*`) take precedence; custom `agentic.*` and `governance.*` attributes used only where OTel has no equivalent. Includes: canonical span names (`agent.run`, `agent.subagent.invoke`, `tool.execute`, `quality.evaluate`, `git.operation`, `mission.transition`, `inference.chat`, `inference.generate`), resource attribute requirements, native vs derived event contract, privacy defaults (content capture off by default), canonical deprecation table for all legacy field names, semconv stability and migration policy, machine-readable YAML schema appendix. Closes #77, supersedes inline attribute lists in AGENTS.md, observability policy, and integration docs.
+- **Instrumented workflow example** (`examples/observability/agent-span-example.md`): Concrete end-to-end trace example covering agent run, inference, tool calls, git operations, quality evaluation, governance decision events, and error scenarios.
+
+### Changed
+- **AGENTS.md Rule 9a** (version 3.1 → 3.2): Replaced inline attribute list with reference to `docs/OTEL-CONTRACT.md`. Updated span event and tool span naming to use canonical names.
+- **`org/4-quality/policies/observability.md`** (version 1.1 → 1.2): Replaced Agent Observability attribute list with reference to `docs/OTEL-CONTRACT.md`.
+- **`org/integrations/categories/observability.md`**: Replaced "Recommended OpenTelemetry semantic conventions" section with reference to `docs/OTEL-CONTRACT.md`; documents deprecated field names.
+- **`org/agents/quality/observability-compliance-agent.md`**: Updated Instrumentation Presence check to reference canonical contract and flag deprecated attribute names.
+
+---
+
+## [3.0.0] — 2026-03-07
+
+> **Agentic Enterprise goes multi-backend.** This is a major release that decouples work tracking from Git files, introduces GitHub Issues as a first-class work backend, and brings sweeping consistency improvements across all five layers of the operating model.
+
+### Added
+
+**Work Backend Abstraction — configurable work tracking (MAJOR)**
+
+> Operational work artifacts (signals, missions, tasks, decisions, releases, retrospectives) can now be tracked in either Git files (the original model) or an issue tracker (GitHub Issues). The choice is made at instance configuration time via `CONFIG.yaml → work_backend`. This is a breaking conceptual change — the framework no longer assumes Git-only work tracking.
+
+_Core concept:_
+- `docs/WORK-BACKENDS.md` — new comprehensive guide: three file categories (governance backbone, persistent docs, configurable work artifacts), label taxonomy for issue backends, structural conventions, agent behavior differences, migration paths
+- `CONFIG.yaml` — new section 8 `work_backend` with `type` (`git-files` | `github-issues`), `github_issues` configuration, and per-artifact `overrides`; bumped `framework_version` from `2.3.0` to `3.0.0`
+
+_Agent rules updated:_
+- `AGENTS.md` — Rule 3 renamed from "Process is the repo" to "Process is governed"; now describes both git-files and issue backends; Rule 2 updated approval mechanism; Rule 7 updated signal filing; Rule 11 updated instance definition for issue backend; Rule 12 updated deduplication for both backends; Rule 14 renamed from "keep active directories clean" to "keep active views clean" with issue-backend archiving (close issues); version bumped to 3.0
+- `.github/copilot-instructions.md` — updated to reflect configurable work backend
+
+_Documentation updated:_
+- `OPERATING-MODEL.md` — softened "git is the only way" language; now describes Git as governance backbone with configurable work tracking; updated artifact flow, collaboration pattern, human interaction model, and mapping table; version bumped to 3.0
+- `work/README.md` — added dual-backend structure, issue backend artifact/label table
+- `CUSTOMIZATION-GUIDE.md` — new Step 4 "Choose Your Work Backend"; updated "What You Don't Need" section; updated initialization sequence for both backends; version bumped to 3.0
+- `docs/GITHUB-ISSUES.md` — new GitHub implementation guide with exact setup checklist, label bootstrap samples, issue form guidance, and explicit human approval transitions
+- `docs/WORK-BACKENDS.md` — clarified which companion artifacts remain in Git, added human approval cheat sheet, and linked the GitHub implementation guide; version bumped to 1.1
+- `docs/github-issues/` — added GitHub issue-form and config samples for signal, mission, task, decision, release, and retrospective workflows; kept them out of the live `.github/ISSUE_TEMPLATE/` path so the template repo itself does not behave like an instance repo
+- `docs/mission-lifecycle.md`, `docs/REQUIRED-GITHUB-SETTINGS.md`, `docs/FILE-GUIDE.md` — corrected remaining git-only assumptions and made issue-backend human steps explicit
+
+_Layer agent instructions updated:_
+- `org/0-steering/AGENT.md` — updated sensing loop input, signal references, and interaction diagram for dual backend; version bumped to 1.3
+- `org/1-strategy/AGENT.md` — updated signal triage input/output, mission brief creation, versioning table, approval mechanism, and continuous improvement signals for dual backend; version bumped to 1.3
+- `org/2-orchestration/AGENT.md` — updated active missions context, work deduplication, task decomposition, status tracking, release preparation, and fleet reporting for dual backend; version bumped to 1.6
+- `org/3-execution/AGENT.md` — updated task pickup, mission brief context, task status updates, improvement signals, and deduplication for dual backend; version bumped to 1.5
+- `org/4-quality/AGENT.md` — updated evaluation context, report storage, versioning table, quality trend analysis, outcome measurement, stall detection, and production signaling for dual backend; version bumped to 1.6
+
+_Process loop files updated:_
+- `process/README.md` — updated "Process Governance" section from "Git-Native" to backend-aware; updated artifact output references in loop tables and feedback diagram
+- `process/1-discover/AGENT.md` — updated signal drafting, mission brief creation, and versioning table for dual backend; version bumped to 1.3
+- `process/1-discover/GUIDE.md` — added issue backend signal creation instructions alongside git-files; updated mission brief creation and submission for dual backend
+- `process/2-build/AGENT.md` — updated task intake, decision records, and submission for dual backend; version bumped to 1.4
+- `process/2-build/GUIDE.md` — updated decision recording, exit criteria, and status updates for dual backend
+- `process/3-ship/AGENT.md` — updated release contract storage, task verification, outcome reports, feedback loop, versioning table, and open tasks rule for dual backend; version bumped to 1.3
+- `process/3-ship/GUIDE.md` — updated signal references, release contract reference, and exit criteria for dual backend
+- `process/4-operate/AGENT.md` — updated cross-layer interaction, signal filing, postmortem storage, signal generation, versioning table, and continuous improvement signals for dual backend; version bumped to 1.2
+- `process/4-operate/GUIDE.md` — updated feedback loop diagram and signal filing references for dual backend
+
+_Archive policy updated:_
+- `docs/ARCHIVE-POLICY.md` — restructured for dual backend: git-files mechanics (archive/ subfolders, git mv) and issue backend mechanics (close issues with final status labels); updated agent integration section; version bumped to 1.1
+
+_Consistency fixes:_
+- Updated regressed `Last updated` and changelog dates in the dual-backend rollout files so the framework metadata matches the current change date and remains auditable
+
+---
+
+### Added (previous)
+
+**Framework taxonomy cleanup for generic adoption (Issue #concept-review)**
+
+_Execution divisions:_
+- `CONFIG.yaml` — bumped `framework_version` from `2.2.0` to `2.3.0`; removed `ai-intelligence` and `quality-security-engineering` from default division lists and kept them as commented optional extensions instead
+- `org/README.md` — added version metadata and reframed execution divisions into core defaults, optional extensions, and company-specific product divisions; clarified that Quality & Security Engineering should not be implied as a default standalone split
+- `CUSTOMIZATION-GUIDE.md` — updated division customization guidance so AI & Intelligence, GTM Web, and Quality & Security Engineering are treated as optional extensions rather than assumed defaults
+- `org/3-execution/divisions/engineering-foundation/DIVISION.md`, `org/3-execution/divisions/core-services/DIVISION.md`, `org/3-execution/divisions/infrastructure-operations/DIVISION.md`, `org/3-execution/divisions/legal/DIVISION.md`, `org/3-execution/divisions/ai-intelligence/DIVISION.md` — removed stale assumptions that Quality & Security Engineering is a mandatory adjacent default and aligned interfaces with the new split between execution implementation and Quality-layer governance
+
+_Agent registry guidance:_
+- `org/agents/README.md` — added version metadata plus explicit criteria for what belongs in the base template, when to use configuration instead of new agent types, and common anti-patterns such as tool-level and task-level agent definitions
+- `org/agents/execution/README.md` — added version metadata, a recommended execution starter set, and consolidation guidance for deploy, monitoring, coding, and customer-service agent boundaries
+
+_Targeted execution-agent cleanup:_
+- `org/agents/execution/feature-flag-agent.md` — deprecated in favor of `exec-deploy-agent`
+- `org/agents/execution/canary-agent.md` — deprecated in favor of `exec-deploy-agent`
+- `org/agents/execution/rollback-agent.md` — deprecated in favor of `exec-deploy-agent`
+- `org/agents/execution/team-specific-coding-agents.md` — deprecated in favor of `exec-coding-agent-fleet`
+- `examples/generic-feature-lifecycle.md` — updated rollout example to use `deploy-agent` for feature-flag management to match the cleaned execution taxonomy
+
 **Connector pattern foundation for real system integrations (Issue #10)**
 
 _Integration architecture and governance:_

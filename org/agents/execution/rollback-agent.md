@@ -1,6 +1,6 @@
 # Agent Type Definition: Rollback Agent
 
-> **Status:** proposed | **Proposed date:** 2026-02-18
+> **Status:** deprecated | **Proposed date:** 2026-02-18
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
 ---
@@ -11,7 +11,7 @@
 |-------|-------|
 | **ID** | `exec-rollback-agent` |
 | **Name** | Rollback Agent |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 
 ## Classification
 
@@ -25,13 +25,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Status** | proposed |
+| **Status** | deprecated |
 | **Proposed date** | 2026-02-18 |
 | **Approved date** | |
 | **Active date** | |
-| **Deprecated date** | |
+| **Deprecated date** | 2026-03-07 |
 | **Retired date** | |
-| **Superseded by** | |
+| **Superseded by** | `exec-deploy-agent` |
 
 ## Ownership
 
@@ -44,13 +44,13 @@
 ## Description
 
 **What this agent does:**
-Executes rollback procedures with blast radius estimation. Ensures safe rollback verification.
+Historically proposed as a standalone execution agent for rollback planning and execution.
 
 **Problem solved:**
 When things go wrong, fast and safe rollback is critical. Every production system needs this.
 
 **Value proposition:**
-Every enterprise following the agentic operating model benefits from this agent because it addresses a universal organizational need that scales with agent fleet adoption.
+Rollback remains a universal need, but the generic framework now treats it as a deployment capability owned by `exec-deploy-agent` rather than a separate base-template agent type.
 
 ## Capabilities
 
@@ -122,4 +122,5 @@ per-mission
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-03-07 | Deprecated in the base template; rollback is now treated as a Deploy Agent capability | GitHub Copilot |
 | 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

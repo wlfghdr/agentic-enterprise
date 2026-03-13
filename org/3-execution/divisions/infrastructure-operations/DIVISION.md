@@ -4,6 +4,7 @@
 > **Type:** Operations
 > **Layer:** Execution
 > **Status:** Active
+> **Version:** 1.1 | **Last updated:** 2026-03-07
 
 ---
 
@@ -26,7 +27,7 @@ Owns cloud accounts, infrastructure-as-code, container orchestration, production
 
 ### Out of Scope
 - CI/CD pipeline management (→ Engineering Foundation)
-- Security vulnerability scanning (→ Quality & Security Engineering)
+- Security policy authorship and final compliance evaluation (→ Quality Layer)
 - Application-level code changes (→ domain-specific divisions)
 
 ## Key Responsibilities
@@ -44,7 +45,7 @@ Owns cloud accounts, infrastructure-as-code, container orchestration, production
 |-----------|------|-----------|
 | Receives from | Strategy Layer | Mission briefs involving this division |
 | Delivers to | Quality Layer | Work outputs for quality evaluation |
-| Collaborates with | Engineering Foundation, Quality & Security Engineering | Shared data contracts / APIs |
+| Collaborates with | Engineering Foundation, Quality Layer | Shared data contracts / APIs |
 
 ## Quality Policies
 

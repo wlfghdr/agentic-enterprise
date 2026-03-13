@@ -1,5 +1,7 @@
 # Organizational Structure
 
+> **Version:** 1.1 | **Last updated:** 2026-03-07
+
 > **What this is:** The static structure of the agentic enterprise {{COMPANY_SHORT}} organization — who exists, where they sit, what they own, how they relate. This covers the **entire company**, not just R&D: engineering, delivery, go-to-market, sales, customer success, and support all operate within the same 5-layer model.  
 > **What it replaces:** Legacy role hierarchies, ticket-based coordination, manual phase gates, and siloed functional departments.  
 > **Governance:** Changes via Pull Request → Steering Layer (structural) or Strategy Layer (operational) approval
@@ -106,16 +108,59 @@ The critical addition — Layer 0: Steering — embeds what was historically inv
 
 Divisions are the **execution units** of the organization — each owns a domain of work, has a team of humans + agents, and produces artifacts. Each division groups agents by expert knowledge, specialized tools, and domain-specific goals.
 
-### Engineering Divisions — Core
+### Engineering Divisions — Core Defaults
 
 | Division | What It Owns |
 |-----------|-------------|
 | **Data Foundation** | Core data storage, query and analytics engine, data governance, enrichment, semantic normalization |
 | **Core Services** | IAM, RBAC, tokens, lifecycle management, serverless runtime, APIs |
-| **Core Applications** | Dashboards, notebooks, search, navigation, conversational interface |
-| **AI & Intelligence** | AI reasoning layer, conversational interface backend, agent orchestration, natural language interfaces, AI safety |
+| **Core Applications** | Dashboards, portals, search, navigation, and user-facing application experiences |
 
-### Engineering Divisions — Domain
+### Engineering Divisions — Shared Operations Defaults
+
+| Division | What It Owns |
+|-----------|-------------|
+| **Engineering Foundation** | Golden paths, developer portal, build infra, CI/CD, release engineering, test automation |
+| **Infrastructure Operations** | Cloud accounts, IaC, runtime platforms, networking, SLOs, incident management |
+
+### Company-Specific Product Divisions
+
+> These are important extension points, but they are **not** safe defaults for every adopting company.
+
+| Division | Use When |
+|-----------|----------|
+| **AI & Intelligence** | Your product itself contains AI or agent runtime capabilities as a first-class product area |
+| **Core Domain 1 / 2** | You need domain execution units tied to your specific market, product, or regulated capability set |
+
+### Commercial And Experience Defaults
+
+| Division | What It Owns |
+|-----------|-------------|
+| **Product Marketing** | GTM strategy execution, launch orchestration, press releases, analyst relations, competitive positioning |
+| **Knowledge & Enablement** | Product docs, API docs, tutorials, release notes, knowledge base, demos, battlecards, training, certifications |
+| **Customer Experience** | Onboarding, adoption tracking, health scores, QBRs, renewal management, support, incident resolution, knowledge base, SLA management |
+
+### Corporate Function Defaults
+
+| Division | What It Owns |
+|-----------|-------------|
+| **People** | Recruiting, onboarding, performance, workforce planning, learning programs |
+| **Legal & Compliance** | Contracting, legal review, privacy law, and regulatory interpretation |
+| **Finance & Procurement** | Budgeting, spend controls, vendor sourcing, and procurement operations |
+
+### Optional Commercial Extensions
+
+| Division | Use When |
+|-----------|----------|
+| **GTM Web** | You run a dedicated web-growth or web-experience engineering function separate from product applications |
+
+### Avoid As A Default Split
+
+| Pattern | Why |
+|---------|-----|
+| **Quality & Security Engineering** as a standalone default execution division | It mixes implementation work with governance. In the generic template, security tooling belongs in Engineering Foundation / Infrastructure Operations, while policy authorship and enforcement stay in the Quality Layer |
+
+### Engineering Divisions — Domain Templates
 
 > **Customize this section.** Add divisions specific to your product domain. Examples:
 
@@ -123,27 +168,6 @@ Divisions are the **execution units** of the organization — each owns a domain
 |-----------|-------------|
 | **{{DOMAIN_CAP_1_NAME}}** | {{DOMAIN_CAP_1_DESCRIPTION}} |
 | **{{DOMAIN_CAP_2_NAME}}** | {{DOMAIN_CAP_2_DESCRIPTION}} |
-
-### Engineering Divisions — Operational Excellence
-
-| Division | What It Owns |
-|-----------|-------------|
-| **Engineering Foundation** | Golden paths, developer portal, build infra, CI/CD, release engineering, feature flags, deployment pipelines |
-| **Infrastructure Operations** | Cloud accounts, IaC, cost management, K8s runtime, networking, SLOs, incident management, on-call |
-| **Quality & Security Engineering** | Security testing, privacy, compliance, quality gates, supply chain |
-
-### Go-to-Market Divisions
-
-| Division | What It Owns |
-|-----------|-------------|
-| **Product Marketing** | GTM strategy execution, launch orchestration, press releases, analyst relations, competitive positioning |
-| **Knowledge & Enablement** | Product docs, API docs, tutorials, release notes, knowledge base, demos, battlecards, training, certifications |
-
-### Customer Divisions
-
-| Division | What It Owns |
-|-----------|-------------|
-| **Customer Experience** | Onboarding, adoption tracking, health scores, QBRs, renewal management, support, incident resolution, knowledge base, SLA management |
 
 ---
 
@@ -236,3 +260,10 @@ org/
 - **Division changes** require the Division Tech Lead approval
 - All changes are version-controlled, auditable, and reversible via git history
 - See [../CODEOWNERS](../CODEOWNERS) for the complete approval mapping
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1 | 2026-03-07 | Reframed execution divisions into core defaults, optional extensions, and company-specific product divisions; removed AI & Intelligence and Quality & Security Engineering as implied defaults |
+| 1.0 | 2026-02-19 | Initial version |

@@ -1,11 +1,18 @@
 <p align="center">
   <img src="https://img.shields.io/badge/model-Agentic%20Enterprise-blueviolet" alt="Agentic Enterprise">
-  <img src="https://img.shields.io/badge/version-1.0.0-brightgreen" alt="Version">
+  <img src="https://img.shields.io/badge/version-3.0.0-brightgreen" alt="Version">
   <img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License">
   <img src="https://img.shields.io/badge/runtime-bring%20your%20own-orange" alt="Runtime">
   <a href="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml">
     <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
   </a>
+  <br>
+  <img src="https://img.shields.io/badge/ISO_27001-70%25_ready-0e8a16" alt="ISO 27001">
+  <img src="https://img.shields.io/badge/SOC_2-80%25_ready-1d76db" alt="SOC 2">
+  <img src="https://img.shields.io/badge/GDPR-50%25_ready-d93f0b" alt="GDPR">
+  <img src="https://img.shields.io/badge/ISO_42001-75%25_ready-5319e7" alt="ISO 42001">
+  <img src="https://img.shields.io/badge/NIST_AI_RMF-80%25_ready-fbca04" alt="NIST AI RMF">
+  <img src="https://img.shields.io/badge/EU_AI_Act-60%25_ready-c5def5" alt="EU AI Act">
 </p>
 
 <h1 align="center">Agentic Enterprise</h1>
@@ -76,7 +83,7 @@ That distinction matters because this repository is intentionally **not** sellin
 | AI agents need governance, not just prompts | 5-layer organizational model with explicit boundaries, RACI via CODEOWNERS, and policy enforcement |
 | Legacy processes (tickets, wikis, standups, endless meetings) don't work for agent fleets | Git-native governance: PRs = decisions, branches = workflow states, CI/CD = quality gates |
 | No standard way to structure human + agent collaboration | Clear separation: humans steer and decide, agents execute and evaluate, Git is the system of record |
-| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 10 quality policy domains, 4 process loops |
+| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 14 quality policy domains, 4 process loops |
 | Agent instructions are scattered and inconsistent | Hierarchical `AGENT.md` files: global → layer → division, all version-controlled |
 | Enterprises run dozens of tools that agents need to use | Integration Registry with governed connections to observability, ITSM, CI/CD, business systems |
 
@@ -103,7 +110,7 @@ Every function in the company — engineering, marketing, sales, customer succes
 │  org/3-execution/  12 divisions across eng, GTM, customer       │
 ├─────────────────────────────────────────────────────────────────┤
 │  QUALITY           Agents evaluate, humans author policies      │
-│  org/4-quality/    10 policy domains, eval agent fleets         │
+│  org/4-quality/    14 policy domains, eval agent fleets         │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -124,7 +131,7 @@ Loop 4 feeds signals back into Loop 1 via two channels: telemetry from the obser
 
 | Legacy | Agentic Enterprise | Why Better |
 |--------|-------------------|------------|
-| Ticket system | Markdown in `work/` | Version-controlled, diffable, agent-readable |
+| Ticket system | Work artifacts in `work/` or issue tracker | Version-controlled, diffable, agent-readable; or native issue UI for human triage |
 | Sprint planning | Mission briefs | Goal-oriented, not time-boxed |
 | Daily standup | `git log` + dashboards | Always current, no meetings |
 | Wiki / knowledge base | This repository | Single source of truth |
@@ -229,11 +236,12 @@ Before doing anything, read these files in order:
 
 Key principles:
 - Two native communication channels: the **repo** (natural language files — read instructions, produce artifacts, file signals) and the **observability platform** (real-time telemetry — emit spans as you act, consume operational data before deciding).
-- Everything is in Git. PRs = decisions. CODEOWNERS = RACI.
-- You recommend; humans decide (via PR merge).
+- Git is the governance backbone. PRs = decisions. CODEOWNERS = RACI.
+- Work tracking is configurable: Markdown files in work/ or issues in an issue tracker (see CONFIG.yaml → work_backend).
+- You recommend; humans decide (via PR merge or label transition).
 - Every claim must be grounded in evidence.
 - Stay in your lane — read your layer's boundaries.
-- Surface improvement signals to work/signals/ when you spot issues.
+- Surface improvement signals (to work/signals/ or as issues with artifact:signal label).
 
 Repository structure:
 - org/ — Organizational structure (5 layers)
@@ -503,6 +511,23 @@ See `org/integrations/categories/observability.md` for detailed patterns.
 | 10 | **Integration Registry is templated, not wired** — Patterns defined, connections not live | [Issue #10](https://github.com/wlfghdr/agentic-enterprise/issues/10) | MCP servers, A2A, OpenTelemetry, vendor SDKs |
 
 See [GitHub Discussions](https://github.com/wlfghdr/agentic-enterprise/discussions) for community conversation on each topic.
+
+---
+
+## Enterprise Compliance Readiness
+
+This framework provides **built-in governance controls** that map directly to enterprise certification frameworks. Coverage percentages reflect controls currently implemented — not aspirational targets.
+
+| Framework | Coverage | Strongest Controls | Tracked Gaps |
+|-----------|----------|-------------------|--------------|
+| **ISO 27001** | ~70% | RBAC (CODEOWNERS), change management (PRs), operations security, CI/CD gates, asset registry | [Key management](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aiso-27001+label%3Agap), vendor assessment |
+| **SOC 2 Type II** | ~80% | Control environment, availability (SLOs), processing integrity, confidentiality (encryption), OTel audit trail | [DR plan](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Asoc2+label%3Agap), incident SLAs |
+| **GDPR** | ~50% | Encryption in transit/at rest, PII audit logging, data protection | [DPA template](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Agdpr+label%3Agap), DSAR process, breach notification |
+| **ISO 42001** | ~75% | AI governance (5-layer model), agent accountability (OTel spans), human oversight, decision audit trail | [Fairness audit](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aiso-42001+label%3Agap), model cards |
+| **NIST AI RMF** | ~80% | Governance structure, continuous monitoring, risk mitigation (rollback), transparency | [Risk register](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Anist-ai-rmf+label%3Agap), AI threat model |
+| **EU AI Act** | ~60% | Transparency (versioned agent instructions), human oversight, risk management foundations | [DPIA](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acert%3Aeu-ai-act+label%3Agap), conformity assessment |
+
+> **Note:** This framework provides governance *infrastructure*. Formal certification requires an independent audit of your deployed instance. Gaps are tracked as [open issues](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Agap) with certification labels.
 
 ---
 

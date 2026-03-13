@@ -1,0 +1,107 @@
+name: "Mission"
+description: "Create a mission issue when using the GitHub issue backend"
+title: "[Mission] "
+labels: ["artifact:mission", "layer:strategy", "loop:build"]
+body:
+  - type: input
+    id: mission-id
+    attributes:
+      label: "Mission ID"
+      placeholder: "MISSION-2026-001"
+    validations:
+      required: true
+
+  - type: input
+    id: origin-signal
+    attributes:
+      label: "Origin signal"
+      description: "Link the originating signal issue(s)"
+      placeholder: "#123"
+    validations:
+      required: true
+
+  - type: input
+    id: sponsor
+    attributes:
+      label: "Sponsor"
+      placeholder: "Outcome Owner / Venture Lead"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: design-required
+    attributes:
+      label: "Design required?"
+      options:
+        - "true"
+        - "false"
+    validations:
+      required: true
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: "Objective"
+      description: "What does this mission accomplish and why does it matter?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: in-scope
+    attributes:
+      label: "In scope"
+      placeholder: "- Deliverable 1\n- Deliverable 2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: "Out of scope"
+      placeholder: "- Explicitly excluded item"
+    validations:
+      required: true
+
+  - type: textarea
+    id: divisions-involved
+    attributes:
+      label: "Divisions involved"
+      description: "List primary and supporting divisions"
+      placeholder: "Primary: core-services\nSupporting: engineering-foundation"
+    validations:
+      required: true
+
+  - type: textarea
+    id: outcome-contract
+    attributes:
+      label: "Outcome contract summary"
+      description: "List the measurable outcomes and deadlines"
+      placeholder: "Metric | Target | Measurement method | Deadline"
+    validations:
+      required: true
+
+  - type: textarea
+    id: human-checkpoints
+    attributes:
+      label: "Human checkpoints"
+      description: "List the review/approval moments explicitly"
+      placeholder: "1. Architecture review ...\n2. Release approval ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: observability-requirements
+    attributes:
+      label: "Observability requirements"
+      description: "Key metrics, baselines at risk, and monitoring dependencies"
+    validations:
+      required: true
+
+  - type: textarea
+    id: blockers
+    attributes:
+      label: "Blocked by / blocks"
+      description: "List mission dependencies if any"
+      placeholder: "Blocked by: ...\nBlocks: ..."
+    validations:
+      required: false

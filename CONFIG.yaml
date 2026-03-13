@@ -14,7 +14,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Tracks the overall framework release. Update when cutting a new version.
 # See CHANGELOG.md for what changed. Uses semantic versioning (MAJOR.MINOR.PATCH).
-framework_version: "2.2.0"
+framework_version: "3.1.0"
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────────────────
@@ -121,9 +121,10 @@ divisions:
     - id: "core-applications"
       name: "Core Applications"
       description: "UI layer, dashboards, search, navigation"
-    - id: "ai-intelligence"
-      name: "AI & Intelligence"
-      description: "AI reasoning, NL interfaces, agent orchestration, AI safety"
+    # Optional extension for AI-native products or companies building agent platforms:
+    # - id: "ai-intelligence"
+    #   name: "AI & Intelligence"
+    #   description: "AI reasoning, NL interfaces, agent orchestration, AI safety"
 
   engineering_domain:
     - id: "core-domain-1"
@@ -140,9 +141,12 @@ divisions:
     - id: "infrastructure-operations"
       name: "Infrastructure Operations"
       description: "Cloud accounts, IaC, cost management, production operations, incident management"
-    - id: "quality-security-engineering"
-      name: "Quality & Security Engineering"
-      description: "Security testing, privacy, compliance, quality gates, supply chain"
+    # Optional extension when execution-side security implementation warrants its own division.
+    # For the generic template, quality governance stays in the Quality Layer and
+    # security implementation work is owned by Engineering Foundation / Infrastructure Operations.
+    # - id: "quality-security-engineering"
+    #   name: "Quality & Security Engineering"
+    #   description: "Security testing, privacy, compliance evidence, supply chain hardening"
 
   gtm:
     - id: "product-marketing"
@@ -188,11 +192,49 @@ toolchain:
   chat_tool: ""                     # e.g., "Slack", "Teams", "Discord"
 
 # ───────────────────────────────────────────────────────────────────────────
-# 8. INTEGRATIONS (3rd-Party Tool Registry)
+# 8. WORK BACKEND (Where operational work artifacts are tracked)
 # ───────────────────────────────────────────────────────────────────────────
-# External tools that connect to the operating model. The filesystem is the
-# system of record; these integrations extend agent capabilities into the
-# enterprise ecosystem. See org/integrations/ for detailed guides.
+# The operating model defines WHAT artifacts exist (signals, missions, tasks,
+# decisions, etc.) and HOW they flow. WHERE they live is configurable.
+#
+# Options:
+#   "git-files"      — All work artifacts are Markdown files in work/ (original model)
+#   "github-issues"  — Work artifacts are tracked as GitHub Issues with structured labels
+#
+# See docs/WORK-BACKENDS.md for the full guide, label taxonomy, and migration paths.
+#
+# NOTE: Governance backbone files (org/, policies, AGENT.md, templates) ALWAYS
+# stay in Git regardless of this setting. Only operational work artifacts
+# (signals, missions, tasks, decisions, releases, retrospectives) are affected.
+
+work_backend:
+  type: "git-files"                   # "git-files" | "github-issues"
+
+  # Configuration for github-issues backend
+  github_issues:
+    repo: ""                          # empty = same repo; or "org/repo" for a separate issue repo
+    use_projects: true                # use GitHub Projects for board views + status tracking
+    project_owner: ""                 # GitHub org or user that owns the project (e.g., "acme-corp")
+    project_number: 0                 # GitHub Project v2 number (e.g., 2)
+    use_label_prefixes: true          # use artifact:, layer:, loop: label prefixes (recommended)
+
+  # Artifact-level overrides: force specific artifact types to a backend
+  # regardless of the global type setting.
+  # Valid keys: signal, signal-digest, mission, task, decision, release,
+  #             retrospective, quality-eval, outcome-report, fleet-report,
+  #             governance-exception, technical-design, asset-registry, lock
+  overrides:
+    technical-design: "git-files"     # always in git (code-review-adjacent)
+    governance-exception: "git-files" # always in git (audit-critical)
+    asset-registry: "git-files"       # always in git (persistent documentation)
+    # lock: "git-files"              # locks are always git — not configurable
+
+# ───────────────────────────────────────────────────────────────────────────
+# 9. INTEGRATIONS (3rd-Party Tool Registry)
+# ───────────────────────────────────────────────────────────────────────────
+# External tools that connect to the operating model. These integrations
+# extend agent capabilities into the enterprise ecosystem.
+# See org/integrations/ for detailed guides.
 #
 # Categories: observability, enterprise_toolchain, business_systems, communication
 # Each integration defines what it connects to, how, and which layers use it.
@@ -241,7 +283,7 @@ integrations:
     []                                # e.g., [{id: "team-chat", name: "Slack", mcp_server: true}]
 
 # ───────────────────────────────────────────────────────────────────────────
-# 9. QUALITY THRESHOLDS
+# 10. QUALITY THRESHOLDS
 # ───────────────────────────────────────────────────────────────────────────
 
 quality:
@@ -253,7 +295,40 @@ quality:
   deployment_rollback_target_min: 5 # minutes
 
 # ───────────────────────────────────────────────────────────────────────────
-# 10. ORGANIZATION SIZE ESTIMATES
+# 11. RISK APPETITE & TOLERANCE
+# ───────────────────────────────────────────────────────────────────────────
+# Risk thresholds referenced by org/4-quality/policies/risk-management.md.
+# Customize per your organization's risk tolerance. Review at least annually.
+
+risk_appetite:
+  max_downtime_minutes: 30            # Maximum unplanned downtime per month before escalation
+  cost_overrun_threshold_pct: 20      # Percentage of mission budget that triggers escalation
+  kill_switch_target_seconds: 120     # Maximum time to execute emergency agent halt
+  escalation_rate_threshold_pct: 25   # Agent escalation rate (% of decisions) that triggers review
+  tool_failure_threshold_pct: 5       # Tool call failure rate that triggers investigation
+  cycle_time_variance_pct: 50         # Mission cycle time deviation from baseline that triggers review
+  hallucination_threshold_pct: 2      # Quality eval FAIL rate on accuracy that triggers review
+  risk_review_cadence: "monthly"      # How often to produce risk posture summary (weekly | monthly | quarterly)
+
+# ───────────────────────────────────────────────────────────────────────────
+# 12. ENCRYPTION & KEY MANAGEMENT
+# ───────────────────────────────────────────────────────────────────────────
+# Cryptographic standards referenced by org/4-quality/policies/cryptography.md.
+# Customize rotation schedules and certificate lifetimes per your compliance
+# requirements and operational maturity. See NIST SP 800-57 for guidance.
+
+encryption:
+  rotation_symmetric_days: 90         # Symmetric data encryption key rotation (NIST: 1-2 years; 90 days is conservative)
+  rotation_signing_days: 180          # Asymmetric signing key rotation
+  rotation_asymmetric_days: 365       # Asymmetric encryption key rotation
+  rotation_api_key_days: 90           # LLM provider API keys and MCP server credentials
+  cert_lifetime_days: 90              # Maximum TLS service certificate lifetime
+  cert_manager: ""                    # e.g., "cert-manager", "SPIFFE/SPIRE", "Istio", "Linkerd"
+  rsa2048_deprecation_date: ""        # Target date to migrate off RSA-2048 (e.g., "2028-12-31")
+  revocation_target_hours: 4          # Maximum time to revoke a compromised certificate
+
+# ───────────────────────────────────────────────────────────────────────────
+# 13. ORGANIZATION SIZE ESTIMATES
 # ───────────────────────────────────────────────────────────────────────────
 
 org_size:

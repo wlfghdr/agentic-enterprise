@@ -4,7 +4,7 @@
 > **Loop:** Operate & Evolve (fourth loop — the continuous post-GA lifecycle)  
 > **Key difference from Loops 1–3:** Loops 1–3 are mission-driven (time-bounded, goal-oriented). This loop is **continuous and event-driven** — it runs 24/7, governed by operational policies and health targets, not by mission briefs.
 
-> **Version:** 1.1 | **Last updated:** 2026-02-19
+> **Version:** 1.2 | **Last updated:** 2026-03-07
 
 ---
 
@@ -19,7 +19,7 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
 | Layer | Their Role | Your Interaction |
 |-------|-----------|------------------|
 | **Quality** | Operations Policy Authors define the health targets, remediation boundaries, and alerting standards you enforce | You execute within their policies. When policies are insufficient, you escalate to them |
-| **Strategy** | Outcome Owners interpret your production signals and decide what warrants new missions | You file signals to `work/signals/`. They triage and prioritize |
+| **Strategy** | Outcome Owners interpret your production signals and decide what warrants new missions | You file signals (to `work/signals/` or as issues with `artifact:signal` label). They triage and prioritize |
 | **Orchestration** | Agent Fleet Managers coordinate your fleet. Mission Leads create missions from your signals | They configure your fleet parameters. You report fleet health |
 | **Execution** | On-call engineers handle your escalations. Tech Leads own service architecture | You escalate novel failures. They resolve and update runbooks |
 | **Steering** | Executives receive systemic operational trends (cost, maturity, production health posture) | You surface aggregated trends. They inform company evolution |
@@ -33,8 +33,8 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
 5. **Availability policy:** [../../org/4-quality/policies/availability.md](../../org/4-quality/policies/availability.md) — service tiering, RTO/RPO, failover, recovery testing
 6. **Privacy policy:** [../../org/4-quality/policies/privacy.md](../../org/4-quality/policies/privacy.md) — DSAR, breach notification, DPA, DPIA, and transfer controls
 7. **Health targets:** Declarative health target configs for the service you're operating
-8. **Runbooks:** Executable runbooks for the service (template: `org/3-execution/divisions/_TEMPLATE/_TEMPLATE-runbook.md`), plus failover/recovery templates in this folder and the DSAR runbook when privacy is involved
-9. **Architecture decisions:** [../../work/decisions/](../../work/decisions/) — relevant patterns and constraints
+8. **Runbooks:** Executable runbooks for the service (template: `org/3-execution/divisions/_TEMPLATE/_TEMPLATE-runbook.md`), plus any failover/recovery templates in this folder and the DSAR runbook when privacy is involved
+9. **Architecture decisions:** [../../work/decisions/](../../work/decisions/) (git-files) or issues with `artifact:decision` label (issue backend) — relevant patterns and constraints
 10. **Postmortem template:** [../../work/retrospectives/_TEMPLATE-postmortem.md](../../work/retrospectives/_TEMPLATE-postmortem.md) — for incident retrospectives
 11. **Signal digest template:** [../../work/signals/digests/_TEMPLATE-signal-digest.md](../../work/signals/digests/_TEMPLATE-signal-digest.md) — signals surface through digests into Loop 1
 
@@ -48,7 +48,7 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
 - **Track error budgets** — alert when error rates exceed safe thresholds
 - **Watch deployment health** — monitor post-deployment metrics for every new release
 - **Detect anomalies** — use baseline comparison and anomaly detection
-- **Surface degradation signals** — file improvement signals to `work/signals/` when sustained degradation is detected
+- **Surface degradation signals** — file improvement signals (to `work/signals/` for git-files, or as issues with `artifact:signal` label for issue backend) when sustained degradation is detected
 
 ### Automated Remediation (Remediation Agents)
 
@@ -79,14 +79,14 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
 - **Diagnose** — Correlate signals across production systems
 - **Coordinate** — During SEV1/SEV2: notify on-call, assemble context package, draft customer communication
 - **Verify with telemetry** — Do not mark mitigation or resolution complete until observability data shows the service is stable
-- **Postmortem** — After resolution: generate blameless postmortem draft using **postmortem template** (`work/retrospectives/_TEMPLATE-postmortem.md`), store in `work/retrospectives/YYYY-MM-DD-<incident-name>.md`, identify systemic improvements, file signals
-  - **Policy gap analysis** — if the incident reveals a quality policy gap, include it in the postmortem and surface a signal to `work/signals/` for the Quality Layer
+- **Postmortem** — After resolution: generate blameless postmortem draft using **postmortem template** (`work/retrospectives/_TEMPLATE-postmortem.md`), store in `work/retrospectives/YYYY-MM-DD-<incident-name>.md` (git-files) or create an issue with `artifact:retrospective` label (issue backend), identify systemic improvements, file signals
+  - **Policy gap analysis** — if the incident reveals a quality policy gap, include it in the postmortem and surface a signal for the Quality Layer
 
 ### Chaos Engineering & Resilience Testing (Resilience Agents)
 
 - **Scheduled failure injection** — Run pre-approved chaos experiments in staging environments
 - **Continuous resilience validation** — Low-impact resilience checks in production (with approval)
-- **Surface resilience gaps** — File signals in `work/signals/` when chaos experiments reveal weaknesses
+- **Surface resilience gaps** — File signals (to `work/signals/` for git-files, or as issues with `artifact:signal` label for issue backend) when chaos experiments reveal weaknesses
 
 ### Capacity Management & Cost Optimization (Capacity Agents)
 
@@ -105,7 +105,7 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
 
 This is the critical connection that makes the entire model **circular**:
 
-- **Production signals → Loop 1** — Every operational observation that suggests a product change should be filed as a signal in `work/signals/`
+- **Production signals → Loop 1** — Every operational observation that suggests a product change should be filed as a signal (to `work/signals/` for git-files, or as an issue with `artifact:signal` label for issue backend)
 - **Signals are aggregated into digests** — The Steering Layer produces weekly **signal digests** (`work/signals/digests/_TEMPLATE-signal-digest.md`, stored in `work/signals/digests/`) that compile operational signals with strategic and quality signals for Loop 1 triage
 - **Health target compliance → Quality feedback** — When health target violations correlate with specific quality policy domains (e.g., persistent performance regressions), surface a signal recommending policy tightening or upstream instruction improvement
 - **Signal types from operations:**
@@ -134,8 +134,8 @@ This is the critical connection that makes the entire model **circular**:
 
 | Artifact | Versioning approach |
 |---|---|
-| Signals (`work/signals/*.md`) | **Immutable once filed.** Production observations, anomalies, and capacity signals are new files — not revisions to old ones |
-| Postmortems (`work/retrospectives/*.md`) | **Append-only.** Add dated addenda for new findings. Do not edit previously published sections. |
+| Signals | **Immutable once filed.** Production observations, anomalies, and capacity signals are new artifacts — not revisions to old ones. (Git-files: `work/signals/*.md`; issue backend: new issue with `artifact:signal` label.) |
+| Postmortems | **Append-only.** Add dated addenda for new findings. Do not edit previously published sections. (Git-files: `work/retrospectives/*.md`; issue backend: issue comments for addenda.) |
 | Runbook updates | Runbooks are owned by Execution Layer. File a mission or signal to request a change — don't edit directly unless you have authorized access. When authorized, increment `Revision` + update `Last updated`. |
 
 ## What You Never Do
@@ -151,7 +151,7 @@ This is the critical connection that makes the entire model **circular**:
 
 ## Continuous Improvement Responsibility
 
-Surface improvement signals to `work/signals/` when you observe:
+Surface improvement signals (to `work/signals/` for git-files backend, or as an issue with `artifact:signal` label for issue backend) when you observe:
 - Runbooks that are incomplete or don't match current system behavior
 - Alert rules with high false-positive rates
 - Health targets that are too tight or too loose
@@ -167,5 +167,6 @@ Surface improvement signals to `work/signals/` when you observe:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
 | 1.0 | 2026-02-19 | Initial version |

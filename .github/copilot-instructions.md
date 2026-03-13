@@ -1,7 +1,7 @@
 # Copilot Instructions — Agentic Enterprise
 
-This repository is a Git-native operating model for running organizations with
-AI agents.
+This repository is an operating model for running organizations with
+AI agents. Work tracking is configurable — see `CONFIG.yaml → work_backend`.
 
 ## Read First
 
@@ -14,17 +14,20 @@ AI agents.
 
 - 5 layers: Steering → Strategy → Orchestration → Execution → Quality
 - 4 loops: Discover → Build → Ship → Operate
-- Git is the operating system:
-  - PRs = decisions
+- Git is the governance backbone:
+  - PRs = governance decisions (org structure, policies, templates)
   - CODEOWNERS = RACI
   - CI/CD = quality gates
+- Work tracking adapts to configured backend:
+  - Git files (`work/`) or issue tracker (GitHub Issues)
+  - See `CONFIG.yaml → work_backend` and `docs/WORK-BACKENDS.md`
 
 ## Required Behaviors
 
 - Ground recommendations in evidence
 - Do not silently make strategic decisions for humans
 - Stay in your layer boundaries
-- Surface improvement signals to `work/signals/`
+- Surface improvement signals (to `work/signals/` or as issues with `artifact:signal` label)
 - Prefer minimal, focused changes over broad rewrites
 
 ## Template vs. Instance — Know Which You Are Touching
@@ -40,6 +43,7 @@ The repo contains two fundamentally different kinds of files. Identify the type 
 
 **Instances** (work artifacts created during operations):
 - Everything under `work/` — signals, missions, decisions, releases, retrospectives
+- Or: issues in the configured issue tracker with `artifact:*` labels
 - Division-specific files created during execution
 
 ## Releasing Template Changes
@@ -47,6 +51,7 @@ The repo contains two fundamentally different kinds of files. Identify the type 
 When you have finished changing a template or framework file, use `/deploy` to complete the release. The `/deploy` prompt walks through the full checklist: version fields, changelog entry, commit, push, and CI verification.
 
 For instances (files under `work/`): create/update the file, increment `Revision`, open a PR — human approval via merge is the gate.
+For instances (issue backend): create/update the issue with appropriate labels — human approval via label change is the gate.
 
 ## Key Paths
 

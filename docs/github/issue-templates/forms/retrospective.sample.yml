@@ -1,0 +1,76 @@
+name: "Retrospective"
+description: "Create a postmortem issue when using the GitHub issue backend"
+title: "[Retrospective] "
+labels: ["artifact:retrospective", "loop:operate", "layer:execution"]
+body:
+  - type: input
+    id: incident-id
+    attributes:
+      label: "Incident ID"
+      placeholder: "INC-2026-001"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "Severity"
+      options:
+        - SEV1
+        - SEV2
+        - SEV3
+        - SEV4
+    validations:
+      required: true
+
+  - type: input
+    id: incident-date
+    attributes:
+      label: "Date of incident"
+      placeholder: "YYYY-MM-DD HH:MM UTC"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: "Incident summary"
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: "Impact"
+      description: "Services, customers, duration, and business impact"
+    validations:
+      required: true
+
+  - type: textarea
+    id: detection
+    attributes:
+      label: "Detection"
+    validations:
+      required: true
+
+  - type: textarea
+    id: root-cause
+    attributes:
+      label: "Root cause analysis"
+    validations:
+      required: true
+
+  - type: textarea
+    id: remediation
+    attributes:
+      label: "Remediation and follow-up items"
+    validations:
+      required: true
+
+  - type: textarea
+    id: signals-filed
+    attributes:
+      label: "Signals filed"
+      description: "List the signal issues or files created from this retrospective"
+    validations:
+      required: true

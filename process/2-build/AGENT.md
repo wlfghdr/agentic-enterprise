@@ -4,7 +4,7 @@
 > **Loop:** Build (the second loop in the process lifecycle)  
 > **Authority:** You produce work. Quality Layer evaluates. Humans resolve escalations and approve architecture decisions.
 
-> **Version:** 1.3 | **Last updated:** 2026-02-25
+> **Version:** 1.4 | **Last updated:** 2026-03-07
 
 ---
 
@@ -14,7 +14,7 @@ Execute approved mission briefs by producing outputs: code, tests, documentation
 
 ## Context You Must Read
 
-1. **Mission tasks:** `work/missions/<name>/TASKS.md` — **your work intake**. Identify your assigned tasks, check dependencies, and verify acceptance criteria before starting.
+1. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or mission issue with `artifact:task` child issues (issue backend) — **your work intake**. Identify your assigned tasks, check dependencies, and verify acceptance criteria before starting.
 2. **Process overview:** [../README.md](../README.md)
 3. **Quality policies:** [../../org/4-quality/policies/](../../org/4-quality/policies/) — ALL of them
 4. **Decision record template:** [../../work/decisions/_TEMPLATE-decision-record.md](../../work/decisions/_TEMPLATE-decision-record.md)
@@ -36,13 +36,13 @@ For all missions:
 - If the Technical Design is absent for a multi-stream mission, raise a blocker to the Orchestration Layer
 
 ### Execute Work Streams
-- Pick up tasks from `TASKS.md` that are assigned to your division and agent type
+- Pick up tasks from `TASKS.md` (git-files) or from child task issues on the mission issue (issue backend) that are assigned to your division and agent type
 - Follow the fleet configuration for your assigned stream
-- Update task status in TASKS.md as you progress (`pending` → `in-progress` → `completed` or `blocked`)
+- Update task status as you progress (`pending` → `in-progress` → `completed` or `blocked`) — in TASKS.md (git-files) or via issue label transition (issue backend)
 - Produce outputs within the defined working paths
 - Respect exclusive path ownership (don't touch other streams' files)
-- Submit outputs as Pull Requests
-- Link generated assets back to the task in TASKS.md upon completion
+- Submit outputs as Pull Requests (code changes always go through PRs regardless of work backend)
+- Link generated assets back to the task upon completion
 
 ### Maintain Quality
 - Self-evaluate against all applicable quality policies BEFORE submitting
@@ -58,10 +58,10 @@ For all missions:
 - Submit for Architecture Governor review
 
 ### Track Progress
-- Update task status in TASKS.md — this is the primary progress indicator
+- Update task status — in TASKS.md (git-files) or via issue label transition (issue backend) — this is the primary progress indicator
 - Surface blockers immediately (set task to `blocked`, document in STATUS.md)
 - Log dependencies discovered during execution
-- If TASKS.md does not exist for an active mission, file an improvement signal — do not guess at work items
+- If task tracking does not exist for an active mission (no TASKS.md for git-files, or no child task issues for issue backend), file an improvement signal — do not guess at work items
 
 ## Versioning Your Outputs
 
@@ -69,7 +69,7 @@ For all missions:
 |---|---|
 | Code | Conventional Commits drive versioning: `feat:` → MINOR, `fix:` → PATCH, `BREAKING CHANGE:` → MAJOR |
 | Technical Design (`work/missions/*/TECHNICAL-DESIGN.md`) | Increment `Revision` + update `Last updated` on each iteration before review |
-| Decision records (`work/decisions/*.md`) | Increment `Revision` when status changes or context is updated. Decision records are **never deleted** — they are superseded by newer decisions. |
+| Decision records | Increment `Revision` when status changes or context is updated (git-files: `work/decisions/*.md`; issue backend: edit the decision issue body). Decision records are **never deleted** — they are superseded by newer decisions. |
 | Documentation | Follow the same Conventional Commits convention as code when committed together |
 
 ## What You Never Do
@@ -86,6 +86,7 @@ For all missions:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.4 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
 | 1.3 | 2026-02-25 | Added observability design to Technical Design production (instrumentation, metrics, SLOs, production baselines); expanded Maintain Quality with observability coverage verification; distinguished design-time vs. implementation-time observability |
 | 1.2 | 2026-02-24 | Added TASKS.md as primary work intake in Context and Execute Work Streams; added task status tracking to Track Progress; added missing TASKS.md signal guidance |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |

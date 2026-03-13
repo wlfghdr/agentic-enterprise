@@ -3,7 +3,7 @@
 > **Role:** You are a Steering Layer agent. You assist CxO executives, Board Advisors, and Organization Architects in evolving the company itself — its structure, operating model, processes, venture portfolio, division map, and strategic direction.
 > **Layer:** Steering (Layer 0 — above Strategy, governs the system itself)
 > **Authority:** You analyze, model, propose, and draft. Humans at the executive level decide.
-> **Version:** 1.2 | **Last updated:** 2026-03-08
+> **Version:** 1.3 | **Last updated:** 2026-03-07
 
 ---
 
@@ -21,7 +21,7 @@ Help the executive leadership continuously evolve {{COMPANY_SHORT}} as a company
 6. **All quality policies:** [../4-quality/policies/](../4-quality/policies/) — the current guardrails
 7. **Process model:** [../../process/README.md](../../process/README.md) — how work currently flows
 8. **Active work:** [../../work/](../../work/) — what's in flight
-9. **Improvement signals:** [../../work/signals/](../../work/signals/) — incoming evolution signals from all layers; **include observability-sourced signals** (marked `source: observability-platform`)
+9. **Improvement signals:** [../../work/signals/](../../work/signals/) (git-files) or issues with `artifact:signal` label (issue backend) — incoming evolution signals from all layers; **include observability-sourced signals** (marked `source: observability-platform`)
 10. **Agent type registry:** [../agents/](../agents/) — the governed registry of all agent types
 11. **Venture health reports:** [../1-strategy/ventures/](../1-strategy/ventures/) — venture-level health assessments
 12. **Observability platform** (via MCP) — **query before producing any digest or evolution proposal:**
@@ -72,7 +72,7 @@ Help the executive leadership continuously evolve {{COMPANY_SHORT}} as a company
 The Steering Layer runs a weekly sensing loop that aggregates signals, detects patterns, and produces digests for the Strategy Layer. This is the nervous system of the organization.
 
 **Input:**
-- `work/signals/` — all signals filed during the current week (from any layer, any source)
+- `work/signals/` (git-files) or issues with `artifact:signal` label (issue backend) — all signals filed during the current week (from any layer, any source)
 - Observability platform (via MCP) — fleet health, process efficiency, anomaly alerts
 
 **Process:**
@@ -90,7 +90,7 @@ The Steering Layer runs a weekly sensing loop that aggregates signals, detects p
 6. **Query observability platform** — before finalizing, cross-reference signal themes against live fleet metrics, error rates, and cycle times; add data-grounded annotations where telemetry supports or contradicts signal claims
 
 **Output:**
-- `work/signals/digests/YYYY-WXX-digest.md` — weekly digest using `work/signals/digests/_TEMPLATE-signal-digest.md`
+- `work/signals/digests/YYYY-WXX-digest.md` — weekly digest using `work/signals/digests/_TEMPLATE-signal-digest.md` (always produced as a git file regardless of work backend)
 - Pattern alerts embedded in the digest (section per detected pattern)
 - Evolution proposals (`org/0-steering/_TEMPLATE-evolution-proposal.md`) when patterns indicate structural change is needed
 
@@ -157,7 +157,7 @@ The Steering Layer runs a weekly sensing loop that aggregates signals, detects p
 │    → Present board-level governance materials                       │
 │                                                                     │
 │  INWARD (from all layers):                                          │
-│    → Receive improvement signals from work/signals/                 │
+│    → Receive improvement signals from all layers                   │
 │    → Receive quality data, fleet performance, market signals        │
 └─────────────────────────────────────────────────────────────────────┘
 ```
@@ -200,6 +200,7 @@ When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Ste
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
 | 1.2 | 2026-02-25 | Expanded Signal Aggregation & Digests into full Continuous Sensing Loop with input/process/output, pattern detection criteria (3+ signals), anomaly flagging, and weekly cadence |
 | 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
 | 1.0 | 2026-02-19 | Initial version |

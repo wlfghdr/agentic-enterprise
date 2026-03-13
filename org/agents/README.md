@@ -1,5 +1,7 @@
 # Agent Type Registry
 
+> **Version:** 1.1 | **Last updated:** 2026-03-07
+
 > **What this is:** The governed, versioned registry of all agent types in the {{COMPANY_SHORT}} agentic enterprise. Each agent type has a YAML definition file that describes its capabilities, lifecycle status, scaling parameters, and ownership.  
 > **Governance:** New agent types require Steering Layer evaluation and CTO approval via PR. This registry is the operational source of truth for all agent types.
 
@@ -66,6 +68,30 @@ proposed → approved → implementing → active → deprecated → retired
 5. Implementation begins (skills, MCP connections, tool bindings, instructions)
 6. Quality validation → status updated to `active`
 
+## What Belongs In The Base Template
+
+Base-template agent types should pass all of these checks:
+
+1. **Universal enough** — most adopting companies will plausibly need this capability.
+2. **Stable boundary** — the agent owns a durable workflow boundary, not a single step inside another agent's workflow.
+3. **More than a tool wrapper** — the capability is not just one feature flag system, one rollout mode, or one API binding.
+4. **More than a task name** — names like "blog", "rollback", or "battlecard" are often outputs or skills, not durable agent types.
+5. **Configuration is insufficient** — if an existing agent can handle the work with a division profile, tool profile, or skill set, prefer configuration over a new registry entry.
+
+## Use Configuration Instead Of New Types When
+
+- The difference is only environment-specific, such as one cloud provider, one monitoring backend, or one feature flag platform.
+- The difference is only a delivery step inside a broader workflow, such as canary analysis or rollback inside deployment.
+- The difference is only channel or artifact format, such as blog vs battlecard vs release notes inside content production.
+- The difference is only team specialization, such as frontend vs backend coding profiles inside one coding fleet.
+
+## Common Anti-Patterns
+
+- **Task-level agent types** — one agent for onboarding, another for renewal, another for advocacy, even though one cleaner domain boundary would suffice.
+- **Tool-level agent types** — one agent exists mainly because a feature flag, canary, or rollback tool exists.
+- **Monitor explosion** — separate host, process, network, and container monitors when one infrastructure-health monitor with pluggable scopes would do.
+- **Governance leakage** — execution-layer agent types quietly take on policy ownership that belongs in the Quality Layer.
+
 ## How to Deprecate an Agent Type
 
 1. File an evolution proposal (see `org/0-steering/_TEMPLATE-evolution-proposal.md`)
@@ -93,3 +119,10 @@ proposed → approved → implementing → active → deprecated → retired
 | **OPERATING-MODEL.md** | Documents the design principles and organizational structure that inform agent type design. |
 | **Division definitions** (`org/3-execution/divisions/`) | Divisions define domain context. Agent types define capabilities. An agent type belongs to a division (for Execution agents) or to a layer. |
 | **AGENT.md files** (`org/<layer>/AGENT.md`) | Layer instructions define behavioral rules. Agent type definitions specify capabilities & scaling. Both are needed for a complete agent specification. |
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1 | 2026-03-07 | Added base-template fit criteria, configuration-vs-type guidance, and anti-patterns to reduce micro-specialized agent definitions |
+| 1.0 | 2026-02-23 | Initial version |

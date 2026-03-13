@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Operating Model Guide"
+    url: https://github.com/OWNER/REPO/blob/main/docs/GITHUB-ISSUES.md
+    about: "Setup checklist, required labels, and exact approval steps for the issue backend"
+  - name: "Discussions"
+    url: https://github.com/OWNER/REPO/discussions
+    about: "Questions, ideas, and open-ended conversations"

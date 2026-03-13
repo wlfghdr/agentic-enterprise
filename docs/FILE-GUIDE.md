@@ -38,15 +38,16 @@ The `.github/` folder mixes OSS infrastructure with governance tooling that's ge
 **Quick summary:**
 - **Keep:** `workflows/validate.yml`, `PULL_REQUEST_TEMPLATE.md`, `copilot-instructions.md`
 - **Keep if using the CI feature:** `workflows/policy.yml`, `workflows/security.yml`
-- **Delete:** `workflows/stale.yml`, `ISSUE_TEMPLATE/`
+- **Keep if using issue backend:** `workflows/stale.yml`, `ISSUE_TEMPLATE/`
+- **Delete if using git-files backend:** `workflows/stale.yml`, `ISSUE_TEMPLATE/`
 
 | File / Folder | OSS purpose | Company fork action |
 |---|---|---|
 | `workflows/validate.yml` | Core CI: validates operating model docs, schemas, locks, placeholders | **Keep** — these gates enforce governance in your fork too. They check that your config, policies, and artifacts stay consistent. |
 | `workflows/policy.yml` | OPA/Conftest policy enforcement (workflow permissions, pinned actions) | **Keep** if using the Policy-as-Code gate (see `docs/POLICY-AS-CODE.md`); delete if not |
 | `workflows/security.yml` | Gitleaks secret scanning + GitHub Dependency Review | **Keep** if using security scanning (see `docs/SECURITY-SCANNING.md`); delete if not |
-| `workflows/stale.yml` | Marks and closes stale GitHub Issues/PRs (OSS housekeeping) | **Delete** — irrelevant in a private fork. Your work flows through `work/signals/` and `work/missions/`, not GitHub Issues. |
-| `ISSUE_TEMPLATE/` | Bug report and config forms for OSS contributors | **Delete** — your fork uses `work/signals/` for signal intake, not GitHub Issues for internal triage |
+| `workflows/stale.yml` | Marks and closes stale GitHub Issues/PRs (OSS housekeeping) | **Keep if using issue backend** (`work_backend.type: github-issues`) for housekeeping stale issues. **Delete if using git-files backend.** |
+| `ISSUE_TEMPLATE/` | Bug report and config forms for OSS contributors | **Template repo:** keep for OSS contributor workflows. **Company fork with issue backend:** replace/adapt using the samples in `docs/github/issue-templates/`. **Company fork with git-files backend:** delete if not needed. |
 | `PULL_REQUEST_TEMPLATE.md` | PR checklist reminding contributors to cite policies and evidence | **Keep and adapt** — update checklist items to match your fork's governance conventions |
 | `copilot-instructions.md` | GitHub Copilot agent instructions for working in this repo | **Keep and update** — edit after customization to reference your company name, divisions, and active missions |
 | `prompts/` | Agent skill prompts (e.g., `/deploy` workflow) | **Keep and adapt** — update prompts to reference your company's structure and toolchain |
@@ -64,8 +65,8 @@ The `.github/` folder mixes OSS infrastructure with governance tooling that's ge
 | `OPERATING-MODEL.md` | Meta-description of how the operating model works inside your company. | Adjust to match your actual deployment choices |
 | `CODEOWNERS` | RACI map — who approves what. Replace placeholder role names with real GitHub team names. | Populate with actual `@org/team-name` handles |
 | `org/` | Org structure: 5 layers, agent type registry, integration registry, quality policies. | Customise divisions, add ventures, fill in integration configs |
-| `process/` | 4-loop lifecycle guides (Discover → Build → Ship → Operate), including operational runbooks such as DSAR, failover, and recovery templates. | Adjust to your actual delivery workflow |
-| `work/` | Active work artifacts — signals, missions, decisions, releases, retrospectives. Also contains governance templates such as DPA / DPIA if you keep the framework defaults. | Use daily. File signals, open missions, record decisions. |
+| `process/` | 4-loop lifecycle guides (Discover → Build → Ship → Operate), plus operational runbooks/templates where your company keeps them in Git. | Adjust to your actual delivery workflow |
+| `work/` | Active work artifacts — signals, missions, decisions, releases, retrospectives. When using issue backend, it mainly contains templates and persistent artifacts (for example technical designs, asset registry entries, governance exceptions, and any governance templates you keep in Git). | Use daily. File signals, open missions, record decisions — in git files or in the configured issue tracker. |
 
 ---
 
@@ -132,7 +133,8 @@ concept-visualization.html
 
 # .github/ — keep selectively (see per-file table above)
 # Keep: validate.yml, PULL_REQUEST_TEMPLATE.md, copilot-instructions.md
-# Delete: stale.yml, ISSUE_TEMPLATE/
+# Keep if using issue backend: stale.yml, ISSUE_TEMPLATE/
+# Delete if using git-files backend: stale.yml, ISSUE_TEMPLATE/
 ```
 
 ---

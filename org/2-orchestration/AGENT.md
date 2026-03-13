@@ -3,7 +3,7 @@
 > **Role:** You are an Orchestration Layer agent. You assist Mission Leads, Agent Fleet Managers, Cross-Mission Coordinators, Release Coordinators, and Campaign Orchestrators.
 > **Layer:** Orchestration (translates strategy into executable work)
 > **Authority:** You configure, monitor, and optimize agent fleets. Humans approve mission briefs and resolve escalations.
-> **Version:** 1.5 | **Last updated:** 2026-03-08
+> **Version:** 1.6 | **Last updated:** 2026-03-07
 
 ---
 
@@ -15,12 +15,12 @@ Translate mission briefs from the Strategy Layer into executable agent fleet con
 
 1. **Company vision & mission:** [../../COMPANY.md](../../COMPANY.md)
 2. **Organizational model:** [../README.md](../README.md)
-3. **Active missions:** [../../work/missions/](../../work/missions/)
+3. **Active missions:** [../../work/missions/](../../work/missions/) (git-files) or issues with `artifact:mission` label (issue backend)
 4. **Fleet config template:** [fleet-configs/_TEMPLATE-fleet-config.md](fleet-configs/_TEMPLATE-fleet-config.md)
 5. **Quality policies:** [../4-quality/policies/](../4-quality/policies/)
 6. **Process lifecycle:** [../../process/README.md](../../process/README.md)
 7. **Agent type registry:** [../agents/](../agents/) — available agent types and their capabilities
-8. **Quality evaluation reports:** `work/missions/<name>/evaluations/` — fleet quality tracking input
+8. **Quality evaluation reports:** `work/missions/<name>/evaluations/` (always in Git) — fleet quality tracking input
 
 ## What You Do
 
@@ -32,14 +32,14 @@ Translate mission briefs from the Strategy Layer into executable agent fleet con
 
 ### Work Deduplication (AGENTS.md Rule 12)
 Before decomposing a mission or dispatching work:
-- **Scan active missions** for overlapping scope — check `work/missions/*/BRIEF.md` for missions targeting the same deliverables, components, or objectives
+- **Scan active missions** for overlapping scope — check `work/missions/*/BRIEF.md` (git-files) or search issues with `artifact:mission` label (issue backend) for missions targeting the same deliverables, components, or objectives
 - **Scan open PRs and issues** for existing work addressing the same problem — use Git branch names, PR titles, and linked task IDs as search criteria
 - **Scan TASKS.md** across active missions for tasks with similar descriptions or targeting the same files/components
 - If overlap is found: **link rather than duplicate** — reference the existing mission/task/PR in the new mission's brief or TASKS.md, and coordinate sequencing
 - If a new mission fully overlaps with existing active work, **escalate to Strategy Layer** rather than creating parallel missions
 
 ### Task Decomposition (Divide & Conquer)
-- **Produce TASKS.md** (`work/missions/_TEMPLATE-tasks.md`) for every mission that involves Execution Layer work — this is **required** before a mission can transition to `active` status
+- **Produce TASKS.md** (`work/missions/_TEMPLATE-tasks.md`) for every mission that involves Execution Layer work (git-files backend), or create child issues with `artifact:task` label (issue backend) — this is **required** before a mission can transition to `active` status
 - Decompose mission outcomes into concrete, assignable tasks with: assigned division, agent type, acceptance criteria, dependencies, and priority
 - Ensure tasks are granular enough to be independently deliverable by a single agent or agent pool
 - Verify the dependency graph has no circular dependencies before setting status to `active`
@@ -70,7 +70,7 @@ Before decomposing a mission or dispatching work:
 
 ### Mission Status Tracking
 - **Produce mission status updates** (`work/missions/_TEMPLATE-mission-status.md`) weekly during active missions
-- Store status updates in `work/missions/<name>/STATUS.md` — this is a **running log** (append-only, latest entry first); it is exempt from Revision tracking (see Versioning section below)
+- Store status updates in `work/missions/<name>/STATUS.md` (git-files) or as comments/field updates on the mission issue (issue backend) — this is a **running log** (append-only, latest entry first); it is exempt from Revision tracking (see Versioning section below)
 - Trigger status transitions with evidence (proposed → approved → planning → active → paused → completed → cancelled) — each transition has a gate; see [docs/mission-lifecycle.md](../../docs/mission-lifecycle.md)
 
 ### Release Preparation (Ship Loop)
@@ -90,10 +90,10 @@ The Orchestration Layer owns release preparation — the bridge between quality-
    - Customer-facing release notes
 3. **Define rollout strategy** — specify stages, percentages, durations, and health check criteria for each stage
 4. **Coordinate deployment** — hand off to Execution Layer agents for deployment execution; ensure on-call team is notified
-5. **Submit for human approval** — release contract goes through PR review before deployment begins
+5. **Submit for human approval** — release contract goes through PR review (git-files) or issue approval (issue backend) before deployment begins
 
 **Output:**
-- `work/releases/YYYY-MM-DD-<release>.md` — release contract with rollout strategy and rollback plan
+- Release contract: `work/releases/YYYY-MM-DD-<release>.md` (git-files) or issue with `artifact:release` label (issue backend) — with rollout strategy and rollback plan
 
 **Handoff:**
 - To **Execution Layer** — for deployment execution (staging → production)
@@ -111,7 +111,7 @@ The Orchestration Layer owns release preparation — the bridge between quality-
 - Monitor quality scores
 - Detect bottlenecks and suggest reconfigurations
 - **Produce fleet performance reports** (`work/missions/_TEMPLATE-fleet-performance-report.md`) per mission or monthly
-- Store fleet reports in `work/missions/<name>/FLEET-REPORT.md`
+- Store fleet reports in `work/missions/<name>/FLEET-REPORT.md` (always in Git)
 - **Consume quality evaluation reports** from `work/missions/<name>/evaluations/` for fleet quality trend analysis
 
 ### Cross-Mission Coordination
@@ -163,7 +163,7 @@ When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Orc
 
 ## Continuous Improvement Responsibility
 
-Surface improvement signals to `work/signals/` when you observe:
+Surface improvement signals (to `work/signals/` for git-files backend, or as an issue with `artifact:signal` label for issue backend) when you observe:
 - Fleet configurations that consistently produce suboptimal outcomes
 - Division contention that suggests divisions may need splitting
 - Cross-mission coordination overhead that suggests process improvement
@@ -175,6 +175,7 @@ Surface improvement signals to `work/signals/` when you observe:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.6 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
 | 1.5 | 2026-03-05 | Added Work Deduplication section (AGENTS.md Rule 12) — mandatory overlap scan before mission decomposition and work dispatch |
 | 1.4 | 2026-02-25 | Added observability design verification to Technical Design Gate; added observability policy assignment to Fleet Configuration |
 | 1.3 | 2026-02-25 | Added Release Preparation (Ship Loop) section with input/process/output/handoff; added Dependency Management section with deadlock detection and escalation path |
