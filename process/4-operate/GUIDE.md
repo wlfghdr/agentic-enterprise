@@ -78,9 +78,10 @@ You author the policies that operations agents enforce autonomously:
 | Policy Area | What You Define |
 |---|---|
 | **Health target standards** | Which indicators to measure, target thresholds, error budget windows |
-| **Issue severity** | Blast radius thresholds, customer impact tiers, escalation triggers |
+| **Issue severity + response SLAs** | Blast radius thresholds, customer impact tiers, acknowledge / mitigate / resolve targets |
 | **Remediation boundaries** | What agents can auto-remediate vs. what requires human approval |
 | **Rollback criteria** | Health signal thresholds that trigger automatic rollback |
+| **Availability / continuity targets** | Service tiers, RTO/RPO, backup/restore and failover expectations |
 | **Alert quality** | Actionability requirements — no alert without clear action |
 | **Capacity thresholds** | When to auto-scale, when to alert, when to escalate |
 

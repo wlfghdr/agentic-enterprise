@@ -64,8 +64,8 @@ The `.github/` folder mixes OSS infrastructure with governance tooling that's ge
 | `OPERATING-MODEL.md` | Meta-description of how the operating model works inside your company. | Adjust to match your actual deployment choices |
 | `CODEOWNERS` | RACI map — who approves what. Replace placeholder role names with real GitHub team names. | Populate with actual `@org/team-name` handles |
 | `org/` | Org structure: 5 layers, agent type registry, integration registry, quality policies. | Customise divisions, add ventures, fill in integration configs |
-| `process/` | 4-loop lifecycle guides (Discover → Build → Ship → Operate). | Adjust to your actual delivery workflow |
-| `work/` | Active work artifacts — signals, missions, decisions, releases, retrospectives. | Use daily. File signals, open missions, record decisions. |
+| `process/` | 4-loop lifecycle guides (Discover → Build → Ship → Operate), including operational runbooks such as DSAR, failover, and recovery templates. | Adjust to your actual delivery workflow |
+| `work/` | Active work artifacts — signals, missions, decisions, releases, retrospectives. Also contains governance templates such as DPA / DPIA if you keep the framework defaults. | Use daily. File signals, open missions, record decisions. |
 
 ---
 

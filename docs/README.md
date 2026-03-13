@@ -23,6 +23,7 @@ Each document falls into one of three categories:
 | [`PLACEHOLDER-CHECK.md`](PLACEHOLDER-CHECK.md) | CI feature | ✅ Template CI gate | **Keep** if using placeholder CI gate; delete otherwise |
 | [`SCHEMA-GUIDE.md`](SCHEMA-GUIDE.md) | CI feature | ✅ Template CI gate | **Keep** if using schema validation; delete otherwise |
 | [`mission-lifecycle.md`](mission-lifecycle.md) | Process reference | ✅ Framework doc | **Keep** — mission lifecycle, status transitions, Divide & Conquer pattern |
+| [`policy-source-notes-2026-03.md`](policy-source-notes-2026-03.md) | Reference notes | ✅ Framework doc | **Keep** if you want concise source rationale for the privacy, incident response, and availability policies |
 
 ---
 

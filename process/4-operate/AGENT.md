@@ -26,15 +26,17 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
 
 ## Context You Must Read Before Every Task
 
-1. **Quality policies:** [../../org/4-quality/policies/](../../org/4-quality/policies/) — especially delivery, security, and observability policies
+1. **Quality policies:** [../../org/4-quality/policies/](../../org/4-quality/policies/) — especially observability, delivery, incident response, availability, privacy, and security
 2. **Observability policy:** [../../org/4-quality/policies/observability.md](../../org/4-quality/policies/observability.md) — health targets, alerting standards, instrumentation requirements
 3. **Delivery policy:** [../../org/4-quality/policies/delivery.md](../../org/4-quality/policies/delivery.md) — environment progression, rollback criteria, emergency deployments
-4. **Health targets:** Declarative health target configs for the service you're operating
-5. **Runbooks:** Executable runbooks for the service (template: `org/3-execution/divisions/_TEMPLATE/_TEMPLATE-runbook.md`)
-6. **Incident response framework:** Escalation paths, severity definitions, communication templates
-7. **Architecture decisions:** [../../work/decisions/](../../work/decisions/) — relevant patterns and constraints
-8. **Postmortem template:** [../../work/retrospectives/_TEMPLATE-postmortem.md](../../work/retrospectives/_TEMPLATE-postmortem.md) — for incident retrospectives
-9. **Signal digest template:** [../../work/signals/digests/_TEMPLATE-signal-digest.md](../../work/signals/digests/_TEMPLATE-signal-digest.md) — signals surface through digests into Loop 1
+4. **Incident response policy:** [../../org/4-quality/policies/incident-response.md](../../org/4-quality/policies/incident-response.md) — severity timing, escalation, communications, and evidence requirements
+5. **Availability policy:** [../../org/4-quality/policies/availability.md](../../org/4-quality/policies/availability.md) — service tiering, RTO/RPO, failover, recovery testing
+6. **Privacy policy:** [../../org/4-quality/policies/privacy.md](../../org/4-quality/policies/privacy.md) — DSAR, breach notification, DPA, DPIA, and transfer controls
+7. **Health targets:** Declarative health target configs for the service you're operating
+8. **Runbooks:** Executable runbooks for the service (template: `org/3-execution/divisions/_TEMPLATE/_TEMPLATE-runbook.md`), plus failover/recovery templates in this folder and the DSAR runbook when privacy is involved
+9. **Architecture decisions:** [../../work/decisions/](../../work/decisions/) — relevant patterns and constraints
+10. **Postmortem template:** [../../work/retrospectives/_TEMPLATE-postmortem.md](../../work/retrospectives/_TEMPLATE-postmortem.md) — for incident retrospectives
+11. **Signal digest template:** [../../work/signals/digests/_TEMPLATE-signal-digest.md](../../work/signals/digests/_TEMPLATE-signal-digest.md) — signals surface through digests into Loop 1
 
 ---
 
@@ -69,13 +71,14 @@ You primarily operate within the **Execution Layer**, but Loop 4 spans all 5 lay
 
 ### Incident Response (Incident Agents)
 
-- **Triage** — Classify severity based on blast radius, customer impact, and health metric thresholds:
-  - **SEV1 (Critical):** Multiple health targets breached, significant customer impact → immediate human escalation
-  - **SEV2 (Major):** Single health target breached, limited customer impact → automated remediation + human notification
-  - **SEV3 (Minor):** Anomaly detected, no health target breach → automated investigation + remediation attempt
-  - **SEV4 (Low):** Informational signal → log + surface as improvement signal
+- **Triage** — Classify severity based on blast radius, customer impact, and health metric thresholds using `org/4-quality/policies/incident-response.md`:
+  - **SEV1 (Critical):** Broad outage, data/security/privacy risk, or major business impact → acknowledge within 15 minutes, mitigate within 1 hour, restore stable service within 4 hours
+  - **SEV2 (Major):** Material degradation or contained outage with meaningful customer impact → acknowledge within 1 hour, mitigate within 4 hours, restore within 8 hours
+  - **SEV3 (Minor):** Limited degradation with workaround → acknowledge within 4 hours, mitigate within 24 hours, resolve within 72 hours
+  - **SEV4 (Low):** Informational or low-impact issue → acknowledge within 24 hours, mitigate within 3 business days, resolve within 1 week
 - **Diagnose** — Correlate signals across production systems
 - **Coordinate** — During SEV1/SEV2: notify on-call, assemble context package, draft customer communication
+- **Verify with telemetry** — Do not mark mitigation or resolution complete until observability data shows the service is stable
 - **Postmortem** — After resolution: generate blameless postmortem draft using **postmortem template** (`work/retrospectives/_TEMPLATE-postmortem.md`), store in `work/retrospectives/YYYY-MM-DD-<incident-name>.md`, identify systemic improvements, file signals
   - **Policy gap analysis** — if the incident reveals a quality policy gap, include it in the postmortem and surface a signal to `work/signals/` for the Quality Layer
 

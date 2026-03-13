@@ -204,12 +204,16 @@ org/
 │   ├── AGENT.md                 ← Instructions for quality-layer agents
 │   └── policies/                ← Machine-readable quality policies
 │       ├── security.md
+│       ├── privacy.md
 │       ├── architecture.md
 │       ├── experience.md
 │       ├── performance.md
 │       ├── delivery.md
+│       ├── incident-response.md
+│       ├── availability.md
 │       ├── content.md
-│       └── customer.md
+│       ├── customer.md
+│       └── observability.md
 └── integrations/                ← Integration Registry (3rd-party tools)
     ├── README.md                ← How integrations work
     ├── _TEMPLATE-integration.md ← Template for registering integrations
