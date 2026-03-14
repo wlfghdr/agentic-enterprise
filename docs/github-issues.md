@@ -13,7 +13,7 @@ This guide makes the GitHub issue backend operational without implicit knowledge
 If a human needs to approve something, the required status transition is written out explicitly.
 If GitHub needs configuration, the exact repo settings, labels, project setup, and issue forms are listed here.
 
-Use this guide together with [WORK-BACKENDS.md](WORK-BACKENDS.md), [REQUIRED-GITHUB-SETTINGS.md](REQUIRED-GITHUB-SETTINGS.md), and [github/README.md](github/README.md).
+Use this guide together with [work-backends.md](work-backends.md), [required-github-settings.md](required-github-settings.md), and [github/README.md](github/README.md).
 
 ---
 

@@ -27,7 +27,7 @@ SOC 2 evaluates an organization's controls against five Trust Service Criteria (
 | **CC1.1–CC1.5** | Control environment | 5-layer governance model, CODEOWNERS RACI, agent instruction hierarchy | Git history showing governance enforcement |
 | **CC2.1–CC2.3** | Communication & information | Versioned policies, PR-based decisions, signal system | Policy change PRs, signal artifacts |
 | **CC3.1–CC3.4** | Risk assessment | [Risk Management Policy](../../org/4-quality/policies/risk-management.md) — 5x5 matrix, AI risk taxonomy, KRIs | `risk.assessment.complete` OTel events, KRI dashboards |
-| **CC5.1–CC5.3** | Control activities | 18 quality policies with PASS/FAIL evaluation criteria | Quality eval results, CI/CD gate logs |
+| **CC5.1–CC5.3** | Control activities | 19 quality policies with PASS/FAIL evaluation criteria | Quality eval results, CI/CD gate logs |
 | **CC6.1–CC6.8** | Logical/physical access | Least-privilege tooling, mTLS, short-lived tokens, data classification | `tool.execute` spans, authentication events |
 | **CC7.1–CC7.5** | System operations | [Observability Policy](../../org/4-quality/policies/observability.md), [Log Retention Policy](../../org/4-quality/policies/log-retention.md) — WORM for audit/security logs | Full OTel pipeline, WORM verification, integrity checks |
 | **CC8.1** | Change management | PR-based governance, CI/CD gates, progressive rollout | PR history, deployment traces |

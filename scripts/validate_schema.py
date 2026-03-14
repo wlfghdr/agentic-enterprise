@@ -341,7 +341,7 @@ def main() -> int:
         for err in all_errors:
             print(f"  ✗  {err}")
         print(
-            "\nSee schemas/ for definitions and docs/SCHEMA-GUIDE.md for contribution guidelines."
+            "\nSee schemas/ for definitions and docs/schema-guide.md for contribution guidelines."
         )
         return 1
 

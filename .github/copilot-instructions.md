@@ -20,7 +20,7 @@ AI agents. Work tracking is configurable — see `CONFIG.yaml → work_backend`.
   - CI/CD = quality gates
 - Work tracking adapts to configured backend:
   - Git files (`work/`) or issue tracker (GitHub Issues)
-  - See `CONFIG.yaml → work_backend` and `docs/WORK-BACKENDS.md`
+  - See `CONFIG.yaml → work_backend` and `docs/work-backends.md`
 
 ## Required Behaviors
 

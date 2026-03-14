@@ -40,7 +40,7 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 - When you're uncertain, escalate. Never guess silently on decisions that matter.
 
 ### 3. Process is governed
-- All work artifacts are tracked in the **configured work backend** — either as Markdown files in `work/` or as issues in the configured issue tracker (see `CONFIG.yaml → work_backend` and [docs/WORK-BACKENDS.md](docs/WORK-BACKENDS.md))
+- All work artifacts are tracked in the **configured work backend** — either as Markdown files in `work/` or as issues in the configured issue tracker (see `CONFIG.yaml → work_backend` and [docs/work-backends.md](docs/work-backends.md))
 - **Git-files backend:** All changes go through Pull Requests. All approvals are PR merges. Git history is the audit trail.
 - **Issue backend:** All changes go through issue state transitions. Approvals happen through human comments and re-assignment — agents handle all label management. Issue activity logs are the audit trail.
 - **Assignment discipline (all GitHub artifacts):** Every issue, PR, and review request must have an assignee at all times. This applies regardless of work backend — PRs exist in both modes. Assignment communicates ownership and next action:
@@ -90,9 +90,9 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 
 #### 9a. Emit activity telemetry — always
 - **Every agent action produces an OpenTelemetry span.** No silent execution. This is not optional.
-- **Canonical attribute names, span names, resource attributes, and privacy defaults are defined in [`docs/OTEL-CONTRACT.md`](docs/OTEL-CONTRACT.md).** Use that file as the single source of truth — do not inline attribute lists here or in other files.
-- Every span MUST carry the required attributes for its span type as defined in `docs/OTEL-CONTRACT.md` Section 3 (standard OTel/GenAI attributes) and Section 4 (custom agentic-enterprise attributes).
-- Every decision point (approve, reject, escalate, delegate) emits a native span event named `governance.decision` with attributes `governance.decision`, `governance.reason`, and `governance.pr.number` (if applicable) as defined in `docs/OTEL-CONTRACT.md` Section 6.1.
+- **Canonical attribute names, span names, resource attributes, and privacy defaults are defined in [`docs/otel-contract.md`](docs/otel-contract.md).** Use that file as the single source of truth — do not inline attribute lists here or in other files.
+- Every span MUST carry the required attributes for its span type as defined in `docs/otel-contract.md` Section 3 (standard OTel/GenAI attributes) and Section 4 (custom agentic-enterprise attributes).
+- Every decision point (approve, reject, escalate, delegate) emits a native span event named `governance.decision` with attributes `governance.decision`, `governance.reason`, and `governance.pr.number` (if applicable) as defined in `docs/otel-contract.md` Section 6.1.
 - Every tool call (MCP server, API, file write, Git operation) is wrapped in a child `tool.execute` span with latency and outcome recorded.
 - Telemetry is exported to the registered observability integration via OTLP. If no observability integration is configured, log structured JSON to stdout at minimum.
 - **Agents do not self-censor telemetry.** If an action happened, it is observable. Policy violations, escalations, retries, and failures are especially important to instrument — they are the most valuable signals.
@@ -139,7 +139,7 @@ You are an agent working within the {{COMPANY_NAME}} Agentic Enterprise Operatin
 
 ### 11. Know whether you are working on a template or an instance
 
-The repository contains two fundamentally different kinds of files (see [docs/FILE-GUIDE.md](docs/FILE-GUIDE.md)). Identify which one you are touching before you start — the completion criteria are different.
+The repository contains two fundamentally different kinds of files (see [docs/file-guide.md](docs/file-guide.md)). Identify which one you are touching before you start — the completion criteria are different.
 
 **Templates and framework files** (the OSS framework itself):
 - `_TEMPLATE-*.md` files anywhere in the repository (including `work/` subdirectories such as `work/locks/` and `work/decisions/`)
@@ -214,7 +214,7 @@ Work artifacts accumulate over time. Without active archiving, agents waste time
 
 **Git-files backend:**
 
-**Policy:** Every `work/<area>/` directory has an `archive/` subfolder. Completed, closed, or superseded items move there. Full details in `docs/ARCHIVE-POLICY.md`.
+**Policy:** Every `work/<area>/` directory has an `archive/` subfolder. Completed, closed, or superseded items move there. Full details in `docs/archive-policy.md`.
 
 **When to archive:**
 - Signals: status = `done` or `upstream-issued` + action confirmed

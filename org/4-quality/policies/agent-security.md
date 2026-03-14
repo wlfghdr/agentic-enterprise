@@ -3,7 +3,7 @@
 > **Applies to:** All AI agents, agent instructions, tool integrations, and workflows processing external content
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.0 | **Last updated:** 2026-03-13
+> **Version:** 1.0.1 | **Last updated:** 2026-03-14
 
 ---
 
@@ -37,7 +37,7 @@
 
 #### 1.4 Multi-Agent Boundary Protection
 - [ ] When agents delegate to sub-agents, the parent agent must not forward unvalidated external content as instructions
-- [ ] Inter-agent messages must carry provenance metadata (originating agent, layer, mission context) — see `docs/OTEL-CONTRACT.md` for required span attributes
+- [ ] Inter-agent messages must carry provenance metadata (originating agent, layer, mission context) — see `docs/otel-contract.md` for required span attributes
 - [ ] An agent receiving a request from another agent must verify the request is consistent with the sender's declared scope and permissions
 
 ### 2. Tool Abuse Prevention

@@ -4,7 +4,7 @@ name: Security Scanning
 #   - "No secrets in source code" → Gitleaks (blocking)
 #   - "Dependencies scanned for known vulnerabilities" → Dependency Review (blocking on PR)
 #
-# See docs/SECURITY-SCANNING.md for local usage, findings management, and allowlist strategy.
+# See docs/security-scanning.md for local usage, findings management, and allowlist strategy.
 
 on:
   push:
@@ -50,7 +50,7 @@ jobs:
         with:
           # Block the PR if any newly introduced dependency has a HIGH or CRITICAL CVE.
           # MODERATE and LOW findings are surfaced as warnings in the PR comment but do
-          # not block merging — see docs/SECURITY-SCANNING.md for triage guidance.
+          # not block merging — see docs/security-scanning.md for triage guidance.
           fail-on-severity: high
           # Post a summary comment on the PR so reviewers see the scan result inline.
           comment-summary-in-pr: always

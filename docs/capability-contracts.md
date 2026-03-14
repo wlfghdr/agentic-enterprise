@@ -129,7 +129,7 @@ _For the full permission matrix, see the contract and MCP profile files._
 
 The existing `scripts/validate_schema.py` is extended to validate skill manifests, MCP profiles, and capability contracts against their schemas. CI will fail if any artifact violates its schema.
 
-Add to `scripts/validate_schema.py` (see [SCHEMA-GUIDE.md](SCHEMA-GUIDE.md)):
+Add to `scripts/validate_schema.py` (see [schema-guide.md](schema-guide.md)):
 
 ```
 org/skills/*.skill.json          → schemas/skill-manifest.schema.json
@@ -164,4 +164,4 @@ org/capability-contracts/*.contract.json → schemas/capability-contract.schema.
 
 ---
 
-*See also:* [SCHEMA-GUIDE.md](SCHEMA-GUIDE.md) | [OPERATING-MODEL.md](../OPERATING-MODEL.md) | [MCP Specification](https://github.com/modelcontextprotocol/specification)
+*See also:* [schema-guide.md](schema-guide.md) | [OPERATING-MODEL.md](../OPERATING-MODEL.md) | [MCP Specification](https://github.com/modelcontextprotocol/specification)

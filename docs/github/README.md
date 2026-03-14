@@ -25,7 +25,7 @@ work_backend:
     use_label_prefixes: true
 ```
 
-See [`docs/WORK-BACKENDS.md`](../WORK-BACKENDS.md) for the full backend configuration guide.
+See [`docs/work-backends.md`](../work-backends.md) for the full backend configuration guide.
 
 ### Required Labels
 
@@ -40,7 +40,7 @@ When using `use_label_prefixes: true`, create these labels:
 | `category:` | `market`, `customer`, `technical`, `internal` |
 | `urgency:` | `immediate`, `next-cycle`, `monitor` |
 
-> **Status tracking:** Do not create `status:*` labels. Use the GitHub Project (v2) **Status** field instead. See [docs/GITHUB-ISSUES.md](../GITHUB-ISSUES.md).
+> **Status tracking:** Do not create `status:*` labels. Use the GitHub Project (v2) **Status** field instead. See [docs/github-issues.md](../github-issues.md).
 
 ### Issue Templates
 
@@ -76,9 +76,9 @@ These workflows are live in the template and run on push/PR:
 
 | Workflow | Purpose | Docs |
 |----------|---------|------|
-| `validate.yml` | YAML validation, schema checks, placeholder detection | [`SCHEMA-GUIDE.md`](../SCHEMA-GUIDE.md) |
-| `policy.yml` | OPA/Conftest policy enforcement | [`POLICY-AS-CODE.md`](../POLICY-AS-CODE.md) |
-| `security.yml` | Gitleaks + dependency review | [`SECURITY-SCANNING.md`](../SECURITY-SCANNING.md) |
+| `validate.yml` | YAML validation, schema checks, placeholder detection | [`schema-guide.md`](../schema-guide.md) |
+| `policy.yml` | OPA/Conftest policy enforcement | [`policy-as-code.md`](../policy-as-code.md) |
+| `security.yml` | Gitleaks + dependency review | [`security-scanning.md`](../security-scanning.md) |
 | `stale.yml` | Close stale issues (weekly) | — |
 
 ### Reference implementations (not active — copy to `.github/workflows/` when ready)
@@ -98,7 +98,7 @@ These workflow files are provided as **reference implementations**. They are NOT
 
 ## 4. GitHub Settings
 
-See [`REQUIRED-GITHUB-SETTINGS.md`](../REQUIRED-GITHUB-SETTINGS.md) for branch protection, CODEOWNERS, and required status checks.
+See [`required-github-settings.md`](../required-github-settings.md) for branch protection, CODEOWNERS, and required status checks.
 
 ---
 

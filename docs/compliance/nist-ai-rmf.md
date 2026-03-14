@@ -54,7 +54,7 @@ The AI RMF organizes risk management into four core functions:
 
 | Function | Subcategory | Framework Implementation | Evidence Source |
 |----------|-------------|-------------------------|-----------------|
-| **GOVERN 1** | Policies | 18 quality policies, AI Governance Policy, agent instruction hierarchy | Policy version history in Git |
+| **GOVERN 1** | Policies | 19 quality policies, AI Governance Policy, agent instruction hierarchy | Policy version history in Git |
 | **GOVERN 1.7** | AI security policies | [Agent Security Policy](../../org/4-quality/policies/agent-security.md) — OWASP LLM Top 10 coverage | Security test results, CI/CD gates |
 | **GOVERN 2** | Accountability | 5-layer model with explicit authority, CODEOWNERS RACI, agent type declarations | PR approvals, `governance.decision` events |
 | **GOVERN 4** | Risk culture | [Risk Management Policy](../../org/4-quality/policies/risk-management.md) — risk appetite statement, escalation culture | Risk register, escalation frequency metrics |

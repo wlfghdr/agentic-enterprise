@@ -4,6 +4,6 @@
 # Run locally:
 #   conftest test .github/workflows/ --policy policy/ --data policy/ --namespace workflows
 #
-# See docs/POLICY-AS-CODE.md for full usage instructions and how to add rules.
+# See docs/policy-as-code.md for full usage instructions and how to add rules.
 
 policy = ["policy"]

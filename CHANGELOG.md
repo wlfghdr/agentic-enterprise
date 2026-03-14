@@ -43,7 +43,7 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 - Updated `org/4-quality/policies/security.md` (v1.2 → v1.3) — renamed Dependency Security to Dependency & Vendor Security; added vendor assessment and attestation requirements.
 - Updated `org/4-quality/AGENT.md` (v1.12 → v1.13) — added vendor & third-party risk to quality dimensions.
 - Updated `CUSTOMIZATION-GUIDE.md` (v3.5 → v3.6) with vendor risk management policy customization guidance and vendor risk management note.
-- Updated `README.md` and `index.html` to reflect 18 quality policy domains (was 17); updated ISO 27001 (~85% → ~90%) compliance badge; vendor risk badges now green.
+- Updated `README.md` and `index.html` to reflect 19 quality policy domains (was 17); updated ISO 27001 (~85% → ~90%) compliance badge; vendor risk badges now green.
 - Updated `org/4-quality/policies/observability.md` (v1.3 → v1.4) — added Log Retention & Immutability section cross-referencing log-retention.md; added telemetry retention evaluation criterion.
 - Updated `org/4-quality/policies/security.md` (v1.1 → v1.2) — data retention requirement now references log-retention.md.
 - Updated `org/4-quality/AGENT.md` (v1.11 → v1.12) — added log retention & immutability to quality dimensions.
@@ -61,10 +61,10 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 - Updated `org/4-quality/policies/risk-management.md` §10 to include cryptography.md in the policy-to-risk-control mapping.
 - Updated `CUSTOMIZATION-GUIDE.md` (v3.2) with cryptography policy customization guidance, encryption note, and `{{CRYPTO_*}}` placeholder reference.
 - Updated `README.md` and `index.html` to reflect 11 quality policy domains (was 10).
-- Documentation cleanup in `docs/`: removed the duplicate backend config guide `WORK-BACKEND.md` in favor of `WORK-BACKENDS.md`, removed the duplicate observability quick-reference `observability-genai.md` in favor of `OTEL-CONTRACT.md`, and rewrote `docs/README.md` as a shorter navigation index with clearer reading paths.
+- Documentation cleanup in `docs/`: removed the duplicate backend config guide `WORK-BACKEND.md` in favor of `work-backends.md`, removed the duplicate observability quick-reference `observability-genai.md` in favor of `otel-contract.md`, and rewrote `docs/README.md` as a shorter navigation index with clearer reading paths.
 - Consolidated GitHub instance assets under `docs/github/`: moved the former `docs/github-implementation/` guide and `docs/github-issues/` samples into one GitHub-focused folder with `issue-templates/` and `workflows/` subfolders, and updated references accordingly.
 - Clarified agent observability correlation guidance: `org/integrations/categories/observability.md` now uses canonical `git.*` and `agentic.*` field names in Git-derived event examples and explicitly distinguishes native spans from derived UI events.
-- Expanded `docs/OTEL-CONTRACT.md` to define how downstream UIs correlate flattened activity records to traces using canonical `trace.id`, `span.id`, and `parent.span.id` identifiers, closing a gap for command-center trace linking.
+- Expanded `docs/otel-contract.md` to define how downstream UIs correlate flattened activity records to traces using canonical `trace.id`, `span.id`, and `parent.span.id` identifiers, closing a gap for command-center trace linking.
 - Tightened `org/4-quality/policies/observability.md` so trace-linkability of derived activity records is now a policy-level requirement, not just a contract detail.
 
 ---
@@ -82,12 +82,12 @@ _Core configuration:_
 - `schemas/config.schema.json` — added `project_owner` (string) and `project_number` (integer) properties; updated `use_label_prefixes` description to remove `status:`
 
 _Primary documentation:_
-- `docs/GITHUB-ISSUES.md` — **major rewrite (v1.1 → v2.0)**: removed ~20 `status:*` labels; added "Status Tracking via GitHub Project" section with Project Status Field Options, Terminal States, "Why Not Labels?" rationale, Status Mapping by Artifact Type; updated setup checklist, label bootstrap, human approval table, handoff mechanics
-- `docs/WORK-BACKENDS.md` — replaced "Status Labels" section with "Status Tracking (GitHub Project Status Field)"; updated handoff protocol, approval mechanisms, audit trail; version bumped to v1.3
+- `docs/github-issues.md` — **major rewrite (v1.1 → v2.0)**: removed ~20 `status:*` labels; added "Status Tracking via GitHub Project" section with Project Status Field Options, Terminal States, "Why Not Labels?" rationale, Status Mapping by Artifact Type; updated setup checklist, label bootstrap, human approval table, handoff mechanics
+- `docs/work-backends.md` — replaced "Status Labels" section with "Status Tracking (GitHub Project Status Field)"; updated handoff protocol, approval mechanisms, audit trail; version bumped to v1.3
 - `docs/WORK-BACKEND.md` — updated config sample and label table to remove `status:` row
 - `docs/mission-lifecycle.md` — added Project Status field column to Mission Statuses table; updated gate transitions from `status:` labels to Project Status transitions
-- `docs/ARCHIVE-POLICY.md` — updated close guidance from "apply final status labels" to "set project status to Done"
-- `docs/REQUIRED-GITHUB-SETTINGS.md` — updated required label families and human approval examples
+- `docs/archive-policy.md` — updated close guidance from "apply final status labels" to "set project status to Done"
+- `docs/required-github-settings.md` — updated required label families and human approval examples
 - `docs/github-implementation/README.md` — updated label table (removed `status:` row, added note about Project Status field); board view grouping changed from `status:` label to Project Status field
 
 _Agent instructions:_
@@ -109,14 +109,14 @@ _Automation scripts:_
 - `scripts/triage_signals.py` — `handle_issue_backend()` now uses `get_project_statuses()` for reading and `set_project_status()` for writing, replacing `gh issue edit --add-label/--remove-label` commands
 
 ### Added
-- **Assignment discipline for all GitHub artifacts** (AGENTS.md Rule 3, WORK-BACKENDS.md, GITHUB-ISSUES.md): Every issue, PR, and review request must have an assignee at all times. Mandatory handoff protocols for both issues and PRs. Comment-based human approval model — humans comment and re-assign, agents handle all label management. PR handoff protocol covers review requests, feedback cycles, and merge handoffs. Orchestration agents must sweep for unassigned items. Agent identity via dedicated bot accounts required.
-- **Canonical OTel Telemetry Contract** (`docs/OTEL-CONTRACT.md`): Single source of truth for all agent telemetry. OTel-first design — standard OTel/GenAI semantic conventions (`gen_ai.*`) take precedence; custom `agentic.*` and `governance.*` attributes used only where OTel has no equivalent. Includes: canonical span names (`agent.run`, `agent.subagent.invoke`, `tool.execute`, `quality.evaluate`, `git.operation`, `mission.transition`, `inference.chat`, `inference.generate`), resource attribute requirements, native vs derived event contract, privacy defaults (content capture off by default), canonical deprecation table for all legacy field names, semconv stability and migration policy, machine-readable YAML schema appendix. Closes #77, supersedes inline attribute lists in AGENTS.md, observability policy, and integration docs.
+- **Assignment discipline for all GitHub artifacts** (AGENTS.md Rule 3, work-backends.md, github-issues.md): Every issue, PR, and review request must have an assignee at all times. Mandatory handoff protocols for both issues and PRs. Comment-based human approval model — humans comment and re-assign, agents handle all label management. PR handoff protocol covers review requests, feedback cycles, and merge handoffs. Orchestration agents must sweep for unassigned items. Agent identity via dedicated bot accounts required.
+- **Canonical OTel Telemetry Contract** (`docs/otel-contract.md`): Single source of truth for all agent telemetry. OTel-first design — standard OTel/GenAI semantic conventions (`gen_ai.*`) take precedence; custom `agentic.*` and `governance.*` attributes used only where OTel has no equivalent. Includes: canonical span names (`agent.run`, `agent.subagent.invoke`, `tool.execute`, `quality.evaluate`, `git.operation`, `mission.transition`, `inference.chat`, `inference.generate`), resource attribute requirements, native vs derived event contract, privacy defaults (content capture off by default), canonical deprecation table for all legacy field names, semconv stability and migration policy, machine-readable YAML schema appendix. Closes #77, supersedes inline attribute lists in AGENTS.md, observability policy, and integration docs.
 - **Instrumented workflow example** (`examples/observability/agent-span-example.md`): Concrete end-to-end trace example covering agent run, inference, tool calls, git operations, quality evaluation, governance decision events, and error scenarios.
 
 ### Changed
-- **AGENTS.md Rule 9a** (version 3.1 → 3.2): Replaced inline attribute list with reference to `docs/OTEL-CONTRACT.md`. Updated span event and tool span naming to use canonical names.
-- **`org/4-quality/policies/observability.md`** (version 1.1 → 1.2): Replaced Agent Observability attribute list with reference to `docs/OTEL-CONTRACT.md`.
-- **`org/integrations/categories/observability.md`**: Replaced "Recommended OpenTelemetry semantic conventions" section with reference to `docs/OTEL-CONTRACT.md`; documents deprecated field names.
+- **AGENTS.md Rule 9a** (version 3.1 → 3.2): Replaced inline attribute list with reference to `docs/otel-contract.md`. Updated span event and tool span naming to use canonical names.
+- **`org/4-quality/policies/observability.md`** (version 1.1 → 1.2): Replaced Agent Observability attribute list with reference to `docs/otel-contract.md`.
+- **`org/integrations/categories/observability.md`**: Replaced "Recommended OpenTelemetry semantic conventions" section with reference to `docs/otel-contract.md`; documents deprecated field names.
 - **`org/agents/quality/observability-compliance-agent.md`**: Updated Instrumentation Presence check to reference canonical contract and flag deprecated attribute names.
 
 ---
@@ -132,7 +132,7 @@ _Automation scripts:_
 > Operational work artifacts (signals, missions, tasks, decisions, releases, retrospectives) can now be tracked in either Git files (the original model) or an issue tracker (GitHub Issues). The choice is made at instance configuration time via `CONFIG.yaml → work_backend`. This is a breaking conceptual change — the framework no longer assumes Git-only work tracking.
 
 _Core concept:_
-- `docs/WORK-BACKENDS.md` — new comprehensive guide: three file categories (governance backbone, persistent docs, configurable work artifacts), label taxonomy for issue backends, structural conventions, agent behavior differences, migration paths
+- `docs/work-backends.md` — new comprehensive guide: three file categories (governance backbone, persistent docs, configurable work artifacts), label taxonomy for issue backends, structural conventions, agent behavior differences, migration paths
 - `CONFIG.yaml` — new section 8 `work_backend` with `type` (`git-files` | `github-issues`), `github_issues` configuration, and per-artifact `overrides`; bumped `framework_version` from `2.3.0` to `3.0.0`
 
 _Agent rules updated:_
@@ -143,10 +143,10 @@ _Documentation updated:_
 - `OPERATING-MODEL.md` — softened "git is the only way" language; now describes Git as governance backbone with configurable work tracking; updated artifact flow, collaboration pattern, human interaction model, and mapping table; version bumped to 3.0
 - `work/README.md` — added dual-backend structure, issue backend artifact/label table
 - `CUSTOMIZATION-GUIDE.md` — new Step 4 "Choose Your Work Backend"; updated "What You Don't Need" section; updated initialization sequence for both backends; version bumped to 3.0
-- `docs/GITHUB-ISSUES.md` — new GitHub implementation guide with exact setup checklist, label bootstrap samples, issue form guidance, and explicit human approval transitions
-- `docs/WORK-BACKENDS.md` — clarified which companion artifacts remain in Git, added human approval cheat sheet, and linked the GitHub implementation guide; version bumped to 1.1
+- `docs/github-issues.md` — new GitHub implementation guide with exact setup checklist, label bootstrap samples, issue form guidance, and explicit human approval transitions
+- `docs/work-backends.md` — clarified which companion artifacts remain in Git, added human approval cheat sheet, and linked the GitHub implementation guide; version bumped to 1.1
 - `docs/github-issues/` — added GitHub issue-form and config samples for signal, mission, task, decision, release, and retrospective workflows; kept them out of the live `.github/ISSUE_TEMPLATE/` path so the template repo itself does not behave like an instance repo
-- `docs/mission-lifecycle.md`, `docs/REQUIRED-GITHUB-SETTINGS.md`, `docs/FILE-GUIDE.md` — corrected remaining git-only assumptions and made issue-backend human steps explicit
+- `docs/mission-lifecycle.md`, `docs/required-github-settings.md`, `docs/file-guide.md` — corrected remaining git-only assumptions and made issue-backend human steps explicit
 
 _Layer agent instructions updated:_
 - `org/0-steering/AGENT.md` — updated sensing loop input, signal references, and interaction diagram for dual backend; version bumped to 1.3
@@ -167,7 +167,7 @@ _Process loop files updated:_
 - `process/4-operate/GUIDE.md` — updated feedback loop diagram and signal filing references for dual backend
 
 _Archive policy updated:_
-- `docs/ARCHIVE-POLICY.md` — restructured for dual backend: git-files mechanics (archive/ subfolders, git mv) and issue backend mechanics (close issues with final status labels); updated agent integration section; version bumped to 1.1
+- `docs/archive-policy.md` — restructured for dual backend: git-files mechanics (archive/ subfolders, git mv) and issue backend mechanics (close issues with final status labels); updated agent integration section; version bumped to 1.1
 
 _Consistency fixes:_
 - Updated regressed `Last updated` and changelog dates in the dual-backend rollout files so the framework metadata matches the current change date and remains auditable
@@ -329,7 +329,7 @@ _Configuration:_
 **Blocking CI check for unfilled placeholders in non-template docs (fix/issue-25)**
 - `scripts/check_placeholders.py` — new script that detects unfilled placeholders (`{{VAR}}`, `[TODO]`, `[TBD]`, `T.B.D.`, `Coming Soon`, `__PLACEHOLDER__`, `<PLACEHOLDER>`, `<TODO>`, `_TO_BE_DEFINED_`) in non-template Markdown files; includes self-check mode (`--self-check`) for CI integrity verification
 - `.github/workflows/validate.yml` — `validate-placeholders` job upgraded from warning-only to **blocking** (exit 1 on violations); self-check step added for script integrity
-- `docs/PLACEHOLDER-CHECK.md` — full guidance on what is detected, what is excluded, per-file opt-out (`<!-- placeholder-ok -->`), and how to fix violations
+- `docs/placeholder-check.md` — full guidance on what is detected, what is excluded, per-file opt-out (`<!-- placeholder-ok -->`), and how to fix violations
 - `.github/PULL_REQUEST_TEMPLATE.md` — updated checklist to list all detected patterns and reference the blocking CI check
 - Framework files that ship with intentional `{{VAR}}` markers (AGENTS.md, COMPANY.md, policy files, process guides, etc.) annotated with `<!-- placeholder-ok -->` opt-out pragma
 
@@ -377,7 +377,7 @@ _PR #38 (2026-02-20) — Define work lock convention_
 - `.github/copilot-instructions.md` — added template vs. instance classification section and reference to `/deploy`
 
 **Docs reorganization and runtime-agnostic structure (2026-02-22)**
-- `docs/FILE-GUIDE.md` — moved from root `FILE-GUIDE.md`; all cross-references updated
+- `docs/file-guide.md` — moved from root `file-guide.md`; all cross-references updated
 - `docs/runtimes/openclaw.md` — moved from `docs/OPENCLAW-SETUP.md` into new `docs/runtimes/` directory for runtime-specific guides
 - `docs/runtimes/README.md` — new index for the runtimes directory
 - `docs/README.md` — new index for the docs directory
@@ -386,8 +386,8 @@ _PR #38 (2026-02-20) — Define work lock convention_
 - `CUSTOMIZATION-GUIDE.md` — added "Minimal Agent Fleet" section (3-agent starting point, self-sustaining loop, scaling guidance) and "Step 6 — Bootstrap Your Agents" section
 - `.claude/skills/deploy/SKILL.md` — updated `/deploy` skill to full PR workflow: branch → commit → push → PR → CI watch → merge → return to main (previously stopped after push)
 - `CODEOWNERS`, `CONTRIBUTING.md`, `OPERATING-MODEL.md`, `README.md`, `AGENTS.md` — updated all references from deleted/moved files to new paths
-- `docs/PLACEHOLDER-CHECK.md` — removed `AGENT-BOOTSTRAP-PROMPT.md` from exclude list
-- `docs/REQUIRED-GITHUB-SETTINGS.md` — added context notes for OSS template vs. company fork
+- `docs/placeholder-check.md` — removed `AGENT-BOOTSTRAP-PROMPT.md` from exclude list
+- `docs/required-github-settings.md` — added context notes for OSS template vs. company fork
 - `index.html` — added executive section styles and hero outcomes; minor hero-desc tweak
 - `scripts/check_placeholders.py` — removed `AGENT-BOOTSTRAP-PROMPT.md` from framework file exclusion list
 
@@ -425,7 +425,7 @@ _PR #38 (2026-02-20) — Define work lock convention_
 - `CONFIG.yaml` — Central configuration with `framework_version` field
 - `CHANGELOG.md` — This file; project-level version history (you are here)
 - `CODEOWNERS` — Git-native RACI for approval routing
-- `FILE-GUIDE.md` — Orientation guide for repo structure
+- `file-guide.md` — Orientation guide for repo structure
 
 **Organizational structure**
 - `org/0-steering/AGENT.md` — Steering Layer instructions (v1.0)

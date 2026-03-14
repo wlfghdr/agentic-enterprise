@@ -4,7 +4,7 @@
 
 All work artifacts follow the same lifecycle: **active → done → archived**.
 
-Archiving keeps active views clean and scannable while preserving full history. The mechanics depend on your configured work backend (see `CONFIG.yaml → work_backend` and [WORK-BACKENDS.md](WORK-BACKENDS.md)).
+Archiving keeps active views clean and scannable while preserving full history. The mechanics depend on your configured work backend (see `CONFIG.yaml → work_backend` and [work-backends.md](work-backends.md)).
 
 ---
 

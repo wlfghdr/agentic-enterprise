@@ -193,7 +193,7 @@ jobs:
         run: |
           python3 scripts/check_placeholders.py
           # Exit code 1 = violations found → CI fails (blocking check)
-          # See docs/PLACEHOLDER-CHECK.md for patterns detected and opt-out instructions.
+          # See docs/placeholder-check.md for patterns detected and opt-out instructions.
 
   validate-structure:
     name: validate-structure
@@ -500,7 +500,7 @@ jobs:
   # NOTE: Lock enforcement (validate-locks) is not active in the upstream
   # template repository — it is designed for company instances where
   # protected paths need concurrency control. To enable it in your instance,
-  # uncomment the job below. See docs/LOCK-ENFORCEMENT.md for details.
+  # uncomment the job below. See docs/lock-enforcement.md for details.
   #
   # validate-locks:
   #   name: validate-locks

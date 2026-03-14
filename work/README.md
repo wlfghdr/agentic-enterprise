@@ -1,7 +1,7 @@
 # Work — Active Work Tracking
 
 > **What this is:** The artifact definitions and templates for tracking operational work.
-> **Backend:** Where these artifacts live depends on `CONFIG.yaml → work_backend`. See [docs/WORK-BACKENDS.md](../docs/WORK-BACKENDS.md).
+> **Backend:** Where these artifacts live depends on `CONFIG.yaml → work_backend`. See [docs/work-backends.md](../docs/work-backends.md).
 > - **Git-files backend** (default): Artifacts are Markdown files in this folder. This is the only folder that changes frequently.
 > - **Issue backend** (e.g., GitHub Issues): Artifacts are tracked as issues with structured labels. This folder contains only templates (as schema definitions) and persistent documentation artifacts.
 
@@ -78,7 +78,7 @@ work/
 
 Git-only companion artifacts still apply in issue backend: signal digests, technical designs, evaluation reports, fleet reports, outcome reports, asset registry entries, governance exceptions, and locks.
 
-See [docs/WORK-BACKENDS.md](../docs/WORK-BACKENDS.md) for the full label taxonomy and [docs/GITHUB-ISSUES.md](../docs/GITHUB-ISSUES.md) for the GitHub setup guide.
+See [docs/work-backends.md](../docs/work-backends.md) for the full label taxonomy and [docs/github-issues.md](../docs/github-issues.md) for the GitHub setup guide.
 
 ## Naming Conventions
 

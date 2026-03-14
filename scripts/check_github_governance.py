@@ -78,7 +78,7 @@ def main() -> int:
         warn(
             f"Unable to confirm branch protection for '{default_branch}' (HTTP {status}). "
             "Ensure branch protection + require CODEOWNERS review + required status checks are enabled. "
-            "See docs/REQUIRED-GITHUB-SETTINGS.md"
+            "See docs/required-github-settings.md"
         )
         return 0
 

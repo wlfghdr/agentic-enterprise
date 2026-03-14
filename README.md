@@ -84,7 +84,7 @@ That distinction matters because this repository is intentionally **not** sellin
 | AI agents need governance, not just prompts | 5-layer organizational model with explicit boundaries, RACI via CODEOWNERS, and policy enforcement |
 | Legacy processes (tickets, wikis, standups, endless meetings) don't work for agent fleets | Git-native governance: PRs = decisions, branches = workflow states, CI/CD = quality gates |
 | No standard way to structure human + agent collaboration | Clear separation: humans steer and decide, agents execute and evaluate, Git is the system of record |
-| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 18 quality policy domains, 4 process loops |
+| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 19 quality policy domains, 4 process loops |
 | Agent instructions are scattered and inconsistent | Hierarchical `AGENT.md` files: global → layer → division, all version-controlled |
 | Enterprises run dozens of tools that agents need to use | Integration Registry with governed connections to observability, ITSM, CI/CD, business systems |
 
@@ -111,7 +111,7 @@ Every function in the company — engineering, marketing, sales, customer succes
 │  org/3-execution/  12 divisions across eng, GTM, customer       │
 ├─────────────────────────────────────────────────────────────────┤
 │  QUALITY           Agents evaluate, humans author policies      │
-│  org/4-quality/    18 policy domains, eval agent fleets         │
+│  org/4-quality/    19 policy domains, eval agent fleets         │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -174,7 +174,7 @@ That matters because an agentic enterprise does not earn trust through policy PD
 
 ## Quick Start
 
-> **Before you start:** [docs/FILE-GUIDE.md](docs/FILE-GUIDE.md) maps every file in this repo to one of three categories — OSS infrastructure (delete in a private fork), company operating model content (fill in and own), or agent bootstrap helpers. Read it to avoid editing files you should delete, or deleting files you should fill in.
+> **Before you start:** [docs/file-guide.md](docs/file-guide.md) maps every file in this repo to one of three categories — OSS infrastructure (delete in a private fork), company operating model content (fill in and own), or agent bootstrap helpers. Read it to avoid editing files you should delete, or deleting files you should fill in.
 
 ### 1. Fork & Clone
 
@@ -374,7 +374,7 @@ agentic-enterprise/
 ├── locks.yaml                       ← Protected path definitions for lock enforcement
 ├── docs/                            ← Operator guides and reference documentation
 │   ├── README.md                    ← docs/ index with template vs. company guide
-│   ├── FILE-GUIDE.md                ← What each file is and what to do in a fork
+│   ├── file-guide.md                ← What each file is and what to do in a fork
 │   ├── runtimes/                    ← Runtime-specific implementation guides
 │   │   ├── README.md               ← Runtime guide index
 │   │   └── openclaw.md             ← OpenClaw fleet setup guide
@@ -404,7 +404,7 @@ agentic-enterprise/
 │   │       ├── people/
 │   │       └── ... (+ domain placeholders)
 │   ├── 4-quality/                   ← Evaluate against policies
-│   │   └── policies/                ← 16 mandatory policy domains, including privacy, incident response, and availability
+│   │   └── policies/                ← 19 mandatory policy domains, including privacy, incident response, availability, and agent behavioral eval
 │   ├── agents/                      ← Agent Type Registry
 │   └── integrations/                ← Integration Registry (3rd-party tools)
 │       ├── categories/              ← Observability, toolchain, business, comms
@@ -496,7 +496,7 @@ See `org/integrations/categories/observability.md` for detailed patterns.
 
 ## Known Limitations & Roadmap
 
-> The original v1 roadmap (Issues #1–#10) has been **fully resolved** — mono-repo guidance, runtime integration patterns, quality policy calibration, governance wiring, MCP/skills support, multi-channel interaction, dashboards, cross-repo orchestration, instruction enforcement, and live integration patterns are all addressed. The framework is now structurally mature with 18 policy domains, but real-world deployment will always surface new gaps.
+> The original v1 roadmap (Issues #1–#10) has been **fully resolved** — mono-repo guidance, runtime integration patterns, quality policy calibration, governance wiring, MCP/skills support, multi-channel interaction, dashboards, cross-repo orchestration, instruction enforcement, and live integration patterns are all addressed. The framework is now structurally mature with 19 policy domains, but real-world deployment will always surface new gaps.
 
 **Active roadmap items:**
 
@@ -506,7 +506,7 @@ See `org/integrations/categories/observability.md` for detailed patterns.
 | **Vendor & third-party risk** | Vendor security assessment, supply chain risk management | [Issue #92](https://github.com/wlfghdr/agentic-enterprise/issues/92) |
 | **Data classification** | Public / Internal / Confidential / Secret scheme with handling rules | [Issue #93](https://github.com/wlfghdr/agentic-enterprise/issues/93) |
 | **Log retention & immutability** | Retention periods, tamper-evidence, compliance archival | [Issue #94](https://github.com/wlfghdr/agentic-enterprise/issues/94) |
-| **Agent behavioral eval** | Eval-driven development, behavioral quality policy | [Issue #74](https://github.com/wlfghdr/agentic-enterprise/issues/74) |
+| **Agent behavioral eval** | Eval-driven development, behavioral quality policy | [Issue #74](https://github.com/wlfghdr/agentic-enterprise/issues/74) — addressed in [`agent-eval.md`](org/4-quality/policies/agent-eval.md) |
 | **Policy cross-references** | Consistent external standard mapping across all policies | [Issue #104](https://github.com/wlfghdr/agentic-enterprise/issues/104) — addressed in [`docs/compliance/`](docs/compliance/) |
 | **Deterministic validation scripts** | CI/cron scripts for policy structure, agent instructions, OTel contract, compliance mapping, cross-references | [#111](https://github.com/wlfghdr/agentic-enterprise/issues/111)–[#117](https://github.com/wlfghdr/agentic-enterprise/issues/117) |
 

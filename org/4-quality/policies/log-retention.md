@@ -4,7 +4,7 @@
 > **Applies to:** All log data, telemetry, audit trails, and observability records produced by services, agents, pipelines, and infrastructure
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Operations leadership
-> **Version:** 1.0 | **Last updated:** 2026-03-14
+> **Version:** 1.0.1 | **Last updated:** 2026-03-14
 
 ---
 
@@ -183,7 +183,7 @@ ACTIVE (online, queryable, within online availability window)
 
 ## 7. Agent-Specific Log Retention
 
-Agents produce telemetry per AGENTS.md Rule 9a and the [OTEL-CONTRACT.md](../../../docs/OTEL-CONTRACT.md). Agent telemetry falls into the log categories as follows:
+Agents produce telemetry per AGENTS.md Rule 9a and the [otel-contract.md](../../../docs/otel-contract.md). Agent telemetry falls into the log categories as follows:
 
 | Agent Telemetry Type | Log Category | Retention Rationale |
 |---------------------|-------------|-------------------|

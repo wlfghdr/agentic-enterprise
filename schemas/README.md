@@ -20,7 +20,7 @@ python3 scripts/validate_schema.py
 
 ## Adding a New Schema
 
-See [docs/SCHEMA-GUIDE.md](../docs/SCHEMA-GUIDE.md) for the full contribution workflow.
+See [docs/schema-guide.md](../docs/schema-guide.md) for the full contribution workflow.
 
 ## Capability Contract Schemas (Issue #5)
 
@@ -32,4 +32,4 @@ Three new schemas support the skills/tools/MCP profiles system:
 | `mcp-profile.schema.json` | `org/mcp-profiles/*.mcp-profile.json` | MCP server permission matrices |
 | `capability-contract.schema.json` | `org/capability-contracts/*.contract.json` | Versioned capability contracts per agent type |
 
-See [docs/CAPABILITY-CONTRACTS.md](../docs/CAPABILITY-CONTRACTS.md) for the full design.
+See [docs/capability-contracts.md](../docs/capability-contracts.md) for the full design.

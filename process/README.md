@@ -105,7 +105,7 @@ Like Loops 1–3, the Operate loop **spans all 5 layers** — it is not confined
 
 ## Process Governance
 
-Git is the **governance backbone** — organizational structure, policies, agent instructions, and templates always live in Git and are governed via PRs. Operational work artifacts (signals, missions, decisions, releases) can be tracked in either Git files or an issue tracker, depending on your configured work backend (see `CONFIG.yaml → work_backend` and [../docs/WORK-BACKENDS.md](../docs/WORK-BACKENDS.md)).
+Git is the **governance backbone** — organizational structure, policies, agent instructions, and templates always live in Git and are governed via PRs. Operational work artifacts (signals, missions, decisions, releases) can be tracked in either Git files or an issue tracker, depending on your configured work backend (see `CONFIG.yaml → work_backend` and [../docs/work-backends.md](../docs/work-backends.md)).
 
 | Concept | Git-Files Backend | Issue Backend |
 |---------|-------------------|---------------|

@@ -35,7 +35,7 @@ Minimum required label families for a usable GitHub issue backend:
 - `loop:` labels for lifecycle stage
 - `priority:` labels for triage
 
-Use [docs/GITHUB-ISSUES.md](GITHUB-ISSUES.md) for the exact label set, human approval transitions, and setup checklist.
+Use [docs/github-issues.md](github-issues.md) for the exact label set, human approval transitions, and setup checklist.
 
 ---
 

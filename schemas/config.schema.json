@@ -125,7 +125,7 @@
     },
     "work_backend": {
       "type": "object",
-      "description": "Where operational work artifacts are tracked. See docs/WORK-BACKENDS.md.",
+      "description": "Where operational work artifacts are tracked. See docs/work-backends.md.",
       "additionalProperties": true,
       "properties": {
         "type": {

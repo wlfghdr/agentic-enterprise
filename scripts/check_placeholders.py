@@ -96,7 +96,7 @@ FRAMEWORK_FILES: frozenset[str] = frozenset(
         "AGENTS.md",
         "CLAUDE.md",          # symlink → AGENTS.md
         "COMPANY.md",
-        "docs/FILE-GUIDE.md",
+        "docs/file-guide.md",
         "README.md",
         # Org layer instructions (ship with {{COMPANY_SHORT}} etc.)
         "org/README.md",
@@ -265,7 +265,7 @@ def run_check(repo_root: Path) -> int:
     print("     anywhere in the file.")
     print()
     print("Template files (*_TEMPLATE-*.md and files inside _TEMPLATE/ dirs) are")
-    print("automatically excluded. See docs/PLACEHOLDER-CHECK.md for full guidance.")
+    print("automatically excluded. See docs/placeholder-check.md for full guidance.")
     print()
     return 1
 

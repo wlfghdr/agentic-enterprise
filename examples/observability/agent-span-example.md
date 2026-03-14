@@ -1,10 +1,10 @@
 # Agent Span Example: Well-Instrumented Workflow
 
 > **Version:** 1.0 | **Last updated:** 2026-03-09
-> **Contract reference:** [`docs/OTEL-CONTRACT.md`](../../docs/OTEL-CONTRACT.md)
+> **Contract reference:** [`docs/otel-contract.md`](../../docs/otel-contract.md)
 > **Purpose:** Concrete end-to-end example of a compliant agent trace from mission start through quality evaluation.
 
-This example shows a complete, compliant trace for a single execution-layer agent run: the agent receives a task, calls an LLM twice (with a tool call in the middle), emits a governance decision, and is evaluated by the quality layer. All attribute names conform to `docs/OTEL-CONTRACT.md`.
+This example shows a complete, compliant trace for a single execution-layer agent run: the agent receives a task, calls an LLM twice (with a tool call in the middle), emits a governance decision, and is evaluated by the quality layer. All attribute names conform to `docs/otel-contract.md`.
 
 ---
 
@@ -199,7 +199,7 @@ If existing instrumentation emits the legacy `agent.name` field, migrate as foll
 + span.set_attribute("gen_ai.usage.output_tokens", 312)              # OTel GenAI standard
 ```
 
-See the full deprecation table in [`docs/OTEL-CONTRACT.md` Section 9](../../docs/OTEL-CONTRACT.md#9-canonical-mapping-and-deprecation-table).
+See the full deprecation table in [`docs/otel-contract.md` Section 9](../../docs/otel-contract.md#9-canonical-mapping-and-deprecation-table).
 
 ---
 

@@ -69,7 +69,7 @@ The Git repository is the system of record for all decisions in this operating m
 | Tag / release created | `release.tagged` | `git.repo`, `git.branch` or release/tag metadata |
 | Branch created | `governance.branch.created` | `git.branch`, `git.repo`, `agentic.mission.id` (if derivable) |
 
-> **Contract rule:** Git lifecycle records shown in dashboards are derived events. Agents emit spans and native span events; the observability platform derives Git-facing UI events from webhook data and `git.operation` spans. See [`docs/OTEL-CONTRACT.md`](../../../docs/OTEL-CONTRACT.md) Section 6.
+> **Contract rule:** Git lifecycle records shown in dashboards are derived events. Agents emit spans and native span events; the observability platform derives Git-facing UI events from webhook data and `git.operation` spans. See [`docs/otel-contract.md`](../../../docs/otel-contract.md) Section 6.
 
 **What this unlocks:**
 - **Cycle time observability** — from first commit on a signal branch to PR merged = end-to-end mission latency, fully measurable
@@ -125,7 +125,7 @@ Agent Runtime (instrumented with OTel SDK)
                                       └── Automated signals → work/signals/
 ```
 
-**Canonical semantic conventions for agents are defined in [`docs/OTEL-CONTRACT.md`](../../../docs/OTEL-CONTRACT.md)** — the single source of truth for all attribute names, span names, resource attributes, privacy defaults, and derived-event correlation rules. Key custom agentic-enterprise attributes (in addition to standard OTel/GenAI fields) include:
+**Canonical semantic conventions for agents are defined in [`docs/otel-contract.md`](../../../docs/otel-contract.md)** — the single source of truth for all attribute names, span names, resource attributes, privacy defaults, and derived-event correlation rules. Key custom agentic-enterprise attributes (in addition to standard OTel/GenAI fields) include:
 - `agentic.layer` — `steering` / `strategy` / `orchestration` / `execution` / `quality`
 - `agentic.division` — which execution division
 - `agentic.mission.id` — active mission identifier
@@ -135,7 +135,7 @@ Agent Runtime (instrumented with OTel SDK)
 
 For UI consumers such as command-center dashboards, use platform-exposed trace context identifiers `trace.id`, `span.id`, and `parent.span.id` on derived records when correlating an activity item to a distributed trace waterfall. Do not invent parallel custom fields such as `trace_id` or `span_id` in new instrumentation unless a downstream ingest pipeline cannot preserve dotted names.
 
-> **Deprecated names:** `agent.type`, `agent.layer`, `agent.division`, `mission.id`, `loop`, `pr.number` are replaced by the canonical names above. See the deprecation table in `docs/OTEL-CONTRACT.md` Section 9.
+> **Deprecated names:** `agent.type`, `agent.layer`, `agent.division`, `mission.id`, `loop`, `pr.number` are replaced by the canonical names above. See the deprecation table in `docs/otel-contract.md` Section 9.
 
 ### Pattern 2: Platform-Native Integration
 

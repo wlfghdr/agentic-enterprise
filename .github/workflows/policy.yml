@@ -1,7 +1,7 @@
 name: Policy Checks (OPA/Conftest)
 
 # Enforces Policy-as-Code rules via Conftest + OPA/Rego.
-# Policies live in policy/ — see docs/POLICY-AS-CODE.md for details.
+# Policies live in policy/ — see docs/policy-as-code.md for details.
 #
 # Current checks (blocking):
 #   - workflows/permissions: all workflows must declare top-level `permissions`

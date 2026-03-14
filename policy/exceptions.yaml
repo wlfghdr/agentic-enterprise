@@ -10,7 +10,7 @@
 #     allow_unpinned_actions:
 #       - "owner/repo@ref"  # reason: ..., approved: YYYY-MM-DD, expires: YYYY-MM-DD
 #
-# See docs/POLICY-AS-CODE.md for the full exception process.
+# See docs/policy-as-code.md for the full exception process.
 # ─────────────────────────────────────────────────────────────────────────────
 
 workflows:

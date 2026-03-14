@@ -43,7 +43,7 @@ policy/
   exceptions.yaml         # Approved waivers / allowlist
 
 conftest.toml             # Conftest configuration (points at policy/)
-docs/POLICY-AS-CODE.md    # This file
+docs/policy-as-code.md    # This file
 .github/workflows/
   policy.yml              # CI job that runs conftest
 ```

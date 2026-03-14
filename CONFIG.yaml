@@ -201,7 +201,7 @@ toolchain:
 #   "git-files"      — All work artifacts are Markdown files in work/ (original model)
 #   "github-issues"  — Work artifacts are tracked as GitHub Issues with structured labels
 #
-# See docs/WORK-BACKENDS.md for the full guide, label taxonomy, and migration paths.
+# See docs/work-backends.md for the full guide, label taxonomy, and migration paths.
 #
 # NOTE: Governance backbone files (org/, policies, AGENT.md, templates) ALWAYS
 # stay in Git regardless of this setting. Only operational work artifacts

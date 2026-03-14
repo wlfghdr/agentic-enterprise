@@ -1,5 +1,5 @@
 # locks.yaml — Protected paths requiring a lock before modification
-# See docs/LOCK-ENFORCEMENT.md for details.
+# See docs/lock-enforcement.md for details.
 #
 # Each entry defines a glob pattern. Any PR that modifies files matching
 # a protected pattern must have a corresponding lock file in work/locks/

@@ -3,7 +3,7 @@
 > **Applies to:** All organizational data assets, storage systems, processing pipelines, agent workflows, integrations, and outputs
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.0 | **Last updated:** 2026-03-14
+> **Version:** 1.0.1 | **Last updated:** 2026-03-14
 
 ---
 
@@ -68,7 +68,7 @@ Each classification level maps to specific handling controls. These requirements
 
 - [ ] **PUBLIC / INTERNAL:** May appear in logs and telemetry without redaction
 - [ ] **CONFIDENTIAL:** Must be redacted or masked in logs, telemetry, and error messages. Access events must be logged. See `observability.md` and `security.md` sanitization requirements.
-- [ ] **RESTRICTED:** Must never appear in logs, telemetry, traces, or error messages. All access logged with actor identity, timestamp, and justification. See `docs/OTEL-CONTRACT.md` Section 8 for privacy defaults.
+- [ ] **RESTRICTED:** Must never appear in logs, telemetry, traces, or error messages. All access logged with actor identity, timestamp, and justification. See `docs/otel-contract.md` Section 8 for privacy defaults.
 
 ---
 
@@ -93,7 +93,7 @@ Organizations processing personal data must maintain a PII inventory. The invent
 
 - [ ] Agent workflows that process, generate, or transmit data document the classification level of their inputs and outputs
 - [ ] Agents must not write CONFIDENTIAL or RESTRICTED data to PUBLIC or INTERNAL destinations (e.g., public logs, unencrypted storage, unscoped telemetry)
-- [ ] Agent tool calls that access RESTRICTED data produce a `tool.execute` span with `data.classification: restricted` attribute (see `docs/OTEL-CONTRACT.md`)
+- [ ] Agent tool calls that access RESTRICTED data produce a `tool.execute` span with `data.classification: restricted` attribute (see `docs/otel-contract.md`)
 
 ---
 

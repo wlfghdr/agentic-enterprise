@@ -4,7 +4,7 @@
 > **Applies to:** All AI/ML models, agent types, LLM-powered workflows, automated decision systems, and AI-generated outputs
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.0 | **Last updated:** 2026-03-14
+> **Version:** 1.0.1 | **Last updated:** 2026-03-14
 
 ---
 
@@ -151,7 +151,7 @@ AI systems that influence decisions affecting individuals, finances, or organiza
 
 ### 5.2 Mandatory Requirements
 
-- [ ] All AI systems meet the **Traceable** level — inputs, model version, and outputs logged per `docs/OTEL-CONTRACT.md`
+- [ ] All AI systems meet the **Traceable** level — inputs, model version, and outputs logged per `docs/otel-contract.md`
 - [ ] Tier 1 and Tier 2 systems meet the **Justifiable** level — outputs include or can produce a human-readable rationale
 - [ ] Tier 1 systems meet the **Auditable** level — full decision chain reconstructable from observability data and work artifacts
 - [ ] High-impact automated decisions (per [risk-management.md](risk-management.md) §6.1 autonomy tiers) include a `governance.decision` span event with `governance.reason` attribute documenting the rationale
@@ -172,7 +172,7 @@ AI compute costs must be attributable, budgeted, and monitored. Uncontrolled tok
 
 ### 6.1 Mandatory Requirements
 
-- [ ] Token usage is tracked per inference call via `gen_ai.usage.input_tokens` and `gen_ai.usage.output_tokens` attributes on `inference.*` spans (per `docs/OTEL-CONTRACT.md`)
+- [ ] Token usage is tracked per inference call via `gen_ai.usage.input_tokens` and `gen_ai.usage.output_tokens` attributes on `inference.*` spans (per `docs/otel-contract.md`)
 - [ ] Token costs are attributable to specific missions, agent types, and divisions (per [observability.md](observability.md) agent fleet dashboard requirements)
 - [ ] Each mission type has a token budget ceiling defined in the mission brief or fleet configuration — exceeding the ceiling triggers escalation, not automatic halt (unless `{{RISK_KILL_SWITCH_TARGET_SECONDS}}` applies)
 - [ ] Agent types document their expected token consumption range in the Model Governance section of their agent type definition

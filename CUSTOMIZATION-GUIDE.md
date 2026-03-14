@@ -5,7 +5,7 @@
 > **Start here** after cloning this framework.
 > This guide walks you through every step of making this operating model your own.
 
-> **New to the repo layout?** Read [docs/FILE-GUIDE.md](docs/FILE-GUIDE.md) first — it explains which root files are part of the open-source template infrastructure (safe to delete in a private fork) and which are your company's actual operating model content (fill in and own).
+> **New to the repo layout?** Read [docs/file-guide.md](docs/file-guide.md) first — it explains which root files are part of the open-source template infrastructure (safe to delete in a private fork) and which are your company's actual operating model content (fill in and own).
 
 ---
 
@@ -54,7 +54,7 @@ Decide where operational work artifacts (signals, missions, tasks, decisions) wi
 | **Git files** (default) | Self-contained, no external dependencies, maximum auditability | `work_backend.type: "git-files"` |
 | **GitHub Issues** | Better human collaboration, native boards, labels, notifications, mobile access | `work_backend.type: "github-issues"` |
 
-If using GitHub, **GitHub Issues is recommended** — it's always available and provides dramatically better visibility for humans. See [docs/WORK-BACKENDS.md](docs/WORK-BACKENDS.md) for the full guide including label taxonomy.
+If using GitHub, **GitHub Issues is recommended** — it's always available and provides dramatically better visibility for humans. See [docs/work-backends.md](docs/work-backends.md) for the full guide including label taxonomy.
 
 > **Note:** Governance backbone files (org structure, policies, agent instructions, templates) always stay in Git regardless of this choice.
 
@@ -303,7 +303,7 @@ Each division folder should contain a `DIVISION.md` that defines:
 
 **Location:** `org/4-quality/policies/`
 
-The framework ships with 18 quality policies. Customize each:
+The framework ships with 19 quality policies. Customize each:
 
 | Policy | What to Customize |
 |--------|------------------|

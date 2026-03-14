@@ -32,7 +32,7 @@ This directory contains one reference document per external standard or regulati
 
 ## How Observability Closes the Evidence Gap
 
-A recurring theme across all standards: **governance documents alone are insufficient — auditors need runtime evidence.** The framework's observability architecture (see [OTEL-CONTRACT.md](../OTEL-CONTRACT.md) and [observability policy](../../org/4-quality/policies/observability.md)) is designed to produce this evidence:
+A recurring theme across all standards: **governance documents alone are insufficient — auditors need runtime evidence.** The framework's observability architecture (see [otel-contract.md](../otel-contract.md) and [observability policy](../../org/4-quality/policies/observability.md)) is designed to produce this evidence:
 
 - **Audit trails** — Every agent action produces an OpenTelemetry span with governance decision events
 - **Access logs** — Tool calls, data access, and authentication events are traced
@@ -44,7 +44,7 @@ Without a configured observability platform, the framework's compliance claims r
 
 ## Related Resources
 
-- [Quality Policies](../../org/4-quality/policies/) — The 18 policy domains that implement these controls
-- [OTEL-CONTRACT.md](../OTEL-CONTRACT.md) — Canonical telemetry contract for agent spans and events
+- [Quality Policies](../../org/4-quality/policies/) — The 19 policy domains that implement these controls
+- [otel-contract.md](../otel-contract.md) — Canonical telemetry contract for agent spans and events
 - [Risk Management Policy](../../org/4-quality/policies/risk-management.md) — Framework crosswalk to all standards
 - [CONFIG.yaml](../../CONFIG.yaml) — Central configuration including observability integration

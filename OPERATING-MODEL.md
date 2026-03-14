@@ -23,7 +23,7 @@ A fully working operating model for running {{COMPANY_SHORT}} as an agentic ente
 
 - **5 layers** — Steering → Strategy → Orchestration → Execution → Quality — covering the entire company (eng, delivery, GTM, sales, CS, support), not just R&D
 - **4 loops** — Discover → Build → Ship → Operate — replacing legacy phase-gate processes. Idea-to-GA in 2–4 weeks. Continuous production operations feed signals back into Discover.
-- **Git is the governance backbone** — Org structure, policies, agent instructions, and templates are always Git-native. Work tracking (signals, missions, tasks) adapts to your preferred system — Git files or issue trackers. See [docs/WORK-BACKENDS.md](docs/WORK-BACKENDS.md).
+- **Git is the governance backbone** — Org structure, policies, agent instructions, and templates are always Git-native. Work tracking (signals, missions, tasks) adapts to your preferred system — Git files or issue trackers. See [docs/work-backends.md](docs/work-backends.md).
 - **Integration-ready** — Observability platforms, ITSM, CI/CD, business systems, and communication channels plug in through a governed Integration Registry (`org/integrations/`). The model works with your existing tools, not against them.
 - **Self-evolving** — Every agent surfaces improvement signals → Steering Layer aggregates → proposes org/process changes as PRs → execs approve by merging. Continuous organizational metabolism, not annual reorgs
 
@@ -184,7 +184,7 @@ Every arrow in this diagram is a **governed operation** — a Git commit, PR, is
 
 ## Artifact Flow: The Complete Chain
 
-Every handoff between layers and loops is mediated by a concrete artifact. No implicit handoffs. Artifacts are tracked in the configured work backend (see `CONFIG.yaml → work_backend` and [docs/WORK-BACKENDS.md](docs/WORK-BACKENDS.md)).
+Every handoff between layers and loops is mediated by a concrete artifact. No implicit handoffs. Artifacts are tracked in the configured work backend (see `CONFIG.yaml → work_backend` and [docs/work-backends.md](docs/work-backends.md)).
 
 **Git-files backend:** Artifacts are Markdown files in `work/` as shown below.
 **Issue backend:** Artifacts are issues with `artifact:*` labels. The same logical flow applies — just the medium changes.

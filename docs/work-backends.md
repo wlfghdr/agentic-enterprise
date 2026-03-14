@@ -5,7 +5,7 @@
 > **What this document is:** A comprehensive guide to how work artifacts can be tracked using different backends — either as Markdown files in Git (the original model) or as issues in an issue tracker (GitHub Issues, Jira, Linear, etc.).
 
 > **Use this document for:** choosing a backend, configuring `CONFIG.yaml`, understanding which artifacts stay in Git, and comparing backend behavior.
-> **Do not use this document for:** step-by-step GitHub issue operations. For that, use [GITHUB-ISSUES.md](GITHUB-ISSUES.md).
+> **Do not use this document for:** step-by-step GitHub issue operations. For that, use [github-issues.md](github-issues.md).
 
 ---
 
@@ -138,7 +138,7 @@ Terminal states use GitHub's native close mechanism:
 - **Completed** → close issue (reason: `completed`)
 - **Cancelled** → close issue (reason: `not planned`)
 
-See [GITHUB-ISSUES.md](GITHUB-ISSUES.md) for the full status model and setup instructions.
+See [github-issues.md](github-issues.md) for the full status model and setup instructions.
 
 **Status label rule:** Do not use `status:*` labels. Use the Project Status field exclusively.
 
@@ -222,7 +222,7 @@ Created dynamically based on configured divisions in `CONFIG.yaml`. Examples:
 
 ## Issue Backend: Structural Conventions
 
-For an operational GitHub implementation, including issue forms, human approval steps, and label bootstrap samples, see [docs/GITHUB-ISSUES.md](GITHUB-ISSUES.md).
+For an operational GitHub implementation, including issue forms, human approval steps, and label bootstrap samples, see [docs/github-issues.md](github-issues.md).
 
 ### Missions as Issue Hierarchies
 
@@ -450,7 +450,7 @@ Templates are **never** tracked in the issue system. They are framework files, g
 
 | Version | Date | Change |
 |---------|------|--------|
-| 1.4 | 2026-03-09 | Consolidated backend configuration here and removed the duplicate `WORK-BACKEND.md` doc. Clarified this file's scope vs. `GITHUB-ISSUES.md`. |
+| 1.4 | 2026-03-09 | Consolidated backend configuration here and removed the duplicate `WORK-BACKEND.md` doc. Clarified this file's scope vs. `github-issues.md`. |
 | 1.2 | 2026-03-08 | Added assignment discipline section covering issues, PRs, and reviews — mandatory assignees, handoff protocols for both issues and PRs, next-action clarity, unassigned item sweep, agent identity. Human approval via comment+re-assign (agents handle labels). |
 | 1.1 | 2026-03-07 | Clarified Git-only companion artifacts, added human approval cheat sheet, removed issue-only claims for digests/evaluations/outcome reports/fleet reports, linked GitHub implementation guide |
 | 1.0 | 2026-03-07 | Initial version — introduced work backend abstraction concept |
