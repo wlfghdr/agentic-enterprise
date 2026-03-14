@@ -106,6 +106,11 @@ Per-standard compliance reference documents with article-level mappings, observa
 | [`compliance/iso-42001.md`](compliance/iso-42001.md) | ISO/IEC 42001:2023 — AI Management Systems |
 | [`compliance/nist-ai-rmf.md`](compliance/nist-ai-rmf.md) | NIST AI RMF — AI Risk Management Framework |
 | [`compliance/eu-ai-act.md`](compliance/eu-ai-act.md) | EU AI Act — European AI Regulation |
+| [`compliance/nist-csf.md`](compliance/nist-csf.md) | NIST CSF 2.0 — Cybersecurity Framework |
+| [`compliance/iso-9001.md`](compliance/iso-9001.md) | ISO 9001:2015 — Quality Management Systems |
+| [`compliance/iso-22301.md`](compliance/iso-22301.md) | ISO 22301:2019 — Business Continuity Management |
+| [`compliance/ccpa-cpra.md`](compliance/ccpa-cpra.md) | CCPA/CPRA — California Consumer Privacy |
+| [`compliance/hipaa.md`](compliance/hipaa.md) | HIPAA — US Health Information Privacy & Security |
 
 ---
 
