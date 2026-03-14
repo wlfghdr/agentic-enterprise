@@ -23,6 +23,7 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 
+- New quality policy: `org/4-quality/policies/ai-governance.md` — AI governance & responsible AI covering 4-tier risk classification (Prohibited / High-Risk / Limited-Risk / Minimal-Risk aligned to EU AI Act), model card requirements (scaled by risk tier), fairness audit process (demographic parity, equalized odds, error rate parity), adversarial robustness testing (beyond prompt injection), explainability levels (Traceable / Justifiable / Auditable), token usage accountability (budget enforcement, cost attribution), and compliance mapping (ISO 42001 / EU AI Act / NIST AI RMF). Closes #91.
 - New quality policy: `org/4-quality/policies/data-classification.md` — 4-level data classification scheme (PUBLIC / INTERNAL / CONFIDENTIAL / RESTRICTED) with handling requirements matrix (encryption, access control, retention, deletion, audit logging per level), PII inventory requirements, asset registry integration, agent workflow classification rules, cross-policy alignment (security, privacy, cryptography, observability, risk management, content), and compliance mapping (ISO 27001 A.8 / SOC 2 C1 / GDPR Art. 5, 9, 30 / NIST SP 800-53, 800-60). Closes #93.
 - New template: `work/assets/_TEMPLATE-pii-inventory.md` — PII inventory entry template for tracking personal data categories, classification, processing purposes, storage locations, access controls, and compliance cross-references (DPIA, DPA, asset registry).
 - New quality policy: `org/4-quality/policies/agent-security.md` — covers prompt injection mitigations, tool abuse prevention, insecure output handling, and security testing requirements. Maps to OWASP LLM Top 10. Closes #69.
@@ -34,6 +35,10 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Changed
 
+- Updated `org/agents/_TEMPLATE-agent-type.md` (v1.0 → v1.1) — added Model Governance section with AI risk tier, model identity, intended use & scope, known limitations, training data & context, fairness considerations, and token budget fields.
+- Updated `org/4-quality/AGENT.md` (v1.10 → v1.11) — added AI governance & responsible AI to quality dimensions.
+- Updated `CUSTOMIZATION-GUIDE.md` (v3.3 → v3.4) with AI governance policy customization guidance and AI governance note.
+- Updated `README.md` and `index.html` to reflect 16 quality policy domains (was 15).
 - Updated `org/4-quality/policies/security.md` (v1.0 → v1.1) — Data Protection section now references data-classification.md for classification taxonomy and handling requirements; evaluation criterion updated.
 - Updated `work/assets/_TEMPLATE-asset-registry-entry.md` (v1.0 → v1.1) — added Classification section with Data Classification, Contains PII, and Handling notes fields.
 - Updated `CUSTOMIZATION-GUIDE.md` (v3.2 → v3.3) with data classification policy customization guidance and data classification note.

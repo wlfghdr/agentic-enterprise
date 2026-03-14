@@ -1,6 +1,6 @@
 # Agent Type Definition: [Agent Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
+> **Template version:** 1.1 | **Last updated:** 2026-03-14
 > **Governed registry entry for a single agent type.**  
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -103,10 +103,40 @@ _(why the enterprise needs this agent type)_
 | **Scaling trigger** | _(e.g., "mission-assignment", "signal-volume > 50/day")_ |
 | **Cost class** | _(light / medium / heavy)_ |
 
+## Model Governance
+
+> Required for all agent types that use LLM or ML models. Depth scales with risk tier per [ai-governance.md](../../4-quality/policies/ai-governance.md).
+
+| Field | Value |
+|-------|-------|
+| **AI Risk Tier** | _(0: Prohibited / 1: High-Risk / 2: Limited-Risk / 3: Minimal-Risk — per ai-governance.md §1)_ |
+| **Model(s) used** | _(e.g., "claude-sonnet-4-6", "gpt-4o" — list all models this agent may use)_ |
+| **Model selection rationale** | _(why this model was chosen over alternatives — capability, cost, safety, licensing)_ |
+| **Autonomy tier** | _(1: Human-directed / 2: Supervised / 3: Semi-autonomous / 4: Full autonomy — per risk-management.md §6.1)_ |
+
+### Intended Use & Scope
+_(What this agent is designed to do and what it must NOT be used for. Include scope boundaries.)_
+
+### Known Limitations & Failure Modes
+_(Document known weaknesses, hallucination patterns, edge cases, and situations where the agent should escalate rather than act.)_
+
+### Training Data & Context
+_(For Tier 1–2: describe training data sources, fine-tuning data, or context documents. For Tier 3: "Standard LLM — no custom training data" is acceptable.)_
+
+### Fairness Considerations
+_(For Tier 1: document fairness evaluation results, metrics used, and demographic dimensions tested. For Tier 2: document fairness review. For Tier 3: "N/A — minimal-risk internal tooling" is acceptable.)_
+
+### Token Budget
+| Parameter | Value |
+|-----------|-------|
+| **Expected tokens per task** | _(e.g., "5K–20K input, 2K–8K output")_ |
+| **Mission budget ceiling** | _(e.g., "500K tokens per mission" — or "per fleet config")_ |
+| **Cost class** | _(light / medium / heavy)_ |
+
 ## Quality
 
 ### Applicable Policies
-- _(e.g., "security", "architecture")_
+- _(e.g., "security", "architecture", "ai-governance")_
 
 ### Evaluation Frequency
 _(e.g., "per-PR", "weekly")_
@@ -114,15 +144,11 @@ _(e.g., "per-PR", "weekly")_
 ### Performance Metrics
 - _(e.g., "pr-acceptance-rate", "eval-accuracy")_
 
-## Changelog
-
-| Date | Change | Author |
-|------|--------|--------|
-| YYYY-MM-DD | | |
 ---
 
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-03-14 | Added Model Governance section with AI risk tier, model identity, intended use, limitations, fairness considerations, and token budget per ai-governance.md policy (#91) |
 | 1.0 | 2026-02-19 | Initial version |

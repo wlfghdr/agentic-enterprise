@@ -1,6 +1,6 @@
 # Customization Guide — Agentic Enterprise Operating Model
 
-> **Version:** 3.3 | **Last updated:** 2026-03-14
+> **Version:** 3.4 | **Last updated:** 2026-03-14
 
 > **Start here** after cloning this framework.
 > This guide walks you through every step of making this operating model your own.
@@ -303,12 +303,13 @@ Each division folder should contain a `DIVISION.md` that defines:
 
 **Location:** `org/4-quality/policies/`
 
-The framework ships with 15 quality policies. Customize each:
+The framework ships with 16 quality policies. Customize each:
 
 | Policy | What to Customize |
 |--------|------------------|
 | [security.md](org/4-quality/policies/security.md) | Your specific security requirements, compliance frameworks (SOC2, HIPAA, etc.) |
 | [agent-security.md](org/4-quality/policies/agent-security.md) | Your agent-specific security posture (prompt injection mitigations, tool abuse prevention, OWASP LLM Top 10 coverage) |
+| [ai-governance.md](org/4-quality/policies/ai-governance.md) | Your AI risk tier assignments per agent type, fairness metrics and thresholds, model allowed list, token budget ceilings, adversarial test suites, explainability implementation, EU AI Act applicability assessment |
 | [risk-management.md](org/4-quality/policies/risk-management.md) | Your risk appetite thresholds (via `CONFIG.yaml → risk_appetite`), agent autonomy tier assignments, risk taxonomy applicability, regulatory crosswalk for your target certifications |
 | [cryptography.md](org/4-quality/policies/cryptography.md) | Your approved algorithms, key rotation schedules (via `CONFIG.yaml → encryption`), certificate lifetimes, KMS integration, post-quantum migration timeline |
 | [privacy.md](org/4-quality/policies/privacy.md) | Your controller/processor model, lawful bases, DPA terms, DSAR channels, breach-notification contacts, transfer mechanisms |
@@ -330,6 +331,8 @@ The framework ships with 15 quality policies. Customize each:
 > **Encryption note:** The cryptography policy references key rotation schedules and certificate lifetimes from `CONFIG.yaml → encryption`. Fill in these values during Step 1 — defaults are conservative (90-day symmetric key rotation, 90-day cert lifetime). Adjust based on your compliance requirements (PCI DSS, HIPAA, FedRAMP) and operational maturity. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{CRYPTO_*}}` variables.
 
 > **Data classification note:** The data classification policy defines a 4-level scheme (PUBLIC / INTERNAL / CONFIDENTIAL / RESTRICTED) with handling requirements per level. Adopters should: (1) review whether the four levels fit their industry — add sub-labels if needed (e.g., `CONFIDENTIAL-FINANCIAL`, `RESTRICTED-HEALTH`) but do not remove levels; (2) create a PII inventory using `work/assets/_TEMPLATE-pii-inventory.md` for each personal data category they process; (3) map their existing data stores to classification levels; (4) align retention schedules with legal/regulatory requirements per classification level.
+
+> **AI governance note:** The AI governance policy defines a 4-tier risk classification (Prohibited / High-Risk / Limited-Risk / Minimal-Risk) aligned with EU AI Act risk tiers. Adopters should: (1) classify each agent type by risk tier based on its impact and autonomy; (2) fill in the Model Governance section in each agent type definition (added to `org/agents/_TEMPLATE-agent-type.md`); (3) define fairness metrics and thresholds appropriate to their industry (the policy provides common metrics; adopters select which apply); (4) set token budget ceilings per mission type and agent type; (5) define their model allowed list (which LLMs are approved for which risk tiers). EU AI Act enforcement begins August 2026 — adopters in EU-regulated industries should prioritize Tier 1 (High-Risk) compliance.
 
 ---
 
