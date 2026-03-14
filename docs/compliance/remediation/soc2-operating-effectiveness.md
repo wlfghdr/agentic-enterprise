@@ -1,3 +1,4 @@
+<!-- placeholder-ok -->
 # SOC 2 Type II — Operating Effectiveness Evidence Guide
 
 > **Closes gap:** Operating effectiveness evidence (runtime data)

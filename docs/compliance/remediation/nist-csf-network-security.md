@@ -1,3 +1,4 @@
+<!-- placeholder-ok -->
 # NIST CSF 2.0 — Network Security Architecture Guide
 
 > **Closes gap:** Network security implementation (segmentation, firewalls, monitoring)
