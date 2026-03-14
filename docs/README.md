@@ -93,6 +93,22 @@ Reference documentation for the CI/automation gates that ship with the template.
 
 ---
 
+## Compliance Reference Docs
+
+Per-standard compliance reference documents with article-level mappings, observability evidence sources, and external references.
+
+| Guide | Standard |
+|---|---|
+| [`compliance/README.md`](compliance/README.md) | Index and overview of all compliance references |
+| [`compliance/iso-27001.md`](compliance/iso-27001.md) | ISO/IEC 27001:2022 — Information Security Management |
+| [`compliance/soc2.md`](compliance/soc2.md) | SOC 2 Type II — Trust Service Criteria |
+| [`compliance/gdpr.md`](compliance/gdpr.md) | GDPR — EU Data Protection Regulation |
+| [`compliance/iso-42001.md`](compliance/iso-42001.md) | ISO/IEC 42001:2023 — AI Management Systems |
+| [`compliance/nist-ai-rmf.md`](compliance/nist-ai-rmf.md) | NIST AI RMF — AI Risk Management Framework |
+| [`compliance/eu-ai-act.md`](compliance/eu-ai-act.md) | EU AI Act — European AI Regulation |
+
+---
+
 ## Consistency Rules
 
 The docs folder now follows a simple split:
