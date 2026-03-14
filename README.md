@@ -7,12 +7,12 @@
     <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
   </a>
   <br>
-  <img src="https://img.shields.io/badge/ISO_27001-~90%25_covered-0e8a16" alt="ISO 27001">
-  <img src="https://img.shields.io/badge/SOC_2-~95%25_covered-1d76db" alt="SOC 2">
+  <img src="https://img.shields.io/badge/ISO_27001-~85%25_covered-0e8a16" alt="ISO 27001">
+  <img src="https://img.shields.io/badge/SOC_2-~85%25_covered-1d76db" alt="SOC 2">
   <img src="https://img.shields.io/badge/GDPR-~75%25_covered-d93f0b" alt="GDPR">
-  <img src="https://img.shields.io/badge/ISO_42001-~90%25_covered-5319e7" alt="ISO 42001">
-  <img src="https://img.shields.io/badge/NIST_AI_RMF-~95%25_covered-fbca04" alt="NIST AI RMF">
-  <img src="https://img.shields.io/badge/EU_AI_Act-~85%25_covered-c5def5" alt="EU AI Act">
+  <img src="https://img.shields.io/badge/ISO_42001-~80%25_covered-5319e7" alt="ISO 42001">
+  <img src="https://img.shields.io/badge/NIST_AI_RMF-~85%25_covered-fbca04" alt="NIST AI RMF">
+  <img src="https://img.shields.io/badge/EU_AI_Act-~75%25_covered-c5def5" alt="EU AI Act">
 </p>
 
 <h1 align="center">Agentic Enterprise</h1>
@@ -507,7 +507,8 @@ See `org/integrations/categories/observability.md` for detailed patterns.
 | **Data classification** | Public / Internal / Confidential / Secret scheme with handling rules | [Issue #93](https://github.com/wlfghdr/agentic-enterprise/issues/93) |
 | **Log retention & immutability** | Retention periods, tamper-evidence, compliance archival | [Issue #94](https://github.com/wlfghdr/agentic-enterprise/issues/94) |
 | **Agent behavioral eval** | Eval-driven development, behavioral quality policy | [Issue #74](https://github.com/wlfghdr/agentic-enterprise/issues/74) |
-| **Policy cross-references** | Consistent external standard mapping across all policies | [Issue #104](https://github.com/wlfghdr/agentic-enterprise/issues/104) |
+| **Policy cross-references** | Consistent external standard mapping across all policies | [Issue #104](https://github.com/wlfghdr/agentic-enterprise/issues/104) — addressed in [`docs/compliance/`](docs/compliance/) |
+| **Deterministic validation scripts** | CI/cron scripts for policy structure, agent instructions, OTel contract, compliance mapping, cross-references | [#111](https://github.com/wlfghdr/agentic-enterprise/issues/111)–[#117](https://github.com/wlfghdr/agentic-enterprise/issues/117) |
 
 > **Inherent limitation:** This repository is a governance framework, not a deployed product. It provides the organizational model, policy structure, and integration patterns — but formal certification, runtime enforcement, and production evidence depend on your specific deployment. That's by design: the framework is vendor-neutral and runtime-agnostic.
 
@@ -521,14 +522,16 @@ This framework provides **built-in governance controls** that map directly to en
 
 | Framework | Coverage | What's In Place | Remaining Gaps |
 |-----------|----------|----------------|----------------|
-| **ISO 27001** | ~90% | RBAC (CODEOWNERS), change management (PRs), operations security, CI/CD gates, asset registry, cryptography policy, risk management framework, data classification, log retention & immutability (A.12.4), vendor & supplier risk management (A.5.19–A.5.23) | — |
-| **SOC 2 Type II** | ~95% | Control environment, availability (SLOs + continuity), processing integrity, confidentiality (encryption + data classification), OTel audit trail, incident response SLAs, DR/BCP, log retention & WORM (CC7), vendor risk mitigation (CC9) | — |
-| **GDPR** | ~80% | Privacy policy with lawful basis, DPA/DSAR, breach notification, encryption, transfer controls, DPIA touchpoints, data classification & PII inventory, log retention & storage limitation | Consent management nuances |
-| **ISO 42001** | ~90% | AI governance (5-layer model), agent accountability (OTel spans), human oversight, decision audit trail, risk classification, model cards, fairness audit, explainability | Conformity assessment |
-| **NIST AI RMF** | ~95% | Governance structure, continuous monitoring, risk mitigation (rollback), transparency, risk management framework, AI risk tiers, MEASURE function (fairness metrics) | — |
-| **EU AI Act** | ~85% | Transparency (versioned agent instructions), human oversight, risk management foundations, AI risk classification, model cards, adversarial testing, explainability, record-keeping (log retention) | Conformity assessment |
+| **ISO 27001** | ~85% | RBAC (CODEOWNERS), change management (PRs), operations security, CI/CD gates, asset registry, cryptography policy, risk management framework, data classification, log retention & immutability (A.12.4), vendor & supplier risk management (A.5.19–A.5.23) | Formal ISMS scope statement, Statement of Applicability, internal audit programme, management review records |
+| **SOC 2 Type II** | ~85% | Control environment, availability (SLOs + continuity), processing integrity, confidentiality (encryption + data classification), OTel audit trail, incident response SLAs, DR/BCP, log retention & WORM (CC7), vendor risk mitigation (CC9) | Operating effectiveness evidence (requires deployed runtime), formal control testing, independent audit |
+| **GDPR** | ~75% | Privacy policy with lawful basis, DPA/DSAR, breach notification, encryption, transfer controls, DPIA touchpoints, data classification & PII inventory, log retention & storage limitation | Consent management UX, DPO appointment, supervisory authority registration, populated RoPA |
+| **ISO 42001** | ~80% | AI governance (5-layer model), agent accountability (OTel spans), human oversight, decision audit trail, risk classification, model cards, fairness audit, explainability | Formal AIMS scope, conformity assessment, AI system inventory, internal audit programme |
+| **NIST AI RMF** | ~85% | Governance structure, continuous monitoring, risk mitigation (rollback), transparency, risk management framework, AI risk tiers, MEASURE function (fairness metrics) | MEASURE function quantitative metrics (requires runtime data), organizational AI risk profile document, third-party evaluation |
+| **EU AI Act** | ~75% | Transparency (versioned agent instructions), human oversight, risk management foundations, AI risk classification, model cards, adversarial testing, explainability, record-keeping (log retention) | Conformity assessment, CE marking, EU database registration, post-market monitoring system, serious incident reporting |
 
 > **What the percentages mean:** Each number estimates how many of the framework's relevant controls are _modeled as policy or governance structure_ in this repository. It does **not** mean your deployment is that percentage compliant. Certification requires an independent audit of your running system — the runtime you operate, the integrations you configure, the records you keep, and the evidence you produce in the real environment. This repo gives you the **governance scaffolding and policy surfaces** to get there faster. Gaps are tracked as [open issues](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Agap) with certification labels.
+>
+> **Detailed compliance reference docs** with article-level mappings, observability evidence sources, and external references are available in [`docs/compliance/`](docs/compliance/).
 
 ### What changed recently
 
@@ -544,6 +547,7 @@ Several critical gaps have been closed since the initial compliance assessment:
 - **Log retention & immutability** — 5-category retention schedule, WORM for audit/security logs, legal hold, verified deletion (closes ISO 27001 A.12.4 + SOC 2 CC7)
 - **Vendor & third-party risk management** — 4-tier vendor criticality model, security assessment framework with AI-specific questions, SLA/attestation verification, concentration risk tracking (closes ISO 27001 A.5.19–A.5.23 + SOC 2 CC9)
 - **Observability as proof** — dashboards, traces, events, and audit evidence are part of the model so teams can verify what actually happened at runtime
+- **Compliance reference docs** — per-standard reference documents ([`docs/compliance/`](docs/compliance/)) with article-level mappings, observability evidence sources, external references, and honest gap assessments for ISO 27001, SOC 2, GDPR, ISO 42001, NIST AI RMF, and EU AI Act
 
 ---
 
