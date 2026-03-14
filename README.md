@@ -84,7 +84,7 @@ That distinction matters because this repository is intentionally **not** sellin
 | AI agents need governance, not just prompts | 5-layer organizational model with explicit boundaries, RACI via CODEOWNERS, and policy enforcement |
 | Legacy processes (tickets, wikis, standups, endless meetings) don't work for agent fleets | Git-native governance: PRs = decisions, branches = workflow states, CI/CD = quality gates |
 | No standard way to structure human + agent collaboration | Clear separation: humans steer and decide, agents execute and evaluate, Git is the system of record |
-| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 14 quality policy domains, 4 process loops |
+| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 15 quality policy domains, 4 process loops |
 | Agent instructions are scattered and inconsistent | Hierarchical `AGENT.md` files: global → layer → division, all version-controlled |
 | Enterprises run dozens of tools that agents need to use | Integration Registry with governed connections to observability, ITSM, CI/CD, business systems |
 
@@ -111,7 +111,7 @@ Every function in the company — engineering, marketing, sales, customer succes
 │  org/3-execution/  12 divisions across eng, GTM, customer       │
 ├─────────────────────────────────────────────────────────────────┤
 │  QUALITY           Agents evaluate, humans author policies      │
-│  org/4-quality/    14 policy domains, eval agent fleets         │
+│  org/4-quality/    15 policy domains, eval agent fleets         │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -404,7 +404,7 @@ agentic-enterprise/
 │   │       ├── people/
 │   │       └── ... (+ domain placeholders)
 │   ├── 4-quality/                   ← Evaluate against policies
-│   │   └── policies/                ← 14 mandatory policy domains, including privacy, incident response, and availability
+│   │   └── policies/                ← 15 mandatory policy domains, including privacy, incident response, and availability
 │   ├── agents/                      ← Agent Type Registry
 │   └── integrations/                ← Integration Registry (3rd-party tools)
 │       ├── categories/              ← Observability, toolchain, business, comms
@@ -496,7 +496,7 @@ See `org/integrations/categories/observability.md` for detailed patterns.
 
 ## Known Limitations & Roadmap
 
-> The original v1 roadmap (Issues #1–#10) has been **fully resolved** — mono-repo guidance, runtime integration patterns, quality policy calibration, governance wiring, MCP/skills support, multi-channel interaction, dashboards, cross-repo orchestration, instruction enforcement, and live integration patterns are all addressed. The framework is now structurally mature with 14 policy domains, but real-world deployment will always surface new gaps.
+> The original v1 roadmap (Issues #1–#10) has been **fully resolved** — mono-repo guidance, runtime integration patterns, quality policy calibration, governance wiring, MCP/skills support, multi-channel interaction, dashboards, cross-repo orchestration, instruction enforcement, and live integration patterns are all addressed. The framework is now structurally mature with 15 policy domains, but real-world deployment will always surface new gaps.
 
 **Active roadmap items:**
 

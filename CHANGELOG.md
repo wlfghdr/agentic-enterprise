@@ -23,6 +23,8 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Added
 
+- New quality policy: `org/4-quality/policies/data-classification.md` — 4-level data classification scheme (PUBLIC / INTERNAL / CONFIDENTIAL / RESTRICTED) with handling requirements matrix (encryption, access control, retention, deletion, audit logging per level), PII inventory requirements, asset registry integration, agent workflow classification rules, cross-policy alignment (security, privacy, cryptography, observability, risk management, content), and compliance mapping (ISO 27001 A.8 / SOC 2 C1 / GDPR Art. 5, 9, 30 / NIST SP 800-53, 800-60). Closes #93.
+- New template: `work/assets/_TEMPLATE-pii-inventory.md` — PII inventory entry template for tracking personal data categories, classification, processing purposes, storage locations, access controls, and compliance cross-references (DPIA, DPA, asset registry).
 - New quality policy: `org/4-quality/policies/agent-security.md` — covers prompt injection mitigations, tool abuse prevention, insecure output handling, and security testing requirements. Maps to OWASP LLM Top 10. Closes #69.
 - New quality policy: `org/4-quality/policies/risk-management.md` — formal risk management framework with 5×5 scoring methodology, AI risk taxonomy (22 canonical risks across 5 dimensions), agent autonomy tiers, observability-driven KRIs, and regulatory crosswalk (ISO 31000 / NIST RMF / NIST AI RMF / ISO 27001 / SOC 2 / EU AI Act). Closes #86.
 - New template: `work/decisions/_TEMPLATE-risk-register.md` — risk register entry template with mandatory fields per ISO 27001 §6.1.2 and SOC 2 CC3.
@@ -32,6 +34,10 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Changed
 
+- Updated `org/4-quality/policies/security.md` (v1.0 → v1.1) — Data Protection section now references data-classification.md for classification taxonomy and handling requirements; evaluation criterion updated.
+- Updated `work/assets/_TEMPLATE-asset-registry-entry.md` (v1.0 → v1.1) — added Classification section with Data Classification, Contains PII, and Handling notes fields.
+- Updated `CUSTOMIZATION-GUIDE.md` (v3.2 → v3.3) with data classification policy customization guidance and data classification note.
+- Updated `README.md` and `index.html` to reflect 15 quality policy domains (was 14).
 - Updated `org/4-quality/AGENT.md` (v1.9) to include encryption & key management in quality dimensions.
 - Updated `org/4-quality/policies/risk-management.md` §10 to include cryptography.md in the policy-to-risk-control mapping.
 - Updated `CUSTOMIZATION-GUIDE.md` (v3.2) with cryptography policy customization guidance, encryption note, and `{{CRYPTO_*}}` placeholder reference.

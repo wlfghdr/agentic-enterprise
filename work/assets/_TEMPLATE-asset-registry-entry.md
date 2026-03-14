@@ -1,6 +1,6 @@
 # Asset Registry Entry: [Asset Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
+> **Template version:** 1.1 | **Last updated:** 2026-03-14
 > **Tracks non-code deliverables:** documentation, content, training materials, customer deliverables, marketing assets, etc.
 
 ---
@@ -38,6 +38,14 @@
 | **Source URL** | _(source file, e.g., Git repo path)_ |
 | **Backup URL** | _(backup/alternative location)_ |
 
+## Classification
+
+| Field | Value |
+|-------|-------|
+| **Data Classification** | _(PUBLIC / INTERNAL / CONFIDENTIAL / RESTRICTED — per [data-classification.md](../../org/4-quality/policies/data-classification.md))_ |
+| **Contains PII** | no _(yes / no — if yes, a PII inventory entry is required)_ |
+| **Handling notes** | _(any additional handling requirements beyond the classification default)_ |
+
 ## Metadata
 
 | Field | Value |
@@ -71,4 +79,5 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-03-14 | Added Classification section (Data Classification, Contains PII, Handling notes) per data-classification.md policy (#93) |
 | 1.0 | 2026-02-19 | Initial version |

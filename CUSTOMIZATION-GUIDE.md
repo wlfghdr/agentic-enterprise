@@ -1,6 +1,6 @@
 # Customization Guide — Agentic Enterprise Operating Model
 
-> **Version:** 3.2 | **Last updated:** 2026-03-13
+> **Version:** 3.3 | **Last updated:** 2026-03-14
 
 > **Start here** after cloning this framework.
 > This guide walks you through every step of making this operating model your own.
@@ -303,7 +303,7 @@ Each division folder should contain a `DIVISION.md` that defines:
 
 **Location:** `org/4-quality/policies/`
 
-The framework ships with 14 quality policies. Customize each:
+The framework ships with 15 quality policies. Customize each:
 
 | Policy | What to Customize |
 |--------|------------------|
@@ -312,6 +312,7 @@ The framework ships with 14 quality policies. Customize each:
 | [risk-management.md](org/4-quality/policies/risk-management.md) | Your risk appetite thresholds (via `CONFIG.yaml → risk_appetite`), agent autonomy tier assignments, risk taxonomy applicability, regulatory crosswalk for your target certifications |
 | [cryptography.md](org/4-quality/policies/cryptography.md) | Your approved algorithms, key rotation schedules (via `CONFIG.yaml → encryption`), certificate lifetimes, KMS integration, post-quantum migration timeline |
 | [privacy.md](org/4-quality/policies/privacy.md) | Your controller/processor model, lawful bases, DPA terms, DSAR channels, breach-notification contacts, transfer mechanisms |
+| [data-classification.md](org/4-quality/policies/data-classification.md) | Your classification taxonomy extensions (industry-specific sub-labels), data category inventory, retention schedules per level, access control mappings to your IAM, PII inventory for your data landscape |
 | [architecture.md](org/4-quality/policies/architecture.md) | Your API conventions, service patterns, catalog requirements |
 | [experience.md](org/4-quality/policies/experience.md) | Your design system name, accessibility standards, UI patterns |
 | [performance.md](org/4-quality/policies/performance.md) | Your specific latency budgets, cost constraints, resource limits |
@@ -327,6 +328,8 @@ The framework ships with 14 quality policies. Customize each:
 > **Risk management note:** The risk management policy references configurable thresholds from `CONFIG.yaml → risk_appetite`. Fill in these values during Step 1 — they define your organization's risk tolerance for downtime, cost overruns, escalation rates, and agent behavioral thresholds. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{RISK_*}}` variables.
 
 > **Encryption note:** The cryptography policy references key rotation schedules and certificate lifetimes from `CONFIG.yaml → encryption`. Fill in these values during Step 1 — defaults are conservative (90-day symmetric key rotation, 90-day cert lifetime). Adjust based on your compliance requirements (PCI DSS, HIPAA, FedRAMP) and operational maturity. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{CRYPTO_*}}` variables.
+
+> **Data classification note:** The data classification policy defines a 4-level scheme (PUBLIC / INTERNAL / CONFIDENTIAL / RESTRICTED) with handling requirements per level. Adopters should: (1) review whether the four levels fit their industry — add sub-labels if needed (e.g., `CONFIDENTIAL-FINANCIAL`, `RESTRICTED-HEALTH`) but do not remove levels; (2) create a PII inventory using `work/assets/_TEMPLATE-pii-inventory.md` for each personal data category they process; (3) map their existing data stores to classification levels; (4) align retention schedules with legal/regulatory requirements per classification level.
 
 ---
 

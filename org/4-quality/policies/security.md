@@ -3,7 +3,7 @@
 > **Applies to:** All code, infrastructure configuration, API definitions, data pipelines, integrations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.0 | **Last updated:** 2026-02-19
+> **Version:** 1.1 | **Last updated:** 2026-03-14
 
 ---
 
@@ -36,11 +36,11 @@
 - [ ] XSS prevention (output encoding)
 
 ### Data Protection
-- [ ] PII identified and classified
-- [ ] Encryption at rest for sensitive data
+- [ ] PII identified and classified per [Data Classification & Handling Policy](data-classification.md)
+- [ ] Encryption at rest for sensitive data (CONFIDENTIAL and above per classification scheme)
 - [ ] Encryption in transit (TLS 1.2+ minimum)
-- [ ] Data retention policies defined and enforced
-- [ ] Audit logging for access to sensitive data
+- [ ] Data retention policies defined and enforced per classification level
+- [ ] Audit logging for access to sensitive data (CONFIDENTIAL and above)
 
 ### Dependency Security
 - [ ] Dependencies scanned for known vulnerabilities
@@ -63,7 +63,7 @@
 | Known vulnerabilities | No critical/high | Any critical/high |
 | Authentication | All endpoints secured | Any anonymous production endpoint |
 | Input validation | All external input validated | Unvalidated external input |
-| Data classification | PII identified and protected | Unclassified PII |
+| Data classification | PII identified and classified per [data-classification.md](data-classification.md) | Unclassified PII or data stores without classification level |
 
 ---
 
@@ -71,4 +71,5 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-03-14 | Data Protection section now references data-classification.md for classification taxonomy; evaluation criterion updated (#93) |
 | 1.0 | 2026-02-19 | Initial version |
