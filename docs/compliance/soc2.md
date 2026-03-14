@@ -54,14 +54,15 @@ SOC 2 Type II is uniquely dependent on **runtime evidence** — the auditor need
 
 ## 4. Remaining Gaps
 
-| Gap | SOC 2 Requirement | What's Needed | Severity | Remediation |
-|-----|-------------------|---------------|----------|-------------|
-| ~~Operating effectiveness evidence~~ | Type II core | Real runtime data over 6–12 months from a deployed instance | ~~Critical~~ → Addressed | [Evidence Guide](remediation/soc2-operating-effectiveness.md) |
-| **Formal control testing** | All criteria | Documented testing of each control's effectiveness | High — auditor expectation | |
-| **Independent audit** | SOC 2 engagement | CPA firm engagement, management assertion letter | High — cannot self-certify | |
-| **Complementary User Entity Controls (CUECs)** | Common | Documentation of what the adopter's customers must do | Medium | |
-| **Subservice organization management** | CC9 | Formal subservice organization identification and monitoring | Medium — if using SaaS dependencies | |
-| **Physical access controls** | CC6 | Deployment-specific physical security | Low — often inherited from cloud provider SOC 2 | |
+| Gap | SOC 2 Requirement | What's Needed | Severity |
+|-----|-------------------|---------------|----------|
+| **Formal control testing** | All criteria | Documented testing of each control's effectiveness | High — auditor expectation |
+| **Independent audit** | SOC 2 engagement | CPA firm engagement, management assertion letter | High — cannot self-certify |
+| **Complementary User Entity Controls (CUECs)** | Common | Documentation of what the adopter's customers must do | Medium |
+| **Subservice organization management** | CC9 | Formal subservice organization identification and monitoring | Medium — if using SaaS dependencies |
+| **Physical access controls** | CC6 | Deployment-specific physical security | Low — often inherited from cloud provider SOC 2 |
+
+**Addressed by framework:** Operating effectiveness evidence collection — see [evidence guide](remediation/soc2-operating-effectiveness.md) for TSC-to-OTel mapping, sample evidence packages, and auditor engagement preparation.
 
 ## 5. External References
 

@@ -192,12 +192,10 @@ NIST CSF 2.0 emphasizes continuous improvement and measurable outcomes. The obse
 
 ## 4. Remaining Gaps
 
-| Gap | CSF Requirement | What's Needed | Criticality | Remediation |
-|-----|----------------|---------------|-------------|-------------|
-| ~~Runtime security tooling~~ | PR.PS-02, DE.CM-01 | Deployment must configure actual SIEM, IDS/IPS, EDR, and vulnerability scanners | ~~Critical~~ → Addressed | [Tooling Guide](remediation/nist-csf-runtime-security-tooling.md) |
-| ~~Network security implementation~~ | PR.IR-01, DE.CM-01 | Deployment must implement network segmentation, firewall rules, and monitoring | ~~Critical~~ → Addressed | [Network Guide](remediation/nist-csf-network-security.md) |
-| **Identity provider integration** | PR.AA-01, PR.AA-03 | Deployment must connect to an actual IdP (e.g., Okta, Azure AD) for human and service identity lifecycle | High — framework defines policy but not IdP configuration | |
-| **Security awareness programme** | PR.AT-01, PR.AT-02 | Formal human security awareness training beyond agent instructions; phishing simulations, role-based training | High — agent instructions are not a human training programme | |
+| Gap | CSF Requirement | What's Needed | Criticality |
+|-----|----------------|---------------|-------------|
+| **Identity provider integration** | PR.AA-01, PR.AA-03 | Deployment must connect to an actual IdP (e.g., Okta, Azure AD) for human and service identity lifecycle | High — framework defines policy but not IdP configuration |
+| **Security awareness programme** | PR.AT-01, PR.AT-02 | Formal human security awareness training beyond agent instructions; phishing simulations, role-based training | High — agent instructions are not a human training programme |
 | **Physical security** | PR.AA-06, DE.CM-02, A.7.x controls | Out of scope for a software framework — deployment-specific based on hosting model | Medium — depends on deployment model (cloud vs. on-premise) |
 | **External threat intelligence feeds** | DE.AE-07, ID.RA-02 | Deployment must subscribe to and integrate actual CTI feeds (STIX/TAXII, ISACs) | Medium — framework supports signal ingestion but needs actual feeds |
 | **Formal risk quantification** | GV.RM-02, ID.RA-04 | Deployment should implement quantitative risk methods (FAIR, Monte Carlo) beyond the qualitative matrix provided | Medium — qualitative method in policy, quantitative is deployment choice |
@@ -205,6 +203,8 @@ NIST CSF 2.0 emphasizes continuous improvement and measurable outcomes. The obse
 | **Backup and DR infrastructure** | RC.RP-01, RC.RP-02 | Deployment must provision actual backup infrastructure, replication, and failover targets matching tiered RTO/RPO | Medium — framework defines targets, deployment implements them |
 | **Penetration testing programme** | ID.RA-01, PR.PS-06 | Regular external penetration testing and red team exercises | Low — framework defines shift-left security, pen testing is operational |
 | **Cyber insurance** | GV.RM-07 | Organization-level decision on cyber insurance coverage | Low — business decision outside framework scope |
+
+**Addressed by framework:** Runtime security tooling integration ([guide](remediation/nist-csf-runtime-security-tooling.md)), network security architecture ([guide](remediation/nist-csf-network-security.md)).
 
 ## 5. External References
 
