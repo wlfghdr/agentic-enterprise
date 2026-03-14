@@ -3,7 +3,7 @@
 > **Applies to:** All code, infrastructure configuration, API definitions, data pipelines, integrations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.1 | **Last updated:** 2026-03-14
+> **Version:** 1.2 | **Last updated:** 2026-03-14
 
 ---
 
@@ -39,7 +39,7 @@
 - [ ] PII identified and classified per [Data Classification & Handling Policy](data-classification.md)
 - [ ] Encryption at rest for sensitive data (CONFIDENTIAL and above per classification scheme)
 - [ ] Encryption in transit (TLS 1.2+ minimum)
-- [ ] Data retention policies defined and enforced per classification level
+- [ ] Data retention policies defined and enforced per classification level and [Log Retention & Immutability Policy](log-retention.md)
 - [ ] Audit logging for access to sensitive data (CONFIDENTIAL and above)
 
 ### Dependency Security
@@ -71,5 +71,6 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-03-14 | Data retention requirement now references log-retention.md (#94) |
 | 1.1 | 2026-03-14 | Data Protection section now references data-classification.md for classification taxonomy; evaluation criterion updated (#93) |
 | 1.0 | 2026-02-19 | Initial version |

@@ -1,6 +1,6 @@
 # Customization Guide — Agentic Enterprise Operating Model
 
-> **Version:** 3.4 | **Last updated:** 2026-03-14
+> **Version:** 3.5 | **Last updated:** 2026-03-14
 
 > **Start here** after cloning this framework.
 > This guide walks you through every step of making this operating model your own.
@@ -303,7 +303,7 @@ Each division folder should contain a `DIVISION.md` that defines:
 
 **Location:** `org/4-quality/policies/`
 
-The framework ships with 16 quality policies. Customize each:
+The framework ships with 17 quality policies. Customize each:
 
 | Policy | What to Customize |
 |--------|------------------|
@@ -322,6 +322,7 @@ The framework ships with 16 quality policies. Customize each:
 | [availability.md](org/4-quality/policies/availability.md) | Your service tiers, RTO/RPO targets, backup/restore design, failover strategy, drill cadence |
 | [content.md](org/4-quality/policies/content.md) | Your brand guidelines, documentation standards, content taxonomy |
 | [customer.md](org/4-quality/policies/customer.md) | Your SLA definitions, customer interaction standards |
+| [log-retention.md](org/4-quality/policies/log-retention.md) | Your retention periods per log category, WORM storage implementation, online availability windows, legal hold workflow, deletion automation schedule |
 | [observability.md](org/4-quality/policies/observability.md) | Your telemetry standards, agent observability requirements, alerting thresholds |
 
 **Key principle:** Start with the policies as shipped (they're reasonable defaults for a software enterprise). Then tighten or loosen based on your regulatory environment, risk tolerance, and maturity level.
@@ -331,6 +332,8 @@ The framework ships with 16 quality policies. Customize each:
 > **Encryption note:** The cryptography policy references key rotation schedules and certificate lifetimes from `CONFIG.yaml → encryption`. Fill in these values during Step 1 — defaults are conservative (90-day symmetric key rotation, 90-day cert lifetime). Adjust based on your compliance requirements (PCI DSS, HIPAA, FedRAMP) and operational maturity. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{CRYPTO_*}}` variables.
 
 > **Data classification note:** The data classification policy defines a 4-level scheme (PUBLIC / INTERNAL / CONFIDENTIAL / RESTRICTED) with handling requirements per level. Adopters should: (1) review whether the four levels fit their industry — add sub-labels if needed (e.g., `CONFIDENTIAL-FINANCIAL`, `RESTRICTED-HEALTH`) but do not remove levels; (2) create a PII inventory using `work/assets/_TEMPLATE-pii-inventory.md` for each personal data category they process; (3) map their existing data stores to classification levels; (4) align retention schedules with legal/regulatory requirements per classification level.
+
+> **Log retention note:** The log retention policy defines 5 log categories (audit / security / access / operational / debug) with recommended retention periods. Adopters must: (1) configure retention periods in CONFIG.yaml for each category based on their regulatory requirements (the policy provides recommended defaults — e.g., 7 years for audit logs); (2) implement WORM storage for audit and security logs (S3 Object Lock, Azure Immutable Blob, or equivalent); (3) assign all log sources to a category; (4) establish a legal hold process; (5) implement verified deletion with confirmation records. SOC 2 Type II auditors specifically check log retention and immutability — this is a frequent audit finding.
 
 > **AI governance note:** The AI governance policy defines a 4-tier risk classification (Prohibited / High-Risk / Limited-Risk / Minimal-Risk) aligned with EU AI Act risk tiers. Adopters should: (1) classify each agent type by risk tier based on its impact and autonomy; (2) fill in the Model Governance section in each agent type definition (added to `org/agents/_TEMPLATE-agent-type.md`); (3) define fairness metrics and thresholds appropriate to their industry (the policy provides common metrics; adopters select which apply); (4) set token budget ceilings per mission type and agent type; (5) define their model allowed list (which LLMs are approved for which risk tiers). EU AI Act enforcement begins August 2026 — adopters in EU-regulated industries should prioritize Tier 1 (High-Risk) compliance.
 

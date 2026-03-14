@@ -4,7 +4,7 @@
 > **Enforced by:** Quality Layer eval agents, including the dedicated [Observability Compliance Agent](../../agents/quality/observability-compliance-agent.md)
 > **Authority:** Operations leads + Architecture Governors
 > **Principle:** If it runs, it must be observable. If it's not observable, it doesn't ship.
-> **Version:** 1.3 | **Last updated:** 2026-03-10
+> **Version:** 1.4 | **Last updated:** 2026-03-14
 
 ---
 
@@ -283,6 +283,18 @@ Observability is checked at multiple points in the lifecycle:
 
 ---
 
+## Log Retention & Immutability
+
+All telemetry data collected under this policy is subject to the retention, immutability, and deletion requirements defined in the [Log Retention & Immutability Policy](log-retention.md). Key integration points:
+
+- [ ] All telemetry data sources (traces, metrics, logs) are assigned to a log category per log-retention.md §1
+- [ ] Audit-critical telemetry (`governance.decision` events, policy violation events) is retained for the full audit log retention period
+- [ ] Agent telemetry spans are classified and retained per log-retention.md §7
+- [ ] Observability platform storage meets the immutability requirements for the log categories it holds (WORM for audit/security logs, tamper-evidence for access logs)
+- [ ] Retention expiry deletion runs without disrupting active observability queries
+
+---
+
 ## Evaluation Criteria
 
 | Criterion | PASS | FAIL |
@@ -297,6 +309,7 @@ Observability is checked at multiple points in the lifecycle:
 | Alerting | All alerts have documented runbook actions | Alerts without runbooks or no alerting |
 | Agent observability | Spans for tool calls, decisions, token usage | Agent actions not traced (if agent component) |
 | Git event coverage | Webhook configured, PR lifecycle events flowing | No git webhooks or events not reaching observability integration |
+| Telemetry retention | All telemetry assigned to log categories per log-retention.md; retention periods configured | Telemetry data without assigned retention category or period |
 
 ---
 
@@ -304,6 +317,7 @@ Observability is checked at multiple points in the lifecycle:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.4 | 2026-03-14 | Added Log Retention & Immutability section cross-referencing log-retention.md; added telemetry retention evaluation criteria |
 | 1.3 | 2026-03-10 | Added an explicit policy requirement that downstream activity records remain trace-linkable via canonical `trace.id`, `span.id`, and `parent.span.id` identifiers defined in `docs/OTEL-CONTRACT.md`. |
 | 1.1 | 2026-02-25 | Added Design-Time Observability section (shift-left); added design-time stage gate and verification gate (At Design Time); added design-time observability evaluation criterion; cross-referenced AGENTS.md Rule 9c and Technical Design template |
 | 1.0 | 2026-02-19 | Initial version |

@@ -7,8 +7,8 @@
     <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
   </a>
   <br>
-  <img src="https://img.shields.io/badge/ISO_27001-~80%25_covered-0e8a16" alt="ISO 27001">
-  <img src="https://img.shields.io/badge/SOC_2-~90%25_covered-1d76db" alt="SOC 2">
+  <img src="https://img.shields.io/badge/ISO_27001-~85%25_covered-0e8a16" alt="ISO 27001">
+  <img src="https://img.shields.io/badge/SOC_2-~95%25_covered-1d76db" alt="SOC 2">
   <img src="https://img.shields.io/badge/GDPR-~75%25_covered-d93f0b" alt="GDPR">
   <img src="https://img.shields.io/badge/ISO_42001-~90%25_covered-5319e7" alt="ISO 42001">
   <img src="https://img.shields.io/badge/NIST_AI_RMF-~95%25_covered-fbca04" alt="NIST AI RMF">
@@ -84,7 +84,7 @@ That distinction matters because this repository is intentionally **not** sellin
 | AI agents need governance, not just prompts | 5-layer organizational model with explicit boundaries, RACI via CODEOWNERS, and policy enforcement |
 | Legacy processes (tickets, wikis, standups, endless meetings) don't work for agent fleets | Git-native governance: PRs = decisions, branches = workflow states, CI/CD = quality gates |
 | No standard way to structure human + agent collaboration | Clear separation: humans steer and decide, agents execute and evaluate, Git is the system of record |
-| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 16 quality policy domains, 4 process loops |
+| Enterprise AI adoption stalls at "cool demo" stage | Production-grade org template with 12 divisions, 17 quality policy domains, 4 process loops |
 | Agent instructions are scattered and inconsistent | Hierarchical `AGENT.md` files: global → layer → division, all version-controlled |
 | Enterprises run dozens of tools that agents need to use | Integration Registry with governed connections to observability, ITSM, CI/CD, business systems |
 
@@ -111,7 +111,7 @@ Every function in the company — engineering, marketing, sales, customer succes
 │  org/3-execution/  12 divisions across eng, GTM, customer       │
 ├─────────────────────────────────────────────────────────────────┤
 │  QUALITY           Agents evaluate, humans author policies      │
-│  org/4-quality/    16 policy domains, eval agent fleets         │
+│  org/4-quality/    17 policy domains, eval agent fleets         │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -496,7 +496,7 @@ See `org/integrations/categories/observability.md` for detailed patterns.
 
 ## Known Limitations & Roadmap
 
-> The original v1 roadmap (Issues #1–#10) has been **fully resolved** — mono-repo guidance, runtime integration patterns, quality policy calibration, governance wiring, MCP/skills support, multi-channel interaction, dashboards, cross-repo orchestration, instruction enforcement, and live integration patterns are all addressed. The framework is now structurally mature with 16 policy domains, but real-world deployment will always surface new gaps.
+> The original v1 roadmap (Issues #1–#10) has been **fully resolved** — mono-repo guidance, runtime integration patterns, quality policy calibration, governance wiring, MCP/skills support, multi-channel interaction, dashboards, cross-repo orchestration, instruction enforcement, and live integration patterns are all addressed. The framework is now structurally mature with 17 policy domains, but real-world deployment will always surface new gaps.
 
 **Active roadmap items:**
 
@@ -521,12 +521,12 @@ This framework provides **built-in governance controls** that map directly to en
 
 | Framework | Coverage | What's In Place | Remaining Gaps |
 |-----------|----------|----------------|----------------|
-| **ISO 27001** | ~80% | RBAC (CODEOWNERS), change management (PRs), operations security, CI/CD gates, asset registry, cryptography policy, risk management framework | [Vendor assessment](https://github.com/wlfghdr/agentic-enterprise/issues/92), [data classification](https://github.com/wlfghdr/agentic-enterprise/issues/93), [log retention](https://github.com/wlfghdr/agentic-enterprise/issues/94) |
-| **SOC 2 Type II** | ~90% | Control environment, availability (SLOs + continuity), processing integrity, confidentiality (encryption), OTel audit trail, incident response SLAs, DR/BCP | [Vendor risk](https://github.com/wlfghdr/agentic-enterprise/issues/92), [log immutability](https://github.com/wlfghdr/agentic-enterprise/issues/94) |
-| **GDPR** | ~75% | Privacy policy with lawful basis, DPA/DSAR, breach notification, encryption, transfer controls, DPIA touchpoints | [Data classification](https://github.com/wlfghdr/agentic-enterprise/issues/93), consent management nuances |
-| **ISO 42001** | ~75% | AI governance (5-layer model), agent accountability (OTel spans), human oversight, decision audit trail | [AI fairness audit / model cards](https://github.com/wlfghdr/agentic-enterprise/issues/91) |
-| **NIST AI RMF** | ~90% | Governance structure, continuous monitoring, risk mitigation (rollback), transparency, risk management framework | [AI threat model](https://github.com/wlfghdr/agentic-enterprise/issues/91) |
-| **EU AI Act** | ~70% | Transparency (versioned agent instructions), human oversight, risk management foundations | [AI governance & fairness audit](https://github.com/wlfghdr/agentic-enterprise/issues/91), conformity assessment |
+| **ISO 27001** | ~85% | RBAC (CODEOWNERS), change management (PRs), operations security, CI/CD gates, asset registry, cryptography policy, risk management framework, data classification, log retention & immutability (A.12.4) | [Vendor assessment](https://github.com/wlfghdr/agentic-enterprise/issues/92) |
+| **SOC 2 Type II** | ~95% | Control environment, availability (SLOs + continuity), processing integrity, confidentiality (encryption + data classification), OTel audit trail, incident response SLAs, DR/BCP, log retention & WORM (CC7) | [Vendor risk](https://github.com/wlfghdr/agentic-enterprise/issues/92) |
+| **GDPR** | ~80% | Privacy policy with lawful basis, DPA/DSAR, breach notification, encryption, transfer controls, DPIA touchpoints, data classification & PII inventory, log retention & storage limitation | Consent management nuances |
+| **ISO 42001** | ~90% | AI governance (5-layer model), agent accountability (OTel spans), human oversight, decision audit trail, risk classification, model cards, fairness audit, explainability | Conformity assessment |
+| **NIST AI RMF** | ~95% | Governance structure, continuous monitoring, risk mitigation (rollback), transparency, risk management framework, AI risk tiers, MEASURE function (fairness metrics) | — |
+| **EU AI Act** | ~85% | Transparency (versioned agent instructions), human oversight, risk management foundations, AI risk classification, model cards, adversarial testing, explainability, record-keeping (log retention) | Conformity assessment |
 
 > **What the percentages mean:** Each number estimates how many of the framework's relevant controls are _modeled as policy or governance structure_ in this repository. It does **not** mean your deployment is that percentage compliant. Certification requires an independent audit of your running system — the runtime you operate, the integrations you configure, the records you keep, and the evidence you produce in the real environment. This repo gives you the **governance scaffolding and policy surfaces** to get there faster. Gaps are tracked as [open issues](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Agap) with certification labels.
 
@@ -539,6 +539,9 @@ Several critical gaps have been closed since the initial compliance assessment:
 - **Availability & continuity** — service tiers, RTO/RPO expectations, failover and recovery runbooks, annual drills
 - **Cryptography** — encryption standards, key lifecycle management, certificate handling
 - **Risk management** — ISO 31000 / NIST RMF aligned risk framework with assessment methodology and treatment plans
+- **Data classification** — 4-level classification scheme (PUBLIC / INTERNAL / CONFIDENTIAL / RESTRICTED) with handling requirements matrix, PII inventory
+- **AI governance** — 4-tier risk classification, model cards, fairness audit, adversarial robustness, explainability levels, token budget enforcement
+- **Log retention & immutability** — 5-category retention schedule, WORM for audit/security logs, legal hold, verified deletion (closes ISO 27001 A.12.4 + SOC 2 CC7)
 - **Observability as proof** — dashboards, traces, events, and audit evidence are part of the model so teams can verify what actually happened at runtime
 
 ---
