@@ -2,8 +2,8 @@
 <!-- placeholder-ok -->
 
 > This folder contains operator guides and reference documentation for the Agentic Enterprise framework.
-> For the framework overview, start with [`OPERATING-MODEL.md`](../OPERATING-MODEL.md) at the root.
-> For initial setup, start with [`CUSTOMIZATION-GUIDE.md`](../CUSTOMIZATION-GUIDE.md) at the root.
+> For the framework overview, start with [`org/README.md`](../org/README.md) (organizational structure) and [`process/README.md`](../process/README.md) (process lifecycle).
+> For initial setup, start with [`customization-guide.md`](customization-guide.md).
 
 ---
 

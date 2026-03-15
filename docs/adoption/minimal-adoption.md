@@ -167,4 +167,4 @@ These are load-bearing from day one:
 - [10-Minute Quickstart](../quickstart/10-minute-agentic-enterprise.md) — Walk through the workflow
 - [End-to-End Example](../../examples/e2e-loop/) — See a complete lifecycle
 - [Architecture Overview](../architecture/agentic-enterprise-architecture.md) — Understand the full system
-- [CUSTOMIZATION-GUIDE.md](../../CUSTOMIZATION-GUIDE.md) — Full onboarding walkthrough
+- [customization-guide.md](../customization-guide.md) — Full onboarding walkthrough

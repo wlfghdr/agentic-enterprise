@@ -76,10 +76,8 @@ These workflows are live in the template and run on push/PR:
 
 | Workflow | Purpose | Docs |
 |----------|---------|------|
-| `validate.yml` | YAML validation, schema checks, placeholder detection | [`schema-guide.md`](../schema-guide.md) |
-| `policy.yml` | OPA/Conftest policy enforcement | [`policy-as-code.md`](../policy-as-code.md) |
+| `validate.yml` | YAML validation, schema checks, placeholder detection, OPA/Conftest policy enforcement | [`schema-guide.md`](../schema-guide.md), [`policy-as-code.md`](../policy-as-code.md) |
 | `security.yml` | Gitleaks + dependency review | [`security-scanning.md`](../security-scanning.md) |
-| `stale.yml` | Close stale issues (weekly) | — |
 
 ### Reference implementations (not active — copy to `.github/workflows/` when ready)
 

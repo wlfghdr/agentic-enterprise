@@ -116,7 +116,7 @@ Base-template agent types should pass all of these checks:
 | Artifact | Relationship |
 |----------|-------------|
 | **Fleet configs** (`org/2-orchestration/fleet-configs/`) | Fleet configs reference agent types from this registry by `id`. Only `active` agent types may be assigned to crews. |
-| **OPERATING-MODEL.md** | Documents the design principles and organizational structure that inform agent type design. |
+| **org/README.md** | Documents the design principles and organizational structure that inform agent type design. |
 | **Division definitions** (`org/3-execution/divisions/`) | Divisions define domain context. Agent types define capabilities. An agent type belongs to a division (for Execution agents) or to a layer. |
 | **AGENT.md files** (`org/<layer>/AGENT.md`) | Layer instructions define behavioral rules. Agent type definitions specify capabilities & scaling. Both are needed for a complete agent specification. |
 

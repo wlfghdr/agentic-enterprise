@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/model-Agentic%20Enterprise-blueviolet" alt="Agentic Enterprise">
-  <img src="https://img.shields.io/badge/version-3.1.0-brightgreen" alt="Version">
+  <img src="https://img.shields.io/badge/version-4.0.0-brightgreen" alt="Version">
   <img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License">
   <img src="https://img.shields.io/badge/runtime-bring%20your%20own-orange" alt="Runtime">
   <a href="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml">
@@ -49,7 +49,7 @@
 
 | If you want to... | Start here | What you get |
 |---------|------------------------|-------------|
-| **Understand the operating model** | [10-Minute Walkthrough](docs/quickstart/10-minute-agentic-enterprise.md) · [OPERATING-MODEL.md](OPERATING-MODEL.md) | The 5 layers, 4 loops, and core artifact flow in the shortest useful path |
+| **Understand the operating model** | [10-Minute Walkthrough](docs/quickstart/10-minute-agentic-enterprise.md) · [org/README.md](org/README.md) | The 5 layers, 4 loops, and core artifact flow in the shortest useful path |
 | **See it in motion** | [Live demo](https://wlfghdr.github.io/agentic-enterprise/) · [Reference scenario](https://wlfghdr.github.io/agentic-enterprise/concept-visualization.html) | The public proof layer, driven by [`index.html`](index.html) and [`concept-visualization.html`](concept-visualization.html) |
 | **Start minimal adoption** | [Minimal Adoption Guide](docs/adoption/minimal-adoption.md) | A no-agents-required path: fork, configure, use signals + missions + PRs |
 

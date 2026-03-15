@@ -27,7 +27,7 @@ from typing import Any
 # ---------------------------------------------------------------------------
 # Canonical mapping: {{VARIABLE}} → CONFIG.yaml dot-path
 #
-# Source of truth: CUSTOMIZATION-GUIDE.md § "Complete Placeholder Reference"
+# Source of truth: docs/customization-guide.md § "Complete Placeholder Reference"
 # ---------------------------------------------------------------------------
 VARIABLE_TO_CONFIG: dict[str, str] = {
     # Company identity
@@ -126,7 +126,7 @@ VAR_PATTERN = re.compile(r"\{\{([A-Za-z_][A-Za-z0-9_]*)\}\}")
 SKIP_DIRS = {".git", "node_modules", "archive", "examples"}
 SKIP_FILES = {
     "CHANGELOG.md",
-    "CUSTOMIZATION-GUIDE.md",
+    "customization-guide.md",
     "CONTRIBUTING.md",
 }
 # Directory prefixes to skip — these contain fill-in-the-blank templates

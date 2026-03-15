@@ -6,7 +6,7 @@
 # framework references a value from this configuration. Once filled in,
 # search-and-replace all {{VARIABLE}} occurrences across the repository.
 #
-# After filling this file, follow CUSTOMIZATION-GUIDE.md for deeper
+# After filling this file, follow docs/customization-guide.md for deeper
 # customization of ventures, divisions, policies, and processes.
 
 # ─────────────────────────────────────────────────────────────────────────────

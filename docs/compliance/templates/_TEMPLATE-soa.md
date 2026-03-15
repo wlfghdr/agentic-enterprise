@@ -1,7 +1,7 @@
 # Statement of Applicability (SoA)
 
 > **Template version:** 1.0
-> **Last updated:** 2026-03-14
+> **Last updated:** 2026-03-15
 > **Standard:** ISO/IEC 27001:2022 — Clause 6.1.3d
 > **Purpose:** Document applicability and implementation status of all 93 Annex A controls
 
@@ -79,7 +79,7 @@ This SoA template is **pre-populated** with the Agentic Enterprise framework's c
 | A.5.34 | Privacy and protection of PII | Yes | Partial | Privacy policy ([`org/4-quality/policies/privacy.md`](../../../org/4-quality/policies/privacy.md)) defines PII handling, data subject rights, consent management, and privacy-by-design principles. Data classification policy identifies PII classification. **Deployment-specific:** adopter must implement DPIA processes, data subject request workflows, and consent management systems. |
 | A.5.35 | Independent review of information security | Yes | Partial | Quality layer ([`org/4-quality/AGENT.md`](../../../org/4-quality/AGENT.md)) provides independent review of all deliverables. Quality agents evaluate compliance with policies. **Deployment-specific:** adopter must arrange external independent audits (e.g., ISO 27001 certification audit, penetration testing by third parties). |
 | A.5.36 | Compliance with policies, rules and standards | Yes | Implemented | Quality policies ([`org/4-quality/policies/`](../../../org/4-quality/policies/)) define compliance requirements. Quality layer agents verify compliance. CI/CD pipelines enforce policy checks. AGENTS.md Rule 4 makes policies mandatory ("Policies are law"). Governance exceptions require formal documentation and approval. |
-| A.5.37 | Documented operating procedures | Yes | Implemented | Delivery policy ([`org/4-quality/policies/delivery.md`](../../../org/4-quality/policies/delivery.md)) documents development and deployment procedures. [`AGENTS.md`](../../../AGENTS.md) documents agent operating procedures. [`OPERATING-MODEL.md`](../../../OPERATING-MODEL.md) documents the overall operating model. Layer-specific AGENT.md files document layer procedures. Process documentation in [`process/`](../../../process/). |
+| A.5.37 | Documented operating procedures | Yes | Implemented | Delivery policy ([`org/4-quality/policies/delivery.md`](../../../org/4-quality/policies/delivery.md)) documents development and deployment procedures. [`AGENTS.md`](../../../AGENTS.md) documents agent operating procedures. [`org/README.md`](../../../org/README.md) and [`process/README.md`](../../../process/README.md) document the overall operating model. Layer-specific AGENT.md files document layer procedures. Process documentation in [`process/`](../../../process/). |
 
 ---
 

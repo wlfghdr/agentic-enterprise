@@ -189,7 +189,7 @@ ISO 9001 requires the QMS to include documented information required by the stan
 | ISO 9001 Document Type | Framework Artifact | Path |
 |------------------------|--------------------|------|
 | Quality policy | 19 quality policies (mandatory per AGENTS.md Rule 4) | `org/4-quality/policies/` |
-| Quality manual (optional but recommended) | OPERATING-MODEL.md + AGENTS.md + layer AGENT.md files | Root and `org/*/AGENT.md` |
+| Quality manual (optional but recommended) | `org/README.md` + AGENTS.md + layer AGENT.md files | `org/README.md` and `org/*/AGENT.md` |
 | Documented procedures | Quality policies define procedural requirements; process loop documentation defines workflows | `org/4-quality/policies/`, `process/` |
 | Records (evidence of conformity) | Git history, OTel traces, PR review records, quality evaluations | Git log, observability platform |
 | Document control | Git version control with CI-enforced versioning (AGENTS.md Rule 10) | `.github/workflows/validate.yml` |
@@ -328,7 +328,7 @@ Use this checklist to verify that the QMS scope statement and supporting context
 - [ ] Scope statement references the quality policies as the quality policy documentation
 - [ ] Scope statement is consistent with `COMPANY.md` (vision, mission, strategic direction)
 - [ ] Scope statement is consistent with `CONFIG.yaml` (organizational configuration)
-- [ ] Scope statement is consistent with `OPERATING-MODEL.md` (system description)
+- [ ] Scope statement is consistent with `org/README.md` and `process/README.md` (system description)
 
 ### Ongoing Maintenance
 - [ ] Review frequency is defined (minimum annually, plus triggered reviews)

@@ -3,7 +3,7 @@
 > **Role:** You are a Steering Layer agent. You assist CxO executives, Board Advisors, and Organization Architects in evolving the company itself — its structure, operating model, processes, venture portfolio, division map, and strategic direction.
 > **Layer:** Steering (Layer 0 — above Strategy, governs the system itself)
 > **Authority:** You analyze, model, propose, and draft. Humans at the executive level decide.
-> **Version:** 1.3 | **Last updated:** 2026-03-07
+> **Version:** 1.4 | **Last updated:** 2026-03-15
 
 ---
 
@@ -14,7 +14,7 @@ Help the executive leadership continuously evolve {{COMPANY_SHORT}} as a company
 ## Context You Must Read Before Every Task
 
 1. **Company vision & mission:** [../../COMPANY.md](../../COMPANY.md) — your north star
-2. **Operating model:** [../../OPERATING-MODEL.md](../../OPERATING-MODEL.md) — the system you are evolving
+2. **Operating model:** [../README.md](../README.md) — the system you are evolving
 3. **Organizational structure:** [../README.md](../README.md) — the current state of the org
 4. **All venture charters:** [../1-strategy/ventures/](../1-strategy/ventures/) — the current venture portfolio
 5. **All division definitions:** [../3-execution/divisions/](../3-execution/divisions/) — the current execution units
@@ -147,7 +147,7 @@ The Steering Layer runs a weekly sensing loop that aggregates signals, detects p
 │  You reshape the containers. You evolve the system.                │
 │                                                                     │
 │  DOWNWARD:                                                          │
-│    → Update COMPANY.md, org/README.md, OPERATING-MODEL.md          │
+│    → Update COMPANY.md, org/README.md                              │
 │    → Create/merge/sunset venture charters                          │
 │    → Create/merge/split division definitions                      │
 │    → Update process/ files, AGENTS.md                               │
@@ -170,7 +170,7 @@ When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Ste
 
 | Artifact | Versioning approach |
 |---|---|
-| `COMPANY.md`, `OPERATING-MODEL.md`, `AGENTS.md` | Update `Last updated` in file header; add an entry under `[Unreleased]` in `CHANGELOG.md` |
+| `COMPANY.md`, `AGENTS.md` | Update `Last updated` in file header; add an entry under `[Unreleased]` in `CHANGELOG.md` |
 | `org/*/AGENT.md` (layer instructions) | Bump `Version` (minor or major) + update `Last updated` |
 | Evolution proposals | Increment `Revision` + update `Last updated` in instance metadata |
 | Signal digests | Date-stamped files (`YYYY-WXX-digest.md`) — no revision needed; each period is a new file |

@@ -240,7 +240,7 @@ security invariants on workflow files:
 The content security scanner and Rego policies are complementary:
 - **Content scanner** (Python, `validate.yml`): pattern-matches across all
   governed files including workflows — catches text-level injection
-- **Conftest/OPA** (Rego, `policy.yml`): structurally parses YAML and
+- **Conftest/OPA** (Rego, `validate.yml` conftest job): structurally parses YAML and
   evaluates security invariants — catches semantic workflow tampering
 
 Both must pass for a PR to merge when branch protection is enabled.

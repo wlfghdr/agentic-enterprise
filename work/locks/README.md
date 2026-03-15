@@ -7,7 +7,7 @@ The agentic-enterprise model prefers **additive artifacts** (new files) to avoid
 ## When to lock
 
 Lock **before** modifying any of the following categories:
-- Core operating model and company identity docs (e.g., `COMPANY.md`, `OPERATING-MODEL.md`, `AGENTS.md`, `CONFIG.yaml`)
+- Core operating model and company identity docs (e.g., `COMPANY.md`, `AGENTS.md`, `CONFIG.yaml`)
 - Quality policies (`org/4-quality/policies/*`)
 - Global templates (`**/_TEMPLATE-*`), if the change affects multiple workflows
 - Any other path your fork designates as protected

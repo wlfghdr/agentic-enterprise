@@ -22,7 +22,6 @@ Defined in `locks.yaml`:
 | Pattern | What it protects |
 |---|---|
 | `COMPANY.md` | Company identity |
-| `OPERATING-MODEL.md` | Operating model |
 | `AGENTS.md` | Agent framework |
 | `CONFIG.yaml` | Global configuration |
 | `org/4-quality/policies/*.md` | Quality policies |

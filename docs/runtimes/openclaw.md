@@ -250,4 +250,4 @@ If an agent finishes a mission, it should create at least one new signal ("next 
 
 ---
 
-*See also:* the wider operating model in [`OPERATING-MODEL.md`](../../OPERATING-MODEL.md) and the [runtimes index](README.md) for other runtime implementation guides.
+*See also:* the wider operating model in [`org/README.md`](../../org/README.md) and [`process/README.md`](../../process/README.md), and the [runtimes index](README.md) for other runtime implementation guides.

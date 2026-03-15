@@ -15,7 +15,7 @@ Confirm the changed files are **template or framework files** (not instances):
 - `AGENT.md` files at each layer (`org/*/AGENT.md`)
 - `AGENTS.md` / `CLAUDE.md`
 - Quality policies in `org/4-quality/policies/`
-- `CONFIG.yaml`, `OPERATING-MODEL.md`, integration definitions in `org/integrations/`
+- `CONFIG.yaml`, integration definitions in `org/integrations/`
 
 
 ---

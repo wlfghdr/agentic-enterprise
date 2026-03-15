@@ -57,7 +57,7 @@ git push origin feat/your-feature-name
 
 Changes to the operating model itself — layer definitions, process loops, agent hierarchies.
 
-- **Files:** `org/`, `process/`, `AGENTS.md`, `OPERATING-MODEL.md`
+- **Files:** `org/`, `process/`, `AGENTS.md`
 - **Requires:** Strong understanding of the 5-layer model and 4-loop process
 - **Review:** Maintainers + community discussion recommended
 - **Start with:** Open a [Discussion](https://github.com/wlfghdr/agentic-enterprise/discussions) first for significant changes
@@ -106,7 +106,7 @@ GitHub Actions, validation scripts, linters, dashboards.
 
 README improvements, guides, examples, tutorials.
 
-- **Files:** `README.md`, `examples/`, `CUSTOMIZATION-GUIDE.md`
+- **Files:** `README.md`, `examples/`, `docs/customization-guide.md`
 - **Guidelines:** Keep language clear and jargon-free
 
 ## Contribution Workflow
@@ -204,13 +204,13 @@ When proposing significant changes, keep these design principles in mind:
 |---|---|
 | Improve the model itself | PR to this repo |
 | Customize for your company | Fork, edit `CONFIG.yaml`, modify divisions |
-| Add your company's divisions | Fork — see `CUSTOMIZATION-GUIDE.md` |
+| Add your company's divisions | Fork — see `docs/customization-guide.md` |
 | Fix a bug in a template | PR to this repo |
 | Add a company-specific template | Fork |
 | Add a new generic agent type | PR to this repo |
 | Configure agent types for your stack | Fork |
 
-See [CUSTOMIZATION-GUIDE.md](CUSTOMIZATION-GUIDE.md) for details on tailoring the framework.
+See [docs/customization-guide.md](docs/customization-guide.md) for details on tailoring the framework.
 
 ## Development Setup
 
@@ -233,10 +233,10 @@ grep -rn ']\(\./' --include="*.md" . | grep -v node_modules
 
 # Check for unfilled placeholders in non-template files
 grep -rn '{{' --include="*.md" . | grep -v '_TEMPLATE' | grep -v 'CONFIG.yaml' | \
-  grep -v 'CONTRIBUTING.md' | grep -v 'CUSTOMIZATION-GUIDE.md'
+  grep -v 'CONTRIBUTING.md' | grep -v 'customization-guide.md'
 
 # Validate structure (required files exist)
-for f in README.md AGENTS.md CONFIG.yaml COMPANY.md OPERATING-MODEL.md CODEOWNERS LICENSE; do
+for f in README.md AGENTS.md CONFIG.yaml COMPANY.md CODEOWNERS LICENSE; do
   [ -f "$f" ] && echo "OK: $f" || echo "MISSING: $f"
 done
 ```

@@ -209,7 +209,6 @@ jobs:
             "CONFIG.yaml"
             "COMPANY.md"
             "CONTRIBUTING.md"
-            "OPERATING-MODEL.md"
             "CODEOWNERS"
             "LICENSE"
             "org/README.md"
@@ -765,3 +764,26 @@ jobs:
 
       - name: Validate cross-reference integrity
         run: python3 scripts/validate_cross_references.py
+
+  conftest:
+    name: conftest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install conftest
+        run: |
+          VERSION=0.51.0
+          curl -sL \
+            "https://github.com/open-policy-agent/conftest/releases/download/v${VERSION}/conftest_${VERSION}_Linux_x86_64.tar.gz" \
+            | tar xz conftest
+          sudo mv conftest /usr/local/bin/conftest
+          conftest --version
+
+      - name: Check workflow policies
+        run: |
+          conftest test .github/workflows/ \
+            --policy policy/ \
+            --data policy/ \
+            --namespace workflows \
+            --output table

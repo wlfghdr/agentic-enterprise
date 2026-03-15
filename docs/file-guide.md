@@ -36,21 +36,19 @@ Most adopters only ever need the **Company fork** context. The OSS context matte
 The `.github/` folder mixes OSS infrastructure with governance tooling that's genuinely useful in a company fork. Do not delete it wholesale — read the per-file guidance below.
 
 **Quick summary:**
-- **Keep:** `workflows/validate.yml`, `PULL_REQUEST_TEMPLATE.md`, `copilot-instructions.md`
-- **Keep if using the CI feature:** `workflows/policy.yml`, `workflows/security.yml`
-- **Keep if using issue backend:** `workflows/stale.yml`, `ISSUE_TEMPLATE/`
-- **Delete if using git-files backend:** `workflows/stale.yml`, `ISSUE_TEMPLATE/`
+- **Keep:** `workflows/validate.yml`, `PULL_REQUEST_TEMPLATE.md`
+- **Keep if using the CI feature:** `workflows/security.yml`
+- **Keep if using issue backend:** `ISSUE_TEMPLATE/`
+- **Delete if using git-files backend:** `ISSUE_TEMPLATE/`
 
 | File / Folder | OSS purpose | Company fork action |
 |---|---|---|
-| `workflows/validate.yml` | Core CI: validates operating model docs, schemas, locks, placeholders | **Keep** — these gates enforce governance in your fork too. They check that your config, policies, and artifacts stay consistent. |
-| `workflows/policy.yml` | OPA/Conftest policy enforcement (workflow permissions, pinned actions) | **Keep** if using the Policy-as-Code gate (see `docs/policy-as-code.md`); delete if not |
+| `workflows/validate.yml` | Core CI: validates operating model docs, schemas, locks, placeholders, OPA/Conftest policy enforcement | **Keep** — these gates enforce governance in your fork too. They check that your config, policies, and artifacts stay consistent. |
 | `workflows/security.yml` | Gitleaks secret scanning + GitHub Dependency Review | **Keep** if using security scanning (see `docs/security-scanning.md`); delete if not |
-| `workflows/stale.yml` | Marks and closes stale GitHub Issues/PRs (OSS housekeeping) | **Keep if using issue backend** (`work_backend.type: github-issues`) for housekeeping stale issues. **Delete if using git-files backend.** |
 | `ISSUE_TEMPLATE/` | Bug report and config forms for OSS contributors | **Template repo:** keep for OSS contributor workflows. **Company fork with issue backend:** replace/adapt using the samples in `docs/github/issue-templates/`. **Company fork with git-files backend:** delete if not needed. |
 | `PULL_REQUEST_TEMPLATE.md` | PR checklist reminding contributors to cite policies and evidence | **Keep and adapt** — update checklist items to match your fork's governance conventions |
-| `copilot-instructions.md` | GitHub Copilot agent instructions for working in this repo | **Keep and update** — edit after customization to reference your company name, divisions, and active missions |
-| `prompts/` | Agent skill prompts (e.g., `/deploy` workflow) | **Keep and adapt** — update prompts to reference your company's structure and toolchain |
+| `docs/runtimes/github-copilot-instructions.md` | GitHub Copilot agent instructions for working in this repo | **Keep and update** — edit after customization to reference your company name, divisions, and active missions |
+| `docs/runtimes/github-copilot-prompts/` | Agent skill prompts (e.g., `/deploy` workflow) | **Keep and adapt** — update prompts to reference your company's structure and toolchain |
 
 ---
 
@@ -59,10 +57,9 @@ The `.github/` folder mixes OSS infrastructure with governance tooling that's ge
 
 | File | Purpose | Fork action |
 |---|---|---|
-| `CONFIG.yaml` | **Start here.** Company identity, product names, toolchain, integrations, org shape. Every `{{VARIABLE}}` placeholder in the repo references this. | Fill in completely — see `CUSTOMIZATION-GUIDE.md` |
+| `CONFIG.yaml` | **Start here.** Company identity, product names, toolchain, integrations, org shape. Every `{{VARIABLE}}` placeholder in the repo references this. | Fill in completely — see `docs/customization-guide.md` |
 | `COMPANY.md` | Company vision, mission, strategic beliefs, and long-term direction. Currently has `{{COMPANY_NAME}}` placeholders. | Replace placeholders with your actual company content |
 | `AGENTS.md` | Global agent rules — the top of the instruction hierarchy. Every agent in every layer reads this first. Partly template scaffolding, partly company-specific governance. | Customise the Identity section and Product Naming rules with your own |
-| `OPERATING-MODEL.md` | Meta-description of how the operating model works inside your company. | Adjust to match your actual deployment choices |
 | `CODEOWNERS` | RACI map — who approves what. Replace placeholder role names with real GitHub team names. | Populate with actual `@org/team-name` handles |
 | `org/` | Org structure: 5 layers, agent type registry, integration registry, quality policies. | Customise divisions, add ventures, fill in integration configs |
 | `process/` | 4-loop lifecycle guides (Discover → Build → Ship → Operate), plus operational runbooks/templates where your company keeps them in Git. | Adjust to your actual delivery workflow |
@@ -76,7 +73,7 @@ The `.github/` folder mixes OSS infrastructure with governance tooling that's ge
 | File | Purpose | Fork action |
 |---|---|---|
 | `CLAUDE.md` | Auto-loaded by Claude Code (Anthropic's agent). **Mirrors the content of `AGENTS.md`** for the Claude tooling context. When you update `AGENTS.md`, keep this in sync — they must be consistent. Exists solely because Claude Code reads `CLAUDE.md` by convention; `AGENTS.md` is the canonical source of truth. | Keep and sync with `AGENTS.md` after any changes |
-| `CUSTOMIZATION-GUIDE.md` | Step-by-step guide for tailoring this framework to your company. | Read and follow during initial setup; keep for onboarding new team members |
+| `docs/customization-guide.md` | Step-by-step guide for tailoring this framework to your company. | Read and follow during initial setup; keep for onboarding new team members |
 
 ---
 
@@ -104,7 +101,7 @@ CLAUDE.md          ← Claude Code companion (auto-loaded by Anthropic tooling)
 
 ## What a Clean Fork Looks Like
 
-After forking and completing `CUSTOMIZATION-GUIDE.md` Step 1–5, your root should contain:
+After forking and completing `docs/customization-guide.md` Step 1–5, your root should contain:
 
 ```
 # Keep & fill in — this is your operating model
@@ -113,8 +110,6 @@ COMPANY.md
 AGENTS.md
 CLAUDE.md                   # keep, sync with AGENTS.md
 CODEOWNERS                  # update with real team handles
-OPERATING-MODEL.md
-CUSTOMIZATION-GUIDE.md      # keep for onboarding
 
 # OSS attribution — required by Apache 2.0
 LICENSE
@@ -132,9 +127,9 @@ index.html
 concept-visualization.html
 
 # .github/ — keep selectively (see per-file table above)
-# Keep: validate.yml, PULL_REQUEST_TEMPLATE.md, copilot-instructions.md
-# Keep if using issue backend: stale.yml, ISSUE_TEMPLATE/
-# Delete if using git-files backend: stale.yml, ISSUE_TEMPLATE/
+# Keep: validate.yml, PULL_REQUEST_TEMPLATE.md
+# Keep if using issue backend: ISSUE_TEMPLATE/
+# Delete if using git-files backend: ISSUE_TEMPLATE/
 ```
 
 ---
