@@ -1,6 +1,6 @@
 # Compliance Reference Index
 
-> **Purpose:** Central mapping of external standards to framework policies, controls, and remaining gaps.
+> **Purpose:** Central mapping of external standards to framework policies, controls, and adopter responsibilities.
 > **Audience:** Auditors, compliance officers, adopters assessing certification readiness.
 
 This directory contains one reference document per external standard or regulation that the Agentic Enterprise framework maps to. Each document explains:
@@ -8,11 +8,11 @@ This directory contains one reference document per external standard or regulati
 1. **What the standard requires** — key clauses and control objectives
 2. **How this framework addresses it** — specific policies, controls, and mechanisms
 3. **Where observability fits** — how telemetry provides runtime evidence
-4. **What remains open** — honest assessment of gaps that require deployment-specific work
+4. **What adopters must provide** — deployment-specific requirements beyond the framework's scope
 
 ## Standards Covered
 
-| Standard | Document | Framework Coverage | Key Gaps |
+| Standard | Document | Framework Coverage | Adopter Responsibilities |
 |----------|----------|-------------------|----------|
 | [ISO/IEC 27001:2022](iso-27001.md) | Information Security Management | ~90% | Management review records, competence records |
 | [SOC 2 Type II](soc2.md) | Trust Service Criteria | ~90% | Independent audit |
@@ -35,7 +35,7 @@ This directory contains one reference document per external standard or regulati
 - Deployment-specific configuration (retention periods, encryption keys, access controls, DPO appointment, etc.)
 - Continuous evidence collection via the observability platform
 
-## How Observability Closes the Evidence Gap
+## How Observability Provides Audit Evidence
 
 A recurring theme across all standards: **governance documents alone are insufficient — auditors need runtime evidence.** The framework's observability architecture (see [otel-contract.md](../otel-contract.md) and [observability policy](../../org/4-quality/policies/observability.md)) is designed to produce this evidence:
 
@@ -47,9 +47,9 @@ A recurring theme across all standards: **governance documents alone are insuffi
 
 Without a configured observability platform, the framework's compliance claims remain theoretical. With one, they become provable.
 
-## Remediation Guides
+## Implementation Guides
 
-For **P0-critical gaps** that block certification audits, actionable remediation guides are available in the [remediation/](remediation/) directory. These guides provide step-by-step instructions for adopters deploying the framework in real environments.
+For certification-critical requirements that need deployment-specific implementation, actionable guides are available in the [guides/](guides/) directory. These guides provide step-by-step instructions for adopters deploying the framework in real environments.
 
 ## Related Resources
 

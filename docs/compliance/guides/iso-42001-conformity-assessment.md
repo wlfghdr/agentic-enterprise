@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # ISO 42001 — Conformity Assessment Preparation Guide
 
-> **Closes gap:** Guidance for third-party ISO 42001 certification process
+> **Implements:** ISO 42001 third-party certification preparation
 > **Standard:** ISO/IEC 42001:2023 — Artificial Intelligence Management Systems
 > **Severity:** High — certification still requires an external body
 > **Related issue:** [#127](https://github.com/wlfghdr/agentic-enterprise/issues/127)
@@ -9,7 +9,7 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 The Agentic Enterprise framework provides much of the governance structure an ISO 42001 auditor will expect to see:
 
@@ -19,9 +19,9 @@ The Agentic Enterprise framework provides much of the governance structure an IS
 - versioned governance and approval records
 - agent type definitions and model governance surfaces
 
-What it does **not** do is replace the external certification process. ISO 42001 certification still requires an accredited certification body to review the organization's documentation and implementation.
+The framework does **not** replace the external certification process. ISO 42001 certification still requires an accredited certification body to review the organization's documentation and implementation.
 
-That means the framework can close the **guidance gap**, but not the **external assessment dependency**.
+This guide covers the **preparation requirement** for that external assessment.
 
 This guide explains:
 
@@ -214,7 +214,7 @@ If the scope changes and the documentation does not, surveillance findings are l
 
 | Phase | Typical Duration | Notes |
 |-------|------------------|-------|
-| Internal readiness and gap closure | 1-3 months | Longer if inventory, scope, or monitoring are immature |
+| Internal readiness and implementation | 1-3 months | Longer if inventory, scope, or monitoring are immature |
 | Certification body selection and scheduling | 1-2 months | Start early; specialist capacity may be limited |
 | Stage 1 preparation and audit | 2-6 weeks | Depends on document maturity |
 | Stage 1 remediation | 2-6 weeks | Close documentation findings before Stage 2 |

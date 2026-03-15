@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # ISO 22301 — BCMS Scope Statement
 
-> **Closes gap:** Formal BCMS scope statement (clause 4.3)
+> **Implements:** Formal BCMS scope statement (clause 4.3)
 > **Standard:** ISO 22301:2019 — Business Continuity Management Systems
 > **Severity:** High — required for certification
 > **Related issue:** [#138](https://github.com/wlfghdr/agentic-enterprise/issues/138)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 ISO 22301 clause 4.3 requires organizations to define the scope of the BCMS — identifying which products, services, activities, and locations are covered, including any exclusions and their justification. The scope must consider internal and external issues (clause 4.1) and the requirements of interested parties (clause 4.2).
 
-The Agentic Enterprise framework provides the structural foundation for a BCMS — the 5-layer organizational model, 4-loop process lifecycle, availability policy with RTO/RPO tiers, and incident response procedures. However, it does not include a formal BCMS scope statement that defines the boundaries of the business continuity management system. Without this scope statement, there is no governed artifact establishing which processes, services, and organizational units fall within the BCMS boundary — a mandatory prerequisite for ISO 22301 certification.
+The Agentic Enterprise framework provides the structural foundation for a BCMS — the 5-layer organizational model, 4-loop process lifecycle, availability policy with RTO/RPO tiers, and incident response procedures. This guide implements the formal BCMS scope statement that defines the boundaries of the business continuity management system — the governed artifact establishing which processes, services, and organizational units fall within the BCMS boundary, a mandatory prerequisite for ISO 22301 certification.
 
 This guide provides the requirements, a scope statement template tailored to the agentic enterprise context, and a mapping of existing framework artifacts to BCMS elements.
 

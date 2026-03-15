@@ -10,8 +10,8 @@
   <img src="https://img.shields.io/badge/ISO_27001-~90%25_covered-0e8a16" alt="ISO 27001">
   <img src="https://img.shields.io/badge/SOC_2-~90%25_covered-1d76db" alt="SOC 2">
   <img src="https://img.shields.io/badge/GDPR-~75%25_covered-d93f0b" alt="GDPR">
-  <img src="https://img.shields.io/badge/ISO_42001-~80%25_covered-5319e7" alt="ISO 42001">
-  <img src="https://img.shields.io/badge/NIST_AI_RMF-~85%25_covered-fbca04" alt="NIST AI RMF">
+  <img src="https://img.shields.io/badge/ISO_42001-~85%25_covered-5319e7" alt="ISO 42001">
+  <img src="https://img.shields.io/badge/NIST_AI_RMF-~90%25_covered-fbca04" alt="NIST AI RMF">
   <img src="https://img.shields.io/badge/EU_AI_Act-~85%25_covered-0e8a16" alt="EU AI Act">
   <img src="https://img.shields.io/badge/NIST_CSF_2.0-~95%25_covered-0e8a16" alt="NIST CSF 2.0">
   <img src="https://img.shields.io/badge/ISO_9001-~85%25_covered-0e8a16" alt="ISO 9001">
@@ -171,14 +171,14 @@ Built-in governance controls mapped to 11 certification frameworks. Honest self-
 
 | Framework | Coverage | | Framework | Coverage |
 |-----------|----------|-|-----------|----------|
-| **NIST CSF 2.0** | ~95% | | **ISO 42001** | ~80% |
+| **NIST CSF 2.0** | ~95% | | **ISO 42001** | ~85% |
 | **ISO 27001** | ~90% | | **GDPR** | ~75% |
-| **SOC 2 Type II** | ~90% | | **EU AI Act** | ~75% |
-| **NIST AI RMF** | ~85% | | **CCPA/CPRA** | ~75% |
+| **SOC 2 Type II** | ~90% | | **EU AI Act** | ~85% |
+| **NIST AI RMF** | ~90% | | **CCPA/CPRA** | ~75% |
 | **ISO 9001** | ~85% | | **ISO 22301** | ~70% |
 |  |  | | **HIPAA** | ~70% |
 
-> Certification requires an independent audit of your running system. This repo provides the **governance scaffolding**. Gaps tracked as [open issues](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Agap). Per-standard reference docs in [`docs/compliance/`](docs/compliance/).
+> Certification requires an independent audit of your running system. This repo provides the **governance scaffolding**. Adopter responsibilities tracked as [open issues](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acompliance). Per-standard reference docs in [`docs/compliance/`](docs/compliance/).
 
 ---
 

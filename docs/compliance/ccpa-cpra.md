@@ -72,9 +72,9 @@ CCPA/CPRA enforcement increasingly requires demonstrable compliance — the abil
 | Vendor data processing oversight | Vendor assessment records, DPA monitoring, subprocessor audit trails | §1798.100(d) |
 | Risk assessment evidence | `governance.decision` events for high-risk processing gates, DPIA decision records | §1798.185(a)(15) |
 
-## 4. Remaining Gaps
+## 4. Adopter Responsibilities
 
-| Gap | CCPA/CPRA Requirement | What's Needed | Criticality |
+| Requirement | CCPA/CPRA Requirement | What's Needed | Criticality |
 |-----|----------------------|---------------|-------------|
 | **"Do Not Sell or Share" opt-out mechanism** | §1798.120, §1798.135 | Runtime opt-out UI ("Do Not Sell or Share My Personal Information" link), opt-out signal recognition (GPC), backend enforcement of opt-out state per consumer — entirely deployment-specific | **High** |
 | **Sensitive Personal Information handling controls** | §1798.121 | Explicit SPI categorization (SSN, financial accounts, precise geolocation, racial/ethnic origin, etc.) mapped to CCPA/CPRA definition; consumer-facing "Limit Use" mechanism — partially covered by Data Classification Policy's RESTRICTED level but needs CCPA-specific SPI taxonomy | **High** |
@@ -82,7 +82,7 @@ CCPA/CPRA enforcement increasingly requires demonstrable compliance — the abil
 | **Annual cybersecurity audit** | §1798.185(a)(15) | Formal annual audit programme for businesses engaged in high-risk processing; framework provides controls but not audit scheduling, scope definition, or independent review | **Medium** |
 | **Financial incentive disclosure** | §1798.125(b) | Terms disclosure and opt-in mechanism for loyalty programmes or other financial incentives offered in exchange for PI — deployment-specific, rarely applicable | **Low** |
 
-**Addressed by framework:** "Do Not Sell or Share" opt-out mechanism ([guide](remediation/ccpa-cpra-opt-out.md)), Sensitive Personal Information handling controls ([guide](remediation/ccpa-cpra-sensitive-pi.md)).
+**Addressed by framework:** "Do Not Sell or Share" opt-out mechanism ([guide](guides/ccpa-cpra-opt-out.md)), Sensitive Personal Information handling controls ([guide](guides/ccpa-cpra-sensitive-pi.md)).
 
 ## 5. External References
 

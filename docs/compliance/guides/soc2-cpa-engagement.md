@@ -1,6 +1,6 @@
 # SOC 2 — CPA Audit Engagement Guide
 
-> **Closes gap:** Guidance for independent CPA audit engagement and management assertion preparation
+> **Implements:** Independent CPA audit engagement and management assertion preparation
 > **Standard:** SOC 2 Type II — engagement requirement
 > **Severity:** High — a licensed external CPA firm is still required for report issuance
 > **Related issue:** [#125](https://github.com/wlfghdr/agentic-enterprise/issues/125)
@@ -9,24 +9,22 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
-The Agentic Enterprise framework already helps adopters prepare for SOC 2 by providing:
+The Agentic Enterprise framework helps adopters prepare for SOC 2 by providing:
 
 - control design mappings in [soc2.md](../soc2.md)
 - runtime evidence guidance in [soc2-operating-effectiveness.md](soc2-operating-effectiveness.md)
 - formal control testing guidance in [soc2-control-testing.md](soc2-control-testing.md)
 
-What it did not provide was the final preparation layer between "we have evidence" and "we are ready to engage a licensed CPA firm."
-
-That missing layer includes:
+This guide provides the final preparation layer between "we have evidence" and "we are ready to engage a licensed CPA firm." It covers:
 
 1. how to select and engage the audit firm
 2. how to prepare management's assertion package
 3. how to coordinate auditor access without breaking least-privilege or audit-trail controls
 4. how to stage the engagement timeline 3 to 6 months before fieldwork
 
-This guide closes that process gap. It does **not** replace the external audit itself.
+This guide does **not** replace the external audit itself.
 
 ---
 
@@ -53,10 +51,10 @@ Treat auditor selection as a governed vendor decision, not a last-minute procure
 
 | Phase | Goal | Practical Output |
 |-------|------|------------------|
-| Internal scope alignment | Confirm report type, in-scope criteria, observation period, and known gaps | Internal readiness memo or checklist |
+| Internal scope alignment | Confirm report type, in-scope criteria, observation period, and known open areas | Internal readiness memo or checklist |
 | CPA firm shortlist | Identify firms with SaaS, cloud, and AI-governance familiarity | Shortlist with evaluation notes |
 | Capability and independence review | Confirm the firm can perform the engagement and is independent | Selection record and conflict check |
-| Readiness assessment or scoping call | Validate whether the organization is truly fieldwork-ready | Gap list, expected PBC list, timeline assumptions |
+| Readiness assessment or scoping call | Validate whether the organization is truly fieldwork-ready | Findings list, expected PBC list, timeline assumptions |
 | Engagement letter negotiation | Lock scope, period, deliverables, timeline, and responsibilities | Signed engagement letter |
 | Kickoff and request intake setup | Establish the request process before fieldwork begins | Audit tracker, owners, evidence-room structure |
 
@@ -207,7 +205,7 @@ Start the engagement preparation **3 to 6 months before formal fieldwork**. A sh
 | T-4 to T-0 weeks | Finalize management assertion draft, confirm signatories, rehearse walkthroughs | Clean kickoff |
 | T0 onward | Fieldwork, sample response, exception follow-up | Timely auditor response and report progression |
 
-If the organization is still discovering major scope or control gaps at T-8 weeks, delay fieldwork rather than forcing a weak start.
+If the organization is still discovering major scope or control deficiencies at T-8 weeks, delay fieldwork rather than forcing a weak start.
 
 ---
 

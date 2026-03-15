@@ -60,9 +60,9 @@ GDPR accountability (Art. 5(2)) requires demonstrable compliance — not just po
 | DPIA decision trail | `governance.decision` events for high-risk processing gates | Art. 35 |
 | Transfer mechanism verification | Vendor assessment records, SCC documentation | Art. 44–49 |
 
-## 4. Remaining Gaps
+## 4. Adopter Responsibilities
 
-| Gap | GDPR Requirement | What's Needed | Severity |
+| Requirement | GDPR Requirement | What's Needed | Severity |
 |-----|-----------------|---------------|----------|
 | **Consent management UX** | Art. 6(1)(a), 7 | Runtime consent collection, storage, withdrawal UI — deployment-specific | High — if consent is the lawful basis |
 | **DPO appointment** | Art. 37 | Named DPO with independence guarantees — organizational decision | High — if required (public authority, large-scale monitoring, special categories) |
@@ -72,7 +72,7 @@ GDPR accountability (Art. 5(2)) requires demonstrable compliance — not just po
 | **Right to explanation** | Art. 22 | Meaningful information about automated decision-making logic | Medium — addressed partially by AI governance explainability |
 | **Age verification** | Art. 8 | Child data protections if processing children's data | Low — context-dependent |
 
-**Addressed by framework:** Consent management UX and DPO appointment guidance ([guide](remediation/gdpr-consent-management.md)).
+**Addressed by framework:** Consent management UX and DPO appointment guidance ([guide](guides/gdpr-consent-management.md)).
 
 ## 5. External References
 

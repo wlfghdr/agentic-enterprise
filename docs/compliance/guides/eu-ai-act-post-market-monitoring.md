@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # EU AI Act — Post-Market Monitoring & Serious Incident Reporting Guide
 
-> **Closes gap:** Post-market monitoring system (Art. 72) and serious incident reporting (Art. 62)
+> **Implements:** Post-market monitoring system (Art. 72) and serious incident reporting (Art. 62)
 > **Regulation:** EU AI Act (Regulation 2024/1689)
 > **Severity:** Critical — mandatory obligations from the moment a high-risk AI system is placed on the EU market
 > **Related issue:** [#131](https://github.com/wlfghdr/agentic-enterprise/issues/131)
@@ -10,7 +10,7 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 The EU AI Act imposes two distinct post-market obligations on providers of high-risk AI systems:
 
@@ -18,7 +18,7 @@ The EU AI Act imposes two distinct post-market obligations on providers of high-
 
 2. **Serious incident reporting (Art. 62):** Providers must report serious incidents — those that directly or indirectly lead to, or are realistically likely to lead to, death, serious damage to health, serious disruption of critical infrastructure, breach of fundamental rights obligations, or serious damage to property or the environment — to the market surveillance authority of the member state where the incident occurred. Initial reports must be filed within 15 days of becoming aware of the incident, or within 2 days for widespread infringements.
 
-The Agentic Enterprise framework provides strong **observability infrastructure** (OTel-based telemetry, the [Observability Policy](../../../org/4-quality/policies/observability.md), and the [OTel contract](../../otel-contract.md)) and a mature **incident response process** (the [Incident Response Policy](../../../org/4-quality/policies/incident-response.md) with SEV1-4 classification and retrospectives). However, the framework currently lacks:
+The Agentic Enterprise framework provides strong **observability infrastructure** (OTel-based telemetry, the [Observability Policy](../../../org/4-quality/policies/observability.md), and the [OTel contract](../../otel-contract.md)) and a mature **incident response process** (the [Incident Response Policy](../../../org/4-quality/policies/incident-response.md) with SEV1-4 classification and retrospectives). This guide extends those capabilities with:
 
 - A **formal PMS plan** aligned to Art. 72 requirements
 - A mapping from framework observability data to EU AI Act PMS data collection obligations
@@ -26,7 +26,7 @@ The Agentic Enterprise framework provides strong **observability infrastructure*
 - **Regulatory reporting timelines and procedures** for notifying national market surveillance authorities
 - Templates for the PMS plan and serious incident reports
 
-This guide closes these gaps by mapping the framework's existing capabilities to the EU AI Act's post-market obligations and providing the additional procedures, templates, and checklists adopters need.
+This guide maps the framework's existing capabilities to the EU AI Act's post-market obligations and provides the additional procedures, templates, and checklists adopters need.
 
 ---
 
@@ -50,7 +50,7 @@ Art. 72 requires providers of high-risk AI systems to establish a post-market mo
 
 The framework's OTel-based observability platform provides the data collection infrastructure for Art. 72 compliance. The following table maps PMS data requirements to existing framework capabilities.
 
-| PMS Data Requirement | Framework Capability | Source Artifact | Gap / Action Needed |
+| PMS Data Requirement | Framework Capability | Source Artifact | Action Needed |
 |---------------------|---------------------|-----------------|-------------------|
 | AI system performance metrics | OTel spans with `gen_ai.*` attributes (latency, token usage, model ID) | [OTel contract](../../otel-contract.md) Section 3 | Add AI-specific accuracy and drift metrics as custom OTel attributes |
 | Error and failure rates | OTel span status codes, `otel.status_code`, `error.type` attributes | [OTel contract](../../otel-contract.md) Section 3 | Configure alerting thresholds specific to the AI system's risk profile |

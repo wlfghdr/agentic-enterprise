@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # HIPAA — Notice of Privacy Practices and Patient Rights
 
-> **Closes gap:** Notice of Privacy Practices (NPP) template and patient rights implementation
+> **Implements:** Notice of Privacy Practices (NPP) template and patient rights implementation
 > **Regulation:** HIPAA (45 CFR §164.520, §164.524, §164.526, §164.528)
 > **Severity:** High — NPP is mandatory for all Covered Entities; patient rights are enforceable by HHS OCR
 > **Related issue:** [#146](https://github.com/wlfghdr/agentic-enterprise/issues/146)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 HIPAA requires every Covered Entity to provide individuals with a Notice of Privacy Practices (NPP) that describes how their PHI may be used and disclosed, their rights regarding their PHI, and the Covered Entity's legal duties. The Privacy Rule also establishes six individual rights that Covered Entities must implement and support.
 
-The Agentic Enterprise framework provides a DSAR (Data Subject Access Request) runbook via the [Privacy Policy](../../../org/4-quality/policies/privacy.md) that covers the general pattern for access and correction requests. However, the framework does not include a HIPAA-specific NPP template, does not address HIPAA-specific timelines (30 days for access, 60 days for amendment, 6-year accounting window), and does not provide guidance for how AI/agent systems should interact with patient data access requests.
+The Agentic Enterprise framework provides a DSAR (Data Subject Access Request) runbook via the [Privacy Policy](../../../org/4-quality/policies/privacy.md) that covers the general pattern for access and correction requests. This guide extends that foundation with a HIPAA-specific NPP template, HIPAA-specific timelines (30 days for access, 60 days for amendment, 6-year accounting window), and guidance for how AI/agent systems should interact with patient data access requests.
 
 This guide provides the complete NPP requirements, a content template, implementation guidance for all six patient rights, agent-specific considerations, and a verification checklist.
 

@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # HIPAA — Privacy Officer and Security Officer Designation
 
-> **Closes gap:** Designated Privacy Officer and Security Officer with defined responsibilities
+> **Implements:** Designated Privacy Officer and Security Officer with defined responsibilities
 > **Regulation:** HIPAA (45 CFR §164.530(a)(1) — Privacy Officer; §164.308(a)(2) — Security Officer)
 > **Severity:** High — officer designation is mandatory; absence is a common OCR enforcement finding
 > **Related issue:** [#148](https://github.com/wlfghdr/agentic-enterprise/issues/148)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 HIPAA requires every Covered Entity and Business Associate to designate a Privacy Officer responsible for developing and implementing privacy policies and procedures, and a Security Officer responsible for developing and implementing security policies and procedures. These are mandatory designations, not optional roles.
 
-The Agentic Enterprise framework defines role-based responsibility via `CODEOWNERS` and assigns security artifact ownership through the [Security Policy](../../../org/4-quality/policies/security.md). However, it does not mandate specific Privacy Officer or Security Officer appointments, does not define the HIPAA-specific responsibilities of these officers, and does not address officer responsibilities for AI/agent system oversight — including oversight of PHI processing by agents, agent security configuration review, and agent audit trail monitoring.
+The Agentic Enterprise framework defines role-based responsibility via `CODEOWNERS` and assigns security artifact ownership through the [Security Policy](../../../org/4-quality/policies/security.md). This guide extends that foundation with specific Privacy Officer and Security Officer appointment requirements, HIPAA-specific responsibilities for these officers, and officer responsibilities for AI/agent system oversight — including oversight of PHI processing by agents, agent security configuration review, and agent audit trail monitoring.
 
 This guide defines the Privacy Officer and Security Officer requirements, responsibilities, AI/agent-specific oversight duties, reporting structure, and a verification checklist.
 

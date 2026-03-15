@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # NIST CSF 2.0 — Runtime Security Tooling Integration Guide
 
-> **Closes gap:** Runtime security tooling (SIEM, IDS/IPS, EDR)
+> **Implements:** Runtime security tooling integration (SIEM, IDS/IPS, EDR)
 > **Standard:** NIST CSF 2.0 — PR.PS-02, DE.CM-01
 > **Severity:** Critical — detection and protection depend on deployed tooling
 > **Related issue:** [#133](https://github.com/wlfghdr/agentic-enterprise/issues/133)
@@ -9,19 +9,17 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
-The Agentic Enterprise framework provides the **governance and policy layer** for cybersecurity — quality policies define what must be monitored, how incidents must be handled, and what telemetry agents must emit. However, the framework does not provision or deploy the **runtime security tooling** that actually performs detection and protection in a live environment.
+This guide provides the requirements, architecture, and configuration guidance for deploying the **runtime security tooling** that performs detection and protection in a live environment, complementing the framework's governance and policy layer.
 
-Specifically:
+The framework's policies define what must be monitored, how incidents must be handled, and what telemetry agents must emit:
 
-- The [Security Policy](../../../org/4-quality/policies/security.md) mandates shift-left scanning, dependency vulnerability management, and mTLS — but does not deploy a SIEM to aggregate and correlate security events.
-- The [Observability Policy](../../../org/4-quality/policies/observability.md) requires every agent action to produce an OTel span — but the telemetry pipeline terminates at the OTel Collector; no security analytics platform consumes the data for threat detection.
-- The [Incident Response Policy](../../../org/4-quality/policies/incident-response.md) defines SEV1-SEV4 severity levels and response SLAs — but assumes a detection path exists (Section "How Compliance Is Ensured") without specifying the tooling that provides it.
+- The [Security Policy](../../../org/4-quality/policies/security.md) mandates shift-left scanning, dependency vulnerability management, and mTLS. This guide covers SIEM deployment to aggregate and correlate security events.
+- The [Observability Policy](../../../org/4-quality/policies/observability.md) requires every agent action to produce an OTel span. This guide covers connecting the telemetry pipeline to a security analytics platform for threat detection.
+- The [Incident Response Policy](../../../org/4-quality/policies/incident-response.md) defines SEV1-SEV4 severity levels and response SLAs. This guide covers the detection tooling that feeds that response workflow.
 
-**Without deployed SIEM, IDS/IPS, and EDR, the framework's detection (DE.CM-01) and platform security (PR.PS-02) controls exist only on paper.**
-
-This guide provides the requirements, architecture, and configuration guidance for closing this gap.
+**Deployed SIEM, IDS/IPS, and EDR are required for the framework's detection (DE.CM-01) and platform security (PR.PS-02) controls to be enforceable at runtime.**
 
 ---
 
@@ -354,7 +352,7 @@ For each tooling category, create an integration registry entry following the [I
 
 ## 6. Verification Checklist
 
-Use this checklist to confirm that the runtime security tooling gap is fully closed.
+Use this checklist to confirm that the runtime security tooling requirements are fully implemented.
 
 ### Tooling Deployment
 

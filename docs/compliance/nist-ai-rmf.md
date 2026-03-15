@@ -99,9 +99,9 @@ NIST AI RMF emphasizes **continuous monitoring** (MANAGE 3) and **quantitative m
 | MANAGE — Risk response | `risk.treatment.applied` events, `agent.emergency_halt` events, circuit breaker metrics | Proves risk responses activate when needed |
 | MANAGE — Post-deployment | Agent fleet dashboards, SLO burn rates, behavioral drift alerts | Proves AI systems are monitored after deployment |
 
-## 4. Remaining Gaps
+## 4. Adopter Responsibilities
 
-| Gap | NIST AI RMF Requirement | What's Needed | Severity |
+| Requirement | NIST AI RMF Requirement | What's Needed | Severity |
 |-----|------------------------|---------------|----------|
 | **Organizational AI risk profile** | MAP 3 | Formal document consolidating all AI risks with organizational context | Medium |
 | **Third-party evaluation** | MEASURE 2 | Independent evaluation of AI system trustworthiness | Medium |
@@ -109,7 +109,7 @@ NIST AI RMF emphasizes **continuous monitoring** (MANAGE 3) and **quantitative m
 | **Environmental impact tracking** | GOVERN 1 (GenAI Profile) | Energy consumption metrics for AI workloads | Low |
 | **Workforce AI competence** | GOVERN 3 | Formal AI competence programme and diversity considerations | Low |
 
-**Addressed by framework:** Quantitative MEASURE scaffolding — see the [quantitative measurement guide](remediation/nist-ai-rmf-measure-metrics.md), [dashboard template](templates/_TEMPLATE-nist-ai-rmf-measure-dashboard.md), and [measurement report template](templates/_TEMPLATE-nist-ai-rmf-measure-report.md). These standardize metric definitions, baseline establishment, dashboard structure, and reporting format; adopters still need live telemetry and completed reports from their running deployment.
+**Addressed by framework:** Quantitative MEASURE scaffolding — see the [quantitative measurement guide](guides/nist-ai-rmf-measure-metrics.md), [dashboard template](templates/_TEMPLATE-nist-ai-rmf-measure-dashboard.md), and [measurement report template](templates/_TEMPLATE-nist-ai-rmf-measure-report.md). These standardize metric definitions, baseline establishment, dashboard structure, and reporting format; adopters still need live telemetry and completed reports from their running deployment.
 
 ## 5. External References
 

@@ -190,9 +190,9 @@ NIST CSF 2.0 emphasizes continuous improvement and measurable outcomes. The obse
 | RECOVER | Recovery time measurement | Recovery OTel spans with RTO/RPO compliance metrics |
 | RECOVER | DR drill validation | Drill execution traces, recovery success/failure records |
 
-## 4. Remaining Gaps
+## 4. Adopter Responsibilities
 
-| Gap | CSF Requirement | What's Needed | Criticality |
+| Requirement | CSF Requirement | What's Needed | Criticality |
 |-----|----------------|---------------|-------------|
 | **Identity provider integration** | PR.AA-01, PR.AA-03 | Deployment must connect to an actual IdP (e.g., Okta, Azure AD) for human and service identity lifecycle | High — framework defines policy but not IdP configuration |
 | **Security awareness programme** | PR.AT-01, PR.AT-02 | Formal human security awareness training beyond agent instructions; phishing simulations, role-based training | High — agent instructions are not a human training programme |
@@ -204,7 +204,7 @@ NIST CSF 2.0 emphasizes continuous improvement and measurable outcomes. The obse
 | **Penetration testing programme** | ID.RA-01, PR.PS-06 | Regular external penetration testing and red team exercises | Low — framework defines shift-left security, pen testing is operational |
 | **Cyber insurance** | GV.RM-07 | Organization-level decision on cyber insurance coverage | Low — business decision outside framework scope |
 
-**Addressed by framework:** Runtime security tooling integration ([guide](remediation/nist-csf-runtime-security-tooling.md)), network security architecture ([guide](remediation/nist-csf-network-security.md)), identity provider integration ([guide](remediation/nist-csf-identity-provider.md)), security awareness programme ([guide](remediation/nist-csf-security-awareness.md)).
+**Addressed by framework:** Runtime security tooling integration ([guide](guides/nist-csf-runtime-security-tooling.md)), network security architecture ([guide](guides/nist-csf-network-security.md)), identity provider integration ([guide](guides/nist-csf-identity-provider.md)), security awareness programme ([guide](guides/nist-csf-security-awareness.md)).
 
 ## 5. External References
 

@@ -21,7 +21,7 @@
 | Prepared by | {{PREPARER}} |
 | Reviewed by | {{LEGAL_REVIEWER}} / {{AUDIT_COORDINATOR}} |
 | Signatory | {{EXECUTIVE_SIGNATORY}} |
-| Related | [SOC 2 CPA Audit Engagement Guide](../remediation/soc2-cpa-engagement.md) |
+| Related | [SOC 2 CPA Audit Engagement Guide](../guides/soc2-cpa-engagement.md) |
 
 ## Preparation Checklist
 

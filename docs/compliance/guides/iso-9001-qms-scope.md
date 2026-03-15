@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # ISO 9001 — Formal QMS Scope Statement Guide
 
-> **Closes gap:** Formal QMS scope statement (clause 4.3)
+> **Implements:** Formal QMS scope statement (clause 4.3)
 > **Standard:** ISO 9001:2015 — Quality Management Systems
 > **Severity:** High — required for certification; auditors check this first
 > **Related issue:** [#137](https://github.com/wlfghdr/agentic-enterprise/issues/137)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 The Agentic Enterprise framework provides a comprehensive quality management foundation: 19 quality policies in `org/4-quality/policies/`, a 4-loop process lifecycle (`process/`), CODEOWNERS-based roles and responsibilities, version-controlled documented information, and continuous improvement through the signals system. These artifacts collectively satisfy the substance of most ISO 9001 clauses.
 
-However, the framework lacks a **formal QMS scope statement** as required by ISO 9001:2015 clause 4.3. Without this document, an adopter cannot demonstrate that they have:
+This guide implements the **formal QMS scope statement** as required by ISO 9001:2015 clause 4.3. Adopters use this guide to demonstrate that they have:
 
 - Considered the internal and external issues relevant to their purpose and strategic direction (clause 4.1)
 - Considered the requirements of relevant interested parties (clause 4.2)

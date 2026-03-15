@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # CCPA/CPRA — Sensitive Personal Information Handling Controls Guide
 
-> **Closes gap:** Sensitive Personal Information handling controls
+> **Implements:** Sensitive Personal Information handling controls
 > **Regulation:** California Consumer Privacy Act / California Privacy Rights Act (Cal. Civ. Code §1798.121, §1798.140(ae))
 > **Severity:** High — CPRA-specific obligation with CPPA enforcement and significant penalty exposure
 > **Related issue:** [#143](https://github.com/wlfghdr/agentic-enterprise/issues/143)
@@ -10,11 +10,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 CPRA introduced §1798.121, granting consumers the right to limit the use and disclosure of their sensitive personal information (SPI). This right goes beyond general PI protections — it restricts businesses to using SPI only for specified, narrowly defined purposes unless the consumer has not exercised the right to limit.
 
-The Agentic Enterprise framework's [Data Classification Policy](../../../org/4-quality/policies/data-classification.md) provides a four-tier classification system (PUBLIC, INTERNAL, CONFIDENTIAL, RESTRICTED) that partially addresses SPI through the RESTRICTED classification level. However, the framework does not include:
+The Agentic Enterprise framework's [Data Classification Policy](../../../org/4-quality/policies/data-classification.md) provides a four-tier classification system (PUBLIC, INTERNAL, CONFIDENTIAL, RESTRICTED) that partially addresses SPI through the RESTRICTED classification level. This guide extends that foundation with:
 
 - An explicit CCPA/CPRA-specific SPI taxonomy mapping all 11 statutory categories to framework classification levels
 - A consumer-facing "Limit the Use of My Sensitive Personal Information" mechanism
@@ -125,7 +125,7 @@ CPRA §1798.100(c) requires that a business's collection, use, retention, and sh
 
 ### 4b. Framework Alignment
 
-| Minimization Requirement | Framework Control | Gap |
+| Minimization Requirement | Framework Control | Action Needed |
 |-------------------------|-------------------|-----|
 | Collection limitation | Data Classification Policy — least-privilege data access | Add SPI-specific collection justification requirements |
 | Use limitation | Privacy Policy §1 — purpose documentation | Add SPI-specific purpose limitation enforcement at agent level |
