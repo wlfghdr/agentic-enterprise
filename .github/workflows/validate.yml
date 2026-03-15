@@ -616,6 +616,26 @@ jobs:
       - name: Report compliance coverage gaps
         run: python3 scripts/validate_compliance_coverage.py --warn-unmapped-pct 25
 
+  validate-config-completeness:
+    name: validate-config-completeness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Self-check (script integrity)
+        run: python3 scripts/validate_config_completeness.py --self-check
+
+      - name: Validate CONFIG.yaml completeness
+        run: python3 scripts/validate_config_completeness.py
+
   validate-integration-registry:
     name: validate-integration-registry
     runs-on: ubuntu-latest
