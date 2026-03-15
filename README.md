@@ -23,7 +23,7 @@
 <h1 align="center">Agentic Enterprise</h1>
 
 <p align="center">
-  <strong>Run your entire company as a Git repository.<br>5 layers. 4 loops. Zero legacy ceremony.</strong>
+  <strong>Govern AI-assisted work through a repository-backed operating model.<br>5 layers. 4 loops. Explicit accountability.</strong>
 </p>
 
 <p align="center">
@@ -34,10 +34,11 @@
 
 <p align="center">
   <a href="#choose-your-path">Choose a Path</a> ·
+  <a href="#executive-reality-check">Reality Check</a> ·
   <a href="#see-it-in-motion">See It In Motion</a> ·
   <a href="#start-minimal-adoption">Start Minimal Adoption</a> ·
   <a href="#the-operating-loop">Operating Loop</a> ·
-  <a href="#operational-proof">Proof</a> ·
+  <a href="#public-proof">Proof</a> ·
   <a href="#runtimes--integrations">Runtimes</a> ·
   <a href="#enterprise-compliance-readiness">Compliance</a> ·
   <a href="CONTRIBUTING.md">Contribute</a>
@@ -50,6 +51,7 @@
 | If you want to... | Start here | What you get |
 |---------|------------------------|-------------|
 | **Understand the operating model** | [10-Minute Walkthrough](docs/quickstart/10-minute-agentic-enterprise.md) · [org/README.md](org/README.md) | The 5 layers, 4 loops, and core artifact flow in the shortest useful path |
+| **Stress-test the concept** | [Executive Reality Check](docs/executive-reality-check.md) | Candid answers to the objections a CTO, CEO, COO, or CFO should raise before adopting the framework |
 | **See it in motion** | [Live demo](https://wlfghdr.github.io/agentic-enterprise/) · [Reference scenario](https://wlfghdr.github.io/agentic-enterprise/concept-visualization.html) | The public proof layer, driven by [`index.html`](index.html) and [`concept-visualization.html`](concept-visualization.html) |
 | **Start minimal adoption** | [Minimal Adoption Guide](docs/adoption/minimal-adoption.md) | A no-agents-required path: fork, configure, use signals + missions + PRs |
 
@@ -65,7 +67,23 @@ Keep these terms separate:
 - **Observability:** your OpenTelemetry-native evidence layer
 - **Adoption:** start with Git, CODEOWNERS, signals, missions, and PRs; add agents later if you want
 
-The repo is the framework. You bring the runtime and the observability platform. The framework stays runtime-agnostic.
+The repo is the governance backbone. You bring the runtime, observability platform, and domain systems that actually execute business operations. The framework stays runtime-agnostic.
+
+---
+
+## Executive Reality Check
+
+Before you buy the story, challenge these points directly:
+
+| Challenge | Honest answer |
+|-----------|---------------|
+| **Is this a replacement for Jira, ERP, CRM, ITSM, or observability?** | No. It governs decisions, approvals, work artifacts, and audit trails. Domain systems still do domain work. |
+| **Do the 5 layers imply a heavy org chart?** | No. They are decision roles, not mandatory headcount. Small teams can collapse multiple layers into the same people. |
+| **Is the public proof already enterprise-scale?** | Not yet. The public reference organization proves internal consistency and repeatability, not Fortune 500 operating scale. |
+| **Do the compliance percentages mean certification or operating effectiveness?** | No. They measure framework scaffolding coverage. Real controls, evidence, and audits remain adopter work. |
+| **Can agents run the company unattended?** | No. Humans stay accountable for scope, policy, risk, and releases. The framework reduces toil; it does not eliminate executive responsibility. |
+
+**[Full executive diligence notes →](docs/executive-reality-check.md)**
 
 ---
 
@@ -124,19 +142,20 @@ QUALITY (4)         Agents evaluate against 19 policies
 
 ---
 
-## Operational Proof
+## Public Proof
 
-The framework is exercised by a **reference organization** that runs the operating model end-to-end, giving the repo public proof beyond concept copy.
+As of **2026-03-16**, the directly inspectable public proof in [`wlfghdr/agentic-enterprise`](https://github.com/wlfghdr/agentic-enterprise) is:
 
-| Metric | Count |
-|--------|------:|
-| **Issues** (signals, missions, tasks, enhancements) | 210+ |
-| **Pull Requests** (governed, reviewed, merged) | 190+ |
-| **Commits** (auditable change trail) | 745+ |
+| Metric | Count | What you can verify |
+|--------|------:|---------------------|
+| **Issues** | 88 | Repository issue history, including roadmap, compliance, and framework work |
+| **Pull Requests** | 80 total / 75 merged | Governed change history with review and merge records |
+| **Commits** | 239 | Auditable Git history in this repository |
+| **Quality policies** | 19 | Enforceable policy domains under [`org/4-quality/policies/`](org/4-quality/policies/) |
 
-Every artifact traces: Signal → Mission → PR → Release → New Signal. The Git history is the proof.
+Counts change daily. The reference-organization narrative below is intentionally scoped to what is public and verifiable from this repository, rather than cross-repo totals that readers cannot inspect from one page.
 
-**[Full reference org details →](docs/reference-organization/sandboxcorp.md)** · **[End-to-end example →](examples/e2e-loop/)** · **[Architecture overview →](docs/architecture/agentic-enterprise-architecture.md)**
+**[Full reference org details →](docs/reference-organization/sandboxcorp.md)** · **[Executive reality check →](docs/executive-reality-check.md)** · **[End-to-end example →](examples/e2e-loop/)** · **[Architecture overview →](docs/architecture/agentic-enterprise-architecture.md)**
 
 ---
 
@@ -211,7 +230,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). We welcome framework improvements, runti
 ---
 
 <p align="center">
-  <strong>The future of enterprise is not more meetings. It's a Git repository that runs itself.</strong>
+  <strong>The future of enterprise is not more meetings. It's explicit governance for AI-assisted work.</strong>
 </p>
 
 <p align="center">
