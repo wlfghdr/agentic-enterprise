@@ -175,11 +175,11 @@ The framework defines **what** the organization does and **how** it's governed. 
 
 ## Public Proof
 
-This architecture is not theoretical. As of **2026-03-16**, the directly inspectable public proof in this repository is:
+This architecture is not theoretical. As of **2026-03-16**, the directly inspectable public proof across the three-repo reference stack (`wlfghdr/agentic-enterprise`, `WulfAI/sandboxcorp`, `wlfghdr/agent-command-center`) is:
 
-- **88 issues** — roadmap, compliance, and framework work tracked in GitHub
-- **80 pull requests / 75 merged** — governed change history with review records
-- **239 commits** — every change traceable in Git history
+- **210 issues** — roadmap, compliance, and operational work tracked in GitHub
+- **205 pull requests / 195 merged** — governed change history with review records
+- **759 commits** — every change traceable across the three `main` branches
 
 That proves the architecture is being exercised publicly. It does **not** claim large-enterprise operating scale on its own.
 

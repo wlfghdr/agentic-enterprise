@@ -79,7 +79,7 @@ Before you buy the story, challenge these points directly:
 |-----------|---------------|
 | **Is this a replacement for Jira, ERP, CRM, ITSM, or observability?** | No. It governs decisions, approvals, work artifacts, and audit trails. Domain systems still do domain work. |
 | **Do the 5 layers imply a heavy org chart?** | No. They are decision roles, not mandatory headcount. Small teams can collapse multiple layers into the same people. |
-| **Is the public proof already enterprise-scale?** | Not yet. The public reference organization proves internal consistency and repeatability, not Fortune 500 operating scale. |
+| **Is the public proof already enterprise-scale?** | Not yet. The public three-repo reference stack proves internal consistency and repeatability, not Fortune 500 operating scale. |
 | **Do the compliance percentages mean certification or operating effectiveness?** | No. They measure framework scaffolding coverage. Real controls, evidence, and audits remain adopter work. |
 | **Can agents run the company unattended?** | No. Humans stay accountable for scope, policy, risk, and releases. The framework reduces toil; it does not eliminate executive responsibility. |
 
@@ -144,16 +144,22 @@ QUALITY (4)         Agents evaluate against 19 policies
 
 ## Public Proof
 
-As of **2026-03-16**, the directly inspectable public proof in [`wlfghdr/agentic-enterprise`](https://github.com/wlfghdr/agentic-enterprise) is:
+As of **2026-03-16**, the public reference stack spans three repositories:
+
+- [`wlfghdr/agentic-enterprise`](https://github.com/wlfghdr/agentic-enterprise)
+- [`WulfAI/sandboxcorp`](https://github.com/WulfAI/sandboxcorp)
+- [`wlfghdr/agent-command-center`](https://github.com/wlfghdr/agent-command-center)
+
+Using all-state GitHub issue and PR history plus `origin/main` commit counts, the aggregate public proof is:
 
 | Metric | Count | What you can verify |
 |--------|------:|---------------------|
-| **Issues** | 88 | Repository issue history, including roadmap, compliance, and framework work |
-| **Pull Requests** | 80 total / 75 merged | Governed change history with review and merge records |
-| **Commits** | 239 | Auditable Git history in this repository |
+| **Issues** | 210 | Combined issue history across framework, reference organization, and command-center repos |
+| **Pull Requests** | 205 total / 195 merged | Governed change history with review and merge records across the three repos |
+| **Commits** | 759 | `origin/main` commit history across the three repos |
 | **Quality policies** | 19 | Enforceable policy domains under [`org/4-quality/policies/`](org/4-quality/policies/) |
 
-Counts change daily. The reference-organization narrative below is intentionally scoped to what is public and verifiable from this repository, rather than cross-repo totals that readers cannot inspect from one page.
+Counts change daily. The important part is not the vanity number; it is that the reference stack and counting basis are named explicitly and can be inspected.
 
 **[Full reference org details →](docs/reference-organization/sandboxcorp.md)** · **[Executive reality check →](docs/executive-reality-check.md)** · **[End-to-end example →](examples/e2e-loop/)** · **[Architecture overview →](docs/architecture/agentic-enterprise-architecture.md)**
 

@@ -54,7 +54,7 @@ _Changes merged to `main` after `v4.0.0` go here._
 
 ### Changed
 
-- `README.md`, `index.html`, `docs/reference-organization/sandboxcorp.md`, and `docs/architecture/agentic-enterprise-architecture.md` — replaced stale or cross-repo proof claims with directly inspectable public metrics as of 2026-03-16; added explicit scope notes so public proof is verifiable from this repository.
+- `README.md`, `index.html`, `docs/reference-organization/sandboxcorp.md`, and `docs/architecture/agentic-enterprise-architecture.md` — replaced stale proof claims with directly inspectable public metrics as of 2026-03-16; documented the three-repo aggregation basis (`agentic-enterprise`, `sandboxcorp`, `agent-command-center`) so the public proof story is explicit and auditable.
 - Added executive-diligence positioning via `docs/executive-reality-check.md` and linked it from the main landing surfaces, clarifying what the framework is, what it is not, and where a CTO or CEO should remain skeptical.
 - `CONFIG.yaml` — bumped `framework_version` from `3.1.0` to `4.0.0` so release metadata, README badge, and changelog are consistent.
 

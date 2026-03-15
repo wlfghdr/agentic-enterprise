@@ -45,13 +45,14 @@ The 5 layers are decision roles, not mandatory org-chart layers. Small teams sho
 
 **There is public proof, but it is still reference-scale.**
 
-As of **2026-03-16**, the directly inspectable proof in `wlfghdr/agentic-enterprise` is:
+As of **2026-03-16**, the directly inspectable proof across the public reference stack
+(`wlfghdr/agentic-enterprise`, `WulfAI/sandboxcorp`, `wlfghdr/agent-command-center`) is:
 
 | Metric | Count |
 |--------|------:|
-| Issues | 88 |
-| Pull requests | 80 total / 75 merged |
-| Commits | 239 |
+| Issues | 210 |
+| Pull requests | 205 total / 195 merged |
+| Commits | 759 |
 | Quality policies | 19 |
 
 That is enough to prove internal consistency, repeatability, and active iteration. It is **not** enough to claim that the framework has already demonstrated large-enterprise operating maturity across many business units.
