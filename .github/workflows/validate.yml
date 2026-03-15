@@ -636,6 +636,23 @@ jobs:
       - name: Validate CONFIG.yaml completeness
         run: python3 scripts/validate_config_completeness.py
 
+  validate-control-linkage:
+    name: validate-control-linkage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Self-check (script integrity)
+        run: python3 scripts/validate_control_linkage.py --self-check
+
+      - name: Validate risk-to-control-to-evidence chain
+        run: python3 scripts/validate_control_linkage.py
+
   validate-integration-registry:
     name: validate-integration-registry
     runs-on: ubuntu-latest
