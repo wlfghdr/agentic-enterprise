@@ -12,7 +12,7 @@ This directory contains one reference document per external standard or regulati
 
 ## Standards Covered
 
-| Standard | Document | Framework Coverage | Adopter Responsibilities |
+| Standard | Document | Self-Assessed Scaffolding Coverage | Adopter Responsibilities |
 |----------|----------|-------------------|----------|
 | [ISO/IEC 27001:2022](iso-27001.md) | Information Security Management | ~90% | Management review records, competence records |
 | [SOC 2 Type II](soc2.md) | Trust Service Criteria | ~90% | Independent audit |
@@ -34,6 +34,8 @@ This directory contains one reference document per external standard or regulati
 - Independent third-party audit (ISO/SOC 2) or self-assessment with documentation (GDPR/EU AI Act)
 - Deployment-specific configuration (retention periods, encryption keys, access controls, DPO appointment, etc.)
 - Continuous evidence collection via the observability platform
+
+**Method note:** the percentages in this index, `README.md`, and `index.html` are editorial self-assessments. They are not produced by `scripts/validate_compliance_coverage.py`. That validator currently measures a narrower and stricter signal: how completely the policy Compliance Mapping tables link back to the documented clauses/articles/controls in these reference docs. Today, that validator reports materially lower machine-verifiable coverage than the top-level posture snapshot, so leadership should treat the validator output as the better source for concrete gap-closing work.
 
 ## How Observability Provides Audit Evidence
 

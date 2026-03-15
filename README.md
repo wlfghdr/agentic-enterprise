@@ -7,23 +7,23 @@
     <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
   </a>
   <br>
-  <img src="https://img.shields.io/badge/ISO_27001-~90%25_covered-0e8a16" alt="ISO 27001">
-  <img src="https://img.shields.io/badge/SOC_2-~90%25_covered-1d76db" alt="SOC 2">
-  <img src="https://img.shields.io/badge/GDPR-~75%25_covered-d93f0b" alt="GDPR">
-  <img src="https://img.shields.io/badge/ISO_42001-~85%25_covered-5319e7" alt="ISO 42001">
-  <img src="https://img.shields.io/badge/NIST_AI_RMF-~90%25_covered-fbca04" alt="NIST AI RMF">
-  <img src="https://img.shields.io/badge/EU_AI_Act-~85%25_covered-0e8a16" alt="EU AI Act">
-  <img src="https://img.shields.io/badge/NIST_CSF_2.0-~95%25_covered-0e8a16" alt="NIST CSF 2.0">
-  <img src="https://img.shields.io/badge/ISO_9001-~85%25_covered-0e8a16" alt="ISO 9001">
-  <img src="https://img.shields.io/badge/ISO_22301-~70%25_covered-fbca04" alt="ISO 22301">
-  <img src="https://img.shields.io/badge/CCPA%2FCPRA-~75%25_covered-d93f0b" alt="CCPA/CPRA">
-  <img src="https://img.shields.io/badge/HIPAA-~70%25_covered-b60205" alt="HIPAA">
+  <img src="https://img.shields.io/badge/ISO_27001-~90%25_self--assessed-0e8a16" alt="ISO 27001">
+  <img src="https://img.shields.io/badge/SOC_2-~90%25_self--assessed-1d76db" alt="SOC 2">
+  <img src="https://img.shields.io/badge/GDPR-~75%25_self--assessed-d93f0b" alt="GDPR">
+  <img src="https://img.shields.io/badge/ISO_42001-~85%25_self--assessed-5319e7" alt="ISO 42001">
+  <img src="https://img.shields.io/badge/NIST_AI_RMF-~90%25_self--assessed-fbca04" alt="NIST AI RMF">
+  <img src="https://img.shields.io/badge/EU_AI_Act-~85%25_self--assessed-0e8a16" alt="EU AI Act">
+  <img src="https://img.shields.io/badge/NIST_CSF_2.0-~95%25_self--assessed-0e8a16" alt="NIST CSF 2.0">
+  <img src="https://img.shields.io/badge/ISO_9001-~85%25_self--assessed-0e8a16" alt="ISO 9001">
+  <img src="https://img.shields.io/badge/ISO_22301-~70%25_self--assessed-fbca04" alt="ISO 22301">
+  <img src="https://img.shields.io/badge/CCPA%2FCPRA-~75%25_self--assessed-d93f0b" alt="CCPA/CPRA">
+  <img src="https://img.shields.io/badge/HIPAA-~70%25_self--assessed-b60205" alt="HIPAA">
 </p>
 
 <h1 align="center">Agentic Enterprise</h1>
 
 <p align="center">
-  <strong>Run your entire company as a Git repository.<br>5 layers. 4 loops. Zero legacy ceremony.</strong>
+  <strong>Govern AI-assisted work through a repository-backed operating model.<br>5 layers. 4 loops. Explicit accountability.</strong>
 </p>
 
 <p align="center">
@@ -34,10 +34,11 @@
 
 <p align="center">
   <a href="#choose-your-path">Choose a Path</a> ·
+  <a href="#executive-reality-check">Reality Check</a> ·
   <a href="#see-it-in-motion">See It In Motion</a> ·
   <a href="#start-minimal-adoption">Start Minimal Adoption</a> ·
   <a href="#the-operating-loop">Operating Loop</a> ·
-  <a href="#operational-proof">Proof</a> ·
+  <a href="#public-proof">Proof</a> ·
   <a href="#runtimes--integrations">Runtimes</a> ·
   <a href="#enterprise-compliance-readiness">Compliance</a> ·
   <a href="CONTRIBUTING.md">Contribute</a>
@@ -50,6 +51,7 @@
 | If you want to... | Start here | What you get |
 |---------|------------------------|-------------|
 | **Understand the operating model** | [10-Minute Walkthrough](docs/quickstart/10-minute-agentic-enterprise.md) · [org/README.md](org/README.md) | The 5 layers, 4 loops, and core artifact flow in the shortest useful path |
+| **Stress-test the concept** | [Executive Reality Check](docs/executive-reality-check.md) | Candid answers to the objections a CTO, CEO, COO, or CFO should raise before adopting the framework |
 | **See it in motion** | [Live demo](https://wlfghdr.github.io/agentic-enterprise/) · [Reference scenario](https://wlfghdr.github.io/agentic-enterprise/concept-visualization.html) | The public proof layer, driven by [`index.html`](index.html) and [`concept-visualization.html`](concept-visualization.html) |
 | **Start minimal adoption** | [Minimal Adoption Guide](docs/adoption/minimal-adoption.md) | A no-agents-required path: fork, configure, use signals + missions + PRs |
 
@@ -65,7 +67,23 @@ Keep these terms separate:
 - **Observability:** your OpenTelemetry-native evidence layer
 - **Adoption:** start with Git, CODEOWNERS, signals, missions, and PRs; add agents later if you want
 
-The repo is the framework. You bring the runtime and the observability platform. The framework stays runtime-agnostic.
+The repo is the governance backbone. You bring the runtime, observability platform, and domain systems that actually execute business operations. The framework stays runtime-agnostic.
+
+---
+
+## Executive Reality Check
+
+Before you buy the story, challenge these points directly:
+
+| Challenge | Honest answer |
+|-----------|---------------|
+| **Is this a replacement for Jira, ERP, CRM, ITSM, or observability?** | No. It governs decisions, approvals, work artifacts, and audit trails. Domain systems still do domain work. |
+| **Do the 5 layers imply a heavy org chart?** | No. They are decision roles, not mandatory headcount. Small teams can collapse multiple layers into the same people. |
+| **Is the public proof already enterprise-scale?** | Not yet. The public three-repo reference stack proves internal consistency and repeatability, not Fortune 500 operating scale. |
+| **Do the compliance percentages mean certification or operating effectiveness?** | No. They are top-level self-assessments of framework scaffolding, not mechanized audit numbers. Real controls, evidence, and audits remain adopter work. |
+| **Can agents run the company unattended?** | No. Humans stay accountable for scope, policy, risk, and releases. The framework reduces toil; it does not eliminate executive responsibility. |
+
+**[Full executive diligence notes →](docs/executive-reality-check.md)**
 
 ---
 
@@ -124,19 +142,26 @@ QUALITY (4)         Agents evaluate against 19 policies
 
 ---
 
-## Operational Proof
+## Public Proof
 
-The framework is exercised by a **reference organization** that runs the operating model end-to-end, giving the repo public proof beyond concept copy.
+As of **2026-03-16**, the public reference stack spans three repositories:
 
-| Metric | Count |
-|--------|------:|
-| **Issues** (signals, missions, tasks, enhancements) | 210+ |
-| **Pull Requests** (governed, reviewed, merged) | 190+ |
-| **Commits** (auditable change trail) | 745+ |
+- [`wlfghdr/agentic-enterprise`](https://github.com/wlfghdr/agentic-enterprise)
+- [`WulfAI/sandboxcorp`](https://github.com/WulfAI/sandboxcorp)
+- [`wlfghdr/agent-command-center`](https://github.com/wlfghdr/agent-command-center)
 
-Every artifact traces: Signal → Mission → PR → Release → New Signal. The Git history is the proof.
+Using all-state GitHub issue and PR history plus `origin/main` commit counts, the aggregate public proof is:
 
-**[Full reference org details →](docs/reference-organization/sandboxcorp.md)** · **[End-to-end example →](examples/e2e-loop/)** · **[Architecture overview →](docs/architecture/agentic-enterprise-architecture.md)**
+| Metric | Count | What you can verify |
+|--------|------:|---------------------|
+| **Issues** | 210 | Combined issue history across framework, reference organization, and command-center repos |
+| **Pull Requests** | 205 total / 195 merged | Governed change history with review and merge records across the three repos |
+| **Commits** | 759 | `origin/main` commit history across the three repos |
+| **Quality policies** | 19 | Enforceable policy domains under [`org/4-quality/policies/`](org/4-quality/policies/) |
+
+Counts change daily. The important part is not the vanity number; it is that the reference stack and counting basis are named explicitly and can be inspected.
+
+**[Full reference org details →](docs/reference-organization/sandboxcorp.md)** · **[Executive reality check →](docs/executive-reality-check.md)** · **[End-to-end example →](examples/e2e-loop/)** · **[Architecture overview →](docs/architecture/agentic-enterprise-architecture.md)**
 
 ---
 
@@ -169,7 +194,7 @@ See [docs/runtimes/](docs/runtimes/) for platform-specific setup guides.
 
 Built-in governance controls mapped to 11 certification frameworks. Honest self-assessments, not certification stamps.
 
-| Framework | Coverage | | Framework | Coverage |
+| Framework | Self-Assessed Scaffolding Coverage | | Framework | Self-Assessed Scaffolding Coverage |
 |-----------|----------|-|-----------|----------|
 | **NIST CSF 2.0** | ~95% | | **ISO 42001** | ~85% |
 | **ISO 27001** | ~90% | | **GDPR** | ~75% |
@@ -178,7 +203,9 @@ Built-in governance controls mapped to 11 certification frameworks. Honest self-
 | **ISO 9001** | ~85% | | **ISO 22301** | ~70% |
 |  |  | | **HIPAA** | ~70% |
 
-> Certification requires an independent audit of your running system. This repo provides the **governance scaffolding**. Adopter responsibilities tracked as [open issues](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acompliance). Per-standard reference docs in [`docs/compliance/`](docs/compliance/).
+> Method note: these percentages are editorial self-assessments aligned across the public docs, not outputs of `validate_compliance_coverage.py`. The validator currently measures a stricter thing — policy-to-reference mapping completeness — and reports materially lower machine-verifiable coverage. Use the percentages as posture shorthand, and the validator plus per-standard docs in [`docs/compliance/`](docs/compliance/) as the hard gap source.
+
+> Certification still requires an independent audit of your running system. This repo provides the **governance scaffolding**. Many historical gaps were tracked and closed via issues; remaining adopter responsibilities are documented in the per-standard reference docs and implementation guides.
 
 ---
 
@@ -211,7 +238,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). We welcome framework improvements, runti
 ---
 
 <p align="center">
-  <strong>The future of enterprise is not more meetings. It's a Git repository that runs itself.</strong>
+  <strong>The future of enterprise is not more meetings. It's explicit governance for AI-assisted work.</strong>
 </p>
 
 <p align="center">

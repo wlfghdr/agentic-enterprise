@@ -19,7 +19,11 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ## [Unreleased]
 
-_Changes merged to `main` but not yet tagged as a release go here. Move to a new version section when cutting a release._
+_Changes merged to `main` after `v4.0.0` go here._
+
+## [4.0.0] — 2026-03-16
+
+> **Template slimming, proof-discipline cleanup, and executive-facing positioning hardening.** This release packages the v4 structural cleanup, aligns the framework version with the public release story, and tightens public-facing claims so a reader can verify them directly from this repository.
 
 ### Added
 
@@ -49,6 +53,11 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 - New CONFIG.yaml section: `encryption` (§12) — configurable key rotation schedules, certificate lifetimes, and crypto infrastructure referenced by cryptography.md.
 
 ### Changed
+
+- `README.md`, `index.html`, `docs/reference-organization/sandboxcorp.md`, and `docs/architecture/agentic-enterprise-architecture.md` — replaced stale proof claims with directly inspectable public metrics as of 2026-03-16; documented the three-repo aggregation basis (`agentic-enterprise`, `sandboxcorp`, `agent-command-center`) so the public proof story is explicit and auditable.
+- Added executive-diligence positioning via `docs/executive-reality-check.md` and linked it from the main landing surfaces, clarifying what the framework is, what it is not, and where a CTO or CEO should remain skeptical.
+- Tightened compliance-positioning language across `README.md`, `docs/compliance/README.md`, `docs/executive-reality-check.md`, and `index.html`: public percentages are now explicitly labeled as editorial self-assessments rather than mechanized audit numbers, and the stale “open compliance issues” wording was replaced with language that points readers to the reference docs and implementation guides for remaining adopter responsibilities.
+- `CONFIG.yaml` — bumped `framework_version` from `3.1.0` to `4.0.0` so release metadata, README badge, and changelog are consistent.
 
 - Expanded `scripts/validate_compliance_mapping.py` so it recognizes CCPA/CPRA, HIPAA, ISO 22301, ISO 9001, and NIST CSF references in policy mappings, and tightened GDPR article parsing to preserve subparagraph specificity such as `Art. 5(1)(c)`. This keeps the existing mapping validator aligned with the broader compliance-reference set used by the new coverage report.
 - Refined validation ownership boundaries so OTel contract checks focus on contract-linked telemetry artifacts and observability documentation, integration registry checks own `CONFIG.yaml` registry validation, `validate_agent_instructions.py` focuses on structural hierarchy checks, and `validate_cross_references.py` no longer requires `pyyaml` for registry-category validation.

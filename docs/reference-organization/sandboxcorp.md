@@ -31,16 +31,22 @@ Without a running example, the framework is just templates. The reference organi
 
 3. **How does the feedback loop close?** — Operational experience generates improvement signals that flow back into the framework itself (see [AGENTS.md Rule 13a](../../AGENTS.md)).
 
-## Operational Proof
+## Publicly Inspectable Proof
 
-This is not a thought experiment. The reference organization has produced real, auditable work:
+This is not a thought experiment. As of **2026-03-16**, the public reference stack includes:
+
+- `wlfghdr/agentic-enterprise` — framework and governance model
+- `WulfAI/sandboxcorp` — reference organization instance
+- `wlfghdr/agent-command-center` — command-center application surface
+
+Using all-state GitHub issue and PR history plus `origin/main` commit counts, the directly inspectable aggregate proof is:
 
 | Metric | Count | What It Represents |
 |--------|------:|---------------------|
-| **Work items** (signals, missions, tasks) | 99 | Observations triaged, work scoped, tasks tracked |
-| **Pull Requests** | 108 | Governed changes — each reviewed, approved, merged |
-| **Commits** | 440+ | Individual changes with audit trail |
-| **Governed artifacts total** | 647+ | Every decision traceable in Git history |
+| **Issues** | 210 | Public work history across the framework and its two linked reference repos |
+| **Pull Requests** | 205 total / 195 merged | Governed changes with review and merge records across the stack |
+| **Commits** | 759 | Individual changes with audit trail on the three `main` branches |
+| **Quality policies** | 19 | Enforceable evaluation domains in the framework |
 
 Every one of these artifacts was produced through the operating model: a signal was filed, a mission was scoped, work was executed through PRs, and outcomes were measured. The Git history is the proof.
 
@@ -56,10 +62,10 @@ The reference organization maintains two products under the same governance mode
 |----------|-----------------|
 | **Signal detection** | Improvement opportunities filed from operations, telemetry, and policy gaps |
 | **Mission execution** | End-to-end mission lifecycle — from brief through fleet config to outcome report |
-| **Governance validation** | 108 PRs that exercise CODEOWNERS, quality policies, and approval workflows |
+| **Governance validation** | 195 merged PRs that exercise CODEOWNERS, quality policies, and approval workflows across the reference stack |
 | **Policy testing** | Quality evaluations that verify policies are enforceable and measurable |
 | **Observability integration** | OTel telemetry patterns tested against real agent workflows |
-| **Framework improvement** | 440+ commits of changes driven by operational friction |
+| **Framework improvement** | 759 commits of changes driven by operational friction across the reference stack |
 
 ## Example Missions
 

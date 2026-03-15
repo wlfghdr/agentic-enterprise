@@ -134,7 +134,7 @@ New Signal                "We learned Z from shipping Y"
 └────────────────────────────────────────────────────────┘
 ```
 
-No ticket system, no wiki, no status meetings. Git is the single source of truth for organizational state, decisions, and history.
+Git is the governance backbone for organizational state, decisions, and history. Ticketing, wiki, and operational systems can still exist, but they should map back to governed artifacts when they drive change.
 
 ## Two Communication Channels
 
@@ -173,15 +173,15 @@ Both channels feed the governance loop. The repo captures decisions. Observabili
 
 The framework defines **what** the organization does and **how** it's governed. The runtime executes it. This separation means you can swap runtimes without changing your organizational model.
 
-## Proof at Scale
+## Public Proof
 
-This architecture is not theoretical. The reference organization has produced:
+This architecture is not theoretical. As of **2026-03-16**, the directly inspectable public proof across the three-repo reference stack (`wlfghdr/agentic-enterprise`, `WulfAI/sandboxcorp`, `wlfghdr/agent-command-center`) is:
 
-- **99 work items** — signals triaged, missions scoped, tasks tracked
-- **108 pull requests** — each governed by CODEOWNERS, reviewed, and merged
-- **440+ commits** — every change traceable in Git history
+- **210 issues** — roadmap, compliance, and operational work tracked in GitHub
+- **205 pull requests / 195 merged** — governed change history with review records
+- **759 commits** — every change traceable across the three `main` branches
 
-The Git history is the operational proof that the architecture works as designed.
+That proves the architecture is being exercised publicly. It does **not** claim large-enterprise operating scale on its own.
 
 ## Next Steps
 
