@@ -103,12 +103,13 @@ NIST AI RMF emphasizes **continuous monitoring** (MANAGE 3) and **quantitative m
 
 | Gap | NIST AI RMF Requirement | What's Needed | Severity |
 |-----|------------------------|---------------|----------|
-| **MEASURE function quantitative metrics** | MEASURE 1–2 | Populated dashboards with real operational data from a running deployment | High — measurement without data is design, not evidence |
 | **Organizational AI risk profile** | MAP 3 | Formal document consolidating all AI risks with organizational context | Medium |
 | **Third-party evaluation** | MEASURE 2 | Independent evaluation of AI system trustworthiness | Medium |
 | **Stakeholder impact assessment** | MAP 4 | Formal assessment of impacts across affected groups (beyond DPIA) | Medium |
 | **Environmental impact tracking** | GOVERN 1 (GenAI Profile) | Energy consumption metrics for AI workloads | Low |
 | **Workforce AI competence** | GOVERN 3 | Formal AI competence programme and diversity considerations | Low |
+
+**Addressed by framework:** Quantitative MEASURE scaffolding — see the [quantitative measurement guide](remediation/nist-ai-rmf-measure-metrics.md), [dashboard template](templates/_TEMPLATE-nist-ai-rmf-measure-dashboard.md), and [measurement report template](templates/_TEMPLATE-nist-ai-rmf-measure-report.md). These standardize metric definitions, baseline establishment, dashboard structure, and reporting format; adopters still need live telemetry and completed reports from their running deployment.
 
 ## 5. External References
 
