@@ -18,7 +18,7 @@ This directory contains one reference document per external standard or regulati
 | [SOC 2 Type II](soc2.md) | Trust Service Criteria | ~90% | Independent audit |
 | [GDPR](gdpr.md) | EU Data Protection | ~75% | Consent management UX, DPO appointment, supervisory authority registration, cookie/tracking compliance |
 | [ISO/IEC 42001:2023](iso-42001.md) | AI Management Systems | ~85% | Conformity assessment, management review, internal audit programme |
-| [NIST AI RMF](nist-ai-rmf.md) | AI Risk Management Framework | ~85% | MEASURE function quantitative metrics, third-party evaluation, organizational AI risk profile document |
+| [NIST AI RMF](nist-ai-rmf.md) | AI Risk Management Framework | ~90% | Third-party evaluation, organizational AI risk profile document, stakeholder impact assessment |
 | [EU AI Act](eu-ai-act.md) | European AI Regulation | ~85% | Post-market monitoring system, serious incident reporting |
 | [NIST CSF 2.0](nist-csf.md) | Cybersecurity Framework | ~95% | IdP integration, physical security controls |
 | [ISO 9001:2015](iso-9001.md) | Quality Management Systems | ~85% | Formal QMS scope statement, customer satisfaction measurement, external provider evaluation |

@@ -22,6 +22,14 @@ These guides are for **adopters deploying the framework** in a real environment.
 | [SOC 2 Formal Control Testing Documentation](soc2-control-testing.md) | SOC 2 Type II | No formal control testing matrix, cadence, or result records | [#124](https://github.com/wlfghdr/agentic-enterprise/issues/124) |
 | [SOC 2 CPA Audit Engagement](soc2-cpa-engagement.md) | SOC 2 Type II | No guidance on CPA-firm engagement, management assertion preparation, or auditor access coordination | [#125](https://github.com/wlfghdr/agentic-enterprise/issues/125) |
 
+## NIST AI RMF Measurement Assets
+
+| Resource | Standard | Gap | Issue |
+|----------|----------|-----|-------|
+| [NIST AI RMF Quantitative Measurement Guide](nist-ai-rmf-measure-metrics.md) | NIST AI RMF 1.0 | No standard metric catalog, baseline method, dashboard structure, or report format for MEASURE 1-4 | [#128](https://github.com/wlfghdr/agentic-enterprise/issues/128) |
+| [NIST AI RMF MEASURE Dashboard Template](../templates/_TEMPLATE-nist-ai-rmf-measure-dashboard.md) | NIST AI RMF 1.0 | No reusable dashboard specification for AI risk quantification | [#128](https://github.com/wlfghdr/agentic-enterprise/issues/128) |
+| [NIST AI RMF Measurement Report Template](../templates/_TEMPLATE-nist-ai-rmf-measure-report.md) | NIST AI RMF 1.0 | No reusable report format for periodic AI-risk measurement outputs | [#128](https://github.com/wlfghdr/agentic-enterprise/issues/128) |
+
 ## ISO 27001 Core ISMS Templates
 
 | Template | Standard | Gap | Issue |
