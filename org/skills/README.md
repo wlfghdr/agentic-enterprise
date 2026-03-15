@@ -1,5 +1,7 @@
 # Skill Manifests Registry
 
+> **Last updated:** 2026-03-15
+
 Each file in this directory is a **skill manifest** — a declarative, versioned definition of one capability an agent type may be granted.
 
 ## Schema
@@ -25,8 +27,8 @@ Example: `github-pr-review.skill.json`
 
 | Skill ID | Category | Version | Description |
 |---|---|---|---|
-| `github-pr-review` | code-review | 1.0.0 | Review pull requests on GitHub repositories |
-| `github-code-implementation` | code-generation | 1.0.0 | Implement code changes and open pull requests |
-| `signal-triage` | signal-processing | 1.0.0 | Triage incoming signals and route to appropriate missions |
-| `quality-evaluation` | evaluation | 1.0.0 | Evaluate artifacts against quality gates and policy |
-| `mission-orchestration` | orchestration | 1.0.0 | Decompose missions and coordinate agent work |
+| `github-pr-review` | code-review | 1.1.0 | Review pull requests on GitHub repositories |
+| `github-code-implementation` | code-generation | 1.1.0 | Implement code changes and open pull requests |
+| `signal-triage` | signal-processing | 1.1.0 | Triage incoming signals and route to appropriate missions |
+| `quality-evaluation` | evaluation | 1.1.0 | Evaluate artifacts against quality gates and policy |
+| `mission-orchestration` | orchestration | 1.1.0 | Decompose missions and coordinate agent work |

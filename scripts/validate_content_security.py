@@ -356,6 +356,35 @@ def categorize_file(path: Path, repo_root: Path) -> list[str]:
 # ── Scanner ───────────────────────────────────────────────────────────────────
 
 
+def workflow_run_lines(lines: list[str]) -> set[int]:
+    """Return 1-based line numbers that are part of workflow run commands."""
+    run_lines: set[int] = set()
+    in_run_block = False
+    run_indent = 0
+
+    for index, line in enumerate(lines, 1):
+        indent = len(line) - len(line.lstrip(" "))
+        stripped = line.strip()
+
+        if in_run_block and stripped and indent <= run_indent:
+            in_run_block = False
+
+        match = re.match(r"^(\s*)run:\s*(.*)$", line)
+        if match:
+            run_indent = len(match.group(1))
+            remainder = match.group(2).strip()
+            if remainder in {"|", "|-", ">", ">-"}:
+                in_run_block = True
+            elif remainder:
+                run_lines.add(index)
+            continue
+
+        if in_run_block:
+            run_lines.add(index)
+
+    return run_lines
+
+
 def scan_file(path: Path, repo_root: Path) -> list[dict]:
     """Scan a single file for content security issues. Returns findings."""
     findings: list[dict] = []
@@ -368,6 +397,7 @@ def scan_file(path: Path, repo_root: Path) -> list[dict]:
         return []
 
     lines = text.splitlines()
+    run_scoped_lines = workflow_run_lines(lines) if "workflows" in categories else set()
 
     for pattern_def in PATTERNS:
         # Check if this pattern applies to any of the file's categories
@@ -381,6 +411,13 @@ def scan_file(path: Path, repo_root: Path) -> list[dict]:
             # Skip suppressed lines
             if SUPPRESSION_MARKER in line:
                 continue
+
+            # These workflow checks are only meaningful inside executable run blocks.
+            if pattern_def["id"] in {"CI-003", "CI-004"}:
+                if i not in run_scoped_lines:
+                    continue
+                if line.lstrip().startswith("#"):
+                    continue
 
             match = pattern_def["pattern"].search(line)
             if match:

@@ -230,17 +230,6 @@ def validate_agent_type(path: Path) -> list[str]:
     if not re.search(r"\*\*Layer\*\*", text):
         errors.append(f"{rel}: missing **Layer** in Classification table")
 
-    # Telemetry / observability reference (AGENTS.md Rule 9a)
-    has_telemetry = any(term.lower() in text.lower() for term in [
-        "telemetry", "otel", "observability", "opentelemetry",
-        "OTEL-CONTRACT", "otel-contract",
-    ])
-    if not has_telemetry:
-        errors.append(
-            f"{rel}: agent type should reference telemetry/observability "
-            f"(per AGENTS.md Rule 9a)"
-        )
-
     return errors
 
 

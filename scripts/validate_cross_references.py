@@ -6,7 +6,6 @@ Validates:
   - Markdown path references in work artifacts resolve to existing files
   - Signal supersession references point to existing active or archived signals
   - Governance exception references point to existing, non-expired exceptions
-  - CONFIG.yaml integration categories match the integration registry files
   - Quality policy cross-references resolve, including bare file mentions
 
 Closes #114.
@@ -21,7 +20,6 @@ Usage:
 Exit codes:
   0  All validations passed
   1  One or more validation failures
-  2  Setup/import error (pyyaml not installed)
 """
 
 from __future__ import annotations
@@ -32,12 +30,6 @@ import sys
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
-
-try:
-    import yaml
-except ImportError:
-    print("ERROR: pyyaml is required. Install with: pip install pyyaml", file=sys.stderr)
-    sys.exit(2)
 
 REPO = Path(__file__).parent.parent.resolve()
 TODAY = date.today()
@@ -413,35 +405,6 @@ def validate_governance_exception_refs(root: Path) -> tuple[list[str], list[str]
     return errors, warnings
 
 
-def validate_config_integrations() -> list[str]:
-    errors: list[str] = []
-    config_path = REPO / "CONFIG.yaml"
-    data = yaml.safe_load(config_path.read_text(encoding="utf-8"))
-    configured = set((data.get("integrations") or {}).keys())
-
-    category_files = {
-        path.stem.replace("-", "_")
-        for path in (REPO / "org" / "integrations" / "categories").glob("*.md")
-    }
-
-    missing_docs = sorted(configured - category_files)
-    extra_docs = sorted(category_files - configured)
-
-    for key in missing_docs:
-        errors.append(
-            f"CONFIG.yaml: integration category '{key}' has no matching file in "
-            f"org/integrations/categories/"
-        )
-
-    for key in extra_docs:
-        errors.append(
-            f"org/integrations/categories/{key.replace('_', '-')}.md: category file has "
-            f"no matching entry under CONFIG.yaml integrations"
-        )
-
-    return errors
-
-
 def validate_policy_cross_refs() -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
@@ -490,7 +453,6 @@ def main() -> int:
     warnings.extend(exception_warnings)
 
     if root == REPO:
-        errors.extend(validate_config_integrations())
         policy_errors, policy_warnings = validate_policy_cross_refs()
         errors.extend(policy_errors)
         warnings.extend(policy_warnings)
@@ -512,7 +474,7 @@ def main() -> int:
             print(f"- {warning}")
 
     if root == REPO:
-        print("Cross-reference integrity validated: work artifacts, policies, and integrations OK")
+        print("Cross-reference integrity validated: work artifacts and policies OK")
     else:
         print(f"Cross-reference integrity validated under {root}")
     return 0

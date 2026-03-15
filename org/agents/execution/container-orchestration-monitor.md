@@ -12,7 +12,7 @@
 |-------|-------|
 | **ID** | `exec-container-orchestration-monitor` |
 | **Name** | Container Orchestration Monitor |
-| **Version** | 1.0.0 |
+| **Version** | 1.0.1 |
 
 ## Classification
 
@@ -119,8 +119,13 @@ per-mission
 - Quality evaluation pass rate
 - Escalation frequency
 
+## Telemetry
+
+All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../../../docs/otel-contract.md). Required span types: `agent.run`, `tool.execute`. Governance decisions emit `governance.decision` span events.
+
 ## Changelog
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-03-15 | Added Telemetry section aligned to the canonical OTel contract; bumped agent version to 1.0.1 | System |
 | 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

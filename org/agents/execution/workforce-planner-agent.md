@@ -12,7 +12,7 @@
 |-------|-------|
 | **ID** | `exec-workforce-planner-agent` |
 | **Name** | Workforce Planner Agent |
-| **Version** | 1.0.0 |
+| **Version** | 1.0.1 |
 
 ## Classification
 
@@ -132,8 +132,13 @@ per-report
 - Time from signal detection to hiring plan draft
 - Quality evaluation pass rate
 
+## Telemetry
+
+All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../../../docs/otel-contract.md). Required span types: `agent.run`, `tool.execute`. Governance decisions emit `governance.decision` span events.
+
 ## Changelog
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-03-15 | Added Telemetry section aligned to the canonical OTel contract; bumped agent version to 1.0.1 | System |
 | 2026-02-20 | Initial proposal | System |

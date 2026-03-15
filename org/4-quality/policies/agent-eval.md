@@ -3,7 +3,7 @@
 > **Applies to:** All AI agent types, agent instructions, fleet configurations, and model changes
 > **Enforced by:** Quality Layer eval agents + CI/CD pipeline gates
 > **Authority:** Quality & Engineering leadership
-> **Version:** 1.0 | **Last updated:** 2026-03-14
+> **Version:** 1.0.1 | **Last updated:** 2026-03-15
 
 ---
 
@@ -172,7 +172,7 @@ Whichever tool is used, it must:
 
 #### 6.1 Eval Telemetry
 
-Every eval run must produce OpenTelemetry spans:
+Every eval run must produce OpenTelemetry spans per [`docs/otel-contract.md`](../../../docs/otel-contract.md):
 
 - **`eval.suite.run`** span — covers the entire eval suite execution
   - Attributes: `eval.suite.name`, `eval.agent_type`, `eval.risk_tier`, `eval.trigger` (ci/scheduled/manual), `eval.total_cases`, `eval.passed`, `eval.failed`, `eval.regressions`
@@ -286,4 +286,5 @@ Quality Layer eval agents check agent types against this policy using these crit
 
 | Version | Date | Change |
 |---------|------|--------|
+| 1.0.1 | 2026-03-15 | Added explicit reference to docs/otel-contract.md for eval telemetry requirements (#115) |
 | 1.0 | 2026-03-14 | Initial policy — eval scope, suite structure, CI gates, regression management, tooling, observability integration, compliance mapping |

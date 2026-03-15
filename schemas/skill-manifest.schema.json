@@ -4,7 +4,7 @@
   "title": "Agent Skill Manifest",
   "description": "Declarative skill manifest defining a named capability an agent type can possess.",
   "type": "object",
-  "required": ["schema_version", "id", "name", "version", "description", "category", "inputs", "outputs", "permissions"],
+  "required": ["schema_version", "id", "name", "version", "description", "category", "inputs", "outputs", "permissions", "telemetry"],
   "additionalProperties": false,
   "properties": {
     "schema_version": { "type": "string", "enum": ["1.0"] },
@@ -74,6 +74,29 @@
           "tool": { "type": "string" },
           "access": { "type": "string", "enum": ["read", "write", "execute", "admin"] },
           "scope": { "type": "string" }
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "required": ["contract", "required_spans", "decision_events"],
+      "additionalProperties": false,
+      "properties": {
+        "contract": {
+          "type": "string",
+          "enum": ["docs/otel-contract.md"]
+        },
+        "required_spans": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "conditional_spans": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "decision_events": {
+          "type": "array",
+          "items": { "type": "string" }
         }
       }
     },

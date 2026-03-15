@@ -3,9 +3,10 @@ name: Policy Checks (OPA/Conftest)
 # Enforces Policy-as-Code rules via Conftest + OPA/Rego.
 # Policies live in policy/ — see docs/policy-as-code.md for details.
 #
-# Current checks (blocking):
-#   - workflows/permissions: all workflows must declare top-level `permissions`
-#   - workflows/pinned_actions: external action refs must be pinned (no @main/@latest)
+# Current checks:
+#   - workflows/permissions: blocking deny if a workflow omits top-level `permissions`
+#   - workflows/pinned_actions: blocking deny if an external action uses @main/@latest
+#   - workflows/security_integrity: advisory warn for workflow shell-injection and fetch-exec patterns
 #
 # To add a policy exception: edit policy/exceptions.yaml.
 

@@ -1,6 +1,6 @@
 # Agent Type Definition: [Agent Name]
 
-> **Template version:** 1.1 | **Last updated:** 2026-03-14
+> **Template version:** 1.2 | **Last updated:** 2026-03-15
 > **Governed registry entry for a single agent type.**  
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -144,11 +144,21 @@ _(e.g., "per-PR", "weekly")_
 ### Performance Metrics
 - _(e.g., "pr-acceptance-rate", "eval-accuracy")_
 
+## Telemetry
+
+All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../../../docs/otel-contract.md).
+
+- Required span types for every agent: `agent.run`, `tool.execute`
+- Required native event for governed decisions: `governance.decision`
+- Add `inference.chat` and/or `inference.generate` whenever the agent uses model-backed reasoning or generation
+- Telemetry declarations here must stay aligned with the canonical contract in `docs/otel-contract.md`
+
 ---
 
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-03-15 | Added Telemetry section with canonical OTel contract reference, required core spans, decision event, and conditional inference span guidance (#115) |
 | 1.1 | 2026-03-14 | Added Model Governance section with AI risk tier, model identity, intended use, limitations, fairness considerations, and token budget per ai-governance.md policy (#91) |
 | 1.0 | 2026-02-19 | Initial version |

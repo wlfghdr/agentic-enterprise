@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "quality-evaluation",
   "name": "Quality Evaluation",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Evaluate artifacts (PRs, mission outputs, signals) against defined quality gates and policy rules. Produce structured evaluation reports.",
   "category": "evaluation",
   "inputs": [
@@ -22,6 +22,12 @@
     { "profile_id": "github", "required": true }
   ],
   "tool_permissions": [],
+  "telemetry": {
+    "contract": "docs/otel-contract.md",
+    "required_spans": ["agent.run", "tool.execute"],
+    "conditional_spans": ["inference.chat", "inference.generate"],
+    "decision_events": ["governance.decision"]
+  },
   "applicable_agent_types": ["quality-evaluator", "quality-pr-reviewer"],
   "constraints": [
     "Must not modify the artifact being evaluated.",
@@ -29,6 +35,7 @@
     "Must flag but not act on critical findings — escalate to human."
   ],
   "changelog": [
+    { "version": "1.1.0", "date": "2026-03-15", "change": "Added telemetry declaration aligned to docs/otel-contract.md." },
     { "version": "1.0.0", "date": "2026-02-28", "change": "Initial version." }
   ]
 }
