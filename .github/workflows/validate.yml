@@ -602,6 +602,20 @@ jobs:
       - name: Validate compliance mappings
         run: python3 scripts/validate_compliance_mapping.py
 
+  validate-compliance-coverage:
+    name: validate-compliance-coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Report compliance coverage gaps
+        run: python3 scripts/validate_compliance_coverage.py --warn-unmapped-pct 25
+
   validate-integration-registry:
     name: validate-integration-registry
     runs-on: ubuntu-latest
