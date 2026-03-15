@@ -183,6 +183,21 @@ def resolve_target(current_file: Path, target: str, work_root: Path) -> Path | N
     return (current_file.parent / raw).resolve()
 
 
+def filename_case_warning(target: str, resolved: Path) -> str | None:
+    raw = strip_anchor(target)
+    if should_skip_target(raw):
+        return None
+
+    referenced_name = Path(raw).name
+    actual_name = resolved.name
+    if referenced_name.lower() == actual_name.lower() and referenced_name != actual_name:
+        return (
+            f"filename case mismatch: referenced '{referenced_name}' "
+            f"but actual file is '{actual_name}'"
+        )
+    return None
+
+
 def rel(path: Path, base: Path) -> str:
     try:
         return str(path.relative_to(base))
@@ -273,8 +288,9 @@ def find_exception_by_id(root: Path, exception_id: str) -> Path | None:
     return matches[0] if matches else None
 
 
-def validate_work_refs(root: Path) -> list[str]:
+def validate_work_refs(root: Path) -> tuple[list[str], list[str]]:
     errors: list[str] = []
+    warnings: list[str] = []
 
     for path in discover_work_files(root):
         for ref in extract_targets(path, include_bare=False):
@@ -286,15 +302,20 @@ def validate_work_refs(root: Path) -> list[str]:
                     f"{rel(path, root)}:{ref.line_no}: reference '{ref.target}' "
                     f"does not exist"
                 )
+                continue
+            warning = filename_case_warning(ref.target, resolved)
+            if warning:
+                warnings.append(f"{rel(path, root)}:{ref.line_no}: {warning}")
 
-    return errors
+    return errors, warnings
 
 
-def validate_signal_supersedes(root: Path) -> list[str]:
+def validate_signal_supersedes(root: Path) -> tuple[list[str], list[str]]:
     errors: list[str] = []
+    warnings: list[str] = []
     signals_dir = root / "work" / "signals"
     if not signals_dir.exists():
-        return errors
+        return errors, warnings
 
     pattern = re.compile(r"\*\*Supersedes:\*\*\s*(.+)", re.IGNORECASE)
     alt_pattern = re.compile(r"\*\*Superseded signal:\*\*\s*(.+)", re.IGNORECASE)
@@ -316,12 +337,17 @@ def validate_signal_supersedes(root: Path) -> list[str]:
                     f"{rel(path, root)}:{line_no}: supersession target '{target}' "
                     f"does not resolve to an active or archived signal"
                 )
+                continue
+            warning = filename_case_warning(target, target_path)
+            if warning:
+                warnings.append(f"{rel(path, root)}:{line_no}: {warning}")
 
-    return errors
+    return errors, warnings
 
 
-def validate_governance_exception_refs(root: Path) -> list[str]:
+def validate_governance_exception_refs(root: Path) -> tuple[list[str], list[str]]:
     errors: list[str] = []
+    warnings: list[str] = []
     files = discover_work_files(root)
     if root == REPO:
         files.extend(discover_policy_files())
@@ -344,6 +370,9 @@ def validate_governance_exception_refs(root: Path) -> list[str]:
                         f"'{target}' does not exist"
                     )
                     continue
+                warning = filename_case_warning(target, resolved)
+                if warning:
+                    warnings.append(f"{rel(path, root)}:{line_no}: {warning}")
                 exception_text = resolved.read_text(encoding="utf-8")
                 status = parse_exception_status(exception_text)
                 expiry = parse_exception_expiry(exception_text)
@@ -381,7 +410,7 @@ def validate_governance_exception_refs(root: Path) -> list[str]:
                         f"'{exception_id}' expired on {expiry.isoformat()}"
                     )
 
-    return errors
+    return errors, warnings
 
 
 def validate_config_integrations() -> list[str]:
@@ -413,8 +442,9 @@ def validate_config_integrations() -> list[str]:
     return errors
 
 
-def validate_policy_cross_refs() -> list[str]:
+def validate_policy_cross_refs() -> tuple[list[str], list[str]]:
     errors: list[str] = []
+    warnings: list[str] = []
 
     for path in discover_policy_files():
         for ref in extract_targets(path, include_bare=True):
@@ -426,8 +456,12 @@ def validate_policy_cross_refs() -> list[str]:
                     f"{rel(path, REPO)}:{ref.line_no}: policy reference '{ref.target}' "
                     f"does not exist"
                 )
+                continue
+            warning = filename_case_warning(ref.target, resolved)
+            if warning:
+                warnings.append(f"{rel(path, REPO)}:{ref.line_no}: {warning}")
 
-    return errors
+    return errors, warnings
 
 
 def main() -> int:
@@ -441,21 +475,41 @@ def main() -> int:
 
     root = (args.root.resolve() if args.root else REPO)
     errors: list[str] = []
+    warnings: list[str] = []
 
-    errors.extend(validate_work_refs(root))
-    errors.extend(validate_signal_supersedes(root))
-    errors.extend(validate_governance_exception_refs(root))
+    work_errors, work_warnings = validate_work_refs(root)
+    errors.extend(work_errors)
+    warnings.extend(work_warnings)
+
+    supersedes_errors, supersedes_warnings = validate_signal_supersedes(root)
+    errors.extend(supersedes_errors)
+    warnings.extend(supersedes_warnings)
+
+    exception_errors, exception_warnings = validate_governance_exception_refs(root)
+    errors.extend(exception_errors)
+    warnings.extend(exception_warnings)
 
     if root == REPO:
         errors.extend(validate_config_integrations())
-        errors.extend(validate_policy_cross_refs())
+        policy_errors, policy_warnings = validate_policy_cross_refs()
+        errors.extend(policy_errors)
+        warnings.extend(policy_warnings)
 
     if errors:
         print("Cross-reference integrity failures found:")
         for error in errors:
             print(f"- {error}")
+        if warnings:
+            print("\nWarnings:")
+            for warning in warnings:
+                print(f"- {warning}")
         print(f"\nTotal failures: {len(errors)}")
         return 1
+
+    if warnings:
+        print("Cross-reference integrity warnings:")
+        for warning in warnings:
+            print(f"- {warning}")
 
     if root == REPO:
         print("Cross-reference integrity validated: work artifacts, policies, and integrations OK")

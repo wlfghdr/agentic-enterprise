@@ -41,6 +41,7 @@ _Changes merged to `main` but not yet tagged as a release go here. Move to a new
 
 ### Changed
 
+- Updated `scripts/validate_cross_references.py` to downgrade case-only filename mismatches to warnings while still resolving them and reporting the exact filename discrepancy; corrected `org/4-quality/policies/ai-governance.md` prose references to use the canonical lowercase `agent-security.md` filename.
 - Reworked the public onboarding flow across `README.md`, `index.html`, and `concept-visualization.html` so the README acts as a router for three first actions: understand the operating model, see the demo/reference scenario, and start minimal adoption. Promoted the HTML demo assets as first-class proof surfaces, aligned terminology around operating model / demo / reference scenario / runtime / observability / adoption, made the no-agents-required path more prominent, shortened duplicated landing-page explanation, and set the visualization's default scenario to the real `examples/e2e-loop/` artifact chain.
 - Updated `org/4-quality/policies/agent-security.md` (v1.0.1 → v1.1) — added §4.3 CI Content Security Scanning with automated enforcement via `validate_content_security.py`; added content security CI evaluation criterion; updated OWASP LLM01 coverage map.
 - Updated `docs/security-scanning.md` — added Content Security Scanning section documenting pattern categories, local usage, finding handling, and policy alignment.

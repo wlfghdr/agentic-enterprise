@@ -4,7 +4,7 @@
 > **Applies to:** All AI/ML models, agent types, LLM-powered workflows, automated decision systems, and AI-generated outputs
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.0.1 | **Last updated:** 2026-03-14
+> **Version:** 1.0.2 | **Last updated:** 2026-03-15
 
 ---
 
@@ -133,7 +133,7 @@ AI systems must be tested for robustness against adversarial inputs beyond promp
 
 ### 4.3 Relationship to Agent Security
 
-This section extends — not replaces — [agent-security.md](agent-security.md). Agent-security.md covers security-specific threats (prompt injection, tool abuse, privilege escalation). This section covers behavioral robustness (consistency, manipulation resistance, scope adherence). Both apply. When in doubt, apply both sets of requirements.
+This section extends — not replaces — [agent-security.md](agent-security.md). agent-security.md covers security-specific threats (prompt injection, tool abuse, privilege escalation). This section covers behavioral robustness (consistency, manipulation resistance, scope adherence). Both apply. When in doubt, apply both sets of requirements.
 
 ---
 
@@ -220,7 +220,7 @@ The framework defines the governance structure. Each adopter must configure the 
 
 | Policy | What This Policy Provides |
 |--------|--------------------------|
-| **[Agent Security Policy](agent-security.md)** | This policy extends agent-security.md with behavioral robustness testing (§4). Agent-security.md covers security threats (prompt injection, tool abuse); this policy covers fairness, transparency, and adversarial robustness. Both apply to all AI systems. |
+| **[Agent Security Policy](agent-security.md)** | This policy extends agent-security.md with behavioral robustness testing (§4). agent-security.md covers security threats (prompt injection, tool abuse); this policy covers fairness, transparency, and adversarial robustness. Both apply to all AI systems. |
 | **[Risk Management Policy](risk-management.md)** | Risk tier classification (§1) maps to autonomy tiers in risk-management.md §6.1. AI risk taxonomy risks RE-2 (biased output), FI-2 (cost overrun), and CO-1 (regulatory violation) are operationalized by this policy's fairness audit, token accountability, and EU AI Act alignment. |
 | **[Data Classification Policy](data-classification.md)** | AI systems processing CONFIDENTIAL or RESTRICTED data require higher governance rigor. Model cards document data classification of training data and inference inputs. PII in AI pipelines triggers privacy.md requirements. |
 | **[Privacy Policy](privacy.md)** | AI features that process personal data must document this in the model card. DPIA is required for high-risk AI processing (per privacy.md §5). Consent and lawful basis requirements apply to AI training data and inference. |
@@ -293,4 +293,5 @@ The framework defines the governance structure. Each adopter must configure the 
 
 | Version | Date | Change |
 |---|---|---|
+| 1.0.2 | 2026-03-15 | Corrected agent-security.md filename casing in prose references to match the actual policy filename. |
 | 1.0 | 2026-03-14 | Initial version — AI risk classification (4 tiers aligned to EU AI Act), model card requirements, fairness audit process (demographic parity, equalized odds, error rate parity), adversarial robustness testing, explainability levels (Traceable / Justifiable / Auditable), token usage accountability, compliance mapping (ISO 42001 / EU AI Act / NIST AI RMF). Closes #91. |
