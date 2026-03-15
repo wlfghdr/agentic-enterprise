@@ -37,6 +37,12 @@ These guides are for **adopters deploying the framework** in a real environment.
 | [AIMS Scope Statement](../templates/_TEMPLATE-aims-scope.md) | ISO 42001 Clause 4.3 | No formal AIMS scope definition | [#126](https://github.com/wlfghdr/agentic-enterprise/issues/126) |
 | [AI System Inventory](../templates/_TEMPLATE-ai-system-inventory.md) | ISO 42001 Clause 4 | No AI system inventory with risk classification | [#126](https://github.com/wlfghdr/agentic-enterprise/issues/126) |
 
+## ISO 42001 Certification Guides
+
+| Guide | Standard | Gap | Issue |
+|-------|----------|-----|-------|
+| [ISO 42001 Conformity Assessment Preparation](iso-42001-conformity-assessment.md) | ISO 42001 Clause 10 / certification | No guidance on third-party certification body process | [#127](https://github.com/wlfghdr/agentic-enterprise/issues/127) |
+
 ## How to Use These Guides
 
 1. **Identify your deployment context** — which standards apply to your organization
