@@ -20,6 +20,7 @@ These guides are for **adopters deploying the framework** in a real environment.
 |-------|----------|-----|-------|
 | [SOC 2 Operating Effectiveness Evidence](soc2-operating-effectiveness.md) | SOC 2 Type II | No runtime evidence for Type II audit | [#123](https://github.com/wlfghdr/agentic-enterprise/issues/123) |
 | [SOC 2 Formal Control Testing Documentation](soc2-control-testing.md) | SOC 2 Type II | No formal control testing matrix, cadence, or result records | [#124](https://github.com/wlfghdr/agentic-enterprise/issues/124) |
+| [SOC 2 CPA Audit Engagement](soc2-cpa-engagement.md) | SOC 2 Type II | No guidance on CPA-firm engagement, management assertion preparation, or auditor access coordination | [#125](https://github.com/wlfghdr/agentic-enterprise/issues/125) |
 
 ## ISO 27001 Core ISMS Templates
 

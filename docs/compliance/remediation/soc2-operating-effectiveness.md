@@ -240,6 +240,8 @@ Before the observation period begins, verify all evidence collection mechanisms 
 
 ### Selecting a CPA Firm
 
+This section is a high-level overview. For the step-by-step engagement workflow, management assertion template, auditor access model, and preparation timeline, see the [SOC 2 CPA audit engagement guide](soc2-cpa-engagement.md).
+
 - The SOC 2 audit must be performed by a **licensed CPA firm** (AICPA member or equivalent in your jurisdiction)
 - Look for firms with specific experience in:
   - Technology and SaaS companies
