@@ -673,6 +673,23 @@ jobs:
       - name: Validate vendor compliance attestations
         run: python3 scripts/validate_vendor_compliance.py
 
+  validate-otel-evidence-chain:
+    name: validate-otel-evidence-chain
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Self-check (script integrity)
+        run: python3 scripts/validate_otel_evidence_chain.py --self-check
+
+      - name: Validate OTel evidence chain
+        run: python3 scripts/validate_otel_evidence_chain.py
+
   validate-control-linkage:
     name: validate-control-linkage
     runs-on: ubuntu-latest
