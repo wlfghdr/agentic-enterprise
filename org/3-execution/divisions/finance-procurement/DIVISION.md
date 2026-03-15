@@ -4,6 +4,7 @@
 > **Type:** Corporate Function
 > **Layer:** Execution
 > **Status:** Active
+> **Version:** 1.0 | **Last updated:** 2026-03-15
 
 ---
 
@@ -91,3 +92,11 @@ When working within this division:
 | Vendor registry | <!-- repo URL --> | Approved vendors with spend and renewal data |
 | Procurement templates | <!-- repo URL --> | RFP/RFQ, PO, and evaluation templates |
 | Financial reports | <!-- secure repo URL --> | Management accounts and board materials |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-03-15 | Initial version with changelog and versioning metadata |

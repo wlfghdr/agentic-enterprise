@@ -3,7 +3,7 @@
 > **Applies to:** All production incidents, security incidents, service degradations, customer-visible failures, and operational anomalies
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Operations / Security leadership
-> **Version:** 1.0 | **Last updated:** 2026-03-13
+> **Version:** 1.0.1 | **Last updated:** 2026-03-15
 
 ---
 
@@ -161,10 +161,26 @@ For incident response, observability is how the framework proves reality:
 | Observability linkage | Alerts, dashboards, and verification telemetry exist | Incident workflow not materially connected to telemetry |
 | Postmortem discipline | High-severity incidents produce review and follow-up | Incidents close without learning loop |
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|---------------|
+| **SOC 2** | CC7.3 Security incident response | §1 (Response Ownership), §3 (Escalation Rules) |
+| **SOC 2** | CC7.4 Incident recovery | §2 (SLA Tracking), Baseline Targets |
+| **SOC 2** | CC7.5 Incident identification and analysis | Severity Definitions, §5 (Post-Incident Review) |
+| **ISO 27001:2022** | A.16.1 Management of information security incidents | §1 (Response Ownership), §2 (SLA Tracking) |
+| **ISO 27001:2022** | A.16.1.2 Reporting information security events | §4 (Communications) |
+| **ISO 27001:2022** | A.16.1.5 Response to information security incidents | §3 (Escalation Rules), §1 (Response Ownership) |
+| **ISO 27001:2022** | A.16.1.6 Learning from information security incidents | §5 (Post-Incident Review) |
+| **NIST AI RMF** | GOVERN 1.5 Ongoing monitoring of AI risks | Observability Requirements, §2 (SLA Tracking) |
+| **GDPR** | Art. 33 Notification of data breach to supervisory authority | §4 (Communications), Severity Definitions (SEV1) |
+| **GDPR** | Art. 34 Communication of data breach to data subject | §4 (Communications) |
+
 ---
 
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.0.1 | 2026-03-15 | Add Compliance Mapping section with SOC 2, ISO 27001, NIST AI RMF, and GDPR control references |
 | 1.0 | 2026-03-13 | Initial incident response policy with SEV1-SEV4 response targets, auto-escalation, and observability-backed evidence requirements |

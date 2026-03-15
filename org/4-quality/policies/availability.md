@@ -3,7 +3,7 @@
 > **Applies to:** Production services, supporting infrastructure, operational dependencies, and business-critical internal systems
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Operations / Platform / Security leadership
-> **Version:** 1.0 | **Last updated:** 2026-03-13
+> **Version:** 1.0.1 | **Last updated:** 2026-03-15
 
 ---
 
@@ -127,10 +127,24 @@ For availability and continuity, observability is how the framework proves recov
 | Test evidence | Drills/restores are performed and evidenced | Targets claimed without testing |
 | Observability linkage | Recovery readiness and verification telemetry exist | Recovery confidence depends on manual intuition |
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|---------------|
+| **SOC 2** | CC7.1 System operations monitoring | Observability Requirements |
+| **SOC 2** | CC7.2 Anomaly detection | Observability Requirements |
+| **SOC 2** | A1.1 Recovery objectives | §2 (Recovery Design), Baseline Tier Targets |
+| **SOC 2** | A1.2 Environmental protection | §1 (Tiering and Scope), §5 (Business Continuity) |
+| **ISO 27001:2022** | A.17.1 Information security continuity | §5 (Business Continuity), §3 (Recovery Runbooks) |
+| **ISO 27001:2022** | A.17.2 Redundancies | §2 (Recovery Design) |
+| **ISO 27001:2022** | A.12.1.3 Capacity management | §1 (Tiering and Scope), §4 (Testing and Drill Cadence) |
+| **NIST AI RMF** | GOVERN 1.7 Processes for ongoing monitoring | Observability Requirements, §4 (Testing and Drill Cadence) |
+
 ---
 
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.0.1 | 2026-03-15 | Add Compliance Mapping section with SOC 2, ISO 27001, and NIST AI RMF control references |
 | 1.0 | 2026-03-13 | Initial availability and continuity policy covering service tiers, RTO/RPO, failover/recovery runbooks, annual testing, and observability-backed recovery evidence |

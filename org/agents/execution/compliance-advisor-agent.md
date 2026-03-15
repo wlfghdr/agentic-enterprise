@@ -1,5 +1,6 @@
 # Agent Type Definition: Compliance Advisor Agent
 
+> **Template version:** 1.0 | **Last updated:** 2026-03-15
 > **Status:** proposed | **Proposed date:** 2026-02-20
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -132,6 +133,11 @@ quarterly
 - Regulatory change detection lead time (time from publication to internal alert)
 - Compliance guidance accuracy (verified by human legal lead sampling)
 - Compliance gap closure rate
+
+
+## Telemetry
+
+All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../../../docs/otel-contract.md). Required span types: `agent.run`, `tool.execute`. Governance decisions emit `governance.decision` span events.
 
 ## Changelog
 

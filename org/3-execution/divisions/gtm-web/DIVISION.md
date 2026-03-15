@@ -81,3 +81,11 @@ When working within this division:
 |-------|----------|-------------|
 | Marketing site | `index.html` | Primary landing page |
 | Visualizations | `concept-visualization.html` | Interactive demo |
+
+---
+
+## Changelog
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-03-15 | Initial version with changelog and versioning metadata |

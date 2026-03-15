@@ -1,5 +1,6 @@
 # Agent Type Definition: HR Generalist Agent
 
+> **Template version:** 1.0 | **Last updated:** 2026-03-15
 > **Status:** proposed | **Proposed date:** 2026-02-20
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -136,6 +137,11 @@ quarterly
 - Performance review cycle on-time completion rate
 - HR policy Q&A accuracy (verified by human HR lead sampling)
 - Attrition early warning accuracy
+
+
+## Telemetry
+
+All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../../../docs/otel-contract.md). Required span types: `agent.run`, `tool.execute`. Governance decisions emit `governance.decision` span events.
 
 ## Changelog
 

@@ -1,5 +1,6 @@
 # Agent Type Definition: Observability Compliance Agent
 
+> **Template version:** 1.0 | **Last updated:** 2026-03-15
 > **Status:** proposed | **Proposed date:** 2026-02-19
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 

@@ -5,7 +5,7 @@
 > **Created:** 2026-03-03
 > **Revision:** 2 | **Last updated:** 2026-03-18
 > **Author:** Strategy Layer
-> **Design required:** false
+> **Design required:** true
 
 ---
 
