@@ -29,6 +29,14 @@ These guides are for **adopters deploying the framework** in a real environment.
 | [Statement of Applicability](../templates/_TEMPLATE-soa.md) | ISO 27001 Clause 6.1.3d | No SoA listing all 93 Annex A controls | [#121](https://github.com/wlfghdr/agentic-enterprise/issues/121) |
 | [Internal Audit Programme](../templates/_TEMPLATE-isms-internal-audit.md) | ISO 27001 Clause 9.2 | No audit programme or schedule | [#122](https://github.com/wlfghdr/agentic-enterprise/issues/122) |
 
+## ISO 42001 Core AIMS Assets
+
+| Resource | Standard | Gap | Issue |
+|----------|----------|-----|-------|
+| [AIMS Scope and AI System Inventory Guide](iso-42001-aims-scope.md) | ISO 42001 Clause 4.3 | No formal AIMS boundary definition or inventory guidance | [#126](https://github.com/wlfghdr/agentic-enterprise/issues/126) |
+| [AIMS Scope Statement](../templates/_TEMPLATE-aims-scope.md) | ISO 42001 Clause 4.3 | No formal AIMS scope definition | [#126](https://github.com/wlfghdr/agentic-enterprise/issues/126) |
+| [AI System Inventory](../templates/_TEMPLATE-ai-system-inventory.md) | ISO 42001 Clause 4 | No AI system inventory with risk classification | [#126](https://github.com/wlfghdr/agentic-enterprise/issues/126) |
+
 ## How to Use These Guides
 
 1. **Identify your deployment context** — which standards apply to your organization

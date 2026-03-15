@@ -17,7 +17,7 @@ This directory contains one reference document per external standard or regulati
 | [ISO/IEC 27001:2022](iso-27001.md) | Information Security Management | ~90% | Management review records, competence records |
 | [SOC 2 Type II](soc2.md) | Trust Service Criteria | ~90% | Independent audit |
 | [GDPR](gdpr.md) | EU Data Protection | ~75% | Consent management UX, DPO appointment, supervisory authority registration, cookie/tracking compliance |
-| [ISO/IEC 42001:2023](iso-42001.md) | AI Management Systems | ~80% | Formal AIMS scope, conformity assessment, management review, internal audit programme |
+| [ISO/IEC 42001:2023](iso-42001.md) | AI Management Systems | ~85% | Conformity assessment, management review, internal audit programme |
 | [NIST AI RMF](nist-ai-rmf.md) | AI Risk Management Framework | ~85% | MEASURE function quantitative metrics, third-party evaluation, organizational AI risk profile document |
 | [EU AI Act](eu-ai-act.md) | European AI Regulation | ~85% | Post-market monitoring system, serious incident reporting |
 | [NIST CSF 2.0](nist-csf.md) | Cybersecurity Framework | ~95% | IdP integration, physical security controls |
