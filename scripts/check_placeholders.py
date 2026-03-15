@@ -74,7 +74,7 @@ OPT_OUT_PRAGMA = "<!-- placeholder-ok -->"
 EXEMPT_FILENAMES: frozenset[str] = frozenset(
     {
         "CONTRIBUTING.md",
-        "docs/customization-guide.md",
+        "customization-guide.md",
     }
 )
 

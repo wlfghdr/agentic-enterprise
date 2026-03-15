@@ -1,7 +1,7 @@
 # Statement of Applicability (SoA)
 
 > **Template version:** 1.0
-> **Last updated:** 2026-03-14
+> **Last updated:** 2026-03-15
 > **Standard:** ISO/IEC 27001:2022 — Clause 6.1.3d
 > **Purpose:** Document applicability and implementation status of all 93 Annex A controls
 

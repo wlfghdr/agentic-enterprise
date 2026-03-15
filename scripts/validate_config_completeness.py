@@ -126,7 +126,7 @@ VAR_PATTERN = re.compile(r"\{\{([A-Za-z_][A-Za-z0-9_]*)\}\}")
 SKIP_DIRS = {".git", "node_modules", "archive", "examples"}
 SKIP_FILES = {
     "CHANGELOG.md",
-    "docs/customization-guide.md",
+    "customization-guide.md",
     "CONTRIBUTING.md",
 }
 # Directory prefixes to skip — these contain fill-in-the-blank templates
