@@ -20,7 +20,7 @@ Product analytics show that 34% of new customers abandon the onboarding flow at 
 Supporting data:
 - Step 1 (account creation): 95% completion
 - Step 2 (profile setup): 89% completion
-- Step 3 (workspace config): 58% completion ← drop-off
+- Step 3 (workspace config): 58% completion — drop-off
 - Step 4 (first project): 52% completion
 
 ## Initial Assessment

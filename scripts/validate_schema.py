@@ -9,7 +9,11 @@ Validates:
   - work/releases/**        → schemas/work/release-contract.schema.json
 
 Usage:
-  python3 scripts/validate_schema.py [--strict]
+  python3 scripts/validate_schema.py [--strict] [--root <path>]
+
+  --root <path>   Validate work artifacts in an alternate root directory
+                  (e.g., examples/e2e-loop). Schemas are always loaded from
+                  the repo's schemas/ directory.
 
 Exit codes:
   0  All validations passed
@@ -19,6 +23,7 @@ Exit codes:
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -170,9 +175,9 @@ def is_template(path: Path) -> bool:
     return "_TEMPLATE" in path.name or "stale.yml" in path.name
 
 
-def discover_signals() -> list[Path]:
+def discover_signals(root: Path | None = None) -> list[Path]:
     """Find non-template signal markdown files (top-level in work/signals/, not in digests/)."""
-    signals_dir = REPO / "work" / "signals"
+    signals_dir = (root or REPO) / "work" / "signals"
     if not signals_dir.exists():
         return []
     return [
@@ -181,9 +186,9 @@ def discover_signals() -> list[Path]:
     ]
 
 
-def discover_mission_briefs() -> list[Path]:
+def discover_mission_briefs(root: Path | None = None) -> list[Path]:
     """Find BRIEF.md / mission-brief.md files in work/missions/ subdirectories."""
-    missions_dir = REPO / "work" / "missions"
+    missions_dir = (root or REPO) / "work" / "missions"
     if not missions_dir.exists():
         return []
     results = []
@@ -195,9 +200,9 @@ def discover_mission_briefs() -> list[Path]:
     return results
 
 
-def discover_release_contracts() -> list[Path]:
+def discover_release_contracts(root: Path | None = None) -> list[Path]:
     """Find release-contract.md files in work/releases/."""
-    releases_dir = REPO / "work" / "releases"
+    releases_dir = (root or REPO) / "work" / "releases"
     if not releases_dir.exists():
         return []
     return [
@@ -247,29 +252,44 @@ def validate_json_artifacts(schema_path: Path, glob_pattern: str) -> tuple[list[
     return errors, ok_labels
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description="Schema validation for framework artifacts")
+    parser.add_argument(
+        "--root",
+        type=Path,
+        default=None,
+        help="Alternate root directory containing work/ subdirectory (e.g., examples/e2e-loop)",
+    )
+    parser.add_argument("--strict", action="store_true", help="Enable strict mode")
+    args = parser.parse_args()
+
+    root = args.root.resolve() if args.root else REPO
+
     all_errors: list[str] = []
     all_ok: list[str] = []
 
     # ── 1. CONFIG.yaml ─────────────────────────────────────────────────────
+    # Skip CONFIG.yaml validation when using --root (it lives in repo root only)
     config_schema_path = REPO / "schemas" / "config.schema.json"
     config_path = REPO / "CONFIG.yaml"
 
-    if not config_schema_path.exists():
-        all_errors.append(f"Schema file missing: {config_schema_path.relative_to(REPO)}")
-    elif not config_path.exists():
-        all_errors.append("CONFIG.yaml not found at repository root")
-    else:
-        errs = validate_config(config_schema_path, config_path)
-        if errs:
-            all_errors.extend(errs)
+    # CONFIG.yaml and JSON artifacts only validated against repo root
+    if root == REPO:
+        if not config_schema_path.exists():
+            all_errors.append(f"Schema file missing: {config_schema_path.relative_to(REPO)}")
+        elif not config_path.exists():
+            all_errors.append("CONFIG.yaml not found at repository root")
         else:
-            all_ok.append("CONFIG.yaml")
+            errs = validate_config(config_schema_path, config_path)
+            if errs:
+                all_errors.extend(errs)
+            else:
+                all_ok.append("CONFIG.yaml")
 
     # ── 2. Signal artifacts ────────────────────────────────────────────────
     signal_schema_path = REPO / "schemas" / "work" / "signal.schema.json"
     if signal_schema_path.exists():
         signal_schema = load_json(signal_schema_path)
-        signal_files = discover_signals()
+        signal_files = discover_signals(root)
         if not signal_files:
             print("INFO: No non-template signal files found — skipping signal validation.")
         for f in signal_files:
@@ -277,7 +297,7 @@ def main() -> int:
             if errs:
                 all_errors.extend(errs)
             else:
-                all_ok.append(str(f.relative_to(REPO)))
+                all_ok.append(str(f.relative_to(root)))
     else:
         all_errors.append(f"Schema file missing: {signal_schema_path.relative_to(REPO)}")
 
@@ -285,7 +305,7 @@ def main() -> int:
     mission_schema_path = REPO / "schemas" / "work" / "mission-brief.schema.json"
     if mission_schema_path.exists():
         mission_schema = load_json(mission_schema_path)
-        mission_files = discover_mission_briefs()
+        mission_files = discover_mission_briefs(root)
         if not mission_files:
             print("INFO: No non-template mission-brief files found — skipping mission validation.")
         for f in mission_files:
@@ -293,7 +313,7 @@ def main() -> int:
             if errs:
                 all_errors.extend(errs)
             else:
-                all_ok.append(str(f.relative_to(REPO)))
+                all_ok.append(str(f.relative_to(root)))
     else:
         all_errors.append(f"Schema file missing: {mission_schema_path.relative_to(REPO)}")
 
@@ -301,7 +321,7 @@ def main() -> int:
     release_schema_path = REPO / "schemas" / "work" / "release-contract.schema.json"
     if release_schema_path.exists():
         release_schema = load_json(release_schema_path)
-        release_files = discover_release_contracts()
+        release_files = discover_release_contracts(root)
         if not release_files:
             print("INFO: No non-template release-contract files found — skipping release validation.")
         for f in release_files:
@@ -309,28 +329,29 @@ def main() -> int:
             if errs:
                 all_errors.extend(errs)
             else:
-                all_ok.append(str(f.relative_to(REPO)))
+                all_ok.append(str(f.relative_to(root)))
     else:
         all_errors.append(f"Schema file missing: {release_schema_path.relative_to(REPO)}")
 
+    # JSON artifact checks only against repo root
+    if root == REPO:
+        # ── 5. Skill manifests ────────────────────────────────────────────
+        skill_schema_path = REPO / "schemas" / "skill-manifest.schema.json"
+        errs, oks = validate_json_artifacts(skill_schema_path, "org/skills/*.skill.json")
+        all_errors.extend(errs)
+        all_ok.extend(oks)
 
-    # ── 5. Skill manifests ────────────────────────────────────────────────
-    skill_schema_path = REPO / "schemas" / "skill-manifest.schema.json"
-    errs, oks = validate_json_artifacts(skill_schema_path, "org/skills/*.skill.json")
-    all_errors.extend(errs)
-    all_ok.extend(oks)
+        # ── 6. MCP profiles ──────────────────────────────────────────────
+        mcp_schema_path = REPO / "schemas" / "mcp-profile.schema.json"
+        errs, oks = validate_json_artifacts(mcp_schema_path, "org/mcp-profiles/*.mcp-profile.json")
+        all_errors.extend(errs)
+        all_ok.extend(oks)
 
-    # ── 6. MCP profiles ───────────────────────────────────────────────────
-    mcp_schema_path = REPO / "schemas" / "mcp-profile.schema.json"
-    errs, oks = validate_json_artifacts(mcp_schema_path, "org/mcp-profiles/*.mcp-profile.json")
-    all_errors.extend(errs)
-    all_ok.extend(oks)
-
-    # ── 7. Capability contracts ───────────────────────────────────────────
-    contract_schema_path = REPO / "schemas" / "capability-contract.schema.json"
-    errs, oks = validate_json_artifacts(contract_schema_path, "org/capability-contracts/*.contract.json")
-    all_errors.extend(errs)
-    all_ok.extend(oks)
+        # ── 7. Capability contracts ───────────────────────────────────────
+        contract_schema_path = REPO / "schemas" / "capability-contract.schema.json"
+        errs, oks = validate_json_artifacts(contract_schema_path, "org/capability-contracts/*.contract.json")
+        all_errors.extend(errs)
+        all_ok.extend(oks)
 
     # ── Report ──────────────────────────────────────────────────────────────
     for ok in all_ok:

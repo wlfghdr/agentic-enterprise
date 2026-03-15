@@ -28,6 +28,15 @@ This folder contains walkthrough examples showing how the agentic enterprise ope
 | Human checkpoints | ✅ VP Product, Eng Mgr | ✅ COO + CTO | ✅ CTO | ✅ 5 checkpoints (People, Finance, Legal) |
 | Corporate functions | — | — | — | ✅ People, Legal, Finance |
 
+## End-to-End Loop (Validation Test Fixture)
+
+The [e2e-loop/](e2e-loop/) directory contains a self-contained example with **proper work artifact instances** (signal, mission brief, decision record, technical design, release contract, retrospective) that conform to the framework's template schemas. It doubles as a test fixture:
+
+```bash
+python3 scripts/validate_schema.py --root examples/e2e-loop
+python3 scripts/validate_work_artifacts.py --root examples/e2e-loop
+```
+
 ## How to Use Examples
 
 These examples serve as:
@@ -35,6 +44,7 @@ These examples serve as:
 2. **Reference implementation** — See how signals, missions, templates, and loops connect
 3. **Customization guide** — Understand what needs to change for your organization
 4. **Completeness check** — Verify your implementation covers all layers, loops, and handovers
+5. **Validation testing** — The e2e-loop example serves as a regression test for validation scripts
 
 **Recommended reading order:**
 1. Start with the [Feature Lifecycle](generic-feature-lifecycle.md) — it's the most common path and covers all artifacts
