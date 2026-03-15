@@ -8,7 +8,6 @@
 protected_paths:
   # Core operating model & identity
   - "COMPANY.md"
-  - "OPERATING-MODEL.md"
   - "AGENTS.md"
   - "CONFIG.yaml"
 

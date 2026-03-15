@@ -5,7 +5,7 @@
 > **Start here** after cloning this framework.
 > This guide walks you through every step of making this operating model your own.
 
-> **New to the repo layout?** Read [docs/file-guide.md](docs/file-guide.md) first — it explains which root files are part of the open-source template infrastructure (safe to delete in a private fork) and which are your company's actual operating model content (fill in and own).
+> **New to the repo layout?** Read [docs/file-guide.md](file-guide.md) first — it explains which root files are part of the open-source template infrastructure (safe to delete in a private fork) and which are your company's actual operating model content (fill in and own).
 
 ---
 
@@ -13,7 +13,7 @@
 
 ### Step 1: Fill in CONFIG.yaml (10 min)
 
-Open [CONFIG.yaml](CONFIG.yaml) and fill in every field. This gives the framework your company's identity, toolchain, and organizational shape. The most critical fields:
+Open [CONFIG.yaml](../CONFIG.yaml) and fill in every field. This gives the framework your company's identity, toolchain, and organizational shape. The most critical fields:
 
 | Field | Why It Matters |
 |-------|---------------|
@@ -37,9 +37,9 @@ find . -name "*.md" -o -name "*.yaml" | xargs sed -i '' 's/{{COMPANY_SHORT}}/You
 
 Read and adjust these three files — they set the tone for everything:
 
-1. [COMPANY.md](COMPANY.md) — Vision, mission, strategic beliefs. Make them yours.
-2. [AGENTS.md](AGENTS.md) — Global agent rules. Adjust identity section.
-3. [OPERATING-MODEL.md](OPERATING-MODEL.md) — The meta-description. Verify it matches your reality.
+1. [COMPANY.md](../COMPANY.md) — Vision, mission, strategic beliefs. Make them yours.
+2. [AGENTS.md](../AGENTS.md) — Global agent rules. Adjust identity section.
+3. [org/README.md](../org/README.md) — Organizational structure and 5-layer model
 
 ### Small Team or Solo Founder?
 
@@ -54,7 +54,7 @@ Decide where operational work artifacts (signals, missions, tasks, decisions) wi
 | **Git files** (default) | Self-contained, no external dependencies, maximum auditability | `work_backend.type: "git-files"` |
 | **GitHub Issues** | Better human collaboration, native boards, labels, notifications, mobile access | `work_backend.type: "github-issues"` |
 
-If using GitHub, **GitHub Issues is recommended** — it's always available and provides dramatically better visibility for humans. See [docs/work-backends.md](docs/work-backends.md) for the full guide including label taxonomy.
+If using GitHub, **GitHub Issues is recommended** — it's always available and provides dramatically better visibility for humans. See [docs/work-backends.md](work-backends.md) for the full guide including label taxonomy.
 
 > **Note:** Governance backbone files (org structure, policies, agent instructions, templates) always stay in Git regardless of this choice.
 
@@ -154,7 +154,7 @@ Complete the Quick Start above (Steps 1-4), then:
 
 1. **Seed COMPANY.md** — Write your real vision, mission, and 4-8 strategic beliefs. These anchor every agent's decision-making. Don't ship placeholder text.
 2. **Create your first venture charter** — Copy `org/1-strategy/ventures/_TEMPLATE-venture-charter.md` → `org/1-strategy/ventures/<your-first-product>.md`. Define success metrics and measurement schedule. Even rough targets are better than none.
-3. **Define CODEOWNERS** — Review and customize the [CODEOWNERS](CODEOWNERS) file with actual GitHub teams or users that map to each layer's approval authority.
+3. **Define CODEOWNERS** — Review and customize the [CODEOWNERS](../CODEOWNERS) file with actual GitHub teams or users that map to each layer's approval authority.
 
 ### Day 0.5 — Organizational Skeleton (1-2 hours)
 
@@ -208,8 +208,8 @@ After the quick start, customize layer by layer. Each section below tells you **
 
 | File | What to Do | Priority |
 |------|-----------|----------|
-| [COMPANY.md](COMPANY.md) | Rewrite vision, mission, strategic beliefs to match your company | **Critical** |
-| [CONFIG.yaml](CONFIG.yaml) | Fill all fields — this drives placeholder replacement | **Critical** |
+| [COMPANY.md](../COMPANY.md) | Rewrite vision, mission, strategic beliefs to match your company | **Critical** |
+| [CONFIG.yaml](../CONFIG.yaml) | Fill all fields — this drives placeholder replacement | **Critical** |
 
 **Guidance:**
 
@@ -225,12 +225,12 @@ After the quick start, customize layer by layer. Each section below tells you **
 
 | File | What to Do | Priority |
 |------|-----------|----------|
-| [org/README.md](org/README.md) | Adjust layer headcounts, role names, division list | **High** |
-| [org/0-steering/AGENT.md](org/0-steering/AGENT.md) | Customize CxO function names to match your exec team | Medium |
-| [org/1-strategy/AGENT.md](org/1-strategy/AGENT.md) | Adjust strategy role names | Medium |
-| [org/2-orchestration/AGENT.md](org/2-orchestration/AGENT.md) | Adjust orchestration role names | Medium |
-| [org/3-execution/AGENT.md](org/3-execution/AGENT.md) | Most customization here — see below | **High** |
-| [org/4-quality/AGENT.md](org/4-quality/AGENT.md) | Adjust quality domain names | Medium |
+| [org/README.md](../org/README.md) | Adjust layer headcounts, role names, division list | **High** |
+| [org/0-steering/AGENT.md](../org/0-steering/AGENT.md) | Customize CxO function names to match your exec team | Medium |
+| [org/1-strategy/AGENT.md](../org/1-strategy/AGENT.md) | Adjust strategy role names | Medium |
+| [org/2-orchestration/AGENT.md](../org/2-orchestration/AGENT.md) | Adjust orchestration role names | Medium |
+| [org/3-execution/AGENT.md](../org/3-execution/AGENT.md) | Most customization here — see below | **High** |
+| [org/4-quality/AGENT.md](../org/4-quality/AGENT.md) | Adjust quality domain names | Medium |
 
 **Key decisions:**
 
@@ -307,24 +307,24 @@ The framework ships with 19 quality policies. Customize each:
 
 | Policy | What to Customize |
 |--------|------------------|
-| [security.md](org/4-quality/policies/security.md) | Your specific security requirements, compliance frameworks (SOC2, HIPAA, etc.) |
-| [agent-security.md](org/4-quality/policies/agent-security.md) | Your agent-specific security posture (prompt injection mitigations, tool abuse prevention, OWASP LLM Top 10 coverage) |
-| [ai-governance.md](org/4-quality/policies/ai-governance.md) | Your AI risk tier assignments per agent type, fairness metrics and thresholds, model allowed list, token budget ceilings, adversarial test suites, explainability implementation, EU AI Act applicability assessment |
-| [risk-management.md](org/4-quality/policies/risk-management.md) | Your risk appetite thresholds (via `CONFIG.yaml → risk_appetite`), agent autonomy tier assignments, risk taxonomy applicability, regulatory crosswalk for your target certifications |
-| [cryptography.md](org/4-quality/policies/cryptography.md) | Your approved algorithms, key rotation schedules (via `CONFIG.yaml → encryption`), certificate lifetimes, KMS integration, post-quantum migration timeline |
-| [privacy.md](org/4-quality/policies/privacy.md) | Your controller/processor model, lawful bases, DPA terms, DSAR channels, breach-notification contacts, transfer mechanisms |
-| [data-classification.md](org/4-quality/policies/data-classification.md) | Your classification taxonomy extensions (industry-specific sub-labels), data category inventory, retention schedules per level, access control mappings to your IAM, PII inventory for your data landscape |
-| [architecture.md](org/4-quality/policies/architecture.md) | Your API conventions, service patterns, catalog requirements |
-| [experience.md](org/4-quality/policies/experience.md) | Your design system name, accessibility standards, UI patterns |
-| [performance.md](org/4-quality/policies/performance.md) | Your specific latency budgets, cost constraints, resource limits |
-| [delivery.md](org/4-quality/policies/delivery.md) | Your deployment model, environments, rollback procedures |
-| [incident-response.md](org/4-quality/policies/incident-response.md) | Your on-call model, escalation paths, communication thresholds, and any stricter contractual incident targets |
-| [availability.md](org/4-quality/policies/availability.md) | Your service tiers, RTO/RPO targets, backup/restore design, failover strategy, drill cadence |
-| [content.md](org/4-quality/policies/content.md) | Your brand guidelines, documentation standards, content taxonomy |
-| [customer.md](org/4-quality/policies/customer.md) | Your SLA definitions, customer interaction standards |
-| [vendor-risk-management.md](org/4-quality/policies/vendor-risk-management.md) | Your vendor criticality tier assignments, attestation requirements by industry (HIPAA, FedRAMP, PCI DSS), breach notification timelines, assessment questionnaire extensions, review cadence, vendor register tooling |
-| [log-retention.md](org/4-quality/policies/log-retention.md) | Your retention periods per log category, WORM storage implementation, online availability windows, legal hold workflow, deletion automation schedule |
-| [observability.md](org/4-quality/policies/observability.md) | Your telemetry standards, agent observability requirements, alerting thresholds |
+| [security.md](../org/4-quality/policies/security.md) | Your specific security requirements, compliance frameworks (SOC2, HIPAA, etc.) |
+| [agent-security.md](../org/4-quality/policies/agent-security.md) | Your agent-specific security posture (prompt injection mitigations, tool abuse prevention, OWASP LLM Top 10 coverage) |
+| [ai-governance.md](../org/4-quality/policies/ai-governance.md) | Your AI risk tier assignments per agent type, fairness metrics and thresholds, model allowed list, token budget ceilings, adversarial test suites, explainability implementation, EU AI Act applicability assessment |
+| [risk-management.md](../org/4-quality/policies/risk-management.md) | Your risk appetite thresholds (via `CONFIG.yaml → risk_appetite`), agent autonomy tier assignments, risk taxonomy applicability, regulatory crosswalk for your target certifications |
+| [cryptography.md](../org/4-quality/policies/cryptography.md) | Your approved algorithms, key rotation schedules (via `CONFIG.yaml → encryption`), certificate lifetimes, KMS integration, post-quantum migration timeline |
+| [privacy.md](../org/4-quality/policies/privacy.md) | Your controller/processor model, lawful bases, DPA terms, DSAR channels, breach-notification contacts, transfer mechanisms |
+| [data-classification.md](../org/4-quality/policies/data-classification.md) | Your classification taxonomy extensions (industry-specific sub-labels), data category inventory, retention schedules per level, access control mappings to your IAM, PII inventory for your data landscape |
+| [architecture.md](../org/4-quality/policies/architecture.md) | Your API conventions, service patterns, catalog requirements |
+| [experience.md](../org/4-quality/policies/experience.md) | Your design system name, accessibility standards, UI patterns |
+| [performance.md](../org/4-quality/policies/performance.md) | Your specific latency budgets, cost constraints, resource limits |
+| [delivery.md](../org/4-quality/policies/delivery.md) | Your deployment model, environments, rollback procedures |
+| [incident-response.md](../org/4-quality/policies/incident-response.md) | Your on-call model, escalation paths, communication thresholds, and any stricter contractual incident targets |
+| [availability.md](../org/4-quality/policies/availability.md) | Your service tiers, RTO/RPO targets, backup/restore design, failover strategy, drill cadence |
+| [content.md](../org/4-quality/policies/content.md) | Your brand guidelines, documentation standards, content taxonomy |
+| [customer.md](../org/4-quality/policies/customer.md) | Your SLA definitions, customer interaction standards |
+| [vendor-risk-management.md](../org/4-quality/policies/vendor-risk-management.md) | Your vendor criticality tier assignments, attestation requirements by industry (HIPAA, FedRAMP, PCI DSS), breach notification timelines, assessment questionnaire extensions, review cadence, vendor register tooling |
+| [log-retention.md](../org/4-quality/policies/log-retention.md) | Your retention periods per log category, WORM storage implementation, online availability windows, legal hold workflow, deletion automation schedule |
+| [observability.md](../org/4-quality/policies/observability.md) | Your telemetry standards, agent observability requirements, alerting thresholds |
 
 **Key principle:** Start with the policies as shipped (they're reasonable defaults for a software enterprise). Then tighten or loosen based on your regulatory environment, risk tolerance, and maturity level.
 
@@ -474,7 +474,7 @@ git diff main...upstream/main -- CHANGELOG.md
 **Merge selectively.** Not every upstream change applies to your instance — you may have deliberately diverged in areas like policies, divisions, or process. Evaluate each update against your local customizations:
 - Template improvements (`_TEMPLATE-*.md`) → usually safe to adopt
 - New agent types or policies → evaluate fit before merging
-- Structural changes to `AGENTS.md` or `OPERATING-MODEL.md` → review carefully, may conflict with local rules
+- Structural changes to `AGENTS.md` or `org/README.md` → review carefully, may conflict with local rules
 
 ### Contributing improvements back
 
@@ -508,9 +508,9 @@ This framework is a **structural template** — a starting point, not a turnkey 
 
 ## Getting Help
 
-- **Structure questions:** Read [OPERATING-MODEL.md](OPERATING-MODEL.md)
-- **Agent behavior questions:** Read [AGENTS.md](AGENTS.md) and the relevant layer's AGENT.md
-- **Process questions:** Read [process/README.md](process/README.md)
+- **Structure questions:** Read [org/README.md](../org/README.md)
+- **Agent behavior questions:** Read [AGENTS.md](../AGENTS.md) and the relevant layer's AGENT.md
+- **Process questions:** Read [process/README.md](../process/README.md)
 - **Quality questions:** Read the relevant policy in `org/4-quality/policies/`
 - **Examples:** See `examples/` for worked-through lifecycle examples
 
@@ -528,4 +528,4 @@ That is the complete bootstrap. No additional configuration files required. AGEN
 
 > **Tip:** Don't bootstrap agents against an unconfigured fork. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
 
-For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](docs/runtimes/)**.
+For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](runtimes/)**.

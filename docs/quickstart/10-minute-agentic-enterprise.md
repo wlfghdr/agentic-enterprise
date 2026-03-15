@@ -232,4 +232,4 @@ Every step is:
 - [End-to-end example](../../examples/e2e-loop/) — See a complete lifecycle with all artifacts
 - [Minimal Adoption Guide](../adoption/minimal-adoption.md) — Start using the framework today
 - [Architecture Overview](../architecture/agentic-enterprise-architecture.md) — Understand the full system
-- [CUSTOMIZATION-GUIDE.md](../../CUSTOMIZATION-GUIDE.md) — Full onboarding walkthrough
+- [customization-guide.md](../customization-guide.md) — Full onboarding walkthrough

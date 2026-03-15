@@ -1,6 +1,6 @@
 # Organizational Structure
 
-> **Version:** 1.1 | **Last updated:** 2026-03-07
+> **Version:** 1.2 | **Last updated:** 2026-03-15
 
 > **What this is:** The static structure of the agentic enterprise {{COMPANY_SHORT}} organization — who exists, where they sit, what they own, how they relate. This covers the **entire company**, not just R&D: engineering, delivery, go-to-market, sales, customer success, and support all operate within the same 5-layer model.  
 > **What it replaces:** Legacy role hierarchies, ticket-based coordination, manual phase gates, and siloed functional departments.  
@@ -55,6 +55,18 @@ The critical addition — Layer 0: Steering — embeds what was historically inv
 ```
 
 **Key principle:** Information and artifacts flow DOWN (steering → strategy → missions → work → evaluation). Insights and improvement signals flow UP (quality metrics → fleet performance → mission outcomes → strategic decisions → evolution proposals). **The company is its own first customer: it observes itself and uses that intelligence to continuously evolve.**
+
+---
+
+## Key Terminology
+
+| Term | Definition |
+|------|-----------|
+| **Division** | Persistent group of agents organized by expertise — the agentic equivalent of a department. Owns skills, standards, and institutional knowledge. |
+| **Fleet** | Full pool of agents available to Orchestration. Total capacity across all divisions. |
+| **Crew** | Subset of agents drawn from the fleet for a specific mission. Assembled at mission start, disbanded at end. |
+
+Divisions define *what agents know*. The fleet is *who is available*. A crew is *who works on this mission now*.
 
 ---
 

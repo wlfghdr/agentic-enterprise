@@ -41,8 +41,7 @@ CLAUDE.md                           @steering-executive
 COMPANY.md                          @steering-executive
 CONFIG.yaml                         @steering-executive
 AGENTS.md                           @steering-executive
-OPERATING-MODEL.md                  @steering-executive
-CUSTOMIZATION-GUIDE.md              @steering-executive
+docs/customization-guide.md         @steering-executive
 docs/file-guide.md                  @steering-executive
 CODEOWNERS                          @steering-executive
 

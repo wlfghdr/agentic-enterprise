@@ -455,7 +455,7 @@ def get_scan_targets(root: Path) -> list[Path]:
             )
 
     # Top-level governed files
-    for name in ("AGENTS.md", "CLAUDE.md", "COMPANY.md", "OPERATING-MODEL.md"):
+    for name in ("AGENTS.md", "CLAUDE.md", "COMPANY.md"):
         top_file = root / name
         if top_file.exists():
             targets.append(top_file)

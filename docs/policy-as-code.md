@@ -45,7 +45,7 @@ policy/
 conftest.toml             # Conftest configuration (points at policy/)
 docs/policy-as-code.md    # This file
 .github/workflows/
-  policy.yml              # CI job that runs conftest
+  validate.yml            # CI job that runs conftest (conftest job)
 ```
 
 ---
@@ -215,7 +215,7 @@ Exceptions without documented reasons will be rejected in code review.
 
 ## CI Integration
 
-The policy checks run in `.github/workflows/policy.yml` on every push to `main`
+The policy checks run as the `conftest` job in `.github/workflows/validate.yml` on every push to `main`
 and every pull request. The job is **blocking** — CI fails if any `deny` rule fires.
 
 To see which files triggered a violation, check the CI step output. The `table`
@@ -229,7 +229,7 @@ Conftest can parse and check any structured file format (YAML, JSON, TOML, HCL, 
 To add checks for a new target:
 
 1. Create a new package (e.g., `package config`) in `policy/config/`.
-2. Add a new `conftest test` invocation in `.github/workflows/policy.yml`:
+2. Add a new `conftest test` invocation in the `conftest` job in `.github/workflows/validate.yml`:
 
    ```yaml
    - name: Check config policies

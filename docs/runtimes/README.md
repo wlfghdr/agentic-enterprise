@@ -92,4 +92,4 @@ Runtime-specific configuration belongs here, not in the framework core. This ens
 
 ---
 
-*Back to [docs/README.md](../README.md) | [OPERATING-MODEL.md](../../OPERATING-MODEL.md)*
+*Back to [docs/README.md](../README.md) | [org/README.md](../../org/README.md)*

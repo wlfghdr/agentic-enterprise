@@ -114,4 +114,4 @@ The reference organization is a proof point — you build your own. Start with:
 
 1. [Minimal Adoption Guide](../adoption/minimal-adoption.md) — the simplest path to running the framework
 2. [10-Minute Quickstart](../quickstart/10-minute-agentic-enterprise.md) — understand the core workflow
-3. [CUSTOMIZATION-GUIDE.md](../../CUSTOMIZATION-GUIDE.md) — full onboarding walkthrough
+3. [customization-guide.md](../customization-guide.md) — full onboarding walkthrough

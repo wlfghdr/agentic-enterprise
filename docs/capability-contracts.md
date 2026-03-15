@@ -164,4 +164,4 @@ org/capability-contracts/*.contract.json → schemas/capability-contract.schema.
 
 ---
 
-*See also:* [schema-guide.md](schema-guide.md) | [OPERATING-MODEL.md](../OPERATING-MODEL.md) | [MCP Specification](https://github.com/modelcontextprotocol/specification)
+*See also:* [schema-guide.md](schema-guide.md) | [org/README.md](../org/README.md) | [MCP Specification](https://github.com/modelcontextprotocol/specification)
