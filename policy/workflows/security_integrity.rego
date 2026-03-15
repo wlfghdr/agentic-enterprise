@@ -110,7 +110,7 @@ warn contains msg if {
 
 _is_security_job(job_name) if {
 	some keyword in _security_job_keywords
-	contains(lower(job_name), keyword)
+	contains(job_name, keyword)
 }
 
 _step_identifier(step, index) := name if {
@@ -140,8 +140,4 @@ _fetches_remote_script(cmd) if {
 # Known legitimate installer patterns (e.g., conftest install in policy.yml)
 _is_known_installer(cmd) if {
 	contains(cmd, "conftest")
-}
-
-lower(s) := result if {
-	result := lower(s)
 }
