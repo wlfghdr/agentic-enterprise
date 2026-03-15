@@ -70,6 +70,8 @@ The percentages describe how much of the governance scaffolding is modeled in th
 
 This is one of the biggest places where executive readers should be skeptical.
 
+There is also a methodology gap today: the public percentages are editorial self-assessments, while `validate_compliance_coverage.py` measures policy-to-reference mapping completeness and currently reports much lower machine-verifiable coverage. Until those two views converge, treat the validator as the harder truth for gap analysis.
+
 ### 5. "Will humans become the bottleneck?"
 
 **They can.**

@@ -7,17 +7,17 @@
     <img src="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml/badge.svg" alt="Validate Framework">
   </a>
   <br>
-  <img src="https://img.shields.io/badge/ISO_27001-~90%25_covered-0e8a16" alt="ISO 27001">
-  <img src="https://img.shields.io/badge/SOC_2-~90%25_covered-1d76db" alt="SOC 2">
-  <img src="https://img.shields.io/badge/GDPR-~75%25_covered-d93f0b" alt="GDPR">
-  <img src="https://img.shields.io/badge/ISO_42001-~85%25_covered-5319e7" alt="ISO 42001">
-  <img src="https://img.shields.io/badge/NIST_AI_RMF-~90%25_covered-fbca04" alt="NIST AI RMF">
-  <img src="https://img.shields.io/badge/EU_AI_Act-~85%25_covered-0e8a16" alt="EU AI Act">
-  <img src="https://img.shields.io/badge/NIST_CSF_2.0-~95%25_covered-0e8a16" alt="NIST CSF 2.0">
-  <img src="https://img.shields.io/badge/ISO_9001-~85%25_covered-0e8a16" alt="ISO 9001">
-  <img src="https://img.shields.io/badge/ISO_22301-~70%25_covered-fbca04" alt="ISO 22301">
-  <img src="https://img.shields.io/badge/CCPA%2FCPRA-~75%25_covered-d93f0b" alt="CCPA/CPRA">
-  <img src="https://img.shields.io/badge/HIPAA-~70%25_covered-b60205" alt="HIPAA">
+  <img src="https://img.shields.io/badge/ISO_27001-~90%25_self--assessed-0e8a16" alt="ISO 27001">
+  <img src="https://img.shields.io/badge/SOC_2-~90%25_self--assessed-1d76db" alt="SOC 2">
+  <img src="https://img.shields.io/badge/GDPR-~75%25_self--assessed-d93f0b" alt="GDPR">
+  <img src="https://img.shields.io/badge/ISO_42001-~85%25_self--assessed-5319e7" alt="ISO 42001">
+  <img src="https://img.shields.io/badge/NIST_AI_RMF-~90%25_self--assessed-fbca04" alt="NIST AI RMF">
+  <img src="https://img.shields.io/badge/EU_AI_Act-~85%25_self--assessed-0e8a16" alt="EU AI Act">
+  <img src="https://img.shields.io/badge/NIST_CSF_2.0-~95%25_self--assessed-0e8a16" alt="NIST CSF 2.0">
+  <img src="https://img.shields.io/badge/ISO_9001-~85%25_self--assessed-0e8a16" alt="ISO 9001">
+  <img src="https://img.shields.io/badge/ISO_22301-~70%25_self--assessed-fbca04" alt="ISO 22301">
+  <img src="https://img.shields.io/badge/CCPA%2FCPRA-~75%25_self--assessed-d93f0b" alt="CCPA/CPRA">
+  <img src="https://img.shields.io/badge/HIPAA-~70%25_self--assessed-b60205" alt="HIPAA">
 </p>
 
 <h1 align="center">Agentic Enterprise</h1>
@@ -80,7 +80,7 @@ Before you buy the story, challenge these points directly:
 | **Is this a replacement for Jira, ERP, CRM, ITSM, or observability?** | No. It governs decisions, approvals, work artifacts, and audit trails. Domain systems still do domain work. |
 | **Do the 5 layers imply a heavy org chart?** | No. They are decision roles, not mandatory headcount. Small teams can collapse multiple layers into the same people. |
 | **Is the public proof already enterprise-scale?** | Not yet. The public three-repo reference stack proves internal consistency and repeatability, not Fortune 500 operating scale. |
-| **Do the compliance percentages mean certification or operating effectiveness?** | No. They measure framework scaffolding coverage. Real controls, evidence, and audits remain adopter work. |
+| **Do the compliance percentages mean certification or operating effectiveness?** | No. They are top-level self-assessments of framework scaffolding, not mechanized audit numbers. Real controls, evidence, and audits remain adopter work. |
 | **Can agents run the company unattended?** | No. Humans stay accountable for scope, policy, risk, and releases. The framework reduces toil; it does not eliminate executive responsibility. |
 
 **[Full executive diligence notes →](docs/executive-reality-check.md)**
@@ -194,7 +194,7 @@ See [docs/runtimes/](docs/runtimes/) for platform-specific setup guides.
 
 Built-in governance controls mapped to 11 certification frameworks. Honest self-assessments, not certification stamps.
 
-| Framework | Coverage | | Framework | Coverage |
+| Framework | Self-Assessed Scaffolding Coverage | | Framework | Self-Assessed Scaffolding Coverage |
 |-----------|----------|-|-----------|----------|
 | **NIST CSF 2.0** | ~95% | | **ISO 42001** | ~85% |
 | **ISO 27001** | ~90% | | **GDPR** | ~75% |
@@ -203,7 +203,9 @@ Built-in governance controls mapped to 11 certification frameworks. Honest self-
 | **ISO 9001** | ~85% | | **ISO 22301** | ~70% |
 |  |  | | **HIPAA** | ~70% |
 
-> Certification requires an independent audit of your running system. This repo provides the **governance scaffolding**. Adopter responsibilities tracked as [open issues](https://github.com/wlfghdr/agentic-enterprise/issues?q=label%3Acompliance). Per-standard reference docs in [`docs/compliance/`](docs/compliance/).
+> Method note: these percentages are editorial self-assessments aligned across the public docs, not outputs of `validate_compliance_coverage.py`. The validator currently measures a stricter thing — policy-to-reference mapping completeness — and reports materially lower machine-verifiable coverage. Use the percentages as posture shorthand, and the validator plus per-standard docs in [`docs/compliance/`](docs/compliance/) as the hard gap source.
+
+> Certification still requires an independent audit of your running system. This repo provides the **governance scaffolding**. Many historical gaps were tracked and closed via issues; remaining adopter responsibilities are documented in the per-standard reference docs and implementation guides.
 
 ---
 
