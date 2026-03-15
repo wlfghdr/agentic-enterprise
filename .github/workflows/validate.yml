@@ -636,6 +636,23 @@ jobs:
       - name: Validate CONFIG.yaml completeness
         run: python3 scripts/validate_config_completeness.py
 
+  validate-exception-expiry:
+    name: validate-exception-expiry
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Self-check (script integrity)
+        run: python3 scripts/validate_exception_expiry.py --self-check
+
+      - name: Check governance exception expiry
+        run: python3 scripts/validate_exception_expiry.py --warn-days 30
+
   validate-control-linkage:
     name: validate-control-linkage
     runs-on: ubuntu-latest
