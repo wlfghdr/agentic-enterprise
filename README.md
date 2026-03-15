@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/model-Agentic%20Enterprise-blueviolet" alt="Agentic Enterprise">
-  <img src="https://img.shields.io/badge/version-3.0.0-brightgreen" alt="Version">
+  <img src="https://img.shields.io/badge/version-3.1.0-brightgreen" alt="Version">
   <img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License">
   <img src="https://img.shields.io/badge/runtime-bring%20your%20own-orange" alt="Runtime">
   <a href="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml">
@@ -130,9 +130,9 @@ The framework is exercised by a **reference organization** that runs the operati
 
 | Metric | Count |
 |--------|------:|
-| **Work items** (signals, missions, tasks) | 99 |
-| **Pull Requests** (governed, reviewed, merged) | 108 |
-| **Commits** (auditable change trail) | 440+ |
+| **Issues** (signals, missions, tasks, enhancements) | 210+ |
+| **Pull Requests** (governed, reviewed, merged) | 190+ |
+| **Commits** (auditable change trail) | 745+ |
 
 Every artifact traces: Signal → Mission → PR → Release → New Signal. The Git history is the proof.
 
@@ -189,7 +189,7 @@ agentic-enterprise/
 ├── CONFIG.yaml              ← Central config (fill FIRST)
 ├── AGENTS.md                ← Global agent instructions
 ├── CODEOWNERS               ← RACI — who approves what
-├── org/                     ← 5-layer org structure + 15 divisions + 19 policies
+├── org/                     ← 5-layer org structure + 17 divisions + 19 policies
 ├── process/                 ← 4-loop lifecycle definitions
 ├── work/                    ← Active signals, missions, decisions, releases
 ├── docs/                    ← Quickstart, architecture, adoption, observability, compliance

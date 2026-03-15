@@ -83,13 +83,25 @@ Guides for connecting specific agent runtimes and platforms to the framework. Th
 
 Reference documentation for the CI/automation gates that ship with the template. Each gate enforces a specific aspect of framework governance. These guides explain how to run the checks locally, interpret results, and extend or disable a gate.
 
-| Guide | CI gate it documents |
+| Guide / Script | CI gate it documents |
 |---|---|
 | [`policy-as-code.md`](policy-as-code.md) | OPA/Rego + Conftest enforcement (workflow permissions, pinned action refs) |
 | [`security-scanning.md`](security-scanning.md) | Gitleaks secret scanning + GitHub Dependency Review |
 | [`lock-enforcement.md`](lock-enforcement.md) | Lock files for protected paths (prevents concurrent edits to critical docs) |
 | [`placeholder-check.md`](placeholder-check.md) | Blocks PRs with unfilled `{{VAR}}`, `[TODO]`, `[TBD]` placeholders |
 | [`schema-guide.md`](schema-guide.md) | JSON Schema validation for `CONFIG.yaml` and work artifact markdown |
+| `validate_content_security.py` | Scans governed files for injection patterns and content security risks |
+| `validate_policy_structure.py` | Validates quality policy structure (required sections, evaluation criteria) |
+| `validate_otel_contract.py` | Validates OTel contract compliance (span names, attributes, metrics) |
+| `validate_compliance_mapping.py` | Validates compliance mapping tables in policies (control ID formats, framework refs) |
+| `validate_compliance_coverage.py` | Reports compliance coverage gaps per framework (unmapped controls) |
+| `validate_integration_registry.py` | Validates integration registry consistency against CONFIG.yaml |
+| `validate_agent_instructions.py` | Validates agent instruction hierarchy (AGENT.md files per layer) |
+| `validate_work_artifacts.py` | Validates work artifact structure (signals, missions, decisions) |
+| `validate_cross_references.py` | Validates cross-reference integrity between framework files |
+| `validate_config_completeness.py` | Ensures all `{{VARIABLE}}` tokens map to non-empty CONFIG.yaml values |
+| `validate_control_linkage.py` | Validates risk → policy → control → evidence chains (RISK/EXC file references) |
+| `check_github_governance.py` | Advisory check for CODEOWNERS and branch protection settings |
 
 ---
 
