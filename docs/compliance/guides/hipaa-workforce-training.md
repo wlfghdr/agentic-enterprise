@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # HIPAA — Workforce Training Programme
 
-> **Closes gap:** HIPAA-specific workforce training with documented completion records
+> **Implements:** HIPAA-specific workforce training with documented completion records
 > **Regulation:** HIPAA (45 CFR §164.530(b), §164.308(a)(5))
 > **Severity:** High — training is mandatory for all workforce members with PHI access; training failures are a common OCR enforcement finding
 > **Related issue:** [#147](https://github.com/wlfghdr/agentic-enterprise/issues/147)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 HIPAA requires Covered Entities and Business Associates to train all workforce members on policies and procedures related to PHI. The Privacy Rule (§164.530(b)) mandates training on privacy policies for all workforce members, and the Security Rule (§164.308(a)(5)) requires a security awareness and training programme for all workforce members (including management).
 
-The Agentic Enterprise framework provides agent instructions (`AGENT.md` hierarchy) that serve as "training" for AI agents and defines security awareness requirements in the [Security Policy](../../../org/4-quality/policies/security.md). However, it does not include a formal training programme for the human workforce covering HIPAA-specific topics, does not address training frequency requirements (new hire, periodic refresher, material change), and does not include AI-specific training topics such as PHI handling in AI prompts, agent boundary controls, and automated PHI processing risks.
+The Agentic Enterprise framework provides agent instructions (`AGENT.md` hierarchy) that serve as "training" for AI agents and defines security awareness requirements in the [Security Policy](../../../org/4-quality/policies/security.md). This guide extends that foundation with a formal training programme for the human workforce covering HIPAA-specific topics, training frequency requirements (new hire, periodic refresher, material change), and AI-specific training topics such as PHI handling in AI prompts, agent boundary controls, and automated PHI processing risks.
 
 This guide establishes a complete HIPAA workforce training programme covering training requirements, content, frequency, AI-specific topics, documentation, and a verification checklist.
 

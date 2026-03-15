@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # NIST CSF 2.0 — Network Security Architecture Guide
 
-> **Closes gap:** Network security implementation (segmentation, firewalls, monitoring)
+> **Implements:** Network security architecture (segmentation, firewalls, monitoring)
 > **Standard:** NIST CSF 2.0 — PR.IR-01, DE.CM-01
 > **Severity:** Critical — protection requires runtime network configuration
 > **Related issue:** [#134](https://github.com/wlfghdr/agentic-enterprise/issues/134)
@@ -9,18 +9,18 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
-The Agentic Enterprise framework defines security policies that reference network protection and monitoring, but does not implement the actual network infrastructure required to enforce them:
+This guide provides the reference architecture, deployment-specific guidance, and verification steps for implementing the network security infrastructure that enforces the framework's protection and detection policies.
 
-- The [Security Policy](../../../org/4-quality/policies/security.md) mandates mTLS for all service-to-service communication and zero-trust principles — but does not specify network architecture, segmentation, or firewall rules.
-- The [NIST CSF compliance mapping](../nist-csf.md) records PR.IR-01 (networks protected) as addressed by "network segmentation requirements, mTLS" — but the framework provides the policy requirement, not the implementation.
-- The [Observability Policy](../../../org/4-quality/policies/observability.md) requires continuous monitoring (DE.CM-01) — but network-level monitoring (flow analysis, DNS inspection, east-west traffic) is not configured.
-- The [Cryptography Policy](../../../org/4-quality/policies/cryptography.md) specifies TLS 1.3 minimum and mTLS requirements — but certificate infrastructure and network enforcement points are deployment-specific.
+The framework defines security policies that reference network protection and monitoring. This guide covers the deployment-level implementation:
 
-**Without network segmentation, firewall rules, and traffic monitoring, the framework's protection (PR.IR-01) and detection (DE.CM-01) controls for network-layer threats are unenforceable.**
+- The [Security Policy](../../../org/4-quality/policies/security.md) mandates mTLS for all service-to-service communication and zero-trust principles. This guide specifies the network architecture, segmentation, and firewall rules.
+- The [NIST CSF compliance mapping](../nist-csf.md) records PR.IR-01 (networks protected) as addressed by "network segmentation requirements, mTLS." This guide provides the implementation details.
+- The [Observability Policy](../../../org/4-quality/policies/observability.md) requires continuous monitoring (DE.CM-01). This guide covers network-level monitoring (flow analysis, DNS inspection, east-west traffic).
+- The [Cryptography Policy](../../../org/4-quality/policies/cryptography.md) specifies TLS 1.3 minimum and mTLS requirements. This guide covers certificate infrastructure and network enforcement points.
 
-This guide provides the reference architecture, deployment-specific guidance, and verification steps for closing this gap.
+**Network segmentation, firewall rules, and traffic monitoring are required for the framework's protection (PR.IR-01) and detection (DE.CM-01) controls for network-layer threats to be enforceable.**
 
 ---
 
@@ -354,7 +354,7 @@ security:
 
 ## 7. Verification Checklist
 
-Use this checklist to confirm that the network security gap is fully closed.
+Use this checklist to confirm that the network security requirements are fully implemented.
 
 ### Network Architecture
 

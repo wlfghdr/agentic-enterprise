@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # GDPR — Consent Management UX and DPO Appointment Guide
 
-> **Closes gap:** Consent management UX guidance (Art. 6–7) and DPO appointment guidance (Art. 37–39)
+> **Implements:** Consent management UX (Art. 6–7) and DPO appointment (Art. 37–39)
 > **Regulation:** General Data Protection Regulation (EU) 2016/679
 > **Severity:** High — consent management is mandatory when consent is the lawful basis; DPO appointment is mandatory for qualifying organizations
 > **Related issue:** [#132](https://github.com/wlfghdr/agentic-enterprise/issues/132)
@@ -9,15 +9,15 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
-The Agentic Enterprise framework provides comprehensive privacy governance — lawful basis documentation, DSAR handling, breach notification procedures, DPIA processes, and international transfer controls (see the [article-level mapping](../gdpr.md)). However, two high-severity gaps remain:
+The Agentic Enterprise framework provides comprehensive privacy governance — lawful basis documentation, DSAR handling, breach notification procedures, DPIA processes, and international transfer controls (see the [article-level mapping](../gdpr.md)). This guide extends that foundation with two areas:
 
-1. **No consent management UX guidance.** The framework documents the requirement for a lawful basis (Art. 6) and references consent as one option, but provides no guidance on how to implement runtime consent collection, storage, withdrawal, or age verification in a way that satisfies GDPR Arts. 6–8. Deployments that rely on consent as their lawful basis have no framework pattern to follow.
+1. **Consent management UX guidance.** This guide provides patterns for implementing runtime consent collection, storage, withdrawal, and age verification in a way that satisfies GDPR Arts. 6–8. Adopters use this guide when consent is the chosen lawful basis.
 
-2. **No DPO appointment guidance.** The framework acknowledges the DPO requirement (Art. 37) but provides no guidance on when appointment is mandatory, what qualifications are needed, how to ensure DPO independence, or how to integrate the DPO role into the framework's governance structure.
+2. **DPO appointment guidance.** This guide provides guidance on when DPO appointment is mandatory, what qualifications are needed, how to ensure DPO independence, and how to integrate the DPO role into the framework's governance structure.
 
-This guide closes both gaps — providing actionable implementation patterns for consent management and a complete DPO appointment and integration guide.
+This guide provides actionable implementation patterns for consent management and a complete DPO appointment and integration guide.
 
 ---
 
@@ -271,7 +271,7 @@ The existing [Privacy Policy](../../../org/4-quality/policies/privacy.md) provid
 | §1 — Lawful basis documentation | Section 2a — lawful basis selection guidance | Document chosen lawful basis per processing activity in RoPA |
 | §1 — Processing records | Section 2d — consent records | Implement consent event logging via OTel pipeline |
 | §3 — DSAR runbook | Section 3b — consent dashboard | Integrate consent status into DSAR responses |
-| §4 — Breach notification | N/A — no gap | Ensure consent records are included in breach scope assessment |
+| §4 — Breach notification | N/A — already covered | Ensure consent records are included in breach scope assessment |
 | §5 — DPIA | Section 4c — DPO DPIA advice | Involve DPO in DPIA reviews |
 
 ### 5b. Data Classification Policy Mapping

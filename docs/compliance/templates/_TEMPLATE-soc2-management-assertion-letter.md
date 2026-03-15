@@ -1,6 +1,6 @@
 # SOC 2 Management Assertion Letter
 
-> **Template version:** 1.0
+> **Template version:** 1.0.1
 > **Last updated:** 2026-03-15
 > **Standard:** SOC 2 Type II — management assertion
 > **Purpose:** Provide a reusable starting point for the management assertion letter included in a SOC 2 examination package
@@ -21,7 +21,7 @@
 | Prepared by | {{PREPARER}} |
 | Reviewed by | {{LEGAL_REVIEWER}} / {{AUDIT_COORDINATOR}} |
 | Signatory | {{EXECUTIVE_SIGNATORY}} |
-| Related | [SOC 2 CPA Audit Engagement Guide](../remediation/soc2-cpa-engagement.md) |
+| Related | [SOC 2 CPA Audit Engagement Guide](../guides/soc2-cpa-engagement.md) |
 
 ## Preparation Checklist
 

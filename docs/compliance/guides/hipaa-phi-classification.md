@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # HIPAA — PHI-Specific Data Classification Mapping
 
-> **Closes gap:** PHI-specific data classification with de-identification standards
+> **Implements:** PHI-specific data classification with de-identification standards
 > **Regulation:** HIPAA (45 CFR §160.103, §164.502, §164.514)
 > **Severity:** High — correct PHI identification and classification is foundational to all HIPAA compliance
 > **Related issue:** [#145](https://github.com/wlfghdr/agentic-enterprise/issues/145)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
-HIPAA defines Protected Health Information (PHI) broadly and establishes specific handling requirements based on the form of PHI (oral, written, electronic). The framework's [Data Classification Policy](../../../org/4-quality/policies/data-classification.md) provides a general classification hierarchy but does not include PHI as a named classification category, does not enumerate the 18 HIPAA identifiers, and does not address the two permitted de-identification methods (Safe Harbor and Expert Determination).
+HIPAA defines Protected Health Information (PHI) broadly and establishes specific handling requirements based on the form of PHI (oral, written, electronic). This guide extends the framework's [Data Classification Policy](../../../org/4-quality/policies/data-classification.md) with explicit PHI and ePHI categories, enumerates the 18 HIPAA identifiers, and addresses the two permitted de-identification methods (Safe Harbor and Expert Determination).
 
-This guide extends the Data Classification Policy with explicit PHI and ePHI categories, maps PHI types to the framework's classification levels, defines de-identification standards, and provides agent-specific PHI handling requirements including prompt sanitization, response filtering, and log redaction.
+This guide provides PHI-to-classification-level mappings, de-identification standards, and agent-specific PHI handling requirements including prompt sanitization, response filtering, and log redaction.
 
 ---
 

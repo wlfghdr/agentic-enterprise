@@ -73,9 +73,9 @@ The EU AI Act explicitly requires **logging** (Art. 12) and **post-market monito
 | Accuracy monitoring (Art. 15) | Error rate metrics, hallucination/correction rate, fairness dashboards | Proves accuracy is maintained post-deployment |
 | Incident detection | Anomaly detection alerts, security test results | Supports incident reporting obligations (Art. 62) |
 
-## 4. Remaining Gaps
+## 4. Adopter Responsibilities
 
-| Gap | EU AI Act Requirement | What's Needed | Severity |
+| Requirement | EU AI Act Requirement | What's Needed | Severity |
 |-----|----------------------|---------------|----------|
 | **Post-market monitoring system** | Art. 72 | Formal, documented system (partially addressed by observability) | High — requires specific procedures beyond monitoring |
 | **Serious incident reporting** | Art. 62 | Reporting to national market surveillance authorities | High — must be operational |
@@ -84,7 +84,7 @@ The EU AI Act explicitly requires **logging** (Art. 12) and **post-market monito
 | **Fundamental rights impact assessment** | Art. 27 | Required for deployers of certain high-risk systems (public bodies, private entities in specific sectors) | Medium — deployer obligation |
 | **EU representative** | Art. 22 | If provider is outside EU | Low — context-dependent |
 
-**Addressed by framework:** Conformity assessment preparation ([guide](remediation/eu-ai-act-conformity-assessment.md)), CE marking and EU database registration ([guide](remediation/eu-ai-act-ce-marking.md)), post-market monitoring system and serious incident reporting ([guide](remediation/eu-ai-act-post-market-monitoring.md)).
+**Addressed by framework:** Conformity assessment preparation ([guide](guides/eu-ai-act-conformity-assessment.md)), CE marking and EU database registration ([guide](guides/eu-ai-act-ce-marking.md)), post-market monitoring system and serious incident reporting ([guide](guides/eu-ai-act-post-market-monitoring.md)).
 
 ## 5. External References
 

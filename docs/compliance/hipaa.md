@@ -106,9 +106,9 @@ HIPAA's Security Rule explicitly requires audit controls (§164.312(b)) and info
 | BA/vendor monitoring | Vendor SLA monitoring dashboards, assessment records, contractual compliance tracking | §164.308(b), §164.314 |
 | Security awareness verification | Agent instruction version history, policy acknowledgment records | §164.308(a)(5) |
 
-## 4. Remaining Gaps
+## 4. Adopter Responsibilities
 
-| Gap | HIPAA Requirement | What's Needed | Criticality |
+| Requirement | HIPAA Requirement | What's Needed | Criticality |
 |-----|------------------|---------------|-------------|
 | **Business Associate Agreement (BAA) template** | §164.308(b), §164.314(a) | HIPAA-specific BAA template covering required provisions (permitted uses, safeguards, breach notification, termination, return/destruction of PHI) — the existing DPA template covers some but not all BAA-required terms | **High** |
 | **PHI-specific data classification** | §164.502, §164.514 | Extend Data Classification Policy with explicit PHI and ePHI categories, de-identification standards (Safe Harbor and Expert Determination methods per §164.514), and PHI-specific handling rules | **High** |
@@ -122,7 +122,7 @@ HIPAA's Security Rule explicitly requires audit controls (§164.312(b)) and info
 | **Physical safeguards** | §164.310 | Facility access controls, workstation use/security, device and media controls — out of scope for a software framework; deployment-specific | **Medium** |
 | **6-year document retention requirement** | §164.316(b)(2), §164.530(j) | HIPAA requires 6-year retention of policies, procedures, and certain records — Log Retention Policy covers the retention pattern but needs explicit 6-year floor for HIPAA-governed documents | **Low** |
 
-**Addressed by framework:** BAA template ([guide](remediation/hipaa-baa-template.md)), PHI-specific data classification ([guide](remediation/hipaa-phi-classification.md)), Notice of Privacy Practices and patient rights ([guide](remediation/hipaa-npp-patient-rights.md)), HIPAA-specific workforce training ([guide](remediation/hipaa-workforce-training.md)), designated Privacy and Security Officers ([guide](remediation/hipaa-privacy-security-officers.md)).
+**Addressed by framework:** BAA template ([guide](guides/hipaa-baa-template.md)), PHI-specific data classification ([guide](guides/hipaa-phi-classification.md)), Notice of Privacy Practices and patient rights ([guide](guides/hipaa-npp-patient-rights.md)), HIPAA-specific workforce training ([guide](guides/hipaa-workforce-training.md)), designated Privacy and Security Officers ([guide](guides/hipaa-privacy-security-officers.md)).
 
 See also: [GDPR compliance reference](gdpr.md) — significant overlap in privacy controls, data subject/patient rights workflows, breach notification requirements, and security safeguards.
 

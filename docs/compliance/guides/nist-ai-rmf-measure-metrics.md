@@ -1,6 +1,6 @@
 # NIST AI RMF — Quantitative Measurement Guide
 
-> **Closes gap:** Standardized quantitative measurement scaffolding for NIST AI RMF MEASURE 1-4
+> **Implements:** Standardized quantitative measurement scaffolding for NIST AI RMF MEASURE 1-4
 > **Framework:** NIST AI 100-1 — AI RMF 1.0
 > **Severity:** High — the framework now defines the measurement model, but adopters still need live telemetry and completed reports
 > **Related issue:** [#128](https://github.com/wlfghdr/agentic-enterprise/issues/128)
@@ -9,9 +9,9 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
-The Agentic Enterprise framework already had the policy ingredients needed for NIST AI RMF measurement:
+The Agentic Enterprise framework provides the policy ingredients needed for NIST AI RMF measurement:
 
 - observability requirements in the [Observability Policy](../../../org/4-quality/policies/observability.md)
 - AI-specific trustworthiness and fairness expectations in the [AI Governance Policy](../../../org/4-quality/policies/ai-governance.md)
@@ -19,14 +19,14 @@ The Agentic Enterprise framework already had the policy ingredients needed for N
 - behavioral evaluation metrics in the [Agent Eval Policy](../../../org/4-quality/policies/agent-eval.md)
 - canonical telemetry fields in the [OTel Telemetry Contract](../../otel-contract.md)
 
-What was missing was the **operational wrapper** that turns those ingredients into a repeatable NIST AI RMF MEASURE programme:
+This guide provides the **operational wrapper** that turns those ingredients into a repeatable NIST AI RMF MEASURE programme:
 
 1. a standard metric catalog aligned to MEASURE 1-4
 2. a baseline-establishment method
 3. a reusable dashboard structure for AI risk quantification
 4. a reusable report structure showing expected measurement outputs
 
-This guide closes that framework gap. It does **not** create real measurements by itself. Adopters still need live telemetry, evaluation data, and operational ownership.
+This guide does **not** create real measurements by itself. Adopters still need live telemetry, evaluation data, and operational ownership.
 
 ---
 

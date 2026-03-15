@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # SOC 2 — Formal Control Testing Documentation Guide
 
-> **Closes gap:** Formal control testing documentation
+> **Implements:** Formal control testing documentation
 > **Standard:** SOC 2 Type II — Trust Service Criteria
 > **Severity:** High — required before formal audit fieldwork
 > **Related issue:** [#124](https://github.com/wlfghdr/agentic-enterprise/issues/124)
@@ -10,17 +10,17 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
-The Agentic Enterprise framework already provides the raw ingredients for SOC 2 testing:
+The Agentic Enterprise framework provides the raw ingredients for SOC 2 testing:
 
 - control design in the quality policies and governance model
 - runtime evidence collection guidance in the [operating effectiveness guide](soc2-operating-effectiveness.md)
 - CI/CD validations, policy-as-code checks, and Git-based approval trails
 
-What it lacked was the **formal documentation layer** that auditors expect when they ask, "Show me how you test each control, how often you test it, what evidence you reviewed, and how you tracked failures."
+This guide provides the **formal documentation layer** that auditors expect when they ask, "Show me how you test each control, how often you test it, what evidence you reviewed, and how you tracked failures."
 
-Without that layer, adopters can collect telemetry and still fail readiness because they cannot demonstrate a repeatable control testing programme. This guide closes that gap by providing:
+Adopters use this guide to build a repeatable control testing programme. It provides:
 
 1. a control testing methodology
 2. a reusable testing matrix template
@@ -242,7 +242,7 @@ The table below is a practical default cadence for the framework's control set.
 | **Annually** | Perform full control testing refresh, readiness review, and align with the CPA firm's expected audit window |
 | **Upon significant change** | Add or retest controls after new integrations, policy changes, major incidents, or control failures |
 
-If the organization changes scope mid-year, revise the matrix immediately. Waiting until the next annual cycle creates audit gaps.
+If the organization changes scope mid-year, revise the matrix immediately. Waiting until the next annual cycle creates uncovered areas.
 
 ---
 

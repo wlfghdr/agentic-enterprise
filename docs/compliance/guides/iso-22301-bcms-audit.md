@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # ISO 22301 — BCMS Internal Audit Programme
 
-> **Closes gap:** BCMS internal audit programme (clause 9.2)
+> **Implements:** BCMS internal audit programme (clause 9.2)
 > **Standard:** ISO 22301:2019 — Business Continuity Management Systems
 > **Severity:** High — required for certification
 > **Related issue:** [#141](https://github.com/wlfghdr/agentic-enterprise/issues/141)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 ISO 22301 clause 9.2 requires organizations to conduct internal audits at planned intervals to provide information on whether the BCMS conforms to the organization's own requirements and the requirements of the standard, and whether it is effectively implemented and maintained. The audit programme must define frequency, methods, responsibilities, planning requirements, and reporting.
 
-The Agentic Enterprise framework provides partial coverage through the Quality Layer (Layer 4) evaluation mechanisms, which assess agent outputs and policy compliance. The framework also includes an ISO 27001 ISMS internal audit programme (if implemented per the [ISO 27001 remediation guides](../iso-27001.md)). However, there is no formal BCMS-specific audit programme that systematically verifies BC arrangements — BIA currency, BC plan adequacy, exercise programme effectiveness, and overall BCMS performance against ISO 22301 requirements.
+The Agentic Enterprise framework provides foundational coverage through the Quality Layer (Layer 4) evaluation mechanisms, which assess agent outputs and policy compliance. The framework also includes an ISO 27001 ISMS internal audit programme (if implemented per the [ISO 27001 implementation guides](../iso-27001.md)). This guide builds on those foundations to implement a formal BCMS-specific audit programme that systematically verifies BC arrangements — BIA currency, BC plan adequacy, exercise programme effectiveness, and overall BCMS performance against ISO 22301 requirements.
 
 This guide provides the BCMS audit requirements, an audit programme template (scope, frequency, methodology, auditor competence, audit criteria), mapping to the framework's quality evaluations, integration with any existing ISO 27001 ISMS audit programme, and a verification checklist.
 

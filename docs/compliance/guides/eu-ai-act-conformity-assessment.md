@@ -1,6 +1,6 @@
 # EU AI Act — Conformity Assessment Preparation Guide
 
-> **Closes gap:** Conformity assessment for high-risk AI (Art. 43)
+> **Implements:** Conformity assessment preparation for high-risk AI (Art. 43)
 > **Regulation:** EU AI Act (Regulation 2024/1689)
 > **Severity:** Critical — legal requirement before placing high-risk AI on EU market
 > **Related issue:** [#129](https://github.com/wlfghdr/agentic-enterprise/issues/129)
@@ -9,13 +9,13 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 The EU AI Act (Art. 43) requires providers of high-risk AI systems to complete a conformity assessment before placing any such system on the EU market or putting it into service. This assessment verifies that the system meets all applicable requirements in Chapter III, Section 2 of the regulation — covering risk management, data governance, technical documentation, transparency, human oversight, accuracy, robustness, and cybersecurity.
 
-The Agentic Enterprise framework provides the **governance design and operational structure** that maps to many of these requirements (see the [article-level mapping in the compliance reference](../eu-ai-act.md)), but it does not include a dedicated conformity assessment procedure, decision tree for risk classification, or documentation package template aligned to Annex IV and Annex VI. Without these, adopters deploying high-risk AI systems in the EU cannot demonstrate compliance.
+The Agentic Enterprise framework provides the **governance design and operational structure** that maps to many of these requirements (see the [article-level mapping in the compliance reference](../eu-ai-act.md)). This guide provides the conformity assessment procedure, decision tree for risk classification, and documentation package template aligned to Annex IV and Annex VI that adopters need to demonstrate compliance when deploying high-risk AI systems in the EU.
 
-This guide provides the risk classification decision tree, step-by-step internal conformity assessment procedure, and mappings from framework artifacts to the required documentation — closing the gap between the framework's control design and the EU AI Act's pre-market obligations.
+Specifically, this guide provides the risk classification decision tree, step-by-step internal conformity assessment procedure, and mappings from framework artifacts to the required documentation — connecting the framework's control design to the EU AI Act's pre-market obligations.
 
 ---
 

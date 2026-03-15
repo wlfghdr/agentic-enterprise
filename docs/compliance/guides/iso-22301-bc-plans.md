@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # ISO 22301 — Business Continuity Plans
 
-> **Closes gap:** Documented BC plans per critical process (clause 8.4)
+> **Implements:** Documented BC plans per critical process (clause 8.4)
 > **Standard:** ISO 22301:2019 — Business Continuity Management Systems
 > **Severity:** High — core deliverable of the standard
 > **Related issue:** [#140](https://github.com/wlfghdr/agentic-enterprise/issues/140)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 ISO 22301 clause 8.4 requires organizations to establish and maintain documented BC plans and procedures to manage disruptions and continue or recover activities within the prioritized timeframes established in the BIA. The plans must define a response structure, activation criteria, communication procedures, roles and responsibilities, resource requirements, and step-by-step recovery procedures.
 
-The Agentic Enterprise framework provides strong incident response capabilities through the [Incident Response Policy](../../../org/4-quality/policies/incident-response.md) with SEV1–4 classification, auto-escalation timers, and structured postmortems. The [Availability Policy](../../../org/4-quality/policies/availability.md) defines DR strategies per availability tier (active-active, active-passive, backup-restore, rebuild). However, these do not constitute full BC plans per ISO 22301 — they cover incident handling and technical recovery but lack the broader scope of business continuity planning: process-level activation criteria, non-technical resource mobilization, stakeholder communication plans, and structured procedures for restoring business operations beyond technology recovery.
+The Agentic Enterprise framework provides strong incident response capabilities through the [Incident Response Policy](../../../org/4-quality/policies/incident-response.md) with SEV1–4 classification, auto-escalation timers, and structured postmortems. The [Availability Policy](../../../org/4-quality/policies/availability.md) defines DR strategies per availability tier (active-active, active-passive, backup-restore, rebuild). This guide extends those foundations into full BC plans per ISO 22301 — covering the broader scope of business continuity planning: process-level activation criteria, non-technical resource mobilization, stakeholder communication plans, and structured procedures for restoring business operations beyond technology recovery.
 
 This guide provides the BC plan requirements, a BC plan template per critical process, mapping to availability policy tiers and RTO/RPO targets, and a verification checklist.
 

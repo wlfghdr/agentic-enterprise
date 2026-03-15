@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # EU AI Act — CE Marking & EU Database Registration Guide
 
-> **Closes gap:** CE marking (Art. 48) and EU database registration (Art. 49, 71)
+> **Implements:** CE marking (Art. 48) and EU database registration (Art. 49, 71)
 > **Regulation:** EU AI Act (Regulation 2024/1689)
 > **Severity:** Critical — mandatory prerequisites for EU market entry
 > **Related issue:** [#130](https://github.com/wlfghdr/agentic-enterprise/issues/130)
@@ -10,13 +10,13 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 CE marking is the visible declaration that a high-risk AI system conforms with all applicable requirements of the EU AI Act. EU database registration makes the system discoverable by market surveillance authorities and the public. Both are mandatory before placing a high-risk AI system on the EU market or putting it into service.
 
-The Agentic Enterprise framework provides the governance design and operational controls that satisfy the substantive requirements of the EU AI Act (risk management, data governance, human oversight, logging, transparency — see the [article-level mapping](../eu-ai-act.md)). However, it does not include guidance on the final steps of the compliance journey: issuing the declaration of conformity, affixing the CE marking, registering in the EU AI database, or maintaining these obligations post-market.
+The Agentic Enterprise framework provides the governance design and operational controls that satisfy the substantive requirements of the EU AI Act (risk management, data governance, human oversight, logging, transparency — see the [article-level mapping](../eu-ai-act.md)). This guide covers the final steps of the compliance journey: issuing the declaration of conformity, affixing the CE marking, registering in the EU AI database, and maintaining these obligations post-market.
 
-This guide covers the complete CE marking and registration process — from issuing the declaration of conformity through post-market maintenance — closing the gap between the framework's control implementation and the EU AI Act's market-entry requirements.
+Adopters use this guide to complete the CE marking and registration process — from issuing the declaration of conformity through post-market maintenance — bridging the framework's control implementation and the EU AI Act's market-entry requirements.
 
 ---
 

@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # SOC 2 Type II — Operating Effectiveness Evidence Guide
 
-> **Closes gap:** Operating effectiveness evidence (runtime data)
+> **Implements:** SOC 2 Type II operating effectiveness evidence collection (runtime data)
 > **Standard:** SOC 2 Type II — All Trust Service Criteria
 > **Severity:** Critical — blocks Type II certification
 > **Related issue:** [#123](https://github.com/wlfghdr/agentic-enterprise/issues/123)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 SOC 2 Type I evaluates whether controls are **designed** appropriately at a single point in time. Type II goes further: it evaluates whether those controls **operated effectively** over a continuous observation period of 6 to 12 months. The distinction is the difference between "you wrote a policy" and "you enforced that policy every day for a year."
 
-The Agentic Enterprise framework provides the **control design layer** — governance hierarchies, quality policies, change management via PRs, observability contracts, and agent instruction boundaries. This design layer satisfies the Type I requirement. However, adopters must independently collect and retain **runtime evidence** proving that these controls were active and effective throughout the audit period. Without this evidence, a Type II audit cannot proceed.
+The Agentic Enterprise framework provides the **control design layer** — governance hierarchies, quality policies, change management via PRs, observability contracts, and agent instruction boundaries. This design layer satisfies the Type I requirement. Adopters use this guide to collect and retain **runtime evidence** proving that these controls were active and effective throughout the audit period, which is required for a Type II audit to proceed.
 
 This guide specifies exactly what evidence is required, how to collect it using the framework's built-in observability and governance mechanisms, and how to package it for an auditor.
 

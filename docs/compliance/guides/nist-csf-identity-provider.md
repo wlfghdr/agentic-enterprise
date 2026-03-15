@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # NIST CSF 2.0 — Identity Provider Integration Guide
 
-> **Closes gap:** Identity provider integration for human and service identity lifecycle
+> **Implements:** Identity provider integration for human and service identity lifecycle
 > **Standard:** NIST Cybersecurity Framework (CSF) 2.0
 > **Severity:** High — framework defines policy but not IdP configuration
 > **Related issue:** [#135](https://github.com/wlfghdr/agentic-enterprise/issues/135)
@@ -9,13 +9,13 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 The Agentic Enterprise framework defines identity and access control policies — `CODEOWNERS` as an access matrix, `agent.id` in OTel spans for attribution, mTLS and short-lived token requirements in the [Security Policy](../../../org/4-quality/policies/security.md), and PR-based approval gates for authorization. These controls satisfy the *design intent* of NIST CSF 2.0 subcategories PR.AA-01 (identities managed) and PR.AA-03 (authentication mechanisms).
 
-However, the framework does not include guidance on deploying and configuring an actual identity provider (IdP) — the runtime infrastructure that implements these policies in practice. Without an IdP, there is no centralized source of truth for identity lifecycle (provisioning, deprovisioning, credential rotation), no enforcement of multi-factor authentication, and no federation across organizational boundaries.
+This guide provides the deployment-level guidance for deploying and configuring an identity provider (IdP) — the runtime infrastructure that implements these policies in practice. It covers the centralized source of truth for identity lifecycle (provisioning, deprovisioning, credential rotation), enforcement of multi-factor authentication, and federation across organizational boundaries.
 
-This guide provides the deployment-level guidance needed to connect the framework's identity and access policies to a production IdP, covering human users, agent service accounts, and machine-to-machine authentication.
+Adopters use this guide to connect the framework's identity and access policies to a production IdP, covering human users, agent service accounts, and machine-to-machine authentication.
 
 ---
 

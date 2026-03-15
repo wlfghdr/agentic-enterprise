@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # ISO 22301 — Business Impact Analysis
 
-> **Closes gap:** Business Impact Analysis template (clause 8.2.2)
+> **Implements:** Business Impact Analysis template (clause 8.2.2)
 > **Standard:** ISO 22301:2019 — Business Continuity Management Systems
 > **Severity:** High — central to ISO 22301
 > **Related issue:** [#139](https://github.com/wlfghdr/agentic-enterprise/issues/139)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 ISO 22301 clause 8.2.2 requires organizations to implement and maintain a formal Business Impact Analysis (BIA) process. The BIA must identify activities that support the delivery of products and services, assess the impacts over time of not performing those activities, set prioritized timeframes and levels for resuming them, and identify dependencies and supporting resources.
 
-The Agentic Enterprise framework provides partial coverage through the [Availability Policy](../../../org/4-quality/policies/availability.md), which defines four availability tiers with associated RTO/RPO targets, and the [Risk Management Policy](../../../org/4-quality/policies/risk-management.md), which provides ISO 31000-aligned risk assessment methodology. However, the framework lacks a formal BIA methodology and template that connects these policies into a structured impact analysis process — identifying critical processes, determining Maximum Tolerable Period of Disruption (MTPD), documenting impact categories, mapping dependencies, and establishing minimum resource requirements.
+The Agentic Enterprise framework provides foundational coverage through the [Availability Policy](../../../org/4-quality/policies/availability.md), which defines four availability tiers with associated RTO/RPO targets, and the [Risk Management Policy](../../../org/4-quality/policies/risk-management.md), which provides ISO 31000-aligned risk assessment methodology. This guide implements the formal BIA methodology and template that connects these policies into a structured impact analysis process — identifying critical processes, determining Maximum Tolerable Period of Disruption (MTPD), documenting impact categories, mapping dependencies, and establishing minimum resource requirements.
 
 This guide provides the BIA requirements, a BIA template tailored to the agentic enterprise context, integration with the framework's availability tiers and risk management policy, and a verification checklist.
 

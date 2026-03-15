@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # CCPA/CPRA — "Do Not Sell or Share" Opt-Out Mechanism Guide
 
-> **Closes gap:** "Do Not Sell or Share" opt-out mechanism
+> **Implements:** "Do Not Sell or Share" opt-out mechanism
 > **Regulation:** California Consumer Privacy Act / California Privacy Rights Act (Cal. Civ. Code §1798.120, §1798.135)
 > **Severity:** High — statutory requirement with private right of action exposure and CPPA enforcement
 > **Related issue:** [#142](https://github.com/wlfghdr/agentic-enterprise/issues/142)
@@ -9,19 +9,19 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 CCPA §1798.120 grants consumers the right to direct a business not to sell or share their personal information. CPRA broadened this right significantly by expanding the definition of "sharing" to include cross-context behavioral advertising — even when no monetary exchange occurs. §1798.135 mandates specific mechanisms businesses must provide, including a conspicuous homepage link and recognition of opt-out preference signals.
 
-The Agentic Enterprise framework provides strong data classification, privacy governance, and agent security controls, but it does not include:
+The Agentic Enterprise framework provides strong data classification, privacy governance, and agent security controls. This guide extends those controls with:
 
-- A runtime opt-out mechanism or UI component ("Do Not Sell or Share My Personal Information" link)
+- A runtime opt-out mechanism and UI component ("Do Not Sell or Share My Personal Information" link)
 - Recognition and enforcement of Global Privacy Control (GPC) or other opt-out preference signals
 - Backend state management to track and enforce consumer opt-out preferences across agent data flows
 - Classification guidance for distinguishing "service provider" processing from "third-party" processing under CPRA's definitions
 - Guidance on which agent data flows may constitute "sharing" under CPRA's broad definition
 
-This guide provides the requirements, design patterns, and verification steps to close these gaps.
+This guide provides the requirements, design patterns, and verification steps to implement these controls.
 
 ---
 

@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # NIST CSF 2.0 — Security Awareness Programme Guide
 
-> **Closes gap:** Formal human security awareness training programme
+> **Implements:** Formal human security awareness training programme
 > **Standard:** NIST Cybersecurity Framework (CSF) 2.0
 > **Severity:** High — agent instructions are not a human training programme
 > **Related issue:** [#136](https://github.com/wlfghdr/agentic-enterprise/issues/136)
@@ -9,13 +9,13 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 The Agentic Enterprise framework uses agent instructions (`AGENT.md` hierarchy, AGENTS.md Rule 4 "Policies are law") as the mechanism for ensuring agents operate within security boundaries. For agents, this is effective — instructions are deterministically loaded before every task, version-controlled, and auditable via Git history.
 
-However, NIST CSF 2.0 subcategories PR.AT-01 and PR.AT-02 require security awareness and training for *human* personnel, not just machine agents. Humans interact with the framework as PR reviewers, policy authors, executive approvers, and system operators. They face human-targeted threats (phishing, social engineering, credential theft) that agent instructions do not address, and they must understand AI-specific risks (prompt injection, data leakage through AI systems, over-reliance on AI recommendations) that are unique to operating an agentic enterprise.
+NIST CSF 2.0 subcategories PR.AT-01 and PR.AT-02 require security awareness and training for *human* personnel, not just machine agents. Humans interact with the framework as PR reviewers, policy authors, executive approvers, and system operators. They face human-targeted threats (phishing, social engineering, credential theft) that agent instructions do not address, and they must understand AI-specific risks (prompt injection, data leakage through AI systems, over-reliance on AI recommendations) that are unique to operating an agentic enterprise.
 
-This guide defines the security awareness programme design needed to close this gap — covering training topics, delivery methods, role-based curricula, and measurable outcomes.
+This guide defines the security awareness programme design for PR.AT-01 and PR.AT-02 compliance — covering training topics, delivery methods, role-based curricula, and measurable outcomes.
 
 ---
 
@@ -293,4 +293,4 @@ integrations:
 - [ ] Programme mapped to NIST CSF subcategories PR.AT-01 and PR.AT-02 with evidence cross-references
 - [ ] Programme mapped to NIST SP 800-53 controls AT-1 through AT-4
 - [ ] CONFIG.yaml updated with security awareness integration details
-- [ ] Signal filed for any programme gaps identified during initial deployment
+- [ ] Signal filed for any programme areas requiring attention identified during initial deployment

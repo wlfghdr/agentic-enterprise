@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # HIPAA — Business Associate Agreement Template
 
-> **Closes gap:** Business Associate Agreement (BAA) template with required provisions
+> **Implements:** Business Associate Agreement (BAA) template with required provisions
 > **Regulation:** HIPAA (45 CFR §164.502(e), §164.504(e)), as amended by HITECH Act
 > **Severity:** High — BAAs are mandatory before any Business Associate creates, receives, maintains, or transmits PHI on behalf of a Covered Entity
 > **Related issue:** [#144](https://github.com/wlfghdr/agentic-enterprise/issues/144)
@@ -9,11 +9,11 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 HIPAA requires Covered Entities to enter into a Business Associate Agreement (BAA) with every Business Associate before allowing them to create, receive, maintain, or transmit Protected Health Information (PHI). The HITECH Act extended direct liability to Business Associates and strengthened BAA requirements.
 
-The Agentic Enterprise framework provides a Data Processing Agreement (DPA) template via the [Privacy Policy](../../../org/4-quality/policies/privacy.md) and contractual controls via the [Vendor Risk Management Policy](../../../org/4-quality/policies/vendor-risk-management.md). However, these do not cover all HIPAA-specific BAA provisions — particularly the required clauses around permitted uses and disclosures of PHI, return or destruction of PHI at termination, subcontractor flow-down requirements, and the specific breach notification obligations under the Breach Notification Rule.
+The Agentic Enterprise framework provides a Data Processing Agreement (DPA) template via the [Privacy Policy](../../../org/4-quality/policies/privacy.md) and contractual controls via the [Vendor Risk Management Policy](../../../org/4-quality/policies/vendor-risk-management.md). This guide extends those controls with HIPAA-specific BAA provisions — particularly the required clauses around permitted uses and disclosures of PHI, return or destruction of PHI at termination, subcontractor flow-down requirements, and the specific breach notification obligations under the Breach Notification Rule.
 
 This guide provides the complete BAA template with all required clauses, agent-specific considerations for AI/agent systems acting as Business Associates, and a verification checklist for confirming BAA compliance.
 

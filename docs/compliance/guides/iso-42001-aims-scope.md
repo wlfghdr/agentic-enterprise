@@ -1,7 +1,7 @@
 <!-- placeholder-ok -->
 # ISO 42001 — AIMS Scope Statement and AI System Inventory
 
-> **Closes gap:** Formal AIMS scope statement and AI system inventory
+> **Implements:** Formal AIMS scope statement and AI system inventory
 > **Standard:** ISO/IEC 42001:2023 — Artificial Intelligence Management Systems
 > **Severity:** High — required for certification readiness
 > **Related issue:** [#126](https://github.com/wlfghdr/agentic-enterprise/issues/126)
@@ -9,7 +9,7 @@
 
 ---
 
-## 1. Gap Summary
+## 1. Purpose
 
 ISO/IEC 42001 clause 4 requires an organization to define the scope of its AI Management System (AIMS) and to understand which AI systems fall within that boundary. The Agentic Enterprise framework already provides much of the governance foundation:
 
@@ -19,14 +19,14 @@ ISO/IEC 42001 clause 4 requires an organization to define the scope of its AI Ma
 - observability requirements for AI behavior
 - vendor governance for external AI providers
 
-What was missing was the **formal certification artifact layer**:
+This guide implements the **formal certification artifact layer**:
 
 1. a dedicated AIMS scope statement
 2. a governed inventory of all AI systems in scope with risk classification
 
-Without those artifacts, an adopter can have strong AI governance and still be unable to show an auditor exactly which systems, processes, organizational units, and dependencies are inside the AIMS boundary.
+These artifacts enable an adopter to show an auditor exactly which systems, processes, organizational units, and dependencies are inside the AIMS boundary.
 
-This guide closes that framework gap by introducing:
+This guide introduces:
 
 - an [AIMS scope statement template](../templates/_TEMPLATE-aims-scope.md)
 - an [AI system inventory template](../templates/_TEMPLATE-ai-system-inventory.md)
