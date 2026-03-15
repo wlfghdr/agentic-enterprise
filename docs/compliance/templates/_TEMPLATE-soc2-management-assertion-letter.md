@@ -1,6 +1,6 @@
 # SOC 2 Management Assertion Letter
 
-> **Template version:** 1.0
+> **Template version:** 1.0.1
 > **Last updated:** 2026-03-15
 > **Standard:** SOC 2 Type II — management assertion
 > **Purpose:** Provide a reusable starting point for the management assertion letter included in a SOC 2 examination package
