@@ -130,9 +130,9 @@ The framework is exercised by a **reference organization** that runs the operati
 
 | Metric | Count |
 |--------|------:|
-| **Issues** (signals, missions, tasks, enhancements) | 88 |
-| **Pull Requests** (governed, reviewed, merged) | 70 |
-| **Commits** (auditable change trail) | 225+ |
+| **Issues** (signals, missions, tasks, enhancements) | 210+ |
+| **Pull Requests** (governed, reviewed, merged) | 190+ |
+| **Commits** (auditable change trail) | 745+ |
 
 Every artifact traces: Signal → Mission → PR → Release → New Signal. The Git history is the proof.
 
