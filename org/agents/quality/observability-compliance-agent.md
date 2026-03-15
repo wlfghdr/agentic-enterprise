@@ -12,7 +12,7 @@
 |-------|-------|
 | **ID** | `quality-observability-compliance-agent` |
 | **Name** | Observability Compliance Agent |
-| **Version** | 1.0.0 |
+| **Version** | 1.0.1 |
 
 ## Classification
 
@@ -185,8 +185,13 @@ For every output under evaluation, this agent performs the following checks in o
 - False positive rate (FAIL verdicts overturned by human review)
 - Escalation frequency
 
+## Telemetry
+
+All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../../../docs/otel-contract.md). Required span types: `agent.run`, `tool.execute`, and `inference.chat` and/or `inference.generate` when model-backed analysis is used during evaluation. Governance decisions emit `governance.decision` span events.
+
 ## Changelog
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-03-15 | Added explicit Telemetry section aligned to the canonical OTel contract; bumped agent version to 1.0.1 | System |
 | 2026-02-19 | Initial proposal — observability as a first-class quality gate | System |

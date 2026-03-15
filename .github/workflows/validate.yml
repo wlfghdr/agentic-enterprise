@@ -267,19 +267,25 @@ jobs:
 
       - name: Resolve diff base and head
         id: refs
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          EVENT_BEFORE_SHA: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
         run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "base=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
-            echo "head=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            echo "base=$PR_BASE_SHA" >> "$GITHUB_OUTPUT"
+            echo "head=$PR_HEAD_SHA" >> "$GITHUB_OUTPUT"
           else
-            BEFORE="${{ github.event.before }}"
+            BEFORE="$EVENT_BEFORE_SHA"
             # All-zeros means initial push or force-push with no common ancestor — skip diff
             if echo "$BEFORE" | grep -qE '^0+$'; then
               echo "base=" >> "$GITHUB_OUTPUT"
             else
               echo "base=$BEFORE" >> "$GITHUB_OUTPUT"
             fi
-            echo "head=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+            echo "head=$EVENT_SHA" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Check version fields and changelog sections exist in governed files
@@ -562,8 +568,56 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate policy structure and compliance mappings
+      - name: Validate policy structure
         run: python3 scripts/validate_policy_structure.py
+
+  validate-otel-contract:
+    name: validate-otel-contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate OTel contract compliance
+        run: python3 scripts/validate_otel_contract.py
+
+  validate-compliance-mapping:
+    name: validate-compliance-mapping
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate compliance mappings
+        run: python3 scripts/validate_compliance_mapping.py
+
+  validate-integration-registry:
+    name: validate-integration-registry
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate integration registry consistency
+        run: python3 scripts/validate_integration_registry.py
 
   validate-agent-instructions:
     name: validate-agent-instructions
@@ -603,9 +657,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Install dependencies
-        run: pip install pyyaml
 
       - name: Validate cross-reference integrity
         run: python3 scripts/validate_cross_references.py

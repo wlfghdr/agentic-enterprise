@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "github-code-implementation",
   "name": "GitHub Code Implementation",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Implement code changes in a repository: create branches, write code, commit, push, and open pull requests. Does not merge.",
   "category": "code-generation",
   "inputs": [
@@ -25,6 +25,12 @@
     { "tool": "git", "access": "write", "scope": "feature-branches-only" },
     { "tool": "bash", "access": "execute", "scope": "sandboxed" }
   ],
+  "telemetry": {
+    "contract": "docs/otel-contract.md",
+    "required_spans": ["agent.run", "tool.execute"],
+    "conditional_spans": ["inference.chat", "inference.generate"],
+    "decision_events": ["governance.decision"]
+  },
   "applicable_agent_types": ["execution-builder", "execution-security-fixer"],
   "constraints": [
     "Must not push to main, master, or any protected branch.",
@@ -33,6 +39,7 @@
     "PR description must reference the originating mission brief."
   ],
   "changelog": [
+    { "version": "1.1.0", "date": "2026-03-15", "change": "Added telemetry declaration aligned to docs/otel-contract.md." },
     { "version": "1.0.0", "date": "2026-02-28", "change": "Initial version." }
   ]
 }

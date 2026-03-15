@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "github-pr-review",
   "name": "GitHub Pull Request Review",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Review pull requests on GitHub: read diffs, check against policy, post structured review comments, and approve or request changes.",
   "category": "code-review",
   "inputs": [
@@ -24,6 +24,12 @@
   "tool_permissions": [
     { "tool": "git", "access": "read", "scope": "repo-only" }
   ],
+  "telemetry": {
+    "contract": "docs/otel-contract.md",
+    "required_spans": ["agent.run", "tool.execute"],
+    "conditional_spans": ["inference.chat", "inference.generate"],
+    "decision_events": ["governance.decision"]
+  },
   "applicable_agent_types": ["quality-pr-reviewer", "quality-security-reviewer"],
   "constraints": [
     "Must not approve PRs that modify policy/ or CODEOWNERS without explicit human approval.",
@@ -31,6 +37,7 @@
     "Review comments must cite the specific policy rule violated."
   ],
   "changelog": [
+    { "version": "1.1.0", "date": "2026-03-15", "change": "Added telemetry declaration aligned to docs/otel-contract.md." },
     { "version": "1.0.0", "date": "2026-02-28", "change": "Initial version." }
   ]
 }
