@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agentic Enterprise — Animated Concept Visualization</title>
+<title>Agentic Enterprise — Interactive Demo Reference Scenario</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root {
@@ -111,6 +111,12 @@ select{
 .flow-item .phase{color:var(--accent3);font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
 .flow-item .title{font-size:.7rem;font-weight:600;margin-bottom:2px}
 .flow-item .small{color:var(--text3);font-size:.62rem}
+.flow-item .artifact{margin-top:5px;font-size:.6rem;color:var(--text3)}
+.artifact-link{color:var(--cyan);border-bottom:1px solid rgba(34,211,238,.24);padding-bottom:1px}
+.artifact-link:hover{color:#a5f3fc;border-color:rgba(34,211,238,.5)}
+.quick-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.quick-links a{font-size:.64rem;color:var(--text3);border-bottom:1px solid rgba(161,161,170,.2);padding-bottom:1px}
+.quick-links a:hover{color:var(--text2);border-color:rgba(161,161,170,.45)}
 
 .controls{
   border-top:1px solid var(--border);
@@ -384,13 +390,20 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
   <main class="app">
     <section class="panel sidebar">
       <div class="sidebar-header">
-        <div class="badge">Live concept animation</div>
-        <h1>How agents collaborate through Git + integrations</h1>
-        <p class="meta">Selector-driven replay of real lifecycle patterns from <a href="examples/README.md">examples/</a>. Agents emit OTel telemetry and receive signals from the <a href="org/integrations/categories/observability.md">Observability Platform</a>. Git is the system of record; observability is the nervous system.</p>
+        <div class="badge">Interactive demo</div>
+        <h1>How the operating model runs through a reference scenario</h1>
+        <p class="meta">Selector-driven replay of representative lifecycle patterns from <a href="examples/README.md">examples/</a>. Agents emit OTel telemetry and receive signals from the <a href="org/integrations/categories/observability.md">observability platform</a>. Git is the system of record; observability is the evidence layer.</p>
+        <div class="quick-links">
+          <a href="https://github.com/wlfghdr/agentic-enterprise#choose-your-path" target="_blank" rel="noopener">README router ↗</a>
+          <a href="https://github.com/wlfghdr/agentic-enterprise/tree/main/examples/e2e-loop" target="_blank" rel="noopener">e2e-loop example ↗</a>
+          <a href="https://wlfghdr.github.io/agentic-enterprise/" target="_blank" rel="noopener">Live demo ↗</a>
+          <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/adoption/minimal-adoption.md" target="_blank" rel="noopener">Minimal adoption ↗</a>
+          <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/reference-organization/sandboxcorp.md" target="_blank" rel="noopener">Operational proof ↗</a>
+        </div>
       </div>
 
       <div class="selector-wrap">
-        <div class="selector-label">Choose scenario</div>
+        <div class="selector-label">Choose demo scenario</div>
         <select id="scenarioSelect"></select>
       </div>
 
@@ -412,7 +425,7 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
           <span><i class="dot" style="background:var(--amber)"></i>Design gate</span>
           <span><i class="dot" style="background:var(--accent)"></i>Integration activity</span>
           <span><i class="dot" style="background:var(--amber);opacity:.7"></i>OTel telemetry</span>
-          <span><i class="dot" style="background:var(--rose);opacity:.8"></i>Obs → agent</span>
+          <span><i class="dot" style="background:var(--rose);opacity:.8"></i>Observability → agent</span>
         </div>
       </section>
 
@@ -432,6 +445,79 @@ button.primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);border-
 
 <script>
 const scenarioData = {
+  e2eloop: {
+    label: 'End-to-End Loop Example',
+    summary: 'The real `examples/e2e-loop/` artifact chain from signal to release and back to new signals.',
+    chain: 'Signal → Mission → Decision → Technical Design → Work Items → Release → Retrospective → New Signals',
+    steps: [
+      {
+        phase: 'Phase 1',
+        title: 'Signal captures onboarding Step 3 drop-off',
+        from: 'customer-signal-scanner',
+        fromNode: 'executionSignal',
+        wakes: ['strategyDiscovery'],
+        branch: 'signal/2026-03-01-onboarding-step3-dropoff',
+        artifact: 'examples/e2e-loop/work/signals/2026-03-01-onboarding-step3-dropoff.md',
+        tags: ['34% drop-off', 'Discover loop', 'Repo-backed'],
+        narrative: 'This starts from the real e2e example in the repo: a structured signal documenting that 34% of users abandon onboarding at Step 3.'
+      },
+      {
+        phase: 'Phase 2',
+        title: 'Mission brief scopes the fix',
+        from: 'discovery-agent',
+        fromNode: 'strategyDiscovery',
+        wakes: ['strategyProduct', 'orchestrationFleet'],
+        branch: 'mission/MISSION-2026-008-onboarding-step3',
+        artifact: 'examples/e2e-loop/work/missions/MISSION-2026-008-onboarding-step3/BRIEF.md',
+        tags: ['Mission brief', 'Outcome contract', 'Human checkpoint'],
+        narrative: 'Strategy converts the signal into MISSION-2026-008 with measurable targets, clear scope, and explicit human checkpoints.'
+      },
+      {
+        phase: 'Phase 3',
+        title: 'Decision record chooses simplification over redesign',
+        from: 'product-strategy',
+        fromNode: 'strategyProduct',
+        wakes: ['executionDesign'],
+        branch: 'decision/DR-2026-008-simplify-over-redesign',
+        artifact: 'examples/e2e-loop/work/decisions/DR-2026-008-simplify-over-redesign.md',
+        tags: ['Tradeoff captured', 'Decide loop', 'Traceable'],
+        narrative: 'The real example includes an explicit decision record, showing why progressive disclosure was chosen instead of a full redesign.'
+      },
+      {
+        phase: 'Phase 4',
+        title: 'Technical design defines the implementation and observability plan',
+        from: 'technical-design-agent',
+        fromNode: 'executionDesign',
+        wakes: ['executionBuild', 'qualityEval'],
+        branch: 'design/MISSION-2026-008-onboarding-step3',
+        artifact: 'examples/e2e-loop/work/missions/MISSION-2026-008-onboarding-step3/technical-design.md',
+        tags: ['Observability plan', 'A/B test', 'Approved design'],
+        narrative: 'The technical design in the example makes observability explicit before implementation: spans, metrics, SLOs, dashboards, and rollback criteria.'
+      },
+      {
+        phase: 'Phase 5',
+        title: 'Execution tracks work and ships the release',
+        from: 'coding-agent stream',
+        fromNode: 'executionBuild',
+        wakes: ['qualityEval', 'releaseOps'],
+        branch: 'release/2026-03-18-onboarding-step3',
+        artifact: 'examples/e2e-loop/work/releases/2026-03-18-onboarding-step3-release-contract.md',
+        tags: ['Release contract', 'Targets met', 'Ship loop'],
+        narrative: 'The release contract shows the shipped outcome: Step 3 drop-off improved from 34% to 16%, with rollout, rollback, and PR references captured.'
+      },
+      {
+        phase: 'Phase 6',
+        title: 'Retrospective files the next signals',
+        from: 'release-manager',
+        fromNode: 'releaseOps',
+        wakes: ['executionSignal', 'steeringDigest'],
+        branch: 'retro/2026-03-20-onboarding-step3-regression',
+        artifact: 'examples/e2e-loop/work/retrospectives/2026-03-20-onboarding-step3-regression.md',
+        tags: ['Operate loop', 'New signals', 'Loop continues'],
+        narrative: 'The loop closes through a real retrospective in the repo, which creates consequential follow-up signals for mobile onboarding and funnel alerting.'
+      }
+    ]
+  },
   feature: {
     label: 'Generic Feature Lifecycle',
     summary: 'Customer demand to shipped capability across all 5 layers and 4 loops.',
@@ -787,7 +873,7 @@ const terminalCommand = document.getElementById('terminalCommand');
 const terminalLog = document.getElementById('terminalLog');
 const STAGE_COORDINATES = { width: 1000, height: 680 };
 
-let currentScenarioKey = 'feature';
+let currentScenarioKey = 'e2eloop';
 let stepIndex = 0;
 let autoPlay = true;
 let timer = null;
@@ -916,6 +1002,14 @@ function buildSelector() {
   scenarioSelect.value = currentScenarioKey;
 }
 
+function repoHref(path) {
+  const withoutWildcard = path.includes('*') ? path.split('*')[0] : path;
+  const normalized = withoutWildcard.replace(/^\.\//, '');
+  const isFile = /\/[^/]+\.[^/]+$/.test(normalized) || /^[^/]+\.[^/]+$/.test(normalized);
+  const mode = isFile ? 'blob' : 'tree';
+  return `https://github.com/wlfghdr/agentic-enterprise/${mode}/main/${normalized}`;
+}
+
 function updateFlowList() {
   const scenario = scenarioData[currentScenarioKey];
   flowList.innerHTML = '';
@@ -926,6 +1020,7 @@ function updateFlowList() {
       <div class="phase">${step.phase}</div>
       <div class="title">${step.title}</div>
       <div class="small">${step.from} → PR → ${step.wakes.join(', ')}</div>
+      <div class="artifact">Artifact: <a class="artifact-link" href="${repoHref(step.artifact)}" target="_blank" rel="noopener">${step.artifact}</a></div>
     `;
     item.addEventListener('click', () => {
       stepIndex = idx;
