@@ -41,11 +41,16 @@ class MappingRow:
 
 
 FRAMEWORK_PATTERNS: list[tuple[re.Pattern[str], str]] = [
+    (re.compile(r"^CCPA/CPRA\b", re.IGNORECASE), "CCPA/CPRA"),
     (re.compile(r"^SOC 2\b", re.IGNORECASE), "SOC 2"),
+    (re.compile(r"^ISO(?:/IEC)? 22301(?::2019)?\b", re.IGNORECASE), "ISO 22301"),
     (re.compile(r"^ISO(?:/IEC)? 27001(?::2022)?\b", re.IGNORECASE), "ISO 27001"),
     (re.compile(r"^GDPR\b", re.IGNORECASE), "GDPR"),
+    (re.compile(r"^HIPAA\b", re.IGNORECASE), "HIPAA"),
     (re.compile(r"^ISO(?:/IEC)? 42001(?::2023)?\b", re.IGNORECASE), "ISO 42001"),
+    (re.compile(r"^ISO 9001(?::2015)?\b", re.IGNORECASE), "ISO 9001"),
     (re.compile(r"^NIST AI RMF\b", re.IGNORECASE), "NIST AI RMF"),
+    (re.compile(r"^NIST CSF(?: 2\.0)?\b", re.IGNORECASE), "NIST CSF"),
     (re.compile(r"^EU AI Act\b", re.IGNORECASE), "EU AI Act"),
     (re.compile(r"^NIST SP 800-53\b", re.IGNORECASE), "NIST SP 800-53"),
     (re.compile(r"^NIST SP 800-60\b", re.IGNORECASE), "NIST SP 800-60"),
@@ -55,20 +60,30 @@ FRAMEWORK_PATTERNS: list[tuple[re.Pattern[str], str]] = [
 ]
 
 PRIMARY_FRAMEWORK_DOCS = {
+    "CCPA/CPRA": REPO / "docs" / "compliance" / "ccpa-cpra.md",
     "SOC 2": REPO / "docs" / "compliance" / "soc2.md",
+    "ISO 22301": REPO / "docs" / "compliance" / "iso-22301.md",
     "ISO 27001": REPO / "docs" / "compliance" / "iso-27001.md",
     "GDPR": REPO / "docs" / "compliance" / "gdpr.md",
+    "HIPAA": REPO / "docs" / "compliance" / "hipaa.md",
     "ISO 42001": REPO / "docs" / "compliance" / "iso-42001.md",
+    "ISO 9001": REPO / "docs" / "compliance" / "iso-9001.md",
     "NIST AI RMF": REPO / "docs" / "compliance" / "nist-ai-rmf.md",
+    "NIST CSF": REPO / "docs" / "compliance" / "nist-csf.md",
     "EU AI Act": REPO / "docs" / "compliance" / "eu-ai-act.md",
 }
 
 CONTROL_PATTERNS = {
+    "CCPA/CPRA": re.compile(r"(§\d+\.\d+(?:\([A-Za-z0-9]+\))*)"),
     "SOC 2": re.compile(r"(CC\d(?:\.\d+)?|A1(?:\.\d+)?|PI1(?:\.\d+)?|C1(?:\.\d+)?|P\d(?:\.\d+)?)"),
+    "ISO 22301": re.compile(r"(\d+\.\d+(?:[–-]\d+\.\d+)?)"),
     "ISO 27001": re.compile(r"(A\.\d+\.\d+(?:\.\d+)?)"),
-    "GDPR": re.compile(r"(Art\. \d+(?:\(\d+\))?(?:[–-]\d+(?:\(\d+\))?)?)"),
+    "GDPR": re.compile(r"(Art\. \d+(?:\(\d+\))?(?:\([a-z]\))?(?:[–-]\d+(?:\(\d+\))?(?:\([a-z]\))?)?)"),
+    "HIPAA": re.compile(r"(§\d+\.\d+(?:\([A-Za-z0-9]+\))*)"),
     "ISO 42001": re.compile(r"((?:A\.\d+|\d+(?:\.\d+)?(?:[–-]\d+(?:\.\d+)?)?))"),
+    "ISO 9001": re.compile(r"(\d+\.\d+(?:[–-]\d+\.\d+)?)"),
     "NIST AI RMF": re.compile(r"((?:GOVERN|MAP|MEASURE|MANAGE)(?:\s+\d+(?:\.\d+)?)?)"),
+    "NIST CSF": re.compile(r"([A-Z]{2}\.[A-Z]{2}-\d{2}(?:[–-](?:[A-Z]{2}\.)?[A-Z]{2}-\d{2})?)"),
     "EU AI Act": re.compile(r"(Art\. \d+(?:[–-]\d+)?)"),
     "NIST SP 800-53": re.compile(r"([A-Z]{2,3}-\d+(?:\(\d+\))?)"),
     "NIST SP 800-60": re.compile(r"([A-Za-z][A-Za-z0-9 /-]+)"),
