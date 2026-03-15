@@ -27,33 +27,68 @@
 </p>
 
 <p align="center">
-  <a href="https://wlfghdr.github.io/agentic-enterprise/"><strong>Website & Interactive Demo</strong></a>
+  <a href="https://wlfghdr.github.io/agentic-enterprise/"><strong>Live Demo</strong></a> ·
+  <a href="https://wlfghdr.github.io/agentic-enterprise/concept-visualization.html"><strong>Reference Scenario</strong></a> ·
+  <a href="docs/adoption/minimal-adoption.md"><strong>Minimal Adoption</strong></a>
 </p>
 
 <p align="center">
-  <a href="#what-is-agentic-enterprise">What Is This</a> ·
+  <a href="#choose-your-path">Choose a Path</a> ·
+  <a href="#see-it-in-motion">See It In Motion</a> ·
+  <a href="#start-minimal-adoption">Start Minimal Adoption</a> ·
   <a href="#the-operating-loop">Operating Loop</a> ·
   <a href="#operational-proof">Proof</a> ·
-  <a href="#quickstart">Quickstart</a> ·
-  <a href="#ecosystem--integrations">Ecosystem</a> ·
+  <a href="#runtimes--integrations">Runtimes</a> ·
   <a href="#enterprise-compliance-readiness">Compliance</a> ·
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
 
 ---
 
+## Choose Your Path
+
+| If you want to... | Start here | What you get |
+|---------|------------------------|-------------|
+| **Understand the operating model** | [10-Minute Walkthrough](docs/quickstart/10-minute-agentic-enterprise.md) · [OPERATING-MODEL.md](OPERATING-MODEL.md) | The 5 layers, 4 loops, and core artifact flow in the shortest useful path |
+| **See it in motion** | [Live demo](https://wlfghdr.github.io/agentic-enterprise/) · [Reference scenario](https://wlfghdr.github.io/agentic-enterprise/concept-visualization.html) | The public proof layer, driven by [`index.html`](index.html) and [`concept-visualization.html`](concept-visualization.html) |
+| **Start minimal adoption** | [Minimal Adoption Guide](docs/adoption/minimal-adoption.md) | A no-agents-required path: fork, configure, use signals + missions + PRs |
+
 ## What Is Agentic Enterprise?
 
-**Agentic Enterprise** is a complete, open-source operating model for running an organization with AI agents — expressed entirely as a Git repository. A [reference organization](#operational-proof) runs it end-to-end: **440+ commits, 108 PRs, 99 work items** — all governed through this framework.
+**Agentic Enterprise** is an open-source operating model for running work through a governed Git repository. Humans decide. Agents execute and evaluate. Git history becomes the audit trail.
 
-| Problem | This Framework's Answer |
-|---------|------------------------|
-| AI agents need governance, not just prompts | 5-layer model with boundaries, CODEOWNERS RACI, policy enforcement |
-| Legacy processes don't work for agent fleets | Git-native: PRs = decisions, CI/CD = quality gates |
-| No standard for human + agent collaboration | Humans steer and decide, agents execute and evaluate |
-| Enterprise AI stalls at "cool demo" | 15 divisions, 19 quality policies, 4 process loops, 11 compliance frameworks |
+Keep these terms separate:
 
-**Three layers, clearly separated:** This repo is the **framework** (templates, policies, processes). You bring the **runtime** (Claude, OpenAI, CrewAI, LangGraph — any agent platform). You connect **observability** (OpenTelemetry-native). The framework is runtime-agnostic.
+- **Operating model:** this repo's templates, policies, process loops, and agent instructions
+- **Demo / reference scenario:** the public proof assets in [`index.html`](index.html) and [`concept-visualization.html`](concept-visualization.html)
+- **Runtime:** your agent platform of choice
+- **Observability:** your OpenTelemetry-native evidence layer
+- **Adoption:** start with Git, CODEOWNERS, signals, missions, and PRs; add agents later if you want
+
+The repo is the framework. You bring the runtime and the observability platform. The framework stays runtime-agnostic.
+
+---
+
+## See It In Motion
+
+The demo is a first-class onboarding asset, not side material:
+
+- **[Live demo](https://wlfghdr.github.io/agentic-enterprise/)** shows the operating model as the public product surface
+- **[Reference scenario](https://wlfghdr.github.io/agentic-enterprise/concept-visualization.html)** replays representative lifecycle patterns step by step
+- **[`index.html`](index.html)** and **[`concept-visualization.html`](concept-visualization.html)** are the source files for those two proof assets
+- **[Reference organization details](docs/reference-organization/sandboxcorp.md)** and the **[end-to-end example](examples/e2e-loop/)** connect the demo back to repo artifacts
+
+---
+
+## Start Minimal Adoption
+
+**[Minimal Adoption Guide →](docs/adoption/minimal-adoption.md)** keeps the first real trial short and concrete.
+
+1. Fork or clone the repo.
+2. Fill in `CONFIG.yaml` and set up `CODEOWNERS`.
+3. Start with signals, missions, and PRs.
+
+**No agents required.** The operating model is useful before you add a runtime or observability platform.
 
 ---
 
@@ -91,7 +126,7 @@ QUALITY (4)         Agents evaluate against 19 policies
 
 ## Operational Proof
 
-The framework is exercised by a **reference organization** that runs the operating model end-to-end — maintaining both the framework itself (self-improving) and a fully functional application.
+The framework is exercised by a **reference organization** that runs the operating model end-to-end, giving the repo public proof beyond concept copy.
 
 | Metric | Count |
 |--------|------:|
@@ -105,24 +140,7 @@ Every artifact traces: Signal → Mission → PR → Release → New Signal. The
 
 ---
 
-## Quickstart
-
-**[10-Minute Walkthrough →](docs/quickstart/10-minute-agentic-enterprise.md)** — Understand the full workflow in 10 minutes.
-
-**[Minimal Adoption Guide →](docs/adoption/minimal-adoption.md)** — Start today, no agents required.
-
-```bash
-git clone https://github.com/wlfghdr/agentic-enterprise.git
-cd agentic-enterprise
-```
-
-1. Fill in `CONFIG.yaml` · 2. Replace `{{PLACEHOLDER}}` variables ([guide](CUSTOMIZATION-GUIDE.md)) · 3. Customize divisions · 4. Set up `CODEOWNERS` · 5. File your first signal
-
-> [docs/file-guide.md](docs/file-guide.md) maps every file to one of three categories — read it before editing.
-
----
-
-## Ecosystem & Integrations
+## Runtimes & Integrations
 
 Runtime-agnostic, integration-ready. The **Integration Registry** (`org/integrations/`) governs all external tool connections.
 

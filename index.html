@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agentic Enterprise — The Future of How Companies Operate</title>
+<title>Agentic Enterprise — Operating Model Demo</title>
 <style>
 /* ═══════════════════════════ RESET & BASE ═══════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -73,9 +73,9 @@ nav ul a:hover{color:var(--text)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
 .hero-desc{color:var(--text2);font-size:clamp(1.05rem,1.8vw,1.25rem);margin-top:0;line-height:1.7}
 .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
-.btn-primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);color:#fff;padding:14px 32px;border-radius:12px;font-weight:600;font-size:1rem;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:linear-gradient(135deg,var(--accent2),#6d28d9);color:#fff;padding:12px 22px;border-radius:12px;font-weight:600;font-size:0.95rem;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,58,237,0.3);color:#fff}
-.btn-secondary{background:transparent;color:var(--text);padding:14px 32px;border-radius:12px;font-weight:600;font-size:1rem;border:1px solid var(--border2);transition:border-color .2s,background .2s;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary{background:transparent;color:var(--text);padding:12px 22px;border-radius:12px;font-weight:600;font-size:0.95rem;border:1px solid var(--border2);transition:border-color .2s,background .2s;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .btn-secondary:hover{border-color:var(--accent);background:rgba(167,139,250,0.05);color:#fff}
 
 /* ═══════════════════════════ HERO 5-LAYER ANIMATION ═══════════════════════════ */
@@ -248,19 +248,6 @@ nav ul a:hover{color:var(--text)}
 .repo-folder p{color:var(--text3);font-size:0.8rem;line-height:1.5}
 .repo-folder code{color:var(--cyan);font-size:0.82rem;font-family:'SF Mono','Fira Code',monospace}
 
-/* ═══════════════════════════ AUTONOMY CURVE ═══════════════════════════ */
-.curve-visual{margin-top:48px;position:relative}
-.curve-steps{display:flex;gap:0;position:relative}
-.curve-step{flex:1;text-align:center;padding:32px 16px;position:relative;border:1px solid var(--border);background:var(--bg2);transition:all .3s}
-.curve-step:first-child{border-radius:var(--radius) 0 0 var(--radius)}
-.curve-step:last-child{border-radius:0 var(--radius) var(--radius) 0}
-.curve-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:1.2rem;z-index:2}
-.curve-step:last-child::after{display:none}
-.curve-step:hover{background:rgba(167,139,250,0.04);border-color:var(--accent2)}
-.curve-step h4{font-size:0.9rem;margin-bottom:6px}
-.curve-step p{color:var(--text3);font-size:0.78rem}
-.curve-step .step-label{display:inline-block;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:3px 10px;border-radius:100px;margin-bottom:12px}
-
 /* ═══════════════════════════ ADOPT ═══════════════════════════ */
 .steps-list{margin-top:48px;display:flex;flex-direction:column;gap:2px}
 .step-item{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:24px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);transition:all .3s}
@@ -298,6 +285,10 @@ nav ul a:hover{color:var(--text)}
 
 /* ═══════════════════════════ FOOTER ═══════════════════════════ */
 footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;color:var(--text3);font-size:0.8rem}
+.context-links,.footer-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.context-links{margin-top:18px;font-size:0.86rem}
+.context-links a,.footer-links a{color:var(--text3);border-bottom:1px solid rgba(161,161,170,0.2);padding-bottom:1px;transition:color .2s,border-color .2s}
+.context-links a:hover,.footer-links a:hover{color:var(--text2);border-color:rgba(161,161,170,0.45)}
 
 /* ═══════════════════════════ RESPONSIVE ═══════════════════════════ */
 @media(max-width:1100px){
@@ -308,9 +299,6 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   .loops-grid{grid-template-columns:repeat(2,1fr)}
   .loops-grid::before{display:none}
   .loops-artifacts-grid{grid-template-columns:repeat(2,1fr)}
-  .curve-steps{flex-direction:column}
-  .curve-step{border-radius:var(--radius-sm)!important}
-  .curve-step::after{display:none}
   nav ul{display:none}
   .wf-body{grid-template-columns:1fr}
 }
@@ -329,20 +317,6 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 .hero-footnote a:hover{color:var(--text2);border-color:rgba(161,161,170,0.5)}
 .footer-linkedin{display:inline-block;margin-top:12px;font-size:0.78rem;color:var(--text3);border-bottom:1px solid rgba(161,161,170,0.2);padding-bottom:1px;transition:color .2s}
 .footer-linkedin:hover{color:var(--text2)}
-
-/* ═══════════════════════════ EXECUTIVE SECTION ═══════════════════════════ */
-.exec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:48px}
-.exec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;transition:border-color .3s,transform .3s}
-.exec-card:hover{border-color:var(--accent2);transform:translateY(-4px)}
-.exec-icon{font-size:1.8rem;margin-bottom:16px}
-.exec-card h3{font-size:1.1rem;margin-bottom:10px}
-.exec-card p{color:var(--text2);font-size:0.9rem;line-height:1.65}
-.csuite-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
-.csuite-card{padding:22px 24px;border:1px solid var(--border);border-radius:var(--radius-sm);background:rgba(167,139,250,0.04);transition:border-color .3s}
-.csuite-card:hover{border-color:var(--accent2)}
-.csuite-role{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);margin-bottom:8px}
-.csuite-card p{color:var(--text2);font-size:0.865rem;line-height:1.6;margin:0}
-.exec-quote{border-left:3px solid var(--accent2);padding:18px 28px;margin-top:40px;background:rgba(124,58,237,0.06);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--text2);font-size:1.05rem;line-height:1.7;font-style:italic}
 
 /* ═══════════════════════════ ANIMATIONS / REVEAL ═══════════════════════════ */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
@@ -380,10 +354,9 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
     Agentic Enterprise
   </div>
   <ul>
-    <li><a href="#problem">Problem</a></li>
-    <li><a href="#for-leaders">C-Suite</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#adopt">Adopt</a></li>
+    <li><a href="#problem">Model</a></li>
+    <li><a href="#process">Operating Loop</a></li>
+    <li><a href="#adopt">Minimal Adoption</a></li>
     <li><a href="#compliance">Compliance</a></li>
     <li><a href="#live-demo" class="nav-demo">▶ Demo</a></li>
   </ul>
@@ -401,7 +374,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
     <div class="hero-layout">
       <!-- left: copy -->
       <div class="hero-content">
-        <p class="hero-desc">Your entire organization — every team, every decision, every deliverable — governed by a single system. <strong style="color:var(--text)">AI agents do the execution. Humans set direction and approve what matters.</strong></p>
+        <p class="hero-desc">An open-source operating model for running work through a governed repository. <strong style="color:var(--text)">Humans decide. Agents execute and evaluate. You can start with Git first and add agents later.</strong></p>
         <div class="hero-outcomes">
           <div class="outcome-item"><span class="outcome-num">440+</span><span class="outcome-label">Governed commits</span></div>
           <div class="outcome-item"><span class="outcome-num">108</span><span class="outcome-label">Reviewed PRs</span></div>
@@ -409,9 +382,11 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
           <div class="outcome-item"><span class="outcome-num">11</span><span class="outcome-label">Cert frameworks</span></div>
         </div>
         <div class="hero-actions">
-          <a href="#live-demo" class="btn-secondary nav-demo" style="background:rgba(34,211,238,0.07);border-color:rgba(34,211,238,0.3);color:var(--cyan);padding:14px 56px">▶ Demo</a>
+          <a href="https://github.com/wlfghdr/agentic-enterprise#choose-your-path" target="_blank" rel="noopener" class="btn-primary">Understand the model ↗</a>
+          <a href="#live-demo" class="btn-secondary nav-demo" style="background:rgba(34,211,238,0.07);border-color:rgba(34,211,238,0.3);color:var(--cyan)">▶ Explore the demo</a>
+          <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/adoption/minimal-adoption.md" target="_blank" rel="noopener" class="btn-secondary">Start minimal adoption ↗</a>
         </div>
-        <p class="hero-footnote"><strong>Open-source operating model:</strong> this is the governance framework and repo structure for an agentic company — not a closed SaaS product. Agents coordinate through a versioned repo and an observability platform. Git is the system of record, and observability is how runtime reality stays provable. <a href="https://linkedin.com/in/wolfgangheider" target="_blank" rel="noopener">Discuss on LinkedIn ↗</a></p>
+        <p class="hero-footnote"><strong>Open-source operating model:</strong> the repo is the framework, this page is the demo, and the interactive animation is the reference scenario. Bring your own runtime and observability platform. Minimal adoption works with Git, CODEOWNERS, signals, missions, and PRs before any agents run. <a href="https://linkedin.com/in/wolfgangheider" target="_blank" rel="noopener">Discuss on LinkedIn ↗</a></p>
       </div>
 
       <!-- right: animated 5-layer model visualization -->
@@ -491,7 +466,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="belief-card reveal">
         <div class="belief-num">03</div>
         <h3>Demo = reference scenario, not the product surface</h3>
-        <p>The demo shows the operating model in motion through a representative mission. It demonstrates the pattern. The pattern itself — not one private implementation — is the public story.</p>
+        <p>The demo shows the operating model in motion through a representative reference scenario. It demonstrates the pattern. The pattern itself — not one private implementation — is the public story.</p>
       </div>
     </div>
   </div>
@@ -524,7 +499,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="container">
     <div class="section-label reveal">The Problem</div>
     <h2 class="reveal">Legacy enterprise tools<br>weren't built for agents</h2>
-    <p class="section-sub reveal">AI agents can execute 100× faster than any human team. The bottleneck is no longer capacity — it's <strong style="color:var(--text)">governance, coordination, and trust</strong>.</p>
+    <p class="section-sub reveal">The bottleneck is no longer execution capacity. It is <strong style="color:var(--text)">governance, coordination, and trust</strong>.</p>
 
     <div class="problem-grid">
       <div class="problem-card reveal">
@@ -551,13 +526,13 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="container">
     <div class="section-label reveal">Framework Capabilities</div>
     <h2 class="reveal">Everything you need to<br><span class="gradient-text">run at agent velocity.</span></h2>
-    <p class="section-sub reveal">Six core capabilities that make the operating model real. Hover to explore. Click to see live state.</p>
+    <p class="section-sub reveal">Six capabilities make the operating model real.</p>
 
     <div class="feature-cards-grid">
       <div class="feature-card fc-running reveal" data-fc="governance" tabindex="0">
         <div class="fc-icon" style="background:rgba(167,139,250,0.12)">🏛️</div>
         <div class="fc-title">Git-Native Governance</div>
-        <div class="fc-desc">Every policy is a Markdown file. Every approval flows through Git or issue comments. Agents handle the mechanics — humans just say yes or no. Governance at the speed of code.</div>
+        <div class="fc-desc">Every policy is a file. Every approval flows through Git or issue comments. Humans decide; agents handle the mechanics.</div>
         <div class="fc-tags">
           <span class="fc-tag" style="background:rgba(167,139,250,0.1);color:var(--accent3)">PRs as decisions</span>
           <span class="fc-tag" style="background:rgba(167,139,250,0.08);color:var(--accent)">CODEOWNERS RACI</span>
@@ -567,7 +542,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="feature-card fc-idle reveal" data-fc="agents" tabindex="0">
         <div class="fc-icon" style="background:rgba(34,211,238,0.1)">🤖</div>
         <div class="fc-title">Agent Fleet Management</div>
-        <div class="fc-desc">Define agent types in a governed registry. Assemble fleets per mission. Scale to thousands of agents with zero manual config. Scope-bounded by design.</div>
+        <div class="fc-desc">Define agent types in a governed registry and assemble fleets per mission. Scope stays bounded by design.</div>
         <div class="fc-tags">
           <span class="fc-tag" style="background:rgba(34,211,238,0.08);color:var(--cyan)">Agent Registry</span>
           <span class="fc-tag" style="background:rgba(34,211,238,0.06);color:var(--cyan)">Fleet configs</span>
@@ -577,7 +552,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="feature-card fc-complete reveal" data-fc="observability" tabindex="0">
         <div class="fc-icon" style="background:rgba(96,165,250,0.1)">📊</div>
         <div class="fc-title">Observability Loop</div>
-        <div class="fc-desc">Telemetry flows up from execution to steering. Observability anomalies file signals back into the repo automatically. The system watches itself.</div>
+        <div class="fc-desc">Telemetry flows up from execution to steering. Observability can file signals back into the repo automatically.</div>
         <div class="fc-tags">
           <span class="fc-tag" style="background:rgba(96,165,250,0.08);color:var(--blue)">OTel spans</span>
           <span class="fc-tag" style="background:rgba(96,165,250,0.06);color:var(--blue)">Auto-signals</span>
@@ -587,7 +562,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="feature-card fc-running reveal" data-fc="quality" tabindex="0">
         <div class="fc-icon" style="background:rgba(74,222,128,0.1)">🛡️</div>
         <div class="fc-title">Automated Quality Gates</div>
-        <div class="fc-desc">Eighteen machine-readable policy domains, including AI governance &amp; fairness, privacy, incident response, availability &amp; continuity, log retention &amp; immutability, vendor &amp; third-party risk, observability, and risk management. Agents evaluate outputs before humans review them, and observability provides runtime proof when the claims matter.</div>
+        <div class="fc-desc">Nineteen machine-readable policy domains evaluate outputs before humans review them, with observability providing runtime evidence when claims matter.</div>
         <div class="fc-tags">
           <span class="fc-tag" style="background:rgba(74,222,128,0.08);color:var(--green)">19 policy domains</span>
           <span class="fc-tag" style="background:rgba(74,222,128,0.06);color:var(--green)">Runtime evidence</span>
@@ -597,7 +572,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="feature-card fc-idle reveal" data-fc="integrations" tabindex="0">
         <div class="fc-icon" style="background:rgba(251,191,36,0.1)">🔌</div>
         <div class="fc-title">Integration Registry</div>
-        <div class="fc-desc">Every external tool — Jira, Slack, PagerDuty, CI/CD — is declared in a governed registry. Agents use registered tools only. Zero shadow IT.</div>
+        <div class="fc-desc">External tools are declared in a governed registry. Agents use registered tools only.</div>
         <div class="fc-tags">
           <span class="fc-tag" style="background:rgba(251,191,36,0.08);color:var(--amber)">Governed MCP</span>
           <span class="fc-tag" style="background:rgba(251,191,36,0.06);color:var(--amber)">Auditable calls</span>
@@ -607,7 +582,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="feature-card fc-complete reveal" data-fc="missions" tabindex="0">
         <div class="fc-icon" style="background:rgba(251,113,133,0.1)">🎯</div>
         <div class="fc-title">Mission-Driven Execution</div>
-        <div class="fc-desc">Missions are the atomic unit of strategy. Each carries an outcome contract, a crew, and a bounded scope. Closed when the outcome is confirmed — not when tasks are done.</div>
+        <div class="fc-desc">Missions carry an outcome contract, a crew, and bounded scope. They close when outcomes are confirmed, not when tasks are merely done.</div>
         <div class="fc-tags">
           <span class="fc-tag" style="background:rgba(251,113,133,0.08);color:var(--rose)">Outcome contracts</span>
           <span class="fc-tag" style="background:rgba(251,113,133,0.06);color:var(--rose)">Time-bounded</span>
@@ -618,72 +593,12 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   </div>
 </section>
 
-<!-- ═══════════════════════════ FOR BUSINESS LEADERS ═══════════════════════════ -->
-<section id="for-leaders">
-  <div class="container">
-    <div class="section-label reveal">For Business Leaders</div>
-    <h2 class="reveal">Not AI hype.<br><span class="gradient-text">A new way to run a company.</span></h2>
-    <p class="section-sub reveal">The question isn't whether AI will reshape enterprise operations — it already is. The question is whether you'll have the governance infrastructure to stay in control.</p>
-
-    <div class="exec-grid">
-      <div class="exec-card reveal">
-        <div class="exec-icon">🚀</div>
-        <h3>Weeks, not quarters</h3>
-        <p>Agent fleets execute at machine speed. What used to take a sprint cycle takes hours. The bottleneck shifts from execution capacity to strategic clarity.</p>
-      </div>
-      <div class="exec-card reveal">
-        <div class="exec-icon">🔍</div>
-        <h3>Full auditability — by design</h3>
-        <p>Every agent action, every decision, every output is logged and versioned automatically. Accountability is built into the operating system — not bolted on as an afterthought.</p>
-      </div>
-      <div class="exec-card reveal">
-        <div class="exec-icon">🛡️</div>
-        <h3>Trust that survives contact with reality</h3>
-        <p>Privacy, incident response, and recovery commitments live as operating policies with telemetry-backed evidence — so trust is visible in runtime behavior, not just promised in a PDF.</p>
-      </div>
-      <div class="exec-card reveal">
-        <div class="exec-icon">⚖️</div>
-        <h3>Humans stay in control</h3>
-        <p>Agents propose, humans approve. Quality policies are machine-enforced. No agent can exceed its mandate — by design, not by policy memo.</p>
-      </div>
-      <div class="exec-card reveal">
-        <div class="exec-icon">📈</div>
-        <h3>Multiply your team's leverage</h3>
-        <p>One strategist can direct a fleet of 100 agents. Operations scale without proportional headcount growth.</p>
-      </div>
-    </div>
-
-    <div class="csuite-grid reveal">
-      <div class="csuite-card">
-        <div class="csuite-role">CEO</div>
-        <p>Define direction once. Agents execute everywhere. Every strategic initiative gets measurable outcomes — not status updates.</p>
-      </div>
-      <div class="csuite-card">
-        <div class="csuite-role">CFO</div>
-        <p>Cost per mission replaces story point estimates. Every agent action is traceable to a business outcome. No invisible spend.</p>
-      </div>
-      <div class="csuite-card">
-        <div class="csuite-role">CTO</div>
-        <p>Governance infrastructure built for AI at scale. Your policies become machine-enforced rules — no compliance theater, no audit gaps.</p>
-      </div>
-      <div class="csuite-card">
-        <div class="csuite-role">COO</div>
-        <p>24/7 agent fleets handle operations. Your people escalate by exception, not by default. Nothing falls through the cracks.</p>
-      </div>
-    </div>
-
-    <blockquote class="exec-quote reveal">
-      "You define direction. Agents do the work. Every decision is logged. Every policy is enforced automatically. <strong style="color:var(--text);font-style:normal">That's the deal.</strong>"
-    </blockquote>
-  </div>
-</section>
-
 <!-- ═══════════════════════════ 4 LOOPS ═══════════════════════════ -->
 <section id="process" style="background:var(--bg2)">
   <div class="container">
     <div class="section-label reveal">Process Lifecycle</div>
     <h2 class="reveal">Four loops. <span class="gradient-text">Idea to production in weeks.</span></h2>
-    <p class="section-sub reveal">Continuous loops that feed into each other — telemetry from the observability platform surfaces signals, which become tomorrow's missions in the repo.</p>
+    <p class="section-sub reveal">Signals become missions, missions become governed work, and observability feeds the next loop.</p>
 
     <div class="loops-grid reveal">
       <div class="loop-card">
@@ -741,7 +656,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="container">
     <div class="section-label reveal">The Governance Model</div>
     <h2 class="reveal">One governed system of record.<br><span class="gradient-text">Everything auditable. No silos.</span></h2>
-    <p class="section-sub reveal">All work, all decisions, all policies — in a single versioned system every agent reads and every human can audit. Two coordination channels: the <strong style="color:var(--text)">repo</strong> and the <strong style="color:var(--text)">observability platform</strong>.</p>
+    <p class="section-sub reveal">All work, decisions, and policies live in one versioned system. Two coordination channels: the <strong style="color:var(--text)">repo</strong> and the <strong style="color:var(--text)">observability platform</strong>.</p>
 
     <div class="table-wrapper reveal">
       <table class="replace-table">
@@ -764,39 +679,12 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   </div>
 </section>
 
-<!-- ═══════════════════════════ TRUST & OPERATIONS ═══════════════════════════ -->
-<section>
-  <div class="container">
-    <div class="section-label reveal">Trust &amp; Operations</div>
-    <h2 class="reveal">Enterprise trust is not a badge.<br><span class="gradient-text">It is observable behavior.</span></h2>
-    <p class="section-sub reveal">The framework now makes privacy, incident response, and resilience explicit operating surfaces. The point is simple: policy defines intent, observability proves runtime reality.</p>
-
-    <div class="beliefs-grid" style="margin-top:32px">
-      <div class="belief-card reveal">
-        <div class="belief-num">01</div>
-        <h3>Privacy is part of system design</h3>
-        <p>Lawful basis, DPA readiness, DSAR handling, breach workflows, and transfer controls are treated as launch-blocking operating requirements — not legal aftercare.</p>
-      </div>
-      <div class="belief-card reveal">
-        <div class="belief-num">02</div>
-        <h3>Incidents need clocks, not vibes</h3>
-        <p>SEV1–SEV4 response targets create explicit acknowledge, mitigate, and resolve expectations with escalation when evidence shows the response is slipping.</p>
-      </div>
-      <div class="belief-card reveal">
-        <div class="belief-num">03</div>
-        <h3>Recovery claims need proof</h3>
-        <p>Availability and continuity are anchored in service tiers, RTO/RPO targets, recovery runbooks, and drill evidence — with observability verifying failover and restore reality.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════════════════════ REPO STRUCTURE ═══════════════════════════ -->
 <section>
   <div class="container">
     <div class="section-label reveal">What's in the Repo</div>
     <h2 class="reveal">A complete operating model<br><span class="gradient-text">ready to fork.</span></h2>
-    <p class="section-sub reveal">Not a template. A structurally complete framework — org structure, processes, agent instructions, quality policies, and active work artifacts. All Markdown and YAML.</p>
+    <p class="section-sub reveal">A structurally complete framework: org structure, processes, agent instructions, quality policies, and work artifacts. All Markdown and YAML.</p>
 
     <div class="repo-visual">
       <div class="repo-folder reveal">
@@ -822,7 +710,7 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
       <div class="repo-folder reveal">
         <div class="folder-icon">🛡️</div>
         <h4><code>org/4-quality/policies/</code></h4>
-        <p>Machine-readable quality policies across fourteen domains — including security, privacy, observability, incident response, availability, continuity, cryptography, and risk management.</p>
+        <p>Machine-readable quality policies across nineteen domains — including security, privacy, observability, incident response, availability, continuity, cryptography, and risk management.</p>
       </div>
       <div class="repo-folder reveal">
         <div class="folder-icon">🤖</div>
@@ -846,46 +734,51 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 <!-- ═══════════════════════════ ADOPT ═══════════════════════════ -->
 <section id="adopt" style="background:var(--bg2)">
   <div class="container">
-    <div class="section-label reveal">Get Started</div>
-    <h2 class="reveal">Adopt in <span class="gradient-text">five steps.</span></h2>
-    <p class="section-sub reveal">Fork the repo. Fill in one config file. Customize your divisions. Start your first mission. No vendor, no license, no lock-in.</p>
+    <div class="section-label reveal">Minimal Adoption</div>
+    <h2 class="reveal">Try it without <span class="gradient-text">starting with agents.</span></h2>
+    <p class="section-sub reveal">Start with Git, CODEOWNERS, signals, missions, and PRs. Add a runtime and observability platform when the core operating model already makes sense for your team.</p>
 
     <div class="steps-list">
       <div class="step-item reveal">
         <div class="step-num">1</div>
         <div>
           <h3>Fork the repository</h3>
-          <p>Clone the open-source agentic-enterprise repo. Everything is Markdown and YAML — no runtime dependencies, no build step.</p>
+          <p>Clone the open-source repo. Everything is Markdown and YAML — no runtime dependencies, no build step.</p>
         </div>
       </div>
       <div class="step-item reveal">
         <div class="step-num">2</div>
         <div>
-          <h3>Fill in CONFIG.yaml</h3>
-          <p>Company name, mission, product names, team sizes. One file configures the entire framework. Search-replace propagates everywhere.</p>
+          <h3>Fill in CONFIG.yaml and CODEOWNERS</h3>
+          <p>Set your company name, repo basics, and review boundaries. That gives the operating model a real governance spine immediately.</p>
         </div>
       </div>
       <div class="step-item reveal">
         <div class="step-num">3</div>
         <div>
-          <h3>Customize your divisions</h3>
-          <p>Keep the ones that fit. Rename or remove the rest. Add divisions specific to your domain.</p>
+          <h3>Run the core workflow</h3>
+          <p>File a signal, convert it to a mission, and ship the work through a PR. That is the minimal operating loop, and it works without agents.</p>
         </div>
       </div>
       <div class="step-item reveal">
         <div class="step-num">4</div>
         <div>
-          <h3>Define your first mission</h3>
-          <p>Create a signal, write a mission brief, set an outcome contract. Follow the templates — they guide you through every field.</p>
+          <h3>Add observability and policy depth when useful</h3>
+          <p>Layer in observability, more quality policies, and integrations once the Git-first workflow is already proving itself.</p>
         </div>
       </div>
       <div class="step-item reveal">
         <div class="step-num">5</div>
         <div>
-          <h3>Let agents work</h3>
-          <p>Point your AI agents at the AGENTS.md file. They read instructions from the repo, execute the process, emit telemetry, and submit PRs. You review and merge. That's it.</p>
+          <h3>Add agents later</h3>
+          <p>When you are ready, point agents at <code>AGENTS.md</code>. The runtime becomes an execution layer on top of a workflow your team already understands.</p>
         </div>
       </div>
+    </div>
+    <div class="context-links reveal">
+      <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/adoption/minimal-adoption.md" target="_blank" rel="noopener">Minimal adoption guide ↗</a>
+      <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/quickstart/10-minute-agentic-enterprise.md" target="_blank" rel="noopener">10-minute walkthrough ↗</a>
+      <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/CUSTOMIZATION-GUIDE.md" target="_blank" rel="noopener">Customization guide ↗</a>
     </div>
   </div>
 </section>
@@ -1097,18 +990,18 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="cta-orb cta-orb-1"></div>
   <div class="cta-orb cta-orb-2"></div>
   <h2 class="reveal">The future of enterprise<br>is a <span class="gradient-text">governed repository.</span></h2>
-  <p class="reveal">Open source. No vendor lock-in. Fork it, fill in your config, register your integrations, and start running your company through the same system your agents already understand natively.</p>
+  <p class="reveal">Open source. No vendor lock-in. Start with minimal adoption, then add runtime and observability depth when you want the full agentic loop.</p>
 
   <!-- CTA flow steps -->
   <div class="cta-steps reveal" id="ctaSteps">
     <div class="cta-step active" id="ctaStep1"><span class="cta-step-num">1</span>Fork repo</div>
     <div class="cta-step" id="ctaStep2"><span class="cta-step-num">2</span>Configure</div>
-    <div class="cta-step" id="ctaStep3"><span class="cta-step-num">3</span>Deploy agents</div>
-    <div class="cta-step" id="ctaStep4"><span class="cta-step-num">4</span>Ship</div>
+    <div class="cta-step" id="ctaStep3"><span class="cta-step-num">3</span>Minimal adoption</div>
+    <div class="cta-step" id="ctaStep4"><span class="cta-step-num">4</span>Add agents later</div>
   </div>
 
   <div class="cta-actions reveal">
-    <a href="https://github.com/wlfghdr/agentic-enterprise" target="_blank" class="btn-cta-main">Get the repo on GitHub ↗</a>
+    <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/adoption/minimal-adoption.md" target="_blank" rel="noopener" class="btn-cta-main">Start minimal adoption ↗</a>
     <a href="#live-demo" class="btn-cta-secondary">▶ Watch the demo</a>
   </div>
   <div class="cta-code reveal">
@@ -1125,9 +1018,15 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 <!-- ═══════════════════════════ DEMO ═══════════════════════════ -->
 <section id="live-demo" style="background:var(--bg2);padding-bottom:0">
   <div class="container">
-    <div class="section-label reveal">Demo</div>
-    <h2 class="reveal">The template that<br><span class="gradient-text">improves itself.</span></h2>
-    <p class="section-sub reveal">This is a representative reference scenario showing the operating model in motion — agent fleets coordinating through PRs, telemetry firing, signals looping back. It demonstrates how the model works in practice without tying the story to a single private implementation.</p>
+    <div class="section-label reveal">Demo / Reference Scenario</div>
+    <h2 class="reveal">The operating model<br><span class="gradient-text">in motion.</span></h2>
+    <p class="section-sub reveal">This page is the demo. The embedded visualization defaults to the real <code>examples/e2e-loop/</code> chain from the repo, then lets you explore other representative reference scenarios.</p>
+    <div class="context-links reveal">
+      <a href="https://github.com/wlfghdr/agentic-enterprise#choose-your-path" target="_blank" rel="noopener">README router ↗</a>
+      <a href="https://github.com/wlfghdr/agentic-enterprise/tree/main/examples/e2e-loop" target="_blank" rel="noopener">e2e-loop example ↗</a>
+      <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/reference-organization/sandboxcorp.md" target="_blank" rel="noopener">Reference organization ↗</a>
+      <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/adoption/minimal-adoption.md" target="_blank" rel="noopener">Minimal adoption ↗</a>
+    </div>
   </div>
 
   <div class="container-wide">
@@ -1223,8 +1122,11 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="container-wide" style="margin-top:64px;padding-bottom:100px">
     <div class="viz-embed-wrap">
       <div class="viz-embed-head">
-        <span>Reference Organization · Interactive demo · Click a scenario to explore</span>
-        <a class="viz-embed-link" href="concept-visualization.html" target="_blank">Open standalone ↗</a>
+        <span>Interactive demo · defaults to the repo-backed e2e-loop example</span>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a class="viz-embed-link" href="concept-visualization.html" target="_blank">Open standalone ↗</a>
+          <a class="viz-embed-link" href="https://github.com/wlfghdr/agentic-enterprise/blob/main/concept-visualization.html" target="_blank" rel="noopener">View source ↗</a>
+        </div>
       </div>
       <iframe class="viz-embed" src="concept-visualization.html" title="Agentic Enterprise Live Visualization" loading="lazy"></iframe>
     </div>
@@ -1236,6 +1138,11 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
   <div class="container">
     Agentic Enterprise Operating Model — Open Source<br>
     <span style="color:var(--text3)">Humans decide. Agents execute. Git governs.</span><br>
+    <div class="footer-links" style="margin-top:12px">
+      <a href="https://github.com/wlfghdr/agentic-enterprise#choose-your-path" target="_blank" rel="noopener">README router ↗</a>
+      <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/adoption/minimal-adoption.md" target="_blank" rel="noopener">Minimal adoption ↗</a>
+      <a href="https://github.com/wlfghdr/agentic-enterprise/blob/main/docs/reference-organization/sandboxcorp.md" target="_blank" rel="noopener">Operational proof ↗</a>
+    </div>
     <a href="https://linkedin.com/in/wolfgangheider" target="_blank" rel="noopener" class="footer-linkedin">Discuss this concept on LinkedIn ↗</a>
   </div>
 </footer>
