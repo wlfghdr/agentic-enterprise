@@ -4,7 +4,7 @@
 > **Applies to:** All third-party vendors, suppliers, service providers, subprocessors, and external integrations used by the organization or its agents
 > **Enforced by:** Quality Layer eval agents, Procurement Division
 > **Authority:** Security & Compliance team, Procurement leadership
-> **Version:** 1.0.1 | **Last updated:** 2026-03-15
+> **Version:** 1.1 | **Last updated:** 2026-03-16
 
 ---
 
@@ -15,6 +15,7 @@
 3. **Proportional governance** — Not every vendor needs the same scrutiny. Criticality tiers scale assessment depth, monitoring frequency, and contractual requirements to the actual risk each vendor introduces.
 4. **Continuous, not one-time** — Vendor risk is not static. Attestations expire, security postures change, services evolve. Ongoing monitoring is a requirement, not a stretch goal.
 5. **Independence and resilience** — Vendor concentration is a risk. Over-reliance on a single provider for critical capabilities creates a single point of failure that must be identified, scored, and mitigated.
+6. **Conformity matters too** — External providers affect product and service quality, not just security. Evaluation must include delivery quality, defect escape, change discipline, and corrective-action responsiveness when the vendor materially influences customer outcomes.
 
 ---
 
@@ -23,6 +24,7 @@
 The Integration Registry (AGENTS.md Rule 8) governs how external tools connect to the operating model, but does not assess whether the vendor behind the tool is trustworthy, financially viable, or compliant with the organization's security and privacy standards. Without vendor risk management:
 
 - **ISO 27001 assessors** cannot verify supplier relationship controls (A.5.19–A.5.23)
+- **ISO 9001 auditors** cannot verify external provider evaluation and monitoring criteria (8.4.1)
 - **SOC 2 auditors** cannot confirm vendor risk mitigation (CC9.1, CC9.2)
 - **Privacy regulators** cannot verify subprocessor oversight (GDPR Art. 28)
 - **EU AI Act** deployer obligations for third-party AI systems go unaddressed (Art. 26–28)
@@ -72,11 +74,11 @@ IDENTIFICATION → ASSESSMENT → ONBOARDING → MONITORING → OFFBOARDING
 
 | Phase | Tier 1 (Critical) | Tier 2 (Significant) | Tier 3 (Standard) | Tier 4 (Low) |
 |-------|-------------------|---------------------|-------------------|-------------|
-| **Assessment** | Full security assessment questionnaire + attestation review + AI-specific assessment (if applicable) | Security assessment questionnaire + attestation review | Lightweight assessment (attestation check + key questions) | Self-declaration |
+| **Assessment** | Full security + quality assessment questionnaire + attestation review + AI-specific assessment (if applicable) | Security + quality assessment questionnaire + attestation review | Lightweight assessment (attestation check + key questions) | Self-declaration |
 | **Attestation** | SOC 2 Type II or ISO 27001 **required**; additional certifications as relevant (FedRAMP, HIPAA, PCI DSS) | SOC 2 Type II or ISO 27001 **required**; SOC 2 Type I accepted with remediation plan | SOC 2 Type I or equivalent **recommended** | Not required |
-| **Contract** | Full vendor agreement with SLA, right-to-audit, breach notification (≤24h), subprocessor controls, data return/deletion | Vendor agreement with SLA, breach notification (≤48h), data handling terms | Standard terms with data handling addendum | Standard terms |
+| **Contract** | Full vendor agreement with SLA, right-to-audit, breach notification (≤24h), subprocessor controls, data return/deletion, and quality/corrective-action clauses | Vendor agreement with SLA, breach notification (≤48h), data handling terms, and quality expectations | Standard terms with data handling addendum | Standard terms |
 | **DPA** | Required if processing personal data (per privacy.md §2) | Required if processing personal data | Required if processing personal data | N/A |
-| **Monitoring** | Continuous: attestation tracking, SLA monitoring, quarterly review, annual reassessment | Attestation tracking, SLA monitoring, semi-annual review, annual reassessment | Annual attestation check, annual reassessment | Reassess on renewal |
+| **Monitoring** | Continuous: attestation tracking, SLA + quality monitoring, quarterly review, annual reassessment | Attestation tracking, SLA + quality monitoring, semi-annual review, annual reassessment | Annual attestation check, annual reassessment | Reassess on renewal |
 | **Offboarding** | Data return/deletion verification, credential revocation, integration deregistration, 30-day transition plan | Data deletion verification, credential revocation, integration deregistration | Credential revocation, integration deregistration | Account closure |
 
 ---
@@ -102,6 +104,7 @@ The assessment questionnaire covers the following domains, scaled by criticality
 | **Data handling** | Data classification support, residency/sovereignty, retention, deletion capability, backup, cross-border transfers | Full | Full | Key questions | — |
 | **Privacy & subprocessor** | DPA readiness, subprocessor list, GDPR compliance, DSAR support, breach notification SLA | Full | Full | If PII involved | — |
 | **Operational resilience** | Uptime SLA, RTO/RPO, disaster recovery, change management, notification procedures | Full | Full | SLA only | — |
+| **Quality & conformity** | Delivery quality, defect rates, service/process conformity, acceptance criteria, corrective-action responsiveness, change notification discipline | Full | Full | Key questions | — |
 | **Financial viability** | Financial health, market position, funding, acquisition risk, going-concern indicators | Full | Simplified | — | — |
 | **AI-specific** (if vendor provides AI/ML services) | Model governance, training data provenance, bias/fairness, adversarial robustness, explainability, fourth-party model dependencies | Full | Full | Key questions | — |
 
@@ -139,6 +142,7 @@ When a vendor provides AI or ML capabilities (LLM providers, AI SaaS, model host
 - [ ] **Right to audit** — the organization's right to audit or request evidence of vendor compliance (directly or via independent assessor)
 - [ ] **Subprocessor controls** — advance notification of subprocessor changes, right to object, flow-down of security and privacy obligations
 - [ ] **Business continuity** — vendor's DR/BCP capabilities, RTO/RPO commitments, and notification procedures for service disruptions
+- [ ] **Quality criteria** — service acceptance criteria, defect or nonconformance thresholds, corrective-action expectations, and change notification duties for externally provided processes or services that affect customer outcomes
 - [ ] **Termination assistance** — data export format, transition timeline, continued access during transition period
 - [ ] **Insurance** — cyber liability insurance appropriate to the services and data handled
 
@@ -146,6 +150,7 @@ When a vendor provides AI or ML capabilities (LLM providers, AI SaaS, model host
 
 - [ ] SLA metrics are tracked automatically where possible (uptime, response time, resolution time)
 - [ ] SLA breaches are logged and trigger the escalation defined in the contract
+- [ ] Service quality indicators are tracked for vendors that materially affect product or service quality (for example: defect escape, repeated nonconformance, missed acceptance criteria, chronic support-quality issues)
 - [ ] SLA performance is reviewed at the cadence defined by the vendor's criticality tier (§2.2)
 - [ ] Persistent SLA underperformance triggers vendor reassessment or replacement planning
 
@@ -158,7 +163,7 @@ When a vendor provides AI or ML capabilities (LLM providers, AI SaaS, model host
 | Activity | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 |----------|--------|--------|--------|--------|
 | Attestation expiry tracking | Continuous | Continuous | Annual | On renewal |
-| SLA performance monitoring | Continuous | Monthly | Quarterly | — |
+| SLA / service quality monitoring | Continuous | Monthly | Quarterly | — |
 | Security incident monitoring (vendor-side) | Continuous (via vendor status page, threat intel) | Monthly review | Annual review | — |
 | Vendor financial health check | Semi-annual | Annual | — | — |
 | Full reassessment | Annual | Annual | Biennial | On renewal |
@@ -173,6 +178,7 @@ Beyond scheduled reassessments, a vendor must be reassessed when:
 - [ ] The organization expands the vendor's scope (new data types, new integrations, higher-sensitivity use cases)
 - [ ] The vendor undergoes a material change (acquisition, merger, leadership change, financial distress)
 - [ ] The vendor changes its subprocessors or infrastructure providers
+- [ ] The vendor shows repeated quality nonconformance, chronic delivery failure, or misses agreed acceptance criteria
 - [ ] A risk management signal (work/signals/) identifies emerging vendor risk
 - [ ] The vendor's AI model undergoes a major version change (for AI vendors)
 
@@ -256,6 +262,8 @@ Agents interact with vendors through integrations. Additional requirements:
 | **[AI Governance Policy](ai-governance.md)** | AI vendor assessment (§3.3) operationalizes model card, fairness, and explainability requirements for third-party AI systems. |
 | **[Incident Response Policy](incident-response.md)** | Vendor breach notification SLAs feed incident detection and response. Vendor incidents are triaged per incident-response.md severity definitions. |
 | **[Observability Policy](observability.md)** | Vendor SLA monitoring uses the observability platform. Integration health dashboards track vendor performance. |
+| **[Delivery Policy](delivery.md)** | Vendor-provided services that affect shipped quality must have explicit acceptance criteria, release impact awareness, and corrective-action expectations. |
+| **[Customer Policy](customer.md)** | Supplier performance is evaluated against the customer impact it creates, not just internal convenience or contract posture. |
 | **Integration Registry** (`org/integrations/`) | Vendor assessment is a prerequisite for integration activation. Assessment reference field added to integration template. |
 
 ---
@@ -269,6 +277,7 @@ Agents interact with vendors through integrations. Additional requirements:
 | Attestation verification | Tier 1–2 vendors have current SOC 2 Type II or ISO 27001; scope covers services used | Tier 1–2 vendors without required attestation, or attestation scope mismatch |
 | Contract coverage | Tier 1–2 vendor contracts include SLA, breach notification, right-to-audit, data handling | Missing mandatory contract clauses for Tier 1–2 vendors |
 | Monitoring cadence | Vendors monitored at the cadence defined by their tier | Monitoring lapsed or never established |
+| Quality performance | Vendors that materially affect product/service quality have defined quality criteria and are monitored against them | Supplier quality materially affects outcomes but no quality criteria or review evidence exists |
 | AI vendor assessment | AI/ML vendors assessed with extended AI-specific questions (§3.3) | AI vendors assessed with standard-only questionnaire |
 | Concentration risk | Critical capabilities have documented alternatives or mitigation plans | Single-vendor dependency for critical capability with no mitigation |
 | Offboarding | Terminated vendors have data deletion verification and credential revocation | Vendor access persists after relationship ends |
@@ -287,6 +296,7 @@ Agents interact with vendors through integrations. Additional requirements:
 | **SOC 2** | CC9.1 Risk mitigation — vendor risk identification | §1, §3 |
 | **SOC 2** | CC9.2 Vendor and business partner risk management | §2, §5 |
 | **SOC 2** | CC3.1 Risk identification — suppliers as threat source | §3.2 (security posture domain) |
+| **ISO 9001:2015** | 8.4.1 Control of externally provided processes, products and services | §2.2, §3.2 (quality & conformity), §4, §5 |
 | **GDPR** | Art. 28 Processor obligations and subprocessor controls | §2.2 (DPA row), §4.1 (subprocessor clause) |
 | **GDPR** | Art. 44–49 International transfers | §3.2 (data handling — residency, cross-border) |
 | **EU AI Act** | Art. 26–28 Deployer obligations for third-party AI | §3.3 (AI vendor assessment) |
@@ -300,5 +310,6 @@ Agents interact with vendors through integrations. Additional requirements:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-03-16 | Added supplier quality and conformity requirements alongside security/risk controls: quality assessment domain, contract quality criteria, service-quality monitoring, reassessment triggers for chronic nonconformance, delivery/customer cross-policy alignment, and ISO 9001 clause 8.4.1 mapping |
 | 1.0.1 | 2026-03-15 | Added explicit docs/otel-contract.md reference for vendor API call telemetry requirements (#115) |
 | 1.0 | 2026-03-14 | Initial version — 4-tier vendor criticality model, full lifecycle governance (identification → assessment → onboarding → monitoring → offboarding), security assessment framework with 7 domains, AI vendor extended assessment, SLA and contract requirements, attestation verification (SOC 2 Type II / ISO 27001), concentration risk tracking, integration registry connection, compliance mapping (ISO 27001 A.5.19–A.5.23 / SOC 2 CC9 / GDPR Art. 28 / EU AI Act Art. 26–28 / NIST SP 800-53 SA-9, SR / NIST AI RMF). Closes #92. |

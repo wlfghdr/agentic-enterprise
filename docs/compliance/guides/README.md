@@ -52,6 +52,15 @@ These guides are for **adopters deploying the framework** in a real environment.
 |-------|----------|-------------|-------|
 | [ISO 42001 Conformity Assessment Preparation](iso-42001-conformity-assessment.md) | ISO 42001 Clause 10 / certification | Third-party certification body process | [#127](https://github.com/wlfghdr/agentic-enterprise/issues/127) |
 
+## ISO 9001 Core QMS Guides
+
+| Guide | Standard | Requirement | Issue |
+|-------|----------|-------------|-------|
+| [ISO 9001 Management Review](iso-9001-management-review.md) | ISO 9001 Clause 9.3 | Formal management-review inputs, outputs, and records | — |
+| [ISO 9001 Quality Objectives](iso-9001-quality-objectives.md) | ISO 9001 Clause 6.2 | Measurable objectives register across levels and functions | — |
+| [ISO 9001 Customer Satisfaction Measurement](iso-9001-customer-satisfaction.md) | ISO 9001 Clause 9.1.2 | Customer-perception measurement system and evidence model | — |
+| [ISO 9001 Internal Audit Programme](iso-9001-internal-audit-programme.md) | ISO 9001 Clause 9.2 | Planned audit programme, independence, reporting, and follow-up | — |
+
 ## How to Use These Guides
 
 1. **Identify your deployment context** — which standards apply to your organization

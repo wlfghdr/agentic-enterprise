@@ -192,9 +192,9 @@ See [docs/runtimes/](docs/runtimes/) for platform-specific setup guides.
 
 ## Enterprise Compliance Readiness
 
-Built-in governance controls mapped to 11 certification frameworks. Honest self-assessments, not certification stamps.
+Template governance scaffolding mapped to 11 certification and regulatory frameworks. Honest editorial posture markers, not certification stamps.
 
-| Framework | Self-Assessed Scaffolding Coverage | | Framework | Self-Assessed Scaffolding Coverage |
+| Framework | Self-Assessed Template Posture | | Framework | Self-Assessed Template Posture |
 |-----------|----------|-|-----------|----------|
 | **NIST CSF 2.0** | ~95% | | **ISO 42001** | ~85% |
 | **ISO 27001** | ~90% | | **GDPR** | ~75% |
@@ -203,9 +203,9 @@ Built-in governance controls mapped to 11 certification frameworks. Honest self-
 | **ISO 9001** | ~85% | | **ISO 22301** | ~70% |
 |  |  | | **HIPAA** | ~70% |
 
-> Method note: these percentages are editorial self-assessments aligned across the public docs, not outputs of `validate_compliance_coverage.py`. The validator currently measures a stricter thing — policy-to-reference mapping completeness — and reports materially lower machine-verifiable coverage. Use the percentages as posture shorthand, and the validator plus per-standard docs in [`docs/compliance/`](docs/compliance/) as the hard gap source.
+> Method note: these percentages are editorial posture markers for the template, not outputs of `validate_compliance_coverage.py`. That validator measures a narrower and stricter thing — policy-to-reference mapping completeness — and currently reports materially lower machine-verifiable coverage. Use the percentages as posture shorthand, and the validator plus per-standard docs in [`docs/compliance/`](docs/compliance/) as the hard gap source.
 
-> Certification still requires an independent audit of your running system. This repo provides the **governance scaffolding**. Many historical gaps were tracked and closed via issues; remaining adopter responsibilities are documented in the per-standard reference docs and implementation guides.
+> Certification still requires an independent audit of your running system. This repo provides the **governance scaffolding**. Where the remaining work is adopter-owned, the template increasingly ships concrete implementation guides and templates instead of vague "open" claims.
 
 ---
 

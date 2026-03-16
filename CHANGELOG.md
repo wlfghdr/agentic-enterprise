@@ -21,6 +21,16 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 _Changes merged to `main` after `v4.0.0` go here._
 
+### Added
+
+- New ISO 9001 implementation assets: `docs/compliance/guides/iso-9001-management-review.md`, `docs/compliance/guides/iso-9001-quality-objectives.md`, `docs/compliance/guides/iso-9001-customer-satisfaction.md`, and `docs/compliance/guides/iso-9001-internal-audit-programme.md` — concrete patterns for QMS management reviews, measurable objectives registers, customer-perception measurement, and formal internal audit programmes so the template ships executable guidance for the highest-friction ISO 9001 adopter gaps.
+- New OPA/Rego config rules: `policy/config/framework_governance.rego` and `policy/config/observability_registry.rego` — first policy-as-code expansion beyond workflows, covering semantic `framework_version`, supported work backend modes, Git-backed governance-critical artifact overrides, and observability registry structure in `CONFIG.yaml`. Runs via the `conftest` job in `validate.yml`.
+
+### Changed
+
+- Tightened template-facing compliance positioning across `README.md`, `docs/compliance/README.md`, and `index.html`: posture percentages are now described more explicitly as template/editorial markers, stale `open` labels on public compliance cards were replaced with guide- or adopter-oriented language, and the public copy now emphasizes shipped implementation assets over unresolved-sounding placeholders.
+- Updated `docs/compliance/iso-9001.md` to point directly at the new ISO 9001 guide set and to describe the strengthened vendor-quality stance as template coverage rather than an unaddressed gap.
+
 ## [4.0.0] — 2026-03-16
 
 > **Template slimming, proof-discipline cleanup, and executive-facing positioning hardening.** This release packages the v4 structural cleanup, aligns the framework version with the public release story, and tightens public-facing claims so a reader can verify them directly from this repository.

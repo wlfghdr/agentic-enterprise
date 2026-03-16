@@ -5,6 +5,11 @@ checks that run automatically in CI. This framework uses [Conftest](https://www.
 with [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) Rego policies to enforce
 repo-level standards on every pull request.
 
+The template uses OPA for **structured invariants**: workflow YAML, `CONFIG.yaml`,
+and other machine-readable governance surfaces. Markdown-heavy semantics, Git-diff-aware
+version checks, placeholder scanning, and content-security heuristics stay in the
+dedicated Python validators where that logic is easier to express and review.
+
 ---
 
 ## Table of Contents
@@ -13,10 +18,11 @@ repo-level standards on every pull request.
 2. [Folder Structure](#folder-structure)
 3. [Running Locally](#running-locally)
 4. [Current Policies](#current-policies)
-5. [Adding a New Policy](#adding-a-new-policy)
-6. [Approving an Exception - Waiver](#approving-an-exception-waiver)
-7. [CI Integration](#ci-integration)
-8. [Extending to Other Targets](#extending-to-other-targets)
+5. [What Belongs In OPA](#what-belongs-in-opa)
+6. [Adding a New Policy](#adding-a-new-policy)
+7. [Approving an Exception - Waiver](#approving-an-exception---waiver)
+8. [CI Integration](#ci-integration)
+9. [Extending to Other Targets](#extending-to-other-targets)
 
 ---
 
@@ -37,6 +43,9 @@ rules for advisory signals that don't block merges.
 
 ```
 policy/
+  config/
+    framework_governance.rego   # Enforce template config invariants
+    observability_registry.rego # Enforce observability registry structure
   workflows/
     permissions.rego      # Enforce top-level permissions on workflow files
     pinned_actions.rego   # Enforce pinned action refs (no @main/@latest)
@@ -67,13 +76,23 @@ curl -sL "https://github.com/open-policy-agent/conftest/releases/download/v${VER
 sudo mv conftest /usr/local/bin/
 ```
 
-### Run all workflow policies
+### Run workflow policies
 
 ```bash
 conftest test .github/workflows/ \
   --policy policy/ \
   --data policy/ \
   --namespace workflows \
+  --output table
+```
+
+### Run config policies
+
+```bash
+conftest test CONFIG.yaml \
+  --policy policy/ \
+  --data policy/ \
+  --namespace config \
   --output table
 ```
 
@@ -136,6 +155,63 @@ silently pulled into CI — a supply-chain attack vector.
 ```
 
 Local composite actions (`uses: ./...`) are exempt.
+
+---
+
+### `config/framework_governance` — Template config governance invariants
+
+**File:** `policy/config/framework_governance.rego`
+**Severity:** Blocking (deny)
+
+These rules enforce template-level invariants that should hold across both the
+public framework and downstream forks:
+
+- `framework_version` must use semantic versioning
+- `work_backend.type` must be one of the supported backend modes
+- governance-critical artifact overrides such as `technical-design` and
+  `governance-exception` must stay in Git
+
+This is a good OPA target because the logic is structural and expressed entirely
+against `CONFIG.yaml`.
+
+### `config/observability_registry` — Observability registry structure
+
+**File:** `policy/config/observability_registry.rego`
+**Severity:** Blocking (deny)
+
+These rules enforce the minimum structure of the observability integration registry:
+
+- at least one observability integration entry exists
+- IDs are unique
+- connection type is supported
+- OpenTelemetry-backed entries declare the core capabilities needed by the framework
+
+This keeps the template's "observability is mandatory" stance grounded in a
+machine-checked registry shape without pretending that runtime evidence can be
+verified from static YAML alone.
+
+---
+
+## What Belongs In OPA
+
+OPA is strongest when the input is structured and the rule is deterministic.
+
+**Good OPA candidates**
+
+- Enumerations and required fields in `CONFIG.yaml`
+- Cross-field invariants in YAML or JSON
+- Workflow permission, action pinning, and structural CI hardening
+- Exception-list shape and expiry metadata in machine-readable files
+
+**Keep in dedicated scripts instead**
+
+- Markdown link integrity and prose cross-references
+- Version bumps that depend on Git diffs
+- Placeholder scanning across mixed template/doc files
+- Content-security heuristics, prompt-injection patterns, and other fuzzy checks
+
+The practical rule: keep the Markdown policy docs as the normative source, then
+move the **structured subset** of those rules into Rego where CI can enforce them.
 
 ---
 
@@ -217,6 +293,11 @@ Exceptions without documented reasons will be rejected in code review.
 
 The policy checks run as the `conftest` job in `.github/workflows/validate.yml` on every push to `main`
 and every pull request. The job is **blocking** — CI fails if any `deny` rule fires.
+
+The template currently runs Conftest against:
+
+- `.github/workflows/` with namespace `workflows`
+- `CONFIG.yaml` with namespace `config`
 
 To see which files triggered a violation, check the CI step output. The `table`
 output format lists each file, the rule that fired, and the denial message.

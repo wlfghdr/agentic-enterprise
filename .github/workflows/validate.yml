@@ -780,6 +780,14 @@ jobs:
           sudo mv conftest /usr/local/bin/conftest
           conftest --version
 
+      - name: Check template config policies
+        run: |
+          conftest test CONFIG.yaml \
+            --policy policy/ \
+            --data policy/ \
+            --namespace config \
+            --output table
+
       - name: Check workflow policies
         run: |
           conftest test .github/workflows/ \

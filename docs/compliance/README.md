@@ -12,7 +12,7 @@ This directory contains one reference document per external standard or regulati
 
 ## Standards Covered
 
-| Standard | Document | Self-Assessed Scaffolding Coverage | Adopter Responsibilities |
+| Standard | Document | Self-Assessed Template Posture | Adopter Responsibilities |
 |----------|----------|-------------------|----------|
 | [ISO/IEC 27001:2022](iso-27001.md) | Information Security Management | ~90% | Management review records, competence records |
 | [SOC 2 Type II](soc2.md) | Trust Service Criteria | ~90% | Independent audit |
@@ -21,7 +21,7 @@ This directory contains one reference document per external standard or regulati
 | [NIST AI RMF](nist-ai-rmf.md) | AI Risk Management Framework | ~90% | Third-party evaluation, organizational AI risk profile document, stakeholder impact assessment |
 | [EU AI Act](eu-ai-act.md) | European AI Regulation | ~85% | Post-market monitoring system, serious incident reporting |
 | [NIST CSF 2.0](nist-csf.md) | Cybersecurity Framework | ~95% | IdP integration, physical security controls |
-| [ISO 9001:2015](iso-9001.md) | Quality Management Systems | ~85% | Formal QMS scope statement, customer satisfaction measurement, external provider evaluation |
+| [ISO 9001:2015](iso-9001.md) | Quality Management Systems | ~85% | Populate QMS reviews, customer measurement, and supplier quality scorecards |
 | [ISO 22301:2019](iso-22301.md) | Business Continuity Management | ~70% | BIA template, documented BC plans, BCMS scope statement, exercise programme |
 | [CCPA/CPRA](ccpa-cpra.md) | California Consumer Privacy | ~75% | "Do Not Sell/Share" opt-out, sensitive PI handling, annual cybersecurity audit |
 | [HIPAA](hipaa.md) | US Health Information Privacy & Security | ~70% | BAA template, PHI classification, NPP template, Privacy/Security Officer designation, workforce training |
@@ -35,7 +35,7 @@ This directory contains one reference document per external standard or regulati
 - Deployment-specific configuration (retention periods, encryption keys, access controls, DPO appointment, etc.)
 - Continuous evidence collection via the observability platform
 
-**Method note:** the percentages in this index, `README.md`, and `index.html` are editorial self-assessments. They are not produced by `scripts/validate_compliance_coverage.py`. That validator currently measures a narrower and stricter signal: how completely the policy Compliance Mapping tables link back to the documented clauses/articles/controls in these reference docs. Today, that validator reports materially lower machine-verifiable coverage than the top-level posture snapshot, so leadership should treat the validator output as the better source for concrete gap-closing work.
+**Method note:** the percentages in this index, `README.md`, and `index.html` are editorial posture markers for the template. They are not produced by `scripts/validate_compliance_coverage.py`. That validator currently measures a narrower and stricter signal: how completely the policy Compliance Mapping tables link back to the documented clauses/articles/controls in these reference docs. Today, that validator reports materially lower machine-verifiable coverage than the top-level posture snapshot, so leadership should treat the validator output as the better source for concrete gap-closing work.
 
 ## How Observability Provides Audit Evidence
 
@@ -51,7 +51,7 @@ Without a configured observability platform, the framework's compliance claims r
 
 ## Implementation Guides
 
-For certification-critical requirements that need deployment-specific implementation, actionable guides are available in the [guides/](guides/) directory. These guides provide step-by-step instructions for adopters deploying the framework in real environments.
+For certification-critical requirements that need deployment-specific implementation, actionable guides are available in the [guides/](guides/) directory. These guides provide step-by-step instructions for adopters deploying the framework in real environments. For template hardening, prefer shipping one more concrete guide or template over inflating the posture percentages.
 
 ## Related Resources
 
