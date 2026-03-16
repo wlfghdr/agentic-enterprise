@@ -19,17 +19,16 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ## [Unreleased]
 
-_Changes merged to `main` after `v4.0.0` go here._
+_Changes merged to `main` after `v4.0.1` go here._
 
-### Added
+## [4.0.1] — 2026-03-16
 
-- New ISO 9001 implementation assets: `docs/compliance/guides/iso-9001-management-review.md`, `docs/compliance/guides/iso-9001-quality-objectives.md`, `docs/compliance/guides/iso-9001-customer-satisfaction.md`, and `docs/compliance/guides/iso-9001-internal-audit-programme.md` — concrete patterns for QMS management reviews, measurable objectives registers, customer-perception measurement, and formal internal audit programmes so the template ships executable guidance for the highest-friction ISO 9001 adopter gaps.
-- New OPA/Rego config rules: `policy/config/framework_governance.rego` and `policy/config/observability_registry.rego` — first policy-as-code expansion beyond workflows, covering semantic `framework_version`, supported work backend modes, Git-backed governance-critical artifact overrides, and observability registry structure in `CONFIG.yaml`. Runs via the `conftest` job in `validate.yml`.
+> **Patch release to realign packaged metadata with the shipped v4 source history.** No framework behavior changed beyond changelog and release-version bookkeeping.
 
 ### Changed
 
-- Tightened template-facing compliance positioning across `README.md`, `docs/compliance/README.md`, and `index.html`: posture percentages are now described more explicitly as template/editorial markers, stale `open` labels on public compliance cards were replaced with guide- or adopter-oriented language, and the public copy now emphasizes shipped implementation assets over unresolved-sounding placeholders.
-- Updated `docs/compliance/iso-9001.md` to point directly at the new ISO 9001 guide set and to describe the strengthened vendor-quality stance as template coverage rather than an unaddressed gap.
+- `CHANGELOG.md` — folded the final template compliance hardening work that already shipped in `v4.0.0` into the `4.0.0` section so the repository history matches the published release contents.
+- `CONFIG.yaml` and `README.md` — bumped the framework version marker from `4.0.0` to `4.0.1` to package the changelog correction as a formal patch release.
 
 ## [4.0.0] — 2026-03-16
 
@@ -37,6 +36,8 @@ _Changes merged to `main` after `v4.0.0` go here._
 
 ### Added
 
+- New ISO 9001 implementation assets: `docs/compliance/guides/iso-9001-management-review.md`, `docs/compliance/guides/iso-9001-quality-objectives.md`, `docs/compliance/guides/iso-9001-customer-satisfaction.md`, and `docs/compliance/guides/iso-9001-internal-audit-programme.md` — concrete patterns for QMS management reviews, measurable objectives registers, customer-perception measurement, and formal internal audit programmes so the template ships executable guidance for the highest-friction ISO 9001 adopter gaps.
+- New OPA/Rego config rules: `policy/config/framework_governance.rego` and `policy/config/observability_registry.rego` — first policy-as-code expansion beyond workflows, covering semantic `framework_version`, supported work backend modes, Git-backed governance-critical artifact overrides, and observability registry structure in `CONFIG.yaml`. Runs via the `conftest` job in `validate.yml`.
 - New CI validation: `scripts/validate_compliance_coverage.py` — compares the documented control/requirement IDs in all 11 primary compliance reference docs against quality-policy Compliance Mapping tables, expands grouped ranges such as `CC7.1–CC7.5`, `Art. 44–49`, and `GV.SC-03–SC-10`, reports unmapped controls per standard, and warns when a framework exceeds a configurable unmapped-coverage threshold. Runs as `validate-compliance-coverage` in `validate.yml`. Closes #165.
 - New NIST AI RMF quantitative-measurement assets: `docs/compliance/remediation/nist-ai-rmf-measure-metrics.md`, `docs/compliance/templates/_TEMPLATE-nist-ai-rmf-measure-dashboard.md`, and `docs/compliance/templates/_TEMPLATE-nist-ai-rmf-measure-report.md` — standard metric catalog aligned to MEASURE 1-4, OTel-to-metric mapping, baseline-establishment method, reusable dashboard specification, and periodic measurement-report template for AI risk quantification. Closes #128.
 - New SOC 2 audit-engagement assets: `docs/compliance/remediation/soc2-cpa-engagement.md` and `docs/compliance/templates/_TEMPLATE-soc2-management-assertion-letter.md` — CPA-firm selection and scoping workflow, auditor access and evidence-room coordination model, 3-6 month preparation timeline, and a reusable management assertion letter template for SOC 2 engagement packages. Closes #125.
@@ -64,6 +65,8 @@ _Changes merged to `main` after `v4.0.0` go here._
 
 ### Changed
 
+- Tightened template-facing compliance positioning across `README.md`, `docs/compliance/README.md`, and `index.html`: posture percentages are now described more explicitly as template/editorial markers, stale `open` labels on public compliance cards were replaced with guide- or adopter-oriented language, and the public copy now emphasizes shipped implementation assets over unresolved-sounding placeholders.
+- Updated `docs/compliance/iso-9001.md` and `org/4-quality/policies/vendor-risk-management.md` so the ISO 9001 reference set points directly at the new guide assets and the vendor-quality stance is expressed as shipped template coverage rather than an unaddressed gap.
 - `README.md`, `index.html`, `docs/reference-organization/sandboxcorp.md`, and `docs/architecture/agentic-enterprise-architecture.md` — replaced stale proof claims with directly inspectable public metrics as of 2026-03-16; documented the three-repo aggregation basis (`agentic-enterprise`, `sandboxcorp`, `agent-command-center`) so the public proof story is explicit and auditable.
 - Added executive-diligence positioning via `docs/executive-reality-check.md` and linked it from the main landing surfaces, clarifying what the framework is, what it is not, and where a CTO or CEO should remain skeptical.
 - Tightened compliance-positioning language across `README.md`, `docs/compliance/README.md`, `docs/executive-reality-check.md`, and `index.html`: public percentages are now explicitly labeled as editorial self-assessments rather than mechanized audit numbers, and the stale “open compliance issues” wording was replaced with language that points readers to the reference docs and implementation guides for remaining adopter responsibilities.
