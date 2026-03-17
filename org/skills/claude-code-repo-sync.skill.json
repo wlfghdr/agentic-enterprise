@@ -4,7 +4,7 @@
   "name": "Claude Code Repo Sync",
   "version": "1.0.0",
   "description": "Git pull → process → commit → push cycle for agents operating on a shared repository. Ensures agents always work on fresh state and all changes are committed atomically with full traceability.",
-  "category": "version-control",
+  "category": "integration",
   "inputs": [
     {
       "type": "repo-state",

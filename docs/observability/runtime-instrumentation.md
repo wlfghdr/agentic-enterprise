@@ -11,7 +11,7 @@
 1. [Why Runtime Instrumentation Matters](#1-why-runtime-instrumentation-matters)
 2. [Instrumentation Strategy: Three Tiers](#2-instrumentation-strategy-three-tiers)
 3. [Prerequisites](#3-prerequisites)
-4. [Claude Code: Hook-Based Instrumentation](#4-claude-code-hook-based-instrumentation)
+4. [Claude Code: Two-Layer Instrumentation](#4-claude-code-two-layer-instrumentation)
 5. [Claude Agent SDK: Code-Level Instrumentation](#5-claude-agent-sdk-code-level-instrumentation)
 6. [OpenClaw: Environment-Based Instrumentation](#6-openclaw-environment-based-instrumentation)
 7. [OTel Collector on VPS](#7-otel-collector-on-vps)

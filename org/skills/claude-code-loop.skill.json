@@ -4,7 +4,7 @@
   "name": "Claude Code Loop Runner",
   "version": "1.0.0",
   "description": "Register and manage recurring heartbeat loops using Claude Code's native CronCreate/CronDelete tools. Enables agents to run on a scheduled interval without external schedulers or infrastructure.",
-  "category": "scheduling",
+  "category": "monitoring",
   "inputs": [
     {
       "type": "heartbeat-config",
