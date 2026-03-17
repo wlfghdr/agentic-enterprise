@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "claude-code-subagent",
+  "name": "Claude Code Subagent Spawner",
+  "version": "1.0.0",
+  "description": "Spawn parallel or sequential Claude Code subagents via the Agent tool to execute discrete work units. Enables orchestrators to distribute tasks across multiple agents without external infrastructure.",
+  "category": "orchestration",
+  "inputs": [
+    {
+      "type": "task-list",
+      "description": "Discrete work units from TASKS.md or fleet config to distribute across subagents.",
+      "required": true
+    },
+    {
+      "type": "agent-instructions",
+      "description": "Layer-specific AGENT.md content and quality policy references to inject into each subagent context.",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "type": "task-results",
+      "description": "Completed work artifacts from subagents: PRs, evaluation reports, signals."
+    },
+    {
+      "type": "fleet-report",
+      "description": "FLEET-REPORT.md summarizing all subagent runs with status, outputs, and blockers."
+    }
+  ],
+  "permissions": {
+    "level": "read-write",
+    "justification": "Orchestrator reads missions and tasks; spawned subagents write their respective outputs (branches, PRs, evaluations).",
+    "scope": ["repo:read", "repo:write", "pull_requests:write"]
+  },
+  "mcp_servers": [
+    { "profile_id": "github", "required": true }
+  ],
+  "tool_permissions": [
+    { "tool": "claude-code:Agent", "access": "execute", "scope": "subagent-spawning" },
+    { "tool": "claude-code:TaskCreate", "access": "execute", "scope": "progress-tracking" },
+    { "tool": "claude-code:TaskUpdate", "access": "execute", "scope": "progress-tracking" }
+  ],
+  "telemetry": {
+    "contract": "docs/otel-contract.md",
+    "required_spans": ["agent.run", "tool.execute"],
+    "conditional_spans": ["inference.chat", "inference.generate"],
+    "decision_events": ["governance.decision"]
+  },
+  "applicable_agent_types": [
+    "orch-mission-orchestrator",
+    "orch-cross-mission-coordinator",
+    "orch-release-coordinator"
+  ],
+  "constraints": [
+    "Maximum 5 concurrent subagents per orchestration run — aligns with mission-orchestration skill constraint.",
+    "Maximum subagent depth is 1 — subagents must not spawn further subagents.",
+    "Independent tasks must run in parallel; dependent tasks must run sequentially (wait for results before proceeding).",
+    "Each subagent must receive: task context, layer AGENT.md reference, and relevant quality policy references.",
+    "Orchestrator must write a FLEET-REPORT.md to the mission folder summarizing all subagent outcomes.",
+    "Failed subagent runs must produce a signal in work/signals/ — never silently discard failures.",
+    "Orchestrator must not execute tasks directly — it decomposes and delegates only."
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-16",
+      "change": "Initial version. Claude Code native subagent spawning skill using the Agent tool for parallel mission execution."
+    }
+  ]
+}

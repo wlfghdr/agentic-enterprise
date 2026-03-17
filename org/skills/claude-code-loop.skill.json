@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "claude-code-loop",
+  "name": "Claude Code Loop Runner",
+  "version": "1.0.0",
+  "description": "Register and manage recurring heartbeat loops using Claude Code's native CronCreate/CronDelete tools. Enables agents to run on a scheduled interval without external schedulers or infrastructure.",
+  "category": "scheduling",
+  "inputs": [
+    {
+      "type": "heartbeat-config",
+      "description": "Cron interval and agent prompt to execute on each tick.",
+      "required": true
+    },
+    {
+      "type": "repo-state",
+      "description": "Current state of work/ directories for context during each loop run.",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "type": "signal",
+      "description": "Signals generated during each loop run, written to work/signals/."
+    },
+    {
+      "type": "status-update",
+      "description": "HEARTBEAT_OK response or actionable artifact committed to the repo."
+    }
+  ],
+  "permissions": {
+    "level": "read-write",
+    "justification": "Needs to register cron schedules and read/write repo artifacts during loop execution.",
+    "scope": ["repo:read", "repo:write"]
+  },
+  "mcp_servers": [],
+  "tool_permissions": [
+    { "tool": "claude-code:CronCreate", "access": "execute", "scope": "heartbeat-loops-only" },
+    { "tool": "claude-code:CronList", "access": "read", "scope": "all" },
+    { "tool": "claude-code:CronDelete", "access": "execute", "scope": "own-crons-only" }
+  ],
+  "telemetry": {
+    "contract": "docs/otel-contract.md",
+    "required_spans": ["agent.run", "tool.execute"],
+    "conditional_spans": ["inference.chat", "inference.generate"],
+    "decision_events": ["governance.decision"]
+  },
+  "applicable_agent_types": [
+    "ops-triage",
+    "quality-pr-reviewer",
+    "orch-fleet-performance-monitor",
+    "steering-signal-aggregation-agent"
+  ],
+  "constraints": [
+    "Maximum one CronCreate per agent role — check CronList and deduplicate before registering.",
+    "Minimum interval: 10 minutes. No sub-10-minute loops.",
+    "Each loop run must produce either a repo artifact or respond HEARTBEAT_OK — no silent ticks.",
+    "Must implement adaptive backoff: double the interval if no actionable work found, up to a 4-hour maximum.",
+    "CronDelete own loop before re-registering at a different cadence.",
+    "Loop prompt must be idempotent — safe to run twice without double-writing artifacts.",
+    "git pull must be the first action of every loop run — never operate on stale repo state."
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-16",
+      "change": "Initial version. Claude Code native scheduling skill for heartbeat loops using CronCreate/CronDelete."
+    }
+  ]
+}
