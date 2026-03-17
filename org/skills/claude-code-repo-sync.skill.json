@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "claude-code-repo-sync",
+  "name": "Claude Code Repo Sync",
+  "version": "1.0.0",
+  "description": "Git pull → process → commit → push cycle for agents operating on a shared repository. Ensures agents always work on fresh state and all changes are committed atomically with full traceability.",
+  "category": "integration",
+  "inputs": [
+    {
+      "type": "repo-state",
+      "description": "Working directory state before the agent run (after git pull).",
+      "required": true
+    },
+    {
+      "type": "work-artifact",
+      "description": "Files to be written or modified during the agent's run.",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "type": "commit",
+      "description": "Attributed commit with Co-Authored-By agent identity, pushed to a feature branch."
+    },
+    {
+      "type": "pull-request",
+      "description": "PR opened when output requires human review before merge into main."
+    }
+  ],
+  "permissions": {
+    "level": "read-write",
+    "justification": "Agents must pull latest state before acting and push their outputs to a feature branch for human review.",
+    "scope": ["repo:read", "repo:write", "pull_requests:write"]
+  },
+  "mcp_servers": [
+    { "profile_id": "github", "required": true }
+  ],
+  "tool_permissions": [
+    { "tool": "git", "access": "write", "scope": "feature-branches-only" },
+    { "tool": "bash", "access": "execute", "scope": "git-and-gh-commands-only" }
+  ],
+  "telemetry": {
+    "contract": "docs/otel-contract.md",
+    "required_spans": ["agent.run", "tool.execute"],
+    "conditional_spans": ["inference.chat", "inference.generate"],
+    "decision_events": ["governance.decision"]
+  },
+  "applicable_agent_types": [
+    "ops-triage",
+    "exec-coding-agent-fleet",
+    "quality-pr-reviewer",
+    "orch-mission-orchestrator",
+    "steering-signal-aggregation-agent"
+  ],
+  "constraints": [
+    "git pull must be the first action — never read or modify repo state before pulling.",
+    "Never push directly to main, master, or any protected branch.",
+    "Every commit must include a Co-Authored-By attribution line identifying the agent and model.",
+    "Commit message must reference the originating mission brief ID or signal ID.",
+    "work/ directory writes are additive only — never overwrite existing signals, releases, or postmortems.",
+    "All governance artifacts (policy/, CODEOWNERS, AGENTS.md) are read-only for execution agents — never modify.",
+    "Branch naming: <type>/<agent-id>-<task-id>-YYYY-MM-DD (e.g. feat/cc-exec-builder-task-042-2026-03-16)."
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-16",
+      "change": "Initial version. Git sync cycle skill ensuring all Claude Code agents operate on fresh repo state and commit with full attribution."
+    }
+  ]
+}
