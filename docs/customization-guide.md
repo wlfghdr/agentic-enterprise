@@ -47,6 +47,19 @@ If you're a small team or solo founder, start with a **minimal agent fleet** —
 
 ### Step 4: Choose Your Work Backend (2 min)
 
+Also decide whether operational work lives in the same repo as the governance backbone or in a separate `*-work` repo.
+
+**Simple rule:**
+- keep work in the same repo for very small or early setups
+- split to a dedicated work repo once humans need cleaner backlog visibility, notifications, mobile access, or clearer separation from the governance backbone
+- keep product implementation in its own product repo either way
+
+Example topology:
+- template: `agentic-enterprise`
+- instance: `my-company`
+- work repo: `my-company-work`
+- product repo: `my-product`
+
 Decide where operational work artifacts (signals, missions, tasks, decisions) will be tracked:
 
 | Backend | Best For | Set In CONFIG.yaml |
@@ -70,6 +83,9 @@ Review `CONFIG.yaml → integrations` and register the external tools your organ
 See `org/integrations/` for detailed guides per category. Start with observability and CI/CD — they provide the most immediate value.
 
 ### Step 6: Start Using It (5 min)
+
+Before switching on recurring automation, read [automation-and-work-continuity.md](automation-and-work-continuity.md). It defines continuity expectations, approval boundaries, self-assignment defaults, and backoff rules.
+
 
 **Git-files backend:** Create your first signal in `work/signals/` and you're live.
 
@@ -525,6 +541,19 @@ With configuration complete, point your agents at the repo. Each agent needs thr
 3. **Read their assigned mission** in `work/missions/` — the specific task context.
 
 That is the complete bootstrap. No additional configuration files required. AGENTS.md auto-loads in Claude Code (via `CLAUDE.md`) and GitHub Copilot (via `.github/copilot-instructions.md`) — for other runtimes, point them at `AGENTS.md` explicitly.
+
+> **Tip:** Don't bootstrap agents against an unconfigured fork. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
+
+For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](runtimes/)**.
+point them at `AGENTS.md` explicitly.
+
+> **Tip:** Don't bootstrap agents against an unconfigured fork. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
+
+For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](runtimes/)**.
+k. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
+
+For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](runtimes/)**.
+point them at `AGENTS.md` explicitly.
 
 > **Tip:** Don't bootstrap agents against an unconfigured fork. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
 

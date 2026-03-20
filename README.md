@@ -29,7 +29,8 @@
 <p align="center">
   <a href="https://wlfghdr.github.io/agentic-enterprise/"><strong>Live Demo</strong></a> ·
   <a href="https://wlfghdr.github.io/agentic-enterprise/concept-visualization.html"><strong>Reference Scenario</strong></a> ·
-  <a href="docs/adoption/minimal-adoption.md"><strong>Minimal Adoption</strong></a>
+  <a href="docs/adoption/minimal-adoption.md"><strong>Minimal Adoption</strong></a> ·
+  <a href="docs/automation-and-work-continuity.md"><strong>Work Continuity</strong></a>
 </p>
 
 <p align="center">

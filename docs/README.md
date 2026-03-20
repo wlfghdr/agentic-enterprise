@@ -15,6 +15,7 @@ Pick the shortest path that matches what you are trying to do:
 |---|---|---|
 | Understand what belongs where in the repo | [`file-guide.md`](file-guide.md) | [`mission-lifecycle.md`](mission-lifecycle.md) if you are working on missions |
 | Choose or configure a work backend | [`work-backends.md`](work-backends.md) | [`github-issues.md`](github-issues.md) for the GitHub issue backend |
+| Decide same-repo vs separate work repo and external product topology | [`adoption/minimal-adoption.md`](adoption/minimal-adoption.md) | [`automation-and-work-continuity.md`](automation-and-work-continuity.md) for ongoing operations |
 | Make GitHub governance enforceable | [`required-github-settings.md`](required-github-settings.md) | [`github/README.md`](github/README.md) |
 | Understand mission flow and status gates | [`mission-lifecycle.md`](mission-lifecycle.md) | [`work-backends.md`](work-backends.md) for backend differences |
 | Work on CI or policy gates | One of the CI feature guides below | [`automation-patterns.md`](automation-patterns.md) for script-vs-agent guidance |
