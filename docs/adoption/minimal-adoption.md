@@ -24,6 +24,27 @@ Edit `CONFIG.yaml` with your company name and basics. You can leave most fields 
 
 ### Step 2: Set Up Work Directories (5 min)
 
+Before you commit to the default layout, decide where operational work should live.
+
+#### Repo topology rule
+
+Keep these concerns separate:
+- **template repo** — the generic operating model you forked from
+- **instance repo** — your company-specific governance backbone
+- **work repo** *(optional but often recommended)* — operational issues, missions, and human-visible flow
+- **product repos** — actual products or systems delivered by missions
+
+A realistic topology often looks like this:
+
+```text
+agentic-enterprise      -> template repo
+my-company              -> company instance / governance repo
+my-company-work         -> operational work repo (issues backend)
+my-product              -> separate product repo referenced by missions
+```
+
+Use a separate `*-work` repo when you want better human visibility, notifications, and a cleaner separation between governance docs and day-to-day operational backlog.
+
 You only need three directories to start:
 
 ```
@@ -150,6 +171,21 @@ These are load-bearing from day one:
 | Signal → Mission → PR flow | This is the core workflow — everything else supports it |
 | At least one quality policy | Without standards, reviews are subjective |
 
+## External Products and Cross-Repo Work
+
+If a mission in your instance repo drives work in another repository, do not absorb that product backlog into the operating-model repo.
+
+Use this pattern instead:
+- mission ownership stays in the instance repo or work repo
+- product-specific implementation work goes to the product repo
+- generic framework gaps go back to the template repo
+
+At minimum, link both directions:
+- mission -> product issue
+- product issue -> origin mission
+
+This keeps adoption clean and prevents the company instance from becoming a dumping ground for unrelated implementation detail.
+
 ## Common Mistakes
 
 1. **Trying to adopt everything at once.** Start with signals, missions, and PRs. Add layers as you need them.
@@ -165,6 +201,14 @@ These are load-bearing from day one:
 ## Next Steps
 
 - [10-Minute Quickstart](../quickstart/10-minute-agentic-enterprise.md) — Walk through the workflow
+- [End-to-End Example](../../examples/e2e-loop/) — See a complete lifecycle
+- [Architecture Overview](../architecture/agentic-enterprise-architecture.md) — Understand the full system
+- [customization-guide.md](../customization-guide.md) — Full onboarding walkthrough
+erprise.md) — Walk through the workflow
+- [End-to-End Example](../../examples/e2e-loop/) — See a complete lifecycle
+- [Architecture Overview](../architecture/agentic-enterprise-architecture.md) — Understand the full system
+- [customization-guide.md](../customization-guide.md) — Full onboarding walkthrough
+erprise.md) — Walk through the workflow
 - [End-to-End Example](../../examples/e2e-loop/) — See a complete lifecycle
 - [Architecture Overview](../architecture/agentic-enterprise-architecture.md) — Understand the full system
 - [customization-guide.md](../customization-guide.md) — Full onboarding walkthrough
