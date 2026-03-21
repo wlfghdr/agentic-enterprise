@@ -89,6 +89,38 @@ Optional but recommended:
 
 ---
 
+
+## 3b. Install PR Automation
+
+Before agents start opening PRs in the instance repo, install the governed PR automation assets:
+
+```bash
+python3 scripts/instantiate_instance.py install-pr-automation
+```
+
+This adds:
+- auto-merge workflow support
+- issue-link validation for PR bodies
+- PR template help text for linked issues
+
+### Required PR behavior
+
+For governed repo work:
+- use PRs rather than direct pushes to protected branches
+- enable auto-merge when the PR is reviewable and checks are green
+- use real closing keywords in the PR description:
+  - `Closes owner/repo#123`
+  - `Fixes owner/repo#123`
+  - `Resolves owner/repo#123`
+- do **not** rely on `Addresses` if the issue should auto-close on merge
+
+### Dependabot
+
+Treat routine Dependabot PRs as agent-owned operating work by default. Humans should only be interrupted when:
+- CI is not green
+- the change looks breaking or policy-sensitive
+- the repo's risk posture requires explicit human review
+
 ## 4. Enable GitHub Features
 
 In the issue-hosting repository:

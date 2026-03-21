@@ -18,6 +18,8 @@ The preferred installation path is scripted:
 python3 scripts/instantiate_instance.py install-github-work-repo \
   --main-repo your-org/your-instance \
   --target-dir ../your-instance-work
+
+python3 scripts/instantiate_instance.py install-pr-automation
 ```
 
 ---

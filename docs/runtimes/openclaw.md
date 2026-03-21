@@ -83,6 +83,24 @@ If you choose this, **keep it internal** (operator docs) and avoid scattering mo
 
 ---
 
+
+## Instance Bootstrap Checklist
+
+When you instantiate a company fork, the repo is only half the job. For an OpenClaw-based deployment, make the runtime bootstrap explicit too:
+
+1. **Pick the minimal fleet first** — usually one agent per active layer.
+2. **Keep routing role-first** — define the agent role, then map it to a subscription-first provider order.
+3. **Use the instance repo as workspace** — instance agents should work in the instantiated company repo, not a generic catch-all workspace.
+4. **Create per-agent `agentDir` state intentionally** — credentials and provider profiles are scoped there. Do not assume one configured agent automatically configures another.
+5. **Document channel bindings as environment data** — keep channel IDs in an operator-facing config artifact; do not hard-code unknown IDs into generic docs.
+6. **Separate generic products from the instance** — if the instance depends on another product repo, reference it; do not embed it into the instance tree.
+
+A practical operator artifact set is:
+- a fleet intent document in the repo
+- a routing target document with placeholder channel IDs
+- per-agent OpenClaw directories on the host
+- a reviewed `openclaw.json` entry per running agent
+
 ## Heartbeat Strategy
 
 Heartbeats are periodic wake-ups. They should **batch** small checks and either:
