@@ -553,16 +553,3 @@ That is the complete bootstrap. No additional configuration files required. AGEN
 > **Tip:** Don't bootstrap agents against an unconfigured fork. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
 
 For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](runtimes/)**.
-point them at `AGENTS.md` explicitly.
-
-> **Tip:** Don't bootstrap agents against an unconfigured fork. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
-
-For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](runtimes/)**.
-k. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
-
-For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](runtimes/)**.
-point them at `AGENTS.md` explicitly.
-
-> **Tip:** Don't bootstrap agents against an unconfigured fork. Complete Steps 1–2 first — agents working against template placeholders will produce placeholder-filled outputs that fail CI.
-
-For runtime-specific setup (fleet sizing, scheduling, model tier strategy), see **[docs/runtimes/](runtimes/)**.

@@ -8,6 +8,13 @@ This guide defines the minimum automation expectations once a team uses the fram
 
 **Open assigned work should not be silently abandoned.**
 
+**Do not leave behind commits or PRs with failing CI.**
+
+Before considering work done:
+- validate locally where practical before push
+- check CI after push or PR creation
+- if CI is red, treat that as open work until fixed or explicitly rolled back
+
 That includes:
 - assigned issues
 - open PRs
@@ -86,8 +93,11 @@ A healthy instance usually has one lightweight review rhythm:
 - check assigned work
 - check open reviews
 - check active missions and blocked tasks
+- check for any red CI on open branches or PRs
 - continue what is executable
 - escalate what needs a human
+
+Any red CI should be treated as urgent operating debt, not background noise.
 
 This can be done by a human, an agent, or scheduled automation.
 
