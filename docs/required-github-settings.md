@@ -26,7 +26,8 @@ Repo → **Settings → General → Features**
 - ✅ Issues
 - ✅ Issue forms
 
-Then copy the sample files from `docs/github/issue-templates/` into `.github/ISSUE_TEMPLATE/` in your instance repository and customize them.
+Prefer the scripted install path from `scripts/instantiate_instance.py install-github-work-repo`.
+If you need the manual path, copy the sample files from `docs/github/issue-templates/` into `.github/ISSUE_TEMPLATE/` in your instance repository and customize them.
 Use `docs/github/labels/labels.sample.yml` for label bootstrap and `docs/github/setup-checklist.md` for the full GitHub issue-backend setup sequence.
 
 Minimum required label families for a usable GitHub issue backend:
@@ -88,7 +89,7 @@ If you split work into a **dedicated GitHub issue repo**:
 - use only slim checks on the work repo for the files that repo actually stores (for example issue-template YAML)
 - do not require framework checks on the work repo if it does not contain the framework files those checks validate
 
-The template includes a reference workflow for this pattern at `docs/github/workflows/validate-issue-templates.yml`.
+The template includes a reference workflow for this pattern at `docs/github/workflows/validate-issue-templates.yml`, and the scripted installer can copy it into the work repo for you.
 
 ---
 

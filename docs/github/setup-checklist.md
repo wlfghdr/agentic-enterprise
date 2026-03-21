@@ -57,7 +57,26 @@ If you use a dedicated work repo, set `repo` to that repository.
 
 ## 3. Copy The Template Assets
 
-Copy these files into the repository that will host the issues:
+Preferred path: use the script from the freshly cloned template or fork before you run `cleanup-instance`.
+
+Example for a dedicated work repo:
+
+```bash
+python3 scripts/instantiate_instance.py install-github-work-repo \
+  --main-repo your-org/your-instance \
+  --target-dir ../your-instance-work \
+  --include-label-sync
+```
+
+Example for a same-repo issue backend:
+
+```bash
+python3 scripts/instantiate_instance.py install-github-work-repo \
+  --main-repo your-org/your-instance \
+  --target-dir .
+```
+
+If you need or prefer to do it manually, copy these files into the repository that will host the issues:
 
 - `docs/github/issue-templates/config.sample.yml` -> `.github/ISSUE_TEMPLATE/config.yml`
 - `docs/github/issue-templates/forms/*.sample.yml` -> `.github/ISSUE_TEMPLATE/*.yml`
@@ -165,3 +184,28 @@ Usually enough:
 - validate repo-local GitHub automation
 
 Do not copy the full framework CI into the work repo unless that repo actually stores the framework files those checks validate.
+
+---
+
+## 9. Clean The Instance Repo
+
+Once any required GitHub issue-backend assets have been copied out, clean the instance repo itself:
+
+```bash
+python3 scripts/instantiate_instance.py cleanup-instance
+```
+
+That command removes template-only assets such as:
+
+- `CONTRIBUTING.md`
+- `CODE_OF_CONDUCT.md`
+- `SECURITY.md`
+- `index.html`
+- `concept-visualization.html`
+- `docs/customization-guide.md`
+- `docs/file-guide.md`
+- `docs/adoption/`
+- `docs/reference-organization/`
+- `docs/github/`
+
+It also rewrites the top-level `README.md` and `docs/README.md`, and adds instance-facing `docs/repo-scope.md` and `docs/work-tracking.md`.

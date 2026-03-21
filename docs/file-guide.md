@@ -1,6 +1,6 @@
 # File Guide — What Is What and What to Do in a Fork
 
-> **Purpose:** This repo serves a dual role. It is simultaneously an **open-source template project** (publicly hosted on GitHub) and a **concrete example of a company operating model** (the thing you fork and run with). That means the root directory mixes two very different kinds of files. This guide tells you exactly what each file is for, and what to do with it when you fork.
+> **Purpose:** This repo serves a dual role. It is simultaneously an **open-source template project** and a **concrete example of a company operating model**. This guide tells you what each file is for, what belongs in a real instance, and which cleanup steps are now scripted.
 
 ---
 
@@ -22,7 +22,7 @@ Most adopters only ever need the **Company fork** context. The OSS context matte
 
 | File | Purpose | Fork action |
 |---|---|---|
-| `README.md` | Public-facing overview of the open-source framework. 496-line marketing/adoption doc targeting GitHub visitors. | Delete or replace with your own internal README |
+| `README.md` | Public-facing overview of the open-source framework. | Replace with your instance README. `python3 scripts/instantiate_instance.py cleanup-instance` does this automatically. |
 | `CONTRIBUTING.md` | How to contribute to the upstream OSS template. | Delete (irrelevant to a private fork) |
 | `CODE_OF_CONDUCT.md` | OSS community conduct standards (Contributor Covenant). | Delete (or keep if your org wants community norms documented) |
 | `SECURITY.md` | Security disclosure policy for the public OSS project. | Delete or replace with your org's actual security policy |
@@ -45,7 +45,7 @@ The `.github/` folder mixes OSS infrastructure with governance tooling that's ge
 |---|---|---|
 | `workflows/validate.yml` | Core CI: validates operating model docs, schemas, locks, placeholders, OPA/Conftest policy enforcement | **Keep** — these gates enforce governance in your fork too. They check that your config, policies, and artifacts stay consistent. |
 | `workflows/security.yml` | Gitleaks secret scanning + GitHub Dependency Review | **Keep** if using security scanning (see `docs/security-scanning.md`); delete if not |
-| `ISSUE_TEMPLATE/` | Bug report and config forms for OSS contributors | **Template repo:** keep for OSS contributor workflows. **Company fork with issue backend:** replace/adapt using the samples in `docs/github/issue-templates/`. **Company fork with git-files backend:** delete if not needed. |
+| `ISSUE_TEMPLATE/` | Bug report and config forms for OSS contributors | **Template repo:** keep for OSS contributor workflows. **Company fork with issue backend:** install the dedicated work-repo kit via `python3 scripts/instantiate_instance.py install-github-work-repo ...`. **Company fork with git-files backend:** delete if not needed. |
 | `PULL_REQUEST_TEMPLATE.md` | PR checklist reminding contributors to cite policies and evidence | **Keep and adapt** — update checklist items to match your fork's governance conventions |
 | `docs/runtimes/github-copilot-instructions.md` | GitHub Copilot agent instructions for working in this repo | **Keep and update** — edit after customization to reference your company name, divisions, and active missions |
 | `docs/runtimes/github-copilot-prompts/` | Agent skill prompts (e.g., `/deploy` workflow) | **Keep and adapt** — update prompts to reference your company's structure and toolchain |
@@ -73,7 +73,7 @@ The `.github/` folder mixes OSS infrastructure with governance tooling that's ge
 | File | Purpose | Fork action |
 |---|---|---|
 | `CLAUDE.md` | Auto-loaded by Claude Code (Anthropic's agent). **Mirrors the content of `AGENTS.md`** for the Claude tooling context. When you update `AGENTS.md`, keep this in sync — they must be consistent. Exists solely because Claude Code reads `CLAUDE.md` by convention; `AGENTS.md` is the canonical source of truth. | Keep and sync with `AGENTS.md` after any changes |
-| `docs/customization-guide.md` | Step-by-step guide for tailoring this framework to your company. | Read and follow during initial setup; keep for onboarding new team members |
+| `docs/customization-guide.md` | Step-by-step guide for tailoring this framework to your company. | Read during initial setup. After cleanup, move instance-only operator guidance into your own docs. |
 
 ---
 
@@ -101,7 +101,7 @@ CLAUDE.md          ← Claude Code companion (auto-loaded by Anthropic tooling)
 
 ## What a Clean Fork Looks Like
 
-After forking and completing `docs/customization-guide.md` Step 1–5, your root should contain:
+After forking, installing any GitHub issue-backend assets you need, and running `python3 scripts/instantiate_instance.py cleanup-instance`, your root should contain:
 
 ```
 # Keep & fill in — this is your operating model
@@ -118,13 +118,20 @@ NOTICE
 # Optionally keep
 examples/                   # useful until team is fluent
 
-# Delete — OSS/demo only, irrelevant in a private fork
-README.md                   # replace with your own
+# Deleted or replaced by the cleanup script
+README.md                   # replaced with an instance-facing README
 CONTRIBUTING.md
 CODE_OF_CONDUCT.md
 SECURITY.md                 # replace with your org's policy
 index.html
 concept-visualization.html
+
+# docs/ removed by the cleanup script
+docs/customization-guide.md
+docs/file-guide.md
+docs/adoption/
+docs/reference-organization/
+docs/github/
 
 # .github/ — keep selectively (see per-file table above)
 # Keep: validate.yml, PULL_REQUEST_TEMPLATE.md
