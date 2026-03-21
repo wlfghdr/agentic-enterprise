@@ -14,6 +14,7 @@ If a human needs to approve something, the required status transition is written
 If GitHub needs configuration, the exact repo settings, labels, project setup, and issue forms are listed here.
 
 Use this guide together with [work-backends.md](work-backends.md), [required-github-settings.md](required-github-settings.md), and [github/README.md](github/README.md).
+If you want the shortest copy-and-configure path, start with [github/setup-checklist.md](github/setup-checklist.md).
 
 ---
 
@@ -26,9 +27,51 @@ Complete these steps before using the issue backend in a real fork:
 3. **Create a GitHub Project (v2)** with a **Status** field containing these single-select options: `Backlog`, `Triage`, `Approved`, `Planning`, `In Progress`, `Blocked`, `Done`. Set `project_owner` and `project_number` in `CONFIG.yaml`.
 4. Copy the sample forms from `docs/github/issue-templates/forms/` into `.github/ISSUE_TEMPLATE/` in your instance repository.
 5. Copy `docs/github/issue-templates/config.sample.yml` to `.github/ISSUE_TEMPLATE/config.yml` in your instance repository and customize the links.
-6. Create the required labels listed below. (Note: status is tracked via the Project Status field, not via labels.)
+6. Create the required labels listed below. (Note: status is tracked via the Project Status field, not via labels.) Use `docs/github/labels/labels.sample.yml` as your bootstrap source.
 7. Tell humans who approve work to use the approval transitions exactly as written in the approval table.
 8. Keep Git-backed companion artifacts in the repository: signal digests, technical designs, quality evaluations, fleet reports, outcome reports, asset registry entries, governance exceptions, and locks.
+
+---
+
+## Dedicated Work Repo Profile
+
+If `work_backend.github_issues.repo` points to a separate repository such as `acme/operating-work`, treat that repository as an **issue frontend**, not as a second operating-model fork.
+
+That dedicated work repo should contain:
+
+- GitHub Issues
+- Issue Forms
+- required labels
+- a GitHub Project v2 with the documented `Status` field
+- `.github/ISSUE_TEMPLATE/` files
+- at most a slim CI workflow for the GitHub assets it actually stores
+
+That dedicated work repo should **not** duplicate:
+
+- the full framework tree
+- the full `validate.yml` framework CI
+- governance backbone files from the operating-model repo
+- durable Git-backed companion artifacts that still belong in the main instance repo
+
+### CI Guidance For A Dedicated Work Repo
+
+CI is **not required for issue-backend correctness** if the repo is effectively just a container for issues and project views.
+
+CI becomes useful once the repo stores Git-tracked GitHub assets such as:
+
+- issue forms in `.github/ISSUE_TEMPLATE/`
+- workflow automation
+- labels-as-code or other repo metadata
+
+In that case, keep CI intentionally small:
+
+- validate YAML syntax for issue forms and related GitHub config
+- ensure required template files exist
+- optionally validate any repo-local automation
+
+Use `docs/github/workflows/validate-issue-templates.yml` as the reference workflow for this slim CI profile.
+
+Do **not** copy the full operating-model validation suite into the work repo unless that repo actually stores the framework files those checks are designed for.
 
 ---
 
@@ -229,6 +272,8 @@ labels:
 
 If you prefer GitHub CLI, create labels with `gh label create` using the same names.
 
+If you want issue-form answers such as `priority`, `category`, `confidence`, or `urgency` to become labels automatically, use `docs/github/workflows/sync-issue-form-labels.yml`. Issue Forms themselves can only set static labels directly.
+
 ---
 
 ## Human Approval Table
@@ -334,6 +379,11 @@ Copy these into `.github/ISSUE_TEMPLATE/` in your company fork when you enable t
 - `docs/github/issue-templates/forms/retrospective.sample.yml`
 
 These samples pre-apply the base artifact labels and ask for the fields humans typically forget.
+For dynamic label synchronization and slim dedicated-work-repo CI, also consider copying:
+
+- `docs/github/labels/labels.sample.yml`
+- `docs/github/workflows/validate-issue-templates.yml`
+- `docs/github/workflows/sync-issue-form-labels.yml`
 
 ---
 
@@ -374,6 +424,7 @@ Git still holds the durable review-heavy artifacts.
 
 | Version | Date | Change |
 |---|---|---|
+| 2.3 | 2026-03-21 | Added template asset references for label bootstrap, slim work-repo CI, dynamic label sync from issue forms, and the GitHub setup checklist. |
 | 2.1 | 2026-03-09 | Updated sample file paths after consolidating GitHub instance assets under `docs/github/`. |
 | 2.0 | 2026-03-08 | Migrated status tracking from labels to GitHub Project Status field. Removed ~20 status labels. Added project setup guidance, project_owner/project_number config fields, unified status model (Backlog → Done + close), terminal state documentation. |
 | 1.1 | 2026-03-08 | Added assignment rules for issues and PRs, handoff mechanics for both, agent identity requirement, human operating rules for issues and PRs, comment-based approval model |

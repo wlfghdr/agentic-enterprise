@@ -54,6 +54,7 @@ These are the primary docs most operators need.
 | [`required-github-settings.md`](required-github-settings.md) | Checklist for GitHub branch protection, CODEOWNERS enforcement, and required status checks. Without this, PRs are advisory — not binding. |
 | [`work-backends.md`](work-backends.md) | Canonical backend guide: backend choice, `CONFIG.yaml` structure, artifact placement, migration paths, and backend-specific behavior. |
 | [`github-issues.md`](github-issues.md) | GitHub issue-backend operations guide: project setup, labels, issue forms, handoff rules, and human approval flow. |
+| [`github/setup-checklist.md`](github/setup-checklist.md) | One-pass GitHub backend instantiation checklist: same-repo vs. dedicated-work-repo setup, labels, issue forms, Project, and slim CI. |
 | [`mission-lifecycle.md`](mission-lifecycle.md) | End-to-end mission lifecycle: status transitions, Divide & Conquer decomposition, gate requirements, anti-patterns. Required reading for Orchestration and Execution agents. |
 
 ---
@@ -64,7 +65,7 @@ Guides for implementing the framework on specific platforms (GitHub, GitLab, etc
 
 | Guide | Purpose |
 |---|---|
-| [`github/README.md`](github/README.md) | GitHub instance kit: platform overview, Projects guidance, reference workflows, and the colocated issue-template assets used by company forks. |
+| [`github/README.md`](github/README.md) | GitHub instance kit: platform overview, setup checklist, Projects guidance, reference workflows, label bootstrap, and the colocated issue-template assets used by company forks. |
 | [`automation-patterns.md`](automation-patterns.md) | Script-first, LLM-second principle. Classification of what to automate via scripts vs. what needs LLM agents. |
 
 ---

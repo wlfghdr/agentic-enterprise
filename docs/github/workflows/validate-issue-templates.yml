@@ -1,0 +1,59 @@
+name: Validate Work Repo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-issue-templates:
+    name: validate-issue-templates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate issue template files
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import sys
+          import yaml
+
+          required = [
+              ".github/ISSUE_TEMPLATE/config.yml",
+              ".github/ISSUE_TEMPLATE/signal.yml",
+              ".github/ISSUE_TEMPLATE/mission.yml",
+              ".github/ISSUE_TEMPLATE/task.yml",
+              ".github/ISSUE_TEMPLATE/decision.yml",
+              ".github/ISSUE_TEMPLATE/release.yml",
+              ".github/ISSUE_TEMPLATE/retrospective.yml",
+          ]
+
+          missing = [path for path in required if not Path(path).exists()]
+          if missing:
+              print("Missing required issue-template files:")
+              for path in missing:
+                  print(f"- {path}")
+              sys.exit(1)
+
+          checked = 0
+          for path in sorted(Path(".github").rglob("*.yml")):
+              with path.open("r", encoding="utf-8") as handle:
+                  yaml.safe_load(handle)
+              print(f"OK: {path}")
+              checked += 1
+
+          print(f"Validated {checked} YAML file(s).")
+          PY

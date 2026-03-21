@@ -7,7 +7,9 @@ This guide covers the GitHub-specific implementation details: Issues as work bac
 This folder is the GitHub instance kit for company forks:
 
 - `README.md` explains the GitHub operating model.
+- `setup-checklist.md` is the one-pass setup sequence for the GitHub issue backend.
 - `issue-templates/` contains copyable files for `.github/ISSUE_TEMPLATE/`.
+- `labels/` contains a copyable label bootstrap sample.
 - `workflows/` contains reference workflows you can copy into `.github/workflows/`.
 
 ---
@@ -33,14 +35,17 @@ When using `use_label_prefixes: true`, create these labels:
 
 | Prefix | Values |
 |--------|--------|
-| `artifact:` | `signal`, `signal-triage`, `mission`, `task` |
+| `artifact:` | `signal`, `mission`, `task`, `decision`, `release`, `retrospective` |
 | `layer:` | `steering`, `strategy`, `orchestration`, `execution`, `quality` |
 | `loop:` | `discover`, `build`, `ship`, `operate` |
 | `priority:` | `critical`, `high`, `medium`, `low` |
-| `category:` | `market`, `customer`, `technical`, `internal` |
+| `category:` | `market`, `customer`, `technical`, `internal`, `competitive`, `financial` |
+| `confidence:` | `high`, `medium`, `low` |
 | `urgency:` | `immediate`, `next-cycle`, `monitor` |
 
 > **Status tracking:** Do not create `status:*` labels. Use the GitHub Project (v2) **Status** field instead. See [docs/github-issues.md](../github-issues.md).
+
+Use [`labels/labels.sample.yml`](labels/labels.sample.yml) as the bootstrap source of truth.
 
 ### Issue Templates
 
@@ -50,6 +55,12 @@ Consider creating `.github/ISSUE_TEMPLATE/` templates for:
 - Task (concrete work item)
 
 Copy the samples from `issue-templates/` in this folder into your instance repository when you enable the issue backend.
+
+Important limitation:
+- Issue Forms can set only static base labels directly.
+- Dynamic labels such as `priority:*`, `category:*`, `confidence:*`, and `urgency:*` need either human discipline or automation.
+
+Use [`workflows/sync-issue-form-labels.yml`](workflows/sync-issue-form-labels.yml) if you want those labels synchronized from form answers automatically.
 
 ---
 
@@ -91,12 +102,16 @@ These workflow files are provided as **reference implementations**. They are NOT
 | `dora-lead-time.yml` | PR lead time measurement (DORA) | [`workflows/dora-lead-time.yml`](workflows/dora-lead-time.yml) |
 | `change-failure-rate.yml` | Deployment failure rate tracking (DORA) | [`workflows/change-failure-rate.yml`](workflows/change-failure-rate.yml) |
 | `mttr.yml` | Mean time to recovery tracking (DORA) | [`workflows/mttr.yml`](workflows/mttr.yml) |
+| `validate-issue-templates.yml` | Slim CI for a dedicated issue/work repo | [`workflows/validate-issue-templates.yml`](workflows/validate-issue-templates.yml) |
+| `sync-issue-form-labels.yml` | Optional automation to translate issue-form answers into labels | [`workflows/sync-issue-form-labels.yml`](workflows/sync-issue-form-labels.yml) |
 
 ---
 
 ## 4. GitHub Settings
 
 See [`required-github-settings.md`](../required-github-settings.md) for branch protection, CODEOWNERS, and required status checks.
+
+For the fastest clean setup path, use [`setup-checklist.md`](setup-checklist.md).
 
 ---
 
@@ -114,4 +129,3 @@ Scripts in `scripts/` work with both git-files and github-issues backends:
 | `archive_runs.sh` | Monthly run log rotation | git-files only |
 
 Scripts that are backend-aware use `work_backend.py` to read from the correct source (Issues or git files) based on `CONFIG.yaml`.
-

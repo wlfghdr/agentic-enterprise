@@ -27,6 +27,7 @@ Repo → **Settings → General → Features**
 - ✅ Issue forms
 
 Then copy the sample files from `docs/github/issue-templates/` into `.github/ISSUE_TEMPLATE/` in your instance repository and customize them.
+Use `docs/github/labels/labels.sample.yml` for label bootstrap and `docs/github/setup-checklist.md` for the full GitHub issue-backend setup sequence.
 
 Minimum required label families for a usable GitHub issue backend:
 - `artifact:` labels for each issue-backed artifact type
@@ -80,6 +81,14 @@ Start with the repo’s built-in validation workflow:
 - Versioning/metadata checks
 
 Then add stronger gates (security scans, policy-as-code) as you adopt them.
+
+If you split work into a **dedicated GitHub issue repo**:
+
+- keep the full validation/security gates on the main operating-model repo
+- use only slim checks on the work repo for the files that repo actually stores (for example issue-template YAML)
+- do not require framework checks on the work repo if it does not contain the framework files those checks validate
+
+The template includes a reference workflow for this pattern at `docs/github/workflows/validate-issue-templates.yml`.
 
 ---
 
