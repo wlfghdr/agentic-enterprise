@@ -104,7 +104,7 @@ See `org/integrations/` for detailed guides per category. Start with observabili
 
 ### Step 6: Start Using It (5 min)
 
-Before switching on recurring automation, read [automation-and-work-continuity.md](automation-and-work-continuity.md). It defines continuity expectations, approval boundaries, self-assignment defaults, and backoff rules.
+Before switching on recurring automation, read [automation-and-work-continuity.md](automation-and-work-continuity.md). It defines continuity expectations, approval boundaries, self-assignment defaults, the no-unassigned rule for open GitHub work, the automation pickup audit checklist, and backoff rules.
 
 
 **Git-files backend:** Create your first signal in `work/signals/` and you're live.
