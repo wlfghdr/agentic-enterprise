@@ -37,6 +37,21 @@ A compact continuity pass should review:
 
 The pass should prefer one compact sweep over many tiny loops.
 
+## Compact Audit Checklist
+
+A continuity or hygiene pass should explicitly answer these questions for each active work chain:
+
+1. **Ownership present** — is every open issue and PR assigned to a named human or agent identity?
+2. **Artifact linkage present** — can we trace the chain across the relevant artifacts and product work?
+3. **Automation scope present** — do the configured recurring passes actually include the repo and item type?
+4. **Executable without hidden context** — can the next owner act from the artifact and linked references alone?
+
+If any answer is "no", treat that as open work:
+- assign the item
+- add or repair the missing links
+- expand automation scope if intended
+- or escalate to a human instead of pretending the loop is healthy
+
 ## Self-Assignment Defaults
 
 Use self-assignment only when all of the following are true:
