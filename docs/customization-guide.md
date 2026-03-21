@@ -7,6 +7,8 @@
 
 > **New to the repo layout?** Read [docs/file-guide.md](file-guide.md) first — it explains which root files are part of the open-source template infrastructure (safe to delete in a private fork) and which are your company's actual operating model content (fill in and own).
 
+> **Fastest safe path:** fill `CONFIG.yaml`, install the GitHub issue-backend kit if needed, then run `python3 scripts/instantiate_instance.py cleanup-instance` to strip template-only assets and replace the top-level docs with instance-facing scaffolding.
+
 ---
 
 ## Quick Start (30 minutes to a working framework)
@@ -93,9 +95,22 @@ Before switching on recurring automation, read [automation-and-work-continuity.m
 
 **Git-files backend:** Create your first signal in `work/signals/` and you're live.
 
-**Issue backend:** Before creating your first signal, finish the minimum setup from [docs/github/setup-checklist.md](github/setup-checklist.md): enable Issues + Issue Forms, create the GitHub Project v2 `Status` field, copy the issue-form samples into `.github/ISSUE_TEMPLATE/`, and create the required labels.
+**Issue backend:** Before creating your first signal, finish the minimum setup from [docs/github/setup-checklist.md](github/setup-checklist.md). The preferred path is now scripted:
+
+```bash
+python3 scripts/instantiate_instance.py install-github-work-repo \
+  --main-repo your-org/your-instance \
+  --target-dir ../your-instance-work \
+  --include-label-sync
+```
 
 If you use a **dedicated work repo** for issues, put those issue forms and labels there. Keep CI in that repo intentionally slim: validate issue-template YAML and any repo-local automation, but leave the full framework validation in the operating-model repo. The template now includes reference assets for both: `docs/github/workflows/validate-issue-templates.yml` and `docs/github/workflows/sync-issue-form-labels.yml`.
+
+Once the GitHub assets are installed, clean the instance repo itself:
+
+```bash
+python3 scripts/instantiate_instance.py cleanup-instance
+```
 
 After that setup, create your first GitHub Issue with label `artifact:signal` and you're live.
 

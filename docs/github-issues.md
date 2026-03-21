@@ -25,8 +25,8 @@ Complete these steps before using the issue backend in a real fork:
 1. Set `work_backend.type: "github-issues"` in `CONFIG.yaml`.
 2. Enable GitHub Issues and Issue Forms in the repository settings.
 3. **Create a GitHub Project (v2)** with a **Status** field containing these single-select options: `Backlog`, `Triage`, `Approved`, `Planning`, `In Progress`, `Blocked`, `Done`. Set `project_owner` and `project_number` in `CONFIG.yaml`.
-4. Copy the sample forms from `docs/github/issue-templates/forms/` into `.github/ISSUE_TEMPLATE/` in your instance repository.
-5. Copy `docs/github/issue-templates/config.sample.yml` to `.github/ISSUE_TEMPLATE/config.yml` in your instance repository and customize the links.
+4. Prefer the scripted install path: `python3 scripts/instantiate_instance.py install-github-work-repo --main-repo your-org/your-instance --target-dir <issue-hosting-repo>`.
+5. If you are doing it manually instead, copy the sample forms from `docs/github/issue-templates/forms/` into `.github/ISSUE_TEMPLATE/` in your instance repository and copy `docs/github/issue-templates/config.sample.yml` to `.github/ISSUE_TEMPLATE/config.yml`.
 6. Create the required labels listed below. (Note: status is tracked via the Project Status field, not via labels.) Use `docs/github/labels/labels.sample.yml` as your bootstrap source.
 7. Tell humans who approve work to use the approval transitions exactly as written in the approval table.
 8. Keep Git-backed companion artifacts in the repository: signal digests, technical designs, quality evaluations, fleet reports, outcome reports, asset registry entries, governance exceptions, and locks.
@@ -69,7 +69,7 @@ In that case, keep CI intentionally small:
 - ensure required template files exist
 - optionally validate any repo-local automation
 
-Use `docs/github/workflows/validate-issue-templates.yml` as the reference workflow for this slim CI profile.
+Use `docs/github/workflows/validate-issue-templates.yml` as the reference workflow for this slim CI profile, or let the scripted installer copy it for you.
 
 Do **not** copy the full operating-model validation suite into the work repo unless that repo actually stores the framework files those checks are designed for.
 
@@ -272,7 +272,7 @@ labels:
 
 If you prefer GitHub CLI, create labels with `gh label create` using the same names.
 
-If you want issue-form answers such as `priority`, `category`, `confidence`, or `urgency` to become labels automatically, use `docs/github/workflows/sync-issue-form-labels.yml`. Issue Forms themselves can only set static labels directly.
+If you want issue-form answers such as `priority`, `category`, `confidence`, or `urgency` to become labels automatically, use `docs/github/workflows/sync-issue-form-labels.yml` or install it with `--include-label-sync`. Issue Forms themselves can only set static labels directly.
 
 ---
 
@@ -366,7 +366,7 @@ These rules keep GitHub collaboration consistent. **You never need to manage lab
 
 ## Sample Files To Copy Into An Instance Repo
 
-This template repository keeps the operational GitHub issue forms as documentation samples so the framework repo itself does not behave like an instance repo.
+This template repository keeps the operational GitHub issue forms as documentation samples so the framework repo itself does not behave like an instance repo. The recommended way to move them into a real instance is `scripts/instantiate_instance.py install-github-work-repo`.
 
 Copy these into `.github/ISSUE_TEMPLATE/` in your company fork when you enable the issue backend:
 

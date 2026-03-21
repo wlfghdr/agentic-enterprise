@@ -260,7 +260,7 @@ Git-backed companion artifacts still exist alongside the issue hierarchy where r
 
 ### Issue Templates
 
-GitHub Issue Templates (`.github/ISSUE_TEMPLATE/`) can mirror the Markdown templates. In this template repository, the operational forms are stored as docs-only samples under `docs/github/issue-templates/forms/` so the framework repo itself does not behave like an instance repo.
+GitHub Issue Templates (`.github/ISSUE_TEMPLATE/`) can mirror the Markdown templates. In this template repository, the operational forms are stored as docs-only samples under `docs/github/issue-templates/forms/` so the framework repo itself does not behave like an instance repo. The preferred instantiation path is the scripted installer in `scripts/instantiate_instance.py`.
 
 - `signal.sample.yml` — maps to `_TEMPLATE-signal.md`
 - `mission.sample.yml` — maps to `_TEMPLATE-mission-brief.md`

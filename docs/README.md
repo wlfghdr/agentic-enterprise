@@ -55,6 +55,7 @@ These are the primary docs most operators need.
 | [`work-backends.md`](work-backends.md) | Canonical backend guide: backend choice, `CONFIG.yaml` structure, artifact placement, migration paths, and backend-specific behavior. |
 | [`github-issues.md`](github-issues.md) | GitHub issue-backend operations guide: project setup, labels, issue forms, handoff rules, and human approval flow. |
 | [`github/setup-checklist.md`](github/setup-checklist.md) | One-pass GitHub backend instantiation checklist: same-repo vs. dedicated-work-repo setup, labels, issue forms, Project, and slim CI. |
+| `scripts/instantiate_instance.py` | Scripted fork cleanup and GitHub issue-backend asset installation for real company instances. |
 | [`mission-lifecycle.md`](mission-lifecycle.md) | End-to-end mission lifecycle: status transitions, Divide & Conquer decomposition, gate requirements, anti-patterns. Required reading for Orchestration and Execution agents. |
 
 ---

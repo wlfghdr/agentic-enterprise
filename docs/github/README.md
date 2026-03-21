@@ -12,6 +12,14 @@ This folder is the GitHub instance kit for company forks:
 - `labels/` contains a copyable label bootstrap sample.
 - `workflows/` contains reference workflows you can copy into `.github/workflows/`.
 
+The preferred installation path is scripted:
+
+```bash
+python3 scripts/instantiate_instance.py install-github-work-repo \
+  --main-repo your-org/your-instance \
+  --target-dir ../your-instance-work
+```
+
 ---
 
 ## 1. GitHub Issues as Work Backend
@@ -54,7 +62,7 @@ Consider creating `.github/ISSUE_TEMPLATE/` templates for:
 - Mission (strategic intent with outcomes)
 - Task (concrete work item)
 
-Copy the samples from `issue-templates/` in this folder into your instance repository when you enable the issue backend.
+Copy the samples from `issue-templates/` in this folder into your instance repository when you enable the issue backend, or use the scripted install step above.
 
 Important limitation:
 - Issue Forms can set only static base labels directly.
