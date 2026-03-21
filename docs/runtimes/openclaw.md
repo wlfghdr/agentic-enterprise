@@ -160,6 +160,32 @@ Keep cron conservative:
 
 ---
 
+
+## Discord Channel Setup For Instance Fleets
+
+When an instance uses Discord with OpenClaw, keep the human-facing topology role-first and environment-specific.
+
+Recommended pattern:
+- one channel per active agent role
+- optional one general company channel
+- no model-specific human channels
+
+Example minimal channel set for a 5-agent instance fleet:
+- `<company>-main` (optional)
+- `<company>-steering`
+- `<company>-strategy`
+- `<company>-orchestration`
+- `<company>-execution`
+- `<company>-quality`
+
+Operator rule:
+1. create channels in Discord first
+2. capture the actual channel IDs in an operator-facing config artifact
+3. bind those IDs to the intended OpenClaw agent IDs
+4. smoke-test each channel after binding
+
+Keep provider/model routing inside OpenClaw configuration. Humans should route by agent responsibility, not by provider choice.
+
 ## Troubleshooting: Multi-agent setups (credentials, provider IDs, dispatch state, restarts)
 
 This section is specific to **OpenClaw-based** fleets where you have a dispatcher/orchestrator that triggers one or more **execution agents**.
