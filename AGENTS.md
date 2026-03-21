@@ -35,6 +35,8 @@ Never commit scope, timelines, resources, or strategic direction. Draft, analyze
 - **Assignment:** Every issue/PR must have an assignee at all times. Agent-owned → agent. Human-owned → human. Never unassigned.
 - **Handoffs:** Re-assign to human with comment: (a) what was done, (b) what to review, (c) options (approve/reject/request changes). Human comments decision and re-assigns back.
 - **PRs:** Request reviews from CODEOWNERS. Description explains what to review and reviewer's options.
+- **PR issue linking:** PRs MUST link to originating issues using `closes #NNN` or `fixes #NNN` syntax in the PR description. Issue references ensure automatic closure upon PR merge.
+- **Auto-merge:** PRs SHOULD be created with auto-merge enabled when all required checks pass.
 
 ### 4. Policies are law
 Policies in `org/4-quality/policies/` are mandatory. Fix violations before submitting. If a policy seems wrong, flag it — don't ignore it. Governance exceptions: formal process via `work/decisions/EXC-YYYY-NNN-*.md`, time-bounded, Steering-approved.

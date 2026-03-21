@@ -1,18 +1,23 @@
 #!/usr/bin/env python3
 """Bootstrap helpers for turning the framework template into a live instance.
 
-Two high-friction tasks are intentionally automated here:
+Four high-friction tasks are intentionally automated here:
 
 1. ``cleanup-instance`` removes template-only assets and rewrites the top-level
    instance-facing docs after ``CONFIG.yaml`` has been filled in.
 2. ``install-github-work-repo`` copies the GitHub issue-backend kit into the
    repo that will host operational issues.
+3. ``prune-agents`` removes unused divisions and agent type definitions
+   based on CONFIG.yaml and a keep-list, reducing template bloat.
+4. ``install-pr-automation`` adds auto-merge and issue-linking workflows
+   for governed PR lifecycle.
 
-Recommended order for GitHub issue-backend adopters:
-
+Recommended order:
 1. Fill in ``CONFIG.yaml``
-2. Run ``install-github-work-repo`` if the issue backend will be used
-3. Run ``cleanup-instance`` to strip template-facing assets from the instance
+2. Run ``prune-agents`` to reduce to your actual org structure
+3. Run ``install-pr-automation`` for PR governance
+4. Run ``install-github-work-repo`` if the issue backend will be used
+5. Run ``cleanup-instance`` to strip remaining template-facing assets
 """
 
 from __future__ import annotations
@@ -42,6 +47,13 @@ TEMPLATE_ONLY_PATHS = [
     "docs/adoption",
     "docs/reference-organization",
     "docs/github",
+    "docs/compliance",
+    "docs/runtimes",
+    "docs/quickstart",
+    "examples/generic-feature-lifecycle.md",
+    "examples/company-optimization-lifecycle.md",
+    "examples/agent-fleet-change-lifecycle.md",
+    "examples/hr-recruiting-lifecycle.md",
 ]
 
 ISSUE_FORM_SAMPLES = {
@@ -363,6 +375,168 @@ def cmd_install_github_work_repo(args: argparse.Namespace) -> int:
     return 0
 
 
+def extract_division_ids(config: dict[str, Any]) -> set[str]:
+    """Return all division ``id`` values from every category under the ``divisions`` key."""
+    ids: set[str] = set()
+    divisions = config.get("divisions")
+    if not divisions:
+        return ids
+    if isinstance(divisions, list):
+        # flat list of division dicts
+        for entry in divisions:
+            if isinstance(entry, dict) and "id" in entry:
+                ids.add(entry["id"])
+    elif isinstance(divisions, dict):
+        # mapping of category -> list of division dicts
+        for category_entries in divisions.values():
+            if not isinstance(category_entries, list):
+                continue
+            for entry in category_entries:
+                if isinstance(entry, dict) and "id" in entry:
+                    ids.add(entry["id"])
+    return ids
+
+
+def cmd_prune_agents(args: argparse.Namespace) -> int:
+    repo_root = Path(args.repo_root).resolve()
+    config = load_config(repo_root)
+
+    # --- Prune divisions ---
+    division_ids = extract_division_ids(config)
+    divisions_dir = repo_root / "org" / "3-execution" / "divisions"
+
+    removed_divisions: list[str] = []
+    kept_divisions: list[str] = []
+
+    if divisions_dir.is_dir():
+        for child in sorted(divisions_dir.iterdir()):
+            if not child.is_dir():
+                continue
+            if child.name.startswith("_TEMPLATE"):
+                kept_divisions.append(child.name)
+                continue
+            if child.name in division_ids:
+                kept_divisions.append(child.name)
+            else:
+                remove_path(child, args.dry_run)
+                removed_divisions.append(child.name)
+
+    # --- Prune agent types ---
+    keep_agents_raw = args.keep_agents or ""
+    keep_set = {a.strip() for a in keep_agents_raw.split(",") if a.strip()}
+
+    agents_dir = repo_root / "org" / "agents"
+
+    removed_agents: list[str] = []
+    kept_agents: list[str] = []
+
+    if agents_dir.is_dir():
+        for child in sorted(agents_dir.iterdir()):
+            if not child.is_file() or child.suffix != ".md":
+                continue
+            # Always keep README.md and _TEMPLATE files
+            if child.name == "README.md" or child.name.startswith("_TEMPLATE"):
+                kept_agents.append(child.name)
+                continue
+            stem = child.stem
+            if stem in keep_set:
+                kept_agents.append(child.name)
+            else:
+                remove_path(child, args.dry_run)
+                removed_agents.append(child.name)
+
+    # --- Summary ---
+    prefix = "[DRY RUN] " if args.dry_run else ""
+    print(f"\n{prefix}=== Prune Summary ===")
+    print(f"Divisions kept  ({len(kept_divisions)}): {', '.join(kept_divisions) or '(none)'}")
+    print(f"Divisions removed ({len(removed_divisions)}): {', '.join(removed_divisions) or '(none)'}")
+    print(f"Agent files kept  ({len(kept_agents)}): {', '.join(kept_agents) or '(none)'}")
+    print(f"Agent files removed ({len(removed_agents)}): {', '.join(removed_agents) or '(none)'}")
+
+    return 0
+
+
+AUTO_MERGE_WORKFLOW = """\
+name: Auto-merge on approval
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable auto-merge
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+"""
+
+CHECK_ISSUE_LINK_WORKFLOW = """\
+name: Check issue link
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  check-link:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for issue reference
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if echo "$PR_BODY" | grep -qiE '(closes|fixes|resolves)\\s+#[0-9]+'; then
+            echo "Issue reference found"
+          else
+            echo "::error::PR must link to an originating issue using 'closes #NNN', 'fixes #NNN', or 'resolves #NNN'"
+            exit 1
+          fi
+"""
+
+PR_TEMPLATE = """\
+## Summary
+
+<!-- Describe the change and its purpose. -->
+
+## Linked Issues
+
+closes #
+
+## Test Plan
+
+<!-- How was this tested? What should reviewers verify? -->
+"""
+
+
+def cmd_install_pr_automation(args: argparse.Namespace) -> int:
+    repo_root = Path(args.repo_root).resolve()
+
+    workflows_dir = repo_root / ".github" / "workflows"
+
+    write_text(workflows_dir / "auto-merge.yml", AUTO_MERGE_WORKFLOW, args.dry_run)
+    write_text(workflows_dir / "check-issue-link.yml", CHECK_ISSUE_LINK_WORKFLOW, args.dry_run)
+
+    pr_template_path = repo_root / ".github" / "PULL_REQUEST_TEMPLATE.md"
+    if pr_template_path.exists():
+        existing = pr_template_path.read_text(encoding="utf-8")
+        if "Linked Issues" not in existing:
+            updated = existing.rstrip() + "\n\n## Linked Issues\n\ncloses #\n"
+            write_text(pr_template_path, updated, args.dry_run)
+        else:
+            print(f"SKIPPED {pr_template_path} (already contains Linked Issues section)")
+    else:
+        write_text(pr_template_path, PR_TEMPLATE, args.dry_run)
+
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -405,6 +579,23 @@ def build_parser() -> argparse.ArgumentParser:
         help="Also install the optional workflow that maps issue-form answers to labels",
     )
     install.set_defaults(func=cmd_install_github_work_repo)
+
+    prune = subparsers.add_parser(
+        "prune-agents",
+        help="Remove unused divisions and agent type definitions based on CONFIG.yaml and a keep-list",
+    )
+    prune.add_argument(
+        "--keep-agents",
+        default="",
+        help="Comma-separated list of agent filenames (without .md) to keep, e.g. 'signal-aggregation-agent,coding-agent-fleet'",
+    )
+    prune.set_defaults(func=cmd_prune_agents)
+
+    pr_auto = subparsers.add_parser(
+        "install-pr-automation",
+        help="Add auto-merge and issue-linking workflows for governed PR lifecycle",
+    )
+    pr_auto.set_defaults(func=cmd_install_pr_automation)
 
     return parser
 
