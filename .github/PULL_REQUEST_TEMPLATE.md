@@ -4,6 +4,13 @@
 
 Closes #
 
+## Ownership and review routing
+
+- Assignee / owner for next step: @
+- Requested reviewer(s): @
+- Reviewer focus:
+- Reviewer options: Approve / Request changes / Comment
+
 ## Type of change
 
 - [ ] Bug fix (broken link, YAML error, inconsistency)

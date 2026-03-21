@@ -34,6 +34,7 @@ A compact continuity pass should review:
 3. active or blocked missions
 4. open tasks under active missions
 5. referenced product-repo issues that belong to those missions
+6. PR ownership and reviewer routing gaps (missing assignee, missing reviewer request, or unclear merge handoff)
 
 The pass should prefer one compact sweep over many tiny loops.
 
@@ -42,9 +43,10 @@ The pass should prefer one compact sweep over many tiny loops.
 A continuity or hygiene pass should explicitly answer these questions for each active work chain:
 
 1. **Ownership present** — is every open issue and PR assigned to a named human or agent identity?
-2. **Artifact linkage present** — can we trace the chain across the relevant artifacts and product work?
-3. **Automation scope present** — do the configured recurring passes actually include the repo and item type?
-4. **Executable without hidden context** — can the next owner act from the artifact and linked references alone?
+2. **Reviewer path present** — does every open PR that needs human action have explicit reviewer request(s) or a named merge owner?
+3. **Artifact linkage present** — can we trace the chain across the relevant artifacts and product work?
+4. **Automation scope present** — do the configured recurring passes actually include the repo and item type?
+5. **Executable without hidden context** — can the next owner act from the artifact and linked references alone?
 
 If any answer is "no", treat that as open work:
 - assign the item
