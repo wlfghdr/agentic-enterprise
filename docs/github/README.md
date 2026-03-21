@@ -139,3 +139,18 @@ Scripts in `scripts/` work with both git-files and github-issues backends:
 | `archive_runs.sh` | Monthly run log rotation | git-files only |
 
 Scripts that are backend-aware use `work_backend.py` to read from the correct source (Issues or git files) based on `CONFIG.yaml`.
+
+## Label discipline
+
+Use labels for semantics that GitHub does **not** model natively well, such as:
+- artifact type
+- dispatch/agent fit
+- scope/product boundary
+- approval-needed semantics
+
+Do **not** recreate native GitHub state with redundant labels when the platform already models it:
+- issue open/closed
+- PR open/draft/merged/closed
+- assignee / reviewer ownership
+
+A practical work repo should also have a lightweight label baseline available immediately after initialization.

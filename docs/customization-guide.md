@@ -91,6 +91,20 @@ Minimum expectations for an OpenClaw-based instance:
 
 Use [`docs/runtimes/openclaw.md`](runtimes/openclaw.md) for the runtime-specific guidance.
 
+
+### Step 4c: Add A Lightweight Audit Function
+
+A realistic enterprise instance should include a lightweight internal audit role from the start.
+
+This role is not only for compliance. Its job is to verify that the operating model actually functions in practice:
+- work artifacts are linked coherently
+- ownership is explicit
+- repo work is synced and not stranded locally
+- automation loops can actually pick up the work they are expected to handle
+- local adoption friction becomes upstream product improvement
+
+In a minimal fleet, this can begin as an **internal auditor** role and later split into more specialized auditors (workflow, repo hygiene, compliance, evidence, adoption).
+
 ### Step 5: Register Your Integrations (5 min)
 
 Review `CONFIG.yaml → integrations` and register the external tools your organization uses:

@@ -161,6 +161,20 @@ Keep cron conservative:
 ---
 
 
+
+## Default Audit Role
+
+For real adoption, consider an **internal auditor** a default part of the instance fleet.
+
+This role checks:
+- work-flow integrity
+- ownership integrity
+- repo sync hygiene
+- automation pickup coverage
+- whether local findings are translated into upstream improvements
+
+This role sits close to the broader observability/control story: not only runtime telemetry, but whether the operating system of work is actually functioning.
+
 ## Discord Channel Setup For Instance Fleets
 
 When an instance uses Discord with OpenClaw, keep the human-facing topology role-first and environment-specific.
