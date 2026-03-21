@@ -1,0 +1,80 @@
+name: Sync Issue Form Labels
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  sync-labels:
+    name: sync-labels
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync labels from issue form fields
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import re
+          import subprocess
+
+          body = os.environ.get("ISSUE_BODY", "")
+          repo = os.environ["REPO"]
+          issue_number = os.environ["ISSUE_NUMBER"]
+
+          if not body.strip():
+              print("Issue body is empty - nothing to sync.")
+              raise SystemExit(0)
+
+          pattern = re.compile(r"^###\s+(.+?)\n(.*?)(?=^###\s+|\Z)", re.MULTILINE | re.DOTALL)
+          fields = {}
+          for heading, value in pattern.findall(body):
+              cleaned = " ".join(line.strip() for line in value.strip().splitlines() if line.strip())
+              fields[heading.strip().lower()] = cleaned
+
+          print("Parsed issue form fields:")
+          for key, value in sorted(fields.items()):
+              print(f"- {key}: {value}")
+
+          mapping = {
+              "category": "category",
+              "confidence": "confidence",
+              "urgency": "urgency",
+              "priority": "priority",
+          }
+
+          labels_to_add = []
+          for heading, prefix in mapping.items():
+              raw = fields.get(heading, "").strip().lower()
+              if not raw:
+                  continue
+              normalized = re.sub(r"[^a-z0-9]+", "-", raw).strip("-")
+              if normalized:
+                  labels_to_add.append(f"{prefix}:{normalized}")
+
+          existing = subprocess.run(
+              ["gh", "label", "list", "--repo", repo, "--limit", "200", "--json", "name", "--jq", ".[].name"],
+              capture_output=True,
+              text=True,
+              check=True,
+          )
+          existing_labels = {line.strip() for line in existing.stdout.splitlines() if line.strip()}
+          labels_to_add = [label for label in labels_to_add if label in existing_labels]
+
+          if not labels_to_add:
+              print("No matching labels to add.")
+              raise SystemExit(0)
+
+          print("Adding labels:", ", ".join(labels_to_add))
+          subprocess.run(
+              ["gh", "issue", "edit", issue_number, "--repo", repo, "--add-label", ",".join(labels_to_add)],
+              check=True,
+          )
+          PY
