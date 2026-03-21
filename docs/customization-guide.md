@@ -77,6 +77,20 @@ For the shortest template-instantiation path, use [docs/github/setup-checklist.m
 
 > **Note:** Governance backbone files (org structure, policies, agent instructions, templates) always stay in Git regardless of this choice.
 
+
+### Step 4b: If You Run OpenClaw, Bootstrap The Instance Fleet
+
+Do not treat the repo instantiation as complete until the runtime shape is also defined.
+
+Minimum expectations for an OpenClaw-based instance:
+- define a minimal role-first fleet (for example: steering, strategy, orchestration, execution, quality)
+- document the routing policy (subscription-first, then fallback provider subscription, then API fallback)
+- make each running agent use the **instance repo** as its workspace rather than a generic shared workspace
+- create per-agent `agentDir` locations with the credentials/config they actually need
+- document Discord/channel bindings separately from the generic repo bootstrap, because channel IDs remain environment-specific
+
+Use [`docs/runtimes/openclaw.md`](runtimes/openclaw.md) for the runtime-specific guidance.
+
 ### Step 5: Register Your Integrations (5 min)
 
 Review `CONFIG.yaml → integrations` and register the external tools your organization uses:

@@ -66,6 +66,22 @@ Recommended minimum rule for `main`:
 
 ---
 
+
+## 3b) PR governance defaults
+
+For repos where agents are expected to operate continuously:
+
+- enable GitHub Auto-merge if your plan supports it
+- require PR-based changes to protected branches
+- treat issue-linking as a governed requirement, not a nice-to-have
+
+PR descriptions should use real closing keywords when work is meant to auto-close issues:
+- `closes #123`
+- `fixes owner/repo#123`
+- `resolves owner/repo#123`
+
+`Addresses` is useful as context, but it is not sufficient for automatic closure.
+
 ## 4) CODEOWNERS must exist and be meaningful
 
 - Keep `CODEOWNERS` current.
