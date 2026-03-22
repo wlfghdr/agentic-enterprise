@@ -72,6 +72,20 @@ Do **not** self-assign when:
 - scope changes strategy, roadmap, architecture, security posture, or spend
 - the work would look like an implicit human decision
 
+## Human-Needed Work Must Be Explicit
+
+If a task, mission, review, or product issue needs a human action or decision, do not leave that implicit.
+
+When human action is required:
+- assign the item explicitly when the repo permits it
+- or update the corresponding work artifact so it clearly states:
+  - what decision or action is needed
+  - why it is needed now
+  - what options exist
+  - what the recommended next step is
+
+This applies to approvals, review handoffs, missing configuration, runtime setup, and any other dependency the automation cannot honestly complete alone.
+
 ## Approval Boundaries
 
 Agents may continue execution inside already-approved scope.
