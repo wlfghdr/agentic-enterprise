@@ -90,6 +90,7 @@ Minimum expectations for an OpenClaw-based instance:
 - document the routing policy (subscription-first, then fallback provider subscription, then API fallback)
 - make each running agent use the **instance repo** as its workspace rather than a generic shared workspace
 - create per-agent `agentDir` locations with the credentials/config they actually need
+- define an auditable Discord admin/provisioning path for categories/channels and binding capture
 - document Discord/channel bindings separately from the generic repo bootstrap, because channel IDs remain environment-specific
 
 Use [`docs/runtimes/openclaw.md`](runtimes/openclaw.md) for the runtime-specific guidance.
