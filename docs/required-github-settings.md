@@ -74,6 +74,13 @@ For repos where agents are expected to operate continuously:
 - enable GitHub Auto-merge if your plan supports it
 - require PR-based changes to protected branches
 - treat issue-linking as a governed requirement, not a nice-to-have
+- treat PR assignees and reviewer requests as required operating metadata, not optional hygiene
+
+Minimum PR discipline:
+- every open PR has a named assignee who owns the next step
+- every PR that needs human approval has explicit reviewer request(s)
+- the PR body tells reviewers what to focus on and what actions they can take
+- PRs waiting on a human should be visible in that human's queue via review requests and/or assignee handoff
 
 PR descriptions should use real closing keywords when work is meant to auto-close issues:
 - `closes #123`

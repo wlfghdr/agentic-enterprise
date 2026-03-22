@@ -311,6 +311,11 @@ When `use_projects: true` (recommended), create a GitHub Project v2 with a **Sta
 | PR approved, ready to merge | The person who will merge (human or agent if permitted) | — | Clean handoff to final step |
 | PR is blocked or has failing checks | Agent bot account | — | Agent must investigate and fix |
 
+A PR without both an owner path and a reviewer path is operationally incomplete. The minimum acceptable state is:
+- a named assignee who owns the next step
+- explicit reviewer request(s) when human review is required
+- a PR description that tells reviewers what to review and what they can do next
+
 ### Handoff Protocol — Issues
 
 **Core principle:** Humans never need to touch labels or project status fields. They comment and re-assign. Agents handle all label and project status management.
