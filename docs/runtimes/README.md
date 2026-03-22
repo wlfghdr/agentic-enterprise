@@ -23,6 +23,7 @@ A runtime guide describes how to connect the Agentic Enterprise framework to a s
 |---|---|---|
 | **Claude Code** | [`claude-code.md`](claude-code.md) | CronCreate heartbeat loops, Agent-tool subagent spawning, minimal 5-agent fleet, VPS persistent operation, 3 runtime-specific skills |
 | **OpenClaw** | [`openclaw.md`](openclaw.md) | Fleet sizing, model tier strategy, heartbeat scheduling, auto-merge gates, cost/reliability controls |
+| **Builder Fleet Pattern** | [`builder-fleet-pattern.md`](builder-fleet-pattern.md) | Execution-layer pattern: orchestrator → builder → checker → verifier, wave-based execution, file-backed state, runtime-agnostic |
 
 ---
 
