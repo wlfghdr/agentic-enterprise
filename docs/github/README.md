@@ -154,3 +154,12 @@ Do **not** recreate native GitHub state with redundant labels when the platform 
 - assignee / reviewer ownership
 
 A practical work repo should also have a lightweight label baseline available immediately after initialization.
+
+
+## Ownership and labels
+
+Use GitHub assignees as the ownership source of truth.
+
+Labels should help with dispatch and scope, not duplicate ownership or native GitHub state.
+
+Do **not** add `owner:*` labels or `status:*` labels that simply restate what GitHub already models via state, assignees, or review requests.
