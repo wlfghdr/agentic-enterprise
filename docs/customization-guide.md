@@ -80,6 +80,9 @@ For the shortest template-instantiation path, use [docs/github/setup-checklist.m
 
 ### Step 4b: If You Run OpenClaw, Bootstrap The Instance Fleet
 
+See also: `docs/instances/openclaw-onboarding.md` for the practical minimum fleet, routing, labels, and Discord topology guidance.
+
+
 Do not treat the repo instantiation as complete until the runtime shape is also defined.
 
 Minimum expectations for an OpenClaw-based instance:

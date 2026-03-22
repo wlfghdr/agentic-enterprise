@@ -1,94 +1,56 @@
 labels:
-  - name: "artifact:signal"
-    color: "1D76DB"
-    description: "Operational signal"
-  - name: "artifact:mission"
-    color: "5319E7"
-    description: "Mission issue"
-  - name: "artifact:task"
-    color: "0E8A16"
-    description: "Mission task"
-  - name: "artifact:decision"
-    color: "0052CC"
-    description: "Decision record"
-  - name: "artifact:release"
-    color: "FBCA04"
-    description: "Release contract"
-  - name: "artifact:retrospective"
-    color: "B60205"
-    description: "Incident retrospective"
-  - name: "layer:steering"
-    color: "C5DEF5"
-    description: "Steering layer"
-  - name: "layer:strategy"
-    color: "BFD4F2"
-    description: "Strategy layer"
-  - name: "layer:orchestration"
-    color: "D4C5F9"
-    description: "Orchestration layer"
-  - name: "layer:execution"
-    color: "C2E0C6"
-    description: "Execution layer"
-  - name: "layer:quality"
-    color: "F9D0C4"
-    description: "Quality layer"
-  - name: "loop:discover"
-    color: "D4C5F9"
-    description: "Discover loop artifact"
-  - name: "loop:build"
-    color: "BFDADC"
-    description: "Build loop artifact"
-  - name: "loop:ship"
-    color: "FBCA04"
-    description: "Ship loop artifact"
-  - name: "loop:operate"
-    color: "F9D0C4"
-    description: "Operate loop artifact"
-  - name: "priority:critical"
-    color: "B60205"
-    description: "Blocking - immediate action required"
-  - name: "priority:high"
-    color: "D93F0B"
-    description: "Important - next cycle"
-  - name: "priority:medium"
-    color: "FBCA04"
-    description: "Normal priority"
-  - name: "priority:low"
-    color: "0E8A16"
-    description: "Nice to have"
-  - name: "urgency:immediate"
-    color: "B60205"
-    description: "Needs action now"
-  - name: "urgency:next-cycle"
-    color: "D93F0B"
-    description: "Next triage cycle"
-  - name: "urgency:monitor"
-    color: "0E8A16"
-    description: "Watch and wait"
-  - name: "category:market"
-    color: "1D76DB"
-    description: "Market signal"
-  - name: "category:customer"
-    color: "0052CC"
-    description: "Customer signal"
-  - name: "category:technical"
-    color: "5319E7"
-    description: "Technical signal"
-  - name: "category:internal"
-    color: "BFD4F2"
-    description: "Internal signal"
-  - name: "category:competitive"
-    color: "FBCA04"
-    description: "Competitive signal"
-  - name: "category:financial"
-    color: "D4C5F9"
-    description: "Financial signal"
-  - name: "confidence:high"
-    color: "0E8A16"
-    description: "High confidence"
-  - name: "confidence:medium"
-    color: "FBCA04"
-    description: "Medium confidence"
-  - name: "confidence:low"
-    color: "D93F0B"
-    description: "Low confidence"
+  # Artifact type
+  - name: artifact:signal
+    color: 5319E7
+    description: Signal artifact
+  - name: artifact:mission
+    color: 1D76DB
+    description: Mission artifact
+  - name: artifact:task
+    color: 0052CC
+    description: Task artifact
+
+  # Dispatch / best-fit agent role
+  - name: agent:steering
+    color: BFD4F2
+    description: Best fit for steering work
+  - name: agent:strategy
+    color: C5DEF5
+    description: Best fit for strategy work
+  - name: agent:orchestration
+    color: 0052CC
+    description: Best fit for orchestration work
+  - name: agent:execution
+    color: 0E8A16
+    description: Best fit for execution work
+  - name: agent:quality
+    color: FBCA04
+    description: Best fit for quality work
+  - name: agent:auditor
+    color: D93F0B
+    description: Best fit for internal audit / operating integrity work
+  - name: agent:research
+    color: 7F52FF
+    description: Best fit for research / evidence gathering work
+  - name: agent:content
+    color: C2E0C6
+    description: Best fit for content / GTM / enablement work
+
+  # Scope / product boundary
+  - name: scope:instance
+    color: 1D76DB
+    description: Instance/company-specific work
+  - name: scope:framework
+    color: 5319E7
+    description: Framework / template product work
+  - name: scope:control-plane
+    color: 0052CC
+    description: Observability / control-plane product work
+  - name: scope:shared-runtime
+    color: BFD4F2
+    description: Generic runtime / shared workspace work
+
+  # Approval / governance
+  - name: approval:required
+    color: B60205
+    description: Explicit human approval required before advancing
