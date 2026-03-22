@@ -86,6 +86,9 @@ If you choose this, **keep it internal** (operator docs) and avoid scattering mo
 
 ## Instance Bootstrap Checklist
 
+See also: `openclaw-onboarding.md` for practical onboarding defaults around fleet, labels, routing, and Discord topology.
+
+
 When you instantiate a company fork, the repo is only half the job. For an OpenClaw-based deployment, make the runtime bootstrap explicit too:
 
 1. **Pick the minimal fleet first** — usually one agent per active layer.
