@@ -94,10 +94,9 @@ Use labels for:
 - artifact type
 - best-fit agent/dispatch role
 - scope/product boundary
-- approval-required semantics
 
-Do **not** use labels to duplicate native GitHub state or assignee ownership.
-Ownership belongs in assignees and review requests.
+Do **not** use labels to duplicate native GitHub state, assignee ownership, or approval state.
+Ownership and approval handoff belong in assignees and review requests.
 
 ## Cleanup caution
 

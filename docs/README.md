@@ -52,8 +52,8 @@ These are the primary docs most operators need.
 |---|---|
 | [`file-guide.md`](file-guide.md) | Maps every root file to a category (OSS infrastructure, company content, or agent bootstrap). Answers "what do I keep, what do I delete?" for every file including `.github/` configs. |
 | [`required-github-settings.md`](required-github-settings.md) | Checklist for GitHub branch protection, CODEOWNERS enforcement, and required status checks. Without this, PRs are advisory — not binding. |
-| [`work-backends.md`](work-backends.md) | Canonical backend guide: backend choice, `CONFIG.yaml` structure, artifact placement, migration paths, and backend-specific behavior. |
-| [`github-issues.md`](github-issues.md) | GitHub issue-backend operations guide: project setup, labels, issue forms, handoff rules, and human approval flow. |
+| [`work-backends.md`](work-backends.md) | Canonical backend selection guide: backend choice, `CONFIG.yaml` structure, artifact placement, migration paths, and backend-specific contracts. |
+| [`github-issues.md`](github-issues.md) | Canonical GitHub issue-backend operations guide: project setup, labels, issue forms, sub-issues, assignment rules, and human approval flow. |
 | [`github/setup-checklist.md`](github/setup-checklist.md) | One-pass GitHub backend instantiation checklist: same-repo vs. dedicated-work-repo setup, labels, issue forms, Project, and slim CI. |
 | `scripts/instantiate_instance.py` | Scripted fork cleanup and GitHub issue-backend asset installation for real company instances. |
 | [`mission-lifecycle.md`](mission-lifecycle.md) | End-to-end mission lifecycle: status transitions, Divide & Conquer decomposition, gate requirements, anti-patterns. Required reading for Orchestration and Execution agents. |

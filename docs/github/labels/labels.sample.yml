@@ -50,7 +50,3 @@ labels:
     color: BFD4F2
     description: Generic runtime / shared workspace work
 
-  # Approval / governance
-  - name: approval:required
-    color: B60205
-    description: Explicit human approval required before advancing
