@@ -186,6 +186,17 @@ PATTERNS: list[dict] = [
         "applies_to": ["all"],
     },
     {
+        "id": "FLOW-001",
+        "category": "Workflow Drift",
+        "description": "Stale approval-label semantics detected",
+        "pattern": re.compile(
+            r"(?:approval:required|approval-required\s+semantics|approval\s+label|label\s+change\s+for\s+issue\s+backend)",
+            re.IGNORECASE,
+        ),
+        "severity": "error",
+        "applies_to": ["instructions", "templates", "work", "scripts"],
+    },
+    {
         "id": "TRUST-002",
         "category": "Trust Boundary",
         "description": "Directive to skip or disable input validation",

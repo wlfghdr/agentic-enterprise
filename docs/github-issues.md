@@ -364,32 +364,23 @@ These rules keep GitHub collaboration consistent. **You never need to manage lab
 
 ---
 
-## Sample Files To Copy Into An Instance Repo
+## Template Assets For Instance Repos
 
-This template repository keeps the operational GitHub issue forms as documentation samples so the framework repo itself does not behave like an instance repo. The recommended way to move them into a real instance is `scripts/instantiate_instance.py install-github-work-repo`.
+Prefer the scripted path:
+- `python3 scripts/instantiate_instance.py install-github-work-repo ...`
 
-Copy these into `.github/ISSUE_TEMPLATE/` in your company fork when you enable the issue backend:
+If you install manually, copy only the assets the issue-hosting repo actually needs:
+- `.github/ISSUE_TEMPLATE/` from `docs/github/issue-templates/`
+- `docs/github/labels/labels.sample.yml` for label bootstrap
+- optional slim GitHub workflows from `docs/github/workflows/`
 
-- `docs/github/issue-templates/config.sample.yml`
-- `docs/github/issue-templates/forms/signal.sample.yml`
-- `docs/github/issue-templates/forms/mission.sample.yml`
-- `docs/github/issue-templates/forms/task.sample.yml`
-- `docs/github/issue-templates/forms/decision.sample.yml`
-- `docs/github/issue-templates/forms/release.sample.yml`
-- `docs/github/issue-templates/forms/retrospective.sample.yml`
-
-These samples pre-apply the base artifact labels and ask for the fields humans typically forget.
-For dynamic label synchronization and slim dedicated-work-repo CI, also consider copying:
-
-- `docs/github/labels/labels.sample.yml`
-- `docs/github/workflows/validate-issue-templates.yml`
-- `docs/github/workflows/sync-issue-form-labels.yml`
+For the shortest step-by-step path, use [`github/setup-checklist.md`](github/setup-checklist.md).
 
 ---
 
 ## GitHub Projects Recommendation
 
-When `use_projects: true` (recommended), create a GitHub Project v2 with a **Status** single-select field containing the options listed in the Status Tracking section above. Create these minimum views:
+When `use_projects: true` (recommended), create a GitHub Project v2 with the `Status` field documented above and keep at least these views:
 
 | Project View | Filter |
 |--------------|--------|
@@ -398,7 +389,7 @@ When `use_projects: true` (recommended), create a GitHub Project v2 with a **Sta
 | Mission Tasks | `label:artifact:task is:open` |
 | Release Pipeline | `label:artifact:release is:open` |
 
-The Status field produces a native Kanban board automatically — no label-based grouping needed.
+The `Status` field provides the Kanban workflow. Labels stay for categorization only.
 
 ---
 
