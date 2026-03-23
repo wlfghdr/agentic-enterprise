@@ -1,6 +1,6 @@
 # GitHub Issues Backend Guide
 
-> **Version:** 2.1 | **Last updated:** 2026-03-09
+> **Version:** 2.4 | **Last updated:** 2026-03-23
 
 > **What this document is:** The concrete implementation guide for running operational work artifacts in GitHub Issues. Use this when `CONFIG.yaml → work_backend.type` is `github-issues`.
 
@@ -297,7 +297,7 @@ Closure archives completed work. The project status transition (performed by the
 
 ## Assignment Rules
 
-Every issue, PR, and review request must have an assignee. Assignment is how ownership and next-action responsibility are communicated. These rules apply to **all GitHub artifacts**, not just issues.
+Every issue, PR, and review request must have an assignee. Assignment is how ownership and next-action responsibility are communicated. These rules apply to **all GitHub artifacts**, not just issues. **Assignee state is the source of truth for who must act next.** Comments, body text, and project status can add context, but they must not contradict or replace the assignee signal.
 
 ### Who Gets Assigned — Issues
 
@@ -326,8 +326,8 @@ Every issue, PR, and review request must have an assignee. Assignment is how own
 
 When work transitions between agent and human:
 
-1. **Agent finishes, needs approval:** Agent sets the project status (e.g., `Triage` or `Backlog`), re-assigns to the approving human, and leaves a comment that (a) summarizes what was done, (b) explains what to review, and (c) lists the human's options in plain language (e.g., "You can: **Approve** — comment 'approved' and assign back to @acme-ai-bot | **Reject** — comment what needs to change and assign back to @acme-ai-bot").
-2. **Human decides:** Human comments with their decision in plain language (e.g., "Approved", "Looks good, go ahead", "Rejected — need more detail on rollback") and re-assigns to the agent.
+1. **Agent finishes, needs approval:** Agent sets the project status (e.g., `Triage` or `Backlog`), re-assigns to the approving human, and leaves a comment that (a) summarizes what was done, (b) explains what to review, and (c) lists the human's options in plain language (e.g., "You can: **Approve** — comment 'approved' and assign back to @acme-ai-bot | **Reject** — comment what needs to change and assign back to @acme-ai-bot"). The assignment change is mandatory — do not leave the issue assigned to the agent while expecting human action.
+2. **Human decides:** Human comments with their decision in plain language (e.g., "Approved", "Looks good, go ahead", "Rejected — need more detail on rollback") and re-assigns to the agent. If the human keeps the item assigned to themselves, the required next action is still human-owned.
 3. **Agent processes decision:** Agent reads the comment, interprets the decision, updates the project status field accordingly (e.g., `Backlog` → `Approved`), and continues. If the comment is ambiguous, the agent asks a clarifying question and keeps the issue assigned to the human.
 
 ### Handoff Mechanics — Pull Requests
@@ -424,6 +424,7 @@ Git still holds the durable review-heavy artifacts.
 
 | Version | Date | Change |
 |---|---|---|
+| 2.4 | 2026-03-23 | Clarified that assignee state is the source of truth for next action and that human-needed work must be reassigned to the human owner rather than implied only in comments or body text. |
 | 2.3 | 2026-03-21 | Added template asset references for label bootstrap, slim work-repo CI, dynamic label sync from issue forms, and the GitHub setup checklist. |
 | 2.1 | 2026-03-09 | Updated sample file paths after consolidating GitHub instance assets under `docs/github/`. |
 | 2.0 | 2026-03-08 | Migrated status tracking from labels to GitHub Project Status field. Removed ~20 status labels. Added project setup guidance, project_owner/project_number config fields, unified status model (Backlog → Done + close), terminal state documentation. |

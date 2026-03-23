@@ -1,6 +1,6 @@
 # Work Backends — Git Files vs. Issue Tracker
 
-> **Version:** 1.4 | **Last updated:** 2026-03-09
+> **Version:** 1.5 | **Last updated:** 2026-03-23
 
 > **What this document is:** A comprehensive guide to how work artifacts can be tracked using different backends — either as Markdown files in Git (the original model) or as issues in an issue tracker (GitHub Issues, Jira, Linear, etc.).
 
@@ -287,7 +287,7 @@ When `use_projects: true` (recommended), create a GitHub Project v2 with a **Sta
 
 ## Assignment Discipline (Issues, PRs, and Reviews)
 
-**Every issue, pull request, and review request must have an assignee at all times.** This applies regardless of which work backend is configured — PRs exist in both modes (governance backbone changes always go through PRs). Assignment is not optional metadata — it is the primary mechanism for communicating ownership and expected next action.
+**Every issue, pull request, and review request must have an assignee at all times.** This applies regardless of which work backend is configured — PRs exist in both modes (governance backbone changes always go through PRs). Assignment is not optional metadata — it is the primary mechanism for communicating ownership and expected next action. **Assignee state is the source of truth for who must act next.** If human input, approval, or a decision is required, the item must be assigned to that human rather than left with the agent and explained only in text.
 
 ### Assignment Rules — Issues
 
@@ -324,6 +324,7 @@ A PR without both an owner path and a reviewer path is operationally incomplete.
    - Summarizes what was done and what to review
    - Lists the human's options in plain language (e.g., "You can: **Approve** — comment 'approved' and assign back to @acme-ai-bot | **Reject** — comment what needs to change and assign back to @acme-ai-bot | **Ask questions** — comment your questions and keep yourself assigned")
    - Links to relevant artifacts if applicable
+   - Never relies on the comment alone to indicate human ownership; the assignee must also change
 2. **Human → Agent (any decision):** Human leaves a comment with their decision in plain language (e.g., "Approved", "Looks good", "Rejected — the rollback plan is incomplete", "Please revise the scope to exclude X") and re-assigns to the agent.
 3. **Agent processes human decision:** Agent reads the comment, interprets the decision, updates the project status field accordingly (e.g., `Backlog` → `Approved`), and continues with the next step. If the agent cannot confidently interpret the comment, it asks a clarifying question in a follow-up comment and keeps the issue assigned to the human.
 
@@ -455,6 +456,7 @@ Templates are **never** tracked in the issue system. They are framework files, g
 
 | Version | Date | Change |
 |---------|------|--------|
+| 1.5 | 2026-03-23 | Clarified that assignee state is the source of truth for next action and that human-needed work must be explicitly reassigned to the human owner. |
 | 1.4 | 2026-03-09 | Consolidated backend configuration here and removed the duplicate `WORK-BACKEND.md` doc. Clarified this file's scope vs. `github-issues.md`. |
 | 1.2 | 2026-03-08 | Added assignment discipline section covering issues, PRs, and reviews — mandatory assignees, handoff protocols for both issues and PRs, next-action clarity, unassigned item sweep, agent identity. Human approval via comment+re-assign (agents handle labels). |
 | 1.1 | 2026-03-07 | Clarified Git-only companion artifacts, added human approval cheat sheet, removed issue-only claims for digests/evaluations/outcome reports/fleet reports, linked GitHub implementation guide |

@@ -24,6 +24,11 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 - `docs/runtimes/builder-fleet-pattern.md` — execution-layer reference for the builder fleet pattern: orchestrator → builder → checker → verifier role separation, wave-based execution, file-backed state, runtime-agnostic design. GSD referenced as existence proof without prescribing adoption.
 - `docs/runtimes/README.md` — added builder fleet pattern to the runtime guide table.
 
+### Changed
+
+- `AGENTS.md` — clarified that assignee state is the source of truth for the next required actor on issues/PRs, so human-needed work must be reassigned to the human owner instead of being implied only in comments. Closes #217.
+- `docs/github-issues.md` and `docs/work-backends.md` — tightened the GitHub issue-backend handoff rules so comments provide context but assignment remains authoritative for who must act next. Closes #217.
+
 ## [4.0.1] — 2026-03-16
 
 > **Patch release to realign packaged metadata with the shipped v4 source history.** No framework behavior changed beyond changelog and release-version bookkeeping.
