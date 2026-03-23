@@ -66,6 +66,7 @@ Keep these terms separate:
 - **Demo / reference scenario:** the public proof assets in [`index.html`](index.html) and [`concept-visualization.html`](concept-visualization.html)
 - **Runtime:** your agent platform of choice
 - **Observability:** your OpenTelemetry-native evidence layer
+- **Knowledge:** governed knowledge manifests define what agents may rely on, who owns it, and how fresh it must be
 - **Adoption:** start with Git, CODEOWNERS, signals, missions, and PRs; add agents later if you want
 
 The repo is the governance backbone. You bring the runtime, observability platform, and domain systems that actually execute business operations. The framework stays runtime-agnostic.
@@ -217,7 +218,7 @@ agentic-enterprise/
 ├── CONFIG.yaml              ← Central config (fill FIRST)
 ├── AGENTS.md                ← Global agent instructions
 ├── CODEOWNERS               ← RACI — who approves what
-├── org/                     ← 5-layer org structure + 17 divisions + 19 policies
+├── org/                     ← 5-layer org structure + agent/skill/knowledge registries
 ├── process/                 ← 4-loop lifecycle definitions
 ├── work/                    ← Active signals, missions, decisions, releases
 ├── docs/                    ← Quickstart, architecture, adoption, observability, compliance

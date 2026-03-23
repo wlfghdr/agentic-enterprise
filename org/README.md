@@ -63,10 +63,11 @@ The critical addition — Layer 0: Steering — embeds what was historically inv
 | Term | Definition |
 |------|-----------|
 | **Division** | Persistent group of agents organized by expertise — the agentic equivalent of a department. Owns skills, standards, and institutional knowledge. |
+| **Knowledge manifest** | Governed record of what agents know: source paths, scope, freshness, and ownership. |
 | **Fleet** | Full pool of agents available to Orchestration. Total capacity across all divisions. |
 | **Crew** | Subset of agents drawn from the fleet for a specific mission. Assembled at mission start, disbanded at end. |
 
-Divisions define *what agents know*. The fleet is *who is available*. A crew is *who works on this mission now*.
+Divisions define *where expertise lives*. Knowledge manifests define *what agents know and how that knowledge is governed*. The fleet is *who is available*. A crew is *who works on this mission now*.
 
 ---
 
@@ -220,6 +221,9 @@ org/
 │   ├── orchestration/           ← Orchestration layer agent type definitions
 │   ├── execution/               ← Execution layer agent type definitions
 │   └── quality/                 ← Quality layer agent type definitions
+├── knowledge/                   ← Knowledge manifest registry (what agents know)
+│   ├── README.md                ← Layering model, lifecycle, and indexing guidance
+│   └── *.knowledge.json         ← Governed knowledge manifests with freshness + ownership
 ├── 0-steering/
 │   ├── AGENT.md                 ← Instructions for steering-layer agents
 │   └── EVOLUTION.md             ← How the company continuously evolves itself

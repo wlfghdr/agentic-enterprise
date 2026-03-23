@@ -353,6 +353,12 @@ def main() -> int:
         all_errors.extend(errs)
         all_ok.extend(oks)
 
+        # ── 8. Knowledge manifests ────────────────────────────────────────
+        knowledge_schema_path = REPO / "schemas" / "knowledge-manifest.schema.json"
+        errs, oks = validate_json_artifacts(knowledge_schema_path, "org/knowledge/*.knowledge.json")
+        all_errors.extend(errs)
+        all_ok.extend(oks)
+
     # ── Report ──────────────────────────────────────────────────────────────
     for ok in all_ok:
         print(f"  ✓  {ok}")

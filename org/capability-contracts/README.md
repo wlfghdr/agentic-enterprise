@@ -1,6 +1,6 @@
 # Capability Contracts Registry
 
-A **capability contract** is a versioned, approved record binding an agent type to specific skills and MCP profiles.
+A **capability contract** is a versioned, approved record binding an agent type to specific skills, MCP profiles, and knowledge sources.
 
 ## Schema
 
@@ -17,7 +17,7 @@ Example: `execution-builder.contract.json`
 ## Lifecycle
 
 1. Propose a new or updated contract via PR.
-2. Changes to any `mcp_profiles` entry or permission upgrade require **human approval** before merge.
+2. Changes to any `mcp_profiles` entry, knowledge scope expansion, or permission upgrade require **human approval** before merge.
 3. On approval and merge, the contract becomes active.
 4. Previous contract versions are preserved in `changelog`.
 5. Contracts must be reviewed on expiry or when the agent type's scope changes.

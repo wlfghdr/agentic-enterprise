@@ -21,6 +21,14 @@
       ]
     }
   ],
+  "knowledge_sources": [
+    {
+      "knowledge_id": "org-governance",
+      "version": "1.0.0",
+      "required": true,
+      "notes": "Shared governance baseline for all framework-aligned agent types."
+    }
+  ],
   "approved_by": "CTO",
   "review_required_by": "CTO",
   "changelog": [

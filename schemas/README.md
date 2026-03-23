@@ -31,5 +31,6 @@ Three new schemas support the skills/tools/MCP profiles system:
 | `skill-manifest.schema.json` | `org/skills/*.skill.json` | Declarative skill manifests |
 | `mcp-profile.schema.json` | `org/mcp-profiles/*.mcp-profile.json` | MCP server permission matrices |
 | `capability-contract.schema.json` | `org/capability-contracts/*.contract.json` | Versioned capability contracts per agent type |
+| `knowledge-manifest.schema.json` | `org/knowledge/*.knowledge.json` | Governed knowledge sources, ownership, and freshness |
 
 See [docs/capability-contracts.md](../docs/capability-contracts.md) for the full design.

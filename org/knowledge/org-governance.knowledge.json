@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "knowledge_id": "org-governance",
+  "version": "1.0.0",
+  "title": "Shared governance and process knowledge",
+  "description": "Framework-wide guidance that agents should treat as reusable governance context.",
+  "layer": 1,
+  "scope": "org-wide",
+  "status": "active",
+  "owners": [
+    {
+      "role": "Steering Layer",
+      "team": "framework-maintainers"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "repo-glob",
+      "path": "org/**/*.md",
+      "notes": "Governed layer instructions, registry docs, and policy surfaces."
+    },
+    {
+      "kind": "repo-glob",
+      "path": "process/**/*.md",
+      "notes": "Shared operating-loop and lifecycle guidance."
+    },
+    {
+      "kind": "repo-glob",
+      "path": "docs/**/*.md",
+      "notes": "Operator and reference guidance when promoted into reusable framework knowledge."
+    }
+  ],
+  "freshness": {
+    "review_cadence": "quarterly",
+    "max_age_days": 120,
+    "owner": "framework-maintainers",
+    "last_reviewed": "2026-03-23"
+  },
+  "discovery": {
+    "tags": ["governance", "policies", "process", "framework"],
+    "audiences": ["all-agent-types"]
+  },
+  "usage_constraints": [
+    "Repo-local implementation details should stay in layer-4 knowledge manifests instead of being copied here."
+  ],
+  "change_log": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-23",
+      "change": "Initial org-wide knowledge manifest example."
+    }
+  ]
+}

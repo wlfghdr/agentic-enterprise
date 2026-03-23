@@ -192,6 +192,17 @@ toolchain:
   chat_tool: ""                     # e.g., "Slack", "Teams", "Discord"
 
 # ───────────────────────────────────────────────────────────────────────────
+# 7b. KNOWLEDGE GOVERNANCE
+# ───────────────────────────────────────────────────────────────────────────
+# Optional configuration for how your enterprise layers and reviews governed
+# knowledge sources. Use this when adopting org/knowledge manifests.
+
+knowledge:
+  enabled: false
+  default_review_cadence: "quarterly"   # per-change | weekly | monthly | quarterly | semiannual | annual
+  registry_path: "org/knowledge"
+
+# ───────────────────────────────────────────────────────────────────────────
 # 8. WORK BACKEND (Where operational work artifacts are tracked)
 # ───────────────────────────────────────────────────────────────────────────
 # The operating model defines WHAT artifacts exist (signals, missions, tasks,
