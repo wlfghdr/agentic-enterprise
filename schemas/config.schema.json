@@ -123,6 +123,18 @@
       "type": "string",
       "description": "Primary product or offering name."
     },
+    "knowledge": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "default_review_cadence": {
+          "type": "string",
+          "enum": ["per-change", "weekly", "monthly", "quarterly", "semiannual", "annual"]
+        },
+        "registry_path": { "type": "string" }
+      }
+    },
     "work_backend": {
       "type": "object",
       "description": "Where operational work artifacts are tracked. See docs/work-backends.md.",

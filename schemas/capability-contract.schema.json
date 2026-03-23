@@ -2,16 +2,27 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/wlfghdr/agentic-enterprise/schemas/capability-contract.schema.json",
   "title": "Agent Capability Contract",
-  "description": "Versioned capability contract for an agent type. Binds an agent type to a specific set of skills and MCP profiles, forming an auditable capability record.",
+  "description": "Versioned capability contract for an agent type. Binds an agent type to a specific set of skills, MCP profiles, and knowledge sources, forming an auditable capability record.",
   "type": "object",
   "required": ["schema_version", "agent_type_id", "contract_version", "effective_date", "skills", "mcp_profiles", "approved_by"],
   "additionalProperties": false,
   "properties": {
     "schema_version": { "type": "string", "enum": ["1.0"] },
-    "agent_type_id": { "type": "string", "description": "Agent type this contract applies to (matches agent type registry ID)." },
-    "contract_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Version of this contract. Increment on any permission change." },
+    "agent_type_id": {
+      "type": "string",
+      "description": "Agent type this contract applies to (matches agent type registry ID)."
+    },
+    "contract_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Version of this contract. Increment on any permission or governed-knowledge change."
+    },
     "effective_date": { "type": "string", "format": "date" },
-    "expiry_date": { "type": "string", "format": "date", "description": "Optional. Contract must be renewed before this date." },
+    "expiry_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Optional. Contract must be renewed before this date."
+    },
     "status": { "type": "string", "enum": ["draft", "active", "superseded", "revoked"] },
     "skills": {
       "type": "array",
@@ -51,6 +62,24 @@
               }
             }
           }
+        }
+      }
+    },
+    "knowledge_sources": {
+      "type": "array",
+      "description": "Governed knowledge manifests this agent type may rely on.",
+      "items": {
+        "type": "object",
+        "required": ["knowledge_id", "version"],
+        "additionalProperties": false,
+        "properties": {
+          "knowledge_id": { "type": "string" },
+          "version": { "type": "string" },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the agent type is expected to load this source by default."
+          },
+          "notes": { "type": "string" }
         }
       }
     },

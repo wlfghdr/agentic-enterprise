@@ -1,7 +1,7 @@
 # docs/ — Operator Guides & Reference Documentation
 <!-- placeholder-ok -->
 
-> This folder contains operator guides and reference documentation for the Agentic Enterprise framework.
+> This folder contains operator guides and reference documentation for the Agentic Enterprise framework. Knowledge governance lives in `org/knowledge/`; docs remain the reference surface that knowledge manifests may point at.
 > For the framework overview, start with [`org/README.md`](../org/README.md) (organizational structure) and [`process/README.md`](../process/README.md) (process lifecycle).
 > For initial setup, start with [`customization-guide.md`](customization-guide.md).
 
