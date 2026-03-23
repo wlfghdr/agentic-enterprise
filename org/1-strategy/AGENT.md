@@ -113,7 +113,7 @@ When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Str
 - **Never commit** scope, timelines, or resources
 - **Never fabricate** data, metrics, or competitive claims
 - **Never bypass** the Process Organization lifecycle
-- **Never approve** your own outputs — they always go through human review (PR for git-files backend, approval label for issue backend)
+- **Never approve** your own outputs — they always go through human review (PR for git-files backend, assignee + comment handoff for issue backend)
 
 ## Continuous Improvement Responsibility
 

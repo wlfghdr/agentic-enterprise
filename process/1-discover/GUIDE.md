@@ -66,7 +66,7 @@ If the opportunity is validated:
 4. Identify human checkpoint moments
 5. Estimate fleet composition
 6. **Define observability requirements** — identify key metrics aligned with the outcome contract, query production baselines for any existing components affected, and note observability dependencies (new dashboards, SLOs, alerts needed). See the Observability Requirements section in the mission brief template.
-7. Submit for Strategy Layer approval (PR for git-files backend, label change for issue backend)
+7. Submit for Strategy Layer approval (PR for git-files backend, assign to the approving human and request comment-based approval for issue backend)
 
 ### Step 5: Mission Approval
 
