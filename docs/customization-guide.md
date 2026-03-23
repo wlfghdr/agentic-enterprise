@@ -2,12 +2,10 @@
 
 > **Version:** 3.6 | **Last updated:** 2026-03-14
 
-> **Start here** after cloning this framework.
-> This guide walks you through every step of making this operating model your own.
+> **Start here** after cloning the framework.
+> Fastest safe path: fill `CONFIG.yaml`, install the GitHub issue-backend kit if needed, then run `python3 scripts/instantiate_instance.py cleanup-instance`.
 
-> **New to the repo layout?** Read [docs/file-guide.md](file-guide.md) first — it explains which root files are part of the open-source template infrastructure (safe to delete in a private fork) and which are your company's actual operating model content (fill in and own).
-
-> **Fastest safe path:** fill `CONFIG.yaml`, install the GitHub issue-backend kit if needed, then run `python3 scripts/instantiate_instance.py cleanup-instance` to strip template-only assets and replace the top-level docs with instance-facing scaffolding.
+> New to the repo layout? Read [docs/file-guide.md](file-guide.md) first.
 
 ---
 
@@ -52,31 +50,21 @@ If you're a small team or solo founder, start with a **minimal agent fleet** —
 Also decide whether operational work lives in the same repo as the governance backbone or in a separate `*-work` repo.
 
 **Simple rule:**
-- keep work in the same repo for very small or early setups
-- split to a dedicated work repo once humans need cleaner backlog visibility, notifications, mobile access, or clearer separation from the governance backbone
-- keep product implementation in its own product repo either way
-
-Example topology:
-- template: `agentic-enterprise`
-- instance: `my-company`
-- work repo: `my-company-work`
-- product repo: `my-product`
-
-Decide where operational work artifacts (signals, missions, tasks, decisions) will be tracked:
+- same repo for very small or early setups
+- dedicated work repo once humans need cleaner backlog visibility and separation
+- product implementation stays in product repos either way
 
 | Backend | Best For | Set In CONFIG.yaml |
 |---------|----------|--------------------|
-| **Git files** (default) | Self-contained, no external dependencies, maximum auditability | `work_backend.type: "git-files"` |
-| **GitHub Issues** | Better human collaboration, native boards, labels, notifications, mobile access | `work_backend.type: "github-issues"` |
+| **Git files** | Self-contained, maximum auditability | `work_backend.type: "git-files"` |
+| **GitHub Issues** | Better human collaboration and visibility | `work_backend.type: "github-issues"` |
 
-If using GitHub, **GitHub Issues is recommended** — it's always available and provides dramatically better visibility for humans. See [docs/work-backends.md](work-backends.md) for the full guide including label taxonomy.
+If you choose GitHub Issues, use:
+- [docs/work-backends.md](work-backends.md) for backend choice and contract
+- [docs/github-issues.md](github-issues.md) for live operating rules
+- [docs/github/setup-checklist.md](github/setup-checklist.md) for the shortest setup path
 
-If you choose the issue backend, do not stop at `work_backend.type: "github-issues"`.
-You also need the GitHub operating setup from [docs/github-issues.md](github-issues.md): Project v2 for status tracking, labels, and issue forms.
-For the shortest template-instantiation path, use [docs/github/setup-checklist.md](github/setup-checklist.md).
-
-> **Note:** Governance backbone files (org structure, policies, agent instructions, templates) always stay in Git regardless of this choice.
-
+> Governance backbone files stay in Git regardless of backend choice.
 
 ### Step 4b: If You Run OpenClaw, Bootstrap The Instance Fleet
 

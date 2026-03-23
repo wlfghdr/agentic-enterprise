@@ -23,24 +23,17 @@ Pick the shortest path that matches what you are trying to do:
 
 ---
 
-## Template vs. Company Fork
+## Keep / Delete Rule of Thumb
 
-Each document falls into one of three categories:
+- **Keep** docs that define how your company instance operates.
+- **Keep if used** docs that support a runtime, CI gate, or platform feature you actually run.
+- **Delete or ignore** template-only setup material after instantiation.
 
-| Document | Category | Template repo | Company fork |
-|---|---|---|---|
-| [`file-guide.md`](file-guide.md) | Setup reference | ✅ Framework doc | **Keep** — read once during fork setup to understand what each root file does |
-| [`required-github-settings.md`](required-github-settings.md) | Setup reference | ✅ Applies to both | **Apply** — configure branch protection and CODEOWNERS before going live |
-| [`runtimes/README.md`](runtimes/README.md) | Runtime reference | ✅ Framework doc | **Keep** as runtime guide index |
-| [`runtimes/openclaw.md`](runtimes/openclaw.md) | Runtime reference | ✅ Framework doc | **Keep** if using OpenClaw; ignore otherwise |
-| [`policy-as-code.md`](policy-as-code.md) | CI feature | ✅ Template CI gate | **Keep** if using OPA/Conftest gate; delete otherwise |
-| [`security-scanning.md`](security-scanning.md) | CI feature | ✅ Template CI gate | **Keep** if using Gitleaks/Dependency Review; delete otherwise |
-| [`lock-enforcement.md`](lock-enforcement.md) | CI feature | ✅ Template CI gate | **Keep** if using lock enforcement; delete otherwise |
-| [`placeholder-check.md`](placeholder-check.md) | CI feature | ✅ Template CI gate | **Keep** if using placeholder CI gate; delete otherwise |
-| [`schema-guide.md`](schema-guide.md) | CI feature | ✅ Template CI gate | **Keep** if using schema validation; delete otherwise |
-| [`mission-lifecycle.md`](mission-lifecycle.md) | Process reference | ✅ Framework doc | **Keep** — mission lifecycle, status transitions, Divide & Conquer pattern |
-| [`github-issues.md`](github-issues.md) | Setup reference | ✅ Framework doc | **Keep** — concrete GitHub issue-backend implementation guide |
-| [`work-backends.md`](work-backends.md) | Setup reference | ✅ Framework doc | **Keep** — guide to work backend choice (git-files vs. issue tracker) |
+In practice:
+- keep `work-backends.md`, `github-issues.md`, `mission-lifecycle.md`, and `required-github-settings.md`
+- keep runtime docs only for runtimes you actually use
+- keep CI feature guides only for gates you actually keep enabled
+- use `file-guide.md` when doing one-time fork cleanup
 
 ---
 
