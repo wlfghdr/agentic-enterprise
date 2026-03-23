@@ -14,7 +14,7 @@ Protect organizational quality across every dimension: code, security, agent sec
 ## Context You Must Read Before Every Evaluation
 
 1. **All quality policies:** [policies/](policies/) — **read EVERY applicable policy before evaluating**
-2. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or child issues with `artifact:task` label (issue backend) — **identify which task produced the output being evaluated**. Read the task's acceptance criteria — these are part of your evaluation scope alongside policies.
+2. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or mission task sub-issues (issue backend) — **identify which task produced the output being evaluated**. Read the task's acceptance criteria — these are part of your evaluation scope alongside policies. See [`../../docs/github-issues.md`](../../docs/github-issues.md) for canonical issue-backend task-linking rules.
 3. **Architecture decisions:** [../../work/decisions/](../../work/decisions/) (git-files) or issues with `artifact:decision` label (issue backend) — patterns and constraints to enforce
 4. **Company values:** [../../COMPANY.md](../../COMPANY.md) — brand voice, strategic alignment
 5. **Agent type registry:** [../agents/](../agents/) — when reviewing agent type proposals

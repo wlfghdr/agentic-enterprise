@@ -39,7 +39,7 @@ Before decomposing a mission or dispatching work:
 - If a new mission fully overlaps with existing active work, **escalate to Strategy Layer** rather than creating parallel missions
 
 ### Task Decomposition (Divide & Conquer)
-- **Produce TASKS.md** (`work/missions/_TEMPLATE-tasks.md`) for every mission that involves Execution Layer work (git-files backend), or create child issues with `artifact:task` label (issue backend) — this is **required** before a mission can transition to `active` status
+- **Produce TASKS.md** (`work/missions/_TEMPLATE-tasks.md`) for every mission that involves Execution Layer work (git-files backend), or create mission task sub-issues (issue backend) — this is **required** before a mission can transition to `active` status
 - Decompose mission outcomes into concrete, assignable tasks with: assigned division, agent type, acceptance criteria, dependencies, and priority
 - Ensure tasks are granular enough to be independently deliverable by a single agent or agent pool
 - Verify the dependency graph has no circular dependencies before setting status to `active`

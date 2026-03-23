@@ -14,7 +14,7 @@ Execute approved mission briefs by producing outputs: code, tests, documentation
 
 ## Context You Must Read
 
-1. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or mission issue with `artifact:task` child issues (issue backend) — **your work intake**. Identify your assigned tasks, check dependencies, and verify acceptance criteria before starting.
+1. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or mission task sub-issues on the mission issue (issue backend) — **your work intake**. Identify your assigned tasks, check dependencies, and verify acceptance criteria before starting. See [`../../docs/github-issues.md`](../../docs/github-issues.md) for the canonical issue-backend handoff and task-linking rules.
 2. **Process overview:** [../README.md](../README.md)
 3. **Quality policies:** [../../org/4-quality/policies/](../../org/4-quality/policies/) — ALL of them
 4. **Decision record template:** [../../work/decisions/_TEMPLATE-decision-record.md](../../work/decisions/_TEMPLATE-decision-record.md)

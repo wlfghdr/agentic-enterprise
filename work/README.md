@@ -71,7 +71,7 @@ work/
 |----------|-------|-------------|----------|
 | Signal | `artifact:signal` | Anyone | Project Status → `Approved` by Steering |
 | Mission | `artifact:mission` | Strategy Layer | Project Status → `Approved` |
-| Task | `artifact:task` (sub-issue of mission) | Orchestration Layer | Project Status transitions |
+| Task | `artifact:task` (sub-issue of mission) | Orchestration Layer | Project Status transitions; approval/handoff rules live in `docs/github-issues.md` |
 | Decision | `artifact:decision` | Any Layer | Project Status → `Done` (accepted) |
 | Release | `artifact:release` | Orchestration Layer | Project Status → `Approved` |
 | Retrospective | `artifact:retrospective` | Operate Loop | Project Status → `Done` (accepted) |

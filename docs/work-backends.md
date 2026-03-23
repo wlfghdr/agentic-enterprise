@@ -323,23 +323,8 @@ Minimum acceptable GitHub issue-backend state:
 
 | Mechanism | Git Files Backend | Issue Backend |
 |-----------|-------------------|---------------|
-| Signal triage | PR merge = approval | Human comments with triage decision (e.g., "proceed", "defer", "monitor", "done") and re-assigns to agent. Agent updates the project status field accordingly (e.g., `Triage` → `Approved`). |
-| Mission approval | PR merge = approval | Human comments approval (e.g., "approved") and re-assigns to agent. Agent changes project status `Backlog` → `Approved`. |
-| Decision approval | PR merge = approval | Human comments acceptance and re-assigns to agent. Agent changes project status `Backlog` → `Approved`. |
+| Human approval / triage / go-no-go | PR merge = approval | Assignee + comment handoff. Human comments in plain language and re-assigns; agent updates project status. See [`github-issues.md`](github-issues.md). |
 | Quality gate | Evaluation file with PASS verdict | Evaluation file in Git references the issue-backed mission/task |
-| Release go/no-go | PR merge = approval | Human comments approval and re-assigns to agent. Agent changes project status `Backlog` → `Approved`. |
-
-### Human Approval Cheat Sheet
-
-Humans approve by **commenting and re-assigning** — they never need to touch labels or project status fields. The agent's handoff comment always explains the available options.
-
-| Artifact | Human does this | Agent does this after |
-|----------|-----------------|---------------------|
-| Signal | Review the issue, comment with triage decision (e.g., "proceed" or "defer — not a priority this quarter"), re-assign to agent | Agent updates the project status based on the comment (e.g., `Triage` → `Approved` or `Done`) |
-| Mission | Review scope and outcomes, comment approval or rejection, re-assign to agent | Agent changes project status `Backlog` → `Approved` (or keeps and notes rejection) |
-| Decision | Review context and tradeoffs, comment acceptance or rejection, re-assign to agent | Agent changes project status `Backlog` → `Approved` (or keeps and notes rejection) |
-| Release | Review rollout and rollback plan, comment approval, re-assign to agent | Agent changes project status `Backlog` → `Approved` |
-| Retrospective | Review findings and follow-ups, comment acceptance, re-assign to agent | Agent changes project status to `Done` |
 
 Do not rely on issue closure alone as approval. Closure archives work; the project status transition (performed by the agent) is the approval event.
 

@@ -13,7 +13,7 @@ Execute the work defined in mission briefs and fleet configurations. This spans 
 
 ## Context You Must Read Before Every Task
 
-1. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or child issues with `artifact:task` label on the mission issue (issue backend) — **your primary work intake**. Find the task(s) assigned to your division and agent type. Read the task description, acceptance criteria, and dependencies before starting.
+1. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or mission task sub-issues on the mission issue (issue backend) — **your primary work intake**. Find the task(s) assigned to your division and agent type. Read the task description, acceptance criteria, and dependencies before starting. See [`../../docs/github-issues.md`](../../docs/github-issues.md) for canonical issue-backend handoff and task-linking rules.
 2. **Quality policies:** [../4-quality/policies/](../4-quality/policies/) — **read ALL relevant policies before producing any output** (especially delivery, architecture, and observability)
 3. **Division charter** for your division (in `divisions/<your-division>/`)
 4. **Fleet configuration** for your mission (from `../2-orchestration/fleet-configs/`)

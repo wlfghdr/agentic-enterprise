@@ -19,7 +19,7 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 3. **Delivery policy:** [../../org/4-quality/policies/delivery.md](../../org/4-quality/policies/delivery.md)
 4. **Observability policy:** [../../org/4-quality/policies/observability.md](../../org/4-quality/policies/observability.md)
 5. **Outcome contract** for the mission
-6. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or child issues with `artifact:task` label (issue backend) — verify task completion before release
+6. **Mission tasks:** `work/missions/<name>/TASKS.md` (git-files) or mission task sub-issues (issue backend) — verify task completion before release. See [`../../docs/github-issues.md`](../../docs/github-issues.md) for the canonical issue-backend task-linking and approval handoff rules.
 7. **Outcome report template:** [../../work/missions/_TEMPLATE-outcome-report.md](../../work/missions/_TEMPLATE-outcome-report.md)
 8. **Asset registry:** [../../work/assets/](../../work/assets/) — verify all ship artifacts are registered
 
