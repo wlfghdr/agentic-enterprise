@@ -285,81 +285,23 @@ When `use_projects: true` (recommended), create a GitHub Project v2 with a **Sta
 
 ---
 
-## Assignment Discipline (Issues, PRs, and Reviews)
+## Assignment, Approval, and Decomposition
 
-**Every issue, pull request, and review request must have an assignee at all times.** This applies regardless of which work backend is configured — PRs exist in both modes (governance backbone changes always go through PRs). Assignment is not optional metadata — it is the primary mechanism for communicating ownership and expected next action. **Assignee state is the source of truth for who must act next.** If human input, approval, or a decision is required, the item must be assigned to that human rather than left with the agent and explained only in text.
+For the GitHub issue backend, the **canonical operating rules** live in [`github-issues.md`](github-issues.md).
+This document keeps only the backend contract:
 
-### Assignment Rules — Issues
+- **Assignee is the source of truth** for who acts next.
+- If human approval or input is needed, **assign to that human**.
+- Humans approve by **commenting and re-assigning** — not by managing labels.
+- PR review remains native GitHub review + reviewer requests.
+- Mission task decomposition in the issue backend uses **sub-issues** with `artifact:task`.
+- Unassigned issues/PRs are workflow failures and must be swept by orchestration.
 
-| Situation | Assignee | Why |
-|-----------|----------|-----|
-| Agent is executing a task | Agent's GitHub bot account | Agent owns the work and is responsible for completion |
-| Work needs human approval | The approving human | Human must act — review, approve, reject, or request changes |
-| Work needs human decision | The deciding human | Human must make a judgment call |
-| Agent is blocked, needs human input | The human who can unblock | Prevents silent stalls |
-| Issue just created, not yet triaged | The triaging human or orchestration agent | Ensures someone picks it up |
-| Completed work, pending closure | The person who will close/archive | Clean handoff to final step |
-
-### Assignment Rules — Pull Requests
-
-| Situation | Assignee | Reviewers | Why |
-|-----------|----------|-----------|-----|
-| Agent opens a PR | Agent bot account (author) | Human(s) from CODEOWNERS or relevant approver | Author owns the PR; reviewer must act |
-| PR review requested | Agent bot account (author) | The specific human(s) who should review | Reviewer sees it in their review queue |
-| Reviewer requests changes | Agent bot account | Same reviewer (stays assigned) | Agent must address feedback |
-| Agent addresses feedback | Agent bot account | Re-request review from same reviewer | Reviewer must re-evaluate |
-| PR approved, ready to merge | The person who will merge (human or agent if permitted) | — | Clean handoff to final step |
-| PR is blocked or has failing checks | Agent bot account | — | Agent must investigate and fix |
-
-A PR without both an owner path and a reviewer path is operationally incomplete. The minimum acceptable state is:
-- a named assignee who owns the next step
-- explicit reviewer request(s) when human review is required
-- a PR description that tells reviewers what to review and what they can do next
-
-### Handoff Protocol — Issues
-
-**Core principle:** Humans never need to touch labels or project status fields. They comment and re-assign. Agents handle all label and project status management.
-
-1. **Agent → Human (approval needed):** Agent sets the project status (e.g., `Triage`), re-assigns to the approving human, and leaves a comment that:
-   - Summarizes what was done and what to review
-   - Lists the human's options in plain language (e.g., "You can: **Approve** — comment 'approved' and assign back to @acme-ai-bot | **Reject** — comment what needs to change and assign back to @acme-ai-bot | **Ask questions** — comment your questions and keep yourself assigned")
-   - Links to relevant artifacts if applicable
-   - Never relies on the comment alone to indicate human ownership; the assignee must also change
-2. **Human → Agent (any decision):** Human leaves a comment with their decision in plain language (e.g., "Approved", "Looks good", "Rejected — the rollback plan is incomplete", "Please revise the scope to exclude X") and re-assigns to the agent.
-3. **Agent processes human decision:** Agent reads the comment, interprets the decision, updates the project status field accordingly (e.g., `Backlog` → `Approved`), and continues with the next step. If the agent cannot confidently interpret the comment, it asks a clarifying question in a follow-up comment and keeps the issue assigned to the human.
-
-### Handoff Protocol — Pull Requests
-
-1. **Agent opens PR:** Agent creates the PR, assigns itself, requests review from the appropriate human(s), and writes a PR description that:
-   - Summarizes the change and its purpose
-   - Links to the originating issue/mission/task
-   - States what the reviewer should focus on
-   - Lists the reviewer's options (e.g., "You can: **Approve** the review | **Request changes** with comments | **Comment** with questions")
-2. **Reviewer acts:** Reviewer submits a GitHub review (approve, request changes, or comment). No re-assignment needed — the review system handles notification.
-3. **Agent processes review:** If approved and agent has merge permission, it merges. If changes are requested, the agent addresses them, pushes new commits, and re-requests review. If the review comment is unclear, the agent replies on the PR asking for clarification.
-4. **Merge handoff:** If the agent cannot merge (branch protection requires a human), it comments on the PR stating it is ready to merge and assigns the PR to the human who should merge.
-
-### Next-Action Clarity
-
-Every assigned issue, PR, and review request must make the expected next action obvious. An assignee or reviewer should be able to look at an item and immediately understand what they need to do and what their options are — without reading the full history or knowing the label system.
-
-Mechanisms for next-action clarity:
-- **Agent-authored handoff comment** (issues) — always present when an agent hands off to a human; lists options in plain language
-- **PR description** — always explains what to review and what the reviewer's options are
-- **Review re-request** — after addressing feedback, agent comments summarizing what changed
-- **Issue description** — for new issues, the description itself states the expected action and available options
-- **Project status field** — maintained by agents as machine-readable state; humans can ignore it
-
-### Unassigned Item Sweep
-
-Orchestration agents must periodically scan for unassigned open issues and PRs. Unassigned items are workflow failures — they represent work that nobody is driving. For each unassigned item:
-1. Determine the correct assignee based on the artifact type, status, and layer
-2. Assign the item (and request reviewers for PRs if missing)
-3. If the correct assignee cannot be determined, escalate by assigning to the orchestration layer's human supervisor
-
-### Agent Identity
-
-Agents must use a dedicated GitHub bot/user account (e.g., `acme-ai-bot`). This makes it unambiguous whether an item is human-owned or agent-owned, across issues, PRs, and reviews. Configure the agent identity in `CONFIG.yaml → work_backend.github_issues`.
+Minimum acceptable GitHub issue-backend state:
+- every open issue and PR has a named assignee
+- every PR needing human review has reviewer request(s)
+- every mission with execution scope decomposes into child task issues
+- labels classify artifact/scope/dispatch only; they do not duplicate ownership or approval state
 
 ---
 
