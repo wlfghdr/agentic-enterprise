@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 4.0 | **Last updated:** 2026-03-15
+> **Version:** 4.1 | **Last updated:** 2026-03-23
 
 Every AI agent in this repository must follow these instructions. Layer-specific and division-specific instructions extend (never contradict) these rules.
 
@@ -32,8 +32,8 @@ Never commit scope, timelines, resources, or strategic direction. Draft, analyze
 ### 3. Process is governed
 - Work tracked in the **configured work backend** — Markdown in `work/` or issues in the tracker (`CONFIG.yaml → work_backend`, see [docs/work-backends.md](docs/work-backends.md))
 - **Git-files:** Changes → PRs → merges. **Issues:** State transitions + human comments. Governance backbone (org structure, policies, templates) always in Git.
-- **Assignment:** Every issue/PR must have an assignee at all times. Agent-owned → agent. Human-owned → human. Never unassigned.
-- **Handoffs:** Re-assign to human with comment: (a) what was done, (b) what to review, (c) options (approve/reject/request changes). Human comments decision and re-assigns back.
+- **Assignment:** Every issue/PR must have an assignee at all times. Agent-owned → agent. Human-owned → human. Never unassigned. Assignee state is the source of truth for who must act next; do not leave human-needed work assigned to an agent or hide the handoff only in comments/body text.
+- **Handoffs:** Re-assign to human with comment: (a) what was done, (b) what to review, (c) options (approve/reject/request changes). Human comments decision and re-assigns back. Comments explain the handoff; assignment makes the required next actor explicit.
 - **PRs:** Request reviews from CODEOWNERS. Description explains what to review and reviewer's options.
 - **PR issue linking:** PRs MUST link to originating issues using `closes #NNN` or `fixes #NNN` syntax in the PR description. Issue references ensure automatic closure upon PR merge.
 - **Auto-merge:** PRs SHOULD be created with auto-merge enabled when all required checks pass.
