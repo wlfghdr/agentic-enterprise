@@ -9,7 +9,16 @@
 > - [OTel Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/)
 > - [OTel General Attribute Registry](https://opentelemetry.io/docs/specs/semconv/general/attributes/)
 
-This file now also absorbs the former `docs/observability-genai.md` quick-reference so span naming, required attributes, metrics, and instrumentation checks live in one place.
+This is the canonical telemetry contract.
+Use it for:
+- canonical span names
+- required attributes and metrics
+- migration/deprecation decisions
+- machine-checkable validation targets
+
+Read it in two modes:
+- **Operator / implementer path:** Design Principles, Span Naming, required GenAI attributes, Standard Metrics, Privacy defaults
+- **Reference path:** mapping table, migration policy, schema appendix
 
 ---
 
@@ -23,19 +32,16 @@ This file now also absorbs the former `docs/observability-genai.md` quick-refere
 
 ---
 
-## Table of Contents
+## Fast Path
 
-1. [Resource Attributes](#1-resource-attributes)
-2. [Span Naming Conventions](#2-span-naming-conventions)
-3. [Standard OTel and GenAI Attributes](#3-standard-otel-and-genai-attributes)
-4. [Custom Agentic-Enterprise Attributes](#4-custom-agentic-enterprise-attributes)
-5. [Span Hierarchy Example](#5-span-hierarchy-example)
-6. [Span Events - Native vs Derived](#6-span-events---native-vs-derived)
-7. [Standard Metrics](#7-standard-metrics)
-8. [Privacy and Content Capture Defaults](#8-privacy-and-content-capture-defaults)
-9. [Canonical Mapping and Deprecation Table](#9-canonical-mapping-and-deprecation-table)
-10. [Semconv Stability and Migration Policy](#10-semconv-stability-and-migration-policy)
-11. [Machine-Readable Schema Appendix](#11-machine-readable-schema-appendix)
+If you only need the minimum to instrument correctly, implement these first:
+1. Resource attributes in Section 1
+2. canonical span names in Section 2
+3. required GenAI attributes in Section 3.1
+4. standard metrics in Section 7
+5. privacy defaults in Section 8
+
+Use the later sections mainly as reference and migration support.
 
 ---
 
@@ -171,6 +177,8 @@ These attributes have **no suitable OTel GenAI standard equivalent** as of this 
 ---
 
 ## 5. Span Hierarchy Example
+
+This section is illustrative. It helps operators and implementers visualize the contract, but the normative requirements remain in the attribute and metric sections.
 
 A minimal orchestrator → agent → model → tool call trace:
 
@@ -413,6 +421,8 @@ This contract tracks the OTel GenAI spec version it was validated against:
 ---
 
 ## 11. Machine-Readable Schema Appendix
+
+This section is primarily for validators, CI, and tooling authors. Most operators can stop after Sections 1-10 unless they are implementing or extending automated checks.
 
 The following YAML schema defines the minimum required span structure for automated validation. CI tools may parse this to enforce contract compliance.
 
