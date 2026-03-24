@@ -107,7 +107,7 @@ This adds:
 
 For governed repo work:
 - use PRs rather than direct pushes to protected branches
-- enable auto-merge when the PR is reviewable and checks are green
+- enable auto-merge by default when the PR is reviewable and checks are green
 - use real closing keywords in the PR description:
   - `Closes owner/repo#123`
   - `Fixes owner/repo#123`
