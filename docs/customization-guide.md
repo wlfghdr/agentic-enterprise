@@ -138,30 +138,23 @@ After that setup, create your first GitHub Issue with label `artifact:signal` an
 
 ## Minimal Agent Fleet
 
-For small teams and solo founders, start with **5 agents — one per layer**. This gives every layer a dedicated owner with clear boundaries and no collapsed responsibilities. Expand agent counts within each layer as signal volume and mission throughput grow.
+For small teams and solo founders, start with **5 agents — one per layer**. This keeps ownership explicit and avoids collapsed responsibilities.
 
 ### Minimal 5-Agent Fleet
 
-| Agent | Layer | Responsibility | When it runs |
-|---|---|---|---|
-| **Steering Agent** | Layer 0 | Signal aggregation, weekly digests, pattern detection, evolution proposals | Weekly (digest cadence) + on signal volume threshold |
-| **Strategy Agent** | Layer 1 | Signal triage, mission brief creation, outcome contracts, venture health | On every signal digest + mission lifecycle events |
-| **Orchestration Agent** | Layer 2 | Fleet config, mission decomposition, release preparation, mission status tracking | On every mission state change + release events |
-| **Execution Agent(s)** | Layer 3 | Implementation — code, research, content, tests, PRs | When a task is assigned |
-| **Quality Agent** | Layer 4 | Policy evaluation, operate-loop signaling, outcome measurement, stall detection | Continuously (after builds, before merges, on measurement schedule dates) |
+| Agent | Layer | Responsibility |
+|---|---|---|
+| **Steering Agent** | Layer 0 | signal aggregation, digests, evolution proposals |
+| **Strategy Agent** | Layer 1 | signal triage, mission briefs, outcome contracts |
+| **Orchestration Agent** | Layer 2 | decomposition, fleet config, mission status, release preparation |
+| **Execution Agent(s)** | Layer 3 | implementation work |
+| **Quality Agent** | Layer 4 | policy evaluation, outcome measurement, stall detection |
 
-> **Solo founder rule:** You still merge PRs — that is your only required action. But each layer now has a dedicated agent, so no responsibilities are collapsed or dropped.
+> **Solo founder rule:** You still merge PRs. But each layer still has a distinct owner.
 
 ### Why 5 Agents, Not 3
 
-The original 3-agent fleet collapsed Steering + Strategy + Orchestration into a single Orchestration Agent and overloaded the Quality Agent with operate-loop duties. This caused:
-
-- **Signal triage gap:** No agent explicitly owned the Signal → Mission Brief flow
-- **Digest gap:** Weekly signal aggregation had no owner
-- **Ship/Release gap:** Release preparation was not wired to any agent
-- **Operate-loop gap:** Production signaling and stall detection were undocumented responsibilities
-
-With one agent per layer, every loop in the lifecycle has an explicit owner.
+Three agents tend to collapse Steering, Strategy, and Orchestration too early. That creates gaps in signal triage, release preparation, and operate-loop ownership.
 
 ### How the 5 Layers Map to a Small Team
 
@@ -205,53 +198,33 @@ The last item is the key: even "nothing to improve" is worth filing. It keeps th
 
 ## Initialization Sequence: Day 0 → Day 1
 
-> The Quick Start gives you the files. This section shows you how to **bootstrap the living system** — from a populated template to a company where signals flow, missions execute, and feedback loops close.
+> This section is the shortest path from populated template to a working loop.
 
-### Day 0 — Foundation (1-2 hours)
+### Day 0 — Foundation
+1. Seed `COMPANY.md`
+2. Create the first venture charter
+3. Define `CODEOWNERS`
 
-Complete the Quick Start above (Steps 1-4), then:
+### Day 0.5 — Organizational skeleton
+4. Create the first divisions
+5. Seed one agent type per layer
+6. Review the initial quality policies
 
-1. **Seed COMPANY.md** — Write your real vision, mission, and 4-8 strategic beliefs. These anchor every agent's decision-making. Don't ship placeholder text.
-2. **Create your first venture charter** — Copy `org/1-strategy/ventures/_TEMPLATE-venture-charter.md` → `org/1-strategy/ventures/<your-first-product>.md`. Define success metrics and measurement schedule. Even rough targets are better than none.
-3. **Define CODEOWNERS** — Review and customize the [CODEOWNERS](../CODEOWNERS) file with actual GitHub teams or users that map to each layer's approval authority.
+### Day 1 — First signal flow
+7. File the first signal
+8. Produce the first digest
+9. Triage to the first mission
+10. Decompose into tasks and fleet config
+11. Execute
+12. Evaluate and close the loop
 
-### Day 0.5 — Organizational Skeleton (1-2 hours)
+### Day 2+ — Progressive automation
+- establish weekly digest cadence
+- produce the first outcome report
+- produce retrospectives when incidents happen
+- evolve the structure only after one full loop has run
 
-4. **Create your divisions** — For each team you have, copy `org/3-execution/divisions/_TEMPLATE/` → `org/3-execution/divisions/<your-division>/`. Write the `DIVISION.md` charter with scope boundaries and "never do" rules.
-5. **Seed the agent type registry** — For each agent role you plan to deploy:
-   - Copy `org/agents/_TEMPLATE-agent-type.md` → `org/agents/<layer>/<agent-type-id>.md`
-   - Fill in capabilities, layer, division assignment, scaling limits, and quality gates
-   - Set `status: active` for agents you're deploying immediately; `proposed` for planned ones
-   - At minimum, seed one agent type per layer (Steering, Strategy, Orchestration, Execution, Quality)
-6. **Define initial quality policies** — Review all files in `org/4-quality/policies/`. For each, either:
-   - Customize thresholds to match your current capabilities (be honest — aspirational but achievable)
-   - Or mark sections as `# TODO: Define threshold` so agents know to escalate
-
-### Day 1 — First Signal Flow (30 minutes)
-
-7. **File your first signal:**
-   - **Git-files backend:** Create `work/signals/YYYY-MM-DD-<your-first-opportunity>.md` from the template (`work/signals/_TEMPLATE-signal.md`).
-   - **Issue backend:** Create a GitHub Issue with label `artifact:signal` and the structured body from the signal template. The issue's Project Status will default to `Backlog`.
-   This is the input that kicks off the entire lifecycle.
-8. **Steering Agent: Produce first digest** — The Steering Agent aggregates signals into a weekly digest (`work/signals/digests/YYYY-WXX-digest.md`), detecting patterns and flagging priorities.
-9. **Strategy Agent: Triage to a mission** — The Strategy Agent consumes the digest, triages signals, and if a signal warrants action:
-   - Creates `work/missions/<mission-name>/MISSION-BRIEF.md` from `work/missions/_TEMPLATE-mission-brief.md`
-   - Creates `work/missions/<mission-name>/OUTCOME-CONTRACT.md` from `work/missions/_TEMPLATE-outcome-contract.md` (with `measurement_schedule` dates)
-10. **Orchestration Agent: Assemble fleet + decompose tasks** — The Orchestration Agent creates a fleet config (`org/2-orchestration/fleet-configs/<mission>.md`), decomposes the mission into tasks (TASKS.md), and prepares release contracts when outputs are quality-approved.
-11. **Execution Agent(s): Execute** — Execution agents produce work within mission scope (code, docs, content, tests).
-12. **Quality Agent: Evaluate + close the loop** — The Quality Agent evaluates outputs against policies, triggers outcome reports when measurement schedule dates arrive, files production signals, and detects stalled missions. The full 5-layer loop is live.
-
-### Day 2+ — Progressive Automation
-
-11. **Weekly cadence** — Establish the signal digest rhythm:
-    - Operate agents surface production signals → `work/signals/`
-    - Steering agents produce weekly digests → `work/signals/digests/YYYY-WXX-digest.md`
-    - Strategy agents update venture health → file in venture charter or as standalone report
-12. **First outcome report** — When a mission's measurement window closes, the Ship Loop produces an outcome report (`work/missions/<name>/OUTCOME-REPORT.md`). This closes the Build→Measure→Learn loop.
-13. **First retrospective** — After any incident, produce a postmortem → `work/retrospectives/`. Signals from postmortems feed back into Loop 1.
-14. **Evolve** — When signal digests reveal patterns (capability gaps, structural friction, new opportunities), the Steering Layer creates evolution proposals (`org/0-steering/_TEMPLATE-evolution-proposal.md`) — including proposals for new agent types.
-
-> **Tip:** Don't try to automate everything on Day 1. Start with one signal → one mission → one execution cycle. Expand the number of active agents, divisions, and ventures progressively as the team builds confidence in the process.
+> Start with one signal → one mission → one execution cycle. Expand only after the loop works.
 
 ---
 
@@ -451,26 +424,28 @@ The framework ships with a generic lifecycle example. Create your own:
 
 ## What to Customize vs. What to Keep
 
-| Component | Keep As-Is? | Why |
-|-----------|------------|-----|
-| 5-layer model | ✅ Yes | Universal organizational pattern |
-| 4-loop lifecycle | ✅ Yes | Universal process pattern |
-| Git-native governance | ✅ Yes | Fundamental to the model (for governance backbone) |
-| Agent instruction hierarchy | ✅ Yes | Critical for multi-agent governance |
-| Improvement signal flow | ✅ Yes | Key innovation of the model |
-| Integration Registry structure | ✅ Yes | Governed connection patterns |
-| Company name/vision/mission | ❌ Customize | Your identity |
-| Work backend choice | ❌ Customize | Git files or issue tracker — your preference |
-| Ventures | ❌ Customize | Your market offerings |
-| Divisions | ❌ Customize | Your organizational units |
-| Quality thresholds | ❌ Customize | Your risk tolerance |
-| Toolchain references | ❌ Customize | Your infrastructure |
-| Integrations | ❌ Customize | Your enterprise tool ecosystem |
-| Observability platform | ❌ Customize | Your monitoring and telemetry stack |
-| Product naming | ❌ Customize | Your brand |
-| Role titles | 🟡 Optional | The generic titles work for most orgs |
-| Templates | 🟡 Optional | The defaults are reasonable starting points |
-| Policies | 🟡 Optional | Start with defaults, evolve over time |
+**Keep as-is first:**
+- 5-layer model
+- 4-loop lifecycle
+- Git-native governance
+- instruction hierarchy
+- improvement signal flow
+- integration registry structure
+
+**Customize early:**
+- company identity
+- work backend choice
+- ventures
+- divisions
+- quality thresholds
+- toolchain and integrations
+- observability platform
+- product naming
+
+**Optional later:**
+- role titles
+- templates
+- policy details
 
 ---
 
