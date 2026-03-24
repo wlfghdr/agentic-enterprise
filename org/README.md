@@ -10,9 +10,9 @@
 
 ## The 5-Layer Model
 
-The organization is structured in five layers. Each layer has a distinct purpose, a distinct mix of humans and agents, and distinct agent instructions. **The same 5-layer pattern applies across all company functions** — because the principle is universal: executives steer the system, humans set direction, agents and humans orchestrate, agents and humans execute, agents and humans evaluate.
+The organization is structured in five layers. Each layer has a distinct purpose and distinct ownership. The same pattern applies across company functions: steering, strategy, orchestration, execution, quality.
 
-The critical addition — Layer 0: Steering — embeds what was historically invisible C-level work directly into the operating model. The company doesn't just operate through this system; it **evolves itself** through this system.
+The critical addition is Layer 0: Steering. The company does not just operate through the system; it evolves itself through the system.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -119,7 +119,7 @@ Divisions define *where expertise lives*. Knowledge manifests define *what agent
 
 ## Divisions: The Full Company
 
-Divisions are the **execution units** of the organization — each owns a domain of work, has a team of humans + agents, and produces artifacts. Each division groups agents by expert knowledge, specialized tools, and domain-specific goals.
+Divisions are the execution units of the organization. Each owns a domain of work, groups humans and agents by expertise, and defines clear boundaries.
 
 ### Engineering Divisions — Core Defaults
 
@@ -175,7 +175,7 @@ Divisions are the **execution units** of the organization — each owns a domain
 
 ### Engineering Divisions — Domain Templates
 
-> **Customize this section.** Add divisions specific to your product domain. Examples:
+> Customize this section for your product domains.
 
 | Division | What It Owns |
 |-----------|-------------|
