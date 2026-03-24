@@ -8,13 +8,15 @@
 
 ## Goal
 
-This guide makes the GitHub issue backend operational without implicit knowledge.
+This guide is the canonical operating guide for the GitHub issue backend.
 
-If a human needs to approve something, the required status transition is written out explicitly.
-If GitHub needs configuration, the exact repo settings, labels, project setup, and issue forms are listed here.
+Use it for:
+- labels
+- project status model
+- assignment and approval handoff
+- issue-backend operating rules
 
-Use this guide together with [work-backends.md](work-backends.md), [required-github-settings.md](required-github-settings.md), and [github/README.md](github/README.md).
-If you want the shortest copy-and-configure path, start with [github/setup-checklist.md](github/setup-checklist.md).
+For the shortest setup path, start with [github/setup-checklist.md](github/setup-checklist.md).
 
 ---
 
@@ -23,13 +25,12 @@ If you want the shortest copy-and-configure path, start with [github/setup-check
 Complete these steps before using the issue backend in a real fork:
 
 1. Set `work_backend.type: "github-issues"` in `CONFIG.yaml`.
-2. Enable GitHub Issues and Issue Forms in the repository settings.
-3. **Create a GitHub Project (v2)** with a **Status** field containing these single-select options: `Backlog`, `Triage`, `Approved`, `Planning`, `In Progress`, `Blocked`, `Done`. Set `project_owner` and `project_number` in `CONFIG.yaml`.
+2. Enable GitHub Issues and Issue Forms.
+3. Create a GitHub Project (v2) with `Backlog`, `Triage`, `Approved`, `Planning`, `In Progress`, `Blocked`, `Done`.
 4. Prefer the scripted install path: `python3 scripts/instantiate_instance.py install-github-work-repo --main-repo your-org/your-instance --target-dir <issue-hosting-repo>`.
-5. If you are doing it manually instead, copy the sample forms from `docs/github/issue-templates/forms/` into `.github/ISSUE_TEMPLATE/` in your instance repository and copy `docs/github/issue-templates/config.sample.yml` to `.github/ISSUE_TEMPLATE/config.yml`.
-6. Create the required labels listed below. (Note: status is tracked via the Project Status field, not via labels.) Use `docs/github/labels/labels.sample.yml` as your bootstrap source.
-7. Tell humans who approve work to use the approval transitions exactly as written in the approval table.
-8. Keep Git-backed companion artifacts in the repository: signal digests, technical designs, quality evaluations, fleet reports, outcome reports, asset registry entries, governance exceptions, and locks.
+5. Install the required labels.
+6. Use the approval handoff rules from this document.
+7. Keep Git-backed companion artifacts in the main repo.
 
 ---
 
