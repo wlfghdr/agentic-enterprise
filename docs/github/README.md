@@ -142,24 +142,16 @@ Scripts that are backend-aware use `work_backend.py` to read from the correct so
 
 ## Label discipline
 
-Use labels for semantics that GitHub does **not** model natively well, such as:
+Use labels for semantics that GitHub does **not** model natively well:
 - artifact type
 - dispatch/agent fit
 - scope/product boundary
-- approval-needed semantics
 
-Do **not** recreate native GitHub state with redundant labels when the platform already models it:
+Do **not** recreate native GitHub state with labels:
 - issue open/closed
 - PR open/draft/merged/closed
 - assignee / reviewer ownership
+- approval state
 
-A practical work repo should also have a lightweight label baseline available immediately after initialization.
-
-
-## Ownership and labels
-
-Use GitHub assignees as the ownership source of truth.
-
-Labels should help with dispatch and scope, not duplicate ownership or native GitHub state.
-
-Do **not** add `owner:*` labels or `status:*` labels that simply restate what GitHub already models via state, assignees, or review requests.
+Use assignees and review requests as the ownership source of truth.
+Do **not** add `owner:*` or `status:*` labels that merely restate native GitHub state.
