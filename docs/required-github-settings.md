@@ -125,10 +125,9 @@ The model’s rule of thumb:
 
 Without branch protection, these become advisory.
 
-If you use the issue backend, add one more operating rule for humans:
-- **Approval = explicit Project Status transition by an authorized human**
+If you use the issue backend, add one more operating rule:
+- **Assignee = who acts next**
+- **Human approval = comment + re-assign**
+- **Agent updates Project Status after reading the human decision**
 
-Examples:
-- Mission approval: set Project Status from `Backlog` to `Approved`
-- Release approval: set Project Status from `Backlog` to `Approved`
-- Signal triage: set Project Status from `Backlog`/`Triage` to `Approved`, `Done`, etc.
+Use [`github-issues.md`](github-issues.md) for the canonical issue-backend handoff and approval rules.
