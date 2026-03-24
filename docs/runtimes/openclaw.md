@@ -6,20 +6,6 @@
 
 ---
 
-## Table of Contents
-
-1. [Design Principles](#design-principles)
-2. [A Minimal Fleet (recommended starting point)](#a-minimal-fleet-recommended-starting-point)
-3. [Model Tier Strategy (no hard-coded model names)](#model-tier-strategy-no-hard-coded-model-names)
-4. [OpenClaw Agent IDs and Naming](#openclaw-agent-ids-and-naming)
-5. [Heartbeat Strategy](#heartbeat-strategy)
-6. [Cron Automation (GitHub loops)](#cron-automation-github-loops)
-7. [Safe Auto-Merge Gates](#safe-auto-merge-gates)
-8. [Issue Intake Rules (human vs assistant identity)](#issue-intake-rules-human-vs-assistant-identity)
-9. [Self-Organizing via Repo Artifacts](#self-organizing-via-repo-artifacts)
-10. [Cost and Reliability Notes](#cost-and-reliability-notes)
-
----
 
 ## Design Principles
 
@@ -33,19 +19,19 @@
 
 ## A Minimal Fleet (recommended starting point)
 
-Start with **5 agents**. This is enough to ship reliably without runaway cost.
+Start with **5 agents**.
 
 | Agent (example ID) | Role | Tier | What it does |
 |---|---|---|---|
-| `steering` | Direction & prioritization | **Frontier reasoning** | Turns signals into mission briefs and evolution proposals. |
-| `orchestrator` | Decomposition & coordination | **Frontier reasoning** | Breaks missions into small PR-sized work and assigns it. |
-| `builder` | Engineering execution | **Mid-tier coding** | Implements code/tests/docs at high volume. |
-| `quality` | Policy & review automation | **Mid-tier reasoning** | Runs structured evaluations and enforces repo policy gates. |
-| `ops` | Monitoring/triage | **Cost-efficient** | Watches for new work, PR states, failures; files signals. |
+| `steering` | Direction & prioritization | **Frontier reasoning** | turns signals into mission briefs and evolution proposals |
+| `orchestrator` | Decomposition & coordination | **Frontier reasoning** | breaks missions into small PR-sized work and assigns it |
+| `builder` | Engineering execution | **Mid-tier coding** | implements code/tests/docs at high volume |
+| `quality` | Policy & review automation | **Mid-tier reasoning** | runs structured evaluations and enforces repo policy gates |
+| `ops` | Monitoring/triage | **Cost-efficient** | watches for new work, PR states, failures; files signals |
 
 Optional scale-ups:
-- **`security`** (frontier reasoning) for security-sensitive reviews.
-- **`content`** (mid-tier general) for GTM/docs/website copy.
+- `security` for security-sensitive reviews
+- `content` for GTM/docs/website copy
 
 ---
 
@@ -69,40 +55,30 @@ Avoid hard-coding specific model names in docs and long-lived instructions. Use 
 Two practical approaches:
 
 ### Option A — Simple IDs (recommended)
-Use stable IDs and document tiers in config:
-- `steering`, `orchestrator`, `builder`, `quality`, `ops`
-
-This keeps everything readable and avoids churn when models change.
+Use stable IDs like `steering`, `orchestrator`, `builder`, `quality`, `ops`.
 
 ### Option B — Transparent IDs (advanced)
-Encode provider+tier into IDs so logs are self-explanatory:
-- `anthropic-frontier-steering`
-- `openai-mid-builder`
-
-If you choose this, **keep it internal** (operator docs) and avoid scattering model names into public docs.
-
----
-
+Encode provider+tier into IDs like `anthropic-frontier-steering`.
+Keep this internal and avoid scattering model names across docs.
 
 ## Instance Bootstrap Checklist
 
-See also: `openclaw-onboarding.md` for practical onboarding defaults around fleet, labels, routing, and Discord topology.
+See also: `openclaw-onboarding.md` for practical onboarding defaults.
 
+When you instantiate a company fork, make the runtime bootstrap explicit too:
 
-When you instantiate a company fork, the repo is only half the job. For an OpenClaw-based deployment, make the runtime bootstrap explicit too:
+1. pick the minimal fleet first
+2. keep routing role-first
+3. use the instance repo as workspace
+4. create per-agent `agentDir` state intentionally
+5. document channel bindings as environment data
+6. separate generic products from the instance
 
-1. **Pick the minimal fleet first** — usually one agent per active layer.
-2. **Keep routing role-first** — define the agent role, then map it to a subscription-first provider order.
-3. **Use the instance repo as workspace** — instance agents should work in the instantiated company repo, not a generic catch-all workspace.
-4. **Create per-agent `agentDir` state intentionally** — credentials and provider profiles are scoped there. Do not assume one configured agent automatically configures another.
-5. **Document channel bindings as environment data** — keep channel IDs in an operator-facing config artifact; do not hard-code unknown IDs into generic docs.
-6. **Separate generic products from the instance** — if the instance depends on another product repo, reference it; do not embed it into the instance tree.
-
-A practical operator artifact set is:
-- a fleet intent document in the repo
-- a routing target document with placeholder channel IDs
+Practical operator artifacts:
+- fleet intent doc
+- routing target doc with placeholder channel IDs
 - per-agent OpenClaw directories on the host
-- a reviewed `openclaw.json` entry per running agent
+- reviewed `openclaw.json` entry per running agent
 
 ## Heartbeat Strategy
 
