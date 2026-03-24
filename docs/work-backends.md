@@ -2,24 +2,21 @@
 
 > **Version:** 1.5 | **Last updated:** 2026-03-23
 
-> **What this document is:** A comprehensive guide to how work artifacts can be tracked using different backends — either as Markdown files in Git (the original model) or as issues in an issue tracker (GitHub Issues, Jira, Linear, etc.).
+> **What this document is:** The backend selection and contract guide.
 
-> **Use this document for:** choosing a backend, configuring `CONFIG.yaml`, understanding which artifacts stay in Git, and comparing backend behavior.
+> **Use this document for:** choosing a backend, configuring `CONFIG.yaml`, understanding what stays in Git, and comparing backend behavior.
 > **Do not use this document for:** step-by-step GitHub issue operations. For that, use [github-issues.md](github-issues.md).
 
 ---
 
 ## Why Two Backends?
 
-The operating model defines **what artifacts exist** and **how they flow** between layers and loops. The original framework tracked everything as Markdown files in `work/`. This is fully self-contained and auditable, but creates friction for human collaboration:
+The operating model defines the artifacts and flow. The backend decides where active work is tracked.
 
-- **Visibility:** Scanning 20+ Markdown files to understand mission status is harder than glancing at a labeled issue board.
-- **Interaction:** Commenting, assigning, re-labeling, and triaging are native to issue trackers — and clunky via file edits + PRs.
-- **Notifications:** Issue trackers have built-in notification, mention, and subscription systems.
-- **Mobile:** Issue trackers work well on mobile. Editing Markdown in a repo does not.
-- **Collaboration:** Discussion threads, reactions, and cross-references are first-class in issue trackers.
+- **Git files** optimize for auditability and self-containment.
+- **Issue backends** optimize for visibility, assignment, comments, notifications, and mobile use.
 
-The framework now supports **both backends**. The choice is made at instance configuration time via `CONFIG.yaml → work_backend`.
+The choice is made via `CONFIG.yaml → work_backend`.
 
 ---
 
@@ -323,23 +320,8 @@ Minimum acceptable GitHub issue-backend state:
 
 | Mechanism | Git Files Backend | Issue Backend |
 |-----------|-------------------|---------------|
-| Signal triage | PR merge = approval | Human comments with triage decision (e.g., "proceed", "defer", "monitor", "done") and re-assigns to agent. Agent updates the project status field accordingly (e.g., `Triage` → `Approved`). |
-| Mission approval | PR merge = approval | Human comments approval (e.g., "approved") and re-assigns to agent. Agent changes project status `Backlog` → `Approved`. |
-| Decision approval | PR merge = approval | Human comments acceptance and re-assigns to agent. Agent changes project status `Backlog` → `Approved`. |
+| Human approval / triage / go-no-go | PR merge = approval | Assignee + comment handoff. Human comments in plain language and re-assigns; agent updates project status. See [`github-issues.md`](github-issues.md). |
 | Quality gate | Evaluation file with PASS verdict | Evaluation file in Git references the issue-backed mission/task |
-| Release go/no-go | PR merge = approval | Human comments approval and re-assigns to agent. Agent changes project status `Backlog` → `Approved`. |
-
-### Human Approval Cheat Sheet
-
-Humans approve by **commenting and re-assigning** — they never need to touch labels or project status fields. The agent's handoff comment always explains the available options.
-
-| Artifact | Human does this | Agent does this after |
-|----------|-----------------|---------------------|
-| Signal | Review the issue, comment with triage decision (e.g., "proceed" or "defer — not a priority this quarter"), re-assign to agent | Agent updates the project status based on the comment (e.g., `Triage` → `Approved` or `Done`) |
-| Mission | Review scope and outcomes, comment approval or rejection, re-assign to agent | Agent changes project status `Backlog` → `Approved` (or keeps and notes rejection) |
-| Decision | Review context and tradeoffs, comment acceptance or rejection, re-assign to agent | Agent changes project status `Backlog` → `Approved` (or keeps and notes rejection) |
-| Release | Review rollout and rollback plan, comment approval, re-assign to agent | Agent changes project status `Backlog` → `Approved` |
-| Retrospective | Review findings and follow-ups, comment acceptance, re-assign to agent | Agent changes project status to `Done` |
 
 Do not rely on issue closure alone as approval. Closure archives work; the project status transition (performed by the agent) is the approval event.
 
