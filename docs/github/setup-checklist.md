@@ -3,11 +3,11 @@
 Use this checklist when instantiating the GitHub issue backend in a company fork.
 
 It covers both supported shapes:
-
 - same-repo issue backend
 - dedicated work-repo issue backend
 
-For the full operating model, combine this checklist with [`../github-issues.md`](../github-issues.md), [`../required-github-settings.md`](../required-github-settings.md), and [`../work-backends.md`](../work-backends.md).
+Use this as the setup sequence.
+For live operating rules, use [`../github-issues.md`](../github-issues.md).
 
 ---
 
@@ -177,22 +177,19 @@ in `CONFIG.yaml`.
 ## 7. Understand What Templates Do And Do Not Enforce
 
 Issue Forms enforce:
-
 - issue structure
 - required fields
 - base labels defined statically in the form file
 
 Issue Forms do not automatically enforce:
-
 - dynamic labels such as `priority:*`, `category:*`, `confidence:*`, `urgency:*`
 - Project `Status`
 - division-specific labels
 
 To close that gap:
-
 - create labels up front
 - use the Project `Status` field for workflow state
-- optionally install `sync-issue-form-labels.yml` to map form answers to labels
+- optionally install `sync-issue-form-labels.yml`
 
 ---
 
