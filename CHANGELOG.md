@@ -26,6 +26,8 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Changed
 
+- `org/4-quality/policies/risk-management.md` — added a workforce-readiness matrix tied to autonomy tiers so adopters define training, supervision, override ownership, and change communication before raising autonomy. Closes #190.
+- `docs/customization-guide.md` — clarified that adopters must customize human approval, supervision, override, and communication ownership alongside numeric risk thresholds when using autonomy tiers.
 - `org/README.md` — added a Governance Primitives section and explicitly elevated the observability platform to a first-class governance artifact alongside the repo backbone, capability contracts, skill manifests, MCP profiles, and knowledge manifests. Related to #188.
 - `org/4-quality/AGENT.md` — added outcome-oriented agent quality dimensions (completeness, containment, correctness, control, resolution, turn efficiency, escalation quality) and directed evaluators to prefer observability evidence when available. Related to #188.
 - `AGENTS.md` — clarified that assignee state is the source of truth for the next required actor on issues/PRs, so human-needed work must be reassigned to the human owner instead of being implied only in comments. Closes #217.
