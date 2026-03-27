@@ -62,6 +62,29 @@ Risk tolerance tightens as agent autonomy increases:
 | **Tier 3 — Monitored autonomy** | Agent executes autonomously, human monitors | Low | All Tier 2 + real-time anomaly detection, circuit breakers, kill switch |
 | **Tier 4 — Full autonomy** | Agent executes without real-time human oversight | Very Low | All Tier 3 + formal risk assessment per mission, enhanced telemetry, automatic rollback |
 
+### 2.3 Workforce Readiness by Autonomy Tier
+
+Autonomy is not only a technical-control choice. Each increase in autonomy changes what the human workforce must understand, supervise, and be prepared to do when the system behaves unexpectedly.
+
+Before an agent or workflow moves to a higher autonomy tier, the adopting organization must confirm that the affected human roles are ready for that tier's oversight burden.
+
+| Tier | Human readiness expectation | Minimum workforce controls |
+|------|-----------------------------|----------------------------|
+| **Tier 1 — Human-directed** | Operators understand the agent's scope, limits, and approval path before using its outputs | Basic user training, documented intended use, named human approver, simple escalation path when output looks wrong |
+| **Tier 2 — Supervised autonomy** | Approvers can review agent actions fast enough to remain a real control, not a rubber stamp | Role-specific training for approvers, explicit approval criteria, queue/coverage ownership, change communication when scope or tooling changes |
+| **Tier 3 — Monitored autonomy** | Managers and operators can supervise by telemetry and intervene when the agent acts without pre-approval | Supervisor training on dashboards and kill switches, on-call ownership, anomaly-response runbook, communication plan for affected teams when autonomy expands |
+| **Tier 4 — Full autonomy** | Leadership accepts that oversight is mostly design-time and audit-time, not transaction-by-transaction | Formal readiness review, accountable business owner, periodic workforce refresh training, incident/rollback drills, documented communication to impacted teams about operating model changes |
+
+Readiness is incomplete if any of the following are missing:
+
+- [ ] Named human roles for approval, monitoring, override, and post-incident review appropriate to the autonomy tier
+- [ ] Training or enablement for those roles covering system scope, failure modes, and escalation paths
+- [ ] Change-management communication when autonomy level, agent scope, or workforce expectations materially change
+- [ ] Evidence that the human control is operationally realistic (for example, approval queues are staffed and monitoring dashboards are actually reviewed)
+- [ ] Reassessment of workforce readiness whenever autonomy level, risk tier, or operating scope increases
+
+This policy does not prescribe a single HR or change-management process. It defines the minimum governance expectation: human oversight only counts if the humans involved are prepared, reachable, and authorized to act.
+
 ---
 
 ## 3. Risk Assessment Methodology
@@ -411,5 +434,6 @@ This table maps the organization's existing quality policies to the risk categor
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3 | 2026-03-27 | Added workforce-readiness and change-management expectations tied to agent autonomy tiers, including minimum human readiness controls before autonomy increases |
 | 1.2 | 2026-03-14 | Extended §6.4 to reference vendor-risk-management.md for general vendor governance; added vendor concentration risk requirement (#92) |
 | 1.0 | 2026-03-13 | Initial version — risk appetite framework, 5×5 scoring methodology, AI risk taxonomy (22 canonical risks across 5 dimensions), agent autonomy tiers, observability-driven KRIs, regulatory crosswalk (ISO 31000 / NIST RMF / NIST AI RMF / ISO 27001 / SOC 2 / EU AI Act), policy-to-risk control mapping |

@@ -26,6 +26,8 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Changed
 
+- `org/4-quality/policies/risk-management.md` — added a workforce-readiness matrix tied to autonomy tiers so adopters define training, supervision, override ownership, and change communication before raising autonomy. Closes #190.
+- `docs/customization-guide.md` — clarified that adopters must customize human approval, supervision, override, and communication ownership alongside numeric risk thresholds when using autonomy tiers.
 - `AGENTS.md` — clarified that assignee state is the source of truth for the next required actor on issues/PRs, so human-needed work must be reassigned to the human owner instead of being implied only in comments. Closes #217.
 - `docs/github-issues.md` and `docs/work-backends.md` — tightened the GitHub issue-backend handoff rules so comments provide context but assignment remains authoritative for who must act next. Closes #217.
 
