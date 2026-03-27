@@ -1,6 +1,6 @@
 # Agent Type Registry
 
-> **Version:** 1.1 | **Last updated:** 2026-03-07
+> **Version:** 1.2 | **Last updated:** 2026-03-27
 
 > **What this is:** The governed, versioned registry of all agent types in the {{COMPANY_SHORT}} agentic enterprise. Each agent type has a YAML definition file that describes its capabilities, lifecycle status, scaling parameters, and ownership.  
 > **Governance:** New agent types require Steering Layer evaluation and CTO approval via PR. This registry is the operational source of truth for all agent types.
@@ -111,18 +111,65 @@ Base-template agent types should pass all of these checks:
 | **Deprecate agent type** | Steering Layer | CTO |
 | **Monitor agent performance** | Orchestration Layer (fleet metrics) + Steering (meta-optimization) | — |
 
+## Agent Identity & Access Governance
+
+Agent types are not just capability bundles. They are also **governed non-human identities** with explicit operational boundaries.
+
+Every agent type definition should answer these questions in a reviewable way:
+
+1. **Who is this agent in the enterprise?**
+   - Stable agent type ID and human owner
+   - Layer and division placement
+   - Intended operating boundary
+2. **What credentials or execution identity does it use?**
+   - Named runtime principal, service account, workload identity, or equivalent
+   - Whether credentials are shared, per-agent-type, or ephemeral per mission
+3. **What may it touch?**
+   - Declared tools, MCP profiles, data classes, and environments
+   - Explicit write/delete authority where applicable
+4. **What constrains blast radius?**
+   - Approval gates for high-impact actions
+   - Environment restrictions (for example: read-only prod, write in staging only)
+   - Escalation path when the requested action exceeds scope
+5. **How is it audited?**
+   - Telemetry linked to agent identity
+   - Traceable commits, tool calls, approvals, and secret access
+
+### Minimum Identity Questions For New Agent Types
+
+Before approving a new agent type, reviewers should be able to verify:
+
+- Which **runtime identity** the agent operates as
+- Which **credential source** issues that identity (for example KMS-backed secret, OAuth client, workload identity)
+- Whether credentials are **scoped per agent type** or reused across types
+- Which **environments** the agent may read, write, or administer
+- Which **data classifications** the agent may access
+- Which actions require **per-mission human approval**
+- How the enterprise will detect **privilege escalation or scope drift** via telemetry
+
+### Relationship To MCP Profiles And Capability Contracts
+
+- **MCP profiles** govern what an external tool integration can do in principle.
+- **Capability contracts** bind a specific agent type to approved skills, MCP profiles, and knowledge scope.
+- **Agent type definitions** declare the identity, ownership, access boundary, and escalation model for the non-human actor itself.
+
+These are complementary controls. A tool profile alone does **not** answer which identity an agent runs as or how its credentials are bounded.
+
 ## Relationship to Other Artifacts
 
 | Artifact | Relationship |
 |----------|-------------|
 | **Fleet configs** (`org/2-orchestration/fleet-configs/`) | Fleet configs reference agent types from this registry by `id`. Only `active` agent types may be assigned to crews. |
+| **Capability contracts** (`org/capability-contracts/`) | Capability contracts approve the specific skills, MCP profiles, and knowledge sources an agent type may use. They do not replace identity ownership or runtime-boundary documentation in the registry. |
+| **MCP profiles** (`org/mcp-profiles/`) | MCP profiles define tool-side permissions. Agent type definitions define the non-human identity that receives and uses those permissions. |
 | **org/README.md** | Documents the design principles and organizational structure that inform agent type design. |
 | **Division definitions** (`org/3-execution/divisions/`) | Divisions define domain context. Agent types define capabilities. An agent type belongs to a division (for Execution agents) or to a layer. |
-| **AGENT.md files** (`org/<layer>/AGENT.md`) | Layer instructions define behavioral rules. Agent type definitions specify capabilities & scaling. Both are needed for a complete agent specification. |
+| **AGENT.md files** (`org/<layer>/AGENT.md`) | Layer instructions define behavioral rules. Agent type definitions specify capabilities, identity boundaries, and scaling. Both are needed for a complete agent specification. |
 
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-03-27 | Added agent identity & access governance guidance clarifying that agent type definitions must document runtime identity, credential boundaries, environments, data access, approval gates, and auditability. |
 | 1.1 | 2026-03-07 | Added base-template fit criteria, configuration-vs-type guidance, and anti-patterns to reduce micro-specialized agent definitions |
 | 1.0 | 2026-02-23 | Initial version |

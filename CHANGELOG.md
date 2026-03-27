@@ -26,6 +26,7 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Changed
 
+- `org/agents/README.md`, `org/agents/_TEMPLATE-agent-type.md`, and `org/mcp-profiles/README.md` — made agent identity governance explicit as a first-class concern by documenting runtime identity, credential source/scope, environment and data-class boundaries, approval gates, and the distinction between tool permissions and agent identity. Related to #189.
 - `org/4-quality/policies/risk-management.md` — added a workforce-readiness matrix tied to autonomy tiers so adopters define training, supervision, override ownership, and change communication before raising autonomy. Closes #190.
 - `docs/customization-guide.md` — clarified that adopters must customize human approval, supervision, override, and communication ownership alongside numeric risk thresholds when using autonomy tiers.
 - `org/README.md` — added a Governance Primitives section and explicitly elevated the observability platform to a first-class governance artifact alongside the repo backbone, capability contracts, skill manifests, MCP profiles, and knowledge manifests. Related to #188.
