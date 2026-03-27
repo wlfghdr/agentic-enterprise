@@ -58,4 +58,5 @@ For certification-critical requirements that need deployment-specific implementa
 - [Quality Policies](../../org/4-quality/policies/) — The 19 policy domains that implement these controls
 - [otel-contract.md](../otel-contract.md) — Canonical telemetry contract for agent spans and events
 - [Risk Management Policy](../../org/4-quality/policies/risk-management.md) — Framework crosswalk to all standards
+- [Autonomy Tier Rollout Checklist](templates/_TEMPLATE-autonomy-tier-rollout-checklist.md) — adopter-facing checklist for ownership, readiness, monitoring, rollback, and communication before raising autonomy
 - [CONFIG.yaml](../../CONFIG.yaml) — Central configuration including observability integration
