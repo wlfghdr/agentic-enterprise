@@ -144,6 +144,21 @@ DOCUMENTATION_FILES = {
 }
 
 
+def matches_rel_file(rel_path: str, target: str) -> bool:
+    """Return True when *rel_path* names *target* directly or under a vendored root."""
+    return rel_path == target or rel_path.endswith(f"/{target}")
+
+
+def matches_rel_prefix(rel_path: str, prefix: str) -> bool:
+    """Return True when *rel_path* falls under *prefix*, even in a nested repo."""
+    return (
+        rel_path == prefix
+        or rel_path.startswith(f"{prefix}/")
+        or rel_path.endswith(f"/{prefix}")
+        or f"/{prefix}/" in rel_path
+    )
+
+
 def resolve_config_path(data: dict[str, Any], dot_path: str) -> Any:
     """Resolve a dot-path like 'company.name' or 'ventures[0].name' against
     a parsed YAML dict. Returns None if path doesn't exist."""
@@ -213,11 +228,11 @@ def scan_framework_files(repo_root: Path) -> dict[str, list[tuple[str, int]]]:
         # Skip specific files
         if rel.name in SKIP_FILES:
             continue
-        if str(rel) in DOCUMENTATION_FILES:
+        rel_str = str(rel)
+        if any(matches_rel_file(rel_str, doc) for doc in DOCUMENTATION_FILES):
             continue
         # Skip directory prefixes (compliance templates, etc.)
-        rel_str = str(rel)
-        if any(rel_str.startswith(prefix) for prefix in SKIP_DIR_PREFIXES):
+        if any(matches_rel_prefix(rel_str, prefix) for prefix in SKIP_DIR_PREFIXES):
             continue
         # Skip template files
         if rel.name.startswith("_TEMPLATE"):
