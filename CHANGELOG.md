@@ -21,6 +21,7 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Added
 
+- `docs/compliance/templates/_TEMPLATE-autonomy-tier-rollout-checklist.md` — adopter-facing checklist for raising an agent, workflow, or team's autonomy tier with named approver/supervisor/override roles, readiness signoff, monitoring ownership, rollback path, and change-management confirmation. Related to #190.
 - `docs/runtimes/builder-fleet-pattern.md` — execution-layer reference for the builder fleet pattern: orchestrator → builder → checker → verifier role separation, wave-based execution, file-backed state, runtime-agnostic design. GSD referenced as existence proof without prescribing adoption.
 - `docs/runtimes/README.md` — added builder fleet pattern to the runtime guide table.
 
