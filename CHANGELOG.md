@@ -21,6 +21,8 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Added
 
+- `AGENTS.md` Rule 15 "Challenge before creating" — codifies that missions and tasks must be reflected and challenged before creation, not created reflexively. Agents must assign to human owner when genuinely unsure.
+- `.github/ISSUE_TEMPLATE/config.yml` — set `blank_issues_enabled: false` to enforce structured issue creation via templates.
 - `docs/compliance/templates/_TEMPLATE-autonomy-tier-rollout-checklist.md` — adopter-facing checklist for raising an agent, workflow, or team's autonomy tier with named approver/supervisor/override roles, readiness signoff, monitoring ownership, rollback path, and change-management confirmation. Related to #190.
 - `docs/runtimes/builder-fleet-pattern.md` — execution-layer reference for the builder fleet pattern: orchestrator → builder → checker → verifier role separation, wave-based execution, file-backed state, runtime-agnostic design. GSD referenced as existence proof without prescribing adoption.
 - `docs/runtimes/README.md` — added builder fleet pattern to the runtime guide table.
@@ -33,6 +35,7 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 - `org/README.md` — added a Governance Primitives section and explicitly elevated the observability platform to a first-class governance artifact alongside the repo backbone, capability contracts, skill manifests, MCP profiles, and knowledge manifests. Related to #188.
 - `org/4-quality/AGENT.md` — added outcome-oriented agent quality dimensions (completeness, containment, correctness, control, resolution, turn efficiency, escalation quality) and directed evaluators to prefer observability evidence when available. Related to #188.
 - `AGENTS.md` — clarified that assignee state is the source of truth for the next required actor on issues/PRs, so human-needed work must be reassigned to the human owner instead of being implied only in comments. Closes #217.
+- `AGENTS.md` — bumped document version to 4.2 for Rule 15 addition.
 - `docs/github-issues.md` and `docs/work-backends.md` — tightened the GitHub issue-backend handoff rules so comments provide context but assignment remains authoritative for who must act next. Closes #217.
 
 ## [4.0.1] — 2026-03-16
