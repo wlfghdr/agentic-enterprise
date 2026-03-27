@@ -2,6 +2,8 @@
 
 Each file in this directory is an **MCP profile** — a declarative definition of a Model Context Protocol server, including its permission matrix per agent layer.
 
+> MCP profiles describe **tool-side permissions**. They do **not** replace agent identity governance. The agent type registry (`org/agents/`) must still document which non-human identity uses the tool, how credentials are scoped, and what blast-radius limits apply.
+
 ## Schema
 
 All profiles must conform to [`schemas/mcp-profile.schema.json`](../../schemas/mcp-profile.schema.json).

@@ -26,6 +26,7 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Changed
 
+- `org/agents/README.md`, `org/agents/_TEMPLATE-agent-type.md`, and `org/mcp-profiles/README.md` — made agent identity governance explicit as a first-class concern by documenting runtime identity, credential source/scope, environment and data-class boundaries, approval gates, and the distinction between tool permissions and agent identity. Related to #189.
 - `AGENTS.md` — clarified that assignee state is the source of truth for the next required actor on issues/PRs, so human-needed work must be reassigned to the human owner instead of being implied only in comments. Closes #217.
 - `docs/github-issues.md` and `docs/work-backends.md` — tightened the GitHub issue-backend handoff rules so comments provide context but assignment remains authoritative for who must act next. Closes #217.
 
