@@ -3,6 +3,7 @@
 > **Purpose:** Practical operator guide for running the Agentic Enterprise operating model on [OpenClaw](https://openclaw.ai).
 > **Audience:** Operators bootstrapping an "agentic company" runtime (fleet, loops, automation).
 > **Status:** Living document — adjust as your fleet, budgets, and reliability needs evolve.
+> **Last updated:** 2026-03-27
 
 ---
 
@@ -32,6 +33,9 @@ Start with **5 agents**.
 Optional scale-ups:
 - `security` for security-sensitive reviews
 - `content` for GTM/docs/website copy
+
+Practical production note:
+- once work is tracked in GitHub Issues and human handoffs matter, add an **internal auditor** as the default 6th role rather than treating audit/reporting as invisible side work
 
 ---
 
@@ -137,6 +141,23 @@ Keep cron conservative:
 - never merge with `CHANGES_REQUESTED`
 - require `mergeable_state == clean`
 
+## Reporting Contract
+
+A useful runtime report is **exception-oriented and actionable**, not a play-by-play transcript.
+
+Recommended default:
+- twice daily report for the owner
+- `HEARTBEAT_OK` when nothing meaningful changed
+
+Minimum report content:
+- what actually advanced, in plain language
+- what the human owner must do next, with issue/PR links
+- critical audit findings (ownership drift, red CI, stale work)
+- model/token consumption by agent and model
+
+Ownership rule:
+- if the report says the human must act, that work should also be explicit in issue/PR assignment where the platform supports it
+
 ---
 
 
@@ -153,6 +174,15 @@ This role checks:
 - whether local findings are translated into upstream improvements
 
 This role sits close to the broader observability/control story: not only runtime telemetry, but whether the operating system of work is actually functioning.
+
+## Bounded Specialist Loops
+
+If you need a short-lived recurring loop for telemetry validation, ingest normalization, or another sharply bounded operating concern, prefer a **dedicated specialist identity** over overloading the main execution agent.
+
+Rules:
+- keep it bounded to the active mission/issue
+- do not make it part of the default fleet unless the workload proves durable
+- give it its own reporting/audit expectations so the loop does not become hidden work
 
 ## Discord Channel Setup For Instance Fleets
 

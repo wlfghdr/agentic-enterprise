@@ -1,5 +1,7 @@
 # OpenClaw Onboarding for an Instance
 
+Last updated: 2026-03-27
+
 ## Goal
 
 Reduce the amount of manual work required after instantiating an enterprise repo.
@@ -97,6 +99,16 @@ Use labels for:
 
 Do **not** use labels to duplicate native GitHub state, assignee ownership, or approval state.
 Ownership and approval handoff belong in assignees and review requests.
+
+## Reporting and Owner Handoff
+
+Bootstrap should also define the reporting contract, not leave it implicit.
+
+Minimum expectation:
+- a low-noise twice-daily owner report
+- explicit owner-action section with issue/PR links
+- model/token consumption summary by agent/model
+- no human-needed work left assigned to an automation identity
 
 ## Cleanup caution
 
