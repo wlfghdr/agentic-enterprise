@@ -3,7 +3,7 @@
 > **Applies to:** All organizational layers, agent types, missions, integrations, and operational processes
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.2.1 | **Last updated:** 2026-03-14
+> **Version:** 1.3 | **Last updated:** 2026-03-27
 
 ---
 
