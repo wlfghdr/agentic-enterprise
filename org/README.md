@@ -1,6 +1,6 @@
 # Organizational Structure
 
-> **Version:** 1.2 | **Last updated:** 2026-03-15
+> **Version:** 1.3 | **Last updated:** 2026-03-27
 
 > **What this is:** The static structure of the agentic enterprise {{COMPANY_SHORT}} organization — who exists, where they sit, what they own, how they relate. This covers the **entire company**, not just R&D: engineering, delivery, go-to-market, sales, customer success, and support all operate within the same 5-layer model.  
 > **What it replaces:** Legacy role hierarchies, ticket-based coordination, manual phase gates, and siloed functional departments.  
@@ -58,12 +58,28 @@ The critical addition is Layer 0: Steering. The company does not just operate th
 
 ---
 
+## Governance Primitives
+
+The framework relies on a small set of governed artifacts and channels that every adopter can reason about explicitly:
+
+| Primitive | Role in the operating model |
+|-----------|-----------------------------|
+| **Git repository** | Governance backbone for instructions, decisions, approvals, and durable evidence |
+| **Capability contracts** | Govern what an agent type is allowed to do by binding it to approved skills, MCP profiles, and knowledge sources |
+| **Skill manifests** | Govern reusable process instructions and runtime expectations |
+| **MCP profiles** | Govern tool access boundaries and permissions |
+| **Knowledge manifests** | Govern what context agents may rely on, with scope, freshness, and ownership |
+| **Observability platform** | Governance evidence channel for execution reality: telemetry, baselines, anomalies, and outcome measurement |
+
+**Observability is a governance primitive, not just runtime plumbing.** The repo captures what was approved. The observability platform captures what actually happened. Both are required to govern agentic work credibly.
+
 ## Key Terminology
 
 | Term | Definition |
 |------|-----------|
 | **Division** | Persistent group of agents organized by expertise — the agentic equivalent of a department. Owns skills, standards, and institutional knowledge. |
 | **Knowledge manifest** | Governed record of what agents know: source paths, scope, freshness, and ownership. |
+| **Observability platform** | Governed evidence layer for telemetry, production baselines, anomaly detection, and outcome measurement. |
 | **Fleet** | Full pool of agents available to Orchestration. Total capacity across all divisions. |
 | **Crew** | Subset of agents drawn from the fleet for a specific mission. Assembled at mission start, disbanded at end. |
 
@@ -281,5 +297,6 @@ org/
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3 | 2026-03-27 | Added Governance Primitives section and explicitly elevated the observability platform to a first-class governance artifact alongside contracts, manifests, and the repo backbone |
 | 1.1 | 2026-03-07 | Reframed execution divisions into core defaults, optional extensions, and company-specific product divisions; removed AI & Intelligence and Quality & Security Engineering as implied defaults |
 | 1.0 | 2026-02-19 | Initial version |
