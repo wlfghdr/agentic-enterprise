@@ -360,7 +360,7 @@ The framework ships with 19 quality policies. Customize each:
 
 **Key principle:** Start with the policies as shipped (they're reasonable defaults for a software enterprise). Then tighten or loosen based on your regulatory environment, risk tolerance, and maturity level.
 
-> **Risk management note:** The risk management policy references configurable thresholds from `CONFIG.yaml → risk_appetite`. Fill in these values during Step 1 — they define your organization's risk tolerance for downtime, cost overruns, escalation rates, and agent behavioral thresholds. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{RISK_*}}` variables.
+> **Risk management note:** The risk management policy references configurable thresholds from `CONFIG.yaml → risk_appetite`. Fill in these values during Step 1 — they define your organization's risk tolerance for downtime, cost overruns, escalation rates, and agent behavioral thresholds. In addition to numeric thresholds, define who can approve, supervise, override, and communicate autonomy-tier changes for each agent class. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{RISK_*}}` variables.
 
 > **Encryption note:** The cryptography policy references key rotation schedules and certificate lifetimes from `CONFIG.yaml → encryption`. Fill in these values during Step 1 — defaults are conservative (90-day symmetric key rotation, 90-day cert lifetime). Adjust based on your compliance requirements (PCI DSS, HIPAA, FedRAMP) and operational maturity. See the [Placeholder Reference](#placeholder-reference) for the full list of `{{CRYPTO_*}}` variables.
 
