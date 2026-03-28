@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 4.2 | **Last updated:** 2026-03-27
+> **Version:** 4.2 | **Last updated:** 2026-03-28
 
 Every AI agent in this repository must follow these instructions. Layer-specific and division-specific instructions extend (never contradict) these rules.
 
@@ -36,6 +36,8 @@ Never commit scope, timelines, resources, or strategic direction. Draft, analyze
 - **Handoffs:** Re-assign to human with comment: (a) what was done, (b) what to review, (c) options (approve/reject/request changes). Human comments decision and re-assigns back. Comments explain the handoff; assignment makes the required next actor explicit.
 - **PRs:** Request reviews from CODEOWNERS. Description explains what to review and reviewer's options.
 - **PR issue linking:** PRs MUST link to originating issues using `closes #NNN` or `fixes #NNN` syntax in the PR description. Issue references ensure automatic closure upon PR merge.
+- **CI green gate:** No PR is considered ready for review or merge until all CI checks pass. Agents MUST verify CI status after push and fix failures before requesting review. A red PR = work is not done. A red `main` = immediate priority to fix.
+- **Sub-issue linkage:** Child issues MUST be linked to their parent issue using GitHub sub-issues or explicit `parent: #NNN` reference in the issue body. Orphaned issues without parent linkage are not acceptable.
 - **Auto-merge:** PRs SHOULD be created with auto-merge enabled when all required checks pass.
 
 ### 4. Policies are law
@@ -87,9 +89,6 @@ This model derives from [Agentic Enterprise](https://github.com/wlfghdr/agentic-
 
 ### 14. Archive completed work
 Move completed items to `archive/` subfolders (git-files) or close issues. Use `git mv` (preserves blame). Never delete work artifacts. Templates and READMEs are never archived.
-
-### 15. Challenge before creating
-Do not create missions or tasks reflexively. Every signal must be triaged and reflected before becoming a mission. Every mission must be challenged for necessity, scope, and overlap before task decomposition. If genuinely unsure whether to proceed, assign to the human owner with a clear description of the decision needed rather than advancing past uncertainty.
 
 ---
 
