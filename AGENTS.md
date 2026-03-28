@@ -38,7 +38,7 @@ Never commit scope, timelines, resources, or strategic direction. Draft, analyze
 - **PR issue linking:** PRs MUST link to originating issues using `closes #NNN` or `fixes #NNN` syntax in the PR description. Issue references ensure automatic closure upon PR merge.
 - **CI green gate:** No PR is considered ready for review or merge until all CI checks pass. Agents MUST verify CI status after push and fix failures before requesting review. A red PR = work is not done. A red `main` = immediate priority to fix.
 - **Sub-issue linkage:** Child issues MUST be linked to their parent issue using GitHub sub-issues or explicit `parent: #NNN` reference in the issue body. Orphaned issues without parent linkage are not acceptable.
-- **Auto-merge:** PRs SHOULD be created with auto-merge enabled when all required checks pass.
+- **Auto-merge:** PRs MUST be created with auto-merge enabled. This ensures that once CI passes and the required approvals are given, the PR merges immediately without manual intervention.
 
 ### 4. Policies are law
 Policies in `org/4-quality/policies/` are mandatory. Fix violations before submitting. If a policy seems wrong, flag it — don't ignore it. Governance exceptions: formal process via `work/decisions/EXC-YYYY-NNN-*.md`, time-bounded, Steering-approved.
