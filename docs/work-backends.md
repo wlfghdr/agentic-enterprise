@@ -1,6 +1,6 @@
 # Work Backends — Git Files vs. Issue Tracker
 
-> **Version:** 1.5 | **Last updated:** 2026-03-23
+> **Version:** 1.6 | **Last updated:** 2026-03-28
 
 > **What this document is:** The backend selection and contract guide.
 
@@ -70,6 +70,8 @@ These are the **dynamic, frequently-changing** artifacts that track active work.
 | **Release Contracts** | `work/releases/YYYY-MM-DD-name.md` | Issue with `artifact:release` label |
 | **Retrospectives** | `work/retrospectives/YYYY-MM-DD-name.md` | Issue with `artifact:retrospective` label |
 | **Locks** | `work/locks/<lock-id>.md` | Not applicable — locks stay in Git (concurrency mechanism) |
+
+When the configured backend is issue-based, ad-hoc tasks initiated in chat should also be captured as tracking issues so execution state, ownership, and handoffs do not live only in chat.
 
 ---
 
@@ -380,6 +382,7 @@ Templates are **never** tracked in the issue system. They are framework files, g
 
 | Version | Date | Change |
 |---------|------|--------|
+| 1.6 | 2026-03-28 | Clarified that ad-hoc chat tasks should also be captured as tracking issues when the issue backend is enabled. |
 | 1.5 | 2026-03-23 | Clarified that assignee state is the source of truth for next action and that human-needed work must be explicitly reassigned to the human owner. |
 | 1.4 | 2026-03-09 | Consolidated backend configuration here and removed the duplicate `WORK-BACKEND.md` doc. Clarified this file's scope vs. `github-issues.md`. |
 | 1.2 | 2026-03-08 | Added assignment discipline section covering issues, PRs, and reviews — mandatory assignees, handoff protocols for both issues and PRs, next-action clarity, unassigned item sweep, agent identity. Human approval via comment+re-assign (agents handle labels). |

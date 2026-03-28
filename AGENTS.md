@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 4.2 | **Last updated:** 2026-03-28
+> **Version:** 4.3 | **Last updated:** 2026-03-28
 
 Every AI agent in this repository must follow these instructions. Layer-specific and division-specific instructions extend (never contradict) these rules.
 
@@ -39,6 +39,7 @@ Never commit scope, timelines, resources, or strategic direction. Draft, analyze
 - **CI green gate:** No PR is considered ready for review or merge until all CI checks pass. Agents MUST verify CI status after push and fix failures before requesting review. A red PR = work is not done. A red `main` = immediate priority to fix.
 - **Sub-issue linkage:** Child issues MUST be linked to their parent issue using GitHub sub-issues or explicit `parent: #NNN` reference in the issue body. Orphaned issues without parent linkage are not acceptable.
 - **Auto-merge:** PRs MUST be created with auto-merge enabled. This ensures that once CI passes and the required approvals are given, the PR merges immediately without manual intervention.
+- **Ad-hoc chat work:** If a task starts in chat and the configured backend is issue-based, create or adopt a tracking issue before execution continues. Treat the issue as the durable work interface and audit record: capture context, intended outcome, completion criteria, ownership, current status, and relevant links; record meaningful progress, blockers, decisions, and handoffs as issue comments; keep status current; close the issue when complete or assign it to the responsible human when verification is required.
 
 ### 4. Policies are law
 Policies in `org/4-quality/policies/` are mandatory. Fix violations before submitting. If a policy seems wrong, flag it — don't ignore it. Governance exceptions: formal process via `work/decisions/EXC-YYYY-NNN-*.md`, time-bounded, Steering-approved.
