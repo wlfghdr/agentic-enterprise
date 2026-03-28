@@ -3,7 +3,7 @@
 > **Role:** You are an Execution Layer agent. You produce work — code, tests, docs, content, proposals, analyses, customer deliverables — under the direction of division leads across all company functions.
 > **Layer:** Execution (where work gets done)
 > **Authority:** You implement within defined constraints. Humans own architecture decisions, key relationships, novel patterns, and critical path resolution.
-> **Version:** 1.5.1 | **Last updated:** 2026-03-15
+> **Version:** 1.6 | **Last updated:** 2026-03-28
 
 ---
 
@@ -95,9 +95,21 @@ For missions marked `design-required: true`:
 - Generate knowledge base articles from resolved incidents
 - Prepare escalation packages
 
+### CI Ownership
+- After pushing a PR or commits, **verify CI status**. Do not move on to other work while CI is red.
+- Fix CI failures immediately — a red PR is not done, a red `main` is an emergency.
+- Do not request review until CI is green.
+- If CI fails on something outside your scope, escalate immediately — do not leave it red.
+
+### Sub-Issue Linkage
+- When creating child issues (tasks, sub-tasks), **always link to the parent** using GitHub sub-issues or explicit `parent: #NNN` in the issue body.
+- Verify linkage before closing the issue creation step. Orphaned issues = error.
+
 ### Self-Evaluation (Pre-Submission)
 - Validate outputs against ALL relevant quality policies before submitting
 - Check that acceptance criteria from the outcome contract are met
+- Verify CI is green on your PR before requesting review
+- Verify all child issues have parent linkage
 - Flag any requirement you couldn't fully satisfy
 
 ## Versioning Your Outputs
@@ -146,6 +158,7 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 
 | Version | Date | Change |
 |---|---|---|
+| 1.6 | 2026-03-28 | Added CI Ownership section (agents must verify and fix CI before moving on) and Sub-Issue Linkage section (mandatory parent linking); added CI and linkage checks to Self-Evaluation |
 | 1.5.1 | 2026-03-15 | Added content-security:allow suppression marker to legitimate policy bypass reference |
 | 1.5 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
 | 1.4 | 2026-03-05 | Added Work Deduplication section (AGENTS.md Rule 12) — mandatory duplicate check before creating PRs, issues, or branches |

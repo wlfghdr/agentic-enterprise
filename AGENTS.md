@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 4.2 | **Last updated:** 2026-03-27
+> **Version:** 4.2 | **Last updated:** 2026-03-28
 
 Every AI agent in this repository must follow these instructions. Layer-specific and division-specific instructions extend (never contradict) these rules.
 
@@ -36,7 +36,9 @@ Never commit scope, timelines, resources, or strategic direction. Draft, analyze
 - **Handoffs:** Re-assign to human with comment: (a) what was done, (b) what to review, (c) options (approve/reject/request changes). Human comments decision and re-assigns back. Comments explain the handoff; assignment makes the required next actor explicit.
 - **PRs:** Request reviews from CODEOWNERS. Description explains what to review and reviewer's options.
 - **PR issue linking:** PRs MUST link to originating issues using `closes #NNN` or `fixes #NNN` syntax in the PR description. Issue references ensure automatic closure upon PR merge.
-- **Auto-merge:** PRs SHOULD be created with auto-merge enabled when all required checks pass.
+- **CI green gate:** No PR is considered ready for review or merge until all CI checks pass. Agents MUST verify CI status after push and fix failures before requesting review. A red PR = work is not done. A red `main` = immediate priority to fix.
+- **Sub-issue linkage:** Child issues MUST be linked to their parent issue using GitHub sub-issues or explicit `parent: #NNN` reference in the issue body. Orphaned issues without parent linkage are not acceptable.
+- **Auto-merge:** PRs MUST be created with auto-merge enabled. This ensures that once CI passes and the required approvals are given, the PR merges immediately without manual intervention.
 
 ### 4. Policies are law
 Policies in `org/4-quality/policies/` are mandatory. Fix violations before submitting. If a policy seems wrong, flag it — don't ignore it. Governance exceptions: formal process via `work/decisions/EXC-YYYY-NNN-*.md`, time-bounded, Steering-approved.
@@ -88,8 +90,14 @@ This model derives from [Agentic Enterprise](https://github.com/wlfghdr/agentic-
 ### 14. Archive completed work
 Move completed items to `archive/` subfolders (git-files) or close issues. Use `git mv` (preserves blame). Never delete work artifacts. Templates and READMEs are never archived.
 
-### 15. Challenge before creating
-Do not create missions or tasks reflexively. Every signal must be triaged and reflected before becoming a mission. Every mission must be challenged for necessity, scope, and overlap before task decomposition. If genuinely unsure whether to proceed, assign to the human owner with a clear description of the decision needed rather than advancing past uncertainty.
+### 16. Repo cleanliness
+After completing any work: committed, pushed, and on the target branch (direct-to-main or via PR). No dirty repos, no stale branches, no unpushed commits. Agents must not leave work stranded locally.
+
+### 17. Prefer deterministic enforcement
+When a rule can be enforced by script, CI check, or recurring automation, prefer that over relying only on prose instructions. Examples: ownership checks, PR linkage checks, label validation, repo sync verification. Narrative instructions are useful but must not be the only control when deterministic enforcement is practical.
+
+### 18. Issue status hygiene
+Keep issue artifacts current with actual work state. When work materially advances, update the corresponding issue (progress comment, status change, or close). Do not let chat, code, or PRs run far ahead of the tracked issue. If a human needs to act, say so explicitly in the issue with a concrete recommendation.
 
 ---
 
