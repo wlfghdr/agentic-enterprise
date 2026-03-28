@@ -1,6 +1,6 @@
 # GitHub Issues Backend Guide
 
-> **Version:** 2.4 | **Last updated:** 2026-03-23
+> **Version:** 2.5 | **Last updated:** 2026-03-28
 
 > **What this document is:** The concrete implementation guide for running operational work artifacts in GitHub Issues. Use this when `CONFIG.yaml → work_backend.type` is `github-issues`.
 
@@ -15,6 +15,7 @@ Use it for:
 - project status model
 - assignment and approval handoff
 - issue-backend operating rules
+- ad-hoc chat tasks that must be turned into durable issue-backed work
 
 For the shortest setup path, start with [github/setup-checklist.md](github/setup-checklist.md).
 
@@ -300,6 +301,8 @@ Closure archives completed work. The project status transition (performed by the
 
 Every issue, PR, and review request must have an assignee. Assignment is how ownership and next-action responsibility are communicated. These rules apply to **all GitHub artifacts**, not just issues. **Assignee state is the source of truth for who must act next.** Comments, body text, and project status can add context, but they must not contradict or replace the assignee signal.
 
+For ad-hoc tasks initiated in chat, agents must create or adopt a tracking issue before execution continues when the configured backend is issue-based. Chat may initiate or discuss the work, but the issue is the durable operational record.
+
 ### Who Gets Assigned — Issues
 
 | Issue state | Assigned to | Rationale |
@@ -425,6 +428,7 @@ Git still holds the durable review-heavy artifacts.
 
 | Version | Date | Change |
 |---|---|---|
+| 2.5 | 2026-03-28 | Added the rule that ad-hoc chat tasks must become issue-backed work when the issue backend is enabled. |
 | 2.4 | 2026-03-23 | Clarified that assignee state is the source of truth for next action and that human-needed work must be reassigned to the human owner rather than implied only in comments or body text. |
 | 2.3 | 2026-03-21 | Added template asset references for label bootstrap, slim work-repo CI, dynamic label sync from issue forms, and the GitHub setup checklist. |
 | 2.1 | 2026-03-09 | Updated sample file paths after consolidating GitHub instance assets under `docs/github/`. |
