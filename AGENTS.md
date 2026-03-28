@@ -90,6 +90,15 @@ This model derives from [Agentic Enterprise](https://github.com/wlfghdr/agentic-
 ### 14. Archive completed work
 Move completed items to `archive/` subfolders (git-files) or close issues. Use `git mv` (preserves blame). Never delete work artifacts. Templates and READMEs are never archived.
 
+### 16. Repo cleanliness
+After completing any work: committed, pushed, and on the target branch (direct-to-main or via PR). No dirty repos, no stale branches, no unpushed commits. Agents must not leave work stranded locally.
+
+### 17. Prefer deterministic enforcement
+When a rule can be enforced by script, CI check, or recurring automation, prefer that over relying only on prose instructions. Examples: ownership checks, PR linkage checks, label validation, repo sync verification. Narrative instructions are useful but must not be the only control when deterministic enforcement is practical.
+
+### 18. Issue status hygiene
+Keep issue artifacts current with actual work state. When work materially advances, update the corresponding issue (progress comment, status change, or close). Do not let chat, code, or PRs run far ahead of the tracked issue. If a human needs to act, say so explicitly in the issue with a concrete recommendation.
+
 ---
 
 ## Multi-Agent Concurrency
