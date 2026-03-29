@@ -21,6 +21,19 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Added
 
+- `AGENTS.md` Rule 19 "Issue status lifecycle" — defines standard status values (Backlog, In Progress, Blocked, Review Needed, Done), transition rules, and audit expectations for issue status accuracy. Ported and generalized from Sagicorp instance rule S7b.
+- `AGENTS.md` Rule 20 "Signal lifecycle" — defines signal closure rules (absorbed, ambiguous, superseded, auto-close via PR) and a 14-day staleness threshold for open signals without linked downstream work. Ported and generalized from Sagicorp instance rule S7c.
+
+### Changed
+
+- `AGENTS.md` — bumped document version to 4.4 for Rules 19 and 20 additions.
+
+---
+
+## [4.3.0] — 2026-03-28
+
+### Added
+
 - `AGENTS.md` Rule 15 "Challenge before creating" — codifies that missions and tasks must be reflected and challenged before creation, not created reflexively. Agents must assign to human owner when genuinely unsure.
 - `.github/ISSUE_TEMPLATE/config.yml` — set `blank_issues_enabled: false` to enforce structured issue creation via templates.
 - `docs/compliance/templates/_TEMPLATE-autonomy-tier-rollout-checklist.md` — adopter-facing checklist for raising an agent, workflow, or team's autonomy tier with named approver/supervisor/override roles, readiness signoff, monitoring ownership, rollback path, and change-management confirmation. Related to #190.
