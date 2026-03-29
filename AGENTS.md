@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 4.3 | **Last updated:** 2026-03-28
+> **Version:** 4.4 | **Last updated:** 2026-03-29
 
 Every AI agent in this repository must follow these instructions. Layer-specific and division-specific instructions extend (never contradict) these rules.
 
@@ -99,6 +99,34 @@ When a rule can be enforced by script, CI check, or recurring automation, prefer
 
 ### 18. Issue status hygiene
 Keep issue artifacts current with actual work state. When work materially advances, update the corresponding issue (progress comment, status change, or close). Do not let chat, code, or PRs run far ahead of the tracked issue. If a human needs to act, say so explicitly in the issue with a concrete recommendation.
+
+### 19. Issue status lifecycle
+Every issue must reflect its actual work status at all times. Status is the primary signal for what is active, blocked, or waiting. Use the project board's Status field (or an equivalent tracked field) as the source of truth.
+
+**Standard status values:**
+- **Backlog** → exists but work has not started
+- **In Progress** → actively being worked
+- **Blocked** → waiting on an external dependency, decision, or upstream fix
+- **Review Needed** → work done; assigned to a human reviewer with a comment explaining what to review and what the options are
+- **Done** → completed and closed
+
+**Rules:**
+- Every new issue must be placed in the project board at creation time.
+- When an agent starts work, move the issue to `In Progress` immediately — not after the first commit.
+- When review is needed, set status to `Review Needed`, assign to the reviewer, and add a comment with context.
+- When work is paused, leave the status as-is and add a comment explaining the pause.
+- Auditors treat issues actively worked but still in `Backlog` as a finding.
+
+### 20. Signal lifecycle
+Signals (`artifact:signal`) are transient by design — they capture observations, not permanent state. They must be resolved or absorbed within a reasonable time.
+
+**Signal closure rules:**
+1. **Absorbed:** When a signal is addressed by creating a downstream artifact (digest, mission, task, or PR), close the signal with a comment linking to the downstream artifact.
+2. **Ambiguous:** If unclear whether a signal is still relevant, assign it to the appropriate human with a comment requesting a review or closure decision. Do not leave stale signals open indefinitely.
+3. **Superseded:** If a newer signal covers the same ground, close the older one as `not_planned` with a reference to the newer signal.
+4. **Auto-close via PR:** If a task created from a signal is completed via PR merge using `closes #N` syntax, the signal closes automatically. Prefer this path when possible.
+
+Auditors treat open signals older than 14 days without linked downstream work as a finding.
 
 ---
 
