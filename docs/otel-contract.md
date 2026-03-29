@@ -1,6 +1,6 @@
 # Canonical OTel Telemetry Contract
 
-> **Version:** 1.2 | **Last updated:** 2026-03-09
+> **Version:** 1.3 | **Last updated:** 2026-03-29
 > **Status:** Active — single source of truth for all agent telemetry
 > **Supersedes:** inline attribute lists in `AGENTS.md` Rule 9a, `org/4-quality/policies/observability.md` Agent Observability section, and `org/integrations/categories/observability.md` semantic conventions section
 > **Spec references:**
@@ -289,6 +289,70 @@ Rules:
 4. **UI correlation should start from `trace.id`.** `span.id` is a secondary precision key for linking an activity entry to a specific span in a waterfall or trace viewer.
 
 This rule exists specifically to support observability surfaces such as agent command centers: spans remain the source of truth, while flattened activity/event records remain trace-linkable without introducing a second telemetry schema.
+
+### 6.4 Collaboration and Deliberation Events
+
+Multi-agent systems implementing collaboration memory or structured deliberation emit these native span events. Namespaces align with OTel emerging agent semantic conventions (`agent.collaboration.*`, `agent.deliberation.*`) to avoid collision and ensure forward compatibility.
+
+#### Collaboration Events (agent interaction telemetry)
+
+Emit on the `agent.run` span of the agent whose state is being updated.
+
+| Event Name | Required Attributes | Description |
+|------------|---------------------|-------------|
+| `agent.collaboration.memory_update` | `agent.collaboration.source_agent`, `agent.collaboration.target_agent`, `agent.collaboration.signal_type`, `agent.collaboration.score_delta`, `agent.collaboration.score_after` | Emitted when an agent's collaboration memory scores change |
+| `agent.collaboration.signal` | `agent.collaboration.source_agent`, `agent.collaboration.target_agent`, `agent.collaboration.signal_type`, `agent.collaboration.signal_weight` | Raw interaction signal recorded |
+| `agent.collaboration.exploration_override` | `agent.collaboration.source_agent`, `agent.collaboration.target_agent` | Agent's exploration mechanism overrode normal memory-guided behavior |
+
+**Collaboration attribute definitions:**
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `agent.collaboration.source_agent` | string | `agent.id` of the agent that initiated the interaction |
+| `agent.collaboration.target_agent` | string | `agent.id` of the agent that was addressed or referenced |
+| `agent.collaboration.signal_type` | string (enum) | One of: `mention`, `idea_building`, `challenge`, `human_reaction`, `synthesis_inclusion` |
+| `agent.collaboration.signal_weight` | double | Numeric weight of the signal (policy-defined scale) |
+| `agent.collaboration.score_delta` | double | Score change from this update |
+| `agent.collaboration.score_after` | double | Collaboration score after the update |
+
+> **Privacy note:** Agent names and score values are operational metadata, not PII. Human reactions are attributed to a generic `human` role, not to a named individual.
+
+> **Cardinality note:** `source_agent × target_agent` is bounded by team size (typically < 15 agents); safe as metric dimensions.
+
+#### Deliberation Events (structured multi-agent deliberation telemetry)
+
+Emit on the `agent.run` span of the deliberation coordinator or convergence judge.
+
+| Event Name | Required Attributes | Description |
+|------------|---------------------|-------------|
+| `agent.deliberation.phase_transition` | `agent.deliberation.phase`, `agent.deliberation.turns_used` | Phase changed (e.g. exploration → critique → synthesis) |
+| `agent.deliberation.convergence_check` | `agent.deliberation.phase`, `agent.deliberation.confidence`, `agent.deliberation.turns_used`, `agent.deliberation.turns_budget` | Convergence judge evaluated group progress |
+| `agent.deliberation.synthesis_generated` | `agent.deliberation.phase`, `agent.deliberation.turns_used` | Synthesis artifact was produced |
+| `agent.deliberation.budget_exhausted` | `agent.deliberation.phase`, `agent.deliberation.turns_used`, `agent.deliberation.turns_budget` | Hard budget cap forced deliberation closure |
+
+**Deliberation attribute definitions:**
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `agent.deliberation.phase` | string | Current deliberation phase name (e.g. `exploration`, `critique`, `synthesis`) |
+| `agent.deliberation.confidence` | double | Convergence confidence score (0.0–1.0) |
+| `agent.deliberation.turns_used` | int | Turns consumed in the current phase |
+| `agent.deliberation.turns_budget` | int | Turn ceiling for the current phase |
+| `agent.deliberation.extension_used` | boolean | Whether a one-shot extension was consumed |
+
+#### Participation Quality Metrics
+
+These are standard OTel metrics (Histogram or Gauge) emitted by agents implementing collaboration memory. Use **delta temporality** (required for Dynatrace).
+
+| Metric | Instrument | Unit | Required Dimensions | Description |
+|--------|-----------|------|---------------------|-------------|
+| `agent.collaboration.score` | Gauge | `{score}` | `agent.collaboration.source_agent`, `agent.collaboration.target_agent` | Current collaboration score per source-target pair |
+| `agent.deliberation.convergence_rate` | Histogram | `{ratio}` | `agent.deliberation.phase` | Turns-to-convergence / budget (lower = faster) |
+| `agent.deliberation.challenge_ratio` | Histogram | `{ratio}` | `agent.deliberation.phase` | Fraction of turns containing genuine challenge |
+
+> **Namespace rationale:** `agent.collaboration.*` and `agent.deliberation.*` are chosen to align with OTel's emerging multi-agent namespace rather than ad-hoc prefixes. If OTel stabilizes a different canonical namespace, this contract will migrate and issue a deprecation notice per Section 10.
+
+> **Cross-reference:** See issue [agentic-enterprise#231](https://github.com/wlfghdr/agentic-enterprise/issues/231) for the original proposal and OTel alignment notes. For ACC read paths consuming these events, see [agent-command-center#89](https://github.com/wlfghdr/agent-command-center/issues/89) (Participation Quality Trends) and [agent-command-center#90](https://github.com/wlfghdr/agent-command-center/issues/90) (Collaboration Mesh).
 
 ---
 
@@ -709,5 +773,7 @@ deprecated_attributes:
 
 | Version | Date | Summary |
 |---------|------|---------|
+| 1.3 | 2026-03-29 | Added Section 6.4: collaboration and deliberation event semantics, participation quality metrics. Closes issue #231. |
+| 1.2 | 2026-03-09 | (prior version — see git history) |
 | 1.1 | 2026-03-09 | Folded the former `docs/observability-genai.md` quick-reference into the canonical telemetry contract to remove duplicate observability guidance. |
 | 1.0 | 2026-03-09 | Initial canonical contract — consolidates AGENTS.md Rule 9a, observability policy, and integration docs. Closes issue #77. |
