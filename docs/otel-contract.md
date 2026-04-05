@@ -1,6 +1,6 @@
 # Canonical OTel Telemetry Contract
 
-> **Version:** 1.3 | **Last updated:** 2026-03-29
+> **Version:** 1.4 | **Last updated:** 2026-04-05
 > **Status:** Active — single source of truth for all agent telemetry
 > **Supersedes:** inline attribute lists in `AGENTS.md` Rule 9a, `org/4-quality/policies/observability.md` Agent Observability section, and `org/integrations/categories/observability.md` semantic conventions section
 > **Spec references:**
@@ -254,6 +254,7 @@ Use native span events for:
 | `agent.escalation` | `agent.run` | `governance.reason`, `agentic.layer` |
 | `tool.error` | `tool.execute` | `error.type`, `tool.name` |
 | `policy.violation` | `quality.evaluate` | `quality.policy.id`, `governance.reason` |
+| `agent.instructions.loaded` | `agent.run` | `agentic.layer` |
 | `mission.status_change` | `mission.transition` | `mission.status.from`, `mission.status.to` |
 
 ### 6.2 Derived Events
@@ -676,6 +677,10 @@ span_events:
       - quality.policy.id
       - governance.reason
 
+  - name: agent.instructions.loaded
+    required_attributes:
+      - agentic.layer
+
   - name: mission.status_change
     required_attributes:
       - mission.status.from
@@ -773,6 +778,7 @@ deprecated_attributes:
 
 | Version | Date | Summary |
 |---------|------|---------|
+| 1.4 | 2026-04-05 | Added `agent.instructions.loaded` span event (Section 6.1 + YAML schema) — resolves ISO 9001 Clause 7.3 evidence chain mismatch. |
 | 1.3 | 2026-03-29 | Added Section 6.4: collaboration and deliberation event semantics, participation quality metrics. Closes issue #231. |
 | 1.2 | 2026-03-09 | (prior version — see git history) |
 | 1.1 | 2026-03-09 | Folded the former `docs/observability-genai.md` quick-reference into the canonical telemetry contract to remove duplicate observability guidance. |
