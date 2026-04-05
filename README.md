@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/ISO_27001-~90%25_self--assessed-0e8a16" alt="ISO 27001">
   <img src="https://img.shields.io/badge/SOC_2-~90%25_self--assessed-1d76db" alt="SOC 2">
   <img src="https://img.shields.io/badge/GDPR-~75%25_self--assessed-d93f0b" alt="GDPR">
-  <img src="https://img.shields.io/badge/ISO_42001-~60%25_self--assessed-d93f0b" alt="ISO 42001">
+  <img src="https://img.shields.io/badge/ISO_42001-~84%25_self--assessed-0e8a16" alt="ISO 42001">
   <img src="https://img.shields.io/badge/NIST_AI_RMF-~90%25_self--assessed-fbca04" alt="NIST AI RMF">
   <img src="https://img.shields.io/badge/EU_AI_Act-~85%25_self--assessed-0e8a16" alt="EU AI Act">
   <img src="https://img.shields.io/badge/NIST_CSF_2.0-~95%25_self--assessed-0e8a16" alt="NIST CSF 2.0">
@@ -198,7 +198,7 @@ Template governance scaffolding mapped to 11 certification and regulatory framew
 
 | Framework | Self-Assessed Template Posture | | Framework | Self-Assessed Template Posture |
 |-----------|----------|-|-----------|----------|
-| **NIST CSF 2.0** | ~95% | | **ISO 42001** | ~60% |
+| **NIST CSF 2.0** | ~95% | | **ISO 42001** | ~84% |
 | **ISO 27001** | ~90% | | **GDPR** | ~75% |
 | **SOC 2 Type II** | ~90% | | **EU AI Act** | ~85% |
 | **NIST AI RMF** | ~90% | | **CCPA/CPRA** | ~75% |

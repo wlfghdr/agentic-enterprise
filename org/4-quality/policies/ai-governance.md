@@ -4,7 +4,7 @@
 > **Applies to:** All AI/ML models, agent types, LLM-powered workflows, automated decision systems, and AI-generated outputs
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.0.2 | **Last updated:** 2026-03-15
+> **Version:** 1.1.0 | **Last updated:** 2026-04-05
 
 ---
 
@@ -190,7 +190,112 @@ Token budgets are advisory guardrails, not hard kill switches (unless the risk m
 
 ---
 
-## 7. Deployment-Customizable Decisions
+## 7. AI System Impact Assessment
+
+AI systems classified as Tier 1 (High-Risk) or Tier 2 (Limited-Risk) must undergo an AI system impact assessment per ISO 42001 Clauses 6.1.4 and 8.4. The assessment evaluates potential consequences for individuals, groups, and societies — broader than the privacy-focused DPIA in [privacy.md](privacy.md).
+
+### 7.1 Mandatory Requirements
+
+- [ ] Tier 1 (High-Risk) systems must complete an AI system impact assessment before initial deployment and at planned intervals thereafter
+- [ ] Tier 2 (Limited-Risk) systems must complete an AI system impact assessment before initial deployment; reassessment when significant changes occur
+- [ ] Impact assessments must cover individual/group impacts (fairness, accountability, transparency, security/privacy, safety/health, financial, accessibility, human rights) and societal impacts (environmental, economic, government, health/safety, cultural)
+- [ ] Assessment results are documented using the [AI System Impact Assessment Template](../../../docs/compliance/templates/_TEMPLATE-ai-system-impact-assessment.md) and retained per the defined retention period
+- [ ] Assessments are performed by personnel independent of the AI system under assessment
+- [ ] Results feed into the AIMS management review (Clause 9.3) and the AI risk treatment plan
+
+### 7.2 Trigger Criteria
+
+An impact assessment must be performed or updated when:
+- A new AI system is deployed
+- Significant changes are made to an existing system's scope, data, or automation level
+- The planned review interval is reached
+- An incident or adverse impact report is received
+- Regulatory requirements change
+
+---
+
+## 8. AI Data Governance
+
+Data used in AI systems must be governed throughout its lifecycle. This section addresses ISO 42001 Annex A.7.2--A.7.6 requirements for AI-specific data management, complementing the security-focused [Data Classification Policy](data-classification.md).
+
+### 8.1 Data Management Processes (per A.7.2 / B.7.2)
+
+Organizations must define, document, and implement data management processes that address:
+
+- [ ] **Privacy and security implications** — data handling aligned with [privacy.md](privacy.md) and [data-classification.md](data-classification.md) for all AI data pipelines
+- [ ] **Security and safety threats** — threats arising from data-dependent AI development identified and mitigated
+- [ ] **Transparency and explainability** — data provenance documented; ability to explain how data determine AI outputs
+- [ ] **Representativeness** — training data assessed for representativeness relative to the operational domain
+- [ ] **Accuracy and integrity** — data accuracy and integrity requirements defined and verified
+
+### 8.2 Data Acquisition Documentation (per A.7.3 / B.7.3)
+
+For each AI system (Tier 1 and Tier 2 required; Tier 3 recommended), document:
+
+| Documentation item | Description |
+|--------------------|-------------|
+| Categories of data needed | Types of data required (text, images, structured, etc.) |
+| Quantity of data needed | Volume requirements for training, validation, testing |
+| Data sources | Internal, purchased, shared, open, synthetic |
+| Source characteristics | Static, streamed, gathered, machine-generated |
+| Data subject demographics | Known or potential biases in subject demographics and characteristics |
+| Prior handling | Previous uses of the data; conformity with privacy and security requirements |
+| Data rights | PII status, copyright, licensing, terms of use |
+| Associated metadata | Labelling details, annotation methodology, quality scores |
+| Provenance | Origin, chain of custody, transformations applied |
+
+### 8.3 Data Quality Requirements (per A.7.4 / B.7.4)
+
+Define minimum data quality standards per risk tier. Consider the impact of bias on system performance and fairness (per B.7.4). Reference ISO/IEC 25024 for data quality dimensions.
+
+| Quality dimension | Tier 3 (Minimal) | Tier 2 (Limited) | Tier 1 (High) |
+|-------------------|:-----------------:|:-----------------:|:--------------:|
+| Completeness | Recommended | Required | Required |
+| Accuracy | Recommended | Required | Required |
+| Consistency | Recommended | Required | Required |
+| Timeliness | Recommended | Required | Required |
+| Bias assessment | Not required | Required | Required |
+| Representativeness validation | Not required | Recommended | Required |
+
+- [ ] Data quality requirements defined for training, validation, test, and production data
+- [ ] Bias impact on performance and fairness assessed per B.7.4
+- [ ] Data quality metrics monitored and documented
+
+### 8.4 Data Provenance Tracking (per A.7.5 / B.7.5)
+
+Define and document a process for recording provenance (per ISO 8000-2) across the data lifecycle:
+
+- [ ] **Creation** — origin of the data, original creator, creation date
+- [ ] **Update** — modifications to existing data, who modified, when
+- [ ] **Transcription** — conversion between formats or media
+- [ ] **Abstraction** — summarization, aggregation, or dimensionality reduction
+- [ ] **Validation** — quality checks, conformity assessments performed
+- [ ] **Transferring of control** — handoffs between systems, teams, or organizations
+- [ ] **Sharing** — distribution to internal or external parties, access grants
+- [ ] **Transformations** — feature engineering, normalization, encoding, augmentation
+
+### 8.5 Data Preparation Standards (per A.7.6 / B.7.6)
+
+Document criteria for selecting data preparation methods. For each AI task, document both the selection criteria and the specific methods used.
+
+Common preparation methods to address:
+
+| Method | Documentation requirement |
+|--------|--------------------------|
+| Statistical exploration | Distributions, outliers, correlations, summary statistics |
+| Cleaning | Missing value handling, deduplication, error correction rules |
+| Imputation | Imputation strategy, justification, impact on data distribution |
+| Normalization | Normalization method, reference ranges |
+| Scaling | Scaling approach, feature-specific parameters |
+| Labelling | Annotation guidelines, inter-annotator agreement, quality assurance |
+| Encoding | Encoding scheme, handling of categorical variables, embedding approach |
+
+- [ ] For each AI system, the selected preparation methods and selection criteria are documented
+- [ ] Data preparation documentation is maintained alongside model cards and updated when methods change
+
+---
+
+## 9. Deployment-Customizable Decisions
 
 The framework defines the governance structure. Each adopter must configure the instance-specific details.
 
@@ -216,27 +321,31 @@ The framework defines the governance structure. Each adopter must configure the 
 
 ---
 
-## 8. Cross-Policy Alignment
+## 10. Cross-Policy Alignment
 
 | Policy | What This Policy Provides |
 |--------|--------------------------|
 | **[Agent Security Policy](agent-security.md)** | This policy extends agent-security.md with behavioral robustness testing (§4). agent-security.md covers security threats (prompt injection, tool abuse); this policy covers fairness, transparency, and adversarial robustness. Both apply to all AI systems. |
 | **[Risk Management Policy](risk-management.md)** | Risk tier classification (§1) maps to autonomy tiers in risk-management.md §6.1. AI risk taxonomy risks RE-2 (biased output), FI-2 (cost overrun), and CO-1 (regulatory violation) are operationalized by this policy's fairness audit, token accountability, and EU AI Act alignment. |
-| **[Data Classification Policy](data-classification.md)** | AI systems processing CONFIDENTIAL or RESTRICTED data require higher governance rigor. Model cards document data classification of training data and inference inputs. PII in AI pipelines triggers privacy.md requirements. |
+| **[Data Classification Policy](data-classification.md)** | AI systems processing CONFIDENTIAL or RESTRICTED data require higher governance rigor. Model cards document data classification of training data and inference inputs. PII in AI pipelines triggers privacy.md requirements. AI data governance (§8) complements data classification with AI-specific quality, provenance, and preparation requirements. |
 | **[Privacy Policy](privacy.md)** | AI features that process personal data must document this in the model card. DPIA is required for high-risk AI processing (per privacy.md §5). Consent and lawful basis requirements apply to AI training data and inference. |
 | **[Observability Policy](observability.md)** | Token tracking, agent telemetry, and decision event spans are the technical foundation for explainability (§5) and token accountability (§6). This policy defines what must be observable; observability.md defines how. |
 | **[Encryption & Key Management Policy](cryptography.md)** | AI model artifacts, training data, and inference I/O follow encryption requirements per data classification level. Model weights are encrypted at rest per cryptography.md §4.1. |
 
 ---
 
-## 9. Compliance Mapping
+## 11. Compliance Mapping
 
 | Framework | Requirement | Policy Section |
 |-----------|-------------|---------------|
 | **ISO 42001:2023** | 6.1 AI risk management | §1 (risk classification) |
+| **ISO 42001:2023** | 6.1.3 Statement of applicability | [AIMS SoA template](../../../docs/compliance/templates/_TEMPLATE-aims-soa.md) |
 | **ISO 42001:2023** | 6.2 AI system lifecycle | §2 (model cards), §3 (fairness audit lifecycle) |
 | **ISO 42001:2023** | 7.2 AI system transparency | §2 (model cards), §5 (explainability) |
-| **ISO 42001:2023** | 8.4 Data for AI systems | §2.1 (training data summary), §8 cross-ref to data-classification.md |
+| **ISO 42001:2023** | 6.1.4 AI system impact assessment | §7 (AI system impact assessment), [impact assessment template](../../../docs/compliance/templates/_TEMPLATE-ai-system-impact-assessment.md) |
+| **ISO 42001:2023** | 8.4 Data for AI systems | §2.1 (training data summary), §8 (AI data governance), §10 cross-ref to data-classification.md |
+| **ISO 42001:2023** | A.7.2--A.7.6 Data for AI systems | §8 (AI data governance — management, acquisition, quality, provenance, preparation) |
+| **ISO 42001:2023** | A.5.2--A.5.5 AI impact assessment | §7 (impact assessment requirements), [impact assessment template](../../../docs/compliance/templates/_TEMPLATE-ai-system-impact-assessment.md) |
 | **ISO 42001:2023** | 9.1 Monitoring & measurement | §6 (token accountability), §3.2 (audit cadence) |
 | **EU AI Act** | Art. 6 Classification of high-risk AI | §1 (risk tiers) |
 | **EU AI Act** | Art. 9 Risk management system | §1, §4 (adversarial robustness) |
@@ -245,7 +354,7 @@ The framework defines the governance structure. Each adopter must configure the 
 | **EU AI Act** | Art. 13 Transparency | §5 (explainability) |
 | **EU AI Act** | Art. 14 Human oversight | §5.2 (human override logging), cross-ref to risk-management.md §6.1 |
 | **EU AI Act** | Art. 15 Accuracy, robustness, cybersecurity | §4 (adversarial robustness), §3 (fairness/accuracy) |
-| **NIST AI RMF** | GOVERN — Governance structures | §1 (risk classification), §7 (customization) |
+| **NIST AI RMF** | GOVERN — Governance structures | §1 (risk classification), §9 (customization) |
 | **NIST AI RMF** | MAP — Context and risk identification | §1 (risk tiers), §2 (model cards) |
 | **NIST AI RMF** | MEASURE — Quantify risks and impacts | §3 (fairness metrics), §6 (token metrics) |
 | **NIST AI RMF** | MANAGE — Prioritize and respond | §3.2 (remediation), §6.2 (budget enforcement) |
@@ -293,5 +402,6 @@ The framework defines the governance structure. Each adopter must configure the 
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1.0 | 2026-04-05 | Added §7 AI System Impact Assessment (Clauses 6.1.4, 8.4, A.5.2--A.5.5) and §8 AI Data Governance (A.7.2--A.7.6). Renumbered §7--9 → §9--11. Updated compliance mapping with ISO 42001 impact assessment, data governance, and SoA references. Closes #245, closes #246. |
 | 1.0.2 | 2026-03-15 | Corrected agent-security.md filename casing in prose references to match the actual policy filename. |
 | 1.0 | 2026-03-14 | Initial version — AI risk classification (4 tiers aligned to EU AI Act), model card requirements, fairness audit process (demographic parity, equalized odds, error rate parity), adversarial robustness testing, explainability levels (Traceable / Justifiable / Auditable), token usage accountability, compliance mapping (ISO 42001 / EU AI Act / NIST AI RMF). Closes #91. |
