@@ -186,6 +186,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install dependencies
+        run: pip install pyyaml
+
       - name: Self-check (script integrity)
         run: python3 scripts/check_placeholders.py --self-check
 
@@ -200,6 +203,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
 
       - name: Check required files exist
         run: |
@@ -748,6 +759,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
 
       - name: Validate agent instruction hierarchy
         run: python3 scripts/validate_agent_instructions.py
