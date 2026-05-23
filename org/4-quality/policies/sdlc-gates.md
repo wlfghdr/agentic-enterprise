@@ -13,6 +13,29 @@ This policy provides the single-view SDLC stage-gate map for the governance cont
 
 A gate is **blocking** unless the referenced policy explicitly defines an emergency exception path. Referenced policies remain authoritative for detailed control language.
 
+## Mandatory Requirements
+
+### 1. SDLC Gate Coverage
+
+- [ ] Each SDLC phase from PLAN through MONITOR must define the blocking gates that apply to software, AI system, agent, integration, and operational changes
+- [ ] Each blocking gate must identify the primary evidence or artifacts required to prove readiness
+- [ ] Each blocking gate must reference the governing policy that remains authoritative for detailed control language
+- [ ] Release-bound changes must map planned work to the applicable SDLC phase gates before production deployment
+
+### 2. Production Deployment Gates
+
+- [ ] Production deployment requires all applicable quality policy evaluations to pass before release approval
+- [ ] Tier 1 and Tier 2 AI systems must complete the required AI system impact assessment before initial production deployment
+- [ ] Applicable AI and agentic systems must complete AI-specific penetration testing before production deployment
+- [ ] A pre-deploy readiness checklist must be completed before production deployment
+- [ ] Progressive rollout, health checks, and rollback triggers must be approved before production deployment
+
+### 3. Evidence and Exceptions
+
+- [ ] Gate evidence must be retained with the mission, PR, release contract, or linked work artifact
+- [ ] Emergency exceptions must follow the exception path defined by the governing policy and cannot bypass post-deploy validation
+- [ ] Post-deploy validation results must feed back into operational monitoring, incident response, and risk reassessment when applicable
+
 ## SDLC Stage-Gate Map
 
 | SDLC Phase | Required blocking gates | Primary evidence / artifacts | Governing policies |
@@ -49,6 +72,17 @@ A pre-deploy readiness checklist must confirm at minimum:
 - [ ] Feature flags and blast-radius controls configured where applicable
 - [ ] Deployment window and stakeholder communications prepared
 - [ ] Named owners available for deployment, rollback, and incident escalation
+
+## Evaluation Criteria
+
+| Criterion | PASS | FAIL |
+|-----------|------|------|
+| Phase gate coverage | All SDLC phases have defined blocking gates, evidence, and governing policy links | One or more phases lack gates, evidence, or authoritative policy references |
+| Deployment readiness | Quality, security, impact assessment, readiness checklist, and rollout gates are complete before production deployment | Production deployment proceeds with missing required gate evidence |
+| AI/agentic safeguards | AI impact assessment and AI-specific penetration testing are completed when required | Applicable AI or agentic systems deploy without required assessment or adversarial testing |
+| Evidence retention | Gate evidence is linked from the mission, PR, release contract, or work artifact | Gate decisions cannot be audited from durable evidence |
+| Exception handling | Emergency exceptions follow governing policy paths and include post-deploy validation | Exceptions bypass required approval, evidence, or validation controls |
+| Operational feedback | Monitoring, incidents, near-misses, and reassessment triggers feed back into risk and governance processes | Operational findings are not reflected in risk, governance, or improvement workflows |
 
 ## Related Policies
 
