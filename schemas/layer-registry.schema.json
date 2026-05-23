@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/wlfghdr/agentic-enterprise/schemas/layer-registry.schema.json",
+  "title": "Layer Registry",
+  "description": "Declarative registry of the organizational layers used by the framework.",
+  "type": "object",
+  "required": ["layers"],
+  "additionalProperties": false,
+  "properties": {
+    "layers": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["id", "order", "label", "directory", "scope", "delegates_to"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "order": {"type": "integer", "minimum": 0},
+          "label": {"type": "string", "minLength": 1},
+          "directory": {"type": "string", "pattern": "^[0-9]+-[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "scope": {"type": "string", "minLength": 1},
+          "delegates_to": {
+            "type": "array",
+            "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+          }
+        }
+      }
+    }
+  }
+}

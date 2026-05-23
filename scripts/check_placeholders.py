@@ -47,6 +47,8 @@ import sys
 from pathlib import Path
 from typing import NamedTuple
 
+from layer_registry import layer_directories
+
 # ---------------------------------------------------------------------------
 # Placeholder patterns — (label, compiled regex)
 # ---------------------------------------------------------------------------
@@ -99,12 +101,6 @@ FRAMEWORK_FILES: frozenset[str] = frozenset(
         "README.md",
         # Org layer instructions (ship with {{COMPANY_SHORT}} etc.)
         "org/README.md",
-        "org/0-steering/AGENT.md",
-        "org/0-steering/EVOLUTION.md",
-        "org/1-strategy/AGENT.md",
-        "org/2-orchestration/AGENT.md",
-        "org/3-execution/AGENT.md",
-        "org/4-quality/AGENT.md",
         "org/agents/README.md",
         # Execution division stubs (placeholder names by design)
         "org/3-execution/divisions/core-domain-1/DIVISION.md",
@@ -126,7 +122,6 @@ FRAMEWORK_FILES: frozenset[str] = frozenset(
         "process/3-ship/GUIDE.md",
         "process/4-operate/GUIDE.md",
         # Steering evolution log
-        "org/0-steering/EVOLUTION.md",
     }
 )
 

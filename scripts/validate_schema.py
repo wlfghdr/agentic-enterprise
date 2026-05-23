@@ -29,6 +29,8 @@ import re
 import sys
 from pathlib import Path
 
+from layer_registry import layer_ids
+
 # ── Dependency check ──────────────────────────────────────────────────────────
 try:
     import yaml
@@ -91,6 +93,88 @@ def validate_config(schema_path: Path, config_path: Path) -> list[str]:
     except SchemaError as exc:
         errors.append(f"Schema error in {schema_path.name}: {exc.message}")
 
+    return errors
+
+
+def validate_layer_registry(schema_path: Path, registry_path: Path) -> list[str]:
+    """Validate org/layers.yaml against schema and framework semantics."""
+    errors: list[str] = []
+    schema = load_json(schema_path)
+
+    try:
+        instance = load_yaml(registry_path)
+    except yaml.YAMLError as exc:
+        return [f"org/layers.yaml: YAML parse error — {exc}"]
+
+    if instance is None:
+        return ["org/layers.yaml: file is empty"]
+
+    try:
+        validate(instance=instance, schema=schema)
+    except ValidationError as exc:
+        path_str = " → ".join(str(p) for p in exc.absolute_path) or "(root)"
+        return [f"org/layers.yaml [{path_str}]: {exc.message}"]
+    except SchemaError as exc:
+        return [f"Schema error in {schema_path.name}: {exc.message}"]
+
+    layers = instance.get("layers", [])
+    ids = [layer["id"] for layer in layers]
+    orders = [layer["order"] for layer in layers]
+    directories = [layer["directory"] for layer in layers]
+
+    if len(ids) != len(set(ids)):
+        errors.append("org/layers.yaml: layer ids must be unique")
+    if len(orders) != len(set(orders)):
+        errors.append("org/layers.yaml: layer orders must be unique")
+    if len(directories) != len(set(directories)):
+        errors.append("org/layers.yaml: layer directories must be unique")
+
+    known_ids = set(ids)
+    inbound_counts = {layer_id: 0 for layer_id in ids}
+    for layer in layers:
+        delegates = layer.get("delegates_to", [])
+        if layer["id"] in delegates:
+            errors.append(f"org/layers.yaml: layer '{layer['id']}' may not delegate to itself")
+        for delegate in delegates:
+            if delegate not in known_ids:
+                errors.append(f"org/layers.yaml: layer '{layer['id']}' delegates to unknown layer '{delegate}'")
+            else:
+                inbound_counts[delegate] += 1
+
+    orphans = [layer_id for layer_id, inbound in inbound_counts.items() if inbound == 0]
+    if orphans:
+        errors.append(
+            f"org/layers.yaml: every layer must be referenced by delegation at least once, orphaned: {', '.join(orphans)}"
+        )
+
+    for layer in layers:
+        agent_path = REPO / "org" / layer["directory"] / "AGENT.md"
+        if not agent_path.exists():
+            errors.append(f"{agent_path.relative_to(REPO)}: file not found for configured layer '{layer['id']}'")
+
+    return errors
+
+
+def validate_mcp_profile_layers(profile_path: Path, allowed_layer_ids: set[str]) -> list[str]:
+    errors: list[str] = []
+    try:
+        profile = load_json(profile_path)
+    except json.JSONDecodeError as exc:
+        return [f"{profile_path.relative_to(REPO)}: JSON parse error — {exc}"]
+
+    for idx, permission in enumerate(profile.get("permissions_matrix", [])):
+        for field in ("allowed_layers", "denied_layers"):
+            seen: set[str] = set()
+            for layer in permission.get(field, []):
+                if layer not in allowed_layer_ids:
+                    errors.append(
+                        f"{profile_path.relative_to(REPO)}: permissions_matrix[{idx}].{field} contains unknown layer '{layer}'"
+                    )
+                if layer in seen:
+                    errors.append(
+                        f"{profile_path.relative_to(REPO)}: permissions_matrix[{idx}].{field} contains duplicate layer '{layer}'"
+                    )
+                seen.add(layer)
     return errors
 
 
@@ -285,6 +369,19 @@ def main() -> int:
             else:
                 all_ok.append("CONFIG.yaml")
 
+        layer_schema_path = REPO / "schemas" / "layer-registry.schema.json"
+        layer_registry_path = REPO / "org" / "layers.yaml"
+        if not layer_schema_path.exists():
+            all_errors.append(f"Schema file missing: {layer_schema_path.relative_to(REPO)}")
+        elif not layer_registry_path.exists():
+            all_errors.append("org/layers.yaml not found")
+        else:
+            errs = validate_layer_registry(layer_schema_path, layer_registry_path)
+            if errs:
+                all_errors.extend(errs)
+            else:
+                all_ok.append("org/layers.yaml")
+
     # ── 2. Signal artifacts ────────────────────────────────────────────────
     signal_schema_path = REPO / "schemas" / "work" / "signal.schema.json"
     if signal_schema_path.exists():
@@ -346,6 +443,9 @@ def main() -> int:
         errs, oks = validate_json_artifacts(mcp_schema_path, "org/mcp-profiles/*.mcp-profile.json")
         all_errors.extend(errs)
         all_ok.extend(oks)
+        allowed_layer_ids = set(layer_ids())
+        for profile_path in sorted(REPO.glob("org/mcp-profiles/*.mcp-profile.json")):
+            all_errors.extend(validate_mcp_profile_layers(profile_path, allowed_layer_ids))
 
         # ── 7. Capability contracts ───────────────────────────────────────
         contract_schema_path = REPO / "schemas" / "capability-contract.schema.json"

@@ -24,6 +24,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from layer_registry import layer_org_size_keys
+
 # ---------------------------------------------------------------------------
 # Canonical mapping: {{VARIABLE}} → CONFIG.yaml dot-path
 #
@@ -87,12 +89,6 @@ VARIABLE_TO_CONFIG: dict[str, str] = {
     # Quality
     "MIN_CODE_COVERAGE": "quality.code_coverage_minimum",
     "PRODUCT_NAME": "product_name",
-    # Org size (from org/README.md)
-    "STEERING_SIZE": "org_size.steering_layer",
-    "STRATEGY_SIZE": "org_size.strategy_layer",
-    "ORCHESTRATION_SIZE": "org_size.orchestration_layer",
-    "EXECUTION_SIZE": "org_size.execution_layer",
-    "QUALITY_SIZE": "org_size.quality_layer",
     # Policy variables
     "DESIGN_SYSTEM_NAME": "toolchain.design_system",
     "SECRETS_MANAGER": "toolchain.secrets_manager",
@@ -110,6 +106,9 @@ VARIABLE_TO_CONFIG: dict[str, str] = {
     "API_ENDPOINT": "integrations.observability[0].api_endpoint",
     "VENDOR": "integrations.observability[0].vendor",
 }
+
+for layer_id, config_key in layer_org_size_keys().items():
+    VARIABLE_TO_CONFIG[f"{layer_id.upper()}_SIZE"] = f"org_size.{config_key}"
 
 # Format validators for known variable types
 # Each entry: config_path_substring → (label, compiled regex)

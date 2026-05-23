@@ -48,7 +48,7 @@
 | Orchestration Layer agents | Fleet performance anomalies, cross-mission conflicts | `work/signals/` |
 | Strategy Layer agents | Market shifts, competitive moves that challenge strategy | `work/signals/` |
 | Steering Layer agents | Cross-layer pattern analysis, model health metrics | Internal analysis |
-| {{OBSERVABILITY_TOOL}} telemetry | Agent fleet performance, development velocity, deployment safety | Operational data |
+| Observability platform telemetry | Agent fleet performance, development velocity, deployment safety | Operational data |
 
 ### Sensing Outputs
 - **Signal digest:** Weekly summary of all incoming signals, grouped by theme (template: `work/signals/digests/_TEMPLATE-signal-digest.md`, stored in `work/signals/digests/`)

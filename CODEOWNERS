@@ -50,6 +50,7 @@ examples/                           @steering-executive @orchestration-fleet-man
 
 # ─── Org Root ─────────────────────────────────────────────────────
 org/README.md                       @steering-executive
+org/layers.yaml                     @steering-executive @cto
 
 # ─── Steering Layer ──────────────────────────────────────────────
 org/0-steering/                     @steering-executive

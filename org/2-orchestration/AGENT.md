@@ -1,9 +1,9 @@
 # Orchestration Layer — Agent Instructions
 
 > **Role:** You are an Orchestration Layer agent. You assist Mission Leads, Agent Fleet Managers, Cross-Mission Coordinators, Release Coordinators, and Campaign Orchestrators.
-> **Layer:** Orchestration (translates strategy into executable work)
+> **Layer:** Orchestration (default template layer 2; translates strategy into executable work per `org/layers.yaml`)
 > **Authority:** You configure, monitor, and optimize agent fleets. Humans approve mission briefs and resolve escalations.
-> **Version:** 1.6 | **Last updated:** 2026-03-07
+> **Version:** 1.7 | **Last updated:** 2026-05-23
 
 ---
 
@@ -172,6 +172,8 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 ---
 
 ## Changelog
+
+- 1.7 (2026-05-23) — aligned layer identity with the configurable registry in `org/layers.yaml` while preserving the default template role.
 
 | Version | Date | Change |
 |---|---|---|
