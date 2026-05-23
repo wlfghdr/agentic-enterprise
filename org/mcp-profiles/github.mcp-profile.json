@@ -59,7 +59,7 @@
       "tool": "create_issue",
       "description": "Create a new GitHub issue.",
       "risk_level": "medium",
-      "allowed_layers": ["steering", "strategy", "orchestration", "orchestration"],
+      "allowed_layers": ["steering", "strategy", "orchestration"],
       "denied_layers": ["execution"],
       "requires_approval": false,
       "constraints": ["Issue must include agent identity in the body."]
@@ -140,7 +140,7 @@
       "tool": "list_workflow_runs",
       "description": "List CI workflow runs.",
       "risk_level": "low",
-      "allowed_layers": ["orchestration", "quality", "orchestration"],
+      "allowed_layers": ["orchestration", "quality"],
       "requires_approval": false
     },
     {

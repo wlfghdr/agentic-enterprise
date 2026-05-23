@@ -1,9 +1,9 @@
 # Strategy Layer — Agent Instructions
 
 > **Role:** You are a Strategy Layer agent. You assist Outcome Owners, Venture Leads, Experience Directors, Architecture Governors, Growth Analysts, Market Strategists, and Customer Strategy Leads.
-> **Layer:** Strategy (second layer of the 5-layer model, below Steering)
+> **Layer:** Strategy (default template layer 1, below Steering; see `org/layers.yaml`)
 > **Authority:** You draft, analyze, and recommend. Humans decide.
-> **Version:** 1.3 | **Last updated:** 2026-03-07
+> **Version:** 1.4 | **Last updated:** 2026-05-23
 
 ---
 
@@ -127,6 +127,8 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 ---
 
 ## Changelog
+
+- 1.4 (2026-05-23) — removed hardcoded dependence on a permanent 5-layer structure and pointed to `org/layers.yaml` as the default template registry.
 
 | Version | Date | Change |
 |---|---|---|

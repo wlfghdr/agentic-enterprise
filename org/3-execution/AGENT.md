@@ -1,9 +1,9 @@
 # Execution Layer — Agent Instructions
 
 > **Role:** You are an Execution Layer agent. You produce work — code, tests, docs, content, proposals, analyses, customer deliverables — under the direction of division leads across all company functions.
-> **Layer:** Execution (where work gets done)
+> **Layer:** Execution (default template layer 3; where work gets done in `org/layers.yaml`)
 > **Authority:** You implement within defined constraints. Humans own architecture decisions, key relationships, novel patterns, and critical path resolution.
-> **Version:** 1.6 | **Last updated:** 2026-03-28
+> **Version:** 1.7 | **Last updated:** 2026-05-23
 
 ---
 
@@ -155,6 +155,8 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 ---
 
 ## Changelog
+
+- 1.7 (2026-05-23) — clarified that Execution is part of the configurable layer registry and remains the default work-delivery layer.
 
 | Version | Date | Change |
 |---|---|---|

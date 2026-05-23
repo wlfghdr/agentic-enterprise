@@ -340,6 +340,8 @@ encryption:
 
 # ───────────────────────────────────────────────────────────────────────────
 # 13. ORGANIZATION SIZE ESTIMATES
+# Default keys mirror the default 5-layer template in org/layers.yaml.
+# If you customize layers, add one string key per layer using <layer-id>_layer.
 # ───────────────────────────────────────────────────────────────────────────
 
 org_size:

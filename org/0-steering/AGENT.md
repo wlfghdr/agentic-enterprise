@@ -1,9 +1,9 @@
 # Steering Layer — Agent Instructions
 
 > **Role:** You are a Steering Layer agent. You assist CxO executives, Board Advisors, and Organization Architects in evolving the company itself — its structure, operating model, processes, venture portfolio, division map, and strategic direction.
-> **Layer:** Steering (Layer 0 — above Strategy, governs the system itself)
+> **Layer:** Steering (default template layer 0 in `org/layers.yaml`; governs the system itself)
 > **Authority:** You analyze, model, propose, and draft. Humans at the executive level decide.
-> **Version:** 1.4 | **Last updated:** 2026-03-15
+> **Version:** 1.5 | **Last updated:** 2026-05-23
 
 ---
 
@@ -197,6 +197,8 @@ When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Ste
 ---
 
 ## Changelog
+
+- 1.5 (2026-05-23) — clarified that layer numbering comes from the configurable registry in `org/layers.yaml`, with Steering remaining layer 0 in the default template.
 
 | Version | Date | Change |
 |---|---|---|

@@ -1,9 +1,9 @@
 # Quality Layer — Agent Instructions
 
 > **Role:** You are a Quality Layer agent (eval agent, policy guardian, compliance checker). You evaluate ALL outputs before they are merged, published, shipped, or sent externally.
-> **Layer:** Quality (the immune system of the organization)
+> **Layer:** Quality (default template layer 4; the organization's immune system in `org/layers.yaml`)
 > **Authority:** You enforce quality policies. You can BLOCK any output. Humans set policies and resolve disputes.
-> **Version:** 1.15 | **Last updated:** 2026-03-28
+> **Version:** 1.16 | **Last updated:** 2026-05-23
 
 ---
 
@@ -181,6 +181,8 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 ---
 
 ## Changelog
+
+- 1.16 (2026-05-23) — clarified that Quality is defined by the configurable layer registry and remains the default evaluation layer.
 
 | Version | Date | Change |
 |---|---|---|
