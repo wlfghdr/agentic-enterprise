@@ -4,7 +4,7 @@
 > **Applies to:** All AI/ML models, agent types, LLM-powered workflows, automated decision systems, and AI-generated outputs
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.1.0 | **Last updated:** 2026-04-05
+> **Version:** 1.2 | **Last updated:** 2026-05-23
 
 ---
 
@@ -295,7 +295,97 @@ Common preparation methods to address:
 
 ---
 
-## 9. Deployment-Customizable Decisions
+## 9. Human AI Competence and Awareness
+
+People doing work under the organization's control that affects AI performance must be competent and aware of the governance obligations that apply to that work. This section implements ISO/IEC 42001:2023 clauses **7.2 (Competence)**, **7.3 (Awareness)**, and Annex **A.4.6 (Human resources)**.
+
+### 9.1 Competence Requirements (ISO 42001 §7.2)
+
+- [ ] The organization determines the competence required for each human role that develops, deploys, operates, changes, maintains, verifies, integrates, transfers, or decommissions AI systems
+- [ ] Persons doing AI-related work are competent through appropriate education, training, or experience
+- [ ] Documented information is retained as evidence of competence for each covered role
+- [ ] When competence gaps are identified, the organization takes action to acquire the necessary competence and evaluates whether the action was effective
+
+### 9.2 Human AI Competence Matrix
+
+The following minimum role categories must be represented in the organization's AIMS competence inventory. One person may cover multiple categories if competence evidence supports it.
+
+| Role category (ISO 42001 B.4.6) | Typical responsibilities | Required education / qualifications | Required training | Required experience | AI-specific competences | Evidence of competence |
+|---|---|---|---|---|---|---|
+| **Data scientists / ML practitioners** | Model selection, training, evaluation, prompt design, data preparation | Degree or equivalent demonstrated capability in data science, ML, statistics, software engineering, or related field | Secure AI/ML development, data governance, fairness evaluation, model evaluation methods | Hands-on delivery or operation of AI/ML systems in comparable use cases | Dataset suitability, model limitations, experiment design, bias detection, evaluation interpretation | Resume/CV, portfolio or project history, certifications, training records, manager assessment, evaluation artifacts |
+| **Human oversight roles** | Approval of high-impact outputs, exception handling, override decisions, escalation | Role-specific decision authority and domain accountability | Human-in-the-loop procedures, override criteria, incident escalation, explainability use | Experience supervising or approving work in the relevant domain | Knowing when to trust, challenge, or stop AI outputs; recognizing automation bias; applying escalation thresholds | Role assignment record, approval matrix, training completion, observed override drills, performance review evidence |
+| **Safety / security / privacy experts** | Security review, privacy review, control design, incident response, trustworthiness controls | Relevant professional background in security, privacy, safety, compliance, or risk management | AI threat modeling, prompt injection/tool abuse risks, privacy impact analysis, safety case or control assurance methods | Experience assessing systems with similar data sensitivity or risk exposure | AI-specific security/privacy threats, abuse cases, resilience controls, regulatory interpretation | Certifications, review sign-offs, completed assessments, tabletop results, audit participation records |
+| **AI researchers / specialists** | Advanced model analysis, red teaming, robustness methods, model governance advisory | Specialized AI/ML expertise or equivalent track record | Advanced evaluation, adversarial robustness, emerging-model risk, governance standards | Experience with model behavior analysis, evaluation frameworks, or AI assurance | Capability benchmarking, failure-mode analysis, frontier-model constraints, governance tradeoff analysis | Publications, internal research memos, benchmark reports, training records, peer review evidence |
+| **Domain experts** | Business-context validation, intended-use definition, outcome review, harm assessment | Demonstrated expertise in the operational domain affected by the AI system | AI literacy for the domain, policy obligations, impact and exception reporting | Experience making or reviewing decisions in the target domain | Domain-specific failure recognition, suitability review, contextual risk identification | Role charter, training completion, decision logs, sign-off records, performance evidence |
+
+### 9.3 Competence Evidence Requirements
+
+The organization must retain documented information showing that covered persons are competent for their assigned AI responsibilities. Acceptable evidence includes:
+
+- completed training records and assessment scores
+- relevant certifications or licenses where applicable
+- resumes, CVs, or role histories showing relevant education and experience
+- observed performance evidence such as supervised approvals, peer reviews, drills, or evaluation reports
+- manager attestation or performance review records confirming role readiness
+- assignment records showing which systems, lifecycle stages, or control activities the person is authorized to perform
+
+Evidence should be current enough to support the assigned responsibility and reviewed at onboarding, role change, and periodic governance review.
+
+### 9.4 Competence Gap Actions
+
+When required competence is missing or insufficient, the organization must define and track corrective actions. Permitted actions include:
+
+- targeted training or refresher training
+- supervised practice, mentoring, or pair-review arrangements
+- temporary scope restriction or reassignment until competence is demonstrated
+- additional quality gates or mandatory second-person approval
+- hiring, contracting, or consulting for missing expertise
+- changes to system scope or autonomy tier until qualified oversight exists
+
+### 9.5 Evaluating Effectiveness of Competence Actions
+
+The organization must evaluate whether competence-building actions actually closed the gap. At least one effectiveness measure must be defined for each action, such as:
+
+- post-training assessment or simulation results
+- observed performance during supervised work
+- reduction in repeated review findings or policy exceptions
+- successful completion of drills, tabletop exercises, or override scenarios
+- sign-off by the accountable owner that the person can perform the role independently
+
+If effectiveness is not demonstrated, the action remains open and the person must not perform unsupervised work beyond their demonstrated competence.
+
+### 9.6 Awareness Programme (ISO 42001 §7.3)
+
+All persons working under the organization's control on AI-related activities, including employees and contracted persons, must participate in an awareness programme proportionate to their role.
+
+The awareness programme must ensure they understand:
+
+- the **AI policy**, including this policy and any instance-specific AI governance commitments
+- **their contribution to AIMS effectiveness**, including the benefits of improved AI performance, safe operation, and reliable control execution
+- the **implications of not conforming** with AIMS requirements, including operational harm, compliance failures, customer impact, security/privacy incidents, and disciplinary or contractual consequences where applicable
+
+### 9.7 Awareness Delivery and Cadence
+
+- **Onboarding** — before a person receives material AI system access or approval authority, they receive baseline AI governance awareness covering policy, escalation paths, and role responsibilities
+- **Periodic refreshers** — at least annually, and after material policy, model, or regulatory changes
+- **Targeted communications** — when specific systems, risks, incidents, or control failures require focused awareness updates
+- **Role-based briefings** — before personnel take on high-risk lifecycle responsibilities such as Tier 1 system approval, production deployment, or incident command
+
+Awareness completion records must be retained as documented information.
+
+### 9.8 Minimum Awareness Topics by Audience
+
+| Audience | Minimum awareness topics |
+|---|---|
+| All persons under organizational control working on AI | AI policy, acceptable use boundaries, incident and concern reporting, data handling basics, human oversight expectations |
+| Approvers / oversight roles | Override responsibilities, automation-bias risk, escalation thresholds, decision logging expectations |
+| Developers / data scientists / ML practitioners | Model limitations, evaluation obligations, fairness and robustness expectations, change-management triggers |
+| Security / privacy / compliance roles | AI-specific threat and control landscape, evidence expectations, applicable regulatory obligations |
+| Contractors / external specialists | Contractual obligations, permitted access, evidence and reporting requirements, policy acknowledgments |
+
+---
+
+## 10. Deployment-Customizable Decisions
 
 The framework defines the governance structure. Each adopter must configure the instance-specific details.
 
@@ -321,12 +411,12 @@ The framework defines the governance structure. Each adopter must configure the 
 
 ---
 
-## 10. Cross-Policy Alignment
+## 11. Cross-Policy Alignment
 
 | Policy | What This Policy Provides |
 |--------|--------------------------|
 | **[Agent Security Policy](agent-security.md)** | This policy extends agent-security.md with behavioral robustness testing (§4). agent-security.md covers security threats (prompt injection, tool abuse); this policy covers fairness, transparency, and adversarial robustness. Both apply to all AI systems. |
-| **[Risk Management Policy](risk-management.md)** | Risk tier classification (§1) maps to autonomy tiers in risk-management.md §6.1. AI risk taxonomy risks RE-2 (biased output), FI-2 (cost overrun), and CO-1 (regulatory violation) are operationalized by this policy's fairness audit, token accountability, and EU AI Act alignment. |
+| **[Risk Management Policy](risk-management.md)** | Risk tier classification (§1) maps to autonomy tiers in risk-management.md §6.1. AI risk taxonomy risks RE-2 (biased output), FI-2 (cost overrun), and CO-1 (regulatory violation) are operationalized by this policy's fairness audit, token accountability, and EU AI Act alignment. Workforce-readiness expectations in risk-management.md §2.3 are complemented here with role-specific competence evidence, awareness delivery, and competence-gap treatment requirements for humans affecting AI performance. |
 | **[Data Classification Policy](data-classification.md)** | AI systems processing CONFIDENTIAL or RESTRICTED data require higher governance rigor. Model cards document data classification of training data and inference inputs. PII in AI pipelines triggers privacy.md requirements. AI data governance (§8) complements data classification with AI-specific quality, provenance, and preparation requirements. |
 | **[Privacy Policy](privacy.md)** | AI features that process personal data must document this in the model card. DPIA is required for high-risk AI processing (per privacy.md §5). Consent and lawful basis requirements apply to AI training data and inference. |
 | **[Observability Policy](observability.md)** | Token tracking, agent telemetry, and decision event spans are the technical foundation for explainability (§5) and token accountability (§6). This policy defines what must be observable; observability.md defines how. |
@@ -334,16 +424,19 @@ The framework defines the governance structure. Each adopter must configure the 
 
 ---
 
-## 11. Compliance Mapping
+## 12. Compliance Mapping
 
 | Framework | Requirement | Policy Section |
 |-----------|-------------|---------------|
 | **ISO 42001:2023** | 6.1 AI risk management | §1 (risk classification) |
 | **ISO 42001:2023** | 6.1.3 Statement of applicability | [AIMS SoA template](../../../docs/compliance/templates/_TEMPLATE-aims-soa.md) |
 | **ISO 42001:2023** | 6.2 AI system lifecycle | §2 (model cards), §3 (fairness audit lifecycle) |
-| **ISO 42001:2023** | 7.2 AI system transparency | §2 (model cards), §5 (explainability) |
+| **ISO 42001:2023** | 7.2 Competence | §9.1–§9.5 (competence matrix, evidence, gap actions, effectiveness evaluation) |
+| **ISO 42001:2023** | 7.3 Awareness | §9.6–§9.8 (awareness programme, delivery, audience coverage) |
+| **ISO 42001:2023** | A.4.6 Human resources | §9.2 (competence matrix), cross-ref to AI system inventory template human resources section |
+| **ISO 42001:2023** | 8.4 AI system transparency | §2 (model cards), §5 (explainability) |
 | **ISO 42001:2023** | 6.1.4 AI system impact assessment | §7 (AI system impact assessment), [impact assessment template](../../../docs/compliance/templates/_TEMPLATE-ai-system-impact-assessment.md) |
-| **ISO 42001:2023** | 8.4 Data for AI systems | §2.1 (training data summary), §8 (AI data governance), §10 cross-ref to data-classification.md |
+| **ISO 42001:2023** | 8.4 Data for AI systems | §2.1 (training data summary), §8 (AI data governance), §11 cross-ref to data-classification.md |
 | **ISO 42001:2023** | A.7.2--A.7.6 Data for AI systems | §8 (AI data governance — management, acquisition, quality, provenance, preparation) |
 | **ISO 42001:2023** | A.5.2--A.5.5 AI impact assessment | §7 (impact assessment requirements), [impact assessment template](../../../docs/compliance/templates/_TEMPLATE-ai-system-impact-assessment.md) |
 | **ISO 42001:2023** | 9.1 Monitoring & measurement | §6 (token accountability), §3.2 (audit cadence) |
@@ -354,7 +447,7 @@ The framework defines the governance structure. Each adopter must configure the 
 | **EU AI Act** | Art. 13 Transparency | §5 (explainability) |
 | **EU AI Act** | Art. 14 Human oversight | §5.2 (human override logging), cross-ref to risk-management.md §6.1 |
 | **EU AI Act** | Art. 15 Accuracy, robustness, cybersecurity | §4 (adversarial robustness), §3 (fairness/accuracy) |
-| **NIST AI RMF** | GOVERN — Governance structures | §1 (risk classification), §9 (customization) |
+| **NIST AI RMF** | GOVERN — Governance structures | §1 (risk classification), §10 (customization) |
 | **NIST AI RMF** | MAP — Context and risk identification | §1 (risk tiers), §2 (model cards) |
 | **NIST AI RMF** | MEASURE — Quantify risks and impacts | §3 (fairness metrics), §6 (token metrics) |
 | **NIST AI RMF** | MANAGE — Prioritize and respond | §3.2 (remediation), §6.2 (budget enforcement) |
@@ -373,6 +466,8 @@ The framework defines the governance structure. Each adopter must configure the 
 | Explainability level | System meets the explainability level required for its risk tier | Explainability below required level for risk tier |
 | Token tracking | Token usage tracked per inference call; attributable to mission and agent type | Token usage not tracked or not attributable |
 | Token budget | Mission token budgets defined; escalation at ceiling | No budgets defined or uncontrolled consumption |
+| Human competence evidence | Covered human AI roles have current competence evidence, gap actions where needed, and effectiveness checks | Human roles affecting AI performance lack documented competence or unresolved gaps without treatment |
+| Human awareness coverage | All covered staff and contractors completed baseline/refresh awareness on AI policy, AIMS contribution, and nonconformity implications | No formal awareness programme or incomplete coverage for covered persons |
 | Prohibited uses | No Tier 0 uses built or deployed | Prohibited AI use detected |
 | Human oversight (Tier 1) | Human review documented for high-impact decisions | Automated high-impact decisions without human review |
 
@@ -402,6 +497,7 @@ The framework defines the governance structure. Each adopter must configure the 
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-05-23 | Added ISO 42001 human AI competence and awareness requirements, including competence matrix, competence evidence, gap actions, effectiveness evaluation, and formal awareness programme. Expanded compliance mapping and evaluation criteria. Closes #253. |
 | 1.1.0 | 2026-04-05 | Added §7 AI System Impact Assessment (Clauses 6.1.4, 8.4, A.5.2--A.5.5) and §8 AI Data Governance (A.7.2--A.7.6). Renumbered §7--9 → §9--11. Updated compliance mapping with ISO 42001 impact assessment, data governance, and SoA references. Closes #245, closes #246. |
 | 1.0.2 | 2026-03-15 | Corrected agent-security.md filename casing in prose references to match the actual policy filename. |
 | 1.0 | 2026-03-14 | Initial version — AI risk classification (4 tiers aligned to EU AI Act), model card requirements, fairness audit process (demographic parity, equalized odds, error rate parity), adversarial robustness testing, explainability levels (Traceable / Justifiable / Auditable), token usage accountability, compliance mapping (ISO 42001 / EU AI Act / NIST AI RMF). Closes #91. |

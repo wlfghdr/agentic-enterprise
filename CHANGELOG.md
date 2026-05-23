@@ -27,6 +27,8 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 ### Changed
 
 - `AGENTS.md` — bumped document version to 4.4 for Rules 19 and 20 additions.
+- `org/4-quality/policies/ai-governance.md` — added ISO 42001 human AI competence and awareness requirements covering competence matrix, competence evidence, competence-gap actions, effectiveness evaluation, and formal awareness delivery for staff and contractors. Closes #253.
+- `docs/compliance/templates/_TEMPLATE-ai-system-inventory.md` — expanded the inventory template with lifecycle-stage human resources and competence documentation fields aligned to ISO 42001 Annex A.4.6. Closes #253.
 
 ---
 
