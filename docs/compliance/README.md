@@ -59,4 +59,5 @@ For certification-critical requirements that need deployment-specific implementa
 - [otel-contract.md](../otel-contract.md) — Canonical telemetry contract for agent spans and events
 - [Risk Management Policy](../../org/4-quality/policies/risk-management.md) — Framework crosswalk to all standards
 - [Autonomy Tier Rollout Checklist](templates/_TEMPLATE-autonomy-tier-rollout-checklist.md) — adopter-facing checklist for ownership, readiness, monitoring, rollback, and communication before raising autonomy
+- [AI Objectives Register](templates/_TEMPLATE-aims-objectives.md) — documented AI objectives register aligned to ISO 42001 clause 6.2, A.6.1.2, and A.9.3
 - [CONFIG.yaml](../../CONFIG.yaml) — Central configuration including observability integration
