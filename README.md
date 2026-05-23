@@ -71,6 +71,8 @@ Keep these terms separate:
 
 The repo is the governance backbone. You bring the runtime, observability platform, and domain systems that actually execute business operations. The framework stays runtime-agnostic.
 
+If you are evaluating Paperclip as the runtime substrate, see [Paperclip as Runtime Substrate, Agentic Enterprise as Policy Overlay](docs/architecture/paperclip-runtime-substrate.md) for the intended long-term boundary.
+
 ---
 
 ## Executive Reality Check
@@ -163,7 +165,7 @@ Using all-state GitHub issue and PR history plus `origin/main` commit counts, th
 
 Counts change daily. The important part is not the vanity number; it is that the reference stack and counting basis are named explicitly and can be inspected.
 
-**[Full reference org details →](docs/reference-organization/sandboxcorp.md)** · **[Executive reality check →](docs/executive-reality-check.md)** · **[End-to-end example →](examples/e2e-loop/)** · **[Architecture overview →](docs/architecture/agentic-enterprise-architecture.md)**
+**[Full reference org details →](docs/reference-organization/sandboxcorp.md)** · **[Executive reality check →](docs/executive-reality-check.md)** · **[End-to-end example →](examples/e2e-loop/)** · **[Architecture overview →](docs/architecture/agentic-enterprise-architecture.md)** · **[Paperclip boundary →](docs/architecture/paperclip-runtime-substrate.md)**
 
 ---
 
