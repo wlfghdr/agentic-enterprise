@@ -4,7 +4,7 @@
 > **Applies to:** All AI/ML models, agent types, LLM-powered workflows, automated decision systems, and AI-generated outputs
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.1.0 | **Last updated:** 2026-04-05
+> **Version:** 1.3.0 | **Last updated:** 2026-05-23
 
 ---
 
@@ -103,7 +103,7 @@ Adopters should select metrics appropriate to their use case. Common metrics inc
 - **Predictive parity** — equal precision across groups
 - **Individual fairness** — similar inputs produce similar outputs regardless of group membership
 
-The specific thresholds are deployment-customizable (see Section 7).
+The specific thresholds are deployment-customizable (see Section 10).
 
 ---
 
@@ -187,6 +187,62 @@ Token budgets are advisory guardrails, not hard kill switches (unless the risk m
 2. **Warning** — at 80% of mission token budget, the orchestration agent is notified
 3. **Escalation** — at 100% of budget, the mission sponsor is notified and must approve continuation
 4. **Emergency halt** — only when token consumption indicates a runaway loop (per [risk-management.md](risk-management.md) §6.3 cascade failure prevention)
+
+---
+
+## 6A. External Adverse-Impact Reporting and Interested-Party Information
+
+ISO 42001 requires the organization to provide external reporting channels for adverse AI impacts and to define what AI-system information is shared with interested parties. This section covers both the intake path for external reports and the disclosure obligations that follow from credible incidents, customer requests, contractual commitments, or regulator inquiries.
+
+### 6A.1 External Adverse-Impact Reporting (A.8.3, B.8.3)
+
+Interested parties must have a documented way to report suspected adverse impacts from AI systems, including unfairness, harmful recommendations, unsafe automation behavior, misleading outputs, privacy concerns, or material misuse of an AI-enabled service.
+
+#### Required reporting channels
+
+- [ ] Provide at least one externally reachable reporting channel dedicated to AI concerns, such as a published AI-reporting mailbox, a governed web form, or an authenticated support workflow tagged for AI adverse impacts
+- [ ] Publish the reporting channel in customer-facing documentation, trust-center materials, product help, or equivalent external surfaces
+- [ ] Allow reports from customers, end users, affected individuals, partners, and other interested parties even when they do not have privileged internal access
+- [ ] Distinguish external adverse-impact reports from the internal concerns-reporting process so external reports are not blocked on employee-only workflows
+
+#### Intake and triage requirements
+
+- [ ] Every external AI adverse-impact report receives a case identifier, intake timestamp, reporter contact path where available, impacted system or workflow, and a short harm description
+- [ ] Triage occurs within **2 business days** to determine severity, ownership, immediate containment needs, and whether the matter must also be handled under incident-response, privacy, security, legal, or customer-support processes
+- [ ] High-severity reports involving safety, discrimination, rights impacts, material financial harm, or regulator interest are escalated immediately to Security & Compliance and the accountable business owner
+- [ ] Anonymous or third-party reports are accepted when legally permissible, but the organization documents any follow-up limitations caused by missing contact details
+
+#### Response expectations
+
+- [ ] Acknowledge receipt to the reporter within **5 business days** when a reply channel exists
+- [ ] Provide a substantive status update or disposition within **15 business days** unless legal hold, active forensics, or regulator direction limits disclosure
+- [ ] Where the report is substantiated, route corrective actions through the normal risk, incident, CAPA, or change-management workflow and preserve evidence links
+- [ ] Retain the report record, triage notes, actions taken, and closure rationale as governance evidence
+
+### 6A.2 Reporting Information to Interested Parties (A.8.5, B.8.5)
+
+The organization must determine and document what AI-system information it may need to share with regulators, customers, partners, affected individuals, auditors, or other interested parties, and under what conditions.
+
+#### Information categories that may need to be shared
+
+- [ ] Technical system documentation sufficient to explain intended use, architecture, model/provider dependency, and human-oversight design
+- [ ] Risk information, including known limitations, domain-of-use constraints, residual risks, and significant changes in risk posture
+- [ ] Results of impact assessments, fairness reviews, DPIAs, model evaluations, or equivalent governance assessments when disclosure is legally required or contractually committed
+- [ ] Relevant logs, audit trails, and other system records needed to investigate incidents, demonstrate compliance, or respond to lawful requests
+
+#### Trigger conditions and routing
+
+- [ ] Maintain a decision path for whether the request or obligation is driven by law, regulation, contract, security incident, privacy event, customer assurance request, litigation hold, or other governance obligation
+- [ ] Involve Legal, Privacy, Security, and the accountable business owner before sharing non-public AI-system information externally unless pre-approved runbooks already define the response
+- [ ] Verify data-classification, privacy, secrecy, export-control, and law-enforcement handling constraints before release
+- [ ] Record what was shared, with whom, on what authority, and on what date
+
+#### Timeframe expectations
+
+- [ ] Regulatory and statutory deadlines are determined per jurisdiction and recorded in the applicable runbook, contract summary, or compliance register before they are needed in an incident
+- [ ] Where no fixed deadline exists, the organization uses the earliest applicable contractual or regulatory response target and treats requests as time-sensitive governance work
+- [ ] Customer or partner requests for AI assurance information are answered within documented commercial, contractual, or trust-center response windows
+- [ ] Law-enforcement or regulator requests that seek logs or records are reviewed for legal validity and escalated immediately; no informal disclosure occurs outside the approved path
 
 ---
 
@@ -295,7 +351,55 @@ Common preparation methods to address:
 
 ---
 
-## 9. Deployment-Customizable Decisions
+## 9. Reporting Concerns About AI Systems
+
+This section implements ISO/IEC 42001:2023 control A.3.3 and implementation guidance B.3.3. The organization shall maintain a process for reporting concerns about its role with respect to AI systems throughout the system lifecycle.
+
+### 9.1 Scope and Availability
+
+The AI concern reporting process is available to employed persons, contracted persons, human reviewers, approvers, operators, and maintainers who interact with AI-assisted workflows governed by this framework.
+
+The process covers concerns involving unsafe, unlawful, unfair, misleading, biased, or harmful AI behavior; misuse of AI systems, AI outputs, model access, or delegated agent authority; failures in human oversight, transparency, logging, escalation, fallback, or governance controls; and retaliation or interference related to AI concern reporting.
+
+### 9.2 Reporting Channels and Confidentiality
+
+The existing signal system remains the primary structured intake path for routine operational AI concerns because it feeds the governed improvement loop. However, repository-based signaling is not anonymous by default and does not by itself satisfy ISO 42001 B.3.3(a).
+
+Each deployment must provide at least one confidential human-usable reporting channel, and where feasible an anonymous option, for concerns that agents cannot raise or that humans should not be required to disclose publicly.
+
+| Channel | Intended use | Confidentiality / anonymity | B.3.3 mapping |
+|---------|--------------|-----------------------------|---------------|
+| `work/signals/` or issue with `artifact:signal` label | Routine internal AI observations and improvement signals | Confidential to repository readers only; not anonymous by default | Supports (b), (e), (g) |
+| Human manager, AI system owner, or compliance contact | Concerns needing direct discussion, context, or immediate intervention | Confidential handling required; anonymity only if re-filed through an anonymous channel | Supports (b), (c), (d), (e), (h) |
+| Confidential ethics / compliance intake channel | Sensitive concerns requiring identity protection or anti-retaliation handling | Must support confidentiality and, where legally and operationally appropriate, anonymous reporting | Supports (a), (b), (e), (f), (h) |
+
+### 9.3 Intake, Investigation, and Escalation
+
+- [ ] The reporting process is published to employed and contracted persons before they receive access to in-scope AI systems
+- [ ] Onboarding, refresher training, contractor briefings, and AI-related policy acknowledgments explain what to report, which channels to use, and how anti-retaliation protection works
+- [ ] Reported concerns are triaged and investigated by qualified persons such as the AI system owner, Security & Compliance, People / HR, legal, privacy, or risk representatives as appropriate
+- [ ] Investigators can request relevant records, logs, model cards, prompt artifacts, evaluation reports, and change history
+- [ ] Investigators can pause, constrain, or recommend suspension of affected AI workflows where risk justifies intervention
+- [ ] High-severity, legally sensitive, safety-related, or repeated-control-failure concerns are escalated to the responsible management owner without undue delay
+
+### 9.4 Timeliness and Protection from Reprisals
+
+- [ ] Receipt of the concern is acknowledged within 2 business days
+- [ ] Initial severity, confidentiality needs, and ownership are triaged within 5 business days
+- [ ] High-severity management escalation occurs no later than 1 business day after triage
+- [ ] The concern is closed or receives a documented status update and next-step plan within 30 calendar days
+- [ ] Good-faith reporters and investigators are protected from reprisals, intimidation, access removal without cause, adverse work treatment, or pressure to withdraw concerns
+- [ ] Alleged retaliation related to an AI concern is itself treated as a reportable concern and escalated to People / HR and compliance leadership
+
+### 9.5 Outputs, Records, and AIMS Integration
+
+AI concern reports are governed inputs to the Artificial Intelligence Management System. Routine concerns may flow into the signal -> mission -> PR improvement cycle. Material concerns, substantiated nonconformities, corrective actions, and trend patterns should also feed management reporting, risk review, and policy improvement activities.
+
+Investigation outputs should record the concern type, affected AI system, severity, actions taken, owner, dates, and closure rationale while preserving confidentiality and anonymity where applicable.
+
+---
+
+## 10. Deployment-Customizable Decisions
 
 The framework defines the governance structure. Each adopter must configure the instance-specific details.
 
@@ -321,11 +425,11 @@ The framework defines the governance structure. Each adopter must configure the 
 
 ---
 
-## 10. Cross-Policy Alignment
+## 11. Cross-Policy Alignment
 
 | Policy | What This Policy Provides |
 |--------|--------------------------|
-| **[Agent Security Policy](agent-security.md)** | This policy extends agent-security.md with behavioral robustness testing (§4). agent-security.md covers security threats (prompt injection, tool abuse); this policy covers fairness, transparency, and adversarial robustness. Both apply to all AI systems. |
+| **[Agent Security Policy](agent-security.md)** | This policy extends agent-security.md with behavioral robustness testing (§4). agent-security.md covers security threats (prompt injection, tool abuse); this policy covers fairness, transparency, adversarial robustness, and AI concern reporting. Both apply to all AI systems. |
 | **[Risk Management Policy](risk-management.md)** | Risk tier classification (§1) maps to autonomy tiers in risk-management.md §6.1. AI risk taxonomy risks RE-2 (biased output), FI-2 (cost overrun), and CO-1 (regulatory violation) are operationalized by this policy's fairness audit, token accountability, and EU AI Act alignment. |
 | **[Data Classification Policy](data-classification.md)** | AI systems processing CONFIDENTIAL or RESTRICTED data require higher governance rigor. Model cards document data classification of training data and inference inputs. PII in AI pipelines triggers privacy.md requirements. AI data governance (§8) complements data classification with AI-specific quality, provenance, and preparation requirements. |
 | **[Privacy Policy](privacy.md)** | AI features that process personal data must document this in the model card. DPIA is required for high-risk AI processing (per privacy.md §5). Consent and lawful basis requirements apply to AI training data and inference. |
@@ -334,18 +438,21 @@ The framework defines the governance structure. Each adopter must configure the 
 
 ---
 
-## 11. Compliance Mapping
+## 12. Compliance Mapping
 
 | Framework | Requirement | Policy Section |
 |-----------|-------------|---------------|
 | **ISO 42001:2023** | 6.1 AI risk management | §1 (risk classification) |
 | **ISO 42001:2023** | 6.1.3 Statement of applicability | [AIMS SoA template](../../../docs/compliance/templates/_TEMPLATE-aims-soa.md) |
+| **ISO 42001:2023** | A.3.3 Reporting concerns about organization's role with respect to AI systems | §9 (reporting concerns about AI systems) |
 | **ISO 42001:2023** | 6.2 AI system lifecycle | §2 (model cards), §3 (fairness audit lifecycle) |
 | **ISO 42001:2023** | 7.2 AI system transparency | §2 (model cards), §5 (explainability) |
 | **ISO 42001:2023** | 6.1.4 AI system impact assessment | §7 (AI system impact assessment), [impact assessment template](../../../docs/compliance/templates/_TEMPLATE-ai-system-impact-assessment.md) |
-| **ISO 42001:2023** | 8.4 Data for AI systems | §2.1 (training data summary), §8 (AI data governance), §10 cross-ref to data-classification.md |
+| **ISO 42001:2023** | 8.4 Data for AI systems | §2.1 (training data summary), §8 (AI data governance), §11 cross-ref to data-classification.md |
 | **ISO 42001:2023** | A.7.2--A.7.6 Data for AI systems | §8 (AI data governance — management, acquisition, quality, provenance, preparation) |
 | **ISO 42001:2023** | A.5.2--A.5.5 AI impact assessment | §7 (impact assessment requirements), [impact assessment template](../../../docs/compliance/templates/_TEMPLATE-ai-system-impact-assessment.md) |
+| **ISO 42001:2023** | 8.3 External reporting of adverse impacts | §6A.1 (external adverse-impact reporting) |
+| **ISO 42001:2023** | 8.5 Information for interested parties | §6A.2 (reporting information to interested parties) |
 | **ISO 42001:2023** | 9.1 Monitoring & measurement | §6 (token accountability), §3.2 (audit cadence) |
 | **EU AI Act** | Art. 6 Classification of high-risk AI | §1 (risk tiers) |
 | **EU AI Act** | Art. 9 Risk management system | §1, §4 (adversarial robustness) |
@@ -354,7 +461,7 @@ The framework defines the governance structure. Each adopter must configure the 
 | **EU AI Act** | Art. 13 Transparency | §5 (explainability) |
 | **EU AI Act** | Art. 14 Human oversight | §5.2 (human override logging), cross-ref to risk-management.md §6.1 |
 | **EU AI Act** | Art. 15 Accuracy, robustness, cybersecurity | §4 (adversarial robustness), §3 (fairness/accuracy) |
-| **NIST AI RMF** | GOVERN — Governance structures | §1 (risk classification), §9 (customization) |
+| **NIST AI RMF** | GOVERN — Governance structures | §1 (risk classification), §10 (customization) |
 | **NIST AI RMF** | MAP — Context and risk identification | §1 (risk tiers), §2 (model cards) |
 | **NIST AI RMF** | MEASURE — Quantify risks and impacts | §3 (fairness metrics), §6 (token metrics) |
 | **NIST AI RMF** | MANAGE — Prioritize and respond | §3.2 (remediation), §6.2 (budget enforcement) |
@@ -372,7 +479,10 @@ The framework defines the governance structure. Each adopter must configure the 
 | Adversarial testing | Test suite exists and passes for required categories per risk tier | Missing test suite or failing tests for required categories |
 | Explainability level | System meets the explainability level required for its risk tier | Explainability below required level for risk tier |
 | Token tracking | Token usage tracked per inference call; attributable to mission and agent type | Token usage not tracked or not attributable |
+| AI concern reporting | Confidential reporting process exists, with qualified investigation, anti-retaliation protection, and defined response times | No AI-specific concern reporting process, no confidential channel, or no defined protection / response workflow |
 | Token budget | Mission token budgets defined; escalation at ceiling | No budgets defined or uncontrolled consumption |
+| External reporting | External AI adverse-impact channel, triage path, and response targets are documented and usable | No external reporting path or no defined handling expectations |
+| Interested-party information sharing | Disclosure categories, routing, and timeframe rules are documented for regulators, customers, and other interested parties | No documented obligations or no approval path for sharing AI-system information |
 | Prohibited uses | No Tier 0 uses built or deployed | Prohibited AI use detected |
 | Human oversight (Tier 1) | Human review documented for high-impact decisions | Automated high-impact decisions without human review |
 
@@ -402,6 +512,8 @@ The framework defines the governance structure. Each adopter must configure the 
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3.0 | 2026-05-23 | Added ISO 42001 A.8.3 / B.8.3 external adverse-impact reporting and A.8.5 / B.8.5 interested-party information-sharing obligations, including intake channels, triage, response timeframes, disclosure categories, and escalation expectations. Closes #254. |
+| 1.2.0 | 2026-05-23 | Added ISO 42001 A.3.3 / B.3.3 reporting concerns about AI systems process, including confidential and anonymous reporting options, investigation roles, anti-retaliation protection, escalation path, AIMS integration, and response timeframes. Closes #252. |
 | 1.1.0 | 2026-04-05 | Added §7 AI System Impact Assessment (Clauses 6.1.4, 8.4, A.5.2--A.5.5) and §8 AI Data Governance (A.7.2--A.7.6). Renumbered §7--9 → §9--11. Updated compliance mapping with ISO 42001 impact assessment, data governance, and SoA references. Closes #245, closes #246. |
 | 1.0.2 | 2026-03-15 | Corrected agent-security.md filename casing in prose references to match the actual policy filename. |
 | 1.0 | 2026-03-14 | Initial version — AI risk classification (4 tiers aligned to EU AI Act), model card requirements, fairness audit process (demographic parity, equalized odds, error rate parity), adversarial robustness testing, explainability levels (Traceable / Justifiable / Auditable), token usage accountability, compliance mapping (ISO 42001 / EU AI Act / NIST AI RMF). Closes #91. |
