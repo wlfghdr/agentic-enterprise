@@ -1,6 +1,6 @@
 # Agent Type Definition: [Agent Name]
 
-> **Template version:** 1.3 | **Last updated:** 2026-03-27
+> **Template version:** 1.4 | **Last updated:** 2026-05-23
 > **Governed registry entry for a single agent type.**  
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -137,6 +137,45 @@ _(Document known weaknesses, hallucination patterns, edge cases, and situations 
 ### Training Data & Context
 _(For Tier 1–2: describe training data sources, fine-tuning data, or context documents. For Tier 3: "Standard LLM — no custom training data" is acceptable.)_
 
+### Data Resources (ISO/IEC 42001 A.4.3 / B.4.3)
+Document the data resources used by this AI system. Cross-reference the AI system inventory entry in [`docs/compliance/templates/_TEMPLATE-ai-system-inventory.md`](../../docs/compliance/templates/_TEMPLATE-ai-system-inventory.md) so system-level inventory and model-level resource documentation stay aligned.
+
+| Topic | Documentation required |
+|-------|-------------------------|
+| **Provenance** | _(where the data came from, owner/controller, collection method, licensing/usage rights)_ |
+| **Last updated / modified** | _(YYYY-MM-DD and update cadence)_ |
+| **Data categories by lifecycle stage** | _(training / validation / test / production / monitoring / feedback)_ |
+| **Data categories per ISO/IEC 19944-1** | _(e.g., personal data, telemetry, user-generated content, synthetic data, derived data)_ |
+| **Labelling process** | _(manual / automated / hybrid; who labels; QA controls; instructions used)_ |
+| **Intended use of data** | _(what each dataset is used for and what it must not be used for)_ |
+| **Data quality** | _(quality criteria, completeness, accuracy, representativeness, known gaps; reference ISO/IEC 5259-based assessment if used)_ |
+| **Retention and disposal** | _(retention period, deletion triggers, archival handling, disposal method)_ |
+| **Known or potential bias issues** | _(representation gaps, skew, drift, sensitive attributes, mitigation steps)_ |
+| **Data preparation methods** | _(cleaning, filtering, normalization, augmentation, deduplication, redaction, feature engineering, prompt-context curation)_ |
+
+### Tooling Resources (ISO/IEC 42001 A.4.4 / B.4.4)
+Document the tooling resources used to build, evaluate, provision, and operate this AI system.
+
+| Topic | Documentation required |
+|-------|-------------------------|
+| **Algorithm types and ML models** | _(model families, architectures, non-LLM algorithms, embedding/reranking models, classifiers, policies)_ |
+| **Data conditioning tools or processes** | _(ETL, labeling, preprocessing, redaction, feature pipelines, prompt/context assembly)_ |
+| **Optimization methods** | _(fine-tuning, prompt optimization, hyperparameter search, distillation, quantization, caching, routing)_ |
+| **Evaluation methods** | _(benchmarks, human review, automated evals, red-team tests, acceptance thresholds)_ |
+| **Provisioning tools for resources** | _(IaC, deployment tooling, model serving stack, schedulers, secret/config provisioning)_ |
+| **Tools aiding model development** | _(notebooks, experiment tracking, vector DBs, annotation tools, observability, governance tooling)_ |
+| **Software and hardware for design / development / deployment** | _(key SDKs, frameworks, runtimes, accelerators, endpoints, devices)_ |
+
+### System & Computing Resources (ISO/IEC 42001 A.4.5 / B.4.5)
+Document the system and computing resources required to run this AI system. Cross-reference the AI system inventory when summarizing system location or dependencies.
+
+| Topic | Documentation required |
+|-------|-------------------------|
+| **AI system resource requirements** | _(CPU / GPU / memory / storage / latency / throughput requirements, including constrained-resource devices if applicable)_ |
+| **Resource locations** | _(on-premises / cloud / edge / end-user device / hybrid, including regions or providers where relevant)_ |
+| **Processing resources** | _(compute, network, storage, queues, accelerators, failover capacity, offline fallback)_ |
+| **Hardware impact** | _(environmental impact from use or manufacturing where known, energy intensity assumptions, cost drivers, cost constraints)_ |
+
 ### Fairness Considerations
 _(For Tier 1: document fairness evaluation results, metrics used, and demographic dimensions tested. For Tier 2: document fairness review. For Tier 3: "N/A — minimal-risk internal tooling" is acceptable.)_
 
@@ -173,6 +212,7 @@ All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../.
 
 | Version | Date | Change |
 |---|---|---|
+| 1.4 | 2026-05-23 | Expanded embedded model card with ISO/IEC 42001 A.4.3, A.4.4, and A.4.5 resource documentation sections for data, tooling, and computing resources, including AI system inventory cross-reference. |
 | 1.3 | 2026-03-27 | Added Identity & Access Boundary section so each agent type documents runtime identity, credential source/scope, allowed environments, allowed data classifications, and high-impact approval gates. |
 | 1.2 | 2026-03-15 | Added Telemetry section with canonical OTel contract reference, required core spans, decision event, and conditional inference span guidance (#115) |
 | 1.1 | 2026-03-14 | Added Model Governance section with AI risk tier, model identity, intended use, limitations, fairness considerations, and token budget per ai-governance.md policy (#91) |
