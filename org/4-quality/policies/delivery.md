@@ -3,7 +3,7 @@
 > **Applies to:** All deployments, releases, rollouts, and operational changes
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Release Management / DevOps leads
-> **Version:** 1.0 | **Last updated:** 2026-02-19
+> **Version:** 1.1 | **Last updated:** 2026-05-23
 
 ---
 
@@ -16,6 +16,8 @@
 
 ## Mandatory Requirements
 
+For the cross-policy stage view of blocking governance requirements, see [sdlc-gates.md](sdlc-gates.md). This policy defines the deployment and release-specific gates within that SDLC map.
+
 ### Environment Progression
 All changes must progress through isolated environments before reaching production. Each environment serves a distinct validation purpose:
 
@@ -26,12 +28,15 @@ All changes must progress through isolated environments before reaching producti
 Promotion between environments requires evidence of health at the current stage. No environment may be skipped except during emergency deployments (see Emergency / Hotfix below).
 
 ### Pre-Deployment
-- [ ] All quality policy evaluations passed (security, architecture, performance, **observability**)
+- [ ] All quality policy evaluations passed (security, architecture, performance, **observability**, and other applicable quality domains)
 - [ ] Release contract completed (`work/releases/_TEMPLATE-release-contract.md`)
+- [ ] Pre-deploy readiness checklist completed and approved
 - [ ] Observability verified: instrumentation active, SLOs configured, dashboard created, alerting with runbooks (see `policies/observability.md`)
 - [ ] Rollback plan documented and tested
 - [ ] Feature flags configured for new features
 - [ ] Database migrations backward-compatible
+- [ ] AI system impact assessment completed before initial production deployment for Tier 1 and Tier 2 systems, per `ai-governance.md`
+- [ ] AI-specific penetration testing completed for applicable AI and agentic systems (prompt injection, tool abuse, output-handling, and related adversarial scenarios), per `agent-security.md`
 
 ### Deployment Process
 - [ ] Progressive rollout plan defined (e.g., 5% → 25% → 50% → 100%)
@@ -39,6 +44,19 @@ Promotion between environments requires evidence of health at the current stage.
 - [ ] Automatic rollback triggers configured
 - [ ] Deployment window communicated to stakeholders
 - [ ] No manual steps in the deployment pipeline (fully automated)
+
+### Pre-Deploy Readiness Checklist
+A documented pre-deploy readiness checklist is a **blocking deploy gate** for production changes. At minimum, it must confirm:
+
+- [ ] Release contract is complete and current
+- [ ] Required quality policy evaluations passed
+- [ ] Security validation and AI-specific penetration testing passed
+- [ ] AI system impact assessment completed when required by `ai-governance.md`
+- [ ] Rollback plan documented and tested
+- [ ] Observability ready: instrumentation, SLOs, dashboards, alerts, runbooks
+- [ ] Feature flags and blast-radius controls configured where applicable
+- [ ] Deployment window and stakeholder communications prepared
+- [ ] Named owners available for deployment, rollback, and incident escalation
 
 ### Post-Deployment
 - [ ] Health metrics validated within {{POST_DEPLOY_VALIDATION_WINDOW}} of deployment
@@ -71,6 +89,7 @@ When an active production incident requires an immediate fix:
 - Post-deployment health evidence must be provided within {{POST_DEPLOY_VALIDATION_WINDOW}}
 - A post-incident signal must be filed in `work/signals/` after resolution
 - Follow-up work to backfill any skipped validation must be tracked as a new mission
+- Any temporarily compressed pre-deploy readiness evidence, impact assessment updates, or penetration-testing follow-up must be explicitly tracked and completed after incident stabilization
 
 ## Evaluation Criteria
 
@@ -83,6 +102,9 @@ When an active production incident requires an immediate fix:
 | Post-deploy validation | Evidence within window | No validation evidence |
 | Release notes | Customer-ready | Missing or internal-only |
 | Emergency deployment | Security checks maintained, post-incident signal filed | Security bypassed or no follow-up |
+| AI impact assessment gate | Required Tier 1/Tier 2 impact assessment completed before initial production deployment | Required impact assessment missing or deferred without policy-defined exception |
+| AI penetration testing gate | Applicable AI and agentic systems completed adversarial / penetration testing before production deployment | No named AI-specific penetration-testing evidence |
+| Pre-deploy readiness checklist | Documented checklist completed with named owners and rollback/observability readiness | No readiness checklist or incomplete blocking evidence |
 
 ---
 
@@ -90,4 +112,5 @@ When an active production incident requires an immediate fix:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-05-23 | Added SDLC gate cross-reference, formal AI impact assessment deploy gate, AI-specific penetration-testing deploy gate, and pre-deploy readiness checklist as a blocking production gate. |
 | 1.0 | 2026-02-19 | Initial version |

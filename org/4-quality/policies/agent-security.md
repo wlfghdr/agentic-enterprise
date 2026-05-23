@@ -3,7 +3,7 @@
 > **Applies to:** All AI agents, agent instructions, tool integrations, and workflows processing external content
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.1 | **Last updated:** 2026-03-15
+> **Version:** 1.2 | **Last updated:** 2026-05-23
 
 ---
 
@@ -47,6 +47,14 @@
 - [ ] Calling undeclared or unregistered tools is a policy violation
 - [ ] Tool access must be verified against the agent type registry before execution
 - [ ] New tool integrations must be registered in the Integration Registry (`org/integrations/`) before use — ad-hoc tool connections are prohibited (AGENTS.md Rule 8)
+
+**MCP-specific threat scoping:**
+- MCP (Model Context Protocol) server integrations are a named threat surface and must be assessed as both a **tool boundary** and a **third-party / supply-chain dependency**
+- [ ] MCP server tool descriptions, prompts, schemas, and returned context are treated as untrusted external content unless explicitly governed otherwise
+- [ ] MCP server lifecycle risk must be assessed, including ownership, hosting model, update path, credential scope, and decommissioning controls
+- [ ] MCP integrations must be reviewed for supply-chain risk, including compromised packages, server images, transport dependencies, and transitive trust on upstream services
+- [ ] Each MCP integration must declare the minimum permitted operations, accessible resources, credential scope, and trust-boundary handling in its registry documentation
+- [ ] MCP server integrations must complete the applicable assessment path in [vendor-risk-management.md](vendor-risk-management.md) before production use or material scope expansion
 
 #### 2.2 Least-Privilege Tool Access
 - [ ] Tools must be scoped to the minimum permissions required for the agent's current mission
@@ -109,7 +117,7 @@
 | Input validation | All external input validated; injection attempts detected and rejected | Unvalidated external content processed as instructions |
 | Trust boundaries | External content clearly delimited and processed in restricted context | External content concatenated into system prompts or treated as trusted |
 | Instruction integrity | Agent instructions only modified through governed change process | Runtime instruction modification possible or system prompts exposed |
-| Declared tool scope | All tools used are declared in agent type definition and Integration Registry | Undeclared or unregistered tools called |
+| Declared tool scope | All tools used are declared in agent type definition and Integration Registry; MCP integrations explicitly scoped and assessed | Undeclared or unregistered tools called; MCP threat surface not documented |
 | Least-privilege tools | Tool permissions match minimum required for mission | Excessive permissions granted or default elevated access |
 | High-impact approval gates | Irreversible/high-blast-radius tools gated on human approval per mission | High-impact tools used without explicit human approval |
 | Tool call telemetry | All tool calls produce OTel spans with required attributes | Tool calls executed without telemetry |
@@ -154,5 +162,6 @@ This policy addresses the following OWASP LLM Top 10 (2025) categories:
 
 | Version | Date | Change |
 |---|---|---|
-| 1.0 | 2026-03-13 | Initial version — prompt injection mitigations, tool abuse prevention, insecure output handling, security testing requirements, OWASP LLM Top 10 coverage map |
+| 1.2 | 2026-05-23 | Added MCP-specific threat scoping to §2.1, including untrusted-context handling, lifecycle and supply-chain assessment, and explicit linkage to vendor-risk-management.md. |
 | 1.1 | 2026-03-15 | Added §4.3 CI Content Security Scanning — automated enforcement via `validate_content_security.py` blocking CI job; added content security CI evaluation criterion; updated OWASP LLM01 coverage map |
+| 1.0 | 2026-03-13 | Initial version — prompt injection mitigations, tool abuse prevention, insecure output handling, security testing requirements, OWASP LLM Top 10 coverage map |
