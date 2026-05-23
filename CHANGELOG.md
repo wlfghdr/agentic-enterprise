@@ -21,6 +21,7 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Added
 
+- `docs/architecture/paperclip-runtime-substrate.md` — new architecture boundary document defining the intended split if Paperclip matures into the runtime substrate: inventory of AE concepts by ownership class (Paperclip-native, convention/plugin, missing upstream, intentionally external), the residual long-term scope of Agentic Enterprise as a policy/semantics/compliance overlay, and the migration path from AE-as-framework to AE-as-overlay. Closes #243.
 - `AGENTS.md` Rule 19 "Issue status lifecycle" — defines standard status values (Backlog, In Progress, Blocked, Review Needed, Done), transition rules, and audit expectations for issue status accuracy. Ported and generalized from Sagicorp instance rule S7b.
 - `AGENTS.md` Rule 20 "Signal lifecycle" — defines signal closure rules (absorbed, ambiguous, superseded, auto-close via PR) and a 14-day staleness threshold for open signals without linked downstream work. Ported and generalized from Sagicorp instance rule S7c.
 - `org/4-quality/policies/ai-governance.md` §6A — external adverse-impact reporting and interested-party information-sharing requirements for ISO 42001 A.8.3 and A.8.5, including reporting channels, triage, response targets, disclosure categories, and jurisdiction-aware escalation. Closes #254.
@@ -30,6 +31,7 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 ### Changed
 
 - `docs/compliance/iso-42001.md` — updated control coverage for A.8.3, A.8.5, and A.10.4 to reflect the new governance and customer-policy guidance, while preserving adopter-specific follow-up notes.
+- `README.md`, `docs/README.md`, and `docs/architecture/agentic-enterprise-architecture.md` — linked the new Paperclip boundary document so the runtime-agnostic architecture story has an explicit practical split between runtime substrate and enterprise governance overlay. Closes #243.
 - `AGENTS.md` — bumped document version to 4.4 for Rules 19 and 20 additions.
 - `org/4-quality/policies/ai-governance.md` — added ISO 42001 human AI competence and awareness requirements covering competence matrix, competence evidence, competence-gap actions, effectiveness evaluation, and formal awareness delivery for staff and contractors. Closes #253.
 - `docs/compliance/templates/_TEMPLATE-ai-system-inventory.md` — expanded the inventory template with lifecycle-stage human resources and competence documentation fields aligned to ISO 42001 Annex A.4.6. Closes #253.
