@@ -1,0 +1,31 @@
+layers:
+  - id: steering
+    order: 0
+    label: Steering
+    directory: 0-steering
+    scope: Evolve the organization itself
+    delegates_to: [strategy]
+  - id: strategy
+    order: 1
+    label: Strategy
+    directory: 1-strategy
+    scope: Define why, what, and constraints
+    delegates_to: [orchestration]
+  - id: orchestration
+    order: 2
+    label: Orchestration
+    directory: 2-orchestration
+    scope: Translate strategy into executable configurations
+    delegates_to: [execution]
+  - id: execution
+    order: 3
+    label: Execution
+    directory: 3-execution
+    scope: Do the work
+    delegates_to: [quality]
+  - id: quality
+    order: 4
+    label: Quality
+    directory: 4-quality
+    scope: Evaluate outputs against policies
+    delegates_to: [steering]

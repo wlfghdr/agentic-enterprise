@@ -3,7 +3,7 @@
 > **Applies to:** All customer-facing interactions — proposals, QBRs, support responses, onboarding, renewals, escalations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Customer Success & Sales leadership
-> **Version:** 1.0 | **Last updated:** 2026-02-19
+> **Version:** 1.1 | **Last updated:** 2026-05-23
 
 ---
 
@@ -51,6 +51,20 @@
 - [ ] Demo environments use synthetic data only
 - [ ] Customer-specific configurations documented and secured
 
+### AI System Customer Requirements (A.10.4, B.10.4)
+- [ ] Capture AI-specific customer expectations during discovery, sales, onboarding, renewal, major change, and material incident review, including intended outcomes, prohibited uses, assurance needs, and required human-review points
+- [ ] Document what the customer is told about each relevant AI-enabled feature: intended use, supported domain of use, known limitations, confidence or review caveats where applicable, and when human escalation is required
+- [ ] Confirm whether the customer expects contract terms, usage restrictions, data-location commitments, model/provider restrictions, audit evidence, or opt-out controls related to AI use
+- [ ] Route material AI-specific customer requirements into product, delivery, security, legal, and governance backlogs so they influence system design and operation instead of staying in account notes alone
+- [ ] Re-confirm AI-related customer expectations when the system purpose, model provider, autonomy level, or data-handling pattern changes materially
+
+### Responsibility Allocation for AI-Enabled Services (B.10.4)
+- [ ] Customer-facing documentation and contracts define which responsibilities remain with the provider and which are assigned to the customer for each AI-enabled workflow
+- [ ] Provider responsibilities cover at minimum: service operation, model and prompt governance, baseline safety controls, incident handling, and the accuracy of published product information
+- [ ] Customer responsibilities cover at minimum: lawful use, user authorization, input-data quality where customer-supplied data is used, review of high-impact outputs where the workflow requires it, and compliance with communicated domain-of-use limits
+- [ ] Shared-responsibility boundaries are reviewed by Legal or the accountable business owner before external commitment
+- [ ] Where an AI system is valid only for a specific domain, industry context, geography, or user population, those limits are communicated before or at onboarding and whenever materially changed
+
 ## Evaluation Criteria
 
 | Criterion | PASS | FAIL |
@@ -60,6 +74,9 @@
 | SLA compliance | Within response window | SLA breach |
 | Data privacy | Fully compliant | Customer data mishandled |
 | Human review | All external comms reviewed | Sent without approval |
+| AI expectations captured | AI-specific expectations and obligations documented for relevant customer interactions | AI requirements left implicit or undocumented |
+| Domain-of-use disclosure | Customer receives clear AI intended-use boundaries and limitations | AI limitations or use boundaries not communicated |
+| Responsibility allocation | Provider/customer AI responsibilities documented and reviewable | No clear shared-responsibility statement for AI-enabled service |
 
 ---
 
@@ -67,4 +84,5 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-05-23 | Added AI-specific customer requirements, domain-of-use communication expectations, and provider/customer responsibility allocation guidance for ISO 42001 A.10.4. Closes #254. |
 | 1.0 | 2026-02-19 | Initial version |

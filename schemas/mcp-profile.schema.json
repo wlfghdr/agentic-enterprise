@@ -56,13 +56,13 @@
             "description": "Agent layers permitted to invoke this tool.",
             "items": {
               "type": "string",
-              "enum": ["steering", "strategy", "orchestration", "execution", "quality"]
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
             }
           },
           "denied_layers": {
             "type": "array",
             "description": "Agent layers explicitly denied (overrides allowed_layers).",
-            "items": { "type": "string" }
+            "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
           },
           "requires_approval": { "type": "boolean", "default": false, "description": "If true, human approval is required before invocation." },
           "rate_limit": { "type": "string", "description": "Optional rate limit (e.g. '10/hour')." },

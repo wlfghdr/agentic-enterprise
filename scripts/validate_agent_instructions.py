@@ -24,15 +24,11 @@ import re
 import sys
 from pathlib import Path
 
+from layer_registry import layer_directories
+
 REPO = Path(__file__).parent.parent.resolve()
 
-LAYERS = [
-    "0-steering",
-    "1-strategy",
-    "2-orchestration",
-    "3-execution",
-    "4-quality",
-]
+LAYERS = layer_directories()
 
 # ── Required metadata for AGENT.md files ─────────────────────────────────────
 

@@ -186,6 +186,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install dependencies
+        run: pip install pyyaml
+
       - name: Self-check (script integrity)
         run: python3 scripts/check_placeholders.py --self-check
 
@@ -200,6 +203,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
 
       - name: Check required files exist
         run: |
@@ -231,13 +242,23 @@ jobs:
 
       - name: Check layer structure
         run: |
-          for layer in 0-steering 1-strategy 2-orchestration 3-execution 4-quality; do
-            if [[ ! -f "org/$layer/AGENT.md" ]]; then
-              echo "MISSING: org/$layer/AGENT.md"
-              exit 1
-            fi
-            echo "OK: org/$layer/AGENT.md"
-          done
+          python3 - <<'PY'
+          import yaml
+          from pathlib import Path
+
+          repo = Path('.')
+          data = yaml.safe_load((repo / 'org/layers.yaml').read_text(encoding='utf-8')) or {}
+          missing = []
+          for layer in data.get('layers', []):
+              path = repo / 'org' / layer['directory'] / 'AGENT.md'
+              if path.exists():
+                  print(f"OK: {path.as_posix()}")
+              else:
+                  print(f"MISSING: {path.as_posix()}")
+                  missing.append(path)
+          if missing:
+              raise SystemExit(1)
+          PY
 
       - name: Check process loops
         run: |
@@ -263,6 +284,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
 
       - name: Resolve diff base and head
         id: refs
@@ -311,8 +335,10 @@ jobs:
                   print(f"OK: {path}")
 
           # Check layer AGENT.md files
-          for layer in ["0-steering", "1-strategy", "2-orchestration", "3-execution", "4-quality"]:
-              path = repo / f"org/{layer}/AGENT.md"
+          import yaml
+          layer_data = yaml.safe_load((repo / "org/layers.yaml").read_text(encoding="utf-8")) or {}
+          for layer in layer_data.get("layers", []):
+              path = repo / "org" / layer["directory"] / "AGENT.md"
               if path.exists():
                   check_file(path, VERSION_RE, "layer AGENT.md")
 
@@ -733,6 +759,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
 
       - name: Validate agent instruction hierarchy
         run: python3 scripts/validate_agent_instructions.py

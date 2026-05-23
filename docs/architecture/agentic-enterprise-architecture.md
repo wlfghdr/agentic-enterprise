@@ -173,6 +173,8 @@ Both channels feed the governance loop. The repo captures decisions. Observabili
 
 The framework defines **what** the organization does and **how** it's governed. The runtime executes it. This separation means you can swap runtimes without changing your organizational model.
 
+For the explicit Paperclip boundary, see [Paperclip as Runtime Substrate, Agentic Enterprise as Policy Overlay](paperclip-runtime-substrate.md).
+
 ## Public Proof
 
 This architecture is not theoretical. As of **2026-03-16**, the directly inspectable public proof across the three-repo reference stack (`wlfghdr/agentic-enterprise`, `WulfAI/sandboxcorp`, `wlfghdr/agent-command-center`) is:
@@ -186,6 +188,7 @@ That proves the architecture is being exercised publicly. It does **not** claim 
 ## Next Steps
 
 - [10-Minute Quickstart](../quickstart/10-minute-agentic-enterprise.md) — Walk through the core workflow
+- [Paperclip Runtime Boundary](paperclip-runtime-substrate.md) — What moves into Paperclip vs. what remains in Agentic Enterprise
 - [Observability Architecture](../observability/otel-architecture.md) — How telemetry integrates
 - [Minimal Adoption Guide](../adoption/minimal-adoption.md) — Start using the framework
 - [Reference Organization](../reference-organization/) — See the framework in action

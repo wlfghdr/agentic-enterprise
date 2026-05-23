@@ -45,6 +45,7 @@ These guides are for **adopters deploying the framework** in a real environment.
 | [AIMS Scope and AI System Inventory Guide](iso-42001-aims-scope.md) | ISO 42001 Clause 4.3 | Formal AIMS boundary definition and inventory | [#126](https://github.com/wlfghdr/agentic-enterprise/issues/126) |
 | [AIMS Scope Statement](../templates/_TEMPLATE-aims-scope.md) | ISO 42001 Clause 4.3 | Formal AIMS scope definition | [#126](https://github.com/wlfghdr/agentic-enterprise/issues/126) |
 | [AI System Inventory](../templates/_TEMPLATE-ai-system-inventory.md) | ISO 42001 Clause 4 | AI system inventory with risk classification | [#126](https://github.com/wlfghdr/agentic-enterprise/issues/126) |
+| [AI Objectives Register](../templates/_TEMPLATE-aims-objectives.md) | ISO 42001 Clause 6.2, A.6.1.2, A.9.3 | Formal AI objectives with measurable targets, plans, and lifecycle/use integration | [#250](https://github.com/wlfghdr/agentic-enterprise/issues/250) |
 
 ## ISO 42001 Certification Guides
 

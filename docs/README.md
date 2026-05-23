@@ -20,6 +20,7 @@ Pick the shortest path that matches what you are trying to do:
 | Understand mission flow and status gates | [`mission-lifecycle.md`](mission-lifecycle.md) | [`work-backends.md`](work-backends.md) for backend differences |
 | Work on CI or policy gates | One of the CI feature guides below | [`automation-patterns.md`](automation-patterns.md) for script-vs-agent guidance |
 | Implement telemetry or observability | [`otel-contract.md`](otel-contract.md) | [`../examples/observability/agent-span-example.md`](../examples/observability/agent-span-example.md) |
+| Understand the Paperclip vs. AE boundary | [`architecture/paperclip-runtime-substrate.md`](architecture/paperclip-runtime-substrate.md) | [`architecture/agentic-enterprise-architecture.md`](architecture/agentic-enterprise-architecture.md) |
 
 ---
 
