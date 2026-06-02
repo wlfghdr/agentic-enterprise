@@ -31,6 +31,7 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 ### Changed
 
 - `docs/compliance/iso-42001.md` — updated control coverage for A.8.3, A.8.5, and A.10.4 to reflect the new governance and customer-policy guidance, while preserving adopter-specific follow-up notes.
+- `AGENTS.md` — restored missing Rule 15 "Challenge before creating" and bumped document version to 4.5. Closes #270.
 - `README.md`, `docs/README.md`, and `docs/architecture/agentic-enterprise-architecture.md` — linked the new Paperclip boundary document so the runtime-agnostic architecture story has an explicit practical split between runtime substrate and enterprise governance overlay. Closes #243.
 - `AGENTS.md` — bumped document version to 4.4 for Rules 19 and 20 additions.
 - `org/4-quality/policies/ai-governance.md` — added ISO 42001 human AI competence and awareness requirements covering competence matrix, competence evidence, competence-gap actions, effectiveness evaluation, and formal awareness delivery for staff and contractors. Closes #253.
