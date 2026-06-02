@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 4.4 | **Last updated:** 2026-03-29
+> **Version:** 4.5 | **Last updated:** 2026-06-02
 
 Every AI agent in this repository must follow these instructions. Layer-specific and division-specific instructions extend (never contradict) these rules.
 
@@ -90,6 +90,9 @@ This model derives from [Agentic Enterprise](https://github.com/wlfghdr/agentic-
 
 ### 14. Archive completed work
 Move completed items to `archive/` subfolders (git-files) or close issues. Use `git mv` (preserves blame). Never delete work artifacts. Templates and READMEs are never archived.
+
+### 15. Challenge before creating
+Do not create missions or tasks reflexively. Every signal must be triaged and reflected before becoming a mission. Every mission must be challenged for necessity, scope, and overlap before task decomposition. If genuinely unsure whether to proceed, assign to the human owner with a clear description of the decision needed rather than advancing past uncertainty.
 
 ### 16. Repo cleanliness
 After completing any work: committed, pushed, and on the target branch (direct-to-main or via PR). No dirty repos, no stale branches, no unpushed commits. Agents must not leave work stranded locally.
