@@ -1,6 +1,6 @@
 # Work Backends — Git Files vs. Issue Tracker
 
-> **Version:** 1.6 | **Last updated:** 2026-03-28
+> **Version:** 1.7 | **Last updated:** 2026-06-02
 
 > **What this document is:** The backend selection and contract guide.
 
@@ -13,8 +13,8 @@
 
 The operating model defines the artifacts and flow. The backend decides where active work is tracked.
 
-- **Git files** optimize for auditability and self-containment.
-- **Issue backends** optimize for visibility, assignment, comments, notifications, and mobile use.
+- **Issue backends** optimize for visibility, assignment, comments, notifications, and mobile use. The shipped default is GitHub Issues.
+- **Git files** optimize for auditability and self-containment when an adopter deliberately wants all operational artifacts in the repository.
 
 The choice is made via `CONFIG.yaml → work_backend`.
 
@@ -99,7 +99,7 @@ work_backend:
     # lock: "git-files"  ← always git, not configurable
 ```
 
-When `work_backend.type` is `"git-files"` (the default), the framework behaves exactly as before — all work artifacts are Markdown files in `work/`.
+When `work_backend.type` is `"github-issues"` (the default), operational work artifacts are tracked as issues. Set `work_backend.type` to `"git-files"` only when you want the legacy self-contained mode where all operational artifacts are Markdown files in `work/`.
 
 ---
 
@@ -382,6 +382,7 @@ Templates are **never** tracked in the issue system. They are framework files, g
 
 | Version | Date | Change |
 |---------|------|--------|
+| 1.7 | 2026-06-02 | Updated the backend guide to reflect GitHub Issues as the shipped default and git-files as the legacy self-contained mode. |
 | 1.6 | 2026-03-28 | Clarified that ad-hoc chat tasks should also be captured as tracking issues when the issue backend is enabled. |
 | 1.5 | 2026-03-23 | Clarified that assignee state is the source of truth for next action and that human-needed work must be explicitly reassigned to the human owner. |
 | 1.4 | 2026-03-09 | Consolidated backend configuration here and removed the duplicate `WORK-BACKEND.md` doc. Clarified this file's scope vs. `github-issues.md`. |

@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 4.4 | **Last updated:** 2026-03-29
+> **Version:** 4.5 | **Last updated:** 2026-06-02
 
 Every AI agent in this repository must follow these instructions. Layer-specific and division-specific instructions extend (never contradict) these rules.
 
@@ -30,7 +30,7 @@ Every claim must be grounded in evidence. Never fabricate data, metrics, or sour
 Never commit scope, timelines, resources, or strategic direction. Draft, analyze, propose — humans approve via PR merge or configured mechanism. When uncertain, escalate.
 
 ### 3. Process is governed
-- Work tracked in the **configured work backend** — Markdown in `work/` or issues in the tracker (`CONFIG.yaml → work_backend`, see [docs/work-backends.md](docs/work-backends.md))
+- Work tracked in the **configured work backend** — GitHub Issues by default, or Markdown in `work/` when `CONFIG.yaml → work_backend.type` is set to `git-files` (see [docs/work-backends.md](docs/work-backends.md))
 - **Git-files:** Changes → PRs → merges. **Issues:** State transitions + human comments. Governance backbone (org structure, policies, templates) always in Git.
 - **Assignment:** Every issue/PR must have an assignee at all times. Agent-owned → agent. Human-owned → human. Never unassigned. Assignee state is the source of truth for who must act next; do not leave human-needed work assigned to an agent or hide the handoff only in comments/body text.
 - **Handoffs:** Re-assign to human with comment: (a) what was done, (b) what to review, (c) options (approve/reject/request changes). Human comments decision and re-assigns back. Comments explain the handoff; assignment makes the required next actor explicit.
