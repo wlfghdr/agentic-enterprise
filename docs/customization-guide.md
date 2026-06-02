@@ -1,6 +1,6 @@
 # Customization Guide — Agentic Enterprise Operating Model
 
-> **Version:** 3.6 | **Last updated:** 2026-03-14
+> **Version:** 3.7 | **Last updated:** 2026-06-02
 
 > **Start here** after cloning the framework.
 > Fastest safe path: fill `CONFIG.yaml`, install the GitHub issue-backend kit if needed, then run `python3 scripts/instantiate_instance.py cleanup-instance`.
@@ -56,8 +56,8 @@ Also decide whether operational work lives in the same repo as the governance ba
 
 | Backend | Best For | Set In CONFIG.yaml |
 |---------|----------|--------------------|
-| **Git files** | Self-contained, maximum auditability | `work_backend.type: "git-files"` |
-| **GitHub Issues** | Better human collaboration and visibility | `work_backend.type: "github-issues"` |
+| **GitHub Issues** | Default; best for human collaboration and visibility | `work_backend.type: "github-issues"` |
+| **Git files** | Legacy self-contained mode with maximum repository-local auditability | `work_backend.type: "git-files"` |
 
 If you choose GitHub Issues, use:
 - [docs/work-backends.md](work-backends.md) for backend choice and contract
@@ -192,7 +192,7 @@ The last item is the key: even "nothing to improve" is worth filing. It keeps th
 - ❌ Heavyweight project management tool — missions **are** your tickets (whether as issues or files)
 - ❌ Standup meetings — mission status updates **are** the standup (issue comments or STATUS.md)
 - ❌ Separate OKR framework — `CONFIG.yaml` vision + active missions = your strategy
-- ✅ An issue tracker is optional but **recommended** for human-facing visibility (`work_backend.type: "github-issues"`)
+- ✅ GitHub Issues is the default work backend for human-facing visibility (`work_backend.type: "github-issues"`)
 
 ---
 

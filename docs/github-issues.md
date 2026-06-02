@@ -1,6 +1,6 @@
 # GitHub Issues Backend Guide
 
-> **Version:** 2.5 | **Last updated:** 2026-03-28
+> **Version:** 2.6 | **Last updated:** 2026-06-02
 
 > **What this document is:** The concrete implementation guide for running operational work artifacts in GitHub Issues. Use this when `CONFIG.yaml → work_backend.type` is `github-issues`.
 
@@ -8,7 +8,7 @@
 
 ## Goal
 
-This guide is the canonical operating guide for the GitHub issue backend.
+This guide is the canonical operating guide for the GitHub issue backend. The shipped default `CONFIG.yaml` uses this backend for operational work tracking.
 
 Use it for:
 - labels
@@ -25,7 +25,7 @@ For the shortest setup path, start with [github/setup-checklist.md](github/setup
 
 Complete these steps before using the issue backend in a real fork:
 
-1. Set `work_backend.type: "github-issues"` in `CONFIG.yaml`.
+1. Confirm `work_backend.type: "github-issues"` in `CONFIG.yaml` (this is the shipped default).
 2. Enable GitHub Issues and Issue Forms.
 3. Create a GitHub Project (v2) with `Backlog`, `Triage`, `Approved`, `Planning`, `In Progress`, `Blocked`, `Done`.
 4. Prefer the scripted install path: `python3 scripts/instantiate_instance.py install-github-work-repo --main-repo your-org/your-instance --target-dir <issue-hosting-repo>`.
@@ -428,6 +428,7 @@ Git still holds the durable review-heavy artifacts.
 
 | Version | Date | Change |
 |---|---|---|
+| 2.6 | 2026-06-02 | Clarified that GitHub Issues is the shipped default work backend. |
 | 2.5 | 2026-03-28 | Added the rule that ad-hoc chat tasks must become issue-backed work when the issue backend is enabled. |
 | 2.4 | 2026-03-23 | Clarified that assignee state is the source of truth for next action and that human-needed work must be reassigned to the human owner rather than implied only in comments or body text. |
 | 2.3 | 2026-03-21 | Added template asset references for label bootstrap, slim work-repo CI, dynamic label sync from issue forms, and the GitHub setup checklist. |

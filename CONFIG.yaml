@@ -14,7 +14,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Tracks the overall framework release. Update when cutting a new version.
 # See CHANGELOG.md for what changed. Uses semantic versioning (MAJOR.MINOR.PATCH).
-framework_version: "4.0.1"
+framework_version: "4.1.0"
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────────────────
@@ -209,8 +209,8 @@ knowledge:
 # decisions, etc.) and HOW they flow. WHERE they live is configurable.
 #
 # Options:
-#   "git-files"      — All work artifacts are Markdown files in work/ (original model)
-#   "github-issues"  — Work artifacts are tracked as GitHub Issues with structured labels
+#   "github-issues"  — Work artifacts are tracked as GitHub Issues with structured labels (default)
+#   "git-files"      — All work artifacts are Markdown files in work/ (legacy/self-contained mode)
 #
 # See docs/work-backends.md for the full guide, label taxonomy, and migration paths.
 #
@@ -219,7 +219,7 @@ knowledge:
 # (signals, missions, tasks, decisions, releases, retrospectives) are affected.
 
 work_backend:
-  type: "git-files"                   # "git-files" | "github-issues"
+  type: "github-issues"               # "github-issues" | "git-files"
 
   # Configuration for github-issues backend
   github_issues:

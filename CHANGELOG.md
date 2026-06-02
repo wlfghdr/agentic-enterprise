@@ -30,6 +30,9 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Changed
 
+- `CONFIG.yaml` — changed the shipped default `work_backend.type` from `git-files` to `github-issues` and bumped `framework_version` from `4.0.1` to `4.1.0`. Closes #272.
+- `AGENTS.md`, `docs/work-backends.md`, `docs/github-issues.md`, and `docs/customization-guide.md` — updated the operating guidance to describe GitHub Issues as the default work backend while preserving `git-files` as the self-contained legacy mode. Closes #272.
+- `README.md` — updated the framework version badge to `4.1.0`. Closes #272.
 - `docs/compliance/iso-42001.md` — updated control coverage for A.8.3, A.8.5, and A.10.4 to reflect the new governance and customer-policy guidance, while preserving adopter-specific follow-up notes.
 - `AGENTS.md` — restored missing Rule 15 "Challenge before creating" and bumped document version to 4.5. Closes #270.
 - `README.md`, `docs/README.md`, and `docs/architecture/agentic-enterprise-architecture.md` — linked the new Paperclip boundary document so the runtime-agnostic architecture story has an explicit practical split between runtime substrate and enterprise governance overlay. Closes #243.
