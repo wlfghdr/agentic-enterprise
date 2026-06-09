@@ -21,12 +21,17 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Added
 
+- **agentic-* suite cross-references** — README gains "The agentic-* suite" section and the live-demo footer (`index.html`) gains suite links positioning agentic-enterprise as the operating model next to [agentic-kb](https://github.com/wlfghdr/agentic-kb) (knowledge layer) and [agentic-dev](https://github.com/wlfghdr/agentic-dev) (execution layer). The "Knowledge" term in "What Is Agentic Enterprise?" now links agentic-kb as the reference knowledge-ops layer.
 - `docs/architecture/paperclip-runtime-substrate.md` — new architecture boundary document defining the intended split if Paperclip matures into the runtime substrate: inventory of AE concepts by ownership class (Paperclip-native, convention/plugin, missing upstream, intentionally external), the residual long-term scope of Agentic Enterprise as a policy/semantics/compliance overlay, and the migration path from AE-as-framework to AE-as-overlay. Closes #243.
 - `AGENTS.md` Rule 19 "Issue status lifecycle" — defines standard status values (Backlog, In Progress, Blocked, Review Needed, Done), transition rules, and audit expectations for issue status accuracy. Ported and generalized from Sagicorp instance rule S7b.
 - `AGENTS.md` Rule 20 "Signal lifecycle" — defines signal closure rules (absorbed, ambiguous, superseded, auto-close via PR) and a 14-day staleness threshold for open signals without linked downstream work. Ported and generalized from Sagicorp instance rule S7c.
 - `org/4-quality/policies/ai-governance.md` §6A — external adverse-impact reporting and interested-party information-sharing requirements for ISO 42001 A.8.3 and A.8.5, including reporting channels, triage, response targets, disclosure categories, and jurisdiction-aware escalation. Closes #254.
 - `org/4-quality/policies/customer.md` AI customer requirements sections — AI-specific expectation capture, domain-of-use disclosures, and provider/customer responsibility allocation for ISO 42001 A.10.4. Closes #254.
 - `docs/compliance/templates/_TEMPLATE-aims-objectives.md` — new ISO 42001 AI objectives register template covering clause 6.2, A.6.1.2, and A.9.3 with measurable objective fields, achievement plans, pre-populated responsible-AI objective areas, lifecycle integration, and responsible-use objectives. Closes #250.
+
+### Fixed
+
+- **Version drift** — README version badge and `CONFIG.yaml → framework_version` still said 4.1.0 while the changelog had already released 4.3.0; both now read 4.3.0.
 
 ### Changed
 

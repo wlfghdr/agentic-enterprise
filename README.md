@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/model-Agentic%20Enterprise-blueviolet" alt="Agentic Enterprise">
-  <img src="https://img.shields.io/badge/version-4.1.0-brightgreen" alt="Version">
+  <img src="https://img.shields.io/badge/version-4.3.0-brightgreen" alt="Version">
   <img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License">
   <img src="https://img.shields.io/badge/runtime-bring%20your%20own-orange" alt="Runtime">
   <a href="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml">
@@ -66,12 +66,24 @@ Keep these terms separate:
 - **Demo / reference scenario:** the public proof assets in [`index.html`](index.html) and [`concept-visualization.html`](concept-visualization.html)
 - **Runtime:** your agent platform of choice
 - **Observability:** your OpenTelemetry-native evidence layer
-- **Knowledge:** governed knowledge manifests define what agents may rely on, who owns it, and how fresh it must be
+- **Knowledge:** governed knowledge manifests define what agents may rely on, who owns it, and how fresh it must be — [agentic-kb](https://github.com/wlfghdr/agentic-kb) is the suite's reference knowledge-ops layer
 - **Adoption:** start with Git, CODEOWNERS, signals, missions, and PRs; add agents later if you want
 
 The repo is the governance backbone. You bring the runtime, observability platform, and domain systems that actually execute business operations. The framework stays runtime-agnostic.
 
 If you are evaluating Paperclip as the runtime substrate, see [Paperclip as Runtime Substrate, Agentic Enterprise as Policy Overlay](docs/architecture/paperclip-runtime-substrate.md) for the intended long-term boundary.
+
+### The agentic-* suite
+
+`agentic-enterprise` is the **operating model** of the agentic-* suite — three building blocks for running an agentic organization on Git:
+
+| Repo | Role |
+|------|------|
+| [agentic-enterprise](https://github.com/wlfghdr/agentic-enterprise) | **The operating model** — governance layers, process loops, policies, and templates (this repo). |
+| [agentic-kb](https://github.com/wlfghdr/agentic-kb) | **The knowledge layer** — layered, vendor-neutral knowledge ops via the `/kb` command. |
+| [agentic-dev](https://github.com/wlfghdr/agentic-dev) | **The execution layer** — deterministic engineering triage and execution loop. |
+
+Each piece works standalone; together they cover governance, knowledge, and execution.
 
 ---
 
