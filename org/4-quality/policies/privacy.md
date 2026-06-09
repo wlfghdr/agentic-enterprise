@@ -3,7 +3,7 @@
 > **Applies to:** All personal-data processing, product features, AI workflows, support operations, integrations, and customer environments
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Privacy / Legal / Security leadership
-> **Version:** 1.0 | **Last updated:** 2026-03-13
+> **Version:** 1.1 | **Last updated:** 2026-06-09
 
 ---
 
@@ -143,8 +143,35 @@ Observability does not replace legal judgment, but it materially improves provab
 
 ---
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|----------------|
+| **GDPR** | Art. 5(1)(a) Lawfulness, fairness, and transparency | Principles; §1 |
+| **GDPR** | Art. 6 Lawfulness of processing | §1 |
+| **GDPR** | Art. 12 Transparent information and rights handling | §3 |
+| **GDPR** | Art. 15–21 Data subject rights | §3 |
+| **GDPR** | Art. 28 Processor obligations | §2 |
+| **GDPR** | Art. 33–34 Personal data breach notification | §4 |
+| **GDPR** | Art. 35 Data protection impact assessment | §5 |
+| **CCPA/CPRA** | §1798.100 Right to know and notice at collection | §1, §3 |
+| **CCPA/CPRA** | §1798.105 Right to delete | §3 |
+| **CCPA/CPRA** | §1798.106 Right to correct | §3 |
+| **CCPA/CPRA** | §1798.110 Right to know | §3 |
+| **CCPA/CPRA** | §1798.120 Opt-out of sale or sharing | §6 |
+| **CCPA/CPRA** | §1798.121 Limit use of sensitive personal information | §1, §6 |
+| **CCPA/CPRA** | §1798.125 Non-discrimination | Principles |
+| **CCPA/CPRA** | §1798.135 Opt-out preference mechanism | §6 |
+| **HIPAA** | §164.502(a) Permitted uses and disclosures | §1 |
+| **HIPAA** | §164.502(b) Minimum necessary standard | Principles; §1 |
+| **HIPAA** | §164.524 Individual access | §3 |
+| **HIPAA** | §164.526 Amendment of protected health information | §3 |
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-06-09 | Added structured compliance mappings for GDPR, CCPA/CPRA, and HIPAA privacy requirements. |
 | 1.0 | 2026-03-13 | Initial privacy policy covering GDPR role/lawful-basis mapping, DPA, DSAR, breach notification, DPIA, consent, and transfer controls |

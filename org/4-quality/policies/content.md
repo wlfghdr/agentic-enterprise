@@ -3,7 +3,7 @@
 > **Applies to:** All externally-facing content — documentation, blog posts, marketing materials, press releases, website copy, social media, presentations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Content & Communications leads
-> **Version:** 1.0 | **Last updated:** 2026-02-19
+> **Version:** 1.1 | **Last updated:** 2026-06-09
 
 ---
 
@@ -63,8 +63,22 @@
 
 ---
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|----------------|
+| **ISO 9001:2015** | 7.5 Documented information | Documentation Quality |
+| **ISO 9001:2015** | 8.2 Requirements for products and services | Accuracy & Claims; Documentation Quality |
+| **GDPR** | Art. 12 Transparent, intelligible, and accessible information | Accuracy & Claims; Documentation Quality |
+| **GDPR** | Art. 13 Information provided when personal data are collected | Legal & Compliance |
+| **EU AI Act** | Art. 13 Transparency and provision of information | Accuracy & Claims; Documentation Quality |
+| **EU AI Act** | Art. 50 Transparency obligations | Accuracy & Claims; Legal & Compliance |
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-06-09 | Added structured compliance mappings for documented information, transparent communications, and AI disclosure obligations. |
 | 1.0 | 2026-02-19 | Initial version |

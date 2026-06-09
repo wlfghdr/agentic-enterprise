@@ -3,7 +3,7 @@
 > **Applies to:** All software, AI system, agent, integration, and operational changes that progress through the delivery lifecycle
 > **Enforced by:** Quality Layer eval agents, release coordinators, and human approvers for mandatory gates
 > **Authority:** Release Management / DevOps leads, Security & Compliance team
-> **Version:** 1.0 | **Last updated:** 2026-05-23
+> **Version:** 1.1 | **Last updated:** 2026-06-09
 
 ---
 
@@ -94,8 +94,27 @@ A pre-deploy readiness checklist must confirm at minimum:
 
 ---
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|----------------|
+| **SOC 2** | CC8.1 Change management | SDLC Stage-Gate Map; Named Deploy Gates |
+| **ISO 27001:2022** | A.8.25 Secure development life cycle | SDLC Stage-Gate Map |
+| **ISO 27001:2022** | A.8.31 Separation of development, test, and production environments | SDLC Stage-Gate Map |
+| **ISO 27001:2022** | A.8.32 Change management | Production Deployment Gates; Evidence and Exceptions |
+| **ISO 27001:2022** | A.8.34 Protection during audit testing | Evidence and Exceptions |
+| **ISO 9001:2015** | 8.1 Operational planning and control | SDLC Gate Coverage |
+| **ISO 9001:2015** | 8.3 Design and development | SDLC Stage-Gate Map |
+| **ISO 9001:2015** | 8.6 Release of products and services | Named Deploy Gates |
+| **ISO 9001:2015** | 8.7 Control of nonconforming outputs | Evidence and Exceptions |
+| **NIST CSF 2.0** | ID.IM-02 Improvements are identified from security tests and exercises | Operational Feedback |
+| **NIST CSF 2.0** | PR.PS-06 Secure software development practices are integrated | Named Deploy Gates |
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-06-09 | Added structured compliance mappings for change control, secure development, release gates, and continuous improvement. |
 | 1.0 | 2026-05-23 | Initial version. Added explicit SDLC stage-gate mapping, named deploy gates, AI impact assessment deploy gate, AI-specific penetration testing gate, and minimum pre-deploy readiness checklist requirements. |

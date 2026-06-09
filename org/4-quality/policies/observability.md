@@ -4,7 +4,7 @@
 > **Enforced by:** Quality Layer eval agents, including the dedicated [Observability Compliance Agent](../../agents/quality/observability-compliance-agent.md)
 > **Authority:** Operations leads + Architecture Governors
 > **Principle:** If it runs, it must be observable. If it's not observable, it doesn't ship.
-> **Version:** 1.4.1 | **Last updated:** 2026-03-14
+> **Version:** 1.5.0 | **Last updated:** 2026-06-09
 
 ---
 
@@ -313,10 +313,27 @@ All telemetry data collected under this policy is subject to the retention, immu
 
 ---
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|----------------|
+| **SOC 2** | CC7.1 System operations monitoring | Mandatory Requirements; Dashboards & Visualization |
+| **SOC 2** | CC7.2 Anomaly detection | Alerting & Anomaly Detection |
+| **ISO 27001:2022** | A.8.15 Logging | The Three Pillars; Log Retention & Immutability |
+| **ISO 27001:2022** | A.8.16 Monitoring activities | Dashboards & Visualization; Alerting & Anomaly Detection |
+| **HIPAA** | §164.312(b) Audit controls | Agent Observability; Log Retention & Immutability |
+| **ISO 22301:2019** | 9.1 Monitoring, measurement, analysis, and evaluation | Service Health Target Requirements; Verification Gates |
+| **NIST CSF 2.0** | DE.CM-01 Networks and network services are monitored | The Three Pillars; Dashboards & Visualization |
+| **NIST CSF 2.0** | DE.CM-03 Personnel activity and technology usage are monitored | Agent Observability |
+| **NIST CSF 2.0** | DE.AE-02 Potentially adverse events are analyzed | Alerting & Anomaly Detection |
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.5.0 | 2026-06-09 | Added structured compliance mappings for monitoring, audit controls, continuity measurement, and NIST CSF detection outcomes. |
 | 1.4 | 2026-03-14 | Added Log Retention & Immutability section cross-referencing log-retention.md; added telemetry retention evaluation criteria |
 | 1.3 | 2026-03-10 | Added an explicit policy requirement that downstream activity records remain trace-linkable via canonical `trace.id`, `span.id`, and `parent.span.id` identifiers defined in `docs/otel-contract.md`. |
 | 1.1 | 2026-02-25 | Added Design-Time Observability section (shift-left); added design-time stage gate and verification gate (At Design Time); added design-time observability evaluation criterion; cross-referenced AGENTS.md Rule 9c and Technical Design template |

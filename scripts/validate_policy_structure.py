@@ -63,19 +63,6 @@ FLEXIBLE_SECTIONS = {
     },
 }
 
-# ── Known compliance frameworks ──────────────────────────────────────────────
-
-KNOWN_FRAMEWORKS = [
-    "SOC 2",
-    "ISO 27001",
-    "GDPR",
-    "ISO 42001",
-    "NIST AI RMF",
-    "EU AI Act",
-    "HIPAA",
-]
-
-
 def get_sections(text: str) -> dict[str, int]:
     """Return dict of second-level heading titles → line numbers."""
     sections: dict[str, int] = {}
@@ -158,31 +145,19 @@ def validate_policy(path: Path) -> list[str]:
                 errors.append(f"{rel}: missing '## {section_name}' section or numbered requirement subsections")
 
     # ── Compliance mapping ────────────────────────────────────────────────
-    # Policies that deal with governance, security, privacy, risk, or data
-    # MUST have compliance framework references. Others get a warning.
-    compliance_critical_keywords = [
-        "security", "privacy", "risk", "governance", "data-classification",
-        "cryptography", "incident", "log-retention", "availability",
-        "vendor", "agent-security", "agent-eval",
-    ]
-    is_compliance_critical = any(kw in path.stem for kw in compliance_critical_keywords)
-
-    has_compliance_ref = any(
-        fw.lower() in text.lower() for fw in KNOWN_FRAMEWORKS
-    )
-    compliance_section = any(
-        "compliance" in s.lower() and "mapping" in s.lower()
-        for s in sections
-    )
-    if not has_compliance_ref and not compliance_section:
-        if is_compliance_critical:
-            errors.append(
-                f"{rel}: compliance-critical policy missing compliance framework references "
-                f"(expected references to SOC 2, ISO 27001, GDPR, etc.)"
-            )
-        else:
-            # Non-critical: print warning but don't fail
-            print(f"  ⚠  {rel}: no compliance mapping section (recommended but not required)")
+    # Framework references in prose are not a substitute for the structured
+    # table consumed by the compliance mapping and coverage validators.
+    compliance_section = next((
+        section
+        for section in sections
+        if "compliance" in section.lower() and "mapping" in section.lower()
+    ), None)
+    if compliance_section is None:
+        errors.append(f"{rel}: missing required section '## Compliance Mapping'")
+    else:
+        empty_err = check_non_empty_section(text, compliance_section, sections)
+        if empty_err:
+            errors.append(f"{rel}: {empty_err}")
 
     # ── Changelog table ───────────────────────────────────────────────────
     if "Changelog" in sections:
@@ -211,6 +186,18 @@ def suggest_fix(path: Path) -> str:
     for section in REQUIRED_SECTIONS:
         if section not in sections:
             suggestions.append(f"Add section:\n## {section}\n\n[TODO: Add content]\n")
+
+    if not any(
+        "compliance" in section.lower() and "mapping" in section.lower()
+        for section in sections
+    ):
+        suggestions.append(
+            "Add section:\n"
+            "## Compliance Mapping\n\n"
+            "| Framework | Requirement | Policy Section |\n"
+            "|-----------|-------------|----------------|\n"
+            "| **FRAMEWORK** | CONTROL-ID Description | Section |\n"
+        )
 
     for name, pattern in REQUIRED_METADATA:
         if not re.search(pattern, text):
