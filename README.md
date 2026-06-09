@@ -47,6 +47,18 @@
 
 ---
 
+## The agentic-* suite
+
+`agentic-enterprise` is the **operating model** of the agentic-* suite — three building blocks for running an agentic organization on Git:
+
+| Repo | Role |
+|------|------|
+| [agentic-enterprise](https://github.com/wlfghdr/agentic-enterprise) | **The operating model** — governance layers, process loops, policies, and templates (this repo). |
+| [agentic-kb](https://github.com/wlfghdr/agentic-kb) | **The knowledge layer** — layered, vendor-neutral knowledge ops via the `/kb` command. |
+| [agentic-dev](https://github.com/wlfghdr/agentic-dev) | **The execution layer** — deterministic engineering triage and execution loop. |
+
+---
+
 ## Choose Your Path
 
 | If you want to... | Start here | What you get |
@@ -72,18 +84,6 @@ Keep these terms separate:
 The repo is the governance backbone. You bring the runtime, observability platform, and domain systems that actually execute business operations. The framework stays runtime-agnostic.
 
 If you are evaluating Paperclip as the runtime substrate, see [Paperclip as Runtime Substrate, Agentic Enterprise as Policy Overlay](docs/architecture/paperclip-runtime-substrate.md) for the intended long-term boundary.
-
-### The agentic-* suite
-
-`agentic-enterprise` is the **operating model** of the agentic-* suite — three building blocks for running an agentic organization on Git:
-
-| Repo | Role |
-|------|------|
-| [agentic-enterprise](https://github.com/wlfghdr/agentic-enterprise) | **The operating model** — governance layers, process loops, policies, and templates (this repo). |
-| [agentic-kb](https://github.com/wlfghdr/agentic-kb) | **The knowledge layer** — layered, vendor-neutral knowledge ops via the `/kb` command. |
-| [agentic-dev](https://github.com/wlfghdr/agentic-dev) | **The execution layer** — deterministic engineering triage and execution loop. |
-
-Each piece works standalone; together they cover governance, knowledge, and execution.
 
 ---
 

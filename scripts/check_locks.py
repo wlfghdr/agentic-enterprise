@@ -20,6 +20,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Optional
 
 REPO = Path(".")
 LOCKS_DIR = REPO / "work" / "locks"
@@ -68,14 +69,14 @@ def matches_any(filepath: str, patterns: list[str]) -> bool:
     return False
 
 
-def parse_lock_target(lock_path: Path) -> str | None:
+def parse_lock_target(lock_path: Path) -> Optional[str]:
     """Extract Target path from a lock file."""
     text = lock_path.read_text(encoding="utf-8")
     m = re.search(r"\*\*Target:\*\*\s*`([^`]+)`", text)
     return m.group(1) if m else None
 
 
-def parse_lock_expires(lock_path: Path) -> datetime | None:
+def parse_lock_expires(lock_path: Path) -> Optional[datetime]:
     """Extract Expires timestamp from a lock file."""
     text = lock_path.read_text(encoding="utf-8")
     m = re.search(r"\*\*Expires:\*\*\s*(\S+)", text)

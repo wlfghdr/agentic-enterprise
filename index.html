@@ -28,6 +28,8 @@
   --pink: #f472b6;
   --radius: 16px;
   --radius-sm: 10px;
+  --font-outfit: 'Outfit', sans-serif;
+  --font-inter: 'Inter', sans-serif;
 }
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
@@ -341,9 +343,75 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
 .compliance-note strong{color:var(--text)}
 .compliance-note a{color:var(--accent3);border-bottom:1px solid rgba(196,181,253,0.3);padding-bottom:1px}
 
+/* ═══════════════════════════ THE TRIO ROW ═══════════════════════════ */
+.trio-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+}
+@media (max-width: 900px) {
+  .trio-container {
+    grid-template-columns: 1fr;
+  }
+}
+.trio-card {
+  background: rgba(28, 28, 34, 0.6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.trio-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+.trio-card.active::before {
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+}
+.trio-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.card-number {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.trio-card.active .card-number {
+  color: var(--accent3);
+}
+.card-title {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.card-description {
+  font-size: 0.9rem;
+  color: var(--text2);
+}
+
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -450,6 +518,27 @@ footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;co
     </div>
   </div>
 </section>
+
+<!-- The Trio Row -->
+<div class="container reveal">
+  <div class="trio-container">
+    <a class="trio-card active" href="https://github.com/wlfghdr/agentic-enterprise" style="text-decoration:none;color:inherit;display:block">
+      <span class="card-number">Pillar 01 — The Operating Model</span>
+      <h2 class="card-title">agentic-enterprise</h2>
+      <p class="card-description">The repository-backed operating model: governance layers, process loops, policies, and templates. Humans decide, agents execute, Git governs.</p>
+    </a>
+    <a class="trio-card" href="https://github.com/wlfghdr/agentic-kb" style="text-decoration:none;color:inherit;display:block">
+      <span class="card-number">Pillar 02 — The Knowledge Layer</span>
+      <h2 class="card-title">agentic-kb</h2>
+      <p class="card-description">The layered, vendor-neutral knowledge-ops spec with the <code>/kb</code> command — keeps humans and agents on the same page.</p>
+    </a>
+    <a class="trio-card" href="https://github.com/wlfghdr/agentic-dev" style="text-decoration:none;color:inherit;display:block">
+      <span class="card-number">Pillar 03 — The Execution Layer</span>
+      <h2 class="card-title">agentic-dev</h2>
+      <p class="card-description">The production-ready engineering loop that schedules tasks, resolves rebase conflicts, and verifies code via tests.</p>
+    </a>
+  </div>
+</div>
 
 <!-- ═══════════════════════════ POSITIONING CLARIFIER ═══════════════════════════ -->
 <section style="padding:40px 0 32px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(17,17,20,0.6)">
