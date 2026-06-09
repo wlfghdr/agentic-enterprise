@@ -3,7 +3,7 @@
 > **Applies to:** All code, infrastructure configuration, API definitions, data pipelines, integrations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.3 | **Last updated:** 2026-03-14
+> **Version:** 1.4 | **Last updated:** 2026-06-09
 
 ---
 
@@ -69,10 +69,33 @@
 
 ---
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|----------------|
+| **SOC 2** | CC6.1 Logical access controls | Authentication & Authorization; Secrets Management |
+| **SOC 2** | CC6.6 Boundary protection | Input Validation; Container & Infrastructure Security |
+| **SOC 2** | CC7.1 Security monitoring | Dependency & Vendor Security; Container & Infrastructure Security |
+| **ISO 27001:2022** | A.5.15 Access control | Authentication & Authorization |
+| **ISO 27001:2022** | A.8.5 Secure authentication | Authentication & Authorization |
+| **ISO 27001:2022** | A.8.25 Secure development life cycle | Input Validation; Dependency & Vendor Security |
+| **ISO 27001:2022** | A.8.28 Secure coding | Input Validation; Secrets Management |
+| **HIPAA** | §164.308(a)(4) Information access management | Authentication & Authorization |
+| **HIPAA** | §164.312(a) Access control | Authentication & Authorization |
+| **HIPAA** | §164.312(d) Person or entity authentication | Authentication & Authorization |
+| **CCPA/CPRA** | §1798.100(e) Reasonable security procedures and practices | All mandatory requirements |
+| **CCPA/CPRA** | §1798.150 Security breach private right of action | Data Protection; Dependency & Vendor Security |
+| **NIST CSF 2.0** | PR.AA-01 Identities and credentials are managed | Authentication & Authorization; Secrets Management |
+| **NIST CSF 2.0** | PR.DS-01 Data at rest are protected | Data Protection |
+| **NIST CSF 2.0** | PR.PS-06 Secure software development practices are integrated | Input Validation; Dependency & Vendor Security |
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.4 | 2026-06-09 | Added structured compliance mappings for access control, secure development, HIPAA safeguards, CCPA reasonable security, and NIST CSF protection outcomes. |
 | 1.3 | 2026-03-14 | Dependency Security section renamed to Dependency & Vendor Security; added vendor assessment and attestation requirements referencing vendor-risk-management.md (#92) |
 | 1.2 | 2026-03-14 | Data retention requirement now references log-retention.md (#94) |
 | 1.1 | 2026-03-14 | Data Protection section now references data-classification.md for classification taxonomy; evaluation criterion updated (#93) |

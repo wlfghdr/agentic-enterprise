@@ -3,7 +3,7 @@
 > **Applies to:** All organizational layers, agent types, missions, integrations, and operational processes
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.3 | **Last updated:** 2026-03-27
+> **Version:** 1.4 | **Last updated:** 2026-06-09
 
 ---
 
@@ -430,10 +430,33 @@ This table maps the organization's existing quality policies to the risk categor
 
 ---
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|----------------|
+| **SOC 2** | CC3.1 Risk identification | §3.1, §5 |
+| **SOC 2** | CC3.2 Risk analysis | §3.2 |
+| **SOC 2** | CC3.3 Fraud risk consideration | §5.5 |
+| **SOC 2** | CC3.4 Stakeholder involvement in risk assessment | §3.1, §9 |
+| **ISO 27001:2022** | A.5.7 Threat intelligence | §5, §8 |
+| **ISO 27001:2022** | A.5.31 Legal, statutory, regulatory, and contractual requirements | §1, §7 |
+| **HIPAA** | §164.308(a)(1) Security management process | §2, §3, §4 |
+| **ISO 22301:2019** | 6.1 Actions to address risks and opportunities | §2, §3 |
+| **ISO 22301:2019** | 8.2 Business impact analysis and risk assessment | §3, §5 |
+| **NIST AI RMF** | GOVERN 1 Policies and accountability | §1, §2, §6 |
+| **NIST AI RMF** | MAP 1 Context is established and understood | §3.1, §5 |
+| **NIST AI RMF** | MANAGE 1 AI risks are prioritized and treated | §3.3, §3.4 |
+| **NIST CSF 2.0** | GV.RM-01 Risk management objectives are established and agreed to | §2 |
+| **NIST CSF 2.0** | ID.RA-01 Vulnerabilities in assets are identified and recorded | §3.1, §4 |
+| **NIST CSF 2.0** | ID.RA-05 Threats, vulnerabilities, likelihoods, and impacts are used to understand inherent risk | §3.2 |
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.4 | 2026-06-09 | Added structured compliance mappings for enterprise, AI, continuity, HIPAA, and NIST CSF risk management requirements. |
 | 1.3 | 2026-03-27 | Added workforce-readiness and change-management expectations tied to agent autonomy tiers, including minimum human readiness controls before autonomy increases |
 | 1.2 | 2026-03-14 | Extended §6.4 to reference vendor-risk-management.md for general vendor governance; added vendor concentration risk requirement (#92) |
 | 1.0 | 2026-03-13 | Initial version — risk appetite framework, 5×5 scoring methodology, AI risk taxonomy (22 canonical risks across 5 dimensions), agent autonomy tiers, observability-driven KRIs, regulatory crosswalk (ISO 31000 / NIST RMF / NIST AI RMF / ISO 27001 / SOC 2 / EU AI Act), policy-to-risk control mapping |

@@ -3,7 +3,7 @@
 > **Applies to:** All deployments, releases, rollouts, and operational changes
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Release Management / DevOps leads
-> **Version:** 1.1 | **Last updated:** 2026-05-23
+> **Version:** 1.2 | **Last updated:** 2026-06-09
 
 ---
 
@@ -108,9 +108,27 @@ When an active production incident requires an immediate fix:
 
 ---
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|----------------|
+| **SOC 2** | CC8.1 Change management | Environment Progression; Pre-Deployment; Deployment Process |
+| **SOC 2** | A1.3 Recovery testing | Rollback Criteria; Post-Deployment |
+| **ISO 22301:2019** | 8.3 Business continuity strategies and solutions | Deployment Process; Rollback Criteria |
+| **ISO 22301:2019** | 8.4 Business continuity plans and procedures | Pre-Deploy Readiness Checklist; Rollback Criteria |
+| **ISO 22301:2019** | 8.5 Exercise programme | Environment Progression; Post-Deployment |
+| **ISO 9001:2015** | 8.5 Production and service provision | Deployment Process |
+| **ISO 9001:2015** | 8.6 Release of products and services | Pre-Deployment; Pre-Deploy Readiness Checklist |
+| **ISO 9001:2015** | 8.7 Control of nonconforming outputs | Rollback Criteria; Emergency / Hotfix Deployments |
+| **NIST CSF 2.0** | PR.IR-03 Mechanisms are implemented to achieve resilience requirements | Progressive rollout; Rollback Criteria |
+| **NIST CSF 2.0** | RC.RP-03 Recovery actions and restoration are verified | Post-Deployment; Rollback Criteria |
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2 | 2026-06-09 | Added structured compliance mappings for governed change, continuity, release control, and recovery verification. |
 | 1.1 | 2026-05-23 | Added SDLC gate cross-reference, formal AI impact assessment deploy gate, AI-specific penetration-testing deploy gate, and pre-deploy readiness checklist as a blocking production gate. |
 | 1.0 | 2026-02-19 | Initial version |

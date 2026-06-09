@@ -3,7 +3,7 @@
 > **Applies to:** All AI agents, agent instructions, tool integrations, and workflows processing external content
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.2 | **Last updated:** 2026-05-23
+> **Version:** 1.3 | **Last updated:** 2026-06-09
 
 ---
 
@@ -158,10 +158,27 @@ This policy addresses the following OWASP LLM Top 10 (2025) categories:
 
 ---
 
+## Compliance Mapping
+
+| Framework | Requirement | Policy Section |
+|-----------|-------------|----------------|
+| **ISO 27001:2022** | A.8.25 Secure development life cycle | §1, §2, §4 |
+| **ISO 27001:2022** | A.8.28 Secure coding | §1.1, §3, §4 |
+| **NIST AI RMF** | GOVERN 1 Policies and accountability for AI risk | Principles; §2 |
+| **NIST AI RMF** | MAP 5 Impacts from third-party AI components | §2.1, §2.4 |
+| **NIST AI RMF** | MEASURE 2 Trustworthiness evaluation | §4 |
+| **EU AI Act** | Art. 14 Human oversight | §2.3 |
+| **EU AI Act** | Art. 15 Accuracy, robustness, and cybersecurity | §1, §2, §4 |
+| **NIST CSF 2.0** | PR.AA-05 Access permissions and authorizations are managed | §2.1, §2.2 |
+| **NIST CSF 2.0** | PR.PS-06 Secure software development practices are integrated | §4 |
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 1.3 | 2026-06-09 | Added structured compliance mappings for secure development, AI risk controls, human oversight, and NIST CSF safeguards. |
 | 1.2 | 2026-05-23 | Added MCP-specific threat scoping to §2.1, including untrusted-context handling, lifecycle and supply-chain assessment, and explicit linkage to vendor-risk-management.md. |
 | 1.1 | 2026-03-15 | Added §4.3 CI Content Security Scanning — automated enforcement via `validate_content_security.py` blocking CI job; added content security CI evaluation criterion; updated OWASP LLM01 coverage map |
 | 1.0 | 2026-03-13 | Initial version — prompt injection mitigations, tool abuse prevention, insecure output handling, security testing requirements, OWASP LLM Top 10 coverage map |
