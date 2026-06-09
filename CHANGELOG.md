@@ -21,6 +21,7 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ### Added
 
+- **Release automation** — new `.github/workflows/release.yml`: pushing a `v*` tag creates the matching GitHub release with notes extracted from this changelog. Same workflow ships across agentic-enterprise, agentic-kb, and agentic-dev for a consistent suite release process.
 - **agentic-* suite cross-references** — README gains "The agentic-* suite" section and the live-demo footer (`index.html`) gains suite links positioning agentic-enterprise as the operating model next to [agentic-kb](https://github.com/wlfghdr/agentic-kb) (knowledge layer) and [agentic-dev](https://github.com/wlfghdr/agentic-dev) (execution layer). The "Knowledge" term in "What Is Agentic Enterprise?" now links agentic-kb as the reference knowledge-ops layer.
 - `docs/architecture/paperclip-runtime-substrate.md` — new architecture boundary document defining the intended split if Paperclip matures into the runtime substrate: inventory of AE concepts by ownership class (Paperclip-native, convention/plugin, missing upstream, intentionally external), the residual long-term scope of Agentic Enterprise as a policy/semantics/compliance overlay, and the migration path from AE-as-framework to AE-as-overlay. Closes #243.
 - `AGENTS.md` Rule 19 "Issue status lifecycle" — defines standard status values (Backlog, In Progress, Blocked, Review Needed, Done), transition rules, and audit expectations for issue status accuracy. Ported and generalized from Sagicorp instance rule S7b.
