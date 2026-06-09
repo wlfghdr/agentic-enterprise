@@ -19,6 +19,13 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ## [Unreleased]
 
+## [4.4.1] — 2026-06-10
+
+### Fixed
+
+- **Visual Alignment & Card Layout** in `index.html` — aligned the suite navigation card block (Trio cards) and typography to match the visual style of `agentic-dev` and `agentic-kb`. Added Outfit font support.
+- **Mac/Python Compatibility** in `scripts/check_locks.py` — replaced union types syntax `|` with `Optional` typing for compatibility with Python 3.9 on macOS.
+
 ## [4.4.0] — 2026-06-10
 
 ### Added
