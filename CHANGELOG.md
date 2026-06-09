@@ -19,6 +19,8 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ## [Unreleased]
 
+## [4.4.0] — 2026-06-10
+
 ### Added
 
 - **Release automation** — new `.github/workflows/release.yml`: pushing a `v*` tag creates the matching GitHub release with notes extracted from this changelog. Same workflow ships across agentic-enterprise, agentic-kb, and agentic-dev for a consistent suite release process.
