@@ -1,6 +1,6 @@
 # Agent Type Definition: Cross-Mission Coordinator
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-15
+> **Template version:** 1.0 | **Last updated:** 2026-06-17
 > **Status:** proposed | **Proposed date:** 2026-02-18
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -45,7 +45,7 @@
 ## Description
 
 **What this agent does:**
-Detects dependency conflicts across concurrent initiatives, proposes sequencing strategies, and manages shared resource contention.
+Detects dependency conflicts across concurrent missions, proposes sequencing strategies, and manages shared resource contention.
 
 **Problem solved:**
 Organizations run many things in parallel. Without coordination, they collide.
@@ -130,4 +130,5 @@ All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../.
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-06-17 | Terminology consistency — "concurrent initiatives" → canonical "concurrent missions" to match the process loops, mission-lifecycle docs, and templates | System |
 | 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

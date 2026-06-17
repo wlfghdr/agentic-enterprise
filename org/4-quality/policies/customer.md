@@ -3,7 +3,7 @@
 > **Applies to:** All customer-facing interactions — proposals, QBRs, support responses, onboarding, renewals, escalations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Customer Success & Sales leadership
-> **Version:** 1.2 | **Last updated:** 2026-06-09
+> **Version:** 1.2.1 | **Last updated:** 2026-06-17
 
 ---
 
@@ -56,7 +56,7 @@
 - [ ] Document what the customer is told about each relevant AI-enabled feature: intended use, supported domain of use, known limitations, confidence or review caveats where applicable, and when human escalation is required
 - [ ] Confirm whether the customer expects contract terms, usage restrictions, data-location commitments, model/provider restrictions, audit evidence, or opt-out controls related to AI use
 - [ ] Route material AI-specific customer requirements into product, delivery, security, legal, and governance backlogs so they influence system design and operation instead of staying in account notes alone
-- [ ] Re-confirm AI-related customer expectations when the system purpose, model provider, autonomy level, or data-handling pattern changes materially
+- [ ] Re-confirm AI-related customer expectations when the system purpose, model provider, autonomy tier, or data-handling pattern changes materially
 
 ### Responsibility Allocation for AI-Enabled Services (B.10.4)
 - [ ] Customer-facing documentation and contracts define which responsibilities remain with the provider and which are assigned to the customer for each AI-enabled workflow
@@ -97,6 +97,7 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 1.2.1 | 2026-06-17 | Terminology consistency — standardized "autonomy level" to the canonical "autonomy tier". Prose-only; no control changes. |
 | 1.2 | 2026-06-09 | Added structured compliance mappings for customer requirements, AI responsibility allocation, and privacy transparency. |
 | 1.1 | 2026-05-23 | Added AI-specific customer requirements, domain-of-use communication expectations, and provider/customer responsibility allocation guidance for ISO 42001 A.10.4. Closes #254. |
 | 1.0 | 2026-02-19 | Initial version |

@@ -4,7 +4,7 @@
 > **Applies to:** All AI/ML models, agent types, LLM-powered workflows, automated decision systems, and AI-generated outputs
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.4.0 | **Last updated:** 2026-05-23
+> **Version:** 1.4.1 | **Last updated:** 2026-06-17
 
 ---
 
@@ -13,7 +13,7 @@
 1. **Transparent by default** — Every AI system documents what it does, how it works, what data it uses, and what its known limitations are. Opacity is a governance failure, not a design choice.
 2. **Fair and non-discriminatory** — AI outputs must not systematically disadvantage individuals or groups based on protected characteristics. Fairness is measured, not assumed.
 3. **Accountable to humans** — AI systems recommend; humans decide on high-impact matters. Every AI-assisted decision has a traceable chain: model → output → review → decision → outcome.
-4. **Proportional governance** — Governance rigor scales with the impact and autonomy level of the AI system. A code formatting agent needs less governance than an agent that influences hiring or financial decisions.
+4. **Proportional governance** — Governance rigor scales with the impact and autonomy tier of the AI system. A code formatting agent needs less governance than an agent that influences hiring or financial decisions.
 5. **Continuously validated** — AI systems degrade over time (data drift, model drift, context drift). Governance is not a one-time certification but a continuous evaluation loop.
 
 ---
@@ -34,7 +34,7 @@ All AI systems must be classified by risk level. This classification determines 
 ### 1.2 Classification Rules
 
 - [ ] Every agent type in the Agent Type Registry documents its AI risk tier in the Model Governance section
-- [ ] Risk tier classification is reviewed when the agent's scope, autonomy level, or data access changes
+- [ ] Risk tier classification is reviewed when the agent's scope, autonomy tier, or data access changes
 - [ ] Tier 0 (Prohibited) uses are blocked at design time — no mission brief may authorize prohibited AI uses
 - [ ] When classification is uncertain, apply the higher tier until the data owner and security team confirm
 - [ ] Risk tier classification is documented in the agent type definition and cross-referenced in the model card
@@ -607,6 +607,7 @@ The framework defines the governance structure. Each adopter must configure the 
 
 | Version | Date | Change |
 |---|---|---|
+| 1.4.1 | 2026-06-17 | Terminology consistency — standardized "autonomy level" to the canonical "autonomy tier". Prose-only; no governance changes. |
 | 1.4.0 | 2026-05-23 | Added ISO 42001 human AI competence and awareness requirements, including competence matrix, competence evidence, gap actions, effectiveness evaluation, and formal awareness programme. Expanded compliance mapping and evaluation criteria. Closes #253. |
 | 1.3.0 | 2026-05-23 | Added ISO 42001 A.8.3 / B.8.3 external adverse-impact reporting and A.8.5 / B.8.5 interested-party information-sharing obligations, including intake channels, triage, response timeframes, disclosure categories, and escalation expectations. Closes #254. |
 | 1.2.0 | 2026-05-23 | Added ISO 42001 A.3.3 / B.3.3 reporting concerns about AI systems process, including confidential and anonymous reporting options, investigation roles, anti-retaliation protection, escalation path, AIMS integration, and response timeframes. Closes #252. |
