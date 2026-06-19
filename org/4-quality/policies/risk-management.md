@@ -3,7 +3,7 @@
 > **Applies to:** All organizational layers, agent types, missions, integrations, and operational processes
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.4 | **Last updated:** 2026-06-09
+> **Version:** 1.4.1 | **Last updated:** 2026-06-17
 
 ---
 
@@ -12,7 +12,7 @@
 1. **Risk-aware by design** — Risk assessment is a design-time discipline, not a post-incident afterthought. Every mission, technical design, and agent deployment must identify and score risks before execution begins.
 2. **Continuous, not periodic** — Risk posture is monitored in real-time via the observability platform. Static risk registers are insufficient — risks must be observable, measurable, and re-evaluated at defined triggers.
 3. **Humans own risk decisions** — Agents identify, score, and monitor risks. Humans define risk appetite, accept residual risk, and authorize risk treatments. No agent may unilaterally accept risk above the defined tolerance.
-4. **Proportional controls** — Control rigor scales with agent autonomy level and risk impact. Higher autonomy demands tighter tolerances, more frequent reassessment, and more granular observability.
+4. **Proportional controls** — Control rigor scales with agent autonomy tier and risk impact. Higher autonomy demands tighter tolerances, more frequent reassessment, and more granular observability.
 5. **Traceable end-to-end** — Every risk has an owner, a score, a treatment, a residual assessment, and a link to the controls that mitigate it. The chain from risk → control → evidence must be auditable.
 
 ---
@@ -79,9 +79,9 @@ Readiness is incomplete if any of the following are missing:
 
 - [ ] Named human roles for approval, monitoring, override, and post-incident review appropriate to the autonomy tier
 - [ ] Training or enablement for those roles covering system scope, failure modes, and escalation paths
-- [ ] Change-management communication when autonomy level, agent scope, or workforce expectations materially change
+- [ ] Change-management communication when autonomy tier, agent scope, or workforce expectations materially change
 - [ ] Evidence that the human control is operationally realistic (for example, approval queues are staffed and monitoring dashboards are actually reviewed)
-- [ ] Reassessment of workforce readiness whenever autonomy level, risk tier, or operating scope increases
+- [ ] Reassessment of workforce readiness whenever autonomy tier, risk tier, or operating scope increases
 
 This policy does not prescribe a single HR or change-management process. It defines the minimum governance expectation: human oversight only counts if the humans involved are prepared, reachable, and authorized to act.
 
@@ -456,6 +456,7 @@ This table maps the organization's existing quality policies to the risk categor
 
 | Version | Date | Change |
 |---|---|---|
+| 1.4.1 | 2026-06-17 | Terminology consistency — standardized "autonomy level" to the canonical "autonomy tier" (matches `org/agents/_TEMPLATE-agent-type.md`, the §6 tier definitions, and the autonomy-tier rollout checklist). Prose-only; no control changes. |
 | 1.4 | 2026-06-09 | Added structured compliance mappings for enterprise, AI, continuity, HIPAA, and NIST CSF risk management requirements. |
 | 1.3 | 2026-03-27 | Added workforce-readiness and change-management expectations tied to agent autonomy tiers, including minimum human readiness controls before autonomy increases |
 | 1.2 | 2026-03-14 | Extended §6.4 to reference vendor-risk-management.md for general vendor governance; added vendor concentration risk requirement (#92) |

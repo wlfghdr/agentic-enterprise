@@ -1,6 +1,6 @@
 # Agent Type Definition: Content Creation Agent
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-15
+> **Template version:** 1.0 | **Last updated:** 2026-06-17
 > **Status:** proposed | **Proposed date:** 2026-02-18
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -45,7 +45,7 @@
 ## Description
 
 **What this agent does:**
-Generates blog posts, release notes, enablement materials, and technical documentation from initiative artifacts.
+Generates blog posts, release notes, enablement materials, and technical documentation from mission artifacts.
 
 **Problem solved:**
 Content is the fuel of modern GTM. Automated creation keeps pace with product velocity.
@@ -128,4 +128,5 @@ All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../.
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-06-17 | Terminology consistency — "initiative artifacts" → canonical "mission artifacts" to match the process loops, mission-lifecycle docs, and templates | System |
 | 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

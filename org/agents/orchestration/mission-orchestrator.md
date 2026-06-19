@@ -1,6 +1,6 @@
 # Agent Type Definition: Mission Orchestrator
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-15
+> **Template version:** 1.0 | **Last updated:** 2026-06-17
 > **Status:** proposed | **Proposed date:** 2026-02-18
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -45,7 +45,7 @@
 ## Description
 
 **What this agent does:**
-Decomposes approved initiative briefs into parallel work streams, assigns them to agent fleets, and manages dependencies.
+Decomposes approved mission briefs into parallel work streams, assigns them to agent fleets, and manages dependencies.
 
 **Problem solved:**
 Without orchestration, agents work in silos. This is the project manager of the agentic enterprise organization.
@@ -130,4 +130,5 @@ All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../.
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-06-17 | Terminology consistency — "initiative briefs" → canonical "mission briefs" to match the process loops, mission-lifecycle docs, and templates | System |
 | 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

@@ -1,6 +1,6 @@
 # Agent Type Definition: Discovery Agent
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-15
+> **Template version:** 1.0 | **Last updated:** 2026-06-17
 > **Status:** proposed | **Proposed date:** 2026-02-18
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -45,7 +45,7 @@
 ## Description
 
 **What this agent does:**
-Picks up converging signals, synthesizes market opportunities, and drafts initiative briefs with defined outcome contracts.
+Picks up converging signals, synthesizes market opportunities, and drafts mission briefs with defined outcome contracts.
 
 **Problem solved:**
 Bridges the gap between signal detected and work started. Without it, signals go unanswered.
@@ -130,4 +130,5 @@ All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../.
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-06-17 | Terminology consistency — "initiative briefs" → canonical "mission briefs" to match the process loops, mission-lifecycle docs, and templates | System |
 | 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

@@ -87,7 +87,7 @@ The inventory should list every AI system in scope and capture, at minimum:
 - intended use
 - business and technical owners
 - AI risk tier
-- autonomy level
+- autonomy tier
 - model/provider/version
 - data categories
 - human oversight mode
