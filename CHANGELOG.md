@@ -19,10 +19,16 @@ The framework uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html): `
 
 ## [Unreleased]
 
+## [4.4.2] — 2026-10-14
+
 ### Changed
 
 - **Terminology consistency — "autonomy tier"** — standardized the residual "autonomy level" phrasing to the canonical "autonomy tier" used by `org/agents/_TEMPLATE-agent-type.md`, the risk-management policy §6 tier definitions, and the autonomy-tier rollout checklist. Touches `org/4-quality/policies/risk-management.md` (1.4.1), `customer.md` (1.2.1), `ai-governance.md` (1.4.1), `docs/compliance/templates/_TEMPLATE-ai-system-inventory.md` (Template 1.1.1), and `docs/compliance/guides/iso-42001-aims-scope.md`. Prose-only; no control or governance changes.
 - **Terminology consistency — "mission" over "initiative"** — aligned agent-type descriptions that referred to the canonical work unit as an "initiative" back to "mission": `mission-orchestrator` and `discovery-agent` ("mission briefs"), `cross-mission-coordinator` ("concurrent missions"), and `content-creation-agent` ("mission artifacts"). Strategic-portfolio uses of "initiative" (e.g. portfolio-analyst, investment-modeler) are intentionally left as established strategy vocabulary.
+
+### Fixed
+
+- **Structured policy compliance mappings (#278)** — every quality policy now carries a structured compliance-mapping section, and `scripts/validate_policy_structure.py` enforces it.
 
 ## [4.4.1] — 2026-06-10
 
