@@ -1,6 +1,5 @@
 # Recovery Runbook: [Service / System]
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-13
 > **Owner:** [team / role]
 > **Service tier:** Tier 1 | Tier 2 | Tier 3
 > **Target RTO / RPO:** [time] / [time]
@@ -86,11 +85,3 @@ Link the telemetry used to prove recovery:
 - Needed architecture or resilience changes:
 - Needed policy changes:
 - Drill / incident lessons:
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-13 | Initial recovery runbook template |

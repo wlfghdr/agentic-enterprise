@@ -3,7 +3,6 @@
 > **Applies to:** All externally-facing content — documentation, blog posts, marketing materials, press releases, website copy, social media, presentations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Content & Communications leads
-> **Version:** 1.1 | **Last updated:** 2026-06-09
 
 ---
 
@@ -73,12 +72,3 @@
 | **GDPR** | Art. 13 Information provided when personal data are collected | Legal & Compliance |
 | **EU AI Act** | Art. 13 Transparency and provision of information | Accuracy & Claims; Documentation Quality |
 | **EU AI Act** | Art. 50 Transparency obligations | Accuracy & Claims; Legal & Compliance |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-06-09 | Added structured compliance mappings for documented information, transparent communications, and AI disclosure obligations. |
-| 1.0 | 2026-02-19 | Initial version |

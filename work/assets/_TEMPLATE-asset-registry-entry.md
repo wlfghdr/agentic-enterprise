@@ -1,6 +1,5 @@
 # Asset Registry Entry: [Asset Name]
 
-> **Template version:** 1.1 | **Last updated:** 2026-03-14
 > **Tracks non-code deliverables:** documentation, content, training materials, customer deliverables, marketing assets, etc.
 
 ---
@@ -26,7 +25,6 @@
 |-------|-------|
 | **Status** | draft _(draft / review / published / archived / deprecated)_ |
 | **Created** | YYYY-MM-DD |
-| **Last updated** | YYYY-MM-DD |
 | **Review date** | _(next review date)_ |
 | **Expiry date** | _(when this asset expires, if applicable)_ |
 
@@ -65,19 +63,3 @@
 | **Reviewed by** | |
 | **Review date** | YYYY-MM-DD |
 | **Content policy compliant** | no _(checked against content.md policy)_ |
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-03-14 | Added Classification section (Data Classification, Contains PII, Handling notes) per data-classification.md policy (#93) |
-| 1.0 | 2026-02-19 | Initial version |

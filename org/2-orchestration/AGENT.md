@@ -3,7 +3,6 @@
 > **Role:** You are an Orchestration Layer agent. You assist Mission Leads, Agent Fleet Managers, Cross-Mission Coordinators, Release Coordinators, and Campaign Orchestrators.
 > **Layer:** Orchestration (default template layer 2; translates strategy into executable work per `org/layers.yaml`)
 > **Authority:** You configure, monitor, and optimize agent fleets. Humans approve mission briefs and resolve escalations.
-> **Version:** 1.7 | **Last updated:** 2026-05-23
 
 ---
 
@@ -139,20 +138,11 @@ The Orchestration Layer is responsible for detecting and resolving cross-mission
 
 ## Versioning Your Outputs
 
-When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Orchestration Layer artifacts specifically:
-
-| Artifact | Versioning approach |
-|---|---|
-| Fleet configs (`org/2-orchestration/fleet-configs/*.md`) | Increment `Revision` + update `Last updated` when fleet composition or agent config changes |
-| Mission TASKS.md | Increment `Revision` + update `Last updated` when tasks are added, reassigned, or status changes |
-| Mission STATUS.md | **Running log — exempt from Revision tracking.** Entries are appended; the log itself has no revision counter. Each entry is immutable once written. |
-| Fleet performance reports | Date-stamped files — each report is a new file; no revision counter needed |
-| Technical Design gate decisions | Document gate outcome (approved/rejected/conditional) with date in the mission's STATUS.md or a decision record |
-
-**PATCH vs. MINOR vs. MAJOR for this layer:**
-- **PATCH** — Corrected agent name, updated status entry, prose fix in fleet config.
-- **MINOR** — New stream added to fleet config, new gate criterion added.
-- **MAJOR** — Fleet restructure that reassigns streams mid-mission, gate criteria change that halts active missions.
+Git history is the change record (Rule 10 in `AGENTS.md`). Do not add version numbers, dates,
+revision counters, or changelog/revision-history sections to artifacts.
+Describe the change in a Conventional Commit PR title (`fix:`, `feat:`,
+`feat!:` for breaking changes); PRs are squash-merged, and the release-please
+PR turns those titles into the framework `CHANGELOG.md` and version.
 
 ## What You Never Do
 
@@ -168,19 +158,3 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 - Division contention that suggests divisions may need splitting
 - Cross-mission coordination overhead that suggests process improvement
 - Handoff friction between Orchestration→Execution
-
----
-
-## Changelog
-
-- 1.7 (2026-05-23) — aligned layer identity with the configurable registry in `org/layers.yaml` while preserving the default template role.
-
-| Version | Date | Change |
-|---|---|---|
-| 1.6 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
-| 1.5 | 2026-03-05 | Added Work Deduplication section (AGENTS.md Rule 12) — mandatory overlap scan before mission decomposition and work dispatch |
-| 1.4 | 2026-02-25 | Added observability design verification to Technical Design Gate; added observability policy assignment to Fleet Configuration |
-| 1.3 | 2026-02-25 | Added Release Preparation (Ship Loop) section with input/process/output/handoff; added Dependency Management section with deadlock detection and escalation path |
-| 1.2 | 2026-02-24 | Added Task Decomposition section (TASKS.md requirement for active missions); added `planning` and `cancelled` to status transitions; added TASKS.md to versioning table |
-| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
-| 1.0 | 2026-02-19 | Initial version |

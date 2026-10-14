@@ -3,7 +3,6 @@
 > **Applies to:** All code changes, new services, API designs, data models, system integrations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Architecture Governors (Steering Layer delegates)
-> **Version:** 1.3 | **Last updated:** 2026-06-09
 
 ---
 
@@ -92,14 +91,3 @@
 | **ISO 9001:2015** | 8.3 Design and development | Technical Design; Service Design |
 | **ISO 22301:2019** | 8.1 Operational planning and control | Technical Design; Observability |
 | **NIST CSF 2.0** | PR.PS-01 Configuration management practices are established and applied | Service Design; Data Architecture |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.3 | 2026-06-09 | Added structured compliance mappings for governed design, secure development, operational planning, and configuration management. |
-| 1.0 | 2026-02-19 | Initial version |
-| 1.2 | 2026-02-25 | Added observability design to Technical Design checklist; updated evaluation criteria to include design-time observability |
-| 1.1 | 2026-02-23 | Replace {{DESIGN_SYSTEM_NAME}} placeholder with generic "company design system" language |

@@ -1,7 +1,5 @@
 # Archive Policy (Work Artifact Lifecycle)
 
-> **Version:** 1.1 | **Last updated:** 2026-03-07
-
 All work artifacts follow the same lifecycle: **active → done → archived**.
 
 Archiving keeps active views clean and scannable while preserving full history. The mechanics depend on your configured work backend (see `CONFIG.yaml → work_backend` and [work-backends.md](work-backends.md)).

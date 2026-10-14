@@ -1,7 +1,5 @@
 # Artificial Intelligence Management System — AI Objectives Register
 
-> **Template version:** 1.0
-> **Last updated:** 2026-05-23
 > **Standard:** ISO/IEC 42001:2023 — Clause 6.2, A.6.1.2, A.9.3
 > **Purpose:** Define, plan, monitor, communicate, and update documented AI objectives for the Artificial Intelligence Management System (AIMS)
 
@@ -167,9 +165,3 @@ Summarize how objective performance is brought into the AIMS review cycle.
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial AI objectives register |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-05-23 | Initial AI objectives register template covering ISO/IEC 42001 clause 6.2, A.6.1.2, and A.9.3 |

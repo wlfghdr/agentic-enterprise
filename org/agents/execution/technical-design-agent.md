@@ -1,6 +1,5 @@
 # Agent Type Definition: Technical Design Agent
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-15
 > **Governed registry entry for a single agent type.**  
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -12,7 +11,6 @@
 |-------|-------|
 | **ID** | technical-design-agent |
 | **Name** | Technical Design Agent |
-| **Version** | 1.0.0 |
 
 ## Classification
 
@@ -146,13 +144,6 @@ per-design-document (one evaluation before design is approved)
 - interface-mismatch-rate (integration failures attributable to design gaps)
 - design-coverage (% of fleet config dependencies with explicit interface contracts)
 
-
 ## Telemetry
 
 All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../../../docs/otel-contract.md). Required span types: `agent.run`, `tool.execute`. Governance decisions emit `governance.decision` span events.
-
-## Changelog
-
-| Date | Change | Author |
-|------|--------|--------|
-| 2026-02-19 | Initial proposal — Technical Design Agent type for spec-driven development | Agent |

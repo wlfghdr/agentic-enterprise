@@ -3,7 +3,6 @@
 > **Role:** You are a Quality Layer agent (eval agent, policy guardian, compliance checker). You evaluate ALL outputs before they are merged, published, shipped, or sent externally.
 > **Layer:** Quality (default template layer 4; the organization's immune system in `org/layers.yaml`)
 > **Authority:** You enforce quality policies. You can BLOCK any output. Humans set policies and resolve disputes.
-> **Version:** 1.16 | **Last updated:** 2026-05-23
 
 ---
 
@@ -97,21 +96,11 @@ The template includes:
 
 ## Versioning Your Outputs
 
-When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Quality Layer artifacts specifically:
-
-| Artifact | Versioning approach |
-|---|---|
-| Quality evaluation reports (`work/missions/*/evaluations/*.md`) | **Immutable once filed.** Date-stamped filenames. Always stored in Git regardless of work backend. If re-evaluation is needed, file a new report — do not edit a submitted report |
-| Quality trend signals | **Immutable once filed.** File a new signal if findings are updated. (Git-files: `work/signals/*.md`; issue backend: issue with `artifact:signal` label) |
-| Policy files (`org/4-quality/policies/*.md`) | Bump `Version` (minor or major) + update `Last updated` + add row to the file's `## Changelog` section |
-| Agent Type Proposal evaluations | Filed as evaluation reports — immutable once the PR is submitted |
-
-**PATCH vs. MINOR vs. MAJOR for policies:**
-- **PATCH** — Prose clarification, example added, wording improved without changing the requirement.
-- **MINOR** — New requirement added, new measurement method defined, new threshold added.
-- **MAJOR** — Requirement removed, threshold changed in a way that affects currently-compliant systems.
-
-> **Policy change authority:** You enforce policies, you do not own them. If you identify a needed policy change, file a signal — do not edit policy files directly. Steering Layer humans approve policy changes via PR.
+Git history is the change record (Rule 10 in `AGENTS.md`). Do not add version numbers, dates,
+revision counters, or changelog/revision-history sections to artifacts.
+Describe the change in a Conventional Commit PR title (`fix:`, `feat:`,
+`feat!:` for breaking changes); PRs are squash-merged, and the release-please
+PR turns those titles into the framework `CHANGELOG.md` and version.
 
 ## What You Never Do
 
@@ -177,26 +166,3 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 - Outputs that consistently fail the same policy (upstream problem)
 - New output types that have no applicable policy (coverage gap)
 - Policies that consistently block good work without adding value
-
----
-
-## Changelog
-
-- 1.16 (2026-05-23) — clarified that Quality is defined by the configurable layer registry and remains the default evaluation layer.
-
-| Version | Date | Change |
-|---|---|---|
-| 1.15 | 2026-03-28 | Added CI green gate (step 8) and sub-issue linkage verification (step 9) to Evaluation Protocol — red CI is automatic FAIL, missing parent linkage is major finding |
-| 1.14 | 2026-03-27 | Added outcome-oriented agent quality dimensions (completeness, containment, correctness, control, resolution, turn efficiency, escalation quality) and instructed evaluators to prefer observability evidence when available |
-| 1.11 | 2026-03-14 | Added AI governance & responsible AI (fairness, model cards, explainability) to quality dimensions; references new `ai-governance.md` policy |
-| 1.10 | 2026-03-14 | Added data classification & handling to quality dimensions; references new `data-classification.md` policy |
-| 1.9 | 2026-03-13 | Added encryption & key management to quality dimensions; references new `cryptography.md` policy |
-| 1.8 | 2026-03-13 | Added risk management to quality dimensions; references new `risk-management.md` policy |
-| 1.7 | 2026-03-13 | Added agent security (prompt injection & tool abuse) to quality dimensions; references new `agent-security.md` policy |
-| 1.6 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
-| 1.5 | 2026-02-25 | Added design-time observability evaluation to Evaluation Protocol (step 6): Quality agents verify Observability Design section completeness in Technical Designs before build |
-| 1.4 | 2026-02-25 | Added Operate Loop section with outcome measurement (measurement_schedule monitoring), production signaling, and stall detection (7-day threshold) |
-| 1.3 | 2026-02-24 | Added TASKS.md to evaluation context; added task traceability and acceptance criteria verification to Evaluation Protocol |
-| 1.2 | 2026-02-20 | Updated "What You Never Do" to reference the Governance Exception process; clarified that a merged exception record unlocks policy bypass |
-| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
-| 1.0 | 2026-02-19 | Initial version |

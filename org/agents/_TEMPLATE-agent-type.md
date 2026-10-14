@@ -1,6 +1,5 @@
 # Agent Type Definition: [Agent Name]
 
-> **Template version:** 1.4 | **Last updated:** 2026-05-23
 > **Governed registry entry for a single agent type.**  
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -12,7 +11,6 @@
 |-------|-------|
 | **ID** | _(unique identifier, e.g., "steering-signal-scanner")_ |
 | **Name** | _(human-readable name, e.g., "Customer Signal Scanner")_ |
-| **Version** | 1.0.0 |
 
 ## Classification
 
@@ -205,15 +203,3 @@ All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../.
 - Required native event for governed decisions: `governance.decision`
 - Add `inference.chat` and/or `inference.generate` whenever the agent uses model-backed reasoning or generation
 - Telemetry declarations here must stay aligned with the canonical contract in `docs/otel-contract.md`
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.4 | 2026-05-23 | Expanded embedded model card with ISO/IEC 42001 A.4.3, A.4.4, and A.4.5 resource documentation sections for data, tooling, and computing resources, including AI system inventory cross-reference. |
-| 1.3 | 2026-03-27 | Added Identity & Access Boundary section so each agent type documents runtime identity, credential source/scope, allowed environments, allowed data classifications, and high-impact approval gates. |
-| 1.2 | 2026-03-15 | Added Telemetry section with canonical OTel contract reference, required core spans, decision event, and conditional inference span guidance (#115) |
-| 1.1 | 2026-03-14 | Added Model Governance section with AI risk tier, model identity, intended use, limitations, fairness considerations, and token budget per ai-governance.md policy (#91) |
-| 1.0 | 2026-02-19 | Initial version |

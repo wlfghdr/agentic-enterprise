@@ -1,6 +1,5 @@
 # Quality Evaluation Report: [Output Name]
 
-> **Template version:** 1.1 | **Last updated:** 2026-02-24
 > **Output:** [description or link to the artifact being evaluated]
 > **Type:** code | documentation | content | proposal | customer-deliverable | release | agent-type
 > **Mission:** [link to `work/missions/<name>/BRIEF.md` if applicable]
@@ -89,19 +88,3 @@
 
 [Optional — note any patterns observed across evaluations:]
 - [e.g., "This is the 3rd evaluation this month that flagged missing production readiness instrumentation — recommend policy awareness signal"]
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-02-24 | Added Task reference field in metadata; added Task Acceptance Criteria section for traceability between tasks and quality evaluations |
-| 1.0 | 2026-02-19 | Initial version |

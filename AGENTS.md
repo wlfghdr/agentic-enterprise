@@ -1,7 +1,5 @@
 # Agent Instructions (Global)
 
-> **Version:** 4.6 | **Last updated:** 2026-10-14
-
 Every AI agent in this repository must follow these instructions. Layer-specific and division-specific instructions extend (never contradict) these rules.
 
 ## Instruction Hierarchy
@@ -64,21 +62,13 @@ External tools connect through the **Integration Registry** (`org/integrations/`
 
 **Design:** Define what will be observed before how it will be built — traces, metrics, SLOs, dashboards. Consult production baselines. Surface contradictions. Quality agents evaluate observability design completeness in Technical Design reviews.
 
-### 10. Version everything
-Every modified artifact needs version/date updated. **PATCH:** prose edits. **MINOR:** new sections. **MAJOR:** breaking changes. CI enforces via `validate-versioning`.
-
-| File type | Update |
-|---|---|
-| `AGENT.md` files | `Version` + `Last updated` |
-| `_TEMPLATE-*.md` | `Template version` + `Last updated` + `## Changelog` row |
-| Quality policies | `Version` + `Last updated` |
-| Work instances | `Revision` + `Last updated` + `## Revision History` row |
-| `CONFIG.yaml` / `CHANGELOG.md` | Never by hand — the release-please PR bumps `framework_version` and writes `CHANGELOG.md` from Conventional Commit PR titles |
+### 10. Git is the change record
+Artifacts carry no version numbers, dates, revision counters, or changelog/revision-history sections — Git history and PR review are the audit trail, and CI (`check-no-file-versioning`) rejects hand-maintained versioning. Describe every change in a Conventional Commit PR title (`fix:` → PATCH, `feat:` → MINOR, `feat!:` / `BREAKING CHANGE:` → MAJOR); PRs are squash-merged and the release-please PR turns the titles into `CHANGELOG.md` and `CONFIG.yaml` → `framework_version`. Never edit those two by hand. Exception: ISO controlled-document templates under `docs/compliance/templates/` keep the revision fields of the *filled-in* document, which auditors expect on exported documents.
 
 ### 11. Template vs. instance
 Two kinds of files (see [docs/file-guide.md](docs/file-guide.md)):
 
-**Templates** (`_TEMPLATE-*.md`, `AGENT.md`, policies, `CONFIG.yaml`): Not done until changes + version bump + commit + push + **CI green**.
+**Templates** (`_TEMPLATE-*.md`, `AGENT.md`, policies, `CONFIG.yaml`): Not done until changes + commit + push + **CI green**.
 
 **Instances** (non-template `work/` files, issues with `artifact:*` labels): Done when human approves — PR merge or issue status transition.
 

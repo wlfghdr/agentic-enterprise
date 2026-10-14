@@ -1,6 +1,5 @@
 # Postmortem: [Incident Name]
 
-> **Template version:** 1.1 | **Last updated:** 2026-02-25  
 > **Incident ID:** INC-YYYY-NNN  
 > **Severity:** SEV1 (Critical) | SEV2 (Major) | SEV3 (Minor) | SEV4 (Low)  
 > **Status:** draft | reviewed | accepted  
@@ -136,19 +135,3 @@
 - [ ] Operations Policy Author reviewed policy gap analysis
 - [ ] All follow-up items assigned and tracked
 - [ ] Improvement signals filed in `work/signals/`
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-02-25 | Renamed "Generated Signals" to "Signals Filed" with explicit signal IDs, file links, filing guidance, and Discover loop feedback requirement |
-| 1.0 | 2026-02-19 | Initial version |

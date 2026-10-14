@@ -1,10 +1,8 @@
 # Mission Brief: [Mission Name]
 
-> **Template version:** 1.3 | **Last updated:** 2026-02-25
 > **Mission ID:** MISSION-YYYY-NNN
 > **Status:** proposed | approved | planning | active | paused | completed | cancelled
 > **Created:** YYYY-MM-DD
-> **Revision:** 1 | **Last updated:** YYYY-MM-DD
 > **Author:** [Strategy Layer agent or human]
 > **Design required:** true | false _(Set to `true` for multi-stream missions, novel architecture patterns, new external APIs, data model changes, or regulated features. The Orchestration Layer will gate execution on a reviewed Technical Design document.)_
 > **Blocked by:** _(optional — comma-separated Mission IDs that must complete before this mission can start, e.g., `MISSION-2026-040, MISSION-2026-041`)_
@@ -123,21 +121,3 @@ Missions follow a governed lifecycle. Each transition has a gate that must be sa
 - [ ] Strategy Layer human review
 - [ ] Steering Layer review (for large missions)
 - [ ] Affected division leads notified
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.3 | 2026-02-25 | Added Observability Requirements section (key metrics, production baselines at risk, observability dependencies) per AGENTS.md Rule 9c |
-| 1.2 | 2026-02-25 | Added optional `blocked_by` and `blocks` fields for cross-mission dependency declaration |
-| 1.1 | 2026-02-24 | Added `planning` and `cancelled` statuses; added Status Transition Rules section with gates; documented TASKS.md requirement for `active` status and exception for non-execution missions |
-| 1.0 | 2026-02-19 | Initial version |

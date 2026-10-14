@@ -1,7 +1,5 @@
 # Autonomy Tier Rollout Checklist
 
-> **Template version:** 1.0
-> **Last updated:** 2026-03-27
 > **Purpose:** Provide a concrete governance record before moving an agent, workflow, or team to a higher autonomy tier
 > **Related policy:** [`org/4-quality/policies/risk-management.md`](../../../org/4-quality/policies/risk-management.md) §2.3 Workforce Readiness by Autonomy Tier
 
@@ -131,9 +129,3 @@
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial autonomy-tier rollout checklist |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-27 | Initial adopter-facing checklist for autonomy-tier increases, including ownership, readiness, monitoring, rollback, and communication controls |

@@ -4,7 +4,6 @@
 > **Applies to:** All AI/ML models, agent types, LLM-powered workflows, automated decision systems, and AI-generated outputs
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.4.1 | **Last updated:** 2026-06-17
 
 ---
 
@@ -600,17 +599,3 @@ The framework defines the governance structure. Each adopter must configure the 
 - [NIST AI 600-1 — Generative AI Profile](https://airc.nist.gov/Docs/1)
 - [OECD AI Principles](https://oecd.ai/en/ai-principles)
 - [IEEE 7010-2020 — Wellbeing Impact Assessment for AI](https://standards.ieee.org/ieee/7010/6573/)
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.4.1 | 2026-06-17 | Terminology consistency — standardized "autonomy level" to the canonical "autonomy tier". Prose-only; no governance changes. |
-| 1.4.0 | 2026-05-23 | Added ISO 42001 human AI competence and awareness requirements, including competence matrix, competence evidence, gap actions, effectiveness evaluation, and formal awareness programme. Expanded compliance mapping and evaluation criteria. Closes #253. |
-| 1.3.0 | 2026-05-23 | Added ISO 42001 A.8.3 / B.8.3 external adverse-impact reporting and A.8.5 / B.8.5 interested-party information-sharing obligations, including intake channels, triage, response timeframes, disclosure categories, and escalation expectations. Closes #254. |
-| 1.2.0 | 2026-05-23 | Added ISO 42001 A.3.3 / B.3.3 reporting concerns about AI systems process, including confidential and anonymous reporting options, investigation roles, anti-retaliation protection, escalation path, AIMS integration, and response timeframes. Closes #252. |
-| 1.1.0 | 2026-04-05 | Added §7 AI System Impact Assessment (Clauses 6.1.4, 8.4, A.5.2--A.5.5) and §8 AI Data Governance (A.7.2--A.7.6). Renumbered §7--9 → §9--11. Updated compliance mapping with ISO 42001 impact assessment, data governance, and SoA references. Closes #245, closes #246. |
-| 1.0.2 | 2026-03-15 | Corrected agent-security.md filename casing in prose references to match the actual policy filename. |
-| 1.0 | 2026-03-14 | Initial version — AI risk classification (4 tiers aligned to EU AI Act), model card requirements, fairness audit process (demographic parity, equalized odds, error rate parity), adversarial robustness testing, explainability levels (Traceable / Justifiable / Auditable), token usage accountability, compliance mapping (ISO 42001 / EU AI Act / NIST AI RMF). Closes #91. |

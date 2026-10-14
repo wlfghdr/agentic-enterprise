@@ -3,7 +3,6 @@
 > **Applies to:** All services, APIs, data pipelines, and user-facing applications
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Engineering leads
-> **Version:** 1.1 | **Last updated:** 2026-06-09
 
 ---
 
@@ -72,12 +71,3 @@
 | **ISO 9001:2015** | 9.1 Monitoring, measurement, analysis, and evaluation | Monitoring & Alerting; Evaluation Criteria |
 | **ISO 22301:2019** | 8.2 Business impact analysis and risk assessment | Service Performance; Scalability |
 | **NIST CSF 2.0** | ID.IM-04 Incident response and recovery plans are maintained and improved | Monitoring & Alerting; Scalability |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-06-09 | Added structured compliance mappings for capacity, measurement, continuity impact, and resilience improvement. |
-| 1.0 | 2026-02-19 | Initial version |

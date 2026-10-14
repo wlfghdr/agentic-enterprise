@@ -4,7 +4,6 @@
 > **Type:** Domain
 > **Layer:** Execution
 > **Status:** Active
-> **Version:** 1.0 | **Last updated:** 2026-03-15
 
 ---
 
@@ -41,7 +40,6 @@ The following quality policies are mandatory for all work produced by this divis
 - `policies/security.md` — Always
 - `policies/architecture.md` — For code / API changes
 
-
 ## Human Checkpoints
 
 These decisions require human division lead involvement:
@@ -67,11 +65,3 @@ When working within this division:
 | Source code | <!-- repo URL --> | Main repository |
 | Documentation | <!-- doc URL --> | User-facing docs |
 | API specs | <!-- API spec URL --> | OpenAPI specs |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-15 | Initial version with changelog and versioning metadata |

@@ -1,7 +1,6 @@
 # Signal: Mobile Onboarding Step 3 Drop-Off
 
 > **Created:** 2026-03-15
-> **Revision:** 1 | **Last updated:** 2026-03-15
 > **Author:** Agent (operate-loop)
 
 ---
@@ -46,11 +45,3 @@ The mobile form presents the same 12-field layout as the pre-fix desktop version
 ## Notes
 
 The desktop fix (progressive disclosure) should be directly applicable to mobile. However, mobile may need additional UX considerations (e.g., native form components, smaller field set). Filed from retrospective INC-2026-003 follow-up items.
-
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | 2026-03-15 | Agent (operate-loop) | Initial draft — filed from retrospective follow-up |

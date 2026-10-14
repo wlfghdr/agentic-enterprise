@@ -3,7 +3,6 @@
 > **Applies to:** All organizational data assets, storage systems, processing pipelines, agent workflows, integrations, and outputs
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.0.1 | **Last updated:** 2026-03-14
 
 ---
 
@@ -41,7 +40,7 @@ All organizational data must be assigned one of the following four levels. Adopt
 - [ ] Reclassification requests are documented with: current level, proposed level, justification, and approver
 - [ ] Downgrading (e.g., CONFIDENTIAL to INTERNAL) requires written approval from the data owner and security review
 - [ ] Upgrading (e.g., INTERNAL to CONFIDENTIAL) can be done immediately by any agent or team member — no approval needed
-- [ ] Reclassification events are logged in the asset's revision history
+- [ ] Reclassification events are recorded in the asset's Git history
 
 ---
 
@@ -176,11 +175,3 @@ This policy operationalizes data sensitivity concepts referenced across other po
 | **GDPR** | Art. 9 Special categories | §1 (RESTRICTED level) |
 | **NIST SP 800-53** | RA-2 Security categorization | §1 |
 | **NIST SP 800-60** | Information type categorization | §1 |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-14 | Initial version — 4-level classification scheme (PUBLIC / INTERNAL / CONFIDENTIAL / RESTRICTED), handling requirements matrix, PII inventory requirements, asset registry integration, agent workflow classification, cross-policy alignment, compliance mapping (ISO 27001 / SOC 2 / GDPR / NIST). Closes #93. |

@@ -1,7 +1,5 @@
 # AI System Impact Assessment
 
-> **Template version:** 1.0
-> **Last updated:** 2026-04-05
 > **Standard:** ISO/IEC 42001:2023 — Clauses 6.1.4, 8.4, Annex A.5.2--A.5.5
 > **Purpose:** Assess and document potential consequences of AI systems on individuals, groups, and societies
 
@@ -248,11 +246,3 @@ Assess each area for impacts to societies throughout the AI system's life cycle.
 | A.5.3 — Document and retain results | §2 (documentation), §6 (retention) |
 | A.5.4 — Individual / group impact assessment | §3 (8 impact areas) |
 | A.5.5 — Societal impact assessment | §4 (5 impact areas) |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| 1.0 | 2026-04-05 | Initial template covering Clauses 6.1.4, 8.4, A.5.2--A.5.5. Closes #245. |

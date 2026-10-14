@@ -4,7 +4,6 @@
 > **Applies to:** All log data, telemetry, audit trails, and observability records produced by services, agents, pipelines, and infrastructure
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Operations leadership
-> **Version:** 1.0.1 | **Last updated:** 2026-03-14
 
 ---
 
@@ -246,11 +245,3 @@ Agents produce telemetry per AGENTS.md Rule 9a and the [otel-contract.md](../../
 | **NIST SP 800-53** | AU-11 Audit record retention | §1 |
 | **NIST SP 800-53** | AU-9 Protection of audit information | §2, §3 |
 | **NIST SP 800-53** | AU-10 Non-repudiation | §2.2 (hash chains, WORM) |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-14 | Initial version — 5-category retention schedule (audit / security / access / operational / debug), WORM and tamper-evidence requirements, legal hold capability, verified deletion, agent telemetry classification, compliance mapping (ISO 27001 A.12.4 / SOC 2 CC7 / GDPR Art. 5/17/30 / EU AI Act Art. 12 / NIST AU). Closes #94. |

@@ -4,8 +4,6 @@
 > **Loop:** Discover (the first loop in the process lifecycle)  
 > **Authority:** You detect and draft. Humans validate and approve.
 
-> **Version:** 1.3 | **Last updated:** 2026-03-07
-
 ---
 
 ## Your Purpose
@@ -53,11 +51,11 @@ Monitor signal sources, detect meaningful signals, draft signal artifacts, assis
 
 ## Versioning Your Outputs
 
-| Artifact | Versioning approach |
-|---|---|
-| Signals | **Immutable once filed.** If new information arrives, file a supplemental signal. Include a `supersedes:` reference to the original. (Git-files: `work/signals/*.md`; issue backend: cross-reference original issue.) |
-| Mission briefs | Increment `Revision` + update `Last updated` (git-files: `work/missions/*/BRIEF.md`) or edit the mission issue body (issue backend). Once approved, a new revision documents any scope changes. |
-| Outcome contracts | Increment `Revision` if outcome targets change during the Discover loop |
+Git history is the change record (Rule 10 in `AGENTS.md`). Do not add version numbers, dates,
+revision counters, or changelog/revision-history sections to artifacts.
+Describe the change in a Conventional Commit PR title (`fix:`, `feat:`,
+`feat!:` for breaking changes); PRs are squash-merged, and the release-please
+PR turns those titles into the framework `CHANGELOG.md` and version.
 
 ## What You Never Do
 
@@ -65,14 +63,3 @@ Monitor signal sources, detect meaningful signals, draft signal artifacts, assis
 - **Never start execution** based on a signal — signals must go through the full Discover loop
 - **Never ignore** a signal — all signals must be captured, even if deprioritized
 - **Never fabricate** signals — all signals must be traceable to a source
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.3 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
-| 1.2 | 2026-02-25 | Added observability-driven signal detection (link production metrics as evidence); added Observability Requirements to Mission Brief Drafting |
-| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
-| 1.0 | 2026-02-19 | Initial version |

@@ -1,6 +1,5 @@
 # Canonical OTel Telemetry Contract
 
-> **Version:** 1.4 | **Last updated:** 2026-04-05
 > **Status:** Active — single source of truth for all agent telemetry
 > **Supersedes:** inline attribute lists in `AGENTS.md` Rule 9a, `org/4-quality/policies/observability.md` Agent Observability section, and `org/integrations/categories/observability.md` semantic conventions section
 > **Spec references:**
@@ -771,15 +770,3 @@ deprecated_attributes:
 | `org/integrations/categories/observability.md` | Integration: semantic conventions section references this file |
 | `examples/observability/agent-span-example.md` | Example: concrete well-instrumented agent workflow |
 | `work/missions/_TEMPLATE-technical-design.md` | Template: Observability Design section for mission-level instrumentation planning |
-
----
-
-## Changelog
-
-| Version | Date | Summary |
-|---------|------|---------|
-| 1.4 | 2026-04-05 | Added `agent.instructions.loaded` span event (Section 6.1 + YAML schema) — resolves ISO 9001 Clause 7.3 evidence chain mismatch. |
-| 1.3 | 2026-03-29 | Added Section 6.4: collaboration and deliberation event semantics, participation quality metrics. Closes issue #231. |
-| 1.2 | 2026-03-09 | (prior version — see git history) |
-| 1.1 | 2026-03-09 | Folded the former `docs/observability-genai.md` quick-reference into the canonical telemetry contract to remove duplicate observability guidance. |
-| 1.0 | 2026-03-09 | Initial canonical contract — consolidates AGENTS.md Rule 9a, observability policy, and integration docs. Closes issue #77. |

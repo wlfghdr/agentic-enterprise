@@ -1,7 +1,5 @@
 # Customization Guide — Agentic Enterprise Operating Model
 
-> **Version:** 3.7 | **Last updated:** 2026-06-02
-
 > **Start here** after cloning the framework.
 > Fastest safe path: fill `CONFIG.yaml`, install the GitHub issue-backend kit if needed, then run `python3 scripts/instantiate_instance.py cleanup-instance`.
 
@@ -70,7 +68,6 @@ If you choose GitHub Issues, use:
 
 See also: `docs/runtimes/openclaw-onboarding.md` for the practical minimum fleet, routing, labels, and Discord topology guidance.
 
-
 Do not treat the repo instantiation as complete until the runtime shape is also defined.
 
 Minimum expectations for an OpenClaw-based instance:
@@ -82,7 +79,6 @@ Minimum expectations for an OpenClaw-based instance:
 - document Discord/channel bindings separately from the generic repo bootstrap, because channel IDs remain environment-specific
 
 Use [`docs/runtimes/openclaw.md`](runtimes/openclaw.md) for the runtime-specific guidance.
-
 
 ### Step 4c: Add A Lightweight Audit Function
 
@@ -111,7 +107,6 @@ See `org/integrations/` for detailed guides per category. Start with observabili
 ### Step 6: Start Using It (5 min)
 
 Before switching on recurring automation, read [automation-and-work-continuity.md](automation-and-work-continuity.md). It defines continuity expectations, approval boundaries, self-assignment defaults, the no-unassigned rule for open GitHub work, the automation pickup audit checklist, and backoff rules.
-
 
 **Git-files backend:** Create your first signal in `work/signals/` and you're live.
 

@@ -1,7 +1,5 @@
 # NIST AI RMF MEASURE Dashboard Specification
 
-> **Template version:** 1.0
-> **Last updated:** 2026-03-15
 > **Framework:** NIST AI 100-1 — AI RMF 1.0
 > **Purpose:** Define a reusable dashboard specification for quantitative AI-risk measurement aligned to NIST AI RMF MEASURE 1-4
 
@@ -105,9 +103,3 @@
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial MEASURE dashboard specification |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-15 | Initial dashboard specification template for NIST AI RMF MEASURE quantitative metrics, thresholds, and review workflow |

@@ -1,7 +1,5 @@
 # Agent Type Registry — Execution Layer
 
-> **Version:** 1.1 | **Last updated:** 2026-03-07
-
 Agent types that operate at the Execution Layer — producing code, content, documentation, customer deliverables, sales materials, and support responses.
 
 ## Base Template Starter Set
@@ -155,10 +153,3 @@ The generic template should start from a smaller core set and treat the remainin
 | user-experience-agent | User Experience Agent | proposed |
 
 **Total: 78 agent types**
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-03-07 | Added core starter set and consolidation guidance to distinguish generic defaults from extension proposals |
-| 1.0 | 2026-02-23 | Initial version |

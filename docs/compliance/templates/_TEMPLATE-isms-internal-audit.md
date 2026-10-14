@@ -1,7 +1,5 @@
 # ISMS Internal Audit Programme
 
-> **Template version:** 1.0
-> **Last updated:** 2026-03-14
 > **Standard:** ISO/IEC 27001:2022 — Clause 9.2
 > **Purpose:** Establish a systematic internal audit programme for the ISMS
 
@@ -207,9 +205,3 @@ The audit programme itself is subject to improvement:
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial audit programme |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-14 | Initial internal audit programme template |

@@ -1,6 +1,5 @@
 # Data Protection Impact Assessment (DPIA) Template
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-13
 > **Use when:** A feature or workflow is likely to result in high risk to the rights and freedoms of individuals
 > **Source policy:** [`../../org/4-quality/policies/privacy.md`](../../org/4-quality/policies/privacy.md)
 
@@ -61,11 +60,3 @@ Check all that apply:
 - Observability / logging design
 - Retention / deletion design
 - DPA / transfer mechanism
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-13 | Initial DPIA template |

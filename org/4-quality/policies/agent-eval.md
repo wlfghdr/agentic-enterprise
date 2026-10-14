@@ -3,7 +3,6 @@
 > **Applies to:** All AI agent types, agent instructions, fleet configurations, and model changes
 > **Enforced by:** Quality Layer eval agents + CI/CD pipeline gates
 > **Authority:** Quality & Engineering leadership
-> **Version:** 1.0.1 | **Last updated:** 2026-03-15
 
 ---
 
@@ -279,12 +278,3 @@ Quality Layer eval agents check agent types against this policy using these crit
 - [#112](https://github.com/wlfghdr/agentic-enterprise/issues/112) — Agent instruction validation (validates agent types have eval suites)
 - [#115](https://github.com/wlfghdr/agentic-enterprise/issues/115) — OTel contract compliance (validates eval telemetry spans)
 - [#116](https://github.com/wlfghdr/agentic-enterprise/issues/116) — Compliance mapping validation (validates this policy's compliance mapping)
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| 1.0.1 | 2026-03-15 | Added explicit reference to docs/otel-contract.md for eval telemetry requirements (#115) |
-| 1.0 | 2026-03-14 | Initial policy — eval scope, suite structure, CI gates, regression management, tooling, observability integration, compliance mapping |

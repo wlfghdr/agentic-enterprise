@@ -192,7 +192,7 @@ ISO 9001 requires the QMS to include documented information required by the stan
 | Quality manual (optional but recommended) | `org/README.md` + AGENTS.md + layer AGENT.md files | `org/README.md` and `org/*/AGENT.md` |
 | Documented procedures | Quality policies define procedural requirements; process loop documentation defines workflows | `org/4-quality/policies/`, `process/` |
 | Records (evidence of conformity) | Git history, OTel traces, PR review records, quality evaluations | Git log, observability platform |
-| Document control | Git version control with CI-enforced versioning (AGENTS.md Rule 10) | `.github/workflows/validate.yml` |
+| Document control | Git version control and PR review as the change record (AGENTS.md Rule 10) | `.github/workflows/validate.yml` |
 
 ### Plan-Do-Check-Act (Clause 4.4, General)
 

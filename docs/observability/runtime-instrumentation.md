@@ -1,6 +1,5 @@
 # Runtime Instrumentation Guide
 
-> **Version:** 1.0 | **Last updated:** 2026-03-17
 > **Purpose:** How to instrument Claude Code, Claude Agent SDK, and OpenClaw runtimes to emit OpenTelemetry spans conforming to the [OTel Contract](../otel-contract.md).
 > **Audience:** Operators setting up agent fleets who need runtime-level telemetry, not just Git-based audit trails.
 

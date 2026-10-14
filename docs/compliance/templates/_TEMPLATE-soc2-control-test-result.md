@@ -1,7 +1,5 @@
 # SOC 2 Control Test Result
 
-> **Template version:** 1.0
-> **Last updated:** 2026-03-15
 > **Standard:** SOC 2 Type II — Trust Service Criteria
 > **Purpose:** Record the execution, evidence, and conclusion of a single SOC 2 control test
 
@@ -118,9 +116,3 @@ Yes / No
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial test result record |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-15 | Initial template for documenting SOC 2 control test execution, evidence, exceptions, and remediation |

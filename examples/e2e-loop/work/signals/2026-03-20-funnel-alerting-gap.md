@@ -1,7 +1,6 @@
 # Signal: Onboarding Funnel Monitoring Needs Shorter Windows and Absolute Thresholds
 
 > **Created:** 2026-03-20
-> **Revision:** 1 | **Last updated:** 2026-03-20
 > **Author:** Agent (operate-loop)
 
 ---
@@ -43,11 +42,3 @@ Key findings from the postmortem:
 ## Notes
 
 The immediate fixes for Step 3 are done (retro follow-up items, status: done). This signal tracks the broader systemic issue: auditing all critical funnel dashboards for the same 30-day smoothing gap. Monitoring disposition because the SRE team is already aware and assessing scope — a mission may be proposed if the audit reveals widespread gaps.
-
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | 2026-03-20 | Agent (operate-loop) | Initial draft — filed from retrospective analysis |

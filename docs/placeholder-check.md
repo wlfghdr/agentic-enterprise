@@ -134,7 +134,7 @@ FRAMEWORK_FILES: frozenset[str] = frozenset(
 ```
 
 This avoids requiring a `<!-- placeholder-ok -->` pragma inside the file itself,
-which would otherwise trigger a version bump on a governed file.
+which would otherwise mean editing a governed file just to silence the check.
 
 ---
 

@@ -50,7 +50,6 @@ Create a new file `work/signals/2026-03-14-api-docs-outdated.md`:
 # Signal: API Documentation Is Outdated
 
 > **Created:** 2026-03-14
-> **Revision:** 1 | **Last updated:** 2026-03-14
 > **Author:** Jane (Engineering Lead)
 
 ---

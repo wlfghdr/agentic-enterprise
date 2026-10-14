@@ -1,6 +1,5 @@
 # Outcome Report: [Mission Name]
 
-> **Template version:** 1.1 | **Last updated:** 2026-02-24  
 > **Mission:** [link to `work/missions/<name>/BRIEF.md`]  
 > **Outcome Contract:** [link to `work/missions/<name>/OUTCOME-CONTRACT.md`]  
 > **Status:** draft | reviewed | accepted  
@@ -120,19 +119,3 @@
 - [ ] Outcome Owner reviewed and accepted measurements
 - [ ] Strategy Layer acknowledged venture impact
 - [ ] Mission status updated to `completed` in `work/missions/`
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-02-24 | Added Task Completion section with completion metrics, verdict, and descoped/incomplete task detail |
-| 1.0 | 2026-02-19 | Initial version |
