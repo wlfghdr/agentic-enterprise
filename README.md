@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/model-Agentic%20Enterprise-blueviolet" alt="Agentic Enterprise">
-  <img src="https://img.shields.io/badge/version-4.4.2-brightgreen" alt="Version"> <!-- x-release-please-version -->
+  <img src="https://img.shields.io/static/v1?label=version&message=4.4.2&color=brightgreen" alt="Version"> <!-- x-release-please-version -->
   <img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License">
   <img src="https://img.shields.io/badge/runtime-bring%20your%20own-orange" alt="Runtime">
   <a href="https://github.com/wlfghdr/agentic-enterprise/actions/workflows/validate.yml">
