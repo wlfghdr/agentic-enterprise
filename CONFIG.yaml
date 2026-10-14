@@ -14,7 +14,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Tracks the overall framework release. Maintained by the release-please
 # release PR from Conventional Commits; do not edit by hand. See CHANGELOG.md.
-framework_version: "4.4.2" # x-release-please-version
+framework_version: "5.0.0" # x-release-please-version
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────────────────

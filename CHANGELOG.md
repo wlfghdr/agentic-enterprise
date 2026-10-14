@@ -20,6 +20,22 @@ release PR bumps both and publishes the GitHub release.
 
 Individual files carry no versions or changelogs; Git history is the per-file record (AGENTS.md Rule 10).
 
+## [5.0.0](https://github.com/wlfghdr/agentic-enterprise/compare/v4.4.2...v5.0.0) (2026-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* governed files no longer carry version/date/changelog metadata and CI rejects it; instances that relied on Rule 10 metadata must drop it too.
+
+### Fixed
+
+* keep the version badge intact across release-please bumps ([#284](https://github.com/wlfghdr/agentic-enterprise/issues/284)) ([8bbe5f9](https://github.com/wlfghdr/agentic-enterprise/commit/8bbe5f965734180c254ed8292e4088d1e433956e))
+
+
+### Maintenance
+
+* hand framework version and changelog to release-please ([#281](https://github.com/wlfghdr/agentic-enterprise/issues/281)) ([9f8902a](https://github.com/wlfghdr/agentic-enterprise/commit/9f8902a0fb00b6f0f061be23ef72675c8f12c628))
+
 ## [4.4.2] — 2026-10-14
 
 ### Changed
