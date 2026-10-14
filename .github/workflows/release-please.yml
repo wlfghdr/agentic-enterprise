@@ -1,0 +1,20 @@
+name: release-please
+
+# Keeps an open release PR that bumps CONFIG.yaml framework_version, the README badge and
+# CHANGELOG.md from Conventional Commits. Merging it publishes the release.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v5
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

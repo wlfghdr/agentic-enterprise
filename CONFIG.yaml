@@ -12,9 +12,9 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Framework version
 # ─────────────────────────────────────────────────────────────────────────────
-# Tracks the overall framework release. Update when cutting a new version.
-# See CHANGELOG.md for what changed. Uses semantic versioning (MAJOR.MINOR.PATCH).
-framework_version: "4.4.2"
+# Tracks the overall framework release. Maintained by the release-please
+# release PR from Conventional Commits; do not edit by hand. See CHANGELOG.md.
+framework_version: "4.4.2" # x-release-please-version
 # ═══════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────────────────

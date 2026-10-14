@@ -1,6 +1,6 @@
 # Agent Instructions (Global)
 
-> **Version:** 4.5 | **Last updated:** 2026-06-02
+> **Version:** 4.6 | **Last updated:** 2026-10-14
 
 Every AI agent in this repository must follow these instructions. Layer-specific and division-specific instructions extend (never contradict) these rules.
 
@@ -73,7 +73,7 @@ Every modified artifact needs version/date updated. **PATCH:** prose edits. **MI
 | `_TEMPLATE-*.md` | `Template version` + `Last updated` + `## Changelog` row |
 | Quality policies | `Version` + `Last updated` |
 | Work instances | `Revision` + `Last updated` + `## Revision History` row |
-| `CONFIG.yaml` | `framework_version` + `CHANGELOG.md` entry |
+| `CONFIG.yaml` / `CHANGELOG.md` | Never by hand — the release-please PR bumps `framework_version` and writes `CHANGELOG.md` from Conventional Commit PR titles |
 
 ### 11. Template vs. instance
 Two kinds of files (see [docs/file-guide.md](docs/file-guide.md)):
