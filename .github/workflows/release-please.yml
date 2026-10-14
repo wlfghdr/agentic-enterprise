@@ -28,8 +28,12 @@ jobs:
       # Every PR needs an owner: the release PR goes to the human who decides
       # when to release. Merging it stays a deliberate human action.
       - name: Assign release PR
-        if: ${{ steps.release.outputs.pr }}
+        if: ${{ steps.release.outputs.prs_created == 'true' }}
         env:
           GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ fromJSON(steps.release.outputs.pr).number }}
-        run: gh pr edit "$PR_NUMBER" -R "$GITHUB_REPOSITORY" --add-assignee wlfghdr
+          # Parsed in the shell: fromJSON() in env is evaluated even when the
+          # step is skipped and fails on an empty output.
+          PR_JSON: ${{ steps.release.outputs.pr }}
+        run: |
+          number=$(jq -r '.number // empty' <<<"$PR_JSON")
+          [ -n "$number" ] && gh pr edit "$number" -R "$GITHUB_REPOSITORY" --add-assignee wlfghdr
