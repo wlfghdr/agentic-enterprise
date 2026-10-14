@@ -1,8 +1,6 @@
 # Signal: [Short Descriptive Title]
 
-> **Template version:** 1.1 | **Last updated:** 2026-02-25
 > **Created:** YYYY-MM-DD
-> **Revision:** 1 | **Last updated:** YYYY-MM-DD
 > **Author:** [human or agent identifier]
 > **Supersedes:** _(optional — signal ID that this signal replaces, e.g., `2026-02-10-api-latency-spike.md`)_
 
@@ -47,19 +45,3 @@
 ## Notes
 
 [Any additional context, caveats, or considerations]
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-02-25 | Added optional `supersedes` field in metadata and Supersession section with usage guidance (when to supersede vs. file new) |
-| 1.0 | 2026-02-19 | Initial version |

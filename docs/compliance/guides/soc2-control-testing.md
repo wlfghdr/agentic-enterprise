@@ -162,7 +162,7 @@ The framework already includes a meaningful automated control surface. These che
 | `validate-yaml` | PI1, CC8 | Reperform on a recent change set and confirm malformed YAML does not merge | Workflow run logs and remediation for any failures |
 | `validate-markdown` | PI1, CC5 | Inspect a sample of successful runs and one failed run if available | Workflow logs showing broken-link detection and correction |
 | `validate-placeholders` | PI1, CC5 | Reperform and confirm non-template docs do not ship unresolved placeholders | Workflow logs and corrected commit references |
-| `validate-versioning` | CC2, CC8 | Inspect governed-file changes and verify version/date enforcement triggered | Workflow logs plus diff showing updated metadata |
+| `check-no-file-versioning` | CC2, CC8 | Inspect a sample of merged PRs: change described in the PR title/body, reviewed, recorded in Git history; check rejects hand-maintained file versions | Workflow logs, PR history, and generated release notes |
 | `validate-github-governance` | CC1, CC6, CC8 | Inspect advisory output and pair it with direct verification of CODEOWNERS and branch protection settings | Advisory run logs plus GitHub settings evidence |
 | `validate-schema` | PI1, CC5 | Reperform against `CONFIG.yaml` and governed schemas | Workflow logs and schema validation outputs |
 | `validate-content-security` | CC5, CC7 | Reperform to confirm prompt-injection and unsafe-content patterns are blocked | Workflow logs and any approved suppression rationale |

@@ -1,7 +1,5 @@
 # GitHub Issues Backend Guide
 
-> **Version:** 2.6 | **Last updated:** 2026-06-02
-
 > **What this document is:** The concrete implementation guide for running operational work artifacts in GitHub Issues. Use this when `CONFIG.yaml → work_backend.type` is `github-issues`.
 
 ---
@@ -421,18 +419,3 @@ Even with GitHub Issues enabled, these stay in Git:
 
 The issue backend is for operational coordination.
 Git still holds the durable review-heavy artifacts.
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 2.6 | 2026-06-02 | Clarified that GitHub Issues is the shipped default work backend. |
-| 2.5 | 2026-03-28 | Added the rule that ad-hoc chat tasks must become issue-backed work when the issue backend is enabled. |
-| 2.4 | 2026-03-23 | Clarified that assignee state is the source of truth for next action and that human-needed work must be reassigned to the human owner rather than implied only in comments or body text. |
-| 2.3 | 2026-03-21 | Added template asset references for label bootstrap, slim work-repo CI, dynamic label sync from issue forms, and the GitHub setup checklist. |
-| 2.1 | 2026-03-09 | Updated sample file paths after consolidating GitHub instance assets under `docs/github/`. |
-| 2.0 | 2026-03-08 | Migrated status tracking from labels to GitHub Project Status field. Removed ~20 status labels. Added project setup guidance, project_owner/project_number config fields, unified status model (Backlog → Done + close), terminal state documentation. |
-| 1.1 | 2026-03-08 | Added assignment rules for issues and PRs, handoff mechanics for both, agent identity requirement, human operating rules for issues and PRs, comment-based approval model |
-| 1.0 | 2026-03-07 | Initial version — concrete GitHub issue-backend implementation guide |

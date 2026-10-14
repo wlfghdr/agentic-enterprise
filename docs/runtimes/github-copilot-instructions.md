@@ -48,9 +48,9 @@ The repo contains two fundamentally different kinds of files. Identify the type 
 
 ## Releasing Template Changes
 
-When you have finished changing a template or framework file, use `/deploy` to complete the release. The `/deploy` prompt walks through the full checklist: version fields, changelog entry, commit, push, and CI verification.
+When you have finished changing a template or framework file, use `/deploy` to complete the release. The `/deploy` prompt walks through the checklist: Conventional Commit PR title, commit, push, and CI verification (no version fields or changelog edits — Git history is the record).
 
-For instances (files under `work/`): create/update the file, increment `Revision`, open a PR — human approval via merge is the gate.
+For instances (files under `work/`): create/update the file, open a PR — human approval via merge is the gate.
 For instances (issue backend): create/update the issue with appropriate labels — human approval via label change is the gate.
 
 ## Key Paths

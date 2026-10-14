@@ -3,7 +3,6 @@
 > **Applies to:** All software, AI system, agent, integration, and operational changes that progress through the delivery lifecycle
 > **Enforced by:** Quality Layer eval agents, release coordinators, and human approvers for mandatory gates
 > **Authority:** Release Management / DevOps leads, Security & Compliance team
-> **Version:** 1.1 | **Last updated:** 2026-06-09
 
 ---
 
@@ -109,12 +108,3 @@ A pre-deploy readiness checklist must confirm at minimum:
 | **ISO 9001:2015** | 8.7 Control of nonconforming outputs | Evidence and Exceptions |
 | **NIST CSF 2.0** | ID.IM-02 Improvements are identified from security tests and exercises | Operational Feedback |
 | **NIST CSF 2.0** | PR.PS-06 Secure software development practices are integrated | Named Deploy Gates |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-06-09 | Added structured compliance mappings for change control, secure development, release gates, and continuous improvement. |
-| 1.0 | 2026-05-23 | Initial version. Added explicit SDLC stage-gate mapping, named deploy gates, AI impact assessment deploy gate, AI-specific penetration testing gate, and minimum pre-deploy readiness checklist requirements. |

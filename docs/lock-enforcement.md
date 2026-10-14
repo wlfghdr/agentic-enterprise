@@ -1,7 +1,5 @@
 # Lock Enforcement CI Gate
 
-> **Version:** 1.1 | **Last updated:** 2026-02-25
-
 ## Overview
 
 A CI job (`validate-locks`) can block PRs that modify **protected paths** without a corresponding active lock file in `work/locks/`.
@@ -47,10 +45,3 @@ Add `ci:lock-exempt` anywhere in a commit message to bypass enforcement for that
 
 - Edit `locks.yaml` to add/remove protected patterns
 - The script (`scripts/check_locks.py`) uses only Python stdlib — no extra dependencies
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-02-25 | Clarified lock enforcement as an instance concern; CI job disabled by default in the upstream template, with instructions to enable |
-| 1.0 | 2025-07-22 | Initial CI gate |

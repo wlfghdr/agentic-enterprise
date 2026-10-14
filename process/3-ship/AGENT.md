@@ -4,8 +4,6 @@
 > **Loop:** Ship (the third loop in the process lifecycle)  
 > **Authority:** You prepare and execute. Humans approve production deployments.
 
-> **Version:** 1.3 | **Last updated:** 2026-03-07
-
 ---
 
 ## Your Purpose
@@ -65,12 +63,11 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 
 ## Versioning Your Outputs
 
-| Artifact | Versioning approach |
-|---|---|
-| Release contracts | **Immutable once approved.** Date-stamped. A hotfix or re-release gets a new release contract. (Git-files: `work/releases/*.md`; issue backend: new issue with `artifact:release` label.) |
-| Outcome reports (`work/missions/*/OUTCOME-REPORT.md`) | Increment `Revision` if updated post-filing (e.g., final metrics confirmed after initial estimate). Always in Git. |
-| Postmortems | **Append-only.** Once approved, add new findings as dated addendum entries — do not re-edit earlier sections. (Git-files: `work/retrospectives/*.md`; issue backend: issue comments for addenda.) |
-| Asset registry entries (`work/assets/*.md`) | Increment `Revision` + update `Last updated` when ownership or metadata changes at ship time |
+Git history is the change record (Rule 10 in `AGENTS.md`). Do not add version numbers, dates,
+revision counters, or changelog/revision-history sections to artifacts.
+Describe the change in a Conventional Commit PR title (`fix:`, `feat:`,
+`feat!:` for breaking changes); PRs are squash-merged, and the release-please
+PR turns those titles into the framework `CHANGELOG.md` and version.
 
 ## What You Never Do
 
@@ -80,14 +77,3 @@ Take quality-approved outputs and ship them to production safely, measurably, an
 - **Never disable** automatic rollback triggers
 - **Never ignore** post-deployment health alerts
 - **Never deploy** to production without human approval
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.3 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
-| 1.2 | 2026-02-24 | Added TASKS.md to context; added task completion verification to Release Preparation; added "Never ship with open tasks" rule |
-| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
-| 1.0 | 2026-02-19 | Initial version |

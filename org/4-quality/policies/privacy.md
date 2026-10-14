@@ -3,7 +3,6 @@
 > **Applies to:** All personal-data processing, product features, AI workflows, support operations, integrations, and customer environments
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Privacy / Legal / Security leadership
-> **Version:** 1.1 | **Last updated:** 2026-06-09
 
 ---
 
@@ -166,12 +165,3 @@ Observability does not replace legal judgment, but it materially improves provab
 | **HIPAA** | §164.502(b) Minimum necessary standard | Principles; §1 |
 | **HIPAA** | §164.524 Individual access | §3 |
 | **HIPAA** | §164.526 Amendment of protected health information | §3 |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-06-09 | Added structured compliance mappings for GDPR, CCPA/CPRA, and HIPAA privacy requirements. |
-| 1.0 | 2026-03-13 | Initial privacy policy covering GDPR role/lawful-basis mapping, DPA, DSAR, breach notification, DPIA, consent, and transfer controls |

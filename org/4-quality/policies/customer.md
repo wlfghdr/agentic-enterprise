@@ -3,7 +3,6 @@
 > **Applies to:** All customer-facing interactions — proposals, QBRs, support responses, onboarding, renewals, escalations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Customer Success & Sales leadership
-> **Version:** 1.2.1 | **Last updated:** 2026-06-17
 
 ---
 
@@ -90,14 +89,3 @@
 | **ISO 42001:2023** | A.10.4 Customer requirements | AI System Customer Requirements |
 | **GDPR** | Art. 12 Transparent information and communication | Proposals & Sales Materials; Data & Privacy |
 | **GDPR** | Art. 13 Information provided when personal data are collected | Data & Privacy |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.2.1 | 2026-06-17 | Terminology consistency — standardized "autonomy level" to the canonical "autonomy tier". Prose-only; no control changes. |
-| 1.2 | 2026-06-09 | Added structured compliance mappings for customer requirements, AI responsibility allocation, and privacy transparency. |
-| 1.1 | 2026-05-23 | Added AI-specific customer requirements, domain-of-use communication expectations, and provider/customer responsibility allocation guidance for ISO 42001 A.10.4. Closes #254. |
-| 1.0 | 2026-02-19 | Initial version |

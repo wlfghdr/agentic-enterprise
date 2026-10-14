@@ -3,7 +3,6 @@
 > **Role:** You are an Execution Layer agent. You produce work — code, tests, docs, content, proposals, analyses, customer deliverables — under the direction of division leads across all company functions.
 > **Layer:** Execution (default template layer 3; where work gets done in `org/layers.yaml`)
 > **Authority:** You implement within defined constraints. Humans own architecture decisions, key relationships, novel patterns, and critical path resolution.
-> **Version:** 1.7 | **Last updated:** 2026-05-23
 
 ---
 
@@ -114,21 +113,11 @@ For missions marked `design-required: true`:
 
 ## Versioning Your Outputs
 
-When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Execution Layer artifacts specifically:
-
-| Artifact | Versioning approach |
-|---|---|
-| Code | Semantic versioning via Conventional Commits and Git tags. `feat:` → MINOR, `fix:` → PATCH, `BREAKING CHANGE:` → MAJOR |
-| Technical designs (`work/missions/*/TECHNICAL-DESIGN.md`) | Increment `Revision` + update `Last updated` on each meaningful revision before review |
-| Runbooks (`org/3-execution/divisions/*/runbooks/*.md`) | Increment `Revision` + update `Last updated` whenever a procedure changes |
-| Asset registry entries (`work/assets/*.md`) | Increment `Revision` + update `Last updated` when asset metadata or ownership changes |
-| Component onboarding checklists | Increment `Revision` when onboarding steps or prerequisites change |
-| Decision records (`work/decisions/*.md`) | Increment `Revision` when status changes (e.g., proposed → accepted) or context is updated |
-
-**PATCH vs. MINOR vs. MAJOR for this layer:**
-- **PATCH** — Typo fix, updated link, reworded step for clarity with no behavior change.
-- **MINOR** — New step in runbook, new field in asset registry, new context in decision record.
-- **MAJOR** — Breaking API change, procedure that invalidates existing onboarding or integrations.
+Git history is the change record (Rule 10 in `AGENTS.md`). Do not add version numbers, dates,
+revision counters, or changelog/revision-history sections to artifacts.
+Describe the change in a Conventional Commit PR title (`fix:`, `feat:`,
+`feat!:` for breaking changes); PRs are squash-merged, and the release-please
+PR turns those titles into the framework `CHANGELOG.md` and version.
 
 ## What You Never Do
 
@@ -151,20 +140,3 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 - After each quality evaluation, read findings in `work/missions/<name>/evaluations/`
 - Incorporate feedback into subsequent work — do not repeat the same findings
 - If a finding contradicts your understanding, escalate (do not silently ignore)
-
----
-
-## Changelog
-
-- 1.7 (2026-05-23) — clarified that Execution is part of the configurable layer registry and remains the default work-delivery layer.
-
-| Version | Date | Change |
-|---|---|---|
-| 1.6 | 2026-03-28 | Added CI Ownership section (agents must verify and fix CI before moving on) and Sub-Issue Linkage section (mandatory parent linking); added CI and linkage checks to Self-Evaluation |
-| 1.5.1 | 2026-03-15 | Added content-security:allow suppression marker to legitimate policy bypass reference |
-| 1.5 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
-| 1.4 | 2026-03-05 | Added Work Deduplication section (AGENTS.md Rule 12) — mandatory duplicate check before creating PRs, issues, or branches |
-| 1.3 | 2026-02-25 | Added observability design to Technical Design Production (instrumentation, metrics, SLOs, dashboards, alerting); added production baseline consultation and impact assessment for modified components |
-| 1.2 | 2026-02-24 | Added Task Pickup section (TASKS.md as primary work intake); added TASKS.md as first item in Context You Must Read |
-| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
-| 1.0 | 2026-02-19 | Initial version |

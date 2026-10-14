@@ -3,7 +3,6 @@
 > **Decision ID:** DR-2026-008
 > **Status:** accepted
 > **Created:** 2026-03-04
-> **Revision:** 1 | **Last updated:** 2026-03-05
 > **Author:** Strategy Layer + Technical Design Agent
 > **Reviewers:** Sarah Chen (VP Product), eng-lead
 
@@ -66,11 +65,3 @@ Use progressive disclosure: show only 3 essential fields (name, timezone, langua
 ## Review Schedule
 
 This decision should be reviewed: after A/B test results are available (2026-03-14)
-
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | 2026-03-04 | Strategy Layer + Technical Design Agent | Initial draft — accepted after VP Product review |

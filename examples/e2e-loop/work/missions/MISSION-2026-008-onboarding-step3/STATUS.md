@@ -109,12 +109,3 @@ None.
 | PRs rejected / needs-revision | 0 |
 | Quality eval pass rate | 100% |
 | Average cycle time (PR open → merge) | 1 day |
-
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | 2026-03-07 | Orchestration Layer | Initial status — UX implementation complete, A/B test running |
-| 2 | 2026-03-18 | Orchestration Layer | Final status — all targets met, mission completing |

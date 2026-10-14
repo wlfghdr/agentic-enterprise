@@ -33,15 +33,12 @@ LAYERS = layer_directories()
 # ── Required metadata for AGENT.md files ─────────────────────────────────────
 
 AGENT_REQUIRED_METADATA = [
-    ("Version", r"\*\*Version:\*\*\s*(\d+\.\d+)"),
-    ("Last updated", r"\*\*Last updated:\*\*\s*(\d{4}-\d{2}-\d{2})"),
 ]
 
 # ── Required sections for AGENT.md files ─────────────────────────────────────
 # These are checked flexibly — some layers use slightly different names
 
 AGENT_REQUIRED_SECTIONS = [
-    "Changelog",
 ]
 
 # At least one of these "purpose/identity" sections must exist
@@ -68,14 +65,11 @@ DIVISION_REQUIRED_METADATA = [
     ("Type", r"\*\*Type:\*\*\s*(.+)"),
     ("Layer", r"\*\*Layer:\*\*\s*(.+)"),
     ("Status", r"\*\*Status:\*\*\s*(.+)"),
-    ("Version", r"\*\*Version:\*\*\s*(\d+\.\d+)"),
-    ("Last updated", r"\*\*Last updated:\*\*\s*(\d{4}-\d{2}-\d{2})"),
 ]
 
 DIVISION_REQUIRED_SECTIONS = [
     "Purpose",
     "Scope",
-    "Changelog",
 ]
 
 # ── Required fields for agent type definitions ───────────────────────────────
@@ -86,12 +80,9 @@ AGENT_TYPE_REQUIRED_SECTIONS = [
     "Lifecycle",
     "Description",
     "Capabilities",
-    "Changelog",
 ]
 
 AGENT_TYPE_REQUIRED_METADATA = [
-    ("Template version", r"\*\*Template version:\*\*\s*(\d+\.\d+)"),
-    ("Last updated", r"\*\*Last updated:\*\*\s*(\d{4}-\d{2}-\d{2})"),
 ]
 
 

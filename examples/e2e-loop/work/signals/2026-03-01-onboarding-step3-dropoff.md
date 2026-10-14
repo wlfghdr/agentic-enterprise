@@ -1,7 +1,6 @@
 # Signal: Customer Onboarding Drop-Off at Step 3
 
 > **Created:** 2026-03-01
-> **Revision:** 1 | **Last updated:** 2026-03-01
 > **Author:** Agent (customer-experience division)
 
 ---
@@ -44,11 +43,3 @@ Supporting data:
 ## Notes
 
 The timing correlates strongly with the workspace settings UI redesign. Recommend investigating UX issues in the new flow before considering product changes.
-
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | 2026-03-01 | Agent (customer-experience) | Initial draft |

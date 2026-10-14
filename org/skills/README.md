@@ -1,7 +1,5 @@
 # Skill Manifests Registry
 
-> **Last updated:** 2026-03-16
-
 Each file in this directory is a **skill manifest** — a declarative, versioned definition of one capability an agent type may be granted.
 
 ## Schema

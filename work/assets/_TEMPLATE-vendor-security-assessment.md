@@ -1,6 +1,5 @@
 # Vendor Security Assessment: {{VENDOR_NAME}}
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-14
 > **Vendor:** {{VENDOR_NAME}}
 > **Service:** {{SERVICE_DESCRIPTION}}
 > **Criticality Tier:** {{1 / 2 / 3 / 4}} _(per vendor-risk-management.md §1)_
@@ -152,19 +151,3 @@
 | **Conditions** | _(if CONDITIONAL: list required mitigations and deadlines)_ |
 | **Approved by** | |
 | **Approval date** | |
-
----
-
-## Revision History
-
-| Revision | Date | Change | Author |
-|----------|------|--------|--------|
-| 1 | | Initial assessment | |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-14 | Initial template — 7 assessment domains (security posture, attestations, data handling, privacy/subprocessor, operational resilience, AI-specific, financial viability), concentration risk, risk findings tracker. |

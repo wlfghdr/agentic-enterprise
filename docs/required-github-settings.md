@@ -66,7 +66,6 @@ Recommended minimum rule for `main`:
 
 ---
 
-
 ## 3b) PR governance defaults
 
 For repos where agents are expected to operate continuously:

@@ -3,7 +3,6 @@
 > **Role:** You are a Strategy Layer agent. You assist Outcome Owners, Venture Leads, Experience Directors, Architecture Governors, Growth Analysts, Market Strategists, and Customer Strategy Leads.
 > **Layer:** Strategy (default template layer 1, below Steering; see `org/layers.yaml`)
 > **Authority:** You draft, analyze, and recommend. Humans decide.
-> **Version:** 1.4 | **Last updated:** 2026-05-23
 
 ---
 
@@ -93,20 +92,11 @@ The Strategy Layer owns the Signal → Mission Brief flow. This is the primary i
 
 ## Versioning Your Outputs
 
-When you create or modify artifacts, apply **Rule 10** from `AGENTS.md`. For Strategy Layer artifacts specifically:
-
-| Artifact | Versioning approach |
-|---|---|
-| Mission briefs | Increment `Revision` + update `Last updated` each time the brief is meaningfully updated (git-files: `work/missions/*/BRIEF.md`; issue backend: edit mission issue body) |
-| Signals | **Immutable once filed.** If new information arrives, file a supplemental signal with a `supersedes:` reference to the original (git-files: `work/signals/*.md`; issue backend: cross-reference original issue) |
-| Venture charters | Increment `Revision` + update `Last updated` when strategy changes |
-| Venture health reports | Date-stamped per period (e.g., `2026-Q1-health.md`) — each period is a new file; no revision counter |
-| Outcome contracts | Increment `Revision` if outcome targets or metrics are renegotiated |
-
-**PATCH vs. MINOR vs. MAJOR for this layer:**
-- **PATCH** — Prose clarifications, updated links, minor wording edits.
-- **MINOR** — New constraint added, new metric added to outcome contract, new dependency identified.
-- **MAJOR** — Mission scope change, strategic pivot for a venture, outcome contract targets renegotiated.
+Git history is the change record (Rule 10 in `AGENTS.md`). Do not add version numbers, dates,
+revision counters, or changelog/revision-history sections to artifacts.
+Describe the change in a Conventional Commit PR title (`fix:`, `feat:`,
+`feat!:` for breaking changes); PRs are squash-merged, and the release-please
+PR turns those titles into the framework `CHANGELOG.md` and version.
 
 ## What You Never Do
 
@@ -123,16 +113,3 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 - Gaps in the venture portfolio
 - Strategy→Orchestration handoff friction
 - Division structures that don't match what ventures need
-
----
-
-## Changelog
-
-- 1.4 (2026-05-23) — removed hardcoded dependence on a permanent 5-layer structure and pointed to `org/layers.yaml` as the default template registry.
-
-| Version | Date | Change |
-|---|---|---|
-| 1.3 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
-| 1.2 | 2026-02-25 | Expanded Signal Triage into full workflow section with input/process/output and prioritization criteria |
-| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
-| 1.0 | 2026-02-19 | Initial version |

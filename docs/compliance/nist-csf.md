@@ -65,7 +65,7 @@ NIST CSF 2.0, released in February 2024, replaces CSF 1.1 and organizes cybersec
 | GV.RR-03 | Resources adequate for cybersecurity | Fleet configs (`org/2-orchestration/fleet-configs/`), resource allocation in missions | Mission resource artifacts |
 | GV.RR-04 | Cybersecurity in human resource practices | Agent competence requirements in `AGENT.md`, agent type registry (`org/agents/`) | Agent type definitions |
 | GV.PO-01 | Cybersecurity policy established | 19 quality policies in `org/4-quality/policies/`, "Policies are law" (AGENTS.md Rule 4) | Policy Git history, CI validation |
-| GV.PO-02 | Policy reviewed and updated | Version control on all policies (Rule 10), changelog requirements | Git diff history, version fields |
+| GV.PO-02 | Policy reviewed and updated | Git version control and PR review on all policies (Rule 10), generated release notes | Git diff history, version fields |
 | GV.OV-01 | Cybersecurity risk management overseen | Quality Layer evaluations, steering oversight, PR governance | Eval reports, PR history |
 | GV.OV-02 | Risk management performance reviewed | Observability dashboards, quality metrics, retrospectives | OTel dashboards, retrospective records |
 | GV.OV-03 | Adjustments made based on review | Signals → steering → evolution cycle, policy updates | Evolution records, policy PRs |

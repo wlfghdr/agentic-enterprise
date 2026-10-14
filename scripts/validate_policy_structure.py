@@ -26,10 +26,8 @@ POLICIES_DIR = REPO / "org" / "4-quality" / "policies"
 
 # ── Required metadata fields (in blockquote header) ──────────────────────────
 
-REQUIRED_METADATA = [
-    ("Version", r"\*\*Version:\*\*\s*(\d+\.\d+(?:\.\d+)?)"),
-    ("Last updated", r"\*\*Last updated:\*\*\s*(\d{4}-\d{2}-\d{2})"),
-]
+# Document versions and dates live in Git history, not in the file.
+REQUIRED_METADATA: list[tuple[str, str]] = []
 
 # Fields that should be present but with flexible patterns
 EXPECTED_METADATA = [
@@ -48,7 +46,6 @@ EXPECTED_METADATA = [
 
 REQUIRED_SECTIONS = [
     "Evaluation Criteria",
-    "Changelog",
 ]
 
 # Sections checked with flexible matching (accept variants)
@@ -159,14 +156,6 @@ def validate_policy(path: Path) -> list[str]:
         if empty_err:
             errors.append(f"{rel}: {empty_err}")
 
-    # ── Changelog table ───────────────────────────────────────────────────
-    if "Changelog" in sections:
-        # Check for table structure (Version | Date | Change)
-        changelog_start = sections["Changelog"]
-        remaining = "\n".join(text.splitlines()[changelog_start:])
-        if not re.search(r"\|.*[Vv]ersion.*\|.*[Dd]ate.*\|", remaining):
-            errors.append(f"{rel}: Changelog section missing table with Version/Date columns")
-
     # ── Observability cross-reference ─────────────────────────────────────
     if "observability" in path.name:
         if "OTEL-CONTRACT" not in text and "otel-contract" not in text:
@@ -198,13 +187,6 @@ def suggest_fix(path: Path) -> str:
             "|-----------|-------------|----------------|\n"
             "| **FRAMEWORK** | CONTROL-ID Description | Section |\n"
         )
-
-    for name, pattern in REQUIRED_METADATA:
-        if not re.search(pattern, text):
-            if name == "Version":
-                suggestions.append("Add to header blockquote: > **Version:** 1.0")
-            elif name == "Last updated":
-                suggestions.append("Add to header blockquote: > **Last updated:** 2026-03-15")
 
     return "\n".join(suggestions) if suggestions else "No fixes needed."
 

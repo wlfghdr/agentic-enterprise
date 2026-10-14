@@ -1,9 +1,7 @@
 # Risk Register Entry: <short title>
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-13
-
 > **Instance metadata** (fill in when creating a risk entry from this template):
-> **Revision:** 1 | **Last updated:** YYYY-MM-DD | **Status:** open | mitigated | accepted | closed
+> **Status:** open | mitigated | accepted | closed
 
 ## Risk Summary
 
@@ -92,19 +90,3 @@ _Per `org/4-quality/policies/risk-management.md` §3.2:_
 - **Next review date:** YYYY-MM-DD
 - **Review frequency:** <per risk rating: Low=quarterly, Medium=monthly, High=weekly, Critical=daily>
 - **Reassessment triggers:** <What events would force an earlier review? Reference §4.3 of risk-management.md>
-
-## Revision History
-
-_Add a row each time this risk register entry is modified._
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial risk assessment |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-13 | Initial template — aligned with risk-management.md §4.1 mandatory fields, ISO 27001 §6.1.2, SOC 2 CC3 |

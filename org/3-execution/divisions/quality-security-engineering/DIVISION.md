@@ -4,7 +4,6 @@
 > **Type:** Operations
 > **Layer:** Execution
 > **Status:** Active
-> **Version:** 1.0 | **Last updated:** 2026-03-15
 
 ---
 
@@ -79,11 +78,3 @@ When working within this division:
 | Source code | <!-- repo URL --> | Main repository |
 | Documentation | <!-- doc URL --> | User-facing docs |
 | API specs | <!-- API spec URL --> | OpenAPI specs |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-15 | Initial version with changelog and versioning metadata |

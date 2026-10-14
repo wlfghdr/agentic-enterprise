@@ -1,6 +1,5 @@
 # Connector Pattern — MCP/A2A/Business Systems
 
-> **Version:** 1.0 | **Last updated:** 2026-03-07
 > **Scope:** External system integrations for agentic-enterprise adopters
 
 ## Purpose

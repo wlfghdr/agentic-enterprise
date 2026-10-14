@@ -1,7 +1,5 @@
 # NIST AI RMF Measurement Report
 
-> **Template version:** 1.0
-> **Last updated:** 2026-03-15
 > **Framework:** NIST AI 100-1 — AI RMF 1.0
 > **Purpose:** Provide a reusable report structure for periodic quantitative AI-risk measurement aligned to NIST AI RMF MEASURE 1-4
 
@@ -128,9 +126,3 @@
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial measurement report |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-15 | Initial reporting template for periodic NIST AI RMF MEASURE metrics, findings, and corrective actions |

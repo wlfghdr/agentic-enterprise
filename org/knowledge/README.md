@@ -1,7 +1,5 @@
 # Knowledge Manifests Registry
 
-> **Last updated:** 2026-03-23
-
 This directory is the governed registry of **what agents know**.
 
 Skill manifests govern reusable process instructions. MCP profiles govern tool access. **Knowledge manifests govern the sources, freshness, and ownership of context agents may rely on.**

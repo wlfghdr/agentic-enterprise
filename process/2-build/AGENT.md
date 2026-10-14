@@ -4,8 +4,6 @@
 > **Loop:** Build (the second loop in the process lifecycle)  
 > **Authority:** You produce work. Quality Layer evaluates. Humans resolve escalations and approve architecture decisions.
 
-> **Version:** 1.4 | **Last updated:** 2026-03-07
-
 ---
 
 ## Your Purpose
@@ -65,12 +63,11 @@ For all missions:
 
 ## Versioning Your Outputs
 
-| Artifact | Versioning approach |
-|---|---|
-| Code | Conventional Commits drive versioning: `feat:` → MINOR, `fix:` → PATCH, `BREAKING CHANGE:` → MAJOR |
-| Technical Design (`work/missions/*/TECHNICAL-DESIGN.md`) | Increment `Revision` + update `Last updated` on each iteration before review |
-| Decision records | Increment `Revision` when status changes or context is updated (git-files: `work/decisions/*.md`; issue backend: edit the decision issue body). Decision records are **never deleted** — they are superseded by newer decisions. |
-| Documentation | Follow the same Conventional Commits convention as code when committed together |
+Git history is the change record (Rule 10 in `AGENTS.md`). Do not add version numbers, dates,
+revision counters, or changelog/revision-history sections to artifacts.
+Describe the change in a Conventional Commit PR title (`fix:`, `feat:`,
+`feat!:` for breaking changes); PRs are squash-merged, and the release-please
+PR turns those titles into the framework `CHANGELOG.md` and version.
 
 ## What You Never Do
 
@@ -79,15 +76,3 @@ For all missions:
 - **Never merge** your own PRs
 - **Never make architecture decisions** alone — escalate novel patterns
 - **Never ignore** evaluation feedback — iterate or escalate
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.4 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
-| 1.3 | 2026-02-25 | Added observability design to Technical Design production (instrumentation, metrics, SLOs, production baselines); expanded Maintain Quality with observability coverage verification; distinguished design-time vs. implementation-time observability |
-| 1.2 | 2026-02-24 | Added TASKS.md as primary work intake in Context and Execute Work Streams; added task status tracking to Track Progress; added missing TASKS.md signal guidance |
-| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
-| 1.0 | 2026-02-19 | Initial version |

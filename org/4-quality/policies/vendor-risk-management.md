@@ -4,7 +4,6 @@
 > **Applies to:** All third-party vendors, suppliers, service providers, subprocessors, and external integrations used by the organization or its agents
 > **Enforced by:** Quality Layer eval agents, Procurement Division
 > **Authority:** Security & Compliance team, Procurement leadership
-> **Version:** 1.1 | **Last updated:** 2026-03-16
 
 ---
 
@@ -303,13 +302,3 @@ Agents interact with vendors through integrations. Additional requirements:
 | **NIST SP 800-53** | SA-9 External information system services | §2, §3 |
 | **NIST SP 800-53** | SR-1 through SR-6 Supply chain risk management | §5.3 (concentration), §3 (assessment) |
 | **NIST AI RMF** | MAP 5.1, MANAGE 3.1 Third-party AI risk | §3.3 (AI vendor assessment) |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-03-16 | Added supplier quality and conformity requirements alongside security/risk controls: quality assessment domain, contract quality criteria, service-quality monitoring, reassessment triggers for chronic nonconformance, delivery/customer cross-policy alignment, and ISO 9001 clause 8.4.1 mapping |
-| 1.0.1 | 2026-03-15 | Added explicit docs/otel-contract.md reference for vendor API call telemetry requirements (#115) |
-| 1.0 | 2026-03-14 | Initial version — 4-tier vendor criticality model, full lifecycle governance (identification → assessment → onboarding → monitoring → offboarding), security assessment framework with 7 domains, AI vendor extended assessment, SLA and contract requirements, attestation verification (SOC 2 Type II / ISO 27001), concentration risk tracking, integration registry connection, compliance mapping (ISO 27001 A.5.19–A.5.23 / SOC 2 CC9 / GDPR Art. 28 / EU AI Act Art. 26–28 / NIST SP 800-53 SA-9, SR / NIST AI RMF). Closes #92. |

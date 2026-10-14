@@ -4,7 +4,6 @@
 > **Type:** Corporate Function
 > **Layer:** Execution
 > **Status:** Active
-> **Version:** 1.1 | **Last updated:** 2026-03-07
 
 ---
 
@@ -91,11 +90,3 @@ When working within this division:
 | Contract templates | <!-- repo URL --> | Approved contract templates by type |
 | Compliance matrix | <!-- repo URL --> | Regulatory requirements by jurisdiction/framework |
 | IP registry | <!-- repo URL --> | Patent, trademark, and IP asset register |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-15 | Initial version with changelog and versioning metadata |

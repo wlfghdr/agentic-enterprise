@@ -3,7 +3,6 @@
 > **Applies to:** All code, infrastructure configuration, API definitions, data pipelines, integrations
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.4 | **Last updated:** 2026-06-09
 
 ---
 
@@ -88,15 +87,3 @@
 | **NIST CSF 2.0** | PR.AA-01 Identities and credentials are managed | Authentication & Authorization; Secrets Management |
 | **NIST CSF 2.0** | PR.DS-01 Data at rest are protected | Data Protection |
 | **NIST CSF 2.0** | PR.PS-06 Secure software development practices are integrated | Input Validation; Dependency & Vendor Security |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.4 | 2026-06-09 | Added structured compliance mappings for access control, secure development, HIPAA safeguards, CCPA reasonable security, and NIST CSF protection outcomes. |
-| 1.3 | 2026-03-14 | Dependency Security section renamed to Dependency & Vendor Security; added vendor assessment and attestation requirements referencing vendor-risk-management.md (#92) |
-| 1.2 | 2026-03-14 | Data retention requirement now references log-retention.md (#94) |
-| 1.1 | 2026-03-14 | Data Protection section now references data-classification.md for classification taxonomy; evaluation criterion updated (#93) |
-| 1.0 | 2026-02-19 | Initial version |

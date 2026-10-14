@@ -1,0 +1,21 @@
+name: PR title
+
+# Squash merges use the PR title as the commit subject, and releases are
+# derived from those subjects, so the title must be a Conventional Commit.
+# pull_request_target runs the base branch's definition (a PR cannot rewrite
+# its own gate) and works for forks; safe because nothing from the PR is
+# checked out or executed.
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  conventional-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,5 @@
 # Agent Type Definition: Infrastructure Provisioning Agent
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-15
 > **Status:** proposed | **Proposed date:** 2026-02-18
 > **Governance:** New types require Steering Layer evaluation + CTO approval via PR.
 
@@ -12,7 +11,6 @@
 |-------|-------|
 | **ID** | `exec-infrastructure-provisioning-agent` |
 | **Name** | Infrastructure Provisioning Agent |
-| **Version** | 1.0.0 |
 
 ## Classification
 
@@ -119,13 +117,6 @@ per-mission
 - Quality evaluation pass rate
 - Escalation frequency
 
-
 ## Telemetry
 
 All agent actions produce OpenTelemetry spans per [`docs/otel-contract.md`](../../../docs/otel-contract.md). Required span types: `agent.run`, `tool.execute`. Governance decisions emit `governance.decision` span events.
-
-## Changelog
-
-| Date | Change | Author |
-|------|--------|--------|
-| 2026-02-18 | Initial proposal — bootstrapped from Agentic Enterprise Blueprint | System |

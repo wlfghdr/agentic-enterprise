@@ -1,7 +1,5 @@
 # AI System Inventory
 
-> **Template version:** 1.1.1
-> **Last updated:** 2026-06-17
 > **Standard:** ISO/IEC 42001:2023 — Clause 4 foundation, Annex A.4.6 human resources support
 > **Purpose:** Maintain the authoritative inventory of AI systems in scope for the Artificial Intelligence Management System (AIMS)
 
@@ -66,7 +64,6 @@ Record the specific evidence location or identifier where practical, for example
 - performance review reference
 - evaluation report, drill result, or supervised sign-off
 
-
 ## Inventory Summary
 
 | Dimension | Count | Notes |
@@ -105,11 +102,3 @@ Update this inventory when any of the following occur:
 |---------|------|--------|--------------------|
 | 1.1 | {{DATE}} | {{AUTHOR}} | Added lifecycle-stage human resources and competence documentation fields aligned to ISO 42001 A.4.6 |
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial AI system inventory |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.1.1 | 2026-06-17 | Terminology consistency — standardized "autonomy level" to the canonical "autonomy tier". Prose-only. |
-| Template 1.1 | 2026-05-23 | Added human resources and competence-by-lifecycle-stage section, evidence guidance, and review checklist items for ISO 42001 A.4.6 support. Closes #253. |
-| Template 1.0 | 2026-03-15 | Initial AI system inventory template with risk tier, ownership, provider, and governance linkage fields |

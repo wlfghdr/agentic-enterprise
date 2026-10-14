@@ -1,9 +1,7 @@
 # Tasks: [Mission Name]
 
-> **Template version:** 1.1 | **Last updated:** 2026-03-05
 > **Mission:** [link to BRIEF.md]
 > **Mission ID:** MISSION-YYYY-NNN
-> **Revision:** 1 | **Last updated:** YYYY-MM-DD
 > **Author:** Orchestration Layer — Agent Fleet Manager
 > **Storage:** `work/missions/<mission-name>/TASKS.md`
 
@@ -85,20 +83,3 @@ The **Orchestrator** creates this file by decomposing the Mission Brief and Outc
 |------|-------|----------|--------|------------|----------|
 | TASK-001 | [Title] | [Division] | pending | — | high |
 | TASK-002 | [Title] | [Division] | pending | TASK-001 | medium |
-
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial task decomposition |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-03-05 | Added `Linked PRs/Issues` field per task to prevent duplicate work (AGENTS.md Rule 12) |
-| 1.0 | 2026-02-24 | Initial version |

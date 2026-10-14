@@ -1,7 +1,5 @@
 # Observability & Telemetry Integration
 
-> **Version:** 1.1 | **Last updated:** 2026-03-09
-
 > **Category:** Observability  
 > **Relevance:** Essential for scaling agent governance, fleet performance monitoring, compliance auditing, and continuous improvement  
 > **Layers Affected:** All — but especially Orchestration, Execution, Quality, and Steering
