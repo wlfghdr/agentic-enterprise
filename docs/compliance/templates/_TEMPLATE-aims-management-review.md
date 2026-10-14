@@ -1,7 +1,5 @@
 # AIMS Management Review
 
-> **Template version:** 1.0
-> **Last updated:** 2026-04-05
 > **Standard:** ISO/IEC 42001:2023 — Clauses 9.3.1, 9.3.2, 9.3.3
 > **Purpose:** Structure and document management reviews of the AI Management System
 
@@ -180,11 +178,3 @@
 | Clause 9.3.2(d) — AIMS performance trends | §2d (d.1 nonconformities, d.2 monitoring, d.3 audits) |
 | Clause 9.3.2(e) — Improvement opportunities | §2e |
 | Clause 9.3.3 — Review outputs (improvement + AIMS changes) | §3 (decisions, actions, resources) |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| 1.0 | 2026-04-05 | Initial template covering Clauses 9.3.1, 9.3.2, 9.3.3. Closes #247. |

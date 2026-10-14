@@ -1,7 +1,6 @@
 # {{COMPANY_NAME}} — Company Vision & Mission for the Agentic Enterprise Era
 
 > **Status:** Living document — maintained by Strategy Layer agents and human Outcome Owners  
-> **Last updated:** YYYY-MM-DD  
 > **Governance:** Changes via Pull Request → Strategy Layer review
 
 > **⚠️ POC / Demo Disclaimer**  

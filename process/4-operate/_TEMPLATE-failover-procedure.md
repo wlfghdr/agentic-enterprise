@@ -1,6 +1,5 @@
 # Failover Procedure: [Service / System]
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-13
 > **Owner:** [team / role]
 > **Service tier:** Tier 1 | Tier 2 | Tier 3
 > **Primary environment:** [region / site]
@@ -82,11 +81,3 @@ Capture links or screenshots for:
 - Postmortem required? yes / no
 - Signals to file:
 - Runbook updates needed:
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-13 | Initial failover procedure template |

@@ -1,6 +1,5 @@
 # Data Processing Agreement (DPA) Template
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-13
 > **Use when:** The organization processes personal data on behalf of a customer or other controller
 > **Source policy:** [`../../org/4-quality/policies/privacy.md`](../../org/4-quality/policies/privacy.md)
 
@@ -46,11 +45,3 @@
 ## Notes
 
 This template is a framework artifact, not legal advice. Company forks should replace bracketed placeholders with approved legal language and commercial terms.
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-13 | Initial DPA template |

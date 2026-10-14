@@ -24,7 +24,7 @@ Framework base files (always excluded):
   These files ship with the OSS framework template and intentionally contain
   {{VAR}} markers that operators fill in via CONFIG.yaml.  They are excluded
   by path so that they do not require a <!-- placeholder-ok --> pragma or a
-  version bump every time the placeholder check is updated.
+  governed-file edit every time the placeholder check is updated.
   See FRAMEWORK_FILES below.
 
 Detected placeholder patterns (case-insensitive unless noted):
@@ -86,7 +86,7 @@ EXEMPT_FILENAMES: frozenset[str] = frozenset(
 # These ship with the OSS template and intentionally contain {{VAR}} markers
 # for operators to fill in via CONFIG.yaml.  They are NOT work artifacts and
 # should never be flagged as violations.  The list is maintained here (not via
-# per-file pragmas) so that no version bumps are required on those governed
+# per-file pragmas) so that no edits are required on those governed
 # files merely because the placeholder check was introduced.
 #
 # To add a new exclusion, append the path relative to the repository root.

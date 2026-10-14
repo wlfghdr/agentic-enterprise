@@ -1,7 +1,5 @@
 # Statement of Applicability (SoA)
 
-> **Template version:** 1.0
-> **Last updated:** 2026-03-15
 > **Standard:** ISO/IEC 27001:2022 — Clause 6.1.3d
 > **Purpose:** Document applicability and implementation status of all 93 Annex A controls
 
@@ -219,9 +217,3 @@ This Statement of Applicability is reviewed:
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial Statement of Applicability |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-14 | Initial SoA template with all 93 ISO/IEC 27001:2022 Annex A controls pre-mapped to Agentic Enterprise framework |

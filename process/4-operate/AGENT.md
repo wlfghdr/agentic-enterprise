@@ -4,8 +4,6 @@
 > **Loop:** Operate & Evolve (fourth loop — the continuous post-GA lifecycle)  
 > **Key difference from Loops 1–3:** Loops 1–3 are mission-driven (time-bounded, goal-oriented). This loop is **continuous and event-driven** — it runs 24/7, governed by operational policies and health targets, not by mission briefs.
 
-> **Version:** 1.2 | **Last updated:** 2026-03-07
-
 ---
 
 ## Your Purpose
@@ -160,13 +158,3 @@ Surface improvement signals (to `work/signals/` for git-files backend, or as an 
 - Cost inefficiencies that could be addressed through infrastructure changes
 - Feature flags that have been partially rolled out for too long
 - Production patterns that suggest product changes (→ Loop 1 Discover)
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.2 | 2026-03-07 | Updated for dual work backend support (git-files and issue tracker) |
-| 1.1 | 2026-02-19 | Added Versioning Your Outputs section |
-| 1.0 | 2026-02-19 | Initial version |

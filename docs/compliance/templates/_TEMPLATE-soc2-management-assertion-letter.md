@@ -1,7 +1,5 @@
 # SOC 2 Management Assertion Letter
 
-> **Template version:** 1.0.1
-> **Last updated:** 2026-03-15
 > **Standard:** SOC 2 Type II — management assertion
 > **Purpose:** Provide a reusable starting point for the management assertion letter included in a SOC 2 examination package
 > **Important:** Final wording must be confirmed with the engaged CPA firm and legal counsel before signature
@@ -88,9 +86,3 @@ Sincerely,
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial management assertion letter draft |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-15 | Initial SOC 2 management assertion letter template for CPA-audit engagement packages |

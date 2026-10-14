@@ -17,32 +17,18 @@ Confirm the changed files are **template or framework files** (not instances):
 - Quality policies in `org/4-quality/policies/`
 - `CONFIG.yaml`, integration definitions in `org/integrations/`
 
-
 ---
 
 ## Step 1 — Verify version and date fields
 
-List all changed files (`git diff --stat`). For each, confirm version/date fields are updated:
+Run `git diff --stat` to list all changed files. Do not add or bump version
+numbers, dates, revision counters, or changelog sections in any file — Git
+history is the record (Rule 10 in `AGENTS.md`), and CI rejects them
+(`scripts/check_no_file_versioning.py`).
 
-| File type | What to update |
-|---|---|
-| `AGENT.md` files | `Version` (minor or major bump) + `Last updated` date |
-| `_TEMPLATE-*.md` files | `Template version` + `Last updated` date + new row in `## Changelog` |
-| Quality policies | `Version` + `Last updated` date |
-| `CONFIG.yaml` → `framework_version`, root `CHANGELOG.md` | Never by hand — the release-please PR maintains them |
-| `AGENTS.md` / `CLAUDE.md` | `Last updated` date (if field present) |
-
-Fix any missing fields before continuing.
-
----
-
-## Step 2 — Add changelog entry
-
-For each changed file:
-- File has `## Changelog` section → add row: `| <date> | <version> | <what changed and why> |`
-- File has no changelog → nothing to add; the Conventional Commit PR title becomes the root `CHANGELOG.md` entry via release-please
-
-Entry must explain **what** changed and **why**.
+Write a Conventional Commit PR title that says **what** changed and **why**
+(`fix:`, `feat:`, `feat!:` for breaking changes). The release-please PR turns
+it into the root `CHANGELOG.md` entry.
 
 ---
 

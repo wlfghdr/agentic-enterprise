@@ -1,6 +1,5 @@
 # Executive Reality Check
 
-> **Version:** 1.0 | **Last updated:** 2026-03-16
 > **Audience:** CTO, CEO, COO, CFO, and transformation leads
 > **Purpose:** Evaluate the framework without marketing gloss
 
@@ -118,9 +117,3 @@ The framework is best for change-heavy, document-heavy, code-heavy, and policy-h
 The concept becomes compelling when it is framed as **explicit governance for AI-assisted work**, not as magic autonomy or tool replacement.
 
 That framing is strong enough for a serious CTO or CEO conversation. Anything broader should be treated as roadmap, not proof.
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-16 | Initial candid executive diligence guide |

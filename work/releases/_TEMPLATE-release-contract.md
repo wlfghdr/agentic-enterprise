@@ -1,10 +1,8 @@
 # Release Contract: [Release Name / Version]
 
-> **Template version:** 1.0 | **Last updated:** 2026-02-19  
 > **Release ID:** REL-YYYY-NNN  
 > **Status:** draft | approved | deploying | deployed | rolled-back  
 > **Created:** YYYY-MM-DD  
-> **Revision:** 1 | **Last updated:** YYYY-MM-DD
 > **Release Manager:** [name]  
 > **Storage:** `work/releases/YYYY-MM-DD-<release-name>.md`
 
@@ -96,18 +94,3 @@
 - [ ] Release Manager approval
 - [ ] On-call acknowledgment
 - [ ] Stakeholder notification sent
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-02-19 | Initial version |

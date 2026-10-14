@@ -1,6 +1,5 @@
 # Agent Span Example: Well-Instrumented Workflow
 
-> **Version:** 1.0 | **Last updated:** 2026-03-09
 > **Contract reference:** [`docs/otel-contract.md`](../../docs/otel-contract.md)
 > **Purpose:** Concrete end-to-end example of a compliant agent trace from mission start through quality evaluation.
 

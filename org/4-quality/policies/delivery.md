@@ -3,7 +3,6 @@
 > **Applies to:** All deployments, releases, rollouts, and operational changes
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Release Management / DevOps leads
-> **Version:** 1.2 | **Last updated:** 2026-06-09
 
 ---
 
@@ -122,13 +121,3 @@ When an active production incident requires an immediate fix:
 | **ISO 9001:2015** | 8.7 Control of nonconforming outputs | Rollback Criteria; Emergency / Hotfix Deployments |
 | **NIST CSF 2.0** | PR.IR-03 Mechanisms are implemented to achieve resilience requirements | Progressive rollout; Rollback Criteria |
 | **NIST CSF 2.0** | RC.RP-03 Recovery actions and restoration are verified | Post-Deployment; Rollback Criteria |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.2 | 2026-06-09 | Added structured compliance mappings for governed change, continuity, release control, and recovery verification. |
-| 1.1 | 2026-05-23 | Added SDLC gate cross-reference, formal AI impact assessment deploy gate, AI-specific penetration-testing deploy gate, and pre-deploy readiness checklist as a blocking production gate. |
-| 1.0 | 2026-02-19 | Initial version |

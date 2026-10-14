@@ -1,7 +1,5 @@
 # Agent Type Registry
 
-> **Version:** 1.2 | **Last updated:** 2026-03-27
-
 > **What this is:** The governed, versioned registry of all agent types in the {{COMPANY_SHORT}} agentic enterprise. Each agent type has a YAML definition file that describes its capabilities, lifecycle status, scaling parameters, and ownership.  
 > **Governance:** New agent types require Steering Layer evaluation and CTO approval via PR. This registry is the operational source of truth for all agent types.
 
@@ -165,11 +163,3 @@ These are complementary controls. A tool profile alone does **not** answer which
 | **org/README.md** | Documents the design principles and organizational structure that inform agent type design. |
 | **Division definitions** (`org/3-execution/divisions/`) | Divisions define domain context. Agent types define capabilities. An agent type belongs to a division (for Execution agents) or to a layer. |
 | **AGENT.md files** (`org/<layer>/AGENT.md`) | Layer instructions define behavioral rules. Agent type definitions specify capabilities, identity boundaries, and scaling. Both are needed for a complete agent specification. |
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.2 | 2026-03-27 | Added agent identity & access governance guidance clarifying that agent type definitions must document runtime identity, credential boundaries, environments, data access, approval gates, and auditability. |
-| 1.1 | 2026-03-07 | Added base-template fit criteria, configuration-vs-type guidance, and anti-patterns to reduce micro-specialized agent definitions |
-| 1.0 | 2026-02-23 | Initial version |

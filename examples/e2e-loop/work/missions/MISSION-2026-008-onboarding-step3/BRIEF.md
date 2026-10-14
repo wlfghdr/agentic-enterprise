@@ -3,7 +3,6 @@
 > **Mission ID:** MISSION-2026-008
 > **Status:** completed
 > **Created:** 2026-03-03
-> **Revision:** 2 | **Last updated:** 2026-03-18
 > **Author:** Strategy Layer
 > **Design required:** true
 
@@ -69,12 +68,3 @@ Reduce the Step 3 (workspace configuration) drop-off rate from 34% back to ≤20
 - **Size:** small (< 2 weeks)
 - **Agent fleet size:** 2 concurrent agent streams
 - **Human touchpoints:** 2 (UX review, A/B results review)
-
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | 2026-03-03 | Strategy Layer | Initial draft |
-| 2 | 2026-03-18 | Strategy Layer | Status updated to completed |

@@ -4,7 +4,6 @@
 > **Owner:** Privacy lead / support operations
 > **Triggered by:** Access, rectification, erasure, portability, restriction, objection, or related privacy requests
 > **Source policy:** [`../../org/4-quality/policies/privacy.md`](../../org/4-quality/policies/privacy.md)
-> **Version:** 1.0 | **Last updated:** 2026-03-13
 
 ---
 
@@ -103,11 +102,3 @@ A mature deployment should emit events for:
 - The request spans multiple jurisdictions with conflicting rules
 - The request intersects an active incident, litigation hold, fraud investigation, or security event
 - The organization is unsure whether it is controller or processor for the data in question
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-13 | Initial DSAR operating runbook |

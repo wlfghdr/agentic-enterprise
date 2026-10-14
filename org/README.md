@@ -1,7 +1,5 @@
 # Organizational Structure
 
-> **Version:** 1.4 | **Last updated:** 2026-05-23
-
 > **What this is:** The static structure of the agentic enterprise {{COMPANY_SHORT}} organization — who exists, where they sit, what they own, how they relate. This covers the **entire company**, not just R&D: engineering, delivery, go-to-market, sales, customer success, and support all operate within the same multi-layer operating model. The shipped template uses five default layers defined in `org/layers.yaml`.  
 > **What it replaces:** Legacy role hierarchies, ticket-based coordination, manual phase gates, and siloed functional departments.  
 > **Governance:** Changes via Pull Request → Steering Layer (structural) or Strategy Layer (operational) approval
@@ -292,13 +290,3 @@ org/
 - **Division changes** require the Division Tech Lead approval
 - All changes are version-controlled, auditable, and reversible via git history
 - See [../CODEOWNERS](../CODEOWNERS) for the complete approval mapping
-
-## Changelog
-
-- 1.4 (2026-05-23) — repositioned the document around a configurable multi-layer registry and linked the default template to `org/layers.yaml`.
-
-| Version | Date | Change |
-|---|---|---|
-| 1.3 | 2026-03-27 | Added Governance Primitives section and explicitly elevated the observability platform to a first-class governance artifact alongside contracts, manifests, and the repo backbone |
-| 1.1 | 2026-03-07 | Reframed execution divisions into core defaults, optional extensions, and company-specific product divisions; removed AI & Intelligence and Quality & Security Engineering as implied defaults |
-| 1.0 | 2026-02-19 | Initial version |

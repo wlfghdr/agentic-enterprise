@@ -1,7 +1,5 @@
 # Work Backends — Git Files vs. Issue Tracker
 
-> **Version:** 1.7 | **Last updated:** 2026-06-02
-
 > **What this document is:** The backend selection and contract guide.
 
 > **Use this document for:** choosing a backend, configuring `CONFIG.yaml`, understanding what stays in Git, and comparing backend behavior.
@@ -375,17 +373,3 @@ Regardless of backend, the `_TEMPLATE-*.md` files in `work/` remain in the repos
 4. **Issue template source** — GitHub Issue Templates can be generated from them
 
 Templates are **never** tracked in the issue system. They are framework files, governed by the template lifecycle (Rule 11 in AGENTS.md).
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| 1.7 | 2026-06-02 | Updated the backend guide to reflect GitHub Issues as the shipped default and git-files as the legacy self-contained mode. |
-| 1.6 | 2026-03-28 | Clarified that ad-hoc chat tasks should also be captured as tracking issues when the issue backend is enabled. |
-| 1.5 | 2026-03-23 | Clarified that assignee state is the source of truth for next action and that human-needed work must be explicitly reassigned to the human owner. |
-| 1.4 | 2026-03-09 | Consolidated backend configuration here and removed the duplicate `WORK-BACKEND.md` doc. Clarified this file's scope vs. `github-issues.md`. |
-| 1.2 | 2026-03-08 | Added assignment discipline section covering issues, PRs, and reviews — mandatory assignees, handoff protocols for both issues and PRs, next-action clarity, unassigned item sweep, agent identity. Human approval via comment+re-assign (agents handle labels). |
-| 1.1 | 2026-03-07 | Clarified Git-only companion artifacts, added human approval cheat sheet, removed issue-only claims for digests/evaluations/outcome reports/fleet reports, linked GitHub implementation guide |
-| 1.0 | 2026-03-07 | Initial version — introduced work backend abstraction concept |

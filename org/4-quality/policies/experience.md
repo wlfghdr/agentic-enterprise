@@ -3,7 +3,6 @@
 > **Applies to:** All user-facing surfaces — UI, CLI, APIs, documentation, error messages
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** UX/Design team leads
-> **Version:** 1.2 | **Last updated:** 2026-06-09
 
 ---
 
@@ -68,13 +67,3 @@
 | **ISO 9001:2015** | 9.1 Monitoring, measurement, analysis, and evaluation | Performance (User-Perceived); Evaluation Criteria |
 | **GDPR** | Art. 12 Transparent and accessible information | Content & Microcopy; Accessibility |
 | **CCPA/CPRA** | §1798.135 Accessible opt-out mechanism | Interaction Design; Accessibility |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.2 | 2026-06-09 | Added structured compliance mappings for service quality, transparent information, and accessible privacy controls. |
-| 1.0 | 2026-02-19 | Initial version |
-| 1.1 | 2026-02-23 | Replace {{DESIGN_SYSTEM_NAME}} placeholder with generic "company design system" language |

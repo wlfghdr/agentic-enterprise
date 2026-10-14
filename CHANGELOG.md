@@ -18,7 +18,7 @@ release PR bumps both and publishes the GitHub release.
 | `feat:` (new sections, fields, structural additions) | MINOR |
 | `feat!:` / `BREAKING CHANGE:` (invalidates existing instances) | MAJOR |
 
-**Document-level versioning** (AGENT.md, policies, templates) uses `MAJOR.MINOR` and is tracked independently inside each file's changelog section, as before.
+Individual files carry no versions or changelogs; Git history is the per-file record (AGENTS.md Rule 10).
 
 ## [4.4.2] — 2026-10-14
 

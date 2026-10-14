@@ -1,7 +1,5 @@
 # OpenClaw Onboarding for an Instance
 
-Last updated: 2026-03-27
-
 ## Goal
 
 Reduce the amount of manual work required after instantiating an enterprise repo.

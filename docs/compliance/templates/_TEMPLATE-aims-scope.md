@@ -1,7 +1,5 @@
 # Artificial Intelligence Management System — Scope Statement
 
-> **Template version:** 1.0
-> **Last updated:** 2026-03-15
 > **Standard:** ISO/IEC 42001:2023 — Clause 4.3
 > **Purpose:** Define the boundaries and applicability of the Artificial Intelligence Management System (AIMS)
 
@@ -163,9 +161,3 @@ This scope statement is reviewed:
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial AIMS scope statement |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-15 | Initial AIMS scope statement template aligned to ISO/IEC 42001 clause 4.3 |

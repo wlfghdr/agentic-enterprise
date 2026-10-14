@@ -3,7 +3,6 @@
 > **Applies to:** All data at rest, in transit, and in use; all cryptographic keys and certificates; all agent credentials and secrets
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team
-> **Version:** 1.0.2 | **Last updated:** 2026-03-15
 
 ---
 
@@ -243,12 +242,3 @@ All cryptographic keys must follow a governed lifecycle per NIST SP 800-57. No k
 - [ISO/IEC 27001:2022 Annex A.8.24](https://www.iso.org/standard/27001)
 - [PCI DSS v4.0 Requirements 3 & 4](https://www.pcisecuritystandards.org/)
 - [OWASP Top 10 #2 — Cryptographic Failures](https://owasp.org/Top10/A02_2021-Cryptographic_Failures/)
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0.2 | 2026-03-15 | Corrected Compliance Mapping entries for NIST SP 800-57 / 800-175B recognition and aligned the EU AI Act reference to Art. 15 (#116) |
-| 1.0 | 2026-03-13 | Initial version — approved algorithms & protocols, key lifecycle management, data encryption requirements (at rest, in transit, in use), AI/agent-specific encryption (model protection, credential management, inter-agent encryption), certificate management, KMS infrastructure, post-quantum readiness, compliance mapping (ISO 27001 / SOC 2 / NIST / PCI DSS / GDPR / EU AI Act) |

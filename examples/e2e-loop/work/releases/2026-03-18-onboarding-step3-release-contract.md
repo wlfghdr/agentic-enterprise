@@ -3,7 +3,6 @@
 > **Release ID:** REL-2026-008
 > **Status:** deployed
 > **Created:** 2026-03-18
-> **Revision:** 1 | **Last updated:** 2026-03-18
 > **Release Manager:** Agent (core-applications)
 
 ---
@@ -61,11 +60,3 @@ Simplified workspace configuration (Step 3) in the customer onboarding flow, red
 - **Customer impact:** 18pp improvement in Step 3 completion
 - **Business impact:** ~15% more customers completing onboarding → increased activation
 - **Support impact:** Workspace-related support tickets down 41%
-
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | 2026-03-18 | Agent (core-applications) | Initial release contract — all targets met |

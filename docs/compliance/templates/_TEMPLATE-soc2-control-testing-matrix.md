@@ -1,7 +1,5 @@
 # SOC 2 Control Testing Matrix
 
-> **Template version:** 1.0
-> **Last updated:** 2026-03-15
 > **Standard:** SOC 2 Type II — Trust Service Criteria
 > **Purpose:** Define the full control population, testing cadence, and test procedures for SOC 2 readiness and audit support
 
@@ -74,9 +72,3 @@
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial control testing matrix |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-15 | Initial template for SOC 2 control population, testing cadence, evidence sources, and result linkage |

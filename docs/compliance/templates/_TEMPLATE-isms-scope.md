@@ -1,7 +1,5 @@
 # ISMS Scope Statement
 
-> **Template version:** 1.0
-> **Last updated:** 2026-03-14
 > **Standard:** ISO/IEC 27001:2022 — Clause 4.3
 > **Purpose:** Define the boundaries and applicability of the Information Security Management System
 
@@ -181,9 +179,3 @@ This scope statement is reviewed:
 | Version | Date | Author | Change Description |
 |---------|------|--------|--------------------|
 | 1.0 | {{DATE}} | {{AUTHOR}} | Initial scope statement |
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| Template 1.0 | 2026-03-14 | Initial template |

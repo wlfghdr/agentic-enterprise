@@ -3,7 +3,6 @@
 > **Applies to:** All organizational layers, agent types, missions, integrations, and operational processes
 > **Enforced by:** Quality Layer eval agents
 > **Authority:** Security & Compliance team, Steering Layer
-> **Version:** 1.4.1 | **Last updated:** 2026-06-17
 
 ---
 
@@ -449,15 +448,3 @@ This table maps the organization's existing quality policies to the risk categor
 | **NIST CSF 2.0** | GV.RM-01 Risk management objectives are established and agreed to | §2 |
 | **NIST CSF 2.0** | ID.RA-01 Vulnerabilities in assets are identified and recorded | §3.1, §4 |
 | **NIST CSF 2.0** | ID.RA-05 Threats, vulnerabilities, likelihoods, and impacts are used to understand inherent risk | §3.2 |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.4.1 | 2026-06-17 | Terminology consistency — standardized "autonomy level" to the canonical "autonomy tier" (matches `org/agents/_TEMPLATE-agent-type.md`, the §6 tier definitions, and the autonomy-tier rollout checklist). Prose-only; no control changes. |
-| 1.4 | 2026-06-09 | Added structured compliance mappings for enterprise, AI, continuity, HIPAA, and NIST CSF risk management requirements. |
-| 1.3 | 2026-03-27 | Added workforce-readiness and change-management expectations tied to agent autonomy tiers, including minimum human readiness controls before autonomy increases |
-| 1.2 | 2026-03-14 | Extended §6.4 to reference vendor-risk-management.md for general vendor governance; added vendor concentration risk requirement (#92) |
-| 1.0 | 2026-03-13 | Initial version — risk appetite framework, 5×5 scoring methodology, AI risk taxonomy (22 canonical risks across 5 dimensions), agent autonomy tiers, observability-driven KRIs, regulatory crosswalk (ISO 31000 / NIST RMF / NIST AI RMF / ISO 27001 / SOC 2 / EU AI Act), policy-to-risk control mapping |

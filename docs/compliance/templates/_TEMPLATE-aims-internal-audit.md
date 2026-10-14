@@ -1,7 +1,5 @@
 # AIMS Internal Audit Programme
 
-> **Template version:** 1.0
-> **Last updated:** 2026-04-05
 > **Standard:** ISO/IEC 42001:2023 — Clauses 9.2.1, 9.2.2
 > **Purpose:** Establish a systematic internal audit programme for the AI Management System
 
@@ -305,11 +303,3 @@ Documented information must be available as evidence of:
 | Clause 9.2.2(b) — Auditor selection, objectivity, impartiality | Part B: §4 |
 | Clause 9.2.2(c) — Results reporting to management | Part D: §11 |
 | Clause 9.2.2 — Evidence of audit programme and results | Part E |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| 1.0 | 2026-04-05 | Initial template covering Clauses 9.2.1, 9.2.2. ISO 42001-specific checklist (Clauses 4--10 + 39 Annex A controls). Closes #248. |

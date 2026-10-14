@@ -1,6 +1,5 @@
 # Outcome Contract: [Mission Name]
 
-> **Template version:** 1.1 | **Last updated:** 2026-02-25  
 > **Defines measurable success criteria for a mission.**  
 > **Lives alongside the mission brief in** `work/missions/<name>/`
 
@@ -49,19 +48,3 @@
 | **Initial check** | YYYY-MM-DD _(e.g., 1 week post-deployment)_ | pending _(pending / completed / skipped)_ |
 | **Interim check** | YYYY-MM-DD _(e.g., 4 weeks post-deployment; add rows for additional interim checks if needed)_ | pending |
 | **Final evaluation** | YYYY-MM-DD _(e.g., 8 weeks post-deployment)_ | pending |
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.1 | 2026-02-25 | Enhanced Measurement Schedule with structured date fields (window start/end, interim checks with status tracking); added purpose note linking to Quality and Strategy Layer consumption |
-| 1.0 | 2026-02-19 | Initial version |

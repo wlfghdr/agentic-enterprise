@@ -1,6 +1,6 @@
 # Builder Fleet Pattern
 
-> **Version:** 1.0 | **Layer:** Execution (Layer 3) | **Status:** Reference
+> **Layer:** Execution (Layer 3) | **Status:** Reference
 
 ---
 

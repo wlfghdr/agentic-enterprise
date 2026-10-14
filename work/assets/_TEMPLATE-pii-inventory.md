@@ -1,6 +1,5 @@
 # PII Inventory Entry: [Data Category Name]
 
-> **Template version:** 1.0 | **Last updated:** 2026-03-14
 > **Tracks personal data processing activities.** Each entry describes one category of personal data, its classification, processing purpose, and handling controls. Required by the [Data Classification & Handling Policy](../../org/4-quality/policies/data-classification.md) and the [Privacy Policy](../../org/4-quality/policies/privacy.md).
 
 ---
@@ -61,19 +60,3 @@
 | **Privacy contact** | _(privacy/legal contact for this data category)_ |
 | **Last review date** | YYYY-MM-DD |
 | **Next review date** | _(at minimum quarterly)_ |
-
----
-
-## Revision History
-
-| Rev | Date | Author | Summary |
-|---|---|---|---|
-| 1 | YYYY-MM-DD | [agent/human] | Initial draft |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---|---|---|
-| 1.0 | 2026-03-14 | Initial version — PII inventory entry template for tracking personal data categories, classification, processing purposes, storage, access controls, and compliance cross-references |

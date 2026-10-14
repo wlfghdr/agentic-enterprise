@@ -1,7 +1,5 @@
 # AIMS Statement of Applicability (SoA)
 
-> **Template version:** 1.0
-> **Last updated:** 2026-04-05
 > **Standard:** ISO/IEC 42001:2023 — Clause 6.1.3(f), Definition 3.26
 > **Purpose:** Document applicability and implementation status of all Annex A controls for the AI Management System
 
@@ -184,11 +182,3 @@ Per Clause 6.1.3: "The organization shall obtain approval from the designated ma
 | Definition 3.26 — Statement of applicability | Structure and justification fields |
 | Clause 6.1.3(d) — Additional controls | "Additional Organization-Defined Controls" section |
 | Clause 6.1.3 — Management approval | "Management Approval" section |
-
----
-
-## Changelog
-
-| Version | Date | Change |
-|---------|------|--------|
-| 1.0 | 2026-04-05 | Initial template covering all 39 Annex A controls (A.2.2--A.10.4). Pre-populated with Agentic Enterprise framework references. Closes #249. |

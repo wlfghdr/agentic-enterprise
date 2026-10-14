@@ -3,10 +3,8 @@
 > **Purpose:** Practical operator guide for running the Agentic Enterprise operating model on [OpenClaw](https://openclaw.ai).
 > **Audience:** Operators bootstrapping an "agentic company" runtime (fleet, loops, automation).
 > **Status:** Living document — adjust as your fleet, budgets, and reliability needs evolve.
-> **Last updated:** 2026-03-27
 
 ---
-
 
 ## Design Principles
 
@@ -159,8 +157,6 @@ Ownership rule:
 - if the report says the human must act, that work should also be explicit in issue/PR assignment where the platform supports it
 
 ---
-
-
 
 ## Default Audit Role
 
