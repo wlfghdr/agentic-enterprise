@@ -108,6 +108,9 @@ def clean(text, fields, sections, strip_frontmatter_version, keep_placeholders=F
         if skip_level is not None:
             i += 1
             continue
+        if "last updated" in fields and re.match(r"^\s*(#\s*)?Last updated:\s*\S", line):
+            i += 1
+            continue
         tm = TABLE_ROW.match(line)
         if tm and tm.group(1).strip().lower() in ("version", "template version") \
                 and tm.group(1).strip().lower() in fields and VERSIONISH.match(tm.group(2).strip()):
