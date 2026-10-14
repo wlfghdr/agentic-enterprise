@@ -2,8 +2,11 @@ name: PR title
 
 # Squash merges use the PR title as the commit subject, and releases are
 # derived from those subjects, so the title must be a Conventional Commit.
+# pull_request_target runs the base branch's definition (a PR cannot rewrite
+# its own gate) and works for forks; safe because nothing from the PR is
+# checked out or executed.
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, edited, synchronize, reopened]
 
 permissions:

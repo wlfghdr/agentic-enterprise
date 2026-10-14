@@ -29,7 +29,7 @@ List all changed files (`git diff --stat`). For each, confirm version/date field
 | `AGENT.md` files | `Version` (minor or major bump) + `Last updated` date |
 | `_TEMPLATE-*.md` files | `Template version` + `Last updated` date + new row in `## Changelog` |
 | Quality policies | `Version` + `Last updated` date |
-| `CONFIG.yaml` | `framework_version` |
+| `CONFIG.yaml` → `framework_version`, root `CHANGELOG.md` | Never by hand — the release-please PR maintains them |
 | `AGENTS.md` / `CLAUDE.md` | `Last updated` date (if field present) |
 
 Fix any missing fields before continuing.
@@ -40,7 +40,7 @@ Fix any missing fields before continuing.
 
 For each changed file:
 - File has `## Changelog` section → add row: `| <date> | <version> | <what changed and why> |`
-- File has no changelog → add entry to root `CHANGELOG.md`
+- File has no changelog → nothing to add; the Conventional Commit PR title becomes the root `CHANGELOG.md` entry via release-please
 
 Entry must explain **what** changed and **why**.
 

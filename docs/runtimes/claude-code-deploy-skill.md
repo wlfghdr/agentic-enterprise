@@ -34,7 +34,7 @@ For each changed file, confirm its version/date fields are updated per Rule 10 i
 | `AGENT.md` files | `Version` (minor or major bump) + `Last updated` date |
 | `_TEMPLATE-*.md` files | `Template version` + `Last updated` date + new row in `## Changelog` |
 | Quality policies | `Version` + `Last updated` date |
-| `CONFIG.yaml` | `framework_version` |
+| `CONFIG.yaml` → `framework_version`, root `CHANGELOG.md` | Never by hand — the release-please PR maintains them |
 | `AGENTS.md` / `CLAUDE.md` | `Last updated` date (if field present) |
 
 Fix any missing fields before proceeding.
@@ -45,7 +45,7 @@ Fix any missing fields before proceeding.
 
 For each changed file:
 - If the file has a `## Changelog` section → add a row: `| <date> | <version> | <what changed and why> |`
-- If not → add an entry to root `CHANGELOG.md` under the correct version section
+- If not → nothing to add; the Conventional Commit PR title becomes the root `CHANGELOG.md` entry via release-please
 
 The entry must explain **what** changed and **why** — not just "updated file".
 
